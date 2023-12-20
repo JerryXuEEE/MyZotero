@@ -1,0 +1,529 @@
+Hindawi Publishing Corporation BioMed Research International Volume 2014, Article ID 237898, 14 pages http://dx.doi.org/10.1155/2014/237898
+
+Review Article
+Highlighting the Structure-Function Relationship of the Brain with the Ising Model and Graph Theory
+T. K. Das,1 P. M. Abeyasinghe,1 J. S. Crone,2,3,4 A. Sosnowski,1 S. Laureys,5,6 A. M. Owen,7 and A. Soddu1
+1 Physics & Astronomy Department, Brain & Mind Institute, Western University, London, ON, Canada N6A 3K7 2 Neuroscience Institute & Centre for Neurocognitive Research, Christian Doppler Klinik, Paracelsus Medical University, 5020 Salzburg, Austria 3 Centre for Neurocognitive Research & Department of Psychology, University of Salzburg, 5020 Salzburg, Austria 4 Department of Neurology, Christian Doppler Klinik, Paracelsus Medical University, 5020 Salzburg, Austria 5 Cyclotron Research Center and University Hospital of Lie`ge, University of Lie`ge, 4000 Lie`ge, Belgium 6 Department of Neurology, CHU Sart Tilman Hospital, University of Lie`ge, 4000 Lie`ge, Belgium 7 Department of Psychology, Brain & Mind Institute, Western University, London, ON, Canada N6A 5B7
+Correspondence should be addressed to T. K. Das; tdas2@uwo.ca
+Received 13 May 2014; Revised 17 July 2014; Accepted 17 July 2014; Published 4 September 2014
+Academic Editor: Yong He
+Copyright © 2014 T. K. Das et al. This is an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.
+With the advent of neuroimaging techniques, it becomes feasible to explore the structure-function relationships in the brain. When the brain is not involved in any cognitive task or stimulated by any external output, it preserves important activities which follow well-defined spatial distribution patterns. Understanding the self-organization of the brain from its anatomical structure, it has been recently suggested to model the observed functional pattern from the structure of white matter fiber bundles. Different models which study synchronization (e.g., the Kuramoto model) or global dynamics (e.g., the Ising model) have shown success in capturing fundamental properties of the brain. In particular, these models can explain the competition between modularity and specialization and the need for integration in the brain. Graphing the functional and structural brain organization supports the model and can also highlight the strategy used to process and organize large amount of information traveling between the different modules. How the flow of information can be prevented or partially destroyed in pathological states, like in severe brain injured patients with disorders of consciousness or by pharmacological induction like in anaesthesia, will also help us to better understand how global or integrated behavior can emerge from local and modular interactions.
+
+1. Introduction
+Despite decades of research focusing on network based brain activities, the anatomical structure of the observed brain networks and the functional aspects of spatiotemporal brain dynamics remain mysterious [1]. Several recent functional magnetic resonance imaging (fMRI) studies on the wakeful resting brain have showed the existence of different brain networks—resting-state networks (RSNs), for example, the default mode network (DMN), salience network (SN), auditory network (AN), three distinct visual networks (VN), sensorimotor network (SMN), and left and right executive
+
+control (ECN), which are considered to be unperturbed, nonstimulated functional networks, which at baseline activity are performing complex cognitive tasks [2–6]. The balance between segregation and integration of well-segmented and separated brain regions is essential for efficient information processing and rapid information transfer within and between the networks [7, 8]. A human brain consists of around 100 billion neurons, and each of these neurons forms approximately 1000 trillion electrical as well as chemical synaptic and nonsynaptic connections with other neurons in a brain network [9]. As a result, the importance of studying neurobiological implications of the complex neural wiring
+
+2
+
+BioMed Research International
+
+Function versus Structure
+Figure 1: Default mode network in a healthy control as extracted from resting state functional magnetic resonance imaging using independent component analysis and the fibers reconstructed using a tractography technique applied to diffusion tensor imaging data and subsequently filtered by the regions functionally connected in the default mode network.
+structure of these aforementioned functional networks has always been proven to be critical. The state of the art in neuroimaging techniques is already offering us the possibility to assess structural and functional connectivity of these brain networks. However, there is still a gap in finding more convincing structure-function relationships that could be predicted by the optimal neural activity in the network. This limits our current understanding of the mechanisms governing the base of emergent spatiotemporal brain dynamics, and their relation to complex evolutionary cognitive assessments of brain networks [10].
+Starting from the Hodgkin-Huxley conductance-based model [11], the field of computational neuroscience has been playing a significant role in replicating the functional characteristics of spontaneous neuronal activity from the modular brain network [12–16]. This could provide new insights into network dynamics along with the advancement of neuroimaging experiments [17–20]. Neuroimaging observations are strongly supporting a relationship between the structural architecture of the brain and its functional networking (see Figure 1 as an example for the DMN functional pattern and its structural support) [21–23]. The emergence of spontaneous network dynamics in the resting brain was simulated from the heterogeneous structural connectivity of the human brain and then compared with the spatiotemporal dynamics of BOLD low-frequency signals during rest [19]. In their study, oscillatory neural populations were found to be synchronized through the phase dynamics of coupled oscillators in a generalized Kuramoto model. This synchronization model could offer a detailed comparison of functional networks among the structural connectivity. With increasing global coupling strength of oscillators, clusters of oscillator nodes progressively integrate to form larger clusters with positive and negative correlations between them, and the corresponding network dynamics exhibit a phase transition from a desynchronized phase to a partially synchronized phase. In contrast to homogeneous or randomly coupled networks, the transition from a partially synchronized to a fully synchronized phase was found to be less probable due to the role of possible delay in transmission in the resting brain network. Despite this, a good agreement of “emergent” properties between simulated functional connectivity and empirical functional connectivity was demonstrated through the measurement of individual seed-based
+
+correlation in RSNs. Mechanisms behind cluster formations (or integration), intra- and inter-regional interactions, and the emergence of intercluster correlations/anticorrelations remain unexplored [19, 22]. Their studies suggest the need for more computational modeling-based research on the structure-function dependencies in brain networks.
+In the context of the complex structure-function relationships in the brain network, self-organized neural dynamics have been shown to exhibit random behaviour which can become very similar to systems studied in statistical physics (e.g., the Ising model) [24–26]. In the past, neural dynamics in the resting brain had been considered as quasistationary states without introducing the structural information and without a direct correspondence between lattice size and brain positions [12, 27]. In order to investigate dynamics of the resting brain, a collective phenomenon based 2dimensional (2D) Ising model was simulated numerically at different temperatures [18, 28]. Their simulated results allow an assessment of the cooperative emergent properties and the universality classes of network dynamics [18, 20, 27] as well as the biological plausibility of RSNs [2]. Under these mechanisms, the collective spin dynamics exhibit longrange spatiotemporal correlations with second order phase transitions between ordered and disordered magnetic states at the critical temperature [12, 29]. Compared to subcritical (𝑇 < 𝑇𝑐) and supercritical (𝑇 > 𝑇𝑐) temperature regions, their simulated results at this critical point highlighted a balance between positive and negative correlated networks and were comparable with the correlation and anticorrelation obtained from resting state fMRI. The universal mechanisms underlying the spontaneous emergent phenomena of the 2D Ising model can explain self-organized criticality of neural dynamics in large scale RSNs [28, 30]. Functional activation patterns of neural networks largely depend on the underlying structure of fiber pathways connecting all regions of the cortical and subcortical brain area [23, 31]. In a recent study [32], the functional neural activity of resting brain networks was also simulated from the generalized Ising model, replacing equal spin coupling with the structural network of the human connectome. The structural based collective neural dynamics were able to explain correlation-based networks that were comparable with the RSNs extracted from fMRI. Their findings confirmed that the second order phase transition and self-organized criticality of the 2D Ising model at critical temperature [27] might not be enough to explain the complex organization of information transfer in resting brain networks. This raises more puzzling questions about functional RSNs in various conditions including the involvement of cognitive tasks on the resting brain or altered states of consciousness like physiological (sleep), pharmacological (anesthesia), and pathophysiological (disorder of consciousness) states of brain networks [33].
+In addition to the aforementioned Kuramoto model of coupled oscillators and Ising model of magnetization, Honey et al. presented a neuronal mass model based analysis that could predict the functional connectivity from the human anatomical structure [21]. Following conductancebased neuronal dynamics, the neural mass model simulates a population of highly interconnected excitatory and inhibitory
+
+BioMed Research International
+
+3
+
+neurons. Three dynamic variables (membrane potential of pyramidal cells, average number of open potassium channels, and inhibitory interneurons) are used to describe the timecourse of local field potentials for a neuron mass. Each mass represents a node of cortex, which is interconnected to other nodes through the structural connectivity matrix via the mean firing rate. Along with these variables there are multiple microscopic quantities (ion channel conductance, fraction of channels open, and the ratio of NMDA to AMPA receptors), being used to describe the dynamics of neural masses. The number of intraconnected neurons, as well as the net effect of these microscopic constants, remain unknown for each node. There is an additional fitting parameter describing the excitatory coupling between nodes in the network. Utilizing all parameters, global resting brain dynamics are modelled and compared with empirical results [21, 34, 35]. In comparison, the Ising model uses one parameter, temperature, to simulate global brain activity. More research on the Ising model, taking into account the structural and functional interrelationships seen in the neural mass model, could resolve many unknowns in large-scale brain networks.
+Modern neuroimaging techniques like fMRI and diffusion tensor imaging (DTI), along with methodological advances in both spatial pattern detection and anatomical tracing, has made it possible to extract the functional patterns and the structures of neuroanatomical circuitry at different spatial scales [36–38]. With the development of graph theory, we have witnessed an unprecedented growth of applications to understand the structural and functional complexity of the human brain connectome [39] due to its relative simplicity, highly generalized, and easily interpretable nature. In a graph, structural (i.e., synaptic, axonal, and dendritic) and functional (i.e., spontaneous or evoked neuronal response based dynamic interactions) network connectivity of brains is typically represented by a set of nodes which carries neuronal information at the scale of interest and a set of edges that represents either functional relationships or structural connections among individual nodes [10, 40, 41]. Correlated nodes in patches of the cortex (gray matter) were used to demonstrate dynamic interaction of neural circuitry, in which functionally clustered regions of smallworld networks were governed by specific features, for example, high clustering, small path length, high efficiency, and repeated network motifs in a particular class [42, 43]. In the Watts-Strogatz model, probability of increasing rewiring demonstrates the transition of a random network from a periodic ring shaped lattice of the small-world topology [44]. Several pathological states of brain networks were also investigated, in which any disturbance of structural connectivity in neural networks could increase the probability of rewiring and reduce the functionally organized brain activity, for example, the Erdo¨s-Re´nyi type networking [34, 45–47]. Based on anatomical connectivity patterns and physiological interactions of neurons in mammalian brains, a statistical model of canonical microcircuits was able to describe cortical dynamics dependent on the large-scale “average connectivity” [14, 48]. The linked long-range projections in this model demonstrated nonrandom coherent features and large-scale spatiotemporal organizations of complex brain functionality.
+
+Recently, an electroencephalogram (EEG) study providing a high temporal resolution has been performed on large-scale network dynamics to investigate the loss of consciousness and cognitive deficits in patients with disorders of consciousness (DOC) after severe brain injury. This study provides information about further diagnosis and physiological mechanisms [49]. In large-scale brain networks, however, nodes keep being defined a priori, which is not always justified due to the limitation in sensitivity of detecting complex axonal fiber architecture [49, 50] and also due to the lack of appropriate parcellation procedures in order to establish short- and longrange functional relationships among highly coherent brain regions [51, 52].
+The performance of self-organized criticality, and its relation to efficient information processing in conscious brains, is solely determined by maintaining an optimal balance between axonal lengths and synaptic costs in neuronal circuitry [53]. Axonal wiring cost is considered as the source of functional integration, which is mostly spent forming longrange communications among spatially distant brain regions. On the other hand, the strength of short-ranged intraregional connectivity is improved with an increase of synaptic costs, implying a segregation effect on global dynamic patterns. There are also other factors, for example, the metabolic cost, glia cells, and myelination that play a role in neuronal communications. According to the economic principle of the brain, minimizing wiring and metabolic energy costs results in a more “profitable” and efficient tradeoff between wiring costs and the maximum structural and/or functional connectivity among spatially distinct brain regions. Balancing neuronal communication cost and highly conserved global connectome organization, the functional network topology in the healthy human brain demonstrates small-worldness [45]. The computational efficiency and functional integration of this type of brain network lie in the intermediate regime between the lattice-type topological networking (efficiency = low, cost = low) and random networking (efficiency = high, cost = high) [54]. Series of earlier fMRI studies on the anaesthetized human and monkey brains demonstrated a breakdown of cortical and subcortical functional connectivity in all resting networks when subjects were in a state of anesthesia-induced loss of consciousness [55–58]. This effect on functional connectivity altered intra- and intercortical connectivity, preventing the efficiency of information flow that was present in the small-world network of wakeful healthy brains. Their findings on imbalanced functional connectivity in the segmented cortical network also highlighted the requirement of maintaining the economic principle in order to perform the active cross-modal functional interactions during network communications.
+In this paper, we focus on reviewing the functional organization of brain dynamics and its underlying structurefunction relationship in a wakeful and conscious resting brain, followed by a brief discussion of its alterations under pharmacological and pathological states of consciousness [33]. Recent work on the Ising model and graph theory is explored to help understanding the global and local organization of brain communication at a spatiotemporal scale [20, 32, 59, 60] and its structural-functional interdependencies.
+
+4
+
+BioMed Research International
+
+Comparing both theoretical insights and fMRI empirical results, the notion of criticality, metastability, and phase transitions in self-organized brain dynamics are demonstrated, taking into account the emergence of macrostates under cooperative processes [13, 61].
+
+Projected Ising model 𝑻 < 𝑻𝒄
+
+2. Ising Model and Its Application
+to Brain Dynamics
+The Ising model of ferromagnetism was firstly introduced by Ernst Ising in 1925 as a statistical model of ferromagnetism [62]. A 2D square lattice version was further explored to explain the existence of ferro/paramagnetic transitions and was exactly solved in statistical physics by Onsager in 1944 [63]. Essentially, the model consists of discrete magnetic moments with their spins 𝑠𝑖 = +1 pointing upward and 𝑠𝑖 = −1 pointing in downward directions. In the brain, local increase (or decrease) in BOLD activity from its baseline could also be represented by “+1” (or “−1”) spin state [18, 64]. According to the model, each of these spins has the tendency to align with its neighbours in the square lattice through the nearest-neighbour, interaction energy, or coupling constant 𝐽𝑖𝑗. In the absence of any external field, the energy of a state 𝑡 is expressed by 𝐸(𝑡) = −(1/2) ∑⟨𝑖,𝑗⟩ 𝐽𝑖𝑗𝑠𝑖𝑠𝑗, where ⟨𝑖, 𝑗⟩ denotes the nearest neighbour interaction between nodes 𝑖 and 𝑗. Furthermore, the strength of interactions always competes against the effect of the temperature of the thermal bath with which the spin lattice is in contact. According to the formalism of statistical physics [65], the probability of finding the system in a configuration 𝑡 is 𝑃(𝑡) = exp[−𝐸(𝑡)/𝑘𝑇]/𝑧. Here 𝑧 = ∑ 𝑒−𝐸(𝑡)/𝑘𝑇 is called the partition function, 𝑘 is the Boltzman constant, and 𝑇 is the temperature. 𝐸 measures the integrated energy of a spin configuration, in which the interaction between spins wants to minimize which can be used to quantify the global spin organization. 𝑘𝑇 instead measures the kinetic energy randomly transferred between the thermal bath and the spin lattice, which produces the segregation effect in spin clusters. Numerical approaches have been developed to simulate the dynamics of an Ising model. The combination of Metropolis algorithm and classical Monte Carlo simulation with periodic boundary conditions establishes the thermalization procedure of magnetic spins when the system is placed in touch with a heat bath of temperature 𝑇 [66]. With increasing 𝑇, the spontaneous fluctuation of Ising spins increases. When the temperature reaches a certain critical value (𝑇𝑐), there is a qualitative change in the organization of the spin clusters as a whole, and the correlation length between neighbouring spins within the cluster (which captures the size of the formed clusters) diverges. The outcome of spin organizations from a 2D Ising model simulation at three different 𝑇 values is presented in Figure 2 after being projected on a 1015 parcellation of the brain [67] (notice that the relation between physical position in the brain and the 2D lattice is completely arbitrary, even if nearest neighbour interaction distribution is maintained).
+At low 𝑇, the spontaneous Monte Carlo spin flips are less probable, and spins in a given configuration are mostly aligned to contribute the minimum energy or ground state
+
+𝑻 = 𝑻𝒄
+𝑻 > 𝑻𝒄
+Figure 2: Three different 2D Ising model configurations after thermalization for, respectively, 𝑇 < 𝑇𝑐, 𝑇 = 𝑇𝑐, and 𝑇 > 𝑇𝑐. A 32 × 32 square lattice configuration has been projected on a 1015 parcellated brain keeping the nearest neighbour interaction structure.
+energy of the system. A quantity called the magnetization, which is the average of total spins over the whole lattice, determines the magnetic ordering of the system, that is, its ferromagnetic behaviour. When all spins are aligned along the same direction, a magnetization of magnitude “+1” or “−1” will be generated corresponding to a complete order configuration. The large amount of integrated magnetic ordering in this low temperature regime is accompanied by a small information content of the organized spin clusters. At high 𝑇, the magnetic ordering is completely lost due to significantly increasing number of spontaneous spin flips and the magnetization tends to “0,” which can be used to characterize the paramagnetic phase. In this case, a large number of laws of nature do not hold due to spontaneous symmetry breaking under global spin flips, and this disordered phase can be seen as the result of the dominating segregation effect over the cluster integration [66]. The information content is very high, in this case, but without integration. For the intermediate regime of 𝑇, the self-organized criticality, as well as a second order phase transition, are observed in the 2D Ising model through the maximum fluctuation in the magnetization and the susceptibility peak when 𝑇 reaches a critical value 𝑇𝑐 [18]. In this case, a balance between integration and segregation effects is recognized and revealed by the divergence of the correlation length through the formation of long-range ordering within the correlated functional networks of spin clusters. The global ordering of magnetization is preserved in the 𝑇 < 𝑇𝑐 regime and is destroyed above the critical temperature 𝑇𝑐. In Figure 3, four different states of 2D spin configurations are shown for 𝑇 < 𝑇𝑐, 𝑇 = 𝑇𝑐, and 𝑇 > 𝑇𝑐. These four different configurations correspond to the same four different time points at three different temperatures. Due to its simplicity of simulating two state spin systems and the richness of its dynamic behaviour in self-organized criticality,
+
+BioMed Research International
+
+5
+
+Ising dynamics
+
+𝑻 < 𝑻𝒄
+
+···
+
+···
+
+···
+
+𝑻 = 𝑻𝒄
+
+···
+
+···
+
+···
+
+𝑻 > 𝑻𝒄
+
+···
+
+···
+
+···
+
+𝒕=1
+
+𝒕 = 50
+
+𝒕 = 100
+
+𝒕 = 150
+
+Figure 3: Dynamics of a 2D Ising model with lattice size 32 × 32 after thermalization. For the three different temperatures 𝑇 < 𝑇𝑐, 𝑇 = 𝑇𝑐, and 𝑇 > 𝑇𝑐 the Ising model is simulated generating 150 time data points. Each time point corresponds to a new configuration in which all spins have been tested for flip through the Metropolis algorithm. Configurations of the same four time points are reported for the three different
+temperatures.
+
+the Ising model has been demonstrating unprecedented growth of applications in physics as in many other fields, including computational neuroscience [18, 28, 30].
+In neuroscience, electrophysiological brain activity in the presence or absence of sensory stimulation can be described by two states: (1) active states in which randomly generated neuronal action potentials collectively process information and provide neuronal communications with each other via functional networking and (2) inactive states in which neurons do not cross the threshold value to fire action potentials [12]. In the brain at rest, when a large number of neurons are functionally connected with each other, the resultant interaction of all other neurons on a given neuron can always be considered as its single averaged form [68, 69]. This situation can often be realized in the mean field theory, in which an effective interaction (e.g., exchange coupling in the Ising model) substitutes the many body interactions, involving the long-range ordering in the functional network [64, 70]. Reduction of many degrees of freedom in neural dynamics can therefore be simplified in an asymptotic form that results as the emergence of activated functional patterns [71]. The stability of these synchronous dynamic patterns in a network represents a neuronal firing state based on cooperative activity. In addition to four different spin configurations at the critical temperature (𝑇𝑐), mean functional organizations of neural dynamics, sampled at four different times and based on the resting state fMRI of 14 healthy
+
+subjects is shown in Figure 4. The baseline for the fMRI signal has been separately calculated for each parcellated region as the mean of the time-course for that region. All values above (or below) the baseline are represented in “Red” (or “Blue”).
+Series of earlier studies on fMRI, multielectrode local field potential (LFP), and magnetoencephalography (MEG) [72] profoundly highlighted the spontaneous emergence of cortical and sub-cortical resting brain activity in human and non-human primates [73]. In their analyses, collective functional organization of RSNs were found to be very similar to the emergence of simulated organizations poised in 2D Ising model near the critical temperature (see previous section). Along with the simulated spatiotemporal brain activity near or at the critical point, brain functionality in RSNs encountered the maximization of information processing, taking into account the input sensitivity and dynamic range of activity patterns [26, 73]. Besides prominent matching of the long-range correlations in large-scale cortical networks, power law behaviour with a slope value −3/2 (represents the fractal dimension) and neuronal avalanches in small-scale networks were indicated in empirical and simulated data of the resting brain [18, 74].
+In addition to this earlier work, there has been considerable growing attention on simulating the brain dynamics and its relation to self-organized criticality using the structure of human connectome from the DTI based measurements [32]. The fiber distributions between each pair of cortex parcellated
+
+6
+
+BioMed Research International
+
+Ising model dynamics 𝑻 = 𝑻𝒄 𝒕=1
+
+Digitalized fMRI dynamics 𝒕=1
+
+𝒕 = 50
+
+𝒕 = 50
+
+𝒕 = 100
+
+𝒕 = 100
+
+𝒕 = 150
+
+𝒕 = 150
+
+(a)
+
+(b)
+
+Figure 4: Simulated and functional imaging maps generated for four different time points. (a) shows the equilibrium spin configurations at 𝑇 = 𝑇𝑐. In (b), digital maps are created by setting a threshold as the baseline value of the BOLD time course for each corresponding parcellated region. Red corresponds to a value of above baseline (or spin “+1”) and blue below (or spin “−1”). Maps are created after averaging BOLD
+signal over 14 healthy subjects.
+
+regions could be in fact used as the input for the coupling 𝐽𝑖𝑗 between spin 𝑖 and spin 𝑗 in a generalized Ising model. In this way, all nodes including left and right hemispheres are interacting with each other, implying that any spin sees all the other spins as nearest neighbor even if with different couplings. Recently, a study on simulating the resting functional activity in monkeys and humans [73, 75] attempted to emphasize the finite size, scaling, and universality of brain dynamics. Along with the measurement of maximum information processing at criticality, their calculations on 𝑇𝑐 (not in line with earlier findings) as well as critical exponents of magnetization, specific heat and susceptibility, could explore collective brain activities in different spatial scales [75]. In the next section, functional organizations of spontaneous brain activity will be reviewed in the light of dynamic phase transitions, while the phenomena of selforganized criticality and metastability will help to characterize the similar behaviour of organized activity patterns observed in the empirical data [72, 76].
+3. Self-Organized Criticality, Phase Transition, and Metastability in Brain Networks
+Criticality in any dynamic system, including the brain, can be characterized by a threshold that describes the boundary
+
+of phase transition between ordered and disordered patterns. In order to understand experimental findings of human functional brain activity, for example, the resting state fMRI, a large number of interacting spin systems has been modeled successfully as self-organized criticality [77]. Recently, the correlation networks of resting state fMRI data were compared with the correlation matrix of a 2D Ising model at different temperatures, in which spins were connected with the short ranged nearest-neighbour interactions [28]. In the Ising model, the self-organized dynamic patterns are formed through the spontaneous fluctuation of random spins, reducing degrees of freedom through non-linear interactions among functional units of spin clusters [65]. These functional units are characterized by reduced degrees of freedom and are represented by order parameters (e.g., the magnetization) [66]. With increasing 𝑇, the spontaneous fluctuation of spin-flips increases, and at critical temperature the dynamic phase transition replicates the long-range ordering in the spin dynamics. This effect of long-range ordering
+can provide the maximum information flow, which is reduced down abruptly either in the phase of ordered (𝑇 < 𝑇𝑐 in subcritical phase) or completely disordered (𝑇 > 𝑇𝑐 in supercritical phase) spin states. This has been considered as
+the self-organized criticality of a 2D Ising model, in which
+the maximum occurrence of metastable states [76] can mimic
+
+BioMed Research International
+
+7
+
+almost all fascinating properties in the wakeful resting brain. Self-organization in the resting brain is also the result of spontaneous neural dynamics that have shown features such as metastability in order to explain the efficient information processing in the network. It is only in the critical regime of the Ising model that we can retain these properties and simulate brain functionality effectively [13, 20, 73].
+Starting from Turing instabilities in dynamical systems (1950), it has been shown that macrostates of brain wave oscillations can be formed out of cooperative processes, instabilities, rapid transitions between coherent states, pattern formations, and so forth [13, 78]. Due to the variability of synaptic couplings among large groups of neurons in an input-output based brain network, the ability to process and transfer information depends solely on integrating several functional counter-parts of the neural circuits of cortical and subcortical structures [79]. Taking into account the cooperation and competition in spontaneous neuronal oscillations, the basis of conscious brain activity lies in the state of metastability [80]. The dynamic states of brain oscillations lie in far-from-equilibrium regions, but it stabilizes over a long time period, explaining the ability to perform brain activities out of many random inputs from the external world [81]. The emergence of simulated spin dynamics in the Ising model and brain dynamics in level of consciousness, exhibit features of dynamic transitions between metastable states [18, 76]. Due to the limitation on appropriate fiber-tract modeling, the structural connectivity used in current neuroscience research seemed to overlook long-range projections and the polarization of fiber tracts. Insufficient information on the anatomical structure of the brain limits the current findings of simulated brain activity with the Ising model. Further research on fiber-tract connectivity in brain networks will improve simulations of self-organized criticality and metastability of functional brain activity. This will lead to a better understanding of complex brain phenomena such as cognition or generating consciousness. While simulating the Ising model provided the opportunity to characterize the structure-function relationship in emergence of complicated brain organizations, the research on graph theoretical approaches (see next section) could offer a better insight to understand the information traffic, and the integration properties of the network.
+4. A Brief Review of Graph Theory
+4.1. Current Progress on Graph Theory. Initial approaches of the network structures based on graph theory have developed a growing interest among the researchers involved in investigating the neuronal systems of the brain. Graph theory is providing a simplified and more generalized approach to studying the complex neuronal structures (e.g., Brain network) in neuroscience [82]. Furthermore, it has been proposed that the structure of the global brain network enhances the interaction between the segregation and integration of functionally specialized areas in the brain [83]. Even though the functional networks are restrained by the limitations of the structural connections, context-sensitive
+
+integration during cognition tasks necessarily requires a divergence between structural and functional networks. This essential idea is well explained by the “small-world” networks in graph theory which deals with highly clustered, yet globally interconnected networks [84]. The higher the clustering, the greater is the ability of being connected with groups of neurons in the brain network, resulting in network hubs. Thus, it describes the strong functional organization of the brain network and it is also evident in networks which have been extracted in resting state fMRI [84]. In addition, such networks have been described in cortical structure [42, 85] and in EEG and MEG (magnetoencephalogram) studies. Therefore, it is important to compare the parallel behaviour of the organization of functional and structural neuronal anatomy in the brain, and the complex networks of graph theory.
+4.2. Fundamentals of Graph Theory. Graph theory is an outstanding basis from which to study the functional and anatomical connections in the brain. A graph related to the brain network is a model of the neurons or group of neurons in patches of cortex (nodes/vertices in graph theoretical nomenclature) which are interconnected by a set of edges. The edges represent functional or structural connections between cortical and subcortical regional nodes based on analysis of human neuroimaging data [39]. Nodes in large scale brain networks usually represent brain regions, whereas the edges represent anatomical, effective or functional connections. In a graph, the number of connections a node has is called degree 𝑘 [86]. The distribution of the degree 𝑃(𝑘) gives the information about the fraction of nodes having 𝑘 number of edges and is, therefore, the probability distribution of the degree over the whole network. Clustering coefficient of a graph is another commonly used characteristic which gives the ratio of the number of existing connections to the number of all possible connections [44, 87], whereas the characteristic path length is the average of the shortest path lengths between the nodes. In addition, the global efficiency gives the inverse of the harmonic mean of the minimum path length, between each pair of nodes [88–90] and it indicates the amount of traffic that the network can handle. The local efficiency indicates a measure of the fault tolerance of the network [88] which gives information about handling traffic by each node in the network. In another perspective, efficiency is a useful network measure, which can be used to distinguish between highly active networks or otherwise. Moreover, the strength of divisions of a network in clusters is given by the modularity [91]. High modularity could establish strong connectivity of nodes within clusters and sparse connectivity between nodes of different clusters in the network. The complex networks, which are fundamentally characterized by these network metrics, are complex not only by the means of the size of the network, but also due to the interaction architecture and dynamics of the network [92].
+The networks have been classified, according to their topology, under three categories designated random network, small-world network, and scale-free network. Random graphs can be constructed by assigning connections between
+
+8
+
+BioMed Research International
+
+pairs of nodes with uniform probability. For most of the complex network systems, a random network is a poor estimate. The probability distribution of the degree of a random graph follows a normal distribution as the connections are made randomly between the nodes [92]. The clustering coefficient of random graphs is much smaller compared to that of scalefree and small-world networks. On the other hand, the smallworld network is highly clustered yet comprises a smaller characteristic path length compared to random networks [44]. Small-world networks maintain a balance between network segregation and integration, providing a high global and local efficiency of information transfer between nodes of a network [39]. In scale free networks, the nodes are connected in a way that there are few nodes which have very many connections, and many nodes which have few connections [92] implying low efficiency. This is in contrast to with smallworld networks where the efficiency is comparatively high, supporting high information transfer between the nodes. On the other hand, the low efficiency of the scale free networks will give the impression of mostly unconnected network structures as well [93]. Although this characterization among the network structures is common, in relation to brain dynamics, a brain network can also be characterized with respect to its regional anatomical connectivity.
+4.3. Types of Topological Connectivity. Topological connectivity of the brain may characterize different features of dynamic organization. This organization can be expressed by weighted or unweighted graphs. In weighted graphs, nodes represent the regions of interest and edges encode the strength of their correlation (functional) or the density of the fibers connecting them (anatomical) [94], while in unweighted graphs edges only represent the presence of connectivity exceeding a specific threshold. However, this binarization does not provide any information on important differences between weak and strong connections. For specific metrics such as the characteristic path length, the strength of connection is critical for interpretation since it determines the functional distance of connectivity, which is important to characterize long-distance shortcuts. By comparing functional and anatomical connectivity, a broader understanding of the way the brain functions with respect to its structural connectivity can be gained.
+4.3.1. Anatomical Connectivity. Anatomical/Structural connectivity between cortical regions of the brain is represented by the connections of axonal fibers. It ranges from interneuronal connectivity to inter-regional connectivity in the brain [10]. In MRI analysis, the anatomical connectivity is being tracked using DTI data. Graph theory offers a quantitative description of the anatomical patterns by producing a graph for the anatomical network of the brain. Mapping the anatomical connections of the human brain using graph theory has revealed small-world attributes with local clusters of brain regions [10]. This pattern of finding indicates that the structural organization of the brain demonstrates the most efficient type of network.
+
+4.3.2. Functional Connectivity. Although studying the anatomical connections of the brain allows us to understand the basic structural connectivity throughout the brain, investigating the functional connectivity provides us the knowledge of how this structural architecture relates to brain function. However, functional connectivity is based on statistical computations representing only correlations between nodes exceeding a specific threshold [31, 94]. In fMRI analysis, functional connectivity is analyzed using the BOLD signals. Therefore, functional connectivity emphasizes highly functionally correlated regions. As a result of that, the network can be presented as a fully connected graph among functionally active regions [94]. Thus, measure of efficiency of a network is always a relative quantity dependent on the graphical analysis itself and the choice of threshold.
+4.3.3. Effective Connectivity. Effective connectivity refers to the effect that one neural system or element influences another neural system or element [10, 31]. Using effective connectivity, the causal interactions between the elements of the network can be better understood. In this case, a directed graph can be generated to represent the effective connectivity between multiple regions of the brain network [10]. Applying directed graphs is a more sophisticated approach since it also provides information about the direction of connectivity. However, this adds statistically relevant issues when computing fMRI data because temporal aspects of interaction have to be considered which are problematic when measuring the BOLD signal (for further discussion, see [95–98]).
+4.4. Neurobiological Implications of Graph Theory
+4.4.1. The Network Properties in Ising Model and the Brain Network. Studying network properties in graph theory allows a comparison of networks using Ising model data and empirical fMRI data. An important measure in this comparison is the distribution of the degree for the two types of data sets, along with the distribution of the correlation. This will provide the basis to compare the functional behaviour of the brain network in resting state with the critical phenomena of the Ising model.
+After calculating, for each given temperature, configurations of the 2D Ising model at a chosen number of time points, a correlation matrix can be extracted and compared with the correlation of the empirical data from the resting brain (Figure 5). In Figure 5(a), the correlation distribution of empirical and simulated data is showing an important similarity when the Ising model is simulated at the critical temperature. Figure 5(b) represents the degree distribution for the graphs generated by the corresponding correlation matrices after setting a threshold to zero (using the Brain Connectivity Toolbox [86]). Beyond the critical temperature, the correlation of the simulated data tends to go to zero. At the critical temperature, the 2D Ising model, which does not assess the quality or quantity of information processing, is reflecting the distribution of correlation values of experimental data relevant to brain dynamics [28]. In addition, the distribution of the degree for the 2D Ising model at the critical
+
+BioMed Research International
+
+9
+
+Frequency Frequency
+
+1
+
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+−0.4 −0.3 −0.2 −0.1 0 0.1 0.2 0.3 0.4 0.5 0.6 𝜌
+
+0 100 200 300 400 500 600 700 800 900 Degree
+
+T = Tc T > Tc
+
+T < Tc Empirical data
+(a)
+
+T = Tc T > Tc
+
+T < Tc Empirical data
+(b)
+
+Figure 5: (a) shows the correlation values (𝜌) distribution for three different simulations of the 2D Ising model at 𝑇 < 𝑇𝑐, 𝑇 = 𝑇𝑐, and 𝑇 > 𝑇𝑐 together with the empirical data from resting state fMRI. (b) shows the degree distribution of the graphs obtained from the corresponding
+correlation matrices after setting a threshold equal to zero.
+
+temperature follows a similar behavior as the experimental data. At temperatures below the critical temperature, the average degree is found at a smaller value compared to that of the resting fMRI degree distribution, which implies lower functional connectivity of the nodes in the Ising model.
+The brain network follows small-world behaviour with higher efficiency and a higher clustering coefficient with respect to random or scale-free networks [84]. Moreover, it has shorter average path lengths and most of the connections are made among the neighbouring nodes, while few longrange connections are made in order to create short cuts. In the case of the Ising model, the variation of the degree distribution along with the temperature, allows extraction of valuable information about the network. Below the critical temperature the degree of connectivity of most nodes lies around 10% of the highest possible degree while at higher temperatures it is around 50% of the highest possible degree. These two cases, sub- and supercritical regimes, show a low efficiency in the network, suggesting that the critical behavior for the Ising model is predicting the highest information transfer in accordance with the resting brain data. As the brain network shows small-world network behaviour with lower characteristic path length and higher clustering coefficients in controls, under pathological or pharmacological conditions these properties could be altered depending on the structural or functional modulations of the network.
+To understand the structural organization of the brain network and its functional interaction, research has focused on brain alterations. Patients with severe brain injury are especially interesting to investigate, as alterations in structural connectivity can be isolated and compared to loss of
+
+function to further explore the relationship between structural and functional connectivity. Moreover, severe brain injury is characterized by a large-scale network disconnection which is the prime mechanism for the underlying cognitive impairment [99]. A prominent impairment in patients with severe brain injury is altered consciousness. In severe chronic states this is defined as disorders of consciousness (DOC) and comprises coma, vegetative state/unresponsive wakeful syndrome (VS/UWS), minimally consciousness states (MCS), and locked-in syndrome (LIS) [100]. In the presence of severe brain injury, the structure of the brain network can be crucially affected. This may lead to a disruption in the functional connectivity of the brain network, which can be captured by their graphical properties [101]. It has been observed by Crone et al. [91] that the functional brain networks of patients with DOC demonstrate a higher clustering coefficient compared to random networks, but a similar characteristic path length, which verifies the smallworld attributes in both healthy controls as well as patients with DOC. In comparison to healthy subjects though, the patients show reduced modularity at the global level that implies a shift in the ratio of the connection density within and between clusters. This indicates a disturbance in the optimal balance between integration and segregation.
+Altered states of consciousness can also be observed without changes in the structural connectivity as induced, for example, by the anesthetic propofol. In anesthesia-induced loss of consciousness, functional connectivity is disturbed while the structural connectivity is preserved. In respect to graph theory, this can be interpreted as a decrement of the number of functional connections. Graph theoretical
+
+10
+
+BioMed Research International
+
+analyses revealed significant changes in the distribution of degree and local functional organizations of brain networks during propofol-induced loss of consciousness [102] Recently, Monti et al. investigated the increase in clustering and characteristic path length and the decrease in efficiency of global information flow in propofol-induced unconscious brain networks, compared to wakefulness, mild-sedation, and recovery states of the brain [103]. In their studies, loss of consciousness in the sedation state was characterized as the result of increasing the segregation effect in functional brain organizations.
+5. Conclusions and Discussion
+Throughout this paper, we have reviewed the structurefunction relationship in the brain network with recent ongoing analyses, focusing on the Ising model and graph theory. The Ising model together with graph theory proved to be effective approaches to studying brain dynamics. In particular, the Ising model is involved in characterizing the emergent properties of functional network organizations at the critical temperature and the changes in organization when temperature is departing from its critical value. Three significant temperature values are taken into account as the critical, subcritical, and supercritical temperatures. Much of the earlier efforts have compared brain dynamics with the behaviour of self-organized criticality at the critical point of the Ising model. However, the recent finding of characterising brain dynamics in the Griffith phase has started diminishing the hallmark of self-organized criticality in brain networks, unless the network becomes highly efficient and optimized [104]. Their analyses provide the opportunity to look into the behaviour of functional networks based on Ising model simulation in subcritical and supercritical temperature regions in order to understand the macroscopic brain mechanisms. On the other hand, graph theory has been providing another platform to characterize the structural and functional connectivity of the brain. Underpinning results of graph theoretical metrics reveal that the brain network follows a small-world behaviour with a high efficiency and low wiring cost [54, 84]. Furthermore, graph theoretical measures provide additional understanding about the information transfer among the nodes of the Ising model at the critical temperature and in the sub- and supercritical regimes.
+The brain is one of the most complex networks in nature due to its sophisticated structure-function relationships. Understanding the optimized information processing and transfer in its cortical networks is the prime focus of much current neuroscience research. With recent advancements in neuroimaging techniques like fMRI (with high spatial resolution), EEG, and MEG (with high temporal resolution), any functional activity based measurements could quantify global correlation patterns in wakeful resting brains [5] or altered states of consciousness as induced by anaesthesia or severe brain injury [33]. Current neuroimaging techniques enable us to explore multiple functional networks within the resting brain with resolution of the order of 105 neurons in a cubic millimeter of neuronal tissue [105]. With this in mind, neuroimaging studies are limited in their characterization
+
+of individuals’ functionality within any correlated network. However, several of the macroscopic brain phenomena, for example, consciousness, mind, human cognition, global information processing, have recently been investigated in the resting brain with multidimensional analyses of the brain organization in various spatial and temporal scales. With the aid of mean field theory, the functional connectivity of these networks has also been compared with the simulated selforganized criticality of the Ising model in absence/presence of anatomical connectivity.
+Nowadays, multimodal neuroimaging is applied to patients with DOC in order to find diagnostic tools [106]. In Figure 6, DTI, fMRI, and FDG-PET are presented for a patient in vegetative state (VS/UWS) and a patient in minimally conscious state (MCS) together with a healthy subject [107]. While the resting-state fMRI and FDG-PET images present a functionally preserved right hemisphere for both patients, DTI shows underlying differences in structural connectivity. In VS and MCS patients, these neuroimaging methods complement each other to provide information of structural and functional connectivity. In recent years, DOC, which could be a result of impaired regulation of arousal and awareness due to connectivity disruptions among different anatomical brain regions [108], have been extensively studied [103, 109, 110]. Their findings highlighted the strong dependency of structure and function in brain networks. Applications of structural and functional neuroimaging, together with computational modeling like the Ising model may allow accessing the spatiotemporal organization of the resting brain and its possible reorganization or disruption in altered states of consciousness.
+A recent review also highlighted the fact that structural brain damage after traumatic brain injury (TBI) could disrupt the functional activity of large-scale intrinsic connectivity networks as well as interactions of the damaged structure with neuroinflammation and neurodegeneration as in Alzheimer disease and chronic traumatic encephalopathy [99]. Traumatic focal brain injury may disconnect large-scale brain networks that might result in network dysfunction and cognitive impairment. Their investigations on structural and functional integrity within intrinsic connectivity networks may help to improve diagnosis at the individual network level and clinical treatment in future research. However, the difficulty of accessing long-term human brain data after TBI constrains current studies of DOC, which are mostly treated on the basis of “trial” and “error.” In patients with TBI, diffuse axonal injury may damage structural network connectivity via white matter fibers, which is difficult to investigate through the current tractography technique [111, 112]. This demands the necessity of studying computational models that may help to understand in vivo structure-function relations as well as neuronal intercommunication in large scale brain networks [10].
+Graph theory is a useful tool for understanding the organization of brain networks in different spatial and temporal scales. In the healthy brain during rest, the organization within and between RSNs demonstrates small-world features which maximize the information transfer by a relative low level of wiring cost [10]. Together with findings from Ising
+
+BioMed Research International
+
+11
+
+DOC patients versus healthy control
+
+VS/UWS DTI
+
+MCS
+
+Control
+
+fMRI
+
+8
+
+T value
+
+PET L
+
+R
+
+L
+
+R
+
+L
+
+3.7
+80 R
+
+Normalized value
+
+0
+Figure 6: Diffusion tensor imaging, default mode network as extracted from resting state functional magnetic resonance imaging and 18Ffluorodeoxyglucose positron emission tomography in a vegetative patient, a minimally conscious patient, and a healthy control. This figure was modified by Bruno et al. [107].
+
+model simulations explaining the self-organized criticality of brain dynamics, graph theory has opened the door to understand specific properties of organization among these selforganized functional modules [8]. This knowledge can now be used to explore neurobiological mechanisms of the brain network and its alterations in pathological or pharmacological states to better understand how brain phenomena such as cognition or consciousness emerge [1]. This knowledge can then be used to improve innovative biomarkers for the diagnosis and prognosis of disease.
+Conflict of Interests
+The authors declare that there is no conflict of interests regarding the publication of this paper.
+Acknowledgments
+This work was supported by the Canada Excellence Research Chair (CERC), the James McDonnell Foundation (JMF) programs (AMO), and a discovery grant (AS) from the Natural Sciences and Engineering Research Council (NSERC). Authors would like to thank Erik Ziegler for producing the fibers’ skeleton of the DMN of Figure 1.
+References
+[1] O. Sporns, “Contributions and challenges for network models in cognitive neuroscience,” Nature Neuroscience, vol. 17, pp. 652– 660, 2014.
+
+[2] M. D. Greicius, B. Krasnow, A. L. Reiss, and V. Menon, “Functional connectivity in the resting brain: a network analysis of the default mode hypothesis,” Proceedings of the National Academy of Sciences of the United States of America, vol. 100, no. 1, pp. 253–258, 2003.
+[3] B. B. Biswal, “Resting state fMRI: a personal history,” NeuroImage, vol. 62, no. 2, pp. 938–944, 2012.
+[4] M. P. van den Heuvel and H. E. Hulshoff Pol, “Exploring the brain network: a review on resting-state fMRI functional connectivity,” European Neuropsychopharmacology, vol. 20, no. 8, pp. 519–534, 2010.
+[5] M. D. Greicius, K. Supekar, V. Menon, and R. F. Dougherty, “Resting-state functional connectivity reflects structural connectivity in the default mode network,” Cerebral Cortex, vol. 19, no. 1, pp. 72–78, 2009.
+[6] D. M. Cole, S. M. Smith, and C. F. Beckmann, “Advances and pitfalls in the analysis and interpretation of resting-state FMRI data,” Frontiers in Systems Neuroscience, vol. 4, p. 8, 2010.
+[7] Y. Liu, M. Liang, Y. Zhou et al., “Disrupted small-world networks in schizophrenia,” Brain, vol. 131, no. 4, pp. 945–961, 2008.
+[8] O. Sporns, Networks of the Brain, MIT Press, Boston, Mass, USA, 2011.
+[9] C. R. Noback, N. L. Strominger, R. J. Demarest, and D. A. Ruggiero, The Human Nervous System: Structure and Function, Springer, New York, NY, USA, 2005.
+[10] E. Bullmore and O. Sporns, “Complex brain networks: graph theoretical analysis of structural and functional systems,” Nature Reviews Neuroscience, vol. 10, no. 3, pp. 186–198, 2009.
+[11] A. L. Hodgkin and A. F. Huxley, “A quantitative description of membrane current and its application to conduction and
+
+12
+
+BioMed Research International
+
+excitation in nerve,” The Journal of Physiology, vol. 117, no. 4, pp. 500–544, 1952.
+[12] D. J. Amit, Modeling Brain Function: The World of Attractor Neural Networks, Cambridge University Press, 1992.
+[13] J. S. Kelso, Dynamic Patterns: The Self-Organization of Brain and Behavior, MIT Press, 1995.
+[14] E. M. Izhikevich, Dynamical Systems in Neuroscience, The MIT Press, Boston, Mass, USA, 2007.
+[15] M. Ozer, M. Perc, and M. Uzuntarla, “Controlling the spontaneous spiking regularity via channel blocking on NewmanWatts networks of Hodgkin-Huxley neurons,” EPL, vol. 86, no. 4, Article ID 40008, 2009.
+[16] M. Breakspear, S. Heitmann, and A. Daffertshofer, “Generative models of cortical oscillations: neurobiological implications of the Kuramoto model,” Frontiers in Human Neuroscience, vol. 4, article 190, 2010.
+[17] M. D. Fox and M. E. Raichle, “Spontaneous fluctuations in brain activity observed with functional magnetic resonance imaging,” Nature Reviews Neuroscience, vol. 8, no. 9, pp. 700–711, 2007.
+[18] D. R. Chialvo, “Emergent complex neural dynamics,” Nature Physics, vol. 6, no. 10, pp. 744–750, 2010.
+[19] J. Cabral, E. Hugues, O. Sporns, and G. Deco, “Role of local network oscillations in resting-state functional connectivity,” NeuroImage, vol. 57, no. 1, pp. 130–139, 2011.
+[20] G. Deco, V. K. Jirsa, and A. R. McIntosh, “Emerging concepts for the dynamical organization of resting-state activity in the brain,” Nature Reviews Neuroscience, vol. 12, no. 1, pp. 43–56, 2011.
+[21] C. J. Honey, O. Sporns, L. Cammoun et al., “Predicting human resting-state functional connectivity from structural connectivity,” Proceedings of the National Academy of Sciences of the United States of America, vol. 106, no. 6, pp. 2035–2040, 2009.
+[22] J. Cabral, E. Hugues, M. L. Kringelbach, and G. Deco, “Modeling the outcome of structural disconnection on resting-state functional connectivity,” NeuroImage, vol. 62, no. 3, pp. 1342–1353, 2012.
+[23] E. Ziegler, A. Foret, L. Mascetti et al., “Altered white matter architecture in BDNF Met carriers,” PLoS ONE, vol. 8, no. 7, Article ID e69290, 2013.
+[24] D. R. Chialvo, “Critical brain networks,” Physica A: Statistical Mechanics and Its Applications, vol. 340, no. 4, pp. 756–765, 2004.
+[25] A. Levina, J. M. Herrmann, and T. Geisel, “Dynamical synapses causing self-organized criticality in neural networks,” Nature Physics, vol. 3, no. 12, pp. 857–860, 2007.
+[26] A. Haimovici, E. Tagliazucchi, P. Balenzuela, and D. R. Chialvo, “Brain organization into resting state networks emerges at criticality on a model of the human connectome,” Physical Review Letters, vol. 110, no. 17, Article ID 178101, 2013.
+[27] D. R. Chialvo, P. Balenzuela, and D. Fraiman, “The brain: what is critical about it?” American Institute of Physics Conference Proceedings, vol. 1028, pp. 28–45, 2008.
+[28] D. Fraiman, P. Balenzuela, J. Foss, and D. R. Chialvo, “Isinglike dynamics in large-scale functional brain networks,” Physical Review E, vol. 79, no. 6, Article ID 061922, 2009.
+[29] S. Istrail, “Statistical mechanics, three-dimensionality and NPcompleteness. I. Universality of intractability for the partition function of the ISIng model across non-planar surfaces (extended abstract),” in Proceedings of the 32nd Annual ACM Symposium on Theory of Computing, pp. 87–96, ACM, New York, NY, USA.
+
+[30] J. M. Beggs and N. Timme, “Being critical of criticality in the brain,” Frontiers in Physiology, vol. 3, article 163, 2012.
+[31] K. J. Friston, “Functional and effective connectivity: a review,” Brain Connectivity, vol. 1, no. 1, pp. 13–36, 2011.
+[32] D. Marinazzo, M. Pellicoro, and S. Stramaglia, “Information transfer of an Ising model on a brain network,” BMC Neuroscience, vol. 14, article P376, supplement 1, 2013.
+[33] L. Heine, A. Soddu, F. Go´mez et al., “Resting state networks and consciousness: alterations of multiple resting state network connectivity in physiological, pharmacological, and pathological consciousness states,” Frontiers in Psychology, vol. 3, Article ID Article 295, 2012.
+[34] C. J. Honey, R. Ko¨tter, M. Breakspear, and O. Sporns, “Network structure of cerebral cortex shapes functional connectivity on multiple time scales,” Proceedings of the National Academy of Sciences of the United States of America, vol. 104, no. 24, pp. 10240–10245, 2007.
+[35] R. Almeida and M. Stetter, “Modeling the link between functional imaging and neuronal activity: synaptic metabolic demand and spike rates,” NeuroImage, vol. 17, no. 2, pp. 1065– 1079, 2002.
+[36] J. Scholz, M. C. Klein, T. E. J. Behrens, and H. Johansen-Berg, “Training induces changes in white-matter architecture,” Nature Neuroscience, vol. 12, no. 11, pp. 1370–1371, 2009.
+[37] M. E. Raichle, “A paradigm shift in functional brain imaging,” The Journal of Neuroscience, vol. 29, no. 41, pp. 12729–12734, 2009.
+[38] P. Hagmann, O. Sporns, N. Madan et al., “White matter maturation reshapes structural connectivity in the late developing human brain,” Proceedings of the National Academy of Sciences of the United States of America, vol. 107, no. 44, pp. 19067–19072, 2010.
+[39] E. T. Bullmore and D. S. Bassett, “Brain graphs: graphical models of the human brain connectome,” Annual Review of Clinical Psychology, vol. 7, pp. 113–140, 2011.
+[40] B. Horwitz, “The elusive concept of brain connectivity,” NeuroImage, vol. 19, no. 2, pp. 466–470, 2003.
+[41] G. Gong, Y. He, L. Concha et al., “Mapping anatomical connectivity patterns of human cerebral cortex using in vivo diffusion tensor imaging tractography,” Cerebral Cortex, vol. 19, no. 3, pp. 524–536, 2009.
+[42] Y. He, Z. J. Chen, and A. C. Evans, “Small-world anatomical networks in the human brain revealed by cortical thickness from MRI,” Cerebral Cortex, vol. 17, no. 10, pp. 2407–2419, 2007.
+[43] Z. J. Chen, Y. He, P. Rosa-Neto, J. Germann, and A. C. Evans, “Revealing modular architecture of human brain structural networks by using cortical thickness from MRI,” Cerebral Cortex, vol. 18, no. 10, pp. 2374–2381, 2008.
+[44] D. J. Watts and S. H. Strogatz, “Collective dynamics of “smallworld” networks,” Nature, vol. 393, no. 6684, pp. 440–442, 1998.
+[45] O. Sporns, “The non-random brain: efficiency, economy, and complex dynamics,” Frontiers in Computational Neuroscience, vol. 5, article 5, 2011.
+[46] J. Alstott, M. Breakspear, P. Hagmann, L. Cammoun, and O. Sporns, “Modeling the impact of lesions in the human brain,” PLoS Computational Biology, vol. 5, no. 6, Article ID e1000408, 2009.
+[47] C. J. Honey and O. Sporns, “Dynamical consequences of lesions in cortical networks,” Human Brain Mapping, vol. 29, no. 7, pp. 802–809, 2008.
+
+BioMed Research International
+
+13
+
+[48] T. Binzegger, R. J. Douglas, and K. A. Martin, “A quantitative map of the circuit of cat primary visual cortex,” The Journal of Neuroscience, vol. 24, no. 39, pp. 8441–8453, 2004.
+[49] S. J. Schiff, Neural Control Engineering: The Emerging Intersection between Control Theory and Neuroscience, MIT Press, Boston, Mass, USA, 2012.
+[50] J. Schmahmann, “The primary motor cerebellum is in the anterior lobe but not the posterior lobe. Evidence from stroke patients,” in Neurology, Lippincott Williams & Wilkins, Philadelphia, Pa, USA, 2007.
+[51] D. A. Fair, A. L. Cohen, N. U. F. Dosenbach et al., “The maturing architecture of the brain’s default network,” Proceedings of the National Academy of Sciences of the United States of America, vol. 105, no. 10, pp. 4028–4032, 2008.
+[52] S. M. Nelson, A. L. Cohen, J. D. Power et al., “A parcellation scheme for human left lateral parietal cortex,” Neuron, vol. 67, no. 1, pp. 156–170, 2010.
+[53] G. Buzsa´ki, “Large-scale recording of neuronal ensembles,” Nature Neuroscience, vol. 7, no. 5, pp. 446–451, 2004.
+[54] E. Bullmore and O. Sporns, “The economy of brain network organization,” Nature Reviews Neuroscience, vol. 13, no. 5, pp. 336–349, 2012.
+[55] P. Boveroux, A. Vanhaudenhuyse, M. Bruno et al., “Breakdown of within- and between-network resting state functional magnetic resonance imaging connectivity during propofol-induced loss of consciousness,” Anesthesiology, vol. 113, no. 5, pp. 1038– 1053, 2010.
+[56] J. L. Vincent, G. H. Patel, M. D. Fox et al., “Intrinsic functional architecture in the anaesthetized monkey brain,” Nature, vol. 447, no. 7140, pp. 83–86, 2007.
+[57] M. M. Monti, “Dynamic change of global and local information processing in propofol-induced loss and recovery of consciousness,” PLoS Computational Biology, vol. 9, no. 10, Article ID e1003271, 2013.
+[58] P. Guldenmund, A. Demertzi, P. Boveroux et al., “Thalamus, brainstem and salience network connectivity changes during propofol-induced sedation and unconsciousness,” Brain connectivity, vol. 3, no. 3, pp. 273–285, 2013.
+[59] M. Tschernegg, J. S. Crone, T. Eigenberger et al., “Abnormalities of functional brain networks in pathological gambling: a graphtheoretical approach,” Frontiers in Human Neuroscience, vol. 7, article 625, 2013.
+[60] O. Sporns, “Structure and function of complex brain networks,” Dialogues in Clinical Neuroscience, vol. 15, no. 3, pp. 247–262, 2013.
+[61] G. Werner, “Metastability, criticality and phase transitions in brain and its models,” BioSystems, vol. 90, no. 2, pp. 496–508, 2007.
+[62] S. G. Brush, “History of the Lenz-Ising model,” Reviews of Modern Physics, vol. 39, no. 4, pp. 883–893, 1967.
+[63] L. Onsager, “Crystal statistics. I. A two-dimensional model with an order-disorder transition,” Physical Review, vol. 65, article 117, 1944.
+[64] M. G. Kitzbichler, M. L. Smith, S. R. Christensen, and E. Bullmore, “Broadband criticality of human brain network synchronization,” PLoS Computational Biology, vol. 5, no. 3, Article ID e1000314, 2009.
+[65] L. E. Reichl and I. Prigogine, A Modern Course in Statistical Physics, vol. 71, University of Texas Press, 1980.
+[66] D. P. Landau and K. Binder, A Guide to Monte Carlo Simulations in Statistical Physics, Cambridge University Press, Cambridge, 3rd edition, 2009.
+
+[67] B. Fischl, “FreeSurfer,” NeuroImage, vol. 62, no. 2, pp. 774–781, 2012.
+[68] H. B. Barlow, “Single units and sensation: a neuron doctrine for perceptual psychology?” Perception, vol. 1, no. 4, pp. 371–394, 1972.
+[69] C. Koch, Biophysics of Computation: Information Processing in Single Neurons, Oxford University Press, 2004.
+[70] E. Schneidman, M. J. Berry II, R. Segev, and W. Bialek, “Weak pairwise correlations imply strongly correlated network states in a neural population,” Nature, vol. 440, no. 7087, pp. 1007–1012, 2006.
+[71] J. J. Hopfield, “Neural networks and physical systems with emergent collective computational abilities,” Proceedings of the National Academy of Sciences of the United States of America, vol. 79, no. 8, pp. 2554–2558, 1982.
+[72] R. Kozma, M. Puljic, and W. J. Freeman, “Thermodynamic model of criticality in the cortex based on EEG/ECOG data,” Criticality in Neural Systems, 2014.
+[73] S. Yu, H. Yang, O. Shriki, and D. Plenz, “Universal organization of resting brain activity at the thermodynamic critical point,” Frontiers in Systems Neuroscience, vol. 7, article 42, 2013.
+[74] S. N. Dorogovtsev and J. F. F. Mendes, Evolution of Networks: From Biological Nets to the Internet and WWW, Oxford University Press, Oxford, UK, 2013.
+[75] H. G. Schuster, D. Plenz, and E. Niebur, Criticality in Neural Systems, John Wiley & Sons, 2014.
+[76] J. A. Scott Kelso, “Multistability and metastability: understanding dynamic coordination in the brain,” Philosophical Transactions of the Royal Society B: Biological Sciences, vol. 367, no. 1591, pp. 906–918, 2012.
+[77] J. Hidalgo, J. Grilli, S. Suweis, M. A. Munoz, J. R. Banavar, and A. Maritan, “Emergence of criticality in living systems through adaptation and evolution: practice makes critical,” 2013, http://arxiv.org/abs/1307.4325.
+[78] T. Froese, A. Woodward, and T. Ikegami, “Turing instabilities in biology, culture, and consciousness? On the enactive origins of symbolic material culture,” Adaptive Behavior, vol. 21, no. 3, pp. 199–214, 2013.
+[79] M. I. Rabinovich, V. S. Afraimovich, C. Bick, and P. Varona, “Information flow dynamics in the brain,” Physics of Life Reviews, vol. 9, no. 1, pp. 51–73, 2012.
+[80] J. S. Kelso and E. Tognoli, “Toward a complementary neuroscience: metastable coordination dynamics of the brain,” in Downward Causation and the Neurobiology of Free Will, pp. 103– 124, Springer, 2009.
+[81] G. Deco and M. Corbetta, “The dynamical balance of the brain at rest,” The Neuroscientist, vol. 17, no. 1, pp. 107–123, 2011.
+[82] B. C. M. van Wijk, C. J. Stam, and A. Daffertshofer, “Comparing brain networks of different size and connectivity density using graph theory,” PLoS ONE, vol. 5, no. 10, Article ID e13701, 2010.
+[83] H.-J. Park and K. Friston, “Structural and functional brain networks: from connections to cognition,” Science, vol. 342, no. 6158, Article ID 1238411, 2013.
+[84] K. Supekar, V. Menon, D. Rubin, M. Musen, and M. D. Greicius, “Network analysis of intrinsic functional brain connectivity in Alzheimer’s disease,” PLoS Computational Biology, vol. 4, no. 6, Article ID e1000100, 2008.
+[85] O. Sporns and J. D. Zwi, “The small world of the cerebral cortex,” Neuroinformatics, vol. 2, no. 2, pp. 145–162, 2004.
+[86] M. Rubinov and O. Sporns, “Complex network measures of brain connectivity: uses and interpretations,” NeuroImage, vol. 52, no. 3, pp. 1059–1069, 2010.
+
+14
+
+BioMed Research International
+
+[87] S. H. Strogatz, “Exploring complex networks,” Nature, vol. 410, no. 6825, pp. 268–276, 2001.
+[88] S. Achard and E. Bullmore, “Efficiency and cost of economical brain functional networks,” PLoS Computational Biology, vol. 3, no. 2, p. e17, 2007.
+[89] V. Latora and M. Marchiori, “Efficient behavior of small-world networks,” Physical Review Letters, vol. 87, no. 19, Article ID 198701, 2001.
+[90] V. Latora and M. Marchiori, “Economic small-world behavior in weighted networks,” The European Physical Journal B :Condensed Matter and Complex Systems, vol. 32, no. 2, pp. 249–263, 2003.
+[91] J. Sophia Crone, A. Soddu, Y. Ho¨ller et al., “Altered network properties of the fronto-parietal network and the thalamus in impaired consciousness,” NeuroImage: Clinical, vol. 4, pp. 240– 248, 2014.
+[92] O. Sporns and R. Ko¨tter, “Motifs in brain networks,” PLoS Biology, vol. 2, no. 11, article e369, 2004.
+[93] P. Crucittia, V. Latorab, M. Marchioric, and A. Rapisarda, “Efficiency of scale-free networks: error and attack tolerance,” Physica A, vol. 320, pp. 622–642, 2003.
+[94] B. Alper, B. Bach, N. H. Riche, T. Isenberg, and J. Fekete, “Weighted graph comparison techniques for brain connectivity analysis,” in Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI ’13), pp. 483–492, May 2013.
+[95] A. Roebroeck, E. Formisano, and R. Goebel, “The identification of interacting networks in the brain using fMRI: model selection, causality and deconvolution,” NeuroImage, vol. 58, no. 2, pp. 296–302, 2011.
+[96] W. D. Penny, K. E. Stephan, A. Mechelli, and K. J. Friston, “Modelling functional integration: a comparison of structural equation and dynamic causal models,” NeuroImage, vol. 23, no. 1, pp. S264–S274, 2004.
+[97] K. Friston, “Causal modelling and brain connectivity in functional magnetic resonance imaging,” PLoS Biology, vol. 7, no. 2, Article ID e1000033, 2009.
+[98] K. Friston, “Dynamic causal modeling and granger causality comments on: the identification of interacting networks in the brain using fMRI: model selection, causality and deconvolution,” NeuroImage, vol. 58, no. 2, pp. 303–305, 2011.
+[99] D. J. Sharp, G. Scott, and R. Leech, “Network dysfunction after traumatic brain injury,” Nature Reviews Neurology, vol. 10, pp. 156–166, 2014.
+[100] S. Laureys, A. M. Owen, and N. D. Schiff, “Brain function in coma, vegetative state, and related disorders,” The Lancet Neurology, vol. 3, no. 9, pp. 537–546, 2004.
+[101] A. Soddu, A. Vanhaudenhuyse, M. A. Bahri et al., “Identifying the default-mode component in spatial IC analyses of patients with disorders of consciousness,” Human Brain Mapping, vol. 33, no. 4, pp. 778–796, 2012.
+[102] M. S. Schro¨ter, V. I. Spoormaker, A. Schorer et al., “Spatiotemporal reconfiguration of large-scale brain functional networks during propofol-induced loss of consciousness,” The Journal of Neuroscience, vol. 32, no. 37, pp. 12832–12840, 2012.
+[103] M. M. Monti, A. Vanhaudenhuyse, M. R. Coleman et al., “Willful modulation of brain activity in disorders of consciousness,” The New England Journal of Medicine, vol. 362, no. 7, pp. 579– 589, 2010.
+[104] P. Moretti, M. A. Mu, and M. A. Mun˜oz, “Griffiths phases and the stretching of criticality in brain networks,” Nature Communications, vol. 4, Article ID 2521, 2013.
+
+[105] A. L. Roskies, “Brain-mind and structure-function relationships: a methodological response to coltheart,” Philosophy of Science, vol. 76, no. 5, pp. 927–939, 2010.
+[106] A. Demertzi, F. Go´mez, J. S. Crone et al., “Multiple fMRI system-level baseline connectivity is disrupted in patients with consciousness alterations,” Cortex, vol. 52, pp. 35–46, 2014.
+[107] M. A. Bruno, D. Ferna´ndez-Espejo, R. Lehembre et al., “Multimodal neuroimaging in patients with disorders of consciousness showing “ functional hemispherectomy”,” Progress in Brain Research, vol. 193, pp. 323–333, 2011.
+[108] A. Soddu, A. Vanhaudenhuyse, A. Demertzi et al., “Resting state activity in patients with disorders of consciousness,” Functional Neurology, vol. 26, no. 1, pp. 37–43, 2011.
+[109] A. M. Owen and M. R. Coleman, “Functional MRI in disorders of consciousness: advantages and limitations,” Current Opinion in Neurology, vol. 20, no. 6, pp. 632–637, 2007.
+[110] J. T. Giacino, J. J. Fins, S. Laureys, and N. D. Schiff, “Disorders of consciousness after acquired brain injury: the state of the science,” Nature Reviews Neurology, vol. 10, pp. 99–114, 2014.
+[111] R. W. van Boven, G. S. Harrington, D. B. Hackney et al., “Advances in neuroimaging of traumatic brain injury and posttraumatic stress disorder,” Journal of Rehabilitation Research and Development, vol. 46, no. 6, pp. 717–756, 2009.
+[112] M. Inglese, S. Makani, G. Johnson et al., “Diffuse axonal injury in mild traumatic brain injury: a diffusion tensor imaging study,” Journal of Neurosurgery, vol. 103, no. 2, pp. 298–303, 2005.
+
+MEDIATORS of
+INFLAMMATION
+
+The Scientific World Journal
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Gastroenterology Research and Practice
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Journal of
+Diabetes Research
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Disease Markers
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Journal of
+Immunology Research
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+PPAR Research
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Submit your manuscripts at http://www.hindawi.com
+Journal of
+Obesity
+
+International Journal of
+Endocrinology
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+BioMed Research International
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Journal of
+Ophthalmology
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Stem Cells International
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Evidence-Based Complementary and Alternative Medicine
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Parkinson’s Disease
+
+Volume 2014
+
+Journal of
+Oncology
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Computational and Mathematical Methods in Medicine
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Behavioural Neurology
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+AIDS
+Research and Treatment
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+
+Oxidative Medicine and Cellular Longevity
+
+Hindawi Publishing Corporation http://www.hindawi.com
+
+Volume 2014
+

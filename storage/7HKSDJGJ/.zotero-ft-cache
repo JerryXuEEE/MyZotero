@@ -1,0 +1,1193 @@
+Sloppy Systems
+Ka Man (Ambrose) Yim
+St John’s College University of Oxford Dissertation submitted for Honour School of Mathematical and Theoretical Physics Part C
+Trinity 2017
+
+Acknowledgements
+It has been an illuminating experience to work on this fascinating project with Professor Ard Louis and Chico Camargo and I am most grateful to them for their advice and guidance. I am also indebted to my friends Joe Kidson, Matias Janvin and Alex Thorne for their counsel and support. None of my work would have been possible if not for the unwavering love of my family.
+
+Abstract
+A sloppy system is one which displays a logarithmic hierarchy of sensitivity to certain parameter combinations. To study the eﬀect of sloppiness on evolution in biological systems driven by random mutations in parameter space, measures of evolvability and robustness are derived by seeking inspiration from analogous measures in discrete genotype-phenotype maps. Under this set of deﬁnitions, sloppiness is found to decrease state evolvability. However, it is not a suﬃcient condition for determining state robustness, parameter evolvability and parameter robustness.
+
+Contents
+
+1 Introduction
+
+1
+
+1.1 Information Geometry . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+
+1.2 Parameter Sensitivity . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+
+1.3 Sloppiness . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+
+1.4 Evolvability and Robustness . . . . . . . . . . . . . . . . . . . . . . . 5
+
+1.5 The Null Model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+
+2 Evolvability and Robustness in Discrete Genotype-Phenotype Maps 7 2.1 Evolvability and Robustness of Genotypes . . . . . . . . . . . . . . . 8 2.2 Evolvability and Robustness of Phenotypes . . . . . . . . . . . . . . . 9 2.3 Sloppiness and Neutral Spaces . . . . . . . . . . . . . . . . . . . . . . 10
+
+3 Robustness and Evolvability of Parameters
+
+12
+
+3.1 Parameter Robustness . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+
+3.2 Parameter evolvability . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+
+4 Robustness and Evolvability of States
+
+18
+
+4.1 States . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+
+4.2 State Robustness . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+
+4.3 State Evolvability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+
+4.4 Globally Non-identiﬁable but Locally Identiﬁable Models . . . . . . . 22
+
+5 Sloppiness, Robustness and Evolvability
+
+24
+
+6 Summary and Outlook
+
+26
+
+Bibliography
+
+28
+
+i
+
+List of Figures
+1.1 Illustration of the relationship between parameter space Θ, a 3 dimensional phase space and the space of observables Z. Ω maps parameters to trajectories F (t, θ) in phase space. ϕ samples the trajectory at times (t1, t2, t3) and maps the position of F at those times to a space of observables Z. This deﬁnes a composite map f = ϕ ◦ Ω. . . . . . 2
+1.2 Figure from ‘Universally sloppy parameter sensitivities in systems biology models’ by Gutenkunst et al. [5]. A shows a surface of constant χ2 (δs2) projected onto parameter space Θ; such surfaces are ellipsoids whose semi-major axes are characterised by (λi)−1/2. B shows the eigenvalue spectra of various systems biology models describing cell cycles, mitosis, circadian rhythm, growth-factor signaling, regulatory networks, metabolism and etc. In C, Ii/Pi is the ratio between the intersection of the χ2 ellipsoid with the parameter axes of θi and the projection of the ellipsoid onto the axes. The smaller the ratios, the smaller the alignment between the bare parameter axes and the eigenvectors of the Hessian. . . . . . . . . . . . . . . . . . . . . . . . 5
+2.1 Representation of a genotype-phenotype map in genotype space. Genotype A has very few neighbours of the same kind, yet its neighbourhood contains a diverse set of alternative phenotypes. Most of the neighbours of genotype B have the same phenotype, leaving little room for a diverse set of alternative phenotypes in its neighbourhood. Observe how the mapping from genotype to phenotype is many-to-one. The most frequent phenotype, the circle, forms a large neutral network that extends across parameter space, allowing it to mutate into triangles and squares. The triangle and square which are less frequent can only mutate into the circle, but not into each other. . . . . . . . . . . . . 8
+3.1 (a) Projection of -tolerance sphere from M onto Θ. Parameter robustness (by volume subtraction) can be understood as the fraction of perturbations |δθ| < ∆ that satisfy δs < , indicated by the volume shaded dark grey. (b) Projection of ∆-perturbation sphere from Θ onto M. Evolvability is the average distance between two points A and B on the surface |δθ| = ∆ in M. . . . . . . . . . . . . . . . . . . . . . 13
+ii
+
+4.1 (a): State Ψ in M and its corresponding projection Ψ˜ in Θ. Θ and M is tiled by Ψ and Ψ˜ respectively. (b) Left: diﬀusion of mutating agents out of Ψ˜ in a model with parameter space anisotropy; Right: diﬀusion out of Ψ˜ ∗ in the null model. Observe how mutating agents leave each side of Ψ˜ ∗ with equal probability, yet they are biased towards leaving the longer sides of Ψ˜ . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+iii
+
+Chapter 1
+Introduction
+Models in system biology describe the complex biochemical processes in living things. Very often, these complex nonlinear models display a property known as ‘sloppiness’, which may be a general property of a very wide class of systems described by many parameters [5]. A sloppy system is one that displays a logarithmic hierarchy of sensitivity to certain speciﬁc combinations of parameters [2] [8] [9]. The phenomenon of sloppiness is best understood in the context of ‘information geometry’ which formalises the relationship between parameters and the observable states of the system.
+1.1 Information Geometry
+Models of dynamical systems describe how a collection of quantities changes over time. In systems biology, the time evolution of a set of quantities y = (y1, . . . , ym) is often modelled by a set of coupled nonlinear ordinary diﬀerential equations (ODEs) involving a set of parameters θ = (θ1, . . . , θD). Given a set of parameters θ, the model predicts the evolution of the system y(t) = F (t, θ) = (F1(t, θ), . . . , Fm(t, θ)) (see ﬁgure 1.1). This deﬁnes a trajectory parametrised by t in phase space Γ, the m-dimensional space containing all possible values of y. In an abstract sense, a model maps parameters from parameter space Θ ⊆ RD to trajectories in phase space: Ω : Θ → Γ. Yet in reality it is uncommon that the evolution of the system is observed at all times. Experimentalists often sample a trajectory at discrete points in time (t1, . . . , tn). Thus the behaviour observed by an experimentalist is the set of sampled positions on the trajectory ϕ(F ) = (F (t1), . . . , F (tn)). The act of observation, ϕ : Γ → Z, maps the trajectories to an N = n × m dimensional space of observables Z ⊆ RN . This process deﬁnes a composite map f = ϕ ◦ Ω : Θ → Z. The image of f in Z, i.e. the collection of all possible observations that are described by the model, is called the ‘model manifold’ M [9]. Since Θ ⊆ RD and Z ⊆ RN are both diﬀerentiable manifolds, assuming N > D and f is a smooth (inﬁnitely diﬀerentiable) map, then f is an immersion of Θ in Z; if f is also injective, f is an embedding of Θ in Z. Thus M can be thought of as a manifold parametrised by coordinates θ ∈ Θ.
+A natural object to consider on manifolds is its metric which encodes its geometry. The metrics of Z and Θ are often assumed to be Euclidean [4]. Since M is immersed
+1
+
+Parameter Space
+Θ
+θ
+
+Space of Observables
+Z M = Im( f )
+f f (θ)
+
+Ω
+
+𝜑
+
+Phase space
+
+Γ
+
+F (t, θ)
+
+𝜑(F) = ( F (t1) , F (t2) , F (t3) )
+
+t
+
+t1
+
+t3
+
+t2
+
+Figure 1.1: Illustration of the relationship between parameter space Θ, a 3 dimensional phase space and the space of observables Z. Ω maps parameters to trajectories F (t, θ) in phase space. ϕ samples the trajectory at times (t1, t2, t3) and maps the position of F at those times to a space of observables Z. This deﬁnes a composite map f = ϕ ◦ Ω.
+
+by f in a Euclidean space Z , the metric induced on M is
+
+∂fa ∂fb gµν = δab ∂θµ ∂θν
+
+(1.1)
+
+Thus the inﬁnitesimal distance in M due to an inﬁnitesimal diﬀerence in parameter
+
+coordinates dθ is
+
+ds2
+
+=
+
+gµν dθµdθν
+
+=
+
+∂fa δab ∂θµ
+
+∂ ∂
+
+fb θν
+
+dθµ
+
+dθν
+
+(1.2)
+
+2
+
+Unlike Θ, the distance in M is not Euclidean. The geometry of the model manifold is dependent on the Ω which maps parameters to trajectories in phase space; and ϕ, the experimental design which samples the trajectory for observable behaviours.
+Remark 1.1. The current study limits its scope to models that are at least locally identiﬁable [2] [4]. A globally identiﬁable model f is one that is injective everywhere on the domain Θ. An example of a globally non-identiﬁable model is y(t) = F (t, θ1, θ2) = e−t/θ1 + e−t/θ2, since exchanging the values of (θ1, θ2) maps to the same trajectory in phase space. Though F (t, θ1, θ2) is not globally identiﬁable, it is locally identiﬁable, in the sense that for almost any point in θ = (θ1, θ2) ∈ Θ there exists a neighbourhood U (θ) such that f = ϕ ◦ Ω is injective in the domain U (θ).
+Remark 1.2. For many models described by ODEs (such as those in systems biology), an exact solution for phase space trajectories cannot be obtained analytically. However, the ODEs can be solved numerically for each parameter; by sampling across parameter space a ‘numerical model manifold’ can be constructed [9] [4].
+
+1.2 Parameter Sensitivity
+
+Given a variation in parameter θ → θ + δθ, what is the magnitude of the change in behaviour? For any suﬃciently small δθ, this can be well approximated by (1.2):
+
+δs2 ≈ gµν(θ)δθµδθν
+
+(1.3)
+
+Since gµν is a symmetric matrix, it has real eigenvalues {λa} and a basis of orthonor-
+
+mal eigenvectors {nˆ α}; moreover since ds2 ≥ 0 ∀dθ, gµν is positive (semi-)deﬁnite
+
+and its eigenvalues are non-negative. Because {nˆ α} is a basis of Θ, any δθ can be
+
+written as
+
+δθ = δθ αnˆ α i.e. δθ = P δθ
+
+(1.4)
+
+where the columns of P are nˆ α. Recognising that (P T P )ij = nˆ i · nˆ j = δij, the coordinate transformation (1.4) between δθ = (δθ1, . . . , δθD) and δθ = (δθ 1, . . . , δθ D)
+preserves the norm of δθ in Θ:
+
+δθ T δθ = δθT P P T δθ = δθT δθ
+
+(1.5)
+
+By spectrally decomposing the metric into g = P ΛP T (where Λ = diag(λ1, . . . , λD))
+
+δs2 = δθT P ΛP T θ = δθ T Λδθ = λ1(δθ 1)2 + · · · + λD(δθ D)2
+
+(1.6)
+
+One can immediately read oﬀ the entries of the metric in the eigen-coordinates:
+
+gµν = λµδµν
+
+(1.7)
+
+√
+
+This admits a geometric interpretation of the eigenvalues: λα it is the change
+
+in behaviour (distance on M) per unit distance of parameter variation δθ α in the
+
+direction nˆ α in Θ. The eigenvalue spectrum of the metric characterises the local
+
+sensitivity of the model behaviour to variations in parameter space. If {λα} are
+
+3
+
+all equal and constant everywhere, then M is ﬂat; if {λα} changes from θ to θ, M is ‘inhomogeneous’ with respect to Θ; if {λα} takes a hierarchy of values, M is ‘anisotropic’ with respect to Θ.
+Remark 1.3. When data analysts ﬁt models to data, they often quantify the goodness of ﬁt with the ‘cost function’ or χ2, which is the Euclidean distance in Z between the model prediction f (θ) and data z˜ . The best ﬁt parameters θ∗ are those that minimise χ2. Practitioners often characterise the parameter sensitivity of the model at θ∗ using the Hessian of χ2, which is mathematically identical to gµν(θ∗) [9].
+1.3 Sloppiness
+In systems biology models, the dimension of parameter space is often quite large. For example, a model for the growth-factor-signaling network in PC12 cells is dependent on 48 parameters [1]. Due to the complexity of such systems, it is diﬃcult a priori to identify the relevant mechanisms that play a dominant role and distinguish them from the irrelevant mechanisms. To identify the relevant mechanisms, a complex model that incorporates a large variety of mechanisms into account are ﬁtted to data [11]. If a mechanism is relevant, then the system should be sensitive to the parameters which tune the mechanism. For example, if a relevant mechanism of a model is tuned by parameters (θ1, θ2, θ3), δθ in the subspace of (θ1, θ2, θ3) should induce a larger δs2 in M, compared to variations of parameters which characterise mechanisms of lesser relevance.
+However, it is rather uncommon in systems biology models that mechanisms can be distinctively classiﬁed as relevant or irrelevant. In their study of PC12 cells Brown et al. found that the system shows great sensitivity to all 48 parameters, suggesting that all mechanisms engage a concerted eﬀort in inﬂuencing the gross dynamics of the system [1]. In a study of 17 cell cycle models, Gutenkunst et al. found that very few parameters induce a behavioural response of great signiﬁcance or insigniﬁcance [5] (see ﬁgure 1.2). Given the complex nonlinear coupling between mechanisms in systems biology models, it should not be surprising that contributions from individual mechanisms to the overall dynamics of the system cannot be separated from each other.
+Yet this is not to say parameter space Θ is isotropic. In all of the cell cycles investigated by Gutenkunst et al., the eigenvalues of the Hessian of these models are found to be approximately evenly spaced in their logarithms, the smallest eigenvalue being several orders of magnitudes smaller than the leading eigenvalue [5] (see ﬁgure 1.2). This phenomenon is known as ‘sloppiness’ [2] [8] [9]. Such a ‘sloppy system’ exhibits a hierarchy of sensitivity to perturbations in the eigen-directions of the metric {nˆ α}. Note that sloppiness makes no statement about the absolute size of the eigenvalues, only their relative magnitudes. Why sloppiness occurs is still a matter of active research. While studies show that experimental design ϕ could play a role in increasing the separation between eigenvalues [2] [8], the fact that sloppiness has only emerged in some nonlinear models suggests that these models possess certain intrinsic properties which provide the necessary conditions for sloppiness [5].
+4
+
+Figure 1.2: Figure from ‘Universally sloppy parameter sensitivities in systems biology models’ by Gutenkunst et al. [5]. A shows a surface of constant χ2 (δs2) projected onto parameter space Θ; such surfaces are ellipsoids whose semi-major axes are characterised by (λi)−1/2. B shows the eigenvalue spectra of various systems biology models describing cell cycles, mitosis, circadian rhythm, growth-factor signaling, regulatory networks, metabolism and etc. In C, Ii/Pi is the ratio between the intersection of the χ2 ellipsoid with the parameter axes of θi and the projection of the ellipsoid onto the axes. The smaller the ratios, the smaller the alignment between the bare parameter axes and the eigenvectors of the Hessian.
+1.4 Evolvability and Robustness
+The question of how easily organisms encounter new traits is of great importance to understanding the process of adaptation in evolutionary biology. In a study of L = 15 RNA sequences and their secondary structures, it was discovered that 50% of all possibles sequences fold into only 6% of the structures that appear [6]. The folding process - an instance of what is called a ‘genotype-phenotype’ (GP) map - shows a huge bias towards a small number of ‘frequent’ secondary structures. Thus a ‘mutating agent’ randomly searching the space of sequences (genotypes) is far more likely to encounter a very small subset of structures (phenotypes) that occur frequently. Such a bias limits the variety of phenotypes that is available for natural selection.
+The example of RNA folding illustrates how a map between a space of parameters (genotypes) and a space of behaviours (phenotypes) aﬀects the likelihood of encountering diﬀerent behaviours under random mutation in parameter space. One would similarly expect parameter space inhomogeneity and anisotropy in continuous models
+5
+
+to inﬂuence the likelihood of ﬁnding new behaviour in M under random mutations in Θ. Since the processes that systems biology models describe (e.g. metabolism) must adapt their behaviour to changes in their circumstances, the question of how easily these systems ﬁnd new traits via parameter perturbations is just as pertinent.
+This dissertation focuses two ideas that are relevant to this question. One is robustness, which describes the likelihood of a system to change its behaviour under mutation; the other is evolvability, which describes the diversity of behaviour accessible under mutation. Both are desirable characteristics of a biological system. A system should be able to resist mutation and retain favourable phenotypes, yet also have the ﬂexibility to adapt to its circumstances. Notions of evolvability and robustness are precisely quantiﬁed in discrete GP maps by a set of deﬁnitions developed by Wagner [10] and an attempt has been made to generalise the discrete deﬁnitions to continuous models by Sethna et al. [3]. Sethna et al. made the extraordinary claim that sloppiness enables mutations in parameter space to explore a diverse range of behaviour. This dissertation sets out to assess the validity of this claim and examine their deﬁnitions of evolvability and robustness. In chapter 2, deﬁnitions of evolvability and robustness in discrete GP maps proposed by Wagner are reviewed; using the machinery of information geometry, chapters 3 and 4 put forward modiﬁed or new measures of evolvability and robustness that are more consistent with Wagner’s deﬁnitions; working with a fresh set of deﬁnitions, the role of sloppiness on evolvability and robustness is investigated in chapter 5.
+
+1.5 The Null Model
+
+It will be useful for subsequent discussions to introduce an object called ‘the null model’ at this juncture. The null model M∗ is an artiﬁcial object constructed for the
+analysis of a model M. It is nothing more than a ﬂat manifold (homogeneous and
+isotropic with respect to Θ) that takes up the same volume as M in Z. Given that it is ﬂat, the metric on M∗ takes the form
+
+ηµν = Λδµν where Λ is a constant scale. The volume of the model manifold over Θ is
+
+(1.8)
+
+V = dθ det(g)
+
+(1.9)
+
+The volume of the null manifold is V ∗ = dθ det(η) = ΛD/2 dθ
+
+(1.10)
+
+The volume of parameter space is simply Vp = dθ, so forcing V = V ∗ ﬁxes Λ to be
+
+2
+VD Λ=
+Vp
+
+(1.11)
+
+6
+
+Chapter 2
+Evolvability and Robustness in Discrete Genotype-Phenotype Maps
+Following on from the discussion in section 1.4, it would seem that robustness and evolvability are competing characteristics of a system. Consider ﬁgure 2.1 which represents a space of discrete genotypes. Each site on the lattice is a genotype, and the genotypes that can mutate into each other through one mutation are connected by an edge. Comparing genotypes A and B, one can observe how genotypes with more neighbours of the same phenotype (neutral neighbours) are connected to fewer alternative phenotypes that are diﬀerent from each other, since there are fewer nonneutral neighbouring genotypes left over to support a diverse collection of alternative phenotypes. Hence genotypes that are more robust (more neutral neighbours and less likely to change phenotype after mutation) are less evolvable (fewer alternative phenotypes to mutate into), a correlation that Wagner has discovered in RNA secondary structure GP maps [10]. Wagner argued that evolvability and robustness can also be assessed from the perspective of phenotypes [10]. Consider ﬁgure 2.1 as an example again. A more frequent phenotype occupies a larger extent of genotype space and increases the number of alternative phenotypes within the reach of the set of genotypes that map to the phenotype - as such the phenotype is more evolvable. Yet Wagner also empirically observed in RNA secondary structure GP maps that genotypes belonging to the same phenotype are connected to each other more often than what one would expect by chance. Hence the robustness and evolvability of secondary structures (phenotypes) are positively correlated with each other. If this correlation holds generally for other GP systems, it would have great implications on how evolutionary biology considers the emergence of evolutionary novelty. The rest of this chapter provides more precise deﬁnitions and distinctions between genotype evolvability, genotype robustness, phenotype evolvability and phenotype robustness, and makes initial contact with sloppiness.
+7
+
+Genotype space (network)
+A
+B
+Phenotypes:
+Figure 2.1: Representation of a genotype-phenotype map in genotype space. Genotype A has very few neighbours of the same kind, yet its neighbourhood contains a diverse set of alternative phenotypes. Most of the neighbours of genotype B have the same phenotype, leaving little room for a diverse set of alternative phenotypes in its neighbourhood. Observe how the mapping from genotype to phenotype is manyto-one. The most frequent phenotype, the circle, forms a large neutral network that extends across parameter space, allowing it to mutate into triangles and squares. The triangle and square which are less frequent can only mutate into the circle, but not into each other.
+2.1 Evolvability and Robustness of Genotypes
+In a discrete GP system, genotypes can mutate into one another by one-step mutations; this mutational relationship between genotypes can be described by a network, in which genotypes are the nodes and edges between nodes represent allowed mutations. An example of a genotype space is the space of RNA sequences of length n. The genotype - an RNA sequence - can be thought of abstractly as a string of n letters where each letter in the sequence can be either A, G, C or U. Changing one letter in the string mutates one sequence into another. It is useful to deﬁne the notion of a 1-neighbourhood of a genotype: Deﬁnition 2.1 (1-neighbourhood of a genotype). The 1-neighbourhood of a genotype g are the genotypes that can be accessed by g in one mutation.
+Stepping through the network of genotypes, a mutating individual can potentially encounter new phenotypes at each node. It has been observed that the map between
+8
+
+genotypes and phenotypes are very often many-to-one [6]. In other words, there tends to be a redundancy of genotypes for each phenotype. Moreover, as Wagner has observed, the genotypes that map to the same phenotype are often connected to each other by one-step mutations in the genotype network [10]. Given this structure in GP systems, it is convenient to introduce three related concepts:
+Deﬁnition 2.2 (Neutral neighbour of a genotype). A neutral neighbour of a genotype g is a genotype in the 1-neighbourhood of g which maps to the same phenotype as g.
+Deﬁnition 2.3 (Neutral set). The neutral set of phenotype p is the maximal subset of genotypes which map to p.
+Deﬁnition 2.4 (Neutral network). In a genotype network, connected components of genotypes that map to the same phenotype p are the neutral networks of p.
+The existence of neutral networks has signiﬁcant implications on the mutational robustness of genotypes. If the majority of a genotype’s 1-neighbourhood are neutral neighbours, it is more likely to mutate into a genotype that maps to the same phenotype. In otherwords, the phenotype is likely to persist after mutation. A deﬁnition of ‘genotype robustness’ can be used to quantify the likelihood of persistence [10]:
+Deﬁnition 2.5 (Genotype robustness). The robustness of a genotype is the fraction of neutral neighbours of a genotype g.
+The evolvability of a genotype can be deﬁned in a similar way. A more evolvable genotype should be able to explore a more diverse set of phenotypes after mutation. Wagner quantiﬁes this by enumerating the number of diﬀerent phenotypes in the 1-neighbourhood of a genotype:
+Deﬁnition 2.6 (Genotype evolvability). The evolvability of a genotype is the number of diﬀerent phenotypes that are accessible in the 1-neighbourhood of g.
+Remark 2.1. It is important to point out a ﬂaw in Wagner’s deﬁnition in quantifying genotype evolvability. Suppose the 1-neighbourhood of a genotype g contains nine neighbours mapping to three diﬀerent phenotypes A, B and C. Consider two cases: (i) A, B and C splits the nine neighbours evenly amongst themselves, i.e. A, B and C each corresponds to three neighbours; (ii) 7 neighbours map to A while B and C only correspond to 1 each. Wagner’s deﬁnition does not distinguish between cases (i) and (ii) where (i) obviously creates a greater diversity of outcomes for the genotype. In (ii) it is far more likely that the genotype mutates into neighbours which map to A.
+2.2 Evolvability and Robustness of Phenotypes
+The story could also be told from the perspective of phenotypes. Given the redundancy in GP maps, the likelihood of a phenotype p to persist after mutation should take into account all the genotypes that map to p. Consider a scenario in which a
+9
+
+phenotype p yields the optimum adaptation to selection pressure. Averaging over an ensemble of the system’s possible evolutionary histories, the population of individuals with phenotype p should be evenly distributed in the neutral set of p, as evolutionary pressure does not distinguish between the genotypes that map to p. The robustness of the phenotype can be quantiﬁed by the fraction of individuals that retain the same phenotype p after mutation. This can be computed by adding up the probabilities of each individual retaining the same phenotype after mutation. The likelihood of an individual with genotype g retaining the same phenotype is simply the robustness of g. Since the population is evenly distributed in the neutral set, the fraction of the population that retains the same phenotype is computed by summing up the genotype robustness of the neutral set. This argument justiﬁes Wagner’s deﬁnition of phenotype robustness [10]:
+Deﬁnition 2.7 (Phenotype robustness). The robustness of a phenotype p is the average genotype robustness of its neutral set.
+The evolvability of a phenotype can also be motivated by the same argument used for genotype evolvability. A phenotype is able to ‘mutate’ into another phenotype if and only if there exists at least one genotype in their respective neutral sets that are connected to one another in the genotype network. Wagner quantiﬁes the evolvability of a phenotype by the number of diﬀerent phenotypes accessible by a population of individuals dispersed in its neutral set [10]; in other words,
+Deﬁnition 2.8 (Phenotype evolvability). The evolvability of a phenotype p is the number of unique phenotypes that are accessible by genotypes in the neutral set of p.
+Remark 2.2. Wagner’s deﬁnition of phenotype evolvability suﬀers from the same issue plaguing genotype evolvability which was discussed in remark 2.1: it does not distinguish between the relative likelihood of outcomes after mutations and so fails to give a full measure of the diversity of mutational outcomes.
+2.3 Sloppiness and Neutral Spaces
+Most of the idioms of GP maps are not immediately suitable for describing continuous models [3]. While there are only a ﬁnite number of genotypes and phenotypes in the domain and image of discrete GP maps, parameters and behavioural states live in spaces of real numbers which are uncountable sets; hence the counting schemes employed in the deﬁnitions above need to be carefully modiﬁed for those ideas to make sense in continuous models. However, an important theme is carried through: the distinction between the evolution of a single individual and that of a population of individuals remains relevant. Parameter evolvability/robustness, the continuous analogue of genotype evolvability/robustness, characterises the mutational outcome of an individual occupying a single point in parameter space; state (behaviour) evolvability/robustness, the continuous analogue of phenotype evolvability/robustness, describes an ensemble of individuals that belong to the same state on the model manifold. This idea is a very useful starting point for formulating deﬁnitions of evolvability and robustness in continuous models.
+10
+
+Sethna et al. makes an analogy between sloppiness in continuous models and neutral sets in GP maps [3]. Since sloppiness reduces a system’s sensitivity to perturbations in some directions of parameter space, Sethna et al. argued that sloppiness would create ‘neutral subspaces’ - parameter insensitive subspaces of Θ - analogous to neutral networks in GP maps. Wagner proposed that large neutral networks in discrete GP systems enable individuals on the neutral network to explore a diverse set of phenotypes [10]. In response to this, Sethna et al. claims that large neutral subspaces, similar to large neutral networks in discrete GP maps, allow mutating agents with similar behaviour to explore a larger extent of parameter space and increase their likelihood of encountering new behaviour in M [3]. This claim is examined in chapter 5.
+11
+
+Chapter 3
+Robustness and Evolvability of Parameters
+
+3.1 Parameter Robustness
+
+Inspired by Wagner’s deﬁnition of genotype robustness, Sethna et al. deﬁned the
+robustnesss of a parameter Rp(θ), or what they refer to as the ‘chemotype’, as the fraction of mutations δθ in Θ satisfying |δθ|2 < ∆ that do not change the distance in M beyond a tolerance δs2 < 2, where ∆, → 0 with ﬁnite ∆/ [3]. This deﬁnition
+is best interpreted geometrically (see ﬁgure 3.1). Consider an agent at θ0 under the inﬂuence of a random isotropic perturbation of size less than ∆. The agent’s possible
+positions in Θ after the perturbation is the volume enclosed by a D-dimensional hypersphere of radius ∆. Expressing this in the norm-preserving coordinates δθi that
+(locally) diagonalise the metric of the model manifold gµν(θ0) (equation 1.4)
+
+∆2 = (δθ1)2 + · · · + (δθD)2
+
+(3.1)
+
+This is the equation of a sphere in Θ. Now change perspective to M and consider the distance in M in δθi coordinates:
+
+δs2 = λµδµνδθµδθν
+
+(3.2)
+
+Deﬁne a new set of local ‘normal’ coordinates √
+δθˆi = δθi λi
+
+(3.3)
+
+such that in these coordinates the metric is ﬂat:
+
+δs2 = gµν(θˆ)δθˆµδθˆν = δµνδθˆµδθˆν
+
+(3.4)
+
+For a perturbation satisfying the tolerance δs2 < 2, it must lie within a D-dimensional hypersphere of radius on M; in δθˆi coordinates,
+
+2 = (δθˆ1)2 + . . . + (δθˆD)2
+
+(3.5)
+
+12
+
+(a) Parameter robustness by volume subtraction
+
+ε /√λ2
+
+ΘM
+
+θ ε /√λ1
+|δθ| = Δ
+δs = ε
+
+⟹
+
+f (θ)
+δs = ε
+
+(b) Parameter Evolvability
+
+B
+θ
+A |δθ| = Δ
+
+ΘM
+
+√λ2 Δ
+
+B
+√λ1 Δ
+
+⟹
+
+f (θ)
+
+A |δθ| = Δ
+
+Figure 3.1: (a) Projection of -tolerance sphere from M onto Θ. Parameter robustness (by volume subtraction) can be understood as the fraction of perturbations |δθ| < ∆ that satisfy δs < , indicated by the volume shaded dark grey. (b) Projection of ∆-perturbation sphere from Θ onto M. Evolvability is the average distance between two points A and B on the surface |δθ| = ∆ in M.
+
+This ellipse can be mapped onto Θ by recasting the equation in δθ coordinates,
+
+2 = λ1(δθ1)2 + · · · + λD(δθD)2
+
+(3.6)
+
+√ The semi-major axes of the ellipse in the θi direction is / λi. Returning to the
+
+deﬁnition of Rp(θ), ﬁnding the fraction of perturbations satisfying |δθ|2 < ∆ and
+
+δs2 < 2 is equivalent to calculating the intersecting volume between the sphere and
+
+ellipse deﬁned by equations (3.1) and (3.6) respectively as a fraction of the volume
+
+of the sphere. In other words, robustness is the fraction of the perturbation sphere
+
+13
+
+remaining once the points that lie outside the tolerance ellipse is subtracted. However, as Sethna et al. points out, this is a diﬃcult calculation [3]!
+To get around this diﬃculty, Sethna et al. softened the hard boundaries of the spheres and ellipses and represented them with probability distributions that decay to inﬁnity [3]. Suppose the agent mutating away from θ0 travels a distance |δθ| that is normally distributed with a width scale ∆
+
+1
+
+P (|δθ|, ∆) = √
+
+exp
+
+( 2π∆)D
+
+1
+
+=√
+
+exp
+
+( 2π∆)D
+
+|δθ|2 − 2∆2
+
+1 −
+
+D
+(δθi)2
+
+2∆2
+
+i=1
+
+(3.7) (3.8)
+
+To take away the perturbations that lie outside the ellipse, imagine a scenario where the agent is removed with some probability that increases with distance δs. Sethna et al. chose the probability of survival Q to be a Gaussian with a typical length scale δs ∼ :
+
+Q(δs, ) = exp = exp
+
+δs2
+
+− 2
+
+2
+
+1 −
+22
+
+D
+
+λi(δθi)2
+
+i=1
+
+(3.9) (3.10)
+
+where the normalisation of Q(δs, ) ensures the probability of survival for not mutating is Q(δs = 0, ) = 1. If an ensemble of mutating agents start oﬀ at θ0 and diﬀuse away from θ0 with a scale |δθ| ∼ ∆ a la equation (3.7), the fraction of agents that survive removal can be used as a measure of the robustness of θ0. In terms of P (|δθ|, ∆) and Q(δs, ),
+
+Rp(θ, ∆, ) = dδθP (|δθ|, ∆)Q(δs, )
+
+(3.11)
+
+1
+
+=√
+
+dδθ exp
+
+( 2π∆)D
+
+D
+=
+i=1
+
+1
+
+1
+
++
+
+λi λc
+
+1 − 2∆2
+
+D
+(δθi)2
+
+i=1
+
+∆2 1 + λi 2
+
+(3.12)
+
+where
+
+λc
+
+=
+
+.2
+∆2
+
+This deﬁnition of parameter robustness has a few undesirable properties. First of
+
+all, it is dependent on an arbitrary scale λc whose value is left to whoever’s applying the deﬁnition to decide. In their analysis of a model of an EGF/NGF signaling
+
+pathway, Sethna et al. chose λc to be the fourth-largest eigenvalue of the local Hessian, which changes from θ to θ [3]. This is a problematic choice when the robustness of
+
+diﬀerent parameters are being compared.
+
+14
+
+Fortunately, the model manifold M has a natural scale in relation to parameter space Θ, Λ. Insight into why this is an appropriate scale for λc can be gained by going back to the geometric interpretation of hard ∆ perturbation spheres and tole√rance ellipses. In the null model, a perturbation |δθ| = ∆ in Θ corresponds to δs = Λ∆. For the ∆ perturbation sphere to be fully enclosed √by the toler√ance ellipse (a sphere in the null model), must be chosen such that ≥ Λ∆. If < Λ∆, the tolerance ellipse is smaller than the ∆ perturbation sphere for any parameter in the null model. Hence any parameter will be designated as not √robust under this scheme, which is not desriable for the null model. A choice of = Λ∆, i.e. λc = Λ would ensure that all parameters in the null model have a neutral robustness. Given this choice,
+
+D
+Rp(θ) =
+i=1
+
+1
+
+1
+
++
+
+λi Λ
+
+(3.13)
+
+However if this deﬁnition of robustness is computed for the null model M∗ with
+
+λi = Λ,
+
+Rp∗
+
+=
+
+1 2D/2
+
+(3.14)
+
+One would expect the measure of robustness for the null model to evaluate to unity,
+
+since the choice of λc = Λ ensures neutral robustness in the null model, i.e. the ∆sphere and -ellipse overlap exactly. The D-dependence is also somewhat troubling. The incongruity of Rp∗ is due to the inﬁnite extents of the Gaussian distributions and the agent removal process. Any agent that is perturbed ever so slightly has a ﬁnite
+
+probability of being removed, and there are always agents perturbed suﬃciently far
+
+away that are deﬁnitely removed. Since there is always a loss of agents, Rp must be smaller than 1, even in the null model. A more appropriate measure of robustness
+
+would be to compare the survival rate of agents in a particular model to that of the
+
+null model. Hence one can deﬁne a new robustness measure ρp(θ):
+
+ρp(θ)
+
+=
+
+Rp(θ) Rp∗
+
+=
+
+D i=1
+
+2
+
+1
+
++
+
+λi Λ
+
+(3.15)
+
+3.2 Parameter evolvability
+The evolvability of a genotype g is the number of diﬀerent phenotypes found in the one-neighbourhood of g (deﬁnition 2.6). While diﬀerences between phenotypes are discontinuous and easy to enumerate in discrete GP systems, the diﬀerence between behaviour in a continuous model is measured by the distance on the model manifold M. How do we ‘enumerate’ the number of ‘diﬀerent’ behaviours that are accessible in the mutational neighbourhood of θ0?
+The response of Sethna et al. to this challenge is to bypass this argument completely. They deﬁned the evolvability of a ‘chemotype’ (parameter) to be the maximum change in ‘ﬁtness’ averaged over a spherically distributed ‘force’ F in Z, where ﬁtness is deﬁned to be the inner product between the change in behaviour δf and F
+
+15
+
+on M [3]. This is a rather unsatisfactory deﬁnition since it introduces the unnecessary complication of selection pressure (F ) and ﬁtness which is intrinsically independent of a system’s innate ability to discover new behaviour via parameter space ﬂuctuations. Moreover, it is unclear how this relates to the diversity of behaviour in the neighbourhood of a parameter.
+While the alternative deﬁnition proposed here does not follow Wagners deﬁnition to the letter, it respects the idea behind Wagner’s deﬁnition. The evolvability of a parameter θ0 should be a measure of the potential of a mutating agent at θ0 to explore a ‘diverse’ set of outcomes. Since the diﬀerence between behaviours is measured by their distance on M, the diversity of the mutational neighbourhood can be quantiﬁed by picking two random points on the ∆ sphere and computing their mean squared distance δs2 on M (see ﬁgure 3.1). If δs2 is ‘large’, the behavioural outcomes in the mutational neighbourhood are well separated in M; conversely if δs2 is ‘small’, there is little diversity to be found in behaviour.
+The ﬁrst step in computing δs2 is to project the ∆ perturbation sphere in Θ onto M. Adopting spherical coordinates in θ, the ∆ perturbation sphere is parametised by angular coordinates (φ1, . . . , φD−1):
+
+δθ1 = ∆ cos(φ1) δθ2 = ∆ sin(φ1) cos(φ2) δθ3 = ∆ sin(φ1) sin(φ2) cos(φ3)
+... δθD−1 = ∆ sin(φ1) . . . sin(φD−2) cos(φD−1)
+δθD = ∆ sin(φ1) . . . sin(φD−2) sin(φD−1)
+
+(3.16)
+
+Using the normal coordinates deﬁned in equation (3.3), the ∆ sphere in θˆ is
+
+δθˆ1 = λ1∆ cos(φ1) δθˆ2 = λ2∆ sin(φ1) cos(φ2)
+... etc.
+
+(3.17)
+
+Consider θA = (φ1A, . . . , φAD−1) and θB = (φ1B, . . . , φDB−1) on the ∆ sphere. The distance between θA and θB in M is simply
+
+δs2AB = (δθˆA1 − δθˆB1 )2 + . . . + (δθˆAD − δθˆBD)2
+
+(3.18)
+
+Averaging the expression over the solid angles dΩA and dΩB of θA and θB respectively,
+
+δs2 =
+
+dΩA Ω
+
+dΩB Ω
+
+δs2AB
+
+= λ1∆2
+
+dΩA Ω
+
+dΩB Ω
+
+(cos(φ1A)
+
+−
+
+cos(φ1B
+
+))2
+
++ λ2∆2
+
+dΩA Ω
+
+dΩB Ω
+
+(sin(φ1A)
+
+cos(φ2A)
+
+−
+
+sin(φ1B
+
+)
+
+cos(φ2B
+
+))2
+
+(3.19) (3.20)
+
++ etc.
+
+16
+
+While the integrals multiplying λi in the expression appear diﬀerent, they in fact evaluate to the same value. δs2 should be invariant to permutations of (δθ1, . . . , δθD) on the left hand side of equations (3.16), since the permutation of (δθ1, . . . , δθD) chosen in equations (3.16) was arbitrary in the ﬁrst place (ignoring the handedness of the coordinate system). Such permutations would replace the integral multiplying λi with another one, yet the contribution of λi to the sum cannot change, so the two integrals that have exchanged places must evaluate to the same value. Thus after going through all such permutations for all λi, one is forced to conclude that all the integrals in this sum evaluate to the same value. Hence
+
+D
+δs2 = N ∆2 λi
+i=1
+where N is the value of the integrals. For the null model,
+
+(3.21)
+
+δs2 ∗ = N ∆2DΛ
+
+(3.22)
+
+δs2 is a measure of behavioural diversity in the mutational neighbourhood and hence provides a measure of evolvability. Taking the null model as the baseline reference, the evolvability of a parameter is thus deﬁned as
+
+ηp =
+
+δs2
+
+1
+
+=
+
+δs2 ∗ D
+
+D
+
+λi Λ
+
+i=1
+
+(3.23)
+
+If ηp > 1, posed by
+
+it is more Sethna et
+
+evolvable than the null model. Coincidentally, the al. is actually proportional to √ηp; yet not only is
+
+deﬁnition prothis derivation
+
+closer to Wagner’s intentions, it also does away with the need of appealing to selection
+
+pressure. It is noteworthy that the mean squared distance of a mutating agent subject
+
+to a random isotropic perturbation in Θ is also proportional to ηp. Hence ηp can not only be interpreted as a measure of diversity in a parameter’s mutational neighbour-
+
+hood, it can also be understood as a measure of the average change in behaviour in
+
+response to perturbations in Θ.
+
+17
+
+Chapter 4
+Robustness and Evolvability of States
+
+4.1 States
+
+A straightforward phenotype analogue in continuous models is the behaviour v = f (θ). While a behaviour is strictly a point on M, it is more useful to consider an inﬁnitesimally small volume of behaviours in the neighbourhood of v. The set of behaviours enclosed by this volume is referred to as the state Ψ(v) (a.k.a ‘dynatype’ in [3]). By relaxing a point into an inﬁnitesimally small volume, deﬁnitions of robustness and evolvability could be more readily conceived for the phenotype analogue.
+While Sethna et al. pictures the state (dynatype) as a D-dimensional hypersphere in M, it is far more convenient to consider an inﬁnitesimally small D-dimensonal hypercube with sides of length as measured in M (see ﬁgure 4.1). Thus, in this construction, Ψ(v) is the set of points enclosed in the hypercube with v at the cube’s centre. Each hypercube touches 2D other neighbouring hypercubes. The hypercube can be chosen to be oriented along the normal coordinates δθˆi as deﬁned in equation (3.3). Using equation (3.3), Ψ(v) can be transformed into δθi coordinates and projected back to Θ. The projection Ψ˜ (θ) is a hypercuboid with sides |δθi| = √ .
+λi
+Remark 4.1. The process of relating Ψ(v) to Ψ˜ (θ) has implicitly assumed that the model f is injective on some subset of Θ i.e. f is locally identiﬁable (see remark 1.1). If f is locally identiﬁable but not globally identiﬁable, this one-to-one correspondence between parameters and states can only make sense by restricting Θ to a subset on which f is injective. Remark 4.2. The volume of Ψ˜ (θ) is
+
+V = D D √1 i=1 λi
+
+and the surface area is
+
+A = 2 D−1 D √1 D i=1 λi i=1
+
+VD λi = 2
+i=1
+
+λi
+
+(4.1) (4.2)
+
+18
+
+δθ2 = ε / λ√2 δ ∧θ2 = ε
+
+(a)
+δθ1 = ε /√λ1
+Ψ~
+Θ Parameter Space
+
+⟹
+
+δθ∧1 = ε
+Ψ
+M Model Manifold
+
+(b)
+
+Parameter Space with a homogeneous
+
+density of mutating agents
+
+Model with parameter space anisotropy
+
+Null Model
+
+Figure 4.1: (a): State Ψ in M and its corresponding projection Ψ˜ in Θ. Θ and M is tiled by Ψ and Ψ˜ respectively. (b) Left: diﬀusion of mutating agents out of Ψ˜ in a model with parameter space anisotropy; Right: diﬀusion out of Ψ˜ ∗ in the null model. Observe how mutating agents leave each side of Ψ˜ ∗ with equal probability, yet they are biased towards leaving the longer sides of Ψ˜ .
+
+19
+
+Remark 4.3. Since the sponds to a hypercube
+
+null model is Ψ˜ ∗ in Θ with
+
+isotropic, sides |δθi|
+
+Ψ∗ =
+
+w√ith sides / Λ. The
+
+|δθˆi| = volume
+
+in of a
+
+M correnull state
+
+is
+
+V∗ =
+
+D
+
+√D /Λ
+
+(4.3)
+
+The surface area of a null state is
+
+A∗
+
+=
+
+2D
+
+D−1
+
+√ D−1 /Λ
+
+(4.4)
+
+4.2 State Robustness
+
+Sethna et al. did not attempt to deﬁne the robustness of a ‘dynatype’ [3]. Since the
+robustness and evolvability of a phenotype p describe the evolvability and robustness
+of a population of individuals with phenotype p, it is meaningful to consider the
+evolvability and robustness of a state Ψ in terms of the outcome of an ensemble of agents that are enclosed in Ψ˜ at a particular time. Consider a thought experiment in
+which Θ is ﬁlled with a homogeneous density of agents in brownian motion. These agents walk around Θ randomly and explore diﬀerent states Ψ˜ as they do so. At a particular time t0, the permeable boundary of Ψ˜ is suddenly made impermeable to agents exterior to Ψ˜ . However, agents in Ψ˜ are allowed to cross the boundary and leave Ψ˜ .
+Conjecture: the robustness of the state is quantiﬁed by the length of time taken for the ensemble of agents to escape Ψ˜ (θ). Such a time scale τ is
+
+N τ=
+Φ
+
+(4.5)
+
+where N is the number of agents in Ψ˜ (θ) and Φ is the ﬂux of agents out of Ψ˜ (θ)
+
+averaged over time. Since Θ is ﬁlled initially with a constant density of agents, the number of agents trapped in Ψ˜ (θ) is proportional to the volume V of Ψ˜ (θ). If the total ﬂux Φ across the surface of Ψ˜ (θ) is assumed to be proportional to the surface
+
+area A,
+
+V
+
+τ (θ) = χ = χ A2
+
+D i=1
+
+√ λi
+
+(4.6)
+
+where the factor χ accounts for the conditions such as the mobility and density of
+
+agents which is unrelated to the model’s geometry. The time scale for a state in the
+
+null model is
+
+τ∗
+
+=
+
+V∗ χ
+
+=
+
+χ
+
+√
+
+A∗ 2D Λ
+
+(4.7)
+
+The robustness of a state Ψ is deﬁned as the time scale of escape relative to that
+
+of the null model, therefore
+
+τ (θ)
+
+1D
+
+ρΨ(θ) = τ ∗ = D
+
+i=1
+
+−1
+λi
+Λ
+
+(4.8)
+
+In loose terms, a state is in its most robust form if its surface area to volume ratio
+
+is minimised.
+
+20
+
+4.3 State Evolvability
+
+Sethna et al. deﬁned the evolvability of a ‘dynatype’ (state) as the optimum response within a population of agents at θ to a force F in Z [3]. Just like their deﬁnition of ‘chemotype’ (parameter) evolvability, selection forces are involved for no good reason and it is not clear how it relates to Wagner’s deﬁnition. Wagner quantiﬁes the evolvability of a phenotype p by the number of unique phenotypes that are accessible by genotypes in the neutral set of p (deﬁnition 2.8) [10]. For states in continuous models, a D-dimensional box always has 2D number of faces, so the number of neighbouring boxes of Ψ˜ is always 2D. If Wagner’s deﬁnition for phenotypes is naively applied to states, all states would have the same evolvability, regardless of thir geometries. However this way of counting is clearly problematic. Consider an ensemble of agents diﬀusing out of a rectangle in ﬁgure 4.1 (b). Such agents are more likely to cross the longer sides of the rectangles. Hence most of the agents end up in the two states that share the longer side with Ψ˜ . The ensemble of agents access an ‘eﬀective’ number of neighbours that is closer to two than four.
+The thought experiment in subsection 4.2 can be employed to formalise this argument. If the ﬂux through the kth face of the box, Φk, is proportional the face’s area, Ak, the probability that any agent escapes through the kth face of the box pk is given by
+
+pk =
+
+Φk = k Φk
+
+Ak k Ak
+
+(4.9)
+
+The expected value of the surface area of a face crossed by any randomly chosen agent
+
+escaping Ψ(θ) is
+
+A = pkAk =
+k
+
+k A2k k Ak
+
+(4.10)
+
+We deﬁne the eﬀective number of faces, or eﬀective number of neighbours, N to be the total area divided by A
+
+N=
+
+kA = ( A
+
+k Ak)2 k A2k
+
+(4.11)
+
+In a null model, the state is a simple cube in Θ. With all faces equal in area the
+
+eﬀective number of neighbours is simply N ∗ = 2D. Deﬁning the evolvability of a
+
+state ηΨ as the eﬀective number of neighbours relative to that of a null state,
+
+ηΨ =
+
+N 1( =
+N ∗ 2D
+
+k Ak)2
+
+2D k=1
+
+A2k
+
+(4.12)
+
+This could be rewritten as
+
+( ηΨ =
+
+2D k=1
+
+Ak
+
+/2D)2
+
+2D k=1
+
+A2k
+
+/2D
+
+=
+
+A2 A2
+
+(4.13)
+
+21
+
+The explicit expression of ηΨ(θ) in terms of the eigenvalues of the metric tensor at θ can be computed. Conside√r the face of the cube in the plane perpendicular to the eigenvector with eigenvalue λi. The area of that face is
+
+Aj = D−1
+
+D1 √
+i=1 λi
+
+/
+
+1 √
+λi
+
+=
+
+λjV /
+
+(4.14)
+
+Each cube has two such faces for each axes. Substituting (4.14) into equations (4.11)
+
+and (4.12),
+
+( ηΨ(θ) =
+
+D i=1
+
+√ λi/D)2
+
+D i=1
+
+λi/D
+
+(4.15)
+
+Remarkably, ρΨ, ηΨ and ηp can be summarised into a rather concise relation
+
+ρ2Ψ
+
+=
+
+1 ηΨηp
+
+(4.16)
+
+Remark 4.4. Loosely speaking, the two evolvabilities capture diﬀerent aspects of the
+
+local geometry at θ: ηp is a measure of the local length scale and ηΨ is a function of the angular distribution around θ. ρΨ depends on both aspects of the geometry that are encapsulated in the two evolvabilities respectively.
+
+4.4 Globally Non-identiﬁable but Locally Identiﬁable Models
+
+It was noted in remark 4.1 that the geometric construction above relies on a oneto-one correspondence between Ψ˜ (θ) and Ψ(v) on a subset of Θ, i.e. the model f
+
+being locally identiﬁable. If the model f globally non-identiﬁable (see remark 1.1), a
+
+state Ψ on M corresponds to more than one point in Θ. Fortunately, restricting f to
+
+be locally identiﬁable, one can ﬁnd disjoint neighbourhoods for each of these points.
+
+Consider the maximal set of points S = {θ1, . . . , θm} ∈ Θ that map to the same point
+
+v in M by a locally identiﬁable model f : v = f (θ1) = f (θ2) = · · · = f (θm). For each
+
+θk ∈ S, one can compute the eigenvalues of the metric gµν(θk). The state Ψ(v) can be
+
+projected onto the individual disjoint neighbourhoods Uk of θk. Let the projections be {Ψ˜ k}. Casting this in the context of the thought experiment in subsection 4.2, the state Ψ now encloses populations of mutating agents in disjoint regions Ψ˜ k ⊂ Uk of Θ.
+
+Recall that ρΨ is simply a normalised escape time-scale of agents out of Ψ; averaging over all agents escaping out of every Ψ˜ k, the mean escape time τ out of Ψ(v) can be
+
+computed by
+
+1 =
+
+k Φk =
+
+( Nk ) Φk =
+
+νk
+
+τ
+
+k Nk
+
+k
+
+k Nk Nk
+
+k τk
+
+(4.17)
+
+where νk = Nk/ k Nk = Vk/ k Vk and τk = Nk/Φk is the escape time-scale out of Ψ˜ k. Normalising the lifetime with τ ∗ (4.7), the robustness of the state Ψ(v), ρΨ(v) is
+
+1
+
+τ∗
+
+ν(θ)
+
+==
+
+ρΨ(v) τ θ∈S ρΨ(θ)
+
+(4.18)
+
+22
+
+All the quantities on the right hand side can be computed explicitly in terms of the
+eigenvalues at θk using equations (4.1) and (4.8). Since the evolvability of a state is simply the normalised eﬀective number of neigh-
+bours, one can simply sum over all the individual evolvabilities ηΨ(θk) of Ψ˜ k to obtain the normalised total number of eﬀective neighbours for Ψ(v):
+
+ηΨ(v) = ηΨ(θ)
+θ∈S
+
+(4.19)
+
+23
+
+Chapter 5
+Sloppiness, Robustness and Evolvability
+
+In their paper ‘Sloppiness, Evolvability and Robustness in Systems Biology’, Sethna
+
+et al. argued that sloppiness - parameter indeterminacy in certain dimensions of
+
+parameter space - induces ‘neutral subspaces’ in Θ. Such neutral subspaces allow
+
+mutating agents of similar behaviour to explore larger extents of parameter space
+
+and increase their likelihood of encountering new behaviour (section 2.3) [3]. This ar-
+
+gument is rooted in Wagner’s demonstration that larger neutral networks in genotype
+
+space (analogous to neutral subspaces in Θ) increases the evolvability of phenotypes
+
+[10]. If the argument proposed by Sethna et al. holds water, it should be reﬂected
+
+in the evolvability ηΨ of states, the analogue of phenotypes in continuous models. If the eigenvalue spectrum of gµν(θ) is sloppy, Ψ(f (θ)) should be an evolvable state (assuming global identiﬁability), i.e. ηΨ > 1.
+As it turns out, parameter space anisotropy is a necessary and suﬃcient condition
+
+for ηΨ < 1. Consider
+
+N
+
+A2
+
+ηΨ =
+
+= N ∗ A2
+
+(4.13 revisited)
+
+where A is the area of faces of Ψ˜ . Recognising
+
+A2 − A2 = (Ak − A)2 ≥ 0
+k
+
+(5.1)
+
+It is apparent that
+
+N
+
+ηΨ =
+
+≤1 N∗
+
+(5.2)
+
+In other words, the eﬀective number of neighbours of any state cannot be greater
+
+than that of the null model, where there is no parameter space anisotropy at all.
+
+More insight can be gained by applying ηΨ to a phenomenological toy ‘meta-model’ of a sloppy eigenvalue spectrum. A sloppy system is characterised by a roughly even
+
+spread of eigenvalues over a logarithmic scale. It would be natural to consider the
+
+spectrum
+
+λn = λ0e−2nµ
+
+(5.3)
+
+24
+
+where n = 0, . . . , D − 1 and 2µ = log(λn) − log(λn+1) is the constant log-separation between eigenvalues. This model reduces a sloppy spectrum to two ‘meta-parameters’:
+
+the scaled leading order eigenvalue β = λ0/Λ and the log-separation µ. Substituting this into equation (4.15),
+
+1 tanh (Dµ/2) ηΨ = D tanh (µ/2)
+
+(5.4)
+
+ηΨ is always smaller than ηΨ(µ = 0) = 1 and is a monotonically decreasing function of µ for µ > 0. As the separation between the eigenvalues, µ, increases, the local
+
+parameter space becomes more anisotropic. This shows that, to ﬁrst approximation,
+
+sloppiness decreases the evolability of a state. It seems that under a strict adherence to
+
+Wagner’s original deﬁnitions, Sethna’s claim that neutral subspaces allow individuals
+
+in it to reach a broader range of behavioural changes [3] [9] is thoroughly debunked.
+
+This dissertation makes two conjectures as to why the neutral subspace argument
+
+fails. Firstly, the diversity of behaviour is limited by the hypercube geometry of Ψ in
+
+M: it has a ﬁxed number of neighbours, a fact that is independent of parametrisation.
+
+No amount of deformation in parameter space can increase that. In contrast, this
+
+limit is not imposed on phenotypes in discrete GP maps as the mutational relation-
+
+ships between phenotypes are established by the topology of the genotype network
+
+rather than any a priori measures of similarity between phenotypes. Hypothetically,
+
+a neutral set can grow in size to increase the number of accessible phenotypes up to
+
+the number of phenotypes allowed in the system. Secondly, sloppiness discourages
+
+individual agents within the neutral subspace to explore certain directions in Θ. As
+
+a result, mutating agents can only explore a low dimensional subspace of Θ and is
+
+unable to access a maximally diverse set of behaviours.
+
+It is manifest from 4.15 that ηΨ is invariant under rescaling of the eigenvalues:
+
+( ηΨ =
+
+D i=1
+
+√ λi
+
+/D)2
+
+D i=1
+
+λi/D
+
+(4.15 revisited)
+
+Hence ηΨ is only dependent on the sizes of the eigenvalues relative to each other. The invariance under rescaling is not true of ηp, ρp and ρΨ; in their case the absolute value of λ (in units of Λ) matters. Hence one is cautioned against developing reasonings about ηp, ρp and ρΨ on the basis of sloppiness only - sloppiness is merely a description of the relative sizes of eigenvalues, not their absolute magnitude. Sethna et al. noted a negative correlation between parameter evolvability and robustness in a sloppy model of an EGF/NGF in PC12 cells [3]1, which mirrors the negative correlation between genotype evolvability and robustness in RNA second structures in Wagner’s ﬁndings [10]. Though Sethna et al. did not make an explicit connection between this phenomenon and sloppiness, it is worth emphasising that there is insuﬃcient evidence to determine the signiﬁcance of sloppiness in correlating these two quantities. If this correlation appears in other sloppy systems biology models, it is prudent to examine other possible reasons for its occurence rather than hastily attributing it to sloppiness.
+
+1This correlation should hold under the deﬁnitions of parameter evolvability and robustness in this dissertation as they are only slightly diﬀerent to Sethna’s deﬁnitions.
+
+25
+
+Chapter 6
+Summary and Outlook
+Evolvability and robustness are desirable qualities in biological systems: favourable traits need to persist and resist random mutation, and a diverse set of behaviour accessible by mutation helps the system adapt to changes in circumstances. What is the role of sloppiness in inﬂuencing the evolvability and robustness of a system? This dissertation has demonstrated that parameter space anisotropy is the only factor in determining the evolvability of a state. In particular, increasing sloppiness decreases a state’s evolvability. Yet sloppiness is not a suﬃcient condition to determine state robustness, parameter evolvability and paramter robustness. While sloppiness is a relevant to the discussion on adaptation, it cannot provide an elegant and uniﬁed account of evolvability and robustness in system biology models.
+This dissertation has developed a set of measures of evolvability and robustness which can be applied to any continuous model which is locally identiﬁable. Local metric eigenvalues of models can be numerically computed eﬃciently using tools such as Sloppy Cells [7]. Since the measures developed are purely functions of metric eigenvalues (in fact, apart from ρp, all of them can be computed from the trace of the metric or metric square rooted), ηp vs ρp and ηΨ vs ρΨ correlations can be evaluated for continuous models. This provides an apparatus for further research to investigate whether systems biology models can be simultaneously evolvable and robust.
+26
+
+Bibliography
+[1] Kevin S Brown, Colin C Hill, Guillermo A Calero, Christopher R Myers, Kelvin H Lee, James P Sethna, and Richard A Cerione. The statistical mechanics of complex signaling networks: nerve growth factor signaling. Physical biology, 1(3):184, 2004.
+[2] Oana-Teodora Chis, Alejandro F Villaverde, Julio R Banga, and Eva BalsaCanto. On the relationship between sloppiness and identiﬁability. Mathematical Biosciences, 282:147–161, 2016.
+[3] Bryan C Daniels, Yan-Jiun Chen, James P Sethna, Ryan N Gutenkunst, and Christopher R Myers. Sloppiness, robustness, and evolvability in systems biology. Current opinion in biotechnology, 19(4):389–395, 2008.
+[4] Emilie Dufresne, Heather A Harrington, and Dhruva V Raman. The geometry of sloppiness. arXiv preprint arXiv:1608.05679, 2016.
+[5] Ryan N Gutenkunst, Joshua J Waterfall, Fergal P Casey, Kevin S Brown, Christopher R Myers, and James P Sethna. Universally sloppy parameter sensitivities in systems biology models. PLoS Comput Biol, 3(10):e189, 2007.
+[6] Ard A Louis. Contingency, convergence and hyper-astronomical numbers in biological evolution. Studies in History and Philosophy of Science Part C: Studies in History and Philosophy of Biological and Biomedical Sciences, 58:107–116, 2016.
+[7] Christopher R Myers, Ryan N Gutenkunst, and James P Sethna. Python unleashed on systems biology. Computing in Science & Engineering, 9(3):34–37, 2007.
+[8] Christian To¨nsing, Jens Timmer, and Clemens Kreutz. Cause and cure of sloppiness in ordinary diﬀerential equation models. Physical Review E, 90(2):023303, 2014.
+[9] Mark K Transtrum, Benjamin B Machta, Kevin S Brown, Bryan C Daniels, Christopher R Myers, and James P Sethna. Perspective: Sloppiness and emergent theories in physics, biology, and beyond. The Journal of chemical physics, 143(1):07B201 1, 2015.
+27
+
+[10] Andreas Wagner. Robustness and evolvability: a paradox resolved. Proceedings of the Royal Society of London B: Biological Sciences, 275(1630):91–100, 2008.
+[11] Andrew White and Mark Transtrum. Limitations of model-based experimental design in systems biology. Bulletin of the American Physical Society, 59, 2014.
+28
+

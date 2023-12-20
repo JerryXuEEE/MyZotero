@@ -1,0 +1,258 @@
+
+关闭此对话框
+本网站使用 cookie 等技术来启用基本网站功能，以及用于分析、个性化和有针对性的广告目的。 您可随时更改设置或接受默认设置。 您可以关闭此横幅以仅继续使用必要的 cookie。 隐私政策
+设定偏好 全部接受 全部拒绝
+
+关闭Cookie偏好
+
+    Skip to Article Content
+    Skip to Article Information
+
+Wiley Online Library
+Search within
+
+    Search term
+
+Login / Register
+Human Brain Mapping
+Volume 37, Issue 8 p. 2918-2930 Human Brain Mapping
+Research Article
+Open Access
+Dynamic functional connectivity reveals altered variability in functional connectivity among patients with major depressive disorder
+Murat Demirtaş , 
+Correspondence to: Murat Demirtas, Department of Information and Communication Technologies, Center for Brain and Cognition, Universitat Pompeu Fabra, 08018 Barcelona, Spain. E-mail:
+Cristian Tornador , 
+Carles Falcón , 
+Marina López-Solà , 
+Rosa Hernández-Ribas , 
+Jesús Pujol , 
+José M. Menchón , 
+Petra Ritter , 
+Narcis Cardoner , 
+Carles Soriano-Mas , 
+Gustavo Deco , 
+First published: 28 April 2016
+https://doi.org/10.1002/hbm.23215
+Citations: 136
+Sections
+PDF PDF
+Tools
+Share
+Abstract
+
+Resting-state fMRI (RS-fMRI) has become a useful tool to investigate the connectivity structure of mental health disorders. In the case of major depressive disorder (MDD), recent studies regarding the RS-fMRI have found abnormal connectivity in several regions of the brain, particularly in the default mode network (DMN). Thus, the relevance of the DMN to self-referential thoughts and ruminations has made the use of the resting-state approach particularly important for MDD. The majority of such research has relied on the grand averaged functional connectivity measures based on the temporal correlations between the BOLD time series of various brain regions. We, in our study, investigated the variations in the functional connectivity over time at global and local level using RS-fMRI BOLD time series of 27 MDD patients and 27 healthy control subjects. We found that global synchronization and temporal stability were significantly increased in the MDD patients. Furthermore, the participants with MDD showed significantly increased overall average (static) functional connectivity (sFC) but decreased variability of functional connectivity (vFC) within specific networks. Static FC increased to predominance among the regions pertaining to the default mode network (DMN), while the decreased variability of FC was observed in the connections between the DMN and the frontoparietal network. Hum Brain Mapp 37:2918–2930, 2016 . © 2016 Wiley Periodicals, Inc.
+INTRODUCTION
+
+Major depressive disorder (MDD) is among the world's most prevalent mental health disorders. Annually, it affects nearly 7% of the European Union's population [Wittchen et al., 2011 ], and in 2010 it was cited as the second-most prevalent cause of disability worldwide [Ferrari et al., 2013 ]. Research on the complex mechanisms underlying MDD is crucial as a means to ensure effective measures for diagnosis, treatment and prevention as well as for understanding function in the diseased brain as compared with the healthy one. The current evidence supports the assertion that the development of MDD depends on alterations in distributed neural networks involving cortical and subcortical structures. In that respect, the development of analysis approaches for resting-state fMRI (rs-fMRI) represents a major step forward in the evaluation of brain function at the network level.
+
+Studies based on rs-fMRI have, with respect to MDD samples, reported significant decreases in functional connectivity among the cortical, limbic and thalamic regions [Anand et al., 2005 ; Bluhm et al., 2009 ; Cullen et al., 2009 ; Lui et al., 2011 ; Ramasubbu et al., 2014 ] (for review, see Wang et al. [ 2012 ]). Likewise, rs-fMRI studies have highlighted the alterations in different resting-state functional networks (RSNs). Particularly, research focusing on the default mode network (DMN), typically being associated with introspection and inward attention, has shown that depressive patients exhibit increased functional connectivity within this network [Alexopoulos et al., 2012 ; Berman et al., 2014 ; Greicius et al., 2007 ; Sheline et al., 2010 ; Zhou et al., 2010 ], which is normalized after antidepressant treatment [Li et al., 2013 ; Liston et al., 2014 ]. Other authors have reported that, MDD patients in the resting state display an increased anti-correlation between task-positive and task-negative (akin to the DMN) networks [Zhou et al., 2010 ] but a failure to down-regulate the DMN during tasks involving emotional judgment [Grimm et al., 2011 ]. Contrastingly, significant disconnections between posterior and anterior components of the DMN have been also described [Grimm et al., 2011 ], showing in these components a differential response to anti-depressant treatment [Li et al., 2013 ]. In any case, alterations within the DMN have been shown to be related to specific MDD clinical features such as exaggerated self-focus and depressive maladaptive ruminations [Berman et al., 2011 ; Hamilton et al., 2011 ]. Concurrently, results regarding other RSNs also remain controversial. For example, while some studies have reported increased functional connectivity within cognitive control and affective networks [Avery et al., 2014 ; Connolly et al., 2013 ; Sheline et al., 2010 ], others have, in regard to those regions, offered diametrically opposite findings [Alexopoulos et al., 2012 ; Veer et al., 2010 ].
+
+Research on resting-state FC, in addition to providing relevant information on the pattern of regional connectivity in specific brain networks, has made it possible to examine functional connectivity patterns in the context of the entire brain. This whole-brain approach has been applied to the study of different samples of MDD patients using a broad range of FC measurements [Gong and He, 2015 ]. However, disparate results have been reported in regard to whole-brain functional connectivity decreases [Berman et al., 2014 ], reductions in inter-hemispheric connectivity [Guo et al., 2011 ; Li Wang et al., 2013 ] and increases in global patterns of functional connectivity [Bohr et al., 2013 ]. Different explanations for the inconsistencies of the results have been proposed, including the clinical heterogeneity of MDD samples; the use of different definitions for network nodes and edges; changes in arousal; and cardiorespiratory and/or motion artifacts, all of which might be correlated with the global properties of brain networks [Gong and He, 2015 ].
+
+Nearly all of the resting-state literature has considered FC measurement as the average connectivity between different regions during a resting period (i.e., static FC), thus assuming that functional connectivity remains constant while the brain is in the resting state. Recently, however, we have seen the emergence of interest in the temporal properties of FC (i.e., dynamic FC), which may be defined as the time-varying functional connectivity between brain regions, whether assessed at rest or during task performance. Given the disparities among the findings regarding the static measures of FC in MDD, an investigation of the temporal dynamics of the FC during rest might provide new insights into the alterations of functional connections in MDD. As of this writing, few studies have been conducted with the use of this approach and the findings have been controversial, with null [Hamilton et al., 2011 ] and positive findings reported. Regarding the latter, two recent studies by Wei et al. [ 2013 and 2015] found alterations in the Hurst exponent of the time series in MDD patients. The Hurst exponent indicates the self-similarity or regularity of a time series, where a greater Hurst exponent value signifies highly regular fluctuations over time, suggesting a tendency toward coordinated signal organization within a network [Wei et al., 2015 ]. In depressed patients, a low Hurst exponent was detected within the DMN, thus indicating uneven signal oscillation over time. Nevertheless, in this same sample the frontoparietal, ventromedial prefrontal and salience networks showed increased Hurst exponent values [Wei et al., 2013, 2015 ]. Several other studies investigated the role of dynamic FC in schizophrenia [Damaraju et al., 2014 ; Rashid et al., 2014 ; Yu et al., 2015 ], bipolar disorder [Rashid et al., 2014 ] and psychedelic experience [Tagliazucchi et al., 2012 ]. In summary, although still in the emergent stage, the dynamic analysis of rsFC appears to be useful as a means to obtain additional measurements with which to better characterize the underlying neuropathological mechanisms of MDD.
+
+This study is intended to examine the relationship between first- and higher-order statistical measures based on dynamic FC on the global level, as well as the local level, in a sample of MDD patients. Accordingly, we have employed whole-brain connectivity analysis based on static and dynamic functional connectivity in 27 MDD patients and 27 controls. We checked the global stability of dynamic functional connectivity in each MDD patient during the scan using the average global synchronization and examined the similarities among the temporal states of the subjects. We then compared the differences at the local level using the overall average FC and the variability of FC among the MDD patients and the controls. Finally, through a process of machine-learning classification we tested the clinical significance of the results.
+MATERIALS AND METHODS
+Participants
+
+Twenty-seven MDD patients were recruited from the Mood Disorders Unit of the University Hospital of Bellvitge. Eligible participants were adult outpatients with a primary diagnosis of MDD as assessed by the Structured Clinical Interview for DSM-IV Axis I Disorders—Clinician Version (SCID), as made by two senior psychiatrists who reached a consensus for each item. Upon inclusion, each patient had a Hamilton Depression Scale (HAM-D 17) score equal to or greater than 18 (see Supporting Information). The exclusion criteria included the presence or history of other Axis I diagnoses, relevant medical or neurological disorders and an abnormal clinical MRI upon radiological inspection. 20 patients were in a washout period of 15 days. Concurrently, a group of 27 healthy volunteers matched in gender, age, handedness and years of education participated in the study (see Table 1 ). A complete medical interview was conducted with each prospective control subject in order to exclude anyone with relevant medical or neurological disorders, history of substance abuse, and psychiatric illness. Each of the patients and control subjects submitted a written informed consent for participation in the study, such consent form having been approved by the Research and Ethics Committee of the University Hospital of Bellvitge.
+Table 1. Participant demographics
+	Healthy controls 	Major depression disorder
+Sample size 	27 	27
+Age (yr) 	45.52 ± 9.5 	44.96 ± 11.48
+Gender 	18 F/9 M 	22 F/5 M
+HDRS 		21.74 ± 2.19
+Age of onset (yr) 		35.33 ± 10.48
+Episode duration (d) 		422.30 ± 307.24
+Drug washout 		20/27
+fMRI Acquisition and Preprocessing
+
+Image acquisition was accomplished with a 1.5 T Signa system (GE Healthcare, Milwaukee, WI) equipped with an eight-channel phased-array head coil. Protocol consisted in an echo planar BOLD contrast sequence and a high-resolution T1-weighted sequence. The acquisition parameters for functional data were: repetition time [TR] = 2,000 ms; echo time [TE] = 50 ms; flip angle [FA] = 15°; field of view [FOV] = 240 mm, a 64 × 64 matrix; slice thickness = 4 mm and inter-slice gap = 1.5 mm. Twenty-two slices parallel to the anterior-posterior commissure line covered the entire brain. The sequence included four additional dummy volumes to facilitate the equilibrium of magnetization, thus totaling 120 volumes per session. The high-resolution T1-weighted anatomical image was a three-dimensional fast spoiled gradient inversion-recovery prepared sequence with 130 contiguous slices in the axial plane (TR = 11.8 ms, TE = 4.2 ms, FA = 15°, FOV = 300 mm, a 256 × 256 matrix and a slice thickness of 1.2 mm).
+
+Image preprocessing was performed in SPM8 (Wellcome Trust Centre for Neuroimaging, University College London, UK; http://www.fil.ion.ucl.ac.uk/spm /). For every subject, functional series were realigned in a two-step procedure: first to the first image and then to the mean image. Next, movement was regressed out from functional series using the Volterra expansion of the parameters of movement (24 parameters). There were no significant differences between groups in three translation and three rotation parameters. Subsequent to inspection for the presence of artifacts, high-resolution T1-weighted structural images were co-registered to the mean functional image and then segmented. The transformation from MNI to native space resulted from segmentation was employed to warp the Automated Anatomical Labeling atlas (AAL) [Tzourio-Mazoyer et al., 2002 ] from MNI to every T1 image. AAL atlases in native space were restricted to subject's gray matter by the formula: [Atlas.*(GM > WM).*(GM > CSF).*(GM > 0.1)] where GM is the gray matter, WM is the white matter and CSF is the cerebrospinal fluid tissue probability maps and “.*” refers to voxel to voxel product of images. The last atlases were used to calculate functional time series on AAL's areas.
+Validation Data
+
+To check the validity of the approach, we used a distinct dataset comprising 25 healthy control subjects (age between 18 and 33 years old, mean 26.2 (STD 4.8), 11 females, 14 males). The fMRI acquisition procedure was described in detail in (Schirner et al., 2013 ). In brief, the resting state fMRI time signals (BOLD-sensitive, T2*-weighted, TR = 1,940 ms, TE = 30 ms, FA = 78°, 32 transversal slices (3 mm), voxel size 3 × 3 × 3 mm 3 , FOV = 192 mm, 64 × 64 matrix) of the subjects were acquired at Berlin Center for Advanced Imaging, Charité University Medicine, Berlin, Germany. MRI was performed using a 3 T Siemens Trim Trio MR scanner and a 12-channel Siemens head coil. Specifications for the employed sequences can be found in Ritter et al. [ 2009 ].
+Static and Dynamic Functional Connectivity Construction
+
+Preprocessed time series were band-pass filtered in 0.04 to 0.07Hz range in order to reduce the effects of low-frequency drift and high-frequency noise [Glerean et al., 2012 ]. The global average functional connectivity (sFC) was defined as the Pearson's correlation coefficient ( r ) between the time series of each ROI. The resulting correlation coefficients were approximated as a normal distribution using Fisher's z -transformation ( urn:x-wiley:10659471:media:hbm23215:hbm23215-math-0001 ), where T is the total number of time points). The same narrow-band signal was used for both analyses in order to justify the comparison. One healthy control subject was excluded from the analysis due to segmentation error in any single ROI. However, no difference was observed in the results between 26 of the MDD subjects and the 27 healthy control subjects.
+The Hilbert transform [Glerean et al., 2012 ] was used for the assessment of dynamic functional connectivity. This approach allowed us to extract dFC with a higher temporal resolution given the short length of the resting-state fMRI session. A recent study illustrated the use of this approach to detect the community structure, and compared them with well-established methods such as independent component analysis [Ponce-Alvarez et al., 2015 ]. They also showed the validity of the approach using computational modeling. The Hilbert transform, urn:x-wiley:10659471:media:hbm23215:hbm23215-math-0002 of the preprocessed BOLD time series broke the signal down to an analytical signal S ( t ) with an instantaneous phase φ(t) and amplitude A . For each time instance t , the difference urn:x-wiley:10659471:media:hbm23215:hbm23215-math-0003 between the phases of the respective ROIs was calculated, where i and j are the indices of each ROI. The phase differences were adjusted between 0 and π such that:
+urn:x-wiley:10659471:media:hbm23215:hbm23215-math-0004
+
+Then, instantaneous coupling matrices (ICMs), C ( t ) were constructed using the phase differences normalized between 0 and 1, thereby representing perfect anti-synchronization and perfect synchronization respectively, such that: C ij (t)  = 1 − Δ φ ij (t)/π .
+
+Global synchronization G ( t ) was calculated using binarized ICMs (i.e., binary connectivity matrix comprising phase differences less than π /8). The percentage of existing connections at each binary ICM was defined as global synchronization (see Supporting Information). Then, average global synchronization ( urn:x-wiley:10659471:media:hbm23215:hbm23215-math-0005 ) was computed for each subject.
+
+The similarities between the ICMs with the given time lag (0–20 s.) were quantified for each subject as the correlation coefficient between two matrices at each instance. The intertemporal closeness (ITC ) was defined as the proportion of similarities between ICMs that were smaller than the average similarity to the reference (i.e., the probability of observing greater similarity between instances than their similarity to the global phase-coupling matrix). Similarity to the reference was calculated as the correlation coefficient between each ICM and the average dFC. The reason behind this metric is that while the similarity between two ICMs decays over time, each of these matrices shows a stable correlation with the global mean FC. For the same reason we checked ITC for different time lags τ .
+
+urn:x-wiley:10659471:media:hbm23215:hbm23215-math-0006 and ITC were used to quantify the overall spatiotemporal stability of the dynamic FCs. A high urn:x-wiley:10659471:media:hbm23215:hbm23215-math-0007 indicates that the subject has a tendency to linger in a state where the overall phase-coupling between each ROI is persistently high. Contrastingly, ITC takes into account the spatial similarity between each temporal state, characterized by ICMs. Furthermore, while the correlation coefficients among the ICMs decreased monotonously over time, generally the correlation coefficients to the reference were normally distributed around a moderate value (see Supporting Information). Accordingly, a lower ITC suggests that the fluctuations in temporal states around the global average FC are higher, while a higher ITC indicates a more stable temporal dynamic.
+
+The variability in each pair in ICMs, C ij ( t ) was considered at the edge level. The variability of functional connectivity (vFC) was computed as the index of dispersion (variance/mean) of the coupling between each pair, and this was calculated for each subject. Figure 1 illustrates the process.
+Details are in the caption following the image
+Figure 1
+Open in figure viewer PowerPoint
+
+The static and dynamic analysis of rsFC (Materials and Methods). Following the fMRI acquisition and preprocessing, the BOLD time series results were band-pass filtered in the 0.04 to 0.07Hz frequency range. The instantaneous phases of resulting time series at each time step were then calculated using the Hilbert transform (left). The phase difference between each ROI was normalized between 0 and 1, indicating perfect anti-synchrony and synchrony, respectively. Consequently, the resulting matrix of dynamic functional connectivity (dFC) comprised an instantaneous coupling matrix (ICM) at each time step. The global synchrony, i.e., the percentage of synchronized pairs at each instance, was calculated using binarized ICMs (connection pairs greater than π /8). Intertemporal closeness (hereinafter “ITC”) was defined as the probability of detecting two ICMs having greater-than-average similarity to the grand average of dFC. Connectivity analysis was performed through use of the Network Based Statistics (NBS) toolbox. The global average FC (sFC) was calculated as Fisher's z -transformed correlation coefficient of the BOLD time series. The variability of FC (vFC) was quantified as the index of dispersion (variance/mean) of the dFC.
+Global Average Signal Fluctuations
+
+We computed the global average signal (GAS) as the spatial average of the band-pass filtered BOLD signal. Then, the GASs were z -transformed and high-GAS and low-GAS states were defined as z GAS  > 1 and z GAS  < −1, respectively. Finally, the average BOLD signal during high-GAS and low-GAS states was estimated for each subject. The envelope of GASs was calculated as the absolute value of the signal amplitude of the analytical signal, which was acquired using Hilbert transform. A similar approach was adapted to the dynamic FC. The spatial average of the ICMs were z -transformed, and then the high- and low-synchronization matrices were constructed as z sync  > 1 and z synch  < −1, respectively.
+Surrogate Time Series
+
+To check whether the observed measures are due to the dynamics, we used surrogate time series under linearity and stationarity assumption. The surrogate time series were generated before band-pass filtering using constrained phase randomization approach that was introduced by Prichard and Theiler ( 1994 ). This approach allowed generating the surrogate time series with multivariate phase randomization. All the measures presented in materials and methods were computed using 100 surrogate time series generated for each subject. The correlation coefficients, mean and variance of phase coupling values between regions were preserved in the surrogate signals. The group averages for urn:x-wiley:10659471:media:hbm23215:hbm23215-math-0008 and ITC were estimated using 1,000 values randomly sampled from the surrogates. Finally, we computed the P value to reject the null-hypothesis as the probability of the observed test statistic ( K ) given the null-distribution. The null-hypothesis was rejected if the probability of the observed statistic was less than 0.05. The observed statistic was defined as the group means for the validation dataset and T -statistic for the group comparisons.
+Whole-Brain Network Comparison, Network Visualization, and Statistical Analysis
+
+We compared the difference between each pair in the sFC and vFC matrices of patients and healthy controls using the Network Based Statistics (NBS) toolbox [Zalesky and Bullmore, 2010 ]. For each pair, a nonparametric permutation test was performed using 5,000 permutations. The corrected P value for the connected component was established as P < 0.05. The minimum threshold by which to calculate the maximal component size was defined as t  > 2.4 ( P = 0.01, dof =52). The networks were visualized through use of the BrainNet toolbox [Xia et al., 2013 ]. Comparison between global synchronization, intertemporal closeness and GAS-dependent BOLD signals were performed using a permutation test (10,000 permutations, P < 0.05). The P values were corrected for multiple comparisons using false discovery rate (FDR) [Hochberg and Benjamini, 1990 ].
+
+We used machine-learning tools for the classification of MDD patients and HCs in order to confirm the clinical relevance of static and non-static measures. For that purpose we implemented two popular approaches in machine learning: Support Vector Machine (SVM). Moreover, we used the Leave-One-Out (LOO) approach for the cross-validation of the training set.
+
+All the analyses were performed in Matlab R2013b.
+RESULTS
+Global Stability of Dynamic Functional Connectivity
+
+We first compared the distributions of global synchronization (see Materials and Methods) of the MDD patients and healthy controls using the Kolmogorov-Smirnov distance between cumulative distribution functions. We found that the global synchrony distribution of MDD patients had shifted toward high synchrony as compared with the healthy controls, showing a significant difference (Kolmogorov-Smirnov test, P < 0.001, D  = 0.12). However, we found no significant difference between the means of global synchronization of the respective groups, despite a tendency toward significance ( P = 0.0554, permutation test) (Fig. 2 ).
+Details are in the caption following the image
+Figure 2
+Open in figure viewer PowerPoint
+
+Global synchrony. ( a ) Probability distribution histograms of global synchronization in MDD patients and HCs; ( b ) cumulative distribution function: the distance between two distributions is statistically different (Kolmogorov-Smirnov test, P  < 0.001); and ( c ) comparison of means of global synchronization (tendency toward significance, P = 0.0554). (In all figures, black represents healthy controls and gray represents MDD patients.).
+
+Subsequently, we defined the measure of intertemporal closeness (ITC) to quantify the stability of FC over time (see Materials and Methods). The MDD group showed significantly greater intertemporal closeness than did the HC group ( P = 0.013, permutation test) (Fig. 3 ): In the former group, ITC fell below the 5% chance level at a lag of 11.7 s, while for the HCs the time lag was approximately 10.3 seconds (Fig. 3 ), suggesting the greater stability of dynamic functional connectivity in the MDD group.
+Details are in the caption following the image
+Figure 3
+Open in figure viewer PowerPoint
+
+Intertemporal closeness. ( a ) Probability of finding two temporal states (characterized by ICMs) having a similarity (correlation coefficient) greater than the overall similarity to the average coupling matrix using different time-lags (i.e., excluding nearby τ time points). Chance level closeness ( P  < 0.05) is 10.3 s for healthy controls, 11.7 s for MDD patients. ( b ) Comparison of mean intertemporal closeness without time-lag (permutation test with 10,000 permutations, P = 0.013).
+
+The group differences were invariant to the choice of the threshold. However, both measures were sensitive to the band-pass frequency range. The group differences were maximal at 0.04 to 0.07 Hz frequency band (see Supporting Information Fig. 2). Furthermore, given the surrogate time series, the null hypothesis of linearity and stationarity was rejected for global synchronization ( P = 0.024) and ITC ( P = 0.008) ( Fig. 6 ) .
+Whole-Brain Connectivity Analysis Based on S-FC (STATIC) and V-FC (Nonstatic) Connectivity
+
+We used the network based statistics (NBS) approach to study local alterations in whole-brain functional connectivity. We compared static and non-static connectivity measures, namely sFC (Fisher's z -transformed correlation coefficients between the time series of each ROI) and vFC (index of dispersion of the coupling between each pair), respectively. (See the section Materials and Methods.) The index of dispersion was used to distinguish the variability of the coupled pairs from the uncoupled pairs. MDD patients showed a significant, widespread increase in sFC and a decrease in vFC. With respect to both measures, the altered connections were observed among the right dorsal and posterior cingulate, the precuneus, and the right medial and left superior frontal gyri, forming a network associated with the default mode network (DMN) (Fig. 4 ). However, while the increase in sFC was extended further to other DMN-related regions such as the right cuneus, left thalamus and right angular gyrus, the decrease in vFC suggested an impaired variability between the core DMN components and the frontoparietal network comprising the right paracentral and inferior parietal lobules, the dorsal part of the left superior frontal gyrus, the right inferior frontal gyrus and the post-central gyrus (Table 2 ). In brief, MDD was manifested as hyperconnectivity within the regions of the DMN accompanied by decreased variability with DMN and the regions related to executive function and sensory information integration.
+Details are in the caption following the image
+Figure 4
+Open in figure viewer PowerPoint
+
+Whole-brain connectivity analysis of sFC (top) and vFC (bottom). Herein, sFC refers to static functional connectivity (i.e., Fisher's z -transformed Pearson's correlation coefficients), while vFC refers to variability of functional connectivity (i.e., index of dispersion of phase-coupling between two-ROI). The results are based on NBS using 5,000 permutations, corrected P value <0.05 and maximum component threshold t  > 3.3 (vFC) t  > 3.2 (sFC). The red nodes and edges indicate higher values in MDD patients, while the blue nodes and edges indicate lower values in MDD patients.
+Table 2. Significantly different connections based on static FC (sFC) and variability of FC (vFC)
+Static functional connectivity (sFC) 	Variability of functional connectivity (vFC)
+Pair 	T -statistic 	P 	Pair 	T -statistic 	P
+IFGoperc (right)—FFG (left) 	4.1412 	0.0001 	MFG (right)—PoCG (right) 	4.3769 	0.0001
+MFG (right)—SFGmed (left) 	3.6813 	0.0006 	IFGoperc (right)—PCG (right) 	4.3620 	0.0001
+DCG (right)—PCG (right) 	3.6159 	0.0007 	CAL (right)—IPL (right) 	4.0979 	0.0001
+MFG (right)—CAL (right) 	3.5159 	0.0009 	IFGoperc (right)—PCL (right) 	4.0553 	0.0002
+SFGmed (left)—CUN (right) 	3.5116 	0.0009 	DCG (right)—PCG (right) 	4.0228 	0.0002
+MFG (right)—CAL (left) 	3.4895 	0.001 	MFG (right)—SFGmed (left) 	3.9779 	0.0002
+DCG (right)—CAL (left) 	3.4439 	0.0011 	SFGdor (left)—MFG (right) 	3.4431 	0.0011
+IFGoperc (right)—LING (right) 	3.4224 	0.0012 	IPL (right)—PCUN (left) 	3.3909 	0.0013
+IFGoperc (right)—LING (left) 	3.3994 	0.0013 	MFG (right)—PCL (right) 	3.3567 	0.0015
+MFG (right)—THA (left) 	3.3911 	0.0013 	SFGdor (left)—IPL (right) 	3.3203 	0.0016
+ANG (right)—THA (left) 	3.3882 	0.0013 			
+LING (right)—SMG (right) 	3.3164 	0.0017 			
+PCG (right)—CAL (right) 	3.3068 	0.0017 			
+SOG (right)—SMG (right) 	3.3040 	0.0017 			
+SFGmed (left)—PCUN (right) 	3.3019 	0.0017 			
+PCG (right)—PUT (left) 	3.2903 	0.0018 			
+PreCG (right)—ANG (right) 	3.2415 	0.0021 			
+MFG (right)—LING (right) 	3.2412 	0.0021 			
+Global Signal Fluctuations
+
+We studied the influence of global average signal (GAS) on the phase coupling between brain regions. We found anti-correlated activation patterns during high GAS and low GAS states ( r  = −0.99, P < 0.001). The BOLD signal was higher in lingual gyrus, dorsal cingulate gyrus, and precuneus during high GAS state, while the BOLD signal in orbitofrontal cortex and posterior cingulate gyrus was higher during low GAS state (Fig. 5 a,b). Furthermore, we found a relationship between global synchronization in dFC and the phase coupling networks. The phase coupling was increased between the posterior parts of the brain and decreased within the orbitofrontal cortex during high synchronization (Fig. 5 c). Moreover, the mean phase coupling strength during high synchronization state was highly correlated with the average BOLD signal during high GAS state ( r  = 0.96, P < 0.001). Consistent with these findings, the envelope of the GAS fluctuations was significantly correlated with the global synchronization ( r  = 0.93, P < 0.001).
+Details are in the caption following the image
+Figure 5
+Open in figure viewer PowerPoint
+
+Average BOLD signal during high-GAS ( a ) and low-GAS ( b ) states of 26 healthy control subjects. During high-GAS state posterior and occipital regions were activated, while orbitofrontal cortex and posterior cingulate gyrus were deactivated. The activation patterns of high-GAS and low-GAS state were anti-correlated. ( c ) The average phase coupling between regions during high- and low-synchronization states. The red links and nodes indicate the highest 200 connections that were increased during high-synchronization state. The blue links and nodes indicate the highest 200 connections that were increased during low-synchronization state.
+Details are in the caption following the image
+Figure 6
+Open in figure viewer PowerPoint
+
+Null distributions of global synchronization ( a ) and intertemporal closeness ( b ) test statistics calculated using multivariate surrogate data. Red arrows indicate observed test statistics.
+
+The GAS-dependent activation patterns were significantly different between groups. MDD patients had increased BOLD signal during high GAS state in right medial frontal gyrus ( T  = −2.51, P < 0.05), inferior frontal gyrus ( T  = −3.21, P < 0.05), posterior cingulate ( T  = −2.43, P < 0.05), postcentral gyrus ( T  = −2.33, P < 0.05), angular gyrus ( T  = −2.29, P < 0.05), medial temporal gyrus ( T  = −2.29, P < 0.05), and decreased BOLD signal in temporal pole ( T  = 4.69, P < 0.05).
+Classification and the Linear Model
+
+Using SVM, global spatiotemporal measures correctly classified 72% of the subjects (sensitivity: 70%; specificity: 74%). The connections in sFC classified each subject correctly with 75% accuracy (sensitivity: 78%; specificity: 73%), while in v-FC the accuracy was 73% (sensitivity: 78%; specificity: 69%). Taken together, sFC and vFC classified each subject with 81% accuracy (sensitivity: 81%; specificity: 81%). Finally, the global and nodal parameters together classified each subject with 83% accuracy (sensitivity: 81%; specificity: 85%).
+
+Additionally, partial correlations of each feature with clinical indicators (gender, duration of disease, HDRS, episode duration, drug washout) were calculated. No significant correlation was found between clinical indicators and global synchronization with respect to ITC. Nevertheless, there was a significant correlation of raw global MDD-HC FC distance to disease duration ( ρ  = 0.47, P  < 0.05), suggesting a global spatial alteration in MDD during the course of the disease.
+Validation of the Measures
+
+The validity of the proposed measures was tested using a cross-validation dataset with higher recording time. We showed that the mean and the variance of the phase-locking values were preserved in surrogate time series. In addition, the variance of the phase-locking values was comparable to that of the dynamic FC using sliding window analysis (window size = 30 TR, step size = 5 TR). Moreover, we tested the hypothesis that the dynamics underlying the group averages of global synchronization and ITC were linear and stationary. The null hypothesis was rejected both for global synchronization ( P = 0.004) and ITC ( P  = 0.003). The activation patterns associated with global signal fluctuations in the validation dataset were consistent with the results (see Supporting Information Fig. 6).
+DISCUSSION
+
+We studied the rsfMRI of depressive patients using static and dynamic measures on the global and local levels. Our results showed increased global synchronization and temporal stability in the MDD patient group. Furthermore, we found alterations in static FC and the variability of FC in MDD patients relative to the healthy control group. Generally, those alterations occurred in the right hemisphere but also occurred, albeit to a lesser extent, in the interhemispheric static and dynamic connections. Thus, our findings on widespread global synchronization and increased temporal stability in MDD contradict the results of Berman et al. [ 2014 ]. This might be due to the differences in preprocessing steps, particularly in band-pass filtering (as discussed below).
+
+We found that, in depressive patients, static FC was increased dominantly in the regions related to the DMN and variability of FC decreased within an extended network of the DMN and frontoparietal regions. This result is consistent with the previous findings that showed reduced irregularity (increased memory) in the frontoparietal network using the Hurst exponent [Wei et al., 2013 ]. Furthermore, we showed that these measures might function as predictors in discriminating patients from healthy controls. Collectively, the results suggest that dynamic functional connectivity can reveal different aspects of brain connectivity in MDD patients. Therefore, we claim that attenuated variability in the frontoparietal region might influence widespread global synchronization and the difficulty of down-regulating the DMN. This conclusion is consistent with the existing neuropsychological models of MDD and most of the recent findings regarding the role of the DMN in the disorder. The novelty is that we have shown that the changes in modulatory networks (dynamical/binding hubs) could be more effectively characterized by dynamic FC than with static FC, and that the converse is true for structural networks (static hubs). In our study, these potential modulatory networks were consistently the regions related to executive function and the integration of sensory information. Several other recent techniques might be useful to investigate the interactions between resting state networks [Allen et al., 2014 ].
+
+The relationship involving increased global synchronization, increased temporal stability, and decreased variability might seem trivial or possibly as an artifact due to the influence of physiological noise. Furthermore, the alteration in temporal stability might be confounded by its dependence to the global synchronization. However, the occurrence of local alterations in variability within specific, clinically relevant networks suggests that variations in global and local spatiotemporal patterns might be linked. In other words, the results might be interpreted such that the local alterations in sFC (increased connectivity) and vFC (decreased variability) might also manifest as increased global synchronization and temporal stability in MDD, or the other way around. Moreover, we found that the average BOLD signal in the parietal and orbitofrontal regions fluctuate with the global average signal. These fluctuations were also correlated with the global synchronization patterns. These finding are consistent with recent studies suggesting the clinical implications of global signal fluctuations [Yang et al., 2014 ]. Additionally, one study reported that DMN is correlated with autonomic arousal [Fan et al., 2012 ]. Thus, the relationship between global and local variations might also be relevant to the bottom-up modulation of binding hubs via subcortical circuits and/or whole-brain global modulation by autonomic arousal. Nevertheless, the evidence cannot rule out the indirect involvement of physiological noise in the signal and its ability to bias the results. Further research is needed in order to clarify the mechanisms that underlie the global average signal.
+
+Our study was subject to various considerations and limitations. We underscore the fact that these results are very specific to the 0.04 to 0.07 Hz narrowband, which was shown to be the most reliable frequency band [Glerean et al., 2012 ] (see Materials and Methods). First, the global synchronization of each region was correlated with the power in the narrow band. Secondly, the average 0.04 to 0.07 Hz bandwidth power of related regions (such as the medial frontal gyrus and precuneus) was significantly different in the MDD patients (Supporting Information Fig. 1). Accordingly, we suggest that the widespread increase (or decrease) found in connectivity might be related to the changes in the power of ROIs in various frequency bands. It was also observed that the MDD patients had increased power in this narrow bandwidth despite their reduced power in wider bandwidths. In addition, the group differences were maximized at 0.04 to 0.07 Hz frequency band. This might indicate relative importance of this frequency band in MDD or in other clinical populations. For example, in one study the highest classification performance to detect mild cognitive impairment (MCI) was found between 0.054 and 0.068 Hz [Wee et al., 2012 ]. Additional research is needed in order to clarify the role of the spectral properties of RSNs. In any case, the major limitation of this study was the short scan duration (4 min), which might be insufficient for the stabilization of resting-state functional connectivity (rsFC). In addition to the reliable stabilization of FCs, the short scan duration prevented us from using extensive analyses such as sliding-window analysis, the Fano factor of dynamic connectivity in time, and wavelet analysis. Another limitation of the study was that several individuals in the patient group were in drug washout period. However, we did not find any correlation between the measures and being in drug washout.
+
+This study provides new insights with which to better our understanding of the anomalous pattern of brain activity during the resting state in MDD. The analysis of dynamic functional connectivity reveals that the depressed brain shows an abnormally stable, synchronous pattern of activity, whereby it mimics the various core features of depressive patients, such as ruminative, slow, and monotonous thinking. Our novel approach has confirmed the presence of static hyperconnnectivity in MDD within the DMN, along with a reduction in the variability of dynamic functional connectivity in the DMN and frontoparietal networks. This has in turn allowed us to accurately classify depressed patients and distinguish them from healthy controls. Although the machine learning classification was limited due to LOO method implemented in a modest sample size, it illustrated the clinical relevance of the approach. Future examination of the complex relationship between dynamic and static connectivity can provide adequate measurements with which to deepen characterization in the pathophysiology of depression.
+Supporting Information
+REFERENCES
+Citing Literature
+
+Volume 37 , Issue 8
+
+August 2016
+
+Pages 2918-2930
+
+    Figures
+    References
+    Related
+    Information
+
+Recommended
+
+    Aberrant intrinsic functional connectivity in thalamo‐cortical networks in major depressive disorder
+    Qing-Mei Kong ,  Hong Qiao ,  Chao-Zhong Liu ,  Ping Zhang ,  Ke Li ,  Li Wang ,  Ji-Tao Li ,  Yun'Ai Su ,  Ke-Qing Li ,  Chao-Gan Yan ,  Philip B. Mitchell ,  Tian-Mei Si , 
+    CNS Neuroscience & Therapeutics
+
+    Reduced global functional connectivity of the medial prefrontal cortex in major depressive disorder
+    James W. Murrough ,  Chadi G. Abdallah ,  Alan Anticevic ,  Katherine A. Collins ,  Paul Geha ,  Lynnette A. Averill ,  Jaclyn Schwartz ,  Kaitlin E. DeWilde ,  Christopher Averill ,  Genevieve Jia-Wei Yang ,  Edmund Wong ,  Cheuk Y. Tang ,  John H. Krystal ,  Dan V. Iosifescu ,  Dennis S. Charney , 
+    Human Brain Mapping
+
+    Imbalance in subregional connectivity of the right temporoparietal junction in major depression
+    Timm B. Poeppl ,  Veronika I. Müller ,  Felix Hoffstaedter ,  Danilo Bzdok ,  Angela R. Laird ,  Peter T. Fox ,  Berthold Langguth ,  Rainer Rupprecht ,  Christian Sorg ,  Valentin Riedl ,  Roberto Goya-Maldonado ,  Oliver Gruber ,  Simon B. Eickhoff , 
+    Human Brain Mapping
+
+    Dynamic functional connectivity of neurocognitive networks in children
+    Hilary A. Marusak ,  Vince D. Calhoun ,  Suzanne Brown ,  Laura M. Crespo ,  Kelsey Sala-Hamrick ,  Ian H. Gotlib ,  Moriah E. Thomason , 
+    Human Brain Mapping
+
+    Abnormal dynamic functional connectivity in Alzheimer’s disease
+    Yue Gu ,  Ying Lin ,  Liangliang Huang ,  Junji Ma ,  Jinbo Zhang ,  Yu Xiao ,  Zhengjia Dai ,  Alzheimer's Disease Neuroimaging Initiative , 
+    CNS Neuroscience & Therapeutics
+
+Download PDF
+back
+Additional links
+About Wiley Online Library
+
+    Privacy Policy
+    Terms of Use
+    About Cookies
+    Manage Cookies
+    Accessibility
+    Wiley Research DE&I Statement and Publishing Policies
+    Developing World Access
+
+Help & Support
+
+    Contact Us
+    Training and Support
+    DMCA & Reporting Piracy
+
+Opportunities
+
+    Subscription Agents
+    Advertisers & Corporate Partners
+
+Connect with Wiley
+
+    The Wiley Network
+    Wiley Press Room
+
+Copyright © 1999-2023 John Wiley & Sons, Inc . All rights reserved
+Wiley Home Page
+

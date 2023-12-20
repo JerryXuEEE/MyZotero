@@ -1,0 +1,2452 @@
+Skip to Main Content
+Oxford Academic
+Journals
+Books
+
+    Information
+    Account
+
+Psychoradiology
+West China Hospital
+
+    Issues
+    Advance articles
+    Submit
+    Alerts
+    About
+
+Close
+Navbar Search Filter Clinical Neuroscience Neuroscience Psychiatry Psychology Radiology Books Journals Oxford Academic Enter search term Search
+Advanced Search
+Article Navigation
+Issue Cover
+Volume 2
+Issue 1
+March 2022
+Article Contents
+
+    Abstract
+    Introduction
+    Principal Findings from DIRECT Studies
+    Future Directions for the DIRECT Consortium
+    Conclusion
+    ACKNOWLEDGEMENTS
+    Conflict of interest statement
+    Notes
+    References
+
+    < Previous
+     
+
+    pdf PDF
+    Split View
+    Cite
+    Permissions Icon Permissions
+    Share Icon Share
+
+Close
+Navbar Search Filter Clinical Neuroscience Neuroscience Psychiatry Psychology Radiology Books Journals Oxford Academic Enter search term Search
+Journal Article
+The DIRECT consortium and the REST-meta-MDD project: towards neuroimaging biomarkers of major depressive disorder
+Xiao Chen , Bin Lu , Hui-Xian Li , Xue-Ying Li , Yu-Wei Wang , Francisco Xavier Castellanos , Li-Ping Cao , Ning-Xuan Chen , Wei Chen , Yu-Qi Cheng , ... Show more
+Psychoradiology , Volume 2, Issue 1, March 2022, Pages 32–42, https://doi.org/10.1093/psyrad/kkac005
+Published:
+09 June 2022
+Article history
+
+    pdf PDF
+    Split View
+    Cite
+    Permissions Icon Permissions
+    Share Icon Share
+
+Abstract
+
+Despite a growing neuroimaging literature on the pathophysiology of major depressive disorder (MDD), reproducible findings are lacking, probably reflecting mostly small sample sizes and heterogeneity in analytic approaches. To address these issues, the Depression Imaging REsearch ConsorTium (DIRECT) was launched. The REST-meta-MDD project, pooling 2428 functional brain images processed with a standardized pipeline across all participating sites, has been the first effort from DIRECT. In this review, we present an overview of the motivations, rationale, and principal findings of the studies so far from the REST-meta-MDD project. Findings from the first round of analyses of the pooled repository have included alterations in functional connectivity within the default mode network, in whole-brain topological properties, in dynamic features, and in functional lateralization. These well-powered exploratory observations have also provided the basis for future longitudinal hypothesis-driven research. Following these fruitful explorations, DIRECT has proceeded to its second stage of data sharing that seeks to examine ethnicity in brain alterations in MDD by extending the exclusive Chinese original sample to other ethnic groups through international collaborations. A state-of-the-art, surface-based preprocessing pipeline has also been introduced to improve sensitivity. Functional images from patients with bipolar disorder and schizophrenia will be included to identify shared and unique abnormalities across diagnosis boundaries. In addition, large-scale longitudinal studies targeting brain network alterations following antidepressant treatment, aggregation of diffusion tensor images, and the development of functional magnetic resonance imaging-guided neuromodulation approaches are underway. Through these endeavours, we hope to accelerate the translation of functional neuroimaging findings to clinical use, such as evaluating longitudinal effects of antidepressant medications and developing individualized neuromodulation targets, while building an open repository for the scientific community.
+major depressive disorder , DIRECT , R-fMRI , database , neuroimaging
+Issue Section:
+Review
+Introduction
+
+Major depressive disorder (MDD) is the second leading cause of health burden worldwide (Ferrari et al ., 2013 ). Unfortunately, objective biomarkers to assist in diagnosis are still lacking, and current first-line treatments are only modestly effective (Borowsky et al ., 2000 ; Williams et al ., 2011 ), reflecting our incomplete understanding of the pathophysiology of MDD. Characterizing the neurobiological basis of MDD promises to support developing more effective diagnostic approaches and treatments.
+
+An increasingly used approach to reveal neurobiological substrates of clinical conditions is termed resting-state functional magnetic resonance imaging (R-fMRI) (Biswal, 2012 ). Despite intensive efforts to characterize the pathophysiology of MDD with R-fMRI, clinical imaging markers of diagnosis and predictors of treatment outcomes have yet to be identified. Previous reports have been inconsistent, sometimes contradictory, impeding the endeavour to translate them into clinical practice (Yan et al ., 2019 ). One reason for inconsistent results is low statistical power from small sample size studies (Button et al ., 2013 ). Low-powered studies are more prone to produce false positive results, reducing the reproducibility of findings in a given field (Ioannidis, 2005 ; Poldrack et al ., 2017 ). Of note, one recent study demonstrated that a sample size of thousands of participants may be needed to identify reproducible brain-wide association findings (Marek et al ., 2022 ), calling for larger datasets to boost effect size. Another reason could be the high analytic flexibility (Carp, 2012 ). Recently, Botvinik-Nezer and colleagues (Botvinik-Nezer et al ., 2020 ) demonstrated the divergence in results when independent research teams applied different workflows to process an identical fMRI dataset, highlighting the effects of 'researcher degrees of freedom' [i.e. heterogeneity in (pre-)processing methods] in producing disparate fMRI findings.
+
+To address these critical issues, we initiated the Depression Imaging REsearch ConsorTium (DIRECT) in 2017. Through a series of meetings, a group of 17 participating hospitals in China agreed to establish the first project of the DIRECT initiative, the REST-meta-MDD project, and share 25 study cohorts, including R-fMRI data from 1300 MDD patients and 1128 normal control participants. On the basis of our previous work, a standardized preprocessing pipeline adapted from Data Processing Assistant for Resting-State fMRI (DPARSF) (Yan et al ., 2016 ; Yan & Zang, 2010 ) was implemented at each local participating site to minimize heterogeneity in preprocessing methods. R-fMRI metrics can be vulnerable to physiological confounds such as head motion (Ciric et al ., 2018 ; Ciric et al ., 2017 ). Based on our previous work examining head motion impact on R-fMRI functional connectivity (FC) connectomes (Yan et al ., 2013 ) and other recent benchmarking studies (Ciric et al ., 2017 ; Parkes et al ., 2018 ), DPARSF implements a regression model (Friston-24 model) on the participant- and group-level correction for mean frame displacements as the default setting.
+
+Participating groups first preprocessed R-fMRI images with a DPARSF standardized protocol at local hospitals, then shared the final R-fMRI indices along with demographic (age, sex, and education) as well as clinical information (first episode/recurrent, medication usage, illness severity, etc.). The REST-meta-MDD project was intended to boost statistical power by pooling functional data across centers, while minimizing the effects of heterogeneous analytical strategies and creating an openly available dataset for the global scientific community. As of 1 January 2020, the dataset of deidentified imaging derivatives was made available for unrestricted sharing. All researchers can obtain access to these R-fMRI indices and corresponding demographic/clinical information via http://rfmri.org/REST-meta-MDD , and perform any analyses of interest without putting participant privacy or confidentiality at risk.
+
+Since its launch, DIRECT has encouraged independent investigations. Data sharing was conducted in two phases. In the initial coordinated sharing phase, all researchers who sought access to the dataset needed to submit a written proposal to the consortium review board. The aims and research design of proposals were evaluated to minimize conflicts with already approved research proposals. The consortium also provided technical support for participating sites regarding preprocessing and statistical analysis as these issues can be challenging for clinical researchers. Through these practices, DIRECT sought to provide a platform that would allow all participating sites to leverage the large R-fMRI database and explore it independently. At the time of writing, DIRECT investigators have published several peer-reviewed research papers. Here, we review the principal findings from these published studies, summarized in Table  1 , and discuss the implications of these results and the future directions of DIRECT.
+Table 1:
+
+A summary of DIRECT studies.
+Study .  	Modality .  	Sample size .  	Primary results . 
+Yan et al ., 2019 . Proceedings of the Natational Academy of Sciences USA 	fMRI: network FC	848 MDDs vs. 794 HCs	MDD patients showed significantly reduced FC within DMN ( t = −3.762, P  = 0.0002, Cohen's d = −0.186) compared to HCs and this effect could only be observed in recurrent MDD patients ( t = −3.737, P  = 0.0002, Cohen's d = −0.326).
+Long et al ., 2020 . NeuroImage: Clinical 	fMRI: dynamic brain network metrics	460 MDDs vs. 473 HCs	MDD patients showed a higher temporal variability ( F  = 10.218, P  = 0.000216, FDR corrected), a lower temporal correlation coefficient ( F  = 15.071, P  = 0.0000333, FDR corrected), and a shorter characteristic temporal path length ( F  = 8.768, P  = 0.000314, FDR corrected).
+Liang et al ., 2020 . NeuroImage: Clinical 	fMRI: data-driven clustering	690 MDDs vs. 707 HCs	MDD patients could be grouped into two subgroups based on FCs within the DMN with K -means clustering method. Subgroup 1’s FC within DMN was enhanced while Subgroup 2’s DMN FC was decreased compared to HCs. The significance of clustering was determined with bootstrapping at the level of P  < 0.05.
+Yang et al ., 2021 . Molecular Psychiatry 	fMRI: topological feature	821 MDDs vs. 765 HCs	Both global ( E glob : t = −2.601, P  = 0.009) and local efficiency ( E loc : t = −2.771, P  = 0.006) were reduced in MDD patients compared to HCs. Again, this effect was only significant in recurrent MDD patients ( E glob : t = −3.893, P  < 0.001; E loc : t = −4.429, P  < 0.001).
+Liu et al ., 2021 . Progress in Neuro-Psychopharmacology and Biological Psychiatry 	sMRI: VBM	572 MDDs vs. 481 HCs	Significant differences regarding GMV were found in temporal lobes, fusiform gyrus and thalamus among MDD patients with GI, MDD patients without GI, and HCs.
+Ding et al ., 2021 . Journal of Affective Disorders 	fMRI: PAS	753 MDDs vs. 451 HCs	MDD patients were characterized with increased PAS scores in DMN, FPCN, dorsal, and ventral attention network regions compared to HCs.
+Deng et al ., 2021 . Bipolar Disorder 	fMRI: VMHC	1004 MDDs vs. 898 HCs	Decreased VMHC was found in DMN, VN, and SMN regions in MDD patients compared with HCs.
+
+Abbreviations: VBM, voxel-based morphometry; MDD, major depressive disorder; HC, healthy control; DMN, default mode network; VN, visual network; FPCN, fronto-parietal control network; SMN, somato-motor network; GI, gastrointestinal; PAS, parameter of asymmetry; VMHC, voxel-mirrored homotopic connectivity; FC, functional connectivity; GMV, grey matter volume.
+Open in new tab
+Table 1:
+
+A summary of DIRECT studies.
+Study .  	Modality .  	Sample size .  	Primary results . 
+Yan et al ., 2019 . Proceedings of the Natational Academy of Sciences USA 	fMRI: network FC	848 MDDs vs. 794 HCs	MDD patients showed significantly reduced FC within DMN ( t = −3.762, P  = 0.0002, Cohen's d = −0.186) compared to HCs and this effect could only be observed in recurrent MDD patients ( t = −3.737, P  = 0.0002, Cohen's d = −0.326).
+Long et al ., 2020 . NeuroImage: Clinical 	fMRI: dynamic brain network metrics	460 MDDs vs. 473 HCs	MDD patients showed a higher temporal variability ( F  = 10.218, P  = 0.000216, FDR corrected), a lower temporal correlation coefficient ( F  = 15.071, P  = 0.0000333, FDR corrected), and a shorter characteristic temporal path length ( F  = 8.768, P  = 0.000314, FDR corrected).
+Liang et al ., 2020 . NeuroImage: Clinical 	fMRI: data-driven clustering	690 MDDs vs. 707 HCs	MDD patients could be grouped into two subgroups based on FCs within the DMN with K -means clustering method. Subgroup 1’s FC within DMN was enhanced while Subgroup 2’s DMN FC was decreased compared to HCs. The significance of clustering was determined with bootstrapping at the level of P  < 0.05.
+Yang et al ., 2021 . Molecular Psychiatry 	fMRI: topological feature	821 MDDs vs. 765 HCs	Both global ( E glob : t = −2.601, P  = 0.009) and local efficiency ( E loc : t = −2.771, P  = 0.006) were reduced in MDD patients compared to HCs. Again, this effect was only significant in recurrent MDD patients ( E glob : t = −3.893, P  < 0.001; E loc : t = −4.429, P  < 0.001).
+Liu et al ., 2021 . Progress in Neuro-Psychopharmacology and Biological Psychiatry 	sMRI: VBM	572 MDDs vs. 481 HCs	Significant differences regarding GMV were found in temporal lobes, fusiform gyrus and thalamus among MDD patients with GI, MDD patients without GI, and HCs.
+Ding et al ., 2021 . Journal of Affective Disorders 	fMRI: PAS	753 MDDs vs. 451 HCs	MDD patients were characterized with increased PAS scores in DMN, FPCN, dorsal, and ventral attention network regions compared to HCs.
+Deng et al ., 2021 . Bipolar Disorder 	fMRI: VMHC	1004 MDDs vs. 898 HCs	Decreased VMHC was found in DMN, VN, and SMN regions in MDD patients compared with HCs.
+
+Abbreviations: VBM, voxel-based morphometry; MDD, major depressive disorder; HC, healthy control; DMN, default mode network; VN, visual network; FPCN, fronto-parietal control network; SMN, somato-motor network; GI, gastrointestinal; PAS, parameter of asymmetry; VMHC, voxel-mirrored homotopic connectivity; FC, functional connectivity; GMV, grey matter volume.
+Open in new tab
+Principal Findings from DIRECT Studies
+FC abnormalities in MDD
+
+The first DIRECT study (Yan et al ., 2019 ) concentrated on a simple but surprisingly controversial theme: FC within the default mode network (DMN) in depression. The DMN was first recognized as a set of brain regions showing reduced haemodynamic activity during externally directed attention tasks and increased activity during resting state or internally focused tasks (Raichle, 2010 ; Raichle et al ., 2001 ; Raichle & Snyder, 2007 ). By consensus, MDD was considered to be characterized by enhanced FC within the DMN, which was also proposed to be a neural mechanism underlying rumination (Greicius et al ., 2007 ; Hamilton et al ., 2015 ; Kaiser et al ., 2015 ). However, previous findings regarding FC within the DMN in patients with MDD were inconsistent (for a review, see Yan et al ., 2019 ). Thus, DIRECT first conducted a mega-analytic investigation, that is, pooling individual-level measures across sites and conducting regression analysis on this pooled dataset. Potentially confounding site effects were corrected with a linear mixed model with a random intercept for sites. Such an analytical approach can boost statistical power to detect subtle effects and allow for flexible control of confounders (Schmaal et al ., 2020 ). The mega-analysis also investigated the effects of certain phenotypes: the number of episodes, medication usage, and illness duration. Contrary to initial assumptions, FC in patients with MDD was significantly lower than in HCs within the DMN ( t = −3.762, P  = 0.0002). This effect was only observed in patients with recurrent MDD ( t = −3.737, P  = 0.0002), and not in first episode drug naïve patients ( t = −0.914, P  = 0.361). Overall, MDD patients were found to be characterized by a general yet subtle decrease of FC within the DMN (Fig.  1A ). This contradicted some of the previous literature. However, previous studies showing increased DMN FC in MDD were primarily conducted with Caucasian samples, while the sample from REST-meta-MDD was homogeneously Chinese. Ethnic differences in MDD have been consistently reported. Compared with Caucasians, Asians have lower prevalence rates (Ferrari et al ., 2013 ), more psychosomatic symptoms (Ryder et al ., 2008 ), and different risk genes (Bigdeli et al ., 2017 ). Hence, one critical future direction for DIRECT is to identify potential cultural and ethnic differences by pooling cross-cultural samples with international collaborators (see an example of neurodevelopment from Dong et al ., 2020 ).
+Figure 1:
+Principal findings from DIRECT studies. (A) Reduced FC within the DMN is revealed in patients with MDD compared to HCs (Yan et al., 2019). (B) Both decreased global efficiency (Eglob) and local efficiency (Eloc) are found in MDD vs. HC contrast (Yang et al., 2021). (C) Alterations in terms of temporal dynamic properties (increased variability, decreased temporal correlation coefficient, and characteristic temporal path length) are observed in patients with MDD as compared to HCs (Long et al., 2020). (D) Altered PAS scores are primarily observed in DMN (red), VN (blue), FPCN (yellow), and ventral and dorsal attention network (green) in MDD vs. HC contrast (Ding et al., 2021). (E) Reduced VMHC was found in DMN, VN, and SMN regions in MDD vs. HC contrast (Deng et al., 2021). (F) Patients with MDD can be clustered into two subgroups according to FCs within DMN (Liang et al., 2020). (G) Temporal and occipital regions, thalamus, prefrontal, and postfrontal gyrus show difference in GMV among GI, non-GI MDD patients, and HCs (Liu et al., 2021). Abbreviations: PAS, parameter of asymmetry; GI, gastrointestinal; MDD, major depressive disorder; HC, healthy control; DMN, default mode network; VN, visual network; FPCN, fronto-parietal control network; SMN, somato-motor network; FC, functional connectivity; VMHC, voxel-mirrored homotopic connectivity.
+Open in new tab Download slide
+
+Principal findings from DIRECT studies. (A) Reduced FC within the DMN is revealed in patients with MDD compared to HCs (Yan et al ., 2019 ). (B) Both decreased global efficiency ( E glob ) and local efficiency ( E loc ) are found in MDD vs. HC contrast (Yang et al ., 2021 ). (C) Alterations in terms of temporal dynamic properties (increased variability, decreased temporal correlation coefficient, and characteristic temporal path length) are observed in patients with MDD as compared to HCs (Long et al ., 2020 ). (D) Altered PAS scores are primarily observed in DMN (red), VN (blue), FPCN (yellow), and ventral and dorsal attention network (green) in MDD vs. HC contrast (Ding et al ., 2021 ). (E) Reduced VMHC was found in DMN, VN, and SMN regions in MDD vs. HC contrast (Deng et al ., 2021 ). (F) Patients with MDD can be clustered into two subgroups according to FCs within DMN (Liang et al ., 2020 ). (G) Temporal and occipital regions, thalamus, prefrontal, and postfrontal gyrus show difference in GMV among GI, non-GI MDD patients, and HCs (Liu et al ., 2021 ). Abbreviations: PAS, parameter of asymmetry; GI, gastrointestinal; MDD, major depressive disorder; HC, healthy control; DMN, default mode network; VN, visual network; FPCN, fronto-parietal control network; SMN, somato-motor network; FC, functional connectivity; VMHC, voxel-mirrored homotopic connectivity.
+Topological abnormalities of functional brain networks in MDD
+
+Subsequently, the topological properties of functional brain networks in patients with MDD have been examined (Bullmore & Sporns, 2009 ; Yang et al ., 2021 ) (Fig.  1B ). The individual-level R-fMRI data from the REST-meta-MDD project allowed building a topological network with a predefined brain atlas, i.e. Dosenbach's 160 atlas (Dosenbach et al ., 2010 ). The effort focused on two essential features of networks, their global ( E glob ) and local efficiencies ( E loc ) (Rubinov & Sporns, 2010 ). Both significantly decreased global efficiency ( t = −2.601, P  = 0.009) and local efficiency ( t = −2.771, P  = 0.006) were found in patients with MDD compared to HCs. Once again, this effect was only significant in patients with recurrent MDD ( E glob : t = −3.893, P  < 0.001; E loc : t = −4.429, P  < 0.001) and not in first episode drug naïve patients ( E glob : t = −0.224, P  > 0.05; E loc : t = −0.586, P  > 0.05). The high efficiency of both global and local information flow in the brain or the 'small-world' topology is thought to be important for adapting to environmental demands (Bullmore & Sporns, 2009 , 2012 ). Accordingly, patients with recurrent MDD may be less able to deal with distress from negative life events due to their disrupted intrinsic functional brain topology, making them vulnerable to relapse into depression. The effects of antidepressant medications may also be involved. In a longitudinal study (Li et al ., 2021 ), FC was decreased in almost all brain networks after patients were administered escitalopram or duloxetine for 8 weeks. Other factors, such as illness duration, may also contribute. Since most recurrent MDD patients have long histories of medication use, future studies will need to collect more information on the medication usage of patients to better identify medication effects on the properties of functional brain networks of patients with MDD.
+Altered dynamic FC in MDD
+
+Recent studies have highlighted the dynamic aspects of intrinsic brain activity and its role in the pathology of MDD (Demirtas et al ., 2016 ; Hou et al ., 2018 ; Wang et al ., 2020 ). However, most of these studies are preliminary and findings have been inconsistent. Accordingly, a comprehensive study was conducted to characterize altered dynamic FC in MDD at both local and global levels (Long et al ., 2020 ; Sizemore & Bassett, 2018 ). A dynamic network-based framework based on the sliding-window approach was used to estimate several spatio-temporal dynamic network features such as temporal variability, temporal clustering, and temporal efficiency. A total of 460 patients with MDD and 473 HCs were selected for statistical analysis according to their age, education, imaging quality, etc. (for details of selection criteria, please refer to Long et al ., 2020 ). Results showed significantly increased temporal variability ( F  = 10.218, P = 0.000216, FDR corrected), decreased temporal correlation coefficient ( F  = 15.071, P = 0.0000333, FDR corrected), and shorter characteristic temporal path length ( F  = 8.768, P = 0.000314, FDR corrected) in MDD patients (Fig. 1C ). These effects were significant in both first-episode drug naïve (FEDN) and non-FEDN patients. In addition, temporal variability ( ρ = 0.111, P  = 0.045) and temporal efficiency ( ρ = −0.101, P  = 0.045) were correlated with Hamilton depression rating scale (HAMD) scores after adjusting for age, sex, and site effects in patients with MDD. These results indicate that MDD patients fail to maintain relatively stable brain networks over periods of time and some aberrant connections may interfere with normal interactions among brain regions (Sun et al ., 2019 ; Zalesky et al ., 2014 ).
+Altered functional lateralization features in MDD
+
+Brain asymmetry has been proposed to be a critical feature of the human brain in both structure and function (Toga & Thompson, 2003 ). Functional lateralization was characterized with a novel metric, the parameter of asymmetry (PAS) (Ding et al ., 2021 ). The PAS was defined as the difference between the mean inter-hemisphere FC and intra-hemisphere FC for a given voxel. We found significantly increased PAS scores in patients with MDD compared with HCs, indicating decreased hemispheric lateralization (Fig.  1D ). On the other hand, interhemispheric functional integration is also an important aspect of the brain's functional architecture that can be examined by a voxel-wise measurement called voxel-mirrored homotopic connectivity (VMHC) (Stark et al ., 2008 ; Zuo et al ., 2010 ). VMHC was compared between 1004 patients with MDD and 898 HCs from the REST-meta-MDD project (Deng et al ., 2021 ). Decreased VMHC in MDD was revealed in a wide range of brain regions, including posterior cingulate cortex (PCC), medial prefrontal cortex (MPFC), pre-/post-central gyrus, and inferior frontal and occipital gyrus (Fig.  1E ). Such reduced homotopic resting-state FCs may be caused by disrupted structural connectivity such as reduced fractional anisotropy in the corpus callosum (van Velzen et al ., 2019 ).
+MDD subgroups
+
+MDD is a highly heterogeneous disorder, probably containing subgroups that correspond to different pathologies and treatments (Drysdale et al ., 2016 ). Leveraging the REST-meta-MDD sample, MDD patients were categorized into subgroups according to their resting state FC patterns using a data-driven approach (Liang et al ., 2020 ). K -means clustering divided MDD patients into two groups depending on their within-DMN FC pattern. One group was characterized by enhanced FCs within the DMN, especially FC between MPFC and PCC, while the other group featured decreased FCs within the DMN (Fig.  1F ). These results illustrate a complex pattern of abnormalities in DMN FC, which would be difficult to observe in traditional case-control analyses. Finally, although the REST-meta-MDD project primarily focused on the functional neuropathology associated with MDD, structural alterations in MDD were examined by analyzing the T1-weighted anatomical images collected along with R-fMRI data (Liu et al ., 2021 ). Specifically, MDD patients were divided into patients with gastrointestinal symptoms (GI group) and those without GI symptoms (non-GI group). GI symptoms are common in MDD and associated with poorer prognosis (Kop, 2012 ). Results showed significantly different grey matter volume (GMV) in temporal and occipital regions, thalamus, prefrontal, and postfrontal gyrus among GI, non-GI MDD patients, and HCs (Fig.  1G ). The GI group had increased grey matter density in bilateral thalamus compared with the non-GI group. Larger grey matter density in the GI group was also found in right temporal gyrus, fusiform, and lingual gyrus compared with HCs. These results demonstrated that Chinese patients with MDD who experience GI symptoms have abnormalities in grey matter structures.
+
+Once the REST-meta-MDD project entered the unrestricted sharing phase, researchers from outside DIRECT began to conduct additional exploratory analyses. For example, Tozzi and colleagues ( 2021 ) re-analyzed within-DMN FCs in terms of the three DMN subsystems (Andrews-Hanna, 2012 ; Andrews-Hanna et al ., 2010 ). Recent empirical evidence showed that the DMN can be fractionated into three subsystems: a core subsystem that corresponds to self-referential thinking (the core subsystem); a subsystem that is anchored in the dorsal PFC and corresponds to cognition related processes; and a subsystem that is anchored in the medial temporal lobe (the MTL subsystem) and corresponds to autobiographical memory (Andrews-Hanna, 2012 ; Andrews-Hanna et al ., 2010 ). They found that only FC within the core subsystem was significantly reduced in MDD compared to NCs. These results have expanded the research scope of REST-meta-MDD and show the potential of this rich repository of clinical data.
+Box 1.
+Directions for future DIRECT research
+
+    What are the differences regarding MDD abnormalities in different ethnic groups (e.g. Chinese vs. Caucasian)? What factors contribute such differences (e.g. response styles, thinking styles or genetic factors?)
+
+    To what extent can it help improve the reproducibility of results to transfer preprocessing pipelines from volume-based approaches [i.e. DPSRSF (Yan & Zang, 2010 ) and SPM (Ashburner, 2012 )] to surface-based approaches [e.g. DPABISurf (Yan et al ., 2021 ) and fMRIPrep (Esteban et al ., 2019 )]?
+
+    What are the differences and similarities among the neuroimaging alterations across different mental disorders?
+
+    What are the longitudinal effects of antidepressant medications on the brain?
+
+    What are the white matter alterations in MDD?
+
+    Can we guide neuromodulation techniques (e.g. TMS) through brain network mechanisms we identified with fMRI?
+
+Future Directions for the DIRECT Consortium
+
+In this review, we have briefly described the motivation and evolution of the DIRECT consortium and the main published findings based on its first project, REST-meta-MDD. Through this endeavour, we demonstrated that pooling R-fMRI data across multiple sites with standardized processing protocols can substantially boost statistical power and detect subtle but reliable MDD-related abnormalities in brain. Furthermore, we established an open-access data repository to make all shared functional data available to the broad scientific community. We hope this will advance discovery-based analyses seeking neuroimaging biomarkers, a deeper understanding of MDD's neuropathology, and development of novel treatments for MDD. Despite the inspiring and unique findings emerging from the present research based on REST-meta-MDD and DIRECT, further questions can be raised. An important limitation is the exclusively Chinese sample. Thus, one critical next step of the DIRECT consortium is to extend the Chinese sample to other ethnic groups such as Caucasians through international collaborations. Other directions include: (i) improving reproducibility and sensitivity by using a surface-based, state-of-the-art pipeline (DPABISurf) (Yan et al ., 2021 ); (ii) accumulating functional neuroimaging data from other psychiatric disorders such as bipolar disorder and schizophrenia; (iii) longitudinal research targeting the effects of antidepressant medications on brain networks in MDD; (iv) quantifying alterations in structural connections in MDD with diffusion tensor imaging (DTI); and (v) novel individualized neuromodulation approaches (e.g. transcranial magnetic stimulation, TMS) with fMRI-based anatomic targeting.
+Identifying effects of different cultural groups
+
+MDD in different ethnic groups has been reported to have different prevalence rates, heterogeneous subtypes, and varied treatment outcomes (Budhwani et al ., 2015 ; Lee et al ., 2014 ; Lesser et al ., 2007 ). As this planet's largest ethnic group, the Chinese have been reported to exhibit lower rates of depression (Huang et al ., 2019 ; Parker et al ., 2007 ; Parker et al ., 2001 ). The reasons for this are the focus of continuing debate. Some claim that the Chinese tend to express depression somatically and deny feelings of distress (Qiu et al ., 2018 ). From the cultural viewpoint, some argue that Chinese beliefs and ways of responding to emotions (i.e. holistic thinking styles) make Chinese people less vulnerable to the negative affects of distress (De Vaus et al ., 2018 ). Genetic factors may also contribute. The s/s allele of serotonin transporter is more prevalent in East Asians (45–74%) compared to Caucasians (12–24%) (Goldman et al ., 2010 ). Furthermore, the s/s genotype is associated with a higher risk of MDD in Caucasians but not in Asians (Kiyohara & Yoshimasu, 2010 ). Thus, results from an exclusive Chinese sample may not generalize to other ethnic groups. In 2012, the international Enhancing NeuroImaging Genetics through Meta-Analysis (ENIGMA) initiative launched its MDD consortium, to identify neuroimaging alterations associated with MDD and their modulators (Schmaal et al ., 2020 ). So far, neuroimaging data from more than 9000 HCs and 4000 MDDs have been accumulated by ENIGMA MDD consortium. Initial attempts have been made to pool data from DIRECT and ENIGMA MDD to identify the potential ethnic and cultural factors (e.g. directly compare the differences regarding whole-brain FC maps between Caucasian and Chinese MDD patients) in the neuropathology of MDD. We believe direct comparison across a large cross-cultural sample can provide unprecedentedly powered evidence for the contribution of ethnic factors to the structural and functional alterations associated with MDD.
+Towards surface-based analyses
+
+Obtaining more reliable and reproducible findings from functional neuroimaging data has become a major challenge for the field (Botvinik-Nezer et al ., 2020 ; Chen et al ., 2018 ). Preprocessing of R-fMRI data is complex and contains numerous steps to yield clean data for further statistical analyses. Outdated and flexible ad hoc preprocessing pipelines have been shown to decrease the quality and consistency of results (Esteban et al ., 2019 ). In the REST-meta-MDD project, this issue was addressed by conducting a standardized, volume-based preprocessing pipeline based on DPARSF. However, recent methodological benchmarks have highlighted the drawbacks of volume-based preprocessing approaches, calling for a transformation to surface-based approaches (Coalson et al ., 2018 ; Zuo et al ., 2013 ). One obstacle in applicating state-of-the-art surface-based approaches in a multi-site consortium like DIRECT is the lack of a 'turn-key' toolbox. Accordingly, the DPABISurf pipeline was developed with a user-friendly graphical user interface that requires no scripting skills from users (Yan et al ., 2021 ). DPABISurf is the latest upgrade of the widely used preprocessing pipeline DPARSF/DPABI (Yan et al ., 2016 ; Yan & Zang, 2010 ) and follows the same designing concept. On the basis of this pipeline, future pooling of preprocessed time series in DIRECT will be produced with a surface-based approach, which should enhance the reliability and sensitivity of future DIRECT studies.
+Transdiagnostic investigation
+
+Evidence from ENIGMA has implicated a shared structural abnormality pattern among MDD, bipolar disorder, and schizophrenia (Schmaal et al ., 2020 ). Genomewide association studies have also suggested that implicated genes may have pleiotropic effects across disorders (Huang et al ., 2010 ). Furthermore, the differential diagnosis of bipolar disorder and MDD has long been a challenge for clinicians, indicating an overlap of clinical presentation between these disorders (Hirschfeld, 2014 ). Thus, investigating and characterizing shared and unique functional/structural brain alterations across these disorders may be particularly important and can help develop image-based diagnostic biomarkers to assist differential diagnosis. DIRECT is building a transdiagnostic dataset together with new participating research groups. Preliminary analyses to explore similarities as well as differences among these disorders regarding brain function and structure are anticipated.
+Identifying longitudinal effects of antidepressant medications
+
+One contribution of a pooled large-scale R-fMRI data repository is to generate hypothesis for future longitudinal studies. Effect sizes of studies using a within-subject design are larger than those using a cross-sectional between-subject design (Chen et al ., 2018 ). However, longitudinal studies require more resources and a targeted design, so a sufficient prior knowledge base is needed to narrow the exploration scope. The present DIRECT studies have highlighted the effects of antidepressant medications on MDD patients’ functional brain networks, especially the DMN. To test this, the effects of antidepressant treatment were studied in a group of 41 first-episode drug-naïve patients with MDD who were administrated escitalopram or duloxetine for 8 weeks (Li et al ., 2021 ). FCs within and among brain networks were generally decreased after antidepressant treatment, confirming the findings from the original DIRECT studies. The longitudinal effects of antidepressant medications on large-scale brain networks will be the focus of a future study that is being planned.
+Exploring white matter alterations in MDD
+
+DTI is an effective in vivo technique to investigate white matter microstructural properties of psychiatric patients (Rae et al ., 2012 ). Multi-site studies have been conducted to characterize MDD patients’ white matter abnormalities both cross-sectionally (van Velzen et al ., 2019 ) and longitudinally (Davis et al ., 2019 ). It can be challenging to apply sophisticated and standardized workflows across many sites, so existing large-scaled multi-site studies tend to concentrate on more straightforward metrics such as fractional anisotropy. Recent advances in building an integrative software platform for DTI preprocessing (e.g. QSIPrep: Cieslak et al ., 2021 ) have made it possible to pool prepossessed DTI images and conduct more advanced analyses such as tractography and mapping the structural connectome. Building a DTI repository under the framework of DIRECT to determine abnormalities regarding structural connection properties in MDD is under discussion.
+Developing network-targeted neuromodulation therapy
+
+Neuromodulation techniques, especially TMS, have the potential to treat MDD (Lefaucheur et al ., 2020 ). Initial findings from DIRECT highlight the critical role the DMN plays in the neurophysiology of MDD. DMN abnormalities in MDD have long been associated with rumination, a passive and repetitive thinking style that is common in MDD patients (Hamilton et al ., 2015 ; Kaiser et al ., 2015 ). A recent hypothesis-driven study found that FCs between the core and MTL subsystems were enhanced during rumination, while FCs between core and DMPFC subsystems were reduced (Chen et al ., 2020 ). Further analyses showed that the dynamic stability of the DMN was also decreased during rumination (Chen & Yan, 2021 ). These findings indicate that it might be possible to inhibit rumination by directly modulating DMN FC patterns through novel neuromodulation approaches such as TMS. Current TMS approaches show promising antidepressant effects, but effect sizes are modest and treatment duration is long (Lefaucheur et al ., 2020 ). Transforming present scalp-based targeting to individualized fMRI guided targeting may improve the efficiency of TMS (Cash et al ., 2020 ). Indeed, one recent double-blinded randomized controlled trial (Cole et al ., 2021 ) found that targeting an individualized left dorsal lateral prefrontal cortex (DLPFC) region that is anticorrelated to subgenual anterior cingulate cortex was highly effective (remission rate 79%), indicating the feasibility of generating individualized targets for TMS in relation to specific brain networks. Future DIRECT research intends to develop target searching algorithms according to the subsystem mechanisms underlying rumination and set up a clinical trial to test the antidepressant effects of such neuromodulation therapy.
+Conclusion
+
+In sum, the DIRECT consortium has accumulated an unprecedently large functional neuroimaging repository by initiating the REST-meta-MDD project. Studies based on this dataset have provided highly powered evidence for the field of neuropathology of MDD that has been beset by contradictory results. Furthermore, some intriguing insights have emerged from initial analyses. The second stage of data sharing under the framework of DIRECT is underway and several longitudinal studies based on hypotheses from REST-meta-MDD have been launched. We hope these endeavours will advance the translation of neuroimaging studies to clinical practice.
+ACKNOWLEDGEMENTS
+
+This work was funded by the National Key R&D Program of China no. 2017YFC1309902; the National Natural Science Foundation of China grant numbers 82122035, 81671774, and 81630031; the 13th Five-year Informatization Plan of Chinese Academy of Sciences grant no. XXH13505; the Key Research Program of the Chinese Academy of Sciences no. ZDBS-SSW-JSC006; Beijing Nova Program of Science and Technology no. Z191100001119104; and the China National Postdoctoral Program for Innovative Talents no. BX20200360.
+Conflict of interest statement
+
+One of the authors, Dr Qi-Yong Gong, is also the editor-in-chief of Psychoradiology . He was blinded from reviewing or making decisions on the manuscript.
+Notes
+
+DIRECT consortium: Chao-Gan Yan, Ph.D. 1,2,3,4,5,6 , Xiao Chen, Ph.D. 1,2,3,4 , Li-Ping Cao, M.D. 9 , Wei Chen, M.D. 11 , Yu-Qi Cheng, M.D. 12 , Yi-Ru Fang, M.D. 13 , Qi-Yong Gong, M.D. 14,15 , Wen-Bin Guo, M.D. 16 , Li Kuang, M.D. 17 , Bao-Juan Li, M.D. 18 , Tao Li, M.D. 20,21 , Yan-Song Liu, M.D. 22 , Zhe-Ning Liu, M.D. 16 , Jian-Ping Lu, M.D. 23 , Qing-Hua Luo, M.D. 17 , Hua-Qing Meng, M.D. 17 , Dai-Hui Peng, M.D. 13 , Jiang Qiu, Ph.D. 24 , Yue-Di Shen, M.D. 25 , Tian-Mei Si, M.D. 26 , Yan-Qing Tang, M.D. 27 , Chuan-Yue Wang, M.D. 28 , Fei Wang, M.D. 27,29 , Hua-Ning Wang, M.D. 18 , Kai Wang, M.D. 30 , Xiang Wang, M.D. 16 , Ying Wang, M.D. 31 , Xiao-Ping Wu, M.D. 32 , Chun-Ming Xie, M.D. 33 , Guang-Rong Xie, M.D. 16 , Peng Xie, M.D. 34,35,36 , Xiu-Feng Xu, M.D. 12 , Hong Yang, M.D. 37 , Jian Yang, M.D. 35 , Shu-Qiao Yao, M.D. 16 , Yong-Qiang Yu, M.D. 38 , Yong-Gui Yuan, M.D. 39 , Ke-Rang Zhang, M.D. 40 , Wei Zhang, M.D. 41 , Zhi-Jun Zhang, M.D. 33 , Jun-Juan Zhu, M.D. 42 , Xi-Nian Zuo, Ph.D. 43,44 , Jing-Ping Zhao, M.D. 16 , Yu-Feng Zang, M.D. 45,46
+References
+
+Andrews-Hanna
+JR
+(
+2012
+)
+The brain's default network and its adaptive role in internal mentation
+.
+Neuroscientist
+.
+18
+:
+251
+–
+70
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Andrews-Hanna
+JR
+,
+Reidler
+JS
+,
+Sepulcre
+J
+, et al.  (
+2010
+)
+Functional-anatomic fractionation of the brain's default network
+.
+Neuron
+.
+65
+:
+550
+–
+62
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Ashburner
+J
+(
+2012
+)
+SPM: a history
+.
+Neuroimage
+.
+62
+:
+791
+–
+800
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Bigdeli
+TB
+,
+Ripke
+S
+,
+Peterson
+RE
+, et al.  (
+2017
+)
+Genetic effects influencing risk for major depressive disorder in China and Europe
+.
+Transl Psychiatry
+.
+7
+:
+e1074
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Biswal
+BB
+(
+2012
+)
+Resting state fMRI: a personal history
+.
+Neuroimage
+.
+62
+:
+938
+–
+44
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Borowsky
+SJ
+,
+Rubenstein
+LV
+,
+Meredith
+LS
+, et al.  (
+2000
+)
+Who is at risk of nondetection of mental health problems in primary care?
+.
+J Gen Intern Med
+.
+15
+:
+381
+–
+8
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Botvinik-Nezer
+R
+,
+Holzmeister
+F
+,
+Camerer
+CF
+, et al.  (
+2020
+)
+Variability in the analysis of a single neuroimaging dataset by many teams
+.
+Nature
+.
+582
+:
+84
+–
+8
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Budhwani
+H
+,
+Hearld
+KR
+,
+Chavez-Yenter
+D
+(
+2015
+)
+Depression in racial and ethnic minorities: the impact of nativity and discrimination
+.
+J Racial Ethn Health Disparities
+.
+2
+:
+34
+–
+42
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Bullmore
+E
+,
+Sporns
+O
+(
+2009
+)
+Complex brain networks: graph theoretical analysis of structural and functional systems
+.
+Nat Rev Neurosci
+.
+10
+:
+186
+–
+98
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Bullmore
+E
+,
+Sporns
+O
+(
+2012
+)
+The economy of brain network organization
+.
+Nat Rev Neurosci
+.
+13
+:
+336
+–
+49
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Button
+KS
+,
+Ioannidis
+JPA
+,
+Mokrysz
+C
+, et al.  (
+2013
+)
+Power failure: why small sample size undermines the reliability of neuroscience
+.
+Nat Rev Neurosci
+.
+14
+:
+365
+–
+76
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Carp
+J
+(
+2012
+)
+On the plurality of (methodological) worlds: estimating the analytic flexibility of fMRI experiments
+.
+Front Neurosci
+.
+6
+:
+149
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Cash
+RFH
+,
+Weigand
+A
+,
+Zalesky
+A
+, et al.  (
+2020
+)
+Using brain imaging to improve spatial targeting of transcranial magnetic stimulation for depression
+.
+Biol Psychiatry
+.
+90
+:
+689
+–
+700
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Chen
+X
+,
+Chen
+NX
+,
+Shen
+YQ
+, et al.  (
+2020
+)
+The subsystem mechanism of default mode network underlying rumination: a reproducible neuroimaging study
+.
+Neuroimage
+.
+221
+:
+117185
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Chen
+X
+,
+Lu
+B
+,
+Yan
+CG
+(
+2018
+)
+Reproducibility of R-fMRI metrics on the impact of different strategies for multiple comparison correction and sample sizes
+.
+Hum Brain Mapp
+.
+39
+:
+300
+–
+18
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Chen
+X
+,
+Yan
+CG
+(
+2021
+)
+Hypostability in the default mode network and hyperstability in the frontoparietal cognitive network of dynamic functional architecture during rumination
+.
+Neuroimage
+.
+241
+:
+118427
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Cieslak
+M
+,
+Cook
+PA
+,
+He
+X
+, et al.  (
+2021
+)
+QSIPrep: an integrative platform for preprocessing and reconstructing diffusion MRI data
+.
+Nat Methods
+.
+18
+:
+775
+–
+8
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Ciric
+R
+,
+Rosen
+AFG
+,
+Erus
+G
+, et al.  (
+2018
+)
+Mitigating head motion artifact in functional connectivity MRI
+.
+Nat Protoc
+.
+13
+:
+2801
+–
+26
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Ciric
+R
+,
+Wolf
+DH
+,
+Power
+JD
+, et al.  (
+2017
+)
+Benchmarking of participant-level confound regression strategies for the control of motion artifact in studies of functional connectivity
+.
+Neuroimage
+.
+154
+:
+174
+–
+87
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Coalson
+TS
+,
+Van Essen
+DC
+,
+Glasser
+MF
+(
+2018
+)
+The impact of traditional neuroimaging methods on the spatial localization of cortical areas
+.
+Proc Natl Acad Sci USA
+.
+115
+:
+E6356
+–
+e6365
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Cole
+EJ
+,
+Phillips
+AL
+,
+Bentzley
+BS
+, et al.  (
+2022
+)
+Stanford neuromodulation therapy (SNT): a double-blind randomized controlled trial
+.
+Am J Psychiatry
+.
+179
+:
+132
+–
+41
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Davis
+AD
+,
+Hassel
+S
+,
+Arnott
+SR
+, et al.  (
+2019
+)
+White matter indices of medication response in major depression: a diffusion tensor imaging study
+.
+Biol Psychiatry Cogn Neurosci Neuroimaging
+.
+4
+:
+913
+–
+24
+.
+
+Google Scholar
+PubMed
+
+WorldCat
+ 
+
+De Vaus
+J
+,
+Hornsey
+MJ
+,
+Kuppens
+P
+, et al.  (
+2018
+)
+Exploring the East-West divide in prevalence of affective disorder: a case for cultural differences in coping with negative emotion
+.
+Pers Soc Psychol Rev
+.
+22
+:
+285
+–
+304
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Demirtas
+M
+,
+Tornador
+C
+,
+Falcon
+C
+, et al.  (
+2016
+)
+Dynamic functional connectivity reveals altered variability in functional connectivity among patients with major depressive disorder
+.
+Hum Brain Mapp
+.
+37
+:
+2918
+–
+30
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Deng
+K
+,
+Yue
+JH
+,
+Xu
+J
+, et al.  (
+2021
+)
+Impaired robust interhemispheric function integration of depressive brain from REST-meta-MDD database in China
+.
+Bipolar Disord
+.
+doi:10.1111/bdi.13139
+.
+
+Google Scholar
+
+WorldCat
+ 
+
+Ding
+YD
+,
+Yang
+R
+,
+Yan
+CG
+, et al.  (
+2021
+)
+Disrupted hemispheric connectivity specialization in patients with major depressive disorder: evidence from the REST-meta-MDD project
+.
+J Affect Disord
+.
+284
+:
+217
+–
+28
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Dong
+H-M
+,
+Castellanos
+FX
+,
+Yang
+N
+, et al.  (
+2020
+)
+Charting brain growth in tandem with brain templates at school age
+.
+Science Bulletin
+.
+65
+:
+1924
+–
+34
+.
+
+Google Scholar
+Crossref
+
+WorldCat
+ 
+
+Dosenbach
+NU
+,
+Nardos
+B
+,
+Cohen
+AL
+, et al.  (
+2010
+)
+Prediction of individual brain maturity using fMRI
+.
+Science
+.
+329
+:
+1358
+–
+61
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Drysdale
+AT
+,
+Grosenick
+L
+,
+Downar
+J
+, et al.  (
+2017
+)
+Resting-state connectivity biomarkers define neurophysiological subtypes of depression
+.
+Nat Med
+.
+23
+:
+28
+–
+38
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Esteban
+O
+,
+Markiewicz
+CJ
+,
+Blair
+RW
+, et al.  (
+2019
+)
+fMRIPrep: a robust preprocessing pipeline for functional MRI
+.
+Nat Methods
+.
+16
+:
+111
+–
+6
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Ferrari
+AJ
+,
+Charlson
+FJ
+,
+Norman
+RE
+, et al.  (
+2013
+)
+Burden of depressive disorders by country, sex, age, and year: findings from the Global Burden of Disease Study 2010
+.
+PLoS Med
+.
+10
+:
+e1001547
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Goldman
+N
+,
+Glei
+DA
+,
+Lin
+YH
+, et al.  (
+2010
+)
+The serotonin transporter polymorphism (5-HTTLPR): allelic variation and links with depressive symptoms
+.
+Depress Anxiety
+.
+27
+:
+260
+–
+9
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Greicius
+MD
+,
+Flores
+BH
+,
+Menon
+V
+, et al.  (
+2007
+)
+Resting-state functional connectivity in major depression: abnormally increased contributions from subgenual cingulate cortex and thalamus
+.
+Biol Psychiatry
+.
+62
+:
+429
+–
+37
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Hamilton
+JP
+,
+Farmer
+M
+,
+Fogelman
+P
+, et al.  (
+2015
+)
+Depressive rumination, the default-mode network, and the dark matter of clinical neuroscience
+.
+Biol Psychiatry
+.
+78
+:
+224
+–
+30
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Hirschfeld
+RM
+(
+2014
+)
+Differential diagnosis of bipolar disorder and major depressive disorder
+.
+J Affect Disord
+.
+169 Suppl 1
+:
+S12
+–
+6
+.
+
+Google Scholar
+PubMed
+
+WorldCat
+ 
+
+Hou
+Z
+,
+Kong
+Y
+,
+He
+X
+, et al.  (
+2018
+)
+Increased temporal variability of striatum region facilitating the early antidepressant response in patients with major depressive disorder
+.
+Prog Neuropsychopharmacol Biol Psychiatry
+.
+85
+:
+39
+–
+45
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Huang
+J
+,
+Perlis
+RH
+,
+Lee
+PH
+, et al.  (
+2010
+)
+Cross-disorder genomewide analysis of schizophrenia, bipolar disorder, and depression
+.
+Am J Psychiatry
+.
+167
+:
+1254
+–
+63
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Huang
+Y
+,
+Wang
+Y
+,
+Wang
+H
+, et al.  (
+2019
+)
+Prevalence of mental disorders in China: a cross-sectional epidemiological study
+.
+The Lancet Psychiatry
+.
+6
+:
+211
+–
+24
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Ioannidis
+JPA
+(
+2005
+)
+Why most published research findings are false
+.
+PLoS Med
+.
+2
+:
+e124
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Kaiser
+RH
+,
+Andrews-Hanna
+JR
+,
+Wager
+TD
+, et al.  (
+2015
+)
+Large-scale network dysfunction in major depressive disorder: a meta-analysis of resting-state functional connectivity
+.
+JAMA Psychiatry
+.
+72
+:
+603
+–
+11
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Kiyohara
+C
+,
+Yoshimasu
+K
+(
+2010
+)
+Association between major depressive disorder and a functional polymorphism of the 5-hydroxytryptamine (serotonin) transporter gene: a meta-analysis
+.
+Psychiatr Genet
+.
+20
+:
+49
+–
+58
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Kop
+WJ
+(
+2012
+)
+Somatic depressive symptoms, vital exhaustion, and fatigue: divergent validity of overlapping constructs
+.
+Psychosom Med
+.
+74
+:
+442
+–
+5
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Lee
+SY
+,
+Xue
+QL
+,
+Spira
+AP
+, et al.  (
+2014
+)
+Racial and ethnic differences in depressive subtypes and access to mental health care in the United States
+.
+J Affect Disord
+.
+155
+:
+130
+–
+7
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Lefaucheur
+JP
+,
+Aleman
+A
+,
+Baeken
+C
+, et al.  (
+2020
+)
+Evidence-based guidelines on the therapeutic use of repetitive transcranial magnetic stimulation (rTMS): an update (2014-2018
+)
+Clin Neurophysiol
+.
+131
+:
+474
+–
+528
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Lesser
+IM
+,
+Castro
+DB
+,
+Gaynes
+BN
+, et al.  (
+2007
+)
+Ethnicity/race and outcome in the treatment of depression: results from STAR*D
+.
+Med Care
+.
+45
+:
+1043
+–
+51
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Li
+L
+,
+Su
+YA
+,
+Wu
+YK
+, et al.  (
+2021
+)
+Eight-week antidepressant treatment reduces functional connectivity in first-episode drug-naïve patients with major depressive disorder
+.
+Hum Brain Mapp
+.
+42
+:
+2593
+–
+605
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Liang
+S
+,
+Deng
+W
+,
+Li
+X
+, et al.  (
+2020
+)
+Biotypes of major depressive disorder: neuroimaging evidence from resting-state default mode network patterns
+.
+Neuroimage Clin
+.
+28
+:
+102514
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Liu
+PH
+,
+Li
+Y
+,
+Zhang
+AX
+, et al.  (
+2021
+)
+Brain structural alterations in MDD patients with gastrointestinal symptoms: evidence from the REST-meta-MDD project
+.
+Prog Neuropsychopharmacol Biol Psychiatry
+.
+111
+:
+110386
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Long
+Y
+,
+Cao
+H
+,
+Yan
+C
+, et al.  (
+2020
+)
+Altered resting-state dynamic functional brain networks in major depressive disorder: findings from the REST-meta-MDD consortium
+.
+Neuroimage Clin
+.
+26
+:
+102163
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Marek
+S
+,
+Tervo-Clemmens
+B
+,
+Calabro
+FJ
+, et al.  (
+2022
+)
+Reproducible brain-wide association studies require thousands of individuals
+.
+Nature
+.
+603
+:
+654
+–
+60
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Parker
+G
+,
+Chan
+B
+,
+Hadzi-Pavlovic
+D
+(
+2007
+)
+Lower rates of depression in westernised Chinese in the US
+.
+J Affect Disord
+.
+104
+:
+175
+–
+8
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Parker
+G
+,
+Gladstone
+G
+,
+Chee
+KT
+(
+2001
+)
+Depression in the planet's largest ethnic group: the Chinese
+.
+Am J Psychiatry
+.
+158
+:
+857
+–
+64
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Parkes
+L
+,
+Fulcher
+B
+,
+Yücel
+M
+, et al.  (
+2018
+)
+An evaluation of the efficacy, reliability, and sensitivity of motion correction strategies for resting-state functional MRI
+.
+Neuroimage
+.
+171
+:
+415
+–
+36
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Poldrack
+RA
+,
+Baker
+CI
+,
+Durnez
+J
+, et al.  (
+2017
+)
+Scanning the horizon: towards transparent and reproducible neuroimaging research
+.
+Nat Rev Neurosci
+.
+18
+:
+115
+–
+26
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Qiu
+P
+,
+Caine
+ED
+,
+Hou
+F
+, et al.  (
+2018
+)
+Depression as seen through the eyes of rural Chinese women: implications for help-seeking and the future of mental health care in China
+.
+J Affect Disord
+.
+227
+:
+38
+–
+47
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Rae
+CL
+,
+Correia
+MM
+,
+Altena
+E
+, et al.  (
+2012
+)
+White matter pathology in Parkinson's disease: the effect of imaging protocol differences and relevance to executive function
+.
+Neuroimage
+.
+62
+:
+1675
+–
+84
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Raichle
+ME
+(
+2010
+)
+Two views of brain function
+.
+Trends Cogn Sci
+.
+14
+:
+180
+–
+90
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Raichle
+ME
+,
+MacLeod
+AM
+,
+Snyder
+AZ
+, et al.  (
+2001
+)
+A default mode of brain function
+.
+Proc Natl Acad Sci USA
+.
+98
+:
+676
+–
+82
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Raichle
+ME
+,
+Snyder
+AZ
+(
+2007
+)
+A default mode of brain function: a brief history of an evolving idea
+.
+Neuroimage
+.
+37
+:
+1083
+–
+90
+.;
+discussion 1097-1089
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Rubinov
+M
+,
+Sporns
+O
+(
+2010
+)
+Complex network measures of brain connectivity: uses and interpretations
+.
+Neuroimage
+.
+52
+:
+1059
+–
+69
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Ryder
+AG
+,
+Yang
+J
+,
+Zhu
+X
+, et al.  (
+2008
+)
+The cultural shaping of depression: somatic symptoms in China, psychological symptoms in North America?
+.
+J Abnorm Psychol
+.
+117
+:
+300
+–
+13
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Schmaal
+L
+,
+Pozzi
+E
+,
+C Ho
+T
+, et al.  (
+2020
+)
+ENIGMA MDD: seven years of global neuroimaging studies of major depression through worldwide data sharing
+.
+Transl Psychiatry
+.
+10
+:
+172
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Sizemore
+AE
+,
+Bassett
+DS
+(
+2018
+)
+Dynamic graph metrics: tutorial, toolbox, and tale
+.
+Neuroimage
+.
+180
+:
+417
+–
+27
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Stark
+DE
+,
+Margulies
+DS
+,
+Shehzad
+ZE
+, et al.  (
+2008
+)
+Regional variation in interhemispheric coordination of intrinsic hemodynamic fluctuations
+.
+J Neurosci
+.
+28
+:
+13754
+–
+64
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Sun
+Y
+,
+Collinson
+SL
+,
+Suckling
+J
+, et al.  (
+2019
+)
+Dynamic reorganization of functional connectivity reveals abnormal temporal efficiency in schizophrenia
+.
+Schizophr Bull
+.
+45
+:
+659
+–
+69
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Toga
+AW
+,
+Thompson
+PM
+(
+2003
+)
+Mapping brain asymmetry
+.
+Nat Rev Neurosci
+.
+4
+:
+37
+–
+48
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Tozzi
+L
+,
+Zhang
+X
+,
+Chesnut
+M
+, et al.  (
+2021
+)
+Reduced functional connectivity of default mode network subsystems in depression: meta-analytic evidence and relationship with trait rumination
+.
+NeuroImage: Clinical
+.
+30
+:
+102570
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+van Velzen
+LS
+,
+Kelly
+S
+,
+Isaev
+D
+, et al.  (
+2020
+)
+White matter disturbances in major depressive disorder: a coordinated analysis across 20 international cohorts in the ENIGMA MDD working group
+.
+Mol Psychiatry
+.
+25
+:
+1511
+–
+25
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Wang
+J
+,
+Wang
+Y
+,
+Huang
+H
+, et al.  (
+2020
+)
+Abnormal dynamic functional network connectivity in unmedicated bipolar and major depressive disorders based on the triple-network model
+.
+Psychol Med
+.
+50
+:
+465
+–
+74
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Williams
+LM
+,
+Rush
+AJ
+,
+Koslow
+SH
+, et al.  (
+2011
+)
+International Study to Predict Optimized Treatment for Depression (iSPOT-D), a randomized clinical trial: rationale and protocol
+.
+Trials
+.
+12
+:
+4
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Yan
+C-G
+,
+Cheung
+B
+,
+Kelly
+C
+, et al.  (
+2013
+)
+A comprehensive assessment of regional variation in the impact of head micromovements on functional connectomics
+.
+Neuroimage
+.
+76
+:
+183
+–
+201
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Yan
+C-G
+,
+Wang
+X-D
+,
+Lu
+B
+(
+2021
+)
+DPABISurf: data processing & analysis for brain imaging on surface
+.
+Science Bulletin
+.
+doi:https://doi.org/10.1016/j.scib.2021.09.016
+.
+
+Google Scholar
+
+WorldCat
+ 
+
+Yan
+C-G
+,
+Wang
+X-D
+,
+Zuo
+X-N
+, et al.  (
+2016
+)
+DPABI: data processing & analysis for (resting-state) brain imaging
+.
+Neuroinformatics
+.
+14
+:
+339
+–
+51
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Yan
+C-G
+,
+Zang
+Y-F
+(
+2010
+)
+DPARSF: a MATLAB toolbox for ‘pipeline’ data analysis of resting-state fMRI
+.
+Front Syst Neurosci
+.
+4
+:
+13
+.
+
+Google Scholar
+PubMed
+
+WorldCat
+ 
+
+Yan
+CG
+,
+Chen
+X
+,
+Li
+L
+, et al.  (
+2019
+)
+Reduced default mode network functional connectivity in patients with recurrent major depressive disorder
+.
+Proc Natl Acad Sci USA
+.
+116
+:
+9078
+–
+83
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Yang
+H
+,
+Chen
+X
+,
+Chen
+ZB
+, et al.  (
+2021
+)
+Disrupted intrinsic functional brain topology in patients with major depressive disorder
+.
+Mol Psychiatry
+.
+7363
+–
+71
+..
+doi:10.1038/s41380-021-01247-2
+.
+
+Google Scholar
+
+WorldCat
+ 
+
+Zalesky
+A
+,
+Fornito
+A
+,
+Cocchi
+L
+, et al.  (
+2014
+)
+Time-resolved resting-state brain networks
+.
+Proc Natl Acad Sci USA
+.
+111
+:
+10341
+–
+6
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Zuo
+X-N
+,
+Kelly
+C
+,
+Di Martino
+A
+, et al.  (
+2010
+)
+Growing together and growing apart: regional and sex differences in the lifespan developmental trajectories of functional homotopy
+.
+J Neurosci
+.
+30
+:
+15034
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+
+Zuo
+X-N
+,
+Xu
+T
+,
+Jiang
+L
+, et al.  (
+2013
+)
+Toward reliable characterization of functional homogeneity in the human brain: preprocessing, scan duration, imaging resolution and computational space
+.
+Neuroimage
+.
+65
+:
+374
+–
+86
+.
+
+Google Scholar
+Crossref
+PubMed
+
+WorldCat
+ 
+© The Author(s) 2022. Published by Oxford University Press on behalf of West China School of Medicine/West China Hospital (WCSM/WCH) of Sichuan University.
+This is an Open Access article distributed under the terms of the Creative Commons Attribution License ( https://creativecommons.org/licenses/by/4.0/ ), which permits unrestricted reuse, distribution, and reproduction in any medium, provided the original work is properly cited.
+Citations
+15
+CITATIONS
+15 total citations on Dimensions.
+Views
+3,197
+Altmetric
+Article has an altmetric score of 4
+Information More metrics information
+Email alerts
+Article activity alert
+New issue alert
+In progress issue alert
+Receive exclusive offers and updates from Oxford Academic
+Recommended
+
+    A review of resting-state fMRI and its use to examine psychiatric disorders
+    Edgar Canario et al., Psychoradiology, 2021
+    F154. ABERRANT SALIENCE NETWORK FUNCTIONAL CONNECTIVITY IN AUDITORY VERBAL HALLUCINATIONS: A FIRST EPISODE PSYCHOSIS SAMPLE
+    Paris Alexandros Lalousis et al., Schizophrenia Bulletin, 2018
+    O2.2. EVALUATION OF THE RELATIONSHIP BETWEEN GLUTAMATE AND BRAIN CONNECTIVITY IN ANTIPSYCHOTIC-NAïVE FIRST EPISODE PATIENTS – A COMBINED MAGNETIC RESONANCE SPECTROSCOPY AND RESTING STATE FUNCTIONAL CONNECTIVITY MRI STUDY
+    Jose Maximo et al., Schizophrenia Bulletin, 2020
+
+    A Comprehensive Overview of the Role of Visual Cortex Malfunction in Depressive Disorders: Opportunities and Challenges
+    Fangfang Wu et al., Neuroscience Bulletin, 2023
+    Brain Imaging Identifies Neurophysiological Depression Subtypes
+    US Pharmacist, 2023
+    Dissecting Psychiatric Heterogeneity and Comorbidity with Core Region-Based Machine Learning
+    Qian Lv et al., Neuroscience Bulletin, 2023
+
+Powered by
+Citing articles via
+Google Scholar
+
+    Latest
+    Most Read
+    Most Cited
+
+Insight in Obsessive-compulsive Disorder: Conception, Clinical Characteristics, Neuroimaging and Treatment
+The potential utility of evoked potentials in the treatment of mental illnesses
+Affected cortico-striatal-cerebellar network in schizophrenia with catatonia revealed by magnetic resonance imaging: indications for electroconvulsive therapy and repetitive transcranial magnetic stimulation
+Neuroimaging and neuroendocrine insights into food cravings and appetite interventions in obesity
+The right inferior frontal gyrus as pivotal node and effective regulator of the basal ganglia-thalamocortical response inhibition circuit
+More from Oxford Academic
+Clinical Neuroscience
+Medicine and Health
+Neuroscience
+Psychiatry
+Psychology
+Radiology
+Science and Mathematics
+Books
+Journals
+
+    About Psychoradiology
+    Editorial Board
+    Author Guidelines
+    Advertising and Corporate Services
+    Journals Career Network
+
+Psychoradiology
+
+    Online ISSN 2634-4416
+    Copyright © 2023 West China School of Medicine/West China Hospital (WCSM/WCH) of Sichuan University
+
+    About Oxford Academic
+    Publish journals with us
+    University press partners
+    What we publish
+    New features  
+
+    Authoring
+    Open access
+    Purchasing
+    Institutional account management
+    Rights and permissions
+
+    Get help with access
+    Accessibility
+    Contact us
+    Advertising
+    Media enquiries
+
+    Oxford University Press
+    News
+    Oxford Languages
+    University of Oxford
+
+Oxford University Press is a department of the University of Oxford. It furthers the University's objective of excellence in research, scholarship, and education by publishing worldwide
+Oxford University Press
+
+    Copyright © 2023 Oxford University Press
+    Cookie settings
+    Cookie policy
+    Privacy policy
+    Legal notice
+
+Scholarly IQ
+PDF Help

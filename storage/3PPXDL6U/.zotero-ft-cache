@@ -1,0 +1,1220 @@
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org
+Research
+Cite this article: Ezaki T, Watanabe T, Ohzeki M, Masuda N. 2017 Energy landscape analysis of neuroimaging data. Phil. Trans. R. Soc. A 375: 20160287. http://dx.doi.org/10.1098/rsta.2016.0287
+Accepted: 27 January 2017
+One contribution of 14 to a theme issue ‘Mathematical methods in medicine: neuroscience, cardiology and pathology’. Subject Areas: medical computing, statistical physics Keywords: functional magnetic resonance imaging, statistical physics, Ising model, Boltzmann machine
+Author for correspondence: Naoki Masuda e-mail: naoki.masuda@bristol.ac.uk
+Electronic supplementary material is available online at https://dx.doi.org/10.6084/m9. figshare.c.3726625.
+
+Energy landscape analysis of neuroimaging data
+Takahiro Ezaki1,2, Takamitsu Watanabe3, Masayuki Ohzeki4 and Naoki Masuda5
+1National Institute of Informatics, Hitotsubashi, Chiyoda-ku, Tokyo, Japan 2Kawarabayashi Large Graph Project, ERATO, JST, c/o Global Research Center for Big Data Mathematics, NII, Chiyoda-ku, Tokyo, Japan 3Institute of Cognitive Neuroscience, University College London, 17 Queen Square, London WC1N 3AZ, UK 4Graduate School of Information Sciences, Tohoku University, Sendai 980-8579, Japan 5Department of Engineering Mathematics, University of Bristol, Bristol BS8 1UB, UK
+NM, 0000-0003-1567-801X
+Computational neuroscience models have been used for understanding neural dynamics in the brain and how they may be altered when physiological or other conditions change. We review and develop a data-driven approach to neuroimaging data called the energy landscape analysis. The methods are rooted in statistical physics theory, in particular the Ising model, also known as the (pairwise) maximum entropy model and Boltzmann machine. The methods have been applied to ﬁtting electrophysiological data in neuroscience for a decade, but their use in neuroimaging data is still in its infancy. We ﬁrst review the methods and discuss some algorithms and technical aspects. Then, we apply the methods to functional magnetic resonance imaging data recorded from healthy individuals to inspect the relationship between the accuracy of ﬁtting, the size of the brain system to be analysed and the data length.
+This article is part of the themed issue ‘Mathematical methods in medicine: neuroscience, cardiology and pathology’.
+2017 The Authors. Published by the Royal Society under the terms of the Creative Commons Attribution License http://creativecommons.org/licenses/ by/4.0/, which permits unrestricted use, provided the original author and source are credited.
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+1. Introduction
+
+2
+
+Altered cognitive function due to various neuropsychiatric disorders seems to result from aberrant neural dynamics in the affected brain [1–4]. Alterations in brain dynamics may also occur in the absence of disorders, in situations such as typical ageing, traumatic experiences, emotional responses and tasks. Functional magnetic resonance imaging (fMRI) provides information on the neural dynamics in the brain with a reasonable spatial resolution in a non-invasive manner. There are various analysis methods that can be used to extract the dynamics in neuroimaging data including fMRI signals, such as sliding-window functional connectivity analysis, dynamic causal modelling, oscillation analysis and biophysical modelling. In this study, we seek the potential of a different approach: energy landscape analysis.
+This method is rooted in statistical physics. The main idea is to map the brain dynamics to the movement of a ‘ball’ constrained on an energy landscape inferred from neural data. A ball tends to go downhill and remains near the bottom of a basin in a landscape, whereas it sometimes goes uphill due to random ﬂuctuations that cause it to wander around and possibly transit to another basin (ﬁgure 1g). Using the Ising model (equivalent to the Boltzmann machine and the pairwise maximum entropy model (MEM); see [5–7] for reviews in neuroscience), we can explicitly construct an energy landscape from multivariate time-series data including fMRI signals recorded at a speciﬁed set of regions of interest (ROIs). The pairwise MEM, or, equivalently, the Ising model, has been used to emulate fMRI signals [6,8–11]. More recently, we have used the pairwise MEM for fMRI data during rest [12] and sleep [13] and then developed an energy landscape analysis method and applied it to participants during rest [14] and during a bistable visual perception task [15]. In contrast with the aforementioned previous studies [6,8–11], our approach is data driven, with the parameters of the Ising model being inferred from the given data. In this paper, we review the methods and some technical details. In passing, we introduce new techniques (i.e. different inference algorithms and a Dijkstralike method). We apply the methods to publicly shared resting-state fMRI data recorded from healthy human participants to validate the new approaches and also to examine the relationship between the accuracy of ﬁt, the size of the brain system (i.e. number of ROIs) and the length of the fMRI data.
+
+2. Material and methods
+The pipeline of the energy landscape analysis based on the pairwise MEM is illustrated in ﬁgure 1.
+
+(a) Pairwise maximum entropy model
+First, we specify a brain network of interest (ﬁgure 1a) and obtain resting-state (or under other conditions, which are ideally stationary) fMRI signals at the ROIs, resulting in a multivariate time series (ﬁgure 1b). We denote the number of ROIs by N.
+Second, we binarize the fMRI signal at each time point (i.e. in each image volume) and each ROI by thresholding the signal. Then, for each ROI i (i = 1, . . . , N), we obtain a sequence of binarized signals representing the brain activity, {σi(1), . . . , σi(tmax)}, where tmax is the length of the data, σi(t) = 1 (t = 1, . . . , tmax) indicates that the ith ROI is active at time t, and σi(t) = −1 indicates that the ROI is inactive (ﬁgure 1c). The threshold is arbitrary, and we set it to the time average of σi(t) for each i. The activity pattern of the entire network at time t is given by an N-dimensional vector σ ≡ (σ1, . . . , σN) ∈ {−1, 1}N, where we have suppressed t. Note that there are 2N possible activity patterns in total. Binarization is not readily justiﬁed given continuously distributed fMRI signals. However, we previously showed that the pairwise MEM with binarized signals predicted anatomical connectivity of the brain better than other functional connectivity methods that are based on non-binarized continuous fMRI signals and that ternary as opposed to binary quantization did not help to improve the results [12].
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+frequency energy
+frequency energy
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+(a)
+
+(b)
+
+3
+
+fMRI
+
+region 1 region 2 region 3 region 4 region 5
+
+(c)
+
+binarize
+
+region 1 –1 –1 –1 1 1 ... region 2 1 1 –1–1 1 ... region 3 –1 –1 –1 1–1 ... region 4 –1 –1 1–1–1 ... region 5 1 –1 1 1–1 ...
+t 1 2 3 4 5 ...
+
+(d)
+pattern
+s1 s2 s3 s4 s5
+P(s)
+
+12 –1 1 –1 –1 –1 –1 –1 –1 –1 –1 0.11 0.03
+
+time
+
+...
+
+31 32
+
+...
+
+–1 1
+
+...
+
+11
+
+...
+
+11
+
+...
+
+11
+
+...
+
+11
+
+...
+
+0.02 0.09
+
+(e) fit the MEM probability:
+
+energy:
+
+( f ) disconnectivity graph
+
+low high
+
+0 E–a1a3
+
+–1
+
+(g) energy landscape local minimum
+
+–2
+
+a2 a3 a4 a5
+
+–3
+
+a1
+
+a6
+
+high low
+
+energy barrier local minimums
+
+between a1 and a3
+
+low high high low
+
+Figure 1. Procedures of the energy landscape analysis for fMRI data. (a) ROIs are specified. (b) fMRI signals are measured at the ROIs. (c) The fMRI signal at each ROI and each time point is binarized into 1 (active) or −1 (inactive). (d) The normalized frequency is computed for each binarized activity pattern. (e) The pairwise MEM model (i.e. Boltzmann distribution) is fitted to the empirical distribution of the 2N activity patterns (equation (2.1)). The energy value is also obtained for each activity pattern (equation (2.2)). (f ) Relationships between activity patterns that are energy local minimums are summarized into a disconnectivity graph. (g) Schematic of the energy landscape. Each local minimum corresponds to the bottom of a basin. The borders between attractive basins of different local minimums are shown by the dotted curves. Any activity pattern belongs to the basin of a local minimum. Brain dynamics can be interpreted as the motion of a ‘ball’ constrained on the energy landscape. (Online version in colour.)
+
+Third, we calculate the relative frequency with which each activity pattern is visited, Pempirical(σ ) (ﬁgure 1d). To Pempirical(σ ), we ﬁt the Boltzmann distribution given by
+
+P(σ | h, J) =
+
+exp [−E(σ |h, J)] σ exp [−E(σ | h, J)] ,
+
+(2.1)
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+where
+
+E(σ | h, J) = −
+
+N i=1
+
+hiσi
+
+−
+
+1 2
+
+N i=1
+
+N j=1
+
+Jijσiσj
+
+j=i
+
+4 (2.2)
+
+is the energy, and h = {hi} and J = {Jij} (i, j = 1, . . . , N) are the parameters of the model (ﬁgure 1e). We assume Jij = Jji and Jii = 0 (i, j = 1, . . . , N). The principle of maximum entropy imposes that we select h and J such that σi empirical = σi model and σiσj empirical = σiσj model (i, j = 1, . . . , N), where · · · empirical and · · · model represent the mean with respect to the empirical distribution (ﬁgure 1d) and the model distribution (equation (2.1)), respectively. By maximizing the entropy
+of the distribution under these constraints, we obtain the Boltzmann distribution given by
+equation (2.1). Some algorithms for the ﬁtting will be explained in §2b. Equation (2.1) indicates
+that an activity pattern with a high energy value is not frequently visited and vice versa. Values
+of hi and Jij represent the baseline activity at the ith ROI and the interaction between the ith and jth ROIs, respectively. Equation (2.2) implies that, if hi is large, the energy is smaller with σi = 1 than with σi = −1, such that the ith ROI tends to be active.
+
+(b) Algorithms to estimate the pairwise maximum entropy model
+In this section, we review three algorithms to estimate the parameters of the MEM, i.e. h and J.
+
+(i) Likelihood maximization
+In the maximum-likelihood method, we solve
+
+(h, J) = arg max L(h, J),
+
+(2.3)
+
+h,J
+
+where L(h, J) is the likelihood given by
+
+tmax
+L(h, J) = P(σ (t) | h, J).
+t=1
+
+We can maximize the likelihood by a gradient ascent scheme
+
+hni ew
+
+−
+
+hoi ld
+
+=
+
+tmax
+
+∂ ∂ hi
+
+log L(h, J)
+
+=
+
+( σi empirical −
+
+σi model)
+
+and
+
+Jinjew
+
+−
+
+Jiojld
+
+=
+
+tmax
+
+∂ ∂ Jij
+
+log L(h, J)
+
+=
+
+( σiσj empirical −
+
+σiσj model),
+
+(2.4) (2.5) (2.6)
+
+where the superscripts new and old represent the values after and before a single updating step, respectively, and (>0) is a constant. A slightly different updating scheme called the iterative
+scaling algorithm [16], where the right-hand side of equations (2.5) and (2.6) is replaced by sgn( σi ) log( σi empirical/ σi model) and sgn( σiσj ) log( σiσj empirical/ σiσj model), respectively,
+is also used sometimes [5,12,17,18]. Because equation (2.1) is concave in terms of h and J (which we can show by verifying that the Hessian of log L is a type of sign-ﬂipped covariance matrix, which
+is negative semi-deﬁnite), the gradient ascent scheme yields the maximum-likelihood estimator. Because a single updating step involves all the 2N activity patterns to calculate σi model and σiσj model, likelihood maximization is computationally costly for large N.
+Our Matlab code to calculate the maximum-likelihood estimator for arbitrary multivariate
+time-series data is available in the electronic supplementary material.
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+(ii) Pseudo-likelihood maximization
+
+5
+
+The pseudo-likelihood maximization method approximates the likelihood function as follows:
+
+tmax N
+
+L(h, J) ≈
+
+P˜ (σi | h, J, σ /i(t)),
+
+t=1 i=1
+
+(2.7)
+
+where P˜ represents the Boltzmann distribution for a single spin, σi, given the other σj(j = i) values ﬁxed to σ /i(t) ≡ (σ1(t), . . . , σi−1(t), σi+1(t), . . . , σN(t)) [19]. In other words,
+
+P˜ (σi|h, J, σ /i(t)) =
+
+exp[hiσi +
+
+N j=1
+
+Jij
+
+σiσj(t)]
+
+j=i
+σi =−1,+1 exp[hiσi +
+
+N j=1
+
+Jijσi
+
+σj
+
+(t)]
+
+.
+
+j=i
+
+(2.8)
+
+We call the right-hand side of equation (2.7) the pseudo-likelihood. Although this is a meanﬁeld approximation neglecting the inﬂuence of σi on σj (j = i), the estimator obtained by the maximization of the pseudo-likelihood approaches the maximum-likelihood estimator as tmax → ∞ [19]. A gradient ascent updating scheme is given by
+
+hni ew − hoi ld = ( σi empirical − σi P˜ )
+
+(2.9)
+
+and
+
+Jinjew − Jiojld = ( σiσj empirical − σiσj P˜ ),
+
+(2.10)
+
+where σi P˜ and σiσj P˜ are the mean and correlation with respect to distribution P˜ (equation (2.8))
+
+and are given by
+
+⎡
+
+⎤
+
+σi
+
+P˜
+
+=
+
+1 tmax
+
+tmax t=1
+
+tanh ⎢⎢⎢⎣hi
+
++
+
+N
+Jij
+j =1
+
+σj
+
+(t)⎥⎥⎥⎦
+
+j =i
+
+(2.11)
+
+and
+
+⎡
+
+⎤
+
+σiσj
+
+P˜ =
+
+1 tmax
+
+tmax t=1
+
+σj(t) tanh ⎢⎢⎢⎣hi
+
+N
++ Jij
+j =1
+
+σj
+
+(t)⎥⎥⎥⎦ ,
+
+j =i
+
+(2.12)
+
+respectively. It should be noted that this updating rule circumvents the calculation of σi model
+and σiσj model, which the gradient ascent method to maximize the original likelihood uses and involves 2N terms.
+
+(iii) Minimum probability flow
+
+Different from the likelihood and pseudo-likelihood maximization, the minimum probability ﬂow
+method [20] is not based on the likelihood function. Consider relaxation dynamics of a probability distribution, P(σ ; τ ), on the 2N activity patterns whose master equation is given by
+
+dP(σ ; τ ) dτ
+
+=
+
+σ
+
+[W(σ | σ )P(σ ; τ ) − W(σ
+
+| σ )P(σ ; τ )],
+
+(2.13)
+
+where W(σ |σ ) is a transition rate from activity pattern σ to activity pattern σ . As the initial condition, we impose P(σ ; 0) = Pempirical(σ ). By choosing
+
+W(σ |σ ) =
+
+exp[−
+
+1 2
+
+(E(σ
+
+|h,
+
+J)
+
+−
+
+E(σ
+
+|h, J))]
+
+(σ and σ are neighbouring patterns),
+
+0
+
+(otherwise),
+
+(2.14)
+
+where σ and σ are neighbours if they are only different at one ROI, we obtain a standard Markov chain Monte Carlo method such that P(σ ; τ ) converges to the Boltzmann distribution given by equation (2.1).
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+In the minimum probability ﬂow method, we look for h and J values for which P(σ ; τ ) changes
+
+6
+
+little in the relaxation dynamics at τ = 0 [20]. The idea is that only a small amount of relaxation
+
+is necessary if the initial distribution, i.e. P(σ ; 0) (=Pempirical(σ )), is sufﬁciently close to the
+
+equilibrium distribution, i.e. the Boltzmann distribution. The Kullback–Leibler (KL) divergence
+
+between the empirical distribution, P(σ ; 0), and a probability distribution after an inﬁnitely small
+
+relaxation time, P(σ ; ), is approximated as:
+
+DKL(P(σ ; 0) P(σ ; )) ≈ DKL(P(σ ; 0) P(σ ; τ ))|τ=0 +
+
+dDKL(P(σ ; 0) P(σ ; τ ))
+
+dτ
+
+τ =0
+
+=
+
+d dτ
+
+σ ∈D
+
+P(σ
+
+;
+
+0)
+
+log
+
+P(σ ; P(σ ;
+
+0) τ)
+
+tmax
+
+=
+
+W(σ | σ (t)),
+
+tmax t=1 σ ∈Ω\D
+
+=−
+τ =0
+
+dP(σ ; τ )
+
+σ ∈D dτ
+
+τ =0
+
+(2.15)
+
+where DKL(P(σ ; 0) P(σ ; )) = σ ∈Ω P(σ ; 0) log[P(σ ; 0)/P(σ ; )] is the KL divergence, which quantiﬁes the discrepancy between two distributions, Ω is the set of all the 2N activity patterns and D = {σ ∈ Ω | Pempirical(σ ) > 0} is a set of activity patterns that appear at least once in the empirical data. The minimum probability ﬂow method minimizes the last quantity in equation (2.15), i.e. the probability ﬂow from activity patterns that appear in the data to the patterns that do not. Therefore, the method is not effective when N is small and tmax is large such that most activity patterns appear in the data. However, when N is large or tmax is small, this algorithm is efﬁcient in terms of the computation time and memory space [20]. A gradient descent method on DKL(P(σ ; 0) P(σ ; )) is practically used for determining h and J.
+
+(c) Accuracy indices
+
+Fully describing an empirical distribution requires 2N − 1 parameters, whereas the pairwise MEM
+
+only uses N + N(N − 1)/2 parameters. The pairwise MEM imposes that the ﬁrst two moments of
+
+σi agree between the empirical data and the model. However, the model may be inaccurate in
+
+describing higher-order correlations in the empirical data. Most previous studies used one or both
+
+of the following two measures to quantify the accuracy with which the MEM ﬁtted the empirical
+
+data.
+
+The ﬁrst measure is deﬁned by
+
+I2 IN
+
+=
+
+S1 S1
+
+− −
+
+S2 SN
+
+,
+
+(2.16)
+
+which ranges between 0 and 1 for the maximum-likelihood estimator, and Sk ≡ − σ ∈Ω Pk(σ ) log Pk(σ ) is the Shannon entropy of the MEM incorporating correlations up to the kth order [17,21]. The so-called independent MEM, in which we suppress any interaction between the elements (i.e.
+Jij = 0 for i, j = 1, . . . , N), gives P1(σ ). The pairwise MEM gives P2(σ ). The empirical distribution (i.e. Pempirical(σ )) is identical to PN(σ ). The denominator of equation (2.16), S1 − SN ≡ IN, is referred to as the multi-information, which quantiﬁes the total contribution of the second or
+higher order correlation to the entropy of the empirical distribution. The numerator, S1 − S2 ≡ I2, is equal to the contribution of the pairwise correlation. If I2/IN = 1, the pairwise correlation alone accounts for all the correlations present in the empirical data. If I2/IN = 0, the pairwise correlation does not deliver any information.
+The second measure is deﬁned by
+
+r
+
+=
+
+DKL(P1(σ ) PN(σ )) − DKL(P1(σ )
+
+DKL(P2(σ ) PN(σ ))
+
+PN(σ )) .
+
+(2.17)
+
+Note that r also ranges between 0 and 1 for the maximum-likelihood estimator [5,12,22]. If the pairwise MEM produces a distribution closer to the empirical distribution than the independent MEM does, r is large. If the pairwise MEM and the independent MEM are similar in terms of the
+
+proximity to the empirical distribution, we obtain r ≈ 0. For the maximum-likelihood estimator,
+
+7
+
+we obtain I2/IN = r [5,18].
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+(d) Disconnectivity graph and energy landscape
+
+Once we have estimated the pairwise MEM, we construct a dendrogram referred to as a disconnectivity graph [23], as shown in ﬁgure 1f. In the disconnectivity graph, a leaf (with a loose end open downwards) corresponds to an activity pattern σ that is a local minimum of the energy, i.e. an activity pattern whose frequency is higher than any other activity pattern in the neighbourhood of σ . The neighbourhood of σ is deﬁned as the set of the N activity patterns that are different from σ only at one ROI. In the disconnectivity graph, the vertical position of the endpoint of the leaf represents its energy value, which speciﬁes the frequency of appearance, with a lower position corresponding to a higher frequency. The branching structure of the disconnectivity graph describes the energy barrier between any pair of activity patterns that are local minimums. For example, to transit from local minimum α1 to local minimum α3 in ﬁgure 1f, the brain dynamics have to overcome the height of the energy barrier (shown by the double-headed arrow). If the barrier is high, transitions between the two activity patterns occur with a low frequency.
+The disconnectivity graph is obtained by the following procedures. First, we enumerate local minimums, i.e. the activity patterns whose energy is smaller than that of all neighbours. Then, for a given pair of local minimums α and α , we consider a path connecting them, α ↔ α , where a path is a sequence of activity patterns starting from α and ending at α such that any two consecutive activity patterns on the path are neighbouring patterns. We denote by Emax(α ↔ α ) the largest energy value among the activity patterns on path α ↔ α . The brain dynamics on this path must climb up the hill to go through the activity pattern with energy Emax(α ↔ α ) to travel between α and α . Because a large energy value corresponds to a low frequency of the activity pattern, a large Emax(α ↔ α ) value implies that the frequency of switching between α and α along this path is low. Because various paths may connect α and α , we consider
+
+E¯αα
+
+= min Emax(α ↔ α
+α↔α
+
+).
+
+(2.18)
+
+If we remove all the rarest activity patterns whose energy is equal to or larger than E¯αα , α and α
+are disconnected (i.e. no path connecting them exists). The energy barrier for the transition from α to α is given by E¯αα − E(α).
+To calculate E¯αα , we employ a Dijkstra-like method as follows. Consider the hypercube composed of 2N activity patterns. By deﬁnition, two nodes (i.e. activity patterns) are adjacent
+
+to each other (i.e. directly connected by a link) if they are neighbouring activity patterns. Each
+
+node has degree (i.e. number of neighbours) N. Then, ﬁx a local minimum activity pattern α and
+
+look for E¯αα for all local minimums α . We set E¯αα = E(α) and E¯αα = E(α ) for all α that are neighbours of α. These values are ﬁnalized and will not be changed. E¯αα for the other 2N − N − 1 local minimums α are initialized to ∞. Then, we iterate the following procedures until E¯αα
+
+values for all the nodes α are ﬁnalized. (i) For each ﬁnalized α , update Eαα for its all unﬁnalized
+
+neighbours α using
+
+E¯nαeαw =
+
+min{E¯oαlαd , E¯αα } E(α )
+
+(E¯αα ≥ E(α )), (E¯αα < E(α )).
+
+(2.19)
+
+(ii) Find α with the smallest unﬁnalized E¯αα value and ﬁnalize it. (iii) Repeat steps (i) and (ii). If we carry out the entire procedure for each local minimum α, we obtain E¯αα for all pairs of local
+minimums. By collecting pairs of local minimums that have the same E¯αα value, we specify a set of
+local minimums that should be located under the same branch. This information is sufﬁcient
+
+for drawing the dendrogram of local minimums, i.e. the disconnectivity graph.
+
+Each local minimum has a basin of attraction in the state space, Ω. Each activity pattern,
+
+denoted by σ , usually belongs to one of the attractive basins, which is determined as follows.
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+(i) Unless σ is a local minimum, move to the neighbouring activity pattern that has the smallest
+
+8
+
+energy value. (ii) Repeat step (i) until a local minimum, denoted by α, is reached. We conclude
+
+that σ belongs to the attractive basin of α. (iii) Repeat steps (i) and (ii) for all the initial activity
+
+patterns σ ∈ Ω.
+
+Using the information on the local minimums and attractive basins, the dynamics of the
+
+activity pattern are illustrated as the motion of a ‘ball’ on the energy landscape, as schematically
+
+shown in ﬁgure 1g as a hypothetical two-dimensional landscape. The local minimums and energy
+
+barriers in ﬁgure 1g correspond to those shown in the disconnectivity graph (ﬁgure 1f ).
+
+(e) 0/1 versus 1/ − 1
+
+We remark on two binarization schemes. In statistical physics, the pairwise MEM, or the Ising
+
+model, usually employs σi ∈ {−1, 1} (i = 1, . . . , N) rather than σ˜i ∈ {0, 1}. The former convention
+
+respects the symmetry between the two spin states and is also convenient in some analytical
+
+calculations of the model that exploit the relationship (σi)2 = 1 regardless of σi [24,25]. For neuronal spike data, σ˜i ∈ {0, 1} is often used [22,26,27], whereas σi ∈ {−1, 1} is also commonly used [17,18,28,29]. For fMRI data, our previous work employed σ˜i ∈ {0, 1} [12–15]. The use of σ˜i ∈ {0, 1}
+
+in representing neuronal spike trains has a rationale in being able to express the instantaneous
+
+ﬁring rate in a simple form
+
+N i=1
+
+σi
+
+and
+
+synchronous
+
+ﬁring
+
+of
+
+neurons
+
+by
+
+a
+
+simple
+
+multiplication
+
+[30]. For example, three neurons simultaneously ﬁre if and only if σ1σ2σ3 = 1. It should also be
+
+noted that the iterative scaling algorithm for maximizing the likelihood (§2b(i)) does not generally
+
+work for σi ∈ {−1, 1} because σi empirical and σi model, the logarithm of whose ratio is used in the
+
+algorithm, may have opposite signs.
+
+The energy in the case of σ˜i ∈ {0, 1} is deﬁned as
+
+E˜ (σ˜ | h˜ , J˜) = −
+
+N
+
+h˜ i σ˜ i
+
+−
+
+1 2
+
+N
+
+N
+J˜ijσ˜iσ˜j.
+
+i=1
+
+i=1 j=1
+
+j=i
+
+(2.20)
+
+Mathematically, the two representations are equivalent to the one-to-one relationship, 2σ˜i − 1 =
+
+σi (i = 1, . . . , N), which results in
+
+N
+h˜i = 2hi − 2 Jij
+
+(2.21)
+
+j=1
+
+j=i
+
+and
+
+J˜ij = 4Jij.
+
+(2.22)
+
+3. Results
+(a) Accuracy of the three methods
+We applied the three methods to estimate the pairwise MEM to resting-state fMRI signals recorded from two healthy adult individuals in the Human Connectome Project. We extracted ROIs from three brain systems, i.e. default mode network (DMN, NROI = 12), fronto-parietal network (FPN, NROI = 11) and cingulo-opercular network (CON, NROI = 7), using the ROIs whose coordinates were identiﬁed previously [31]. We had tmax = 9560 volumes in total.
+The estimated parameter values are compared between likelihood maximization and pseudolikelihood maximization in ﬁgure 2a–f. For all the networks, the results obtained by the pseudo-likelihood maximization are close to those obtained by the likelihood maximization, in particular for J. The results obtained by the likelihood maximization and those obtained by the minimum probability ﬂow are compared in ﬁgure 2g–j for the DMN and FPN. We did not apply the minimum probability ﬂow method to the CON because all of the 28 activity patterns appeared at least once, i.e. D = Ω, which made the right-hand side of equation (2.15) zero. The
+
+(a) 0.05
+
+DMN
+
+(b)
+
+FPN
+
+(c)
+
+CON
+
+9
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+hPiL
+
+0
+
+–0.05
+
+–0.05
+
+0
+
+0.05 –0.05 0
+
+0.05 –0.05 0
+
+0.05
+
+hLi
+
+hLi
+
+hLi
+
+(d)
+
+(e)
+
+(f)
+
+0.5
+
+J
+
+PL ij
+
+0
+
+0
+
+0.5
+
+J
+
+L ij
+
+(g) 0.25
+
+0
+
+0.5
+
+J
+
+L ij
+
+(h)
+
+0
+
+0.5
+
+J
+
+L ij
+
+hMi P
+
+0
+
+–0.25
+
+–0.25
+
+0
+
+0.25 –0.25
+
+0
+
+0.25
+
+hLi
+
+hLi
+
+(i)
+
+( j)
+
+0.5
+
+J
+
+MP ij
+
+0
+
+0
+
+0.5
+
+J
+
+L ij
+
+0
+
+0.5
+
+J
+
+L ij
+
+Figure 2. Estimated parameter values compared between the different methods. (a–f ) Comparison between the likelihood maximization and the pseudo-likelihood estimation. (g–j) Comparison between the likelihood maximization and the minimum probability flow method. (a,d,g,i) DMN, (b,e,h,j) FPN and (c,f ) CON. Superscripts L, PL and MP stand for likelihood maximization, pseudo-likelihood maximization and the minimum probability flow, respectively. (Online version in colour.)
+
+ﬁgure indicates that the estimation by the minimum probability ﬂow deviates from that by the likelihood maximization more than the estimation by the pseudo-likelihood maximization does, in particular for h. The two measures of the accuracy indices are shown in table 1 for each network and estimation method. The two indices took the same value in the case of the likelihood maximization [5,18]. In the case of the pseudo-likelihood maximization, the two accuracy indices were slightly different from each other, and both took approximately the same values as those derived from the maximum likelihood. In the case of the minimum probability ﬂow, r was
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+frequency energy
+
+(a)
+
+DMN
+
+(b)
+
+FPN
+
+low
+
+–1
+
+–2.0
+
+(c) 0
+
+CON
+
+10
+
+–2
+5
+–3
+
+–4
+
+3
+
+16
+
+high
+
+–5 4
+
+2
+
+–2.5 –3.0
+
+512 216107 611
+
+–3.5 –4.0
+
+13
+
+17 15
+
+14 9
+
+8
+
+4
+
+3
+
+1
+
+–4.5
+
+–5.0
+
+–1
+
+–2 5 4 2 3
+
+–3
+
+16
+
+–4
+
+retro splen "-" right latP left latP pCC
+right parahippo left parahippo right inf templ left inf templ
+right sup frontal left sup frontal vmPFC amPFC 123456
+
+right precun left precun right IPS left IPS right IPL left IPL mCC
+right frontal letf frontal right dlPFC left dlPFC
+
+"-" 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17
+
+right ant thal left ant thal
+dACC/msFC right al/fO left al/fO right aPFC left aPFC 123456
+
+active ROI
+
+inactive ROI
+
+Figure 3. Disconnectivity graphs for (a) DMN, (b) FPN and (c) CON. The activity pattern at each local minimum is also shown. Retro splen: retro splenial cortex, latP: lateral parietal cortex, pCC: posterior cingulate cortex, parahippo: parahippocampal cortex, inf templ: inferior temporal cortex, sup frontal: superior frontal cortex, vmPFC: ventromedial prefrontal cortex, amPFC: anteromedial prefrontal cortex, precun: precuneus, IPS: intraparietal sulcus, IPL: inferior parietal lobule, mCC: mid-cingulate cortex, frontal: lateral frontal cortex, dlPFC: dorsolateral prefrontal cortex, ant thal: anterior thalamus, dACC/msFC: dorsal anterior cingulate cortex/medial superior frontal cortex, al/fO: anterior insula/frontal operculum, aPFC: anterior prefrontal cortex. (Online version in colour.)
+
+Table 1. Accuracy of fitting for each network and estimation algorithm.
+
+DMN
+
+FPN
+
+CON
+
+r
+
+I2/IN
+
+r
+
+I2/IN
+
+r
+
+I2/IN
+
+likelihood maximization
+
+0.6921
+
+0.6921
+
+0.7830
+
+0.7830
+
+0.9744
+
+0.9744
+
+..........................................................................................................................................................................................................
+
+pseudo-likelihood maximization
+
+0.6921
+
+0.6972
+
+0.7830
+
+0.7853
+
+0.9745
+
+0.9744
+
+..........................................................................................................................................................................................................
+
+minimum probability flow
+
+0.6480
+
+0.7437
+
+0.6124
+
+1.2295
+
+—
+
+—
+
+..........................................................................................................................................................................................................
+
+substantially smaller than the values for the likelihood or pseudo-likelihood maximization. By contrast, I2/IN exceeded unity because S1 > SN > S2 for the minimum probability ﬂow method.
+
+(b) Disconnectivity graphs
+Figure 3 shows the disconnectivity graph of the DMN, FPN and CON, calculated for the parameter values estimated by likelihood maximization. The two synchronized activity patterns, i.e. the activity patterns with all ROIs being active or inactive, were local minimums. The FPN had much more local minimums than the DMN and CON did. Although the present results are opposite to our previous results using a different dataset [14], the reason for the discrepancy is unclear.
+
+(c) Effects of the data length
+Our experiences suggest that, as the number of ROIs, N, increases, the pairwise MEM seems to demand a large amount of data to realize a high accuracy. If we use N ROIs, there are 2N
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+accuracy, r
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+(a)
+
+(b)
+
+1.0
+
+11
+
+0.8 CON (N = 7)
+0.6 FPN (N = 11)
+0.4
+DMN (N = 12) 0.2
+
+0
+
+10–1
+
+1
+
+10
+
+102 10–1
+
+1
+
+10
+
+102
+
+/2N
+
+/2N
+
+Figure 4. Accuracy of the fit of the pairwise MEM as a function of the data length, , normalized by the number of possible activity patterns, 2N. We obtained samples of length by (a) overlapping sliding time windows and (b) non-overlapping time
+windows. Error bars represent the standard deviation. (Online version in colour.)
+
+possible activity patterns. Therefore, as we increase N, it is progressively more likely that many of the activity patterns are unvisited. However, the MEM assigns a positive probability to such an unvisited pattern. Even if an activity pattern σ is realized by the empirical data a few times, the empirical distribution, Pempirical(σ ), would not be reliable because it is evaluated only based on a few visits to σ (divided by tmax). If tmax is much larger and σ is visited proportionally many times, then we would be able to estimate Pempirical(σ ) more accurately. This exercise led us to hypothesize that the accuracy scales as a function of tmax/2N.
+To examine this point, we carried out likelihood maximization on the fMRI data of varying length (tmax/20 ≤ ≤ tmax) and calculated r (which coincides with I2/IN for the maximumlikelihood estimator). For a given , we calculated r for each of the tmax − datasets of length , i.e. {σ (1), . . . , σ ( )}, {σ (2), . . . , σ ( + 1)}, . . ., {σ (tmax − + 1), . . . , σ (tmax)}. The average and standard deviation of r as a function of /2N are shown in ﬁgure 4a for the DMN, FPN and CON. As expected, the accuracy improved as increased. The results for the DMN, FPN and CON roughly collapsed on a single curve. The ﬁgure suggests that, to achieve an accuracy of 0.8 and 0.9, each activity pattern should be visited ≈5 and ≈16 times on average, respectively.
+Because the aforementioned sampling method used overlapping time windows to make different samples strongly depend on each other, we carried out the same test by dividing the entire time series {σ (1), . . . , σ (tmax)} into two halves of length = tmax/2, four quarters of length
+= tmax/4, eight non-overlapping samples of length = tmax/8 and so forth. The results (ﬁgure 4b) were similar to those in the case of overlapping time windows (ﬁgure 4a).
+4. Discussion
+We explained a set of computational methods to estimate the pairwise MEM and energy landscapes from resting-state fMRI data. Novel components, as compared with our previous methods [12–15], were the pseudo-likelihood maximization, the minimum probability ﬂow and a variant of the Dijkstra method to calculate the disconnectivity graph. We applied the methods to fMRI data collected from healthy participants and assessed the amount of data needed to secure a sufﬁcient accuracy of ﬁt.
+The present results suggest that the current method is admittedly demanding in terms of the amount of data, although the results should be corroborated with different datasets. In the application of the pairwise MEM to neuronal spike trains, the data length does not seem to pose a severe limit if the network size, N, is comparable to those in this study. This is because one typically uses a high time resolution to ensure that there are no multiple spikes within a time window (e.g. 2 ms [28], 10 ms [22], 20 ms [17,18,27]). Then, the number of data points, tmax,
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+is typically much larger than in typical fMRI experiments. In fMRI experiments, the interval
+
+12
+
+between two measurements, called the repetition time (TR), is typically 2–4 s, and a participant in
+
+the resting state (or a particular task condition) can be typically scanned for 5–15 min. Then, we
+
+would have tmax = 75–450, with which we can reliably estimate the pairwise MEM model up to N ≈ 5 (ﬁgure 4), which is small. If we pool fMRI data from 10 participants belonging to the same
+
+group to estimate one MEM, we would have tmax = 750–4500, accommodating N ≈ 8. This is an
+
+important limitation of our approach. Currently we cannot apply the method to relatively large
+
+brain systems (i.e. those with a larger number of ROIs), let alone voxel-based data.
+
+We demonstrated the methods with fMRI data obtained from healthy participants. The same
+
+methods can be applied to different conditions of human participants including the case of
+
+medical applications, the topic of the present theme issue. Various neuropsychiatric disorders
+
+have been suggested to have dynamical footprints in the brain [1–4]. Altered dynamics in the
+
+brain at various spatial and time scales may result in deformation of energy landscapes as
+
+compared with healthy controls.
+
+5. Material and methods
+(a) Data and participants
+We used resting-state fMRI data publicly shared in the Human Connectome Project (acquisition Q10 in release S900 of the WU-Minn HCP data) [32]. The data were collected using a 3T MRI (Skyra, Siemens) with an echo planar imaging (EPI) sequence (TR, 0.72 s; TE, 33.1 ms; 72 slices; 2.0 mm isotopic; ﬁeld of view, 208 × 180 mm) and T1-weighted sequence (TR, 2.4 s; TE, 2.14 ms; 0.7 mm isotopic; ﬁeld of view, 224 × 224 mm). The EPI data were recorded in four runs (≈15 min run−1) while participants were instructed to relax while looking at a ﬁxed cross mark on a dark screen.
+We used such EPI and T1 images recorded from two adult participants (one female; 22–25 years old), because the amount of the data was sufﬁciently large for the current analysis.
+
+(b) Preprocessing and extraction of region of interest data
+We preprocessed the EPI data in essentially the same manner as the conventional methods that we previously used for resting-state fMRI data [12,33,34] with SPM12 (www.ﬁl.ucl.ac.uk/spm). Brieﬂy, after discarding the ﬁrst ﬁve images in each run, we conducted realignment, unwarping, slice timing correction, normalization to the standard template (ICBM 152) and spatial smoothing (full-width at half maximum = 8 mm). Afterwards, we removed the effects of head motion, white matter signals and cerebrospinal ﬂuid signals by a general linear model. Finally, we performed temporal band-pass ﬁltering (0.01–0.1 Hz) and obtained resting-state whole-brain data.
+We then extracted a time series of fMRI signals from each ROI. The ROIs were deﬁned as 4 mm spheres around their centre whose coordinates were determined in a previous study [31]. The signals at each ROI were those averaged over the sphere. In total, we obtained time-series data of length tmax = 9560 at 30 ROIs (12 in the DMN, 11 in the FPN and 7 in the CON).
+Authors’ contributions. T.E. carried out the numerical experiments and performed the data analysis. T.W. preprocessed the fMRI data. N.M. conceived of and designed the study. T.E., T.W. and N.M. drafted the manuscript. M.O. provided algorithms and discussed theoretical aspects of the manuscript. All authors read and approved the manuscript. Competing interests. The authors declare that they have no competing interests. Funding. T.E. acknowledges the support provided through PRESTO, JST. T.W. acknowledges the support provided through the European Commission. M.O. acknowledges the support provided through JSPS KAKENHI grant no. 15H03699. N.M. acknowledges the support provided through CREST, JST and the Kawarabayashi Large Graph Project, ERATO, JST and EPSRC Institutional Sponsorship to the University of Bristol.
+
+Acknowledgements. Data were provided in part by the Human Connectome Project, WU-Minn Consortium
+
+13
+
+(principal investigators: David Van Essen and Kamil Ugurbil; 1U54MH091657), funded by the 16 NIH
+
+Institutes and Centers that support the NIH Blueprint for Neuroscience Research; and by the McDonnell
+
+Center for Systems Neuroscience at Washington University.
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+References
+1. Rolls ET, Deco G. 2011 A computational neuroscience approach to schizophrenia and its onset. Neurosci. Biobehav. Rev. 35, 1644–1653. (doi:10.1016/j.neubiorev.2010.09.001)
+2. Uhlhaas PJ, Singer W. 2012 Neuronal dynamics and neuropsychiatric disorders: toward a translational paradigm for dysfunctional large-scale networks. Neuron 75, 963–980. (doi:10.1016/j.neuron.2012.09.004)
+3. Kopell NJ, Gritton HJ, Whittington MA, Kramer MA. 2014 Beyond the connectome: the dynome. Neuron 83, 1319–1328. (doi:10.1016/j.neuron.2014.08.016)
+4. Wang XJ, Krystal JH. 2014 Computational psychiatry. Neuron 84, 638–654. (doi:10.1016/j. neuron.2014.10.018)
+5. Yeh FC, Tang A, Hobbs JP, Hottowy P, Dabrowski W, Sher A, Litke A, Beggs JM. 2010 Maximum entropy approaches to living neural networks. Entropy 12, 89–106. (doi:10.3390/e12010089)
+6. Das T, Abeyasinghe PM, Crone JS, Sosnowski A, Laureys S, Owen AM, Soddu A. 2014 Highlighting the structure-function relationship of the brain with the Ising model and graph theory. BioMed Res. Int. 2014, 237898. (doi:10.1155/2014/237898)
+7. Schneidman E. 2016 Towards the design principles of neural population codes. Curr. Opin. Neurobiol. 37, 133–140. (doi:10.1016/j.conb.2016.03.001)
+8. Fraiman D, Balenzuela P, Foss J, Chialvo DR. 2009 Ising-like dynamics in large-scale functional brain networks. Phys. Rev. E 79, 061922. (doi:10.1103/PhysRevE.79.061922)
+9. Chialvo DR. 2010 Emergent complex neural dynamics. Nat. Phys. 6, 744–750. (doi:10.1038/nphys1803)
+10. Hudetz AG, Humphries CJ, Binder JR. 2014 Spin-glass model predicts metastable brain states that diminish in anesthesia. Front. Syst. Neurosci. 8, 234. (doi:10.3389/fnsys.2014. 00234)
+11. Marinazzo D, Pellicoro M, Wu G, Angelini L, Cortés JM, Stramaglia S. 2014 Information transfer and criticality in the Ising model on the human connectome. PLoS ONE 9, e93616. (doi:10.1371/journal.pone.0093616)
+12. Watanabe T, Hirose S, Wada H, Imai Y, Machida T, Shirouzu I, Konishi S, Miyashita Y, Masuda N. 2013 A pairwise maximum entropy model accurately describes resting-state human brain networks. Nat. Commun. 4, 1370. (doi:10.1038/ncomms2388)
+13. Watanabe T, Kan S, Koike T, Misaki M, Konishi S, Miyauchi S, Miyahsita Y, Masuda N. 2014 Network-dependent modulation of brain activity during sleep. Neuroimage 98, 1–10. (doi:10.1016/j.neuroimage.2014.04.079)
+14. Watanabe T, Hirose S, Wada H, Imai Y, Machida T, Shirouzu I, Konishi S, Miyashita Y, Masuda N. 2014 Energy landscapes of resting-state brain networks. Front. Neuroinform. 8, 12. (doi:10.3389/fninf.2014.00012)
+15. Watanabe T, Masuda N, Megumi F, Kanai R, Rees G. 2014 Energy landscape and dynamics of brain activity during human bistable perception. Nat. Commun. 5, 4765. (doi:10.1038/ncomms5765)
+16. Darroch JN, Ratcliff D. 1972 Generalized iterative scaling for log-linear models. Ann. Math. Stat. 43, 1470–1480.
+17. Schneidman E, Berry MJ, Segev R, Bialek W. 2006 Weak pairwise correlations imply strongly correlated network states in a neural population. Nature 440, 1007–1012. (doi:10.1038/ nature04701)
+18. Tang A et al. 2008 A maximum entropy model applied to spatial and temporal correlations from cortical networks in vitro. J. Neurosci. 28, 505–518. (doi:10.1523/JNEUROSCI. 3359-07.2008)
+19. Besag J. 1975 Statistical analysis of non-lattice data. J. R. Stat. Soc. D 24, 179–195. (doi:10.2307/ 2987782 )
+
+20. Sohl-Dickstein J, Battaglino PB, DeWeese MR. 2011 New method for parameter
+
+14
+
+estimation in probabilistic models: minimum probability ﬂow. Phys. Rev. Lett. 107, 220601.
+
+(doi:10.1103/PhysRevLett.107.220601)
+
+Downloaded from https://royalsocietypublishing.org/ on 22 August 2023
+
+rsta.royalsocietypublishing.org Phil. Trans. R. Soc. A 375: 20160287
+.........................................................
+
+21. Schneidman E, Still S, Berry MJ, Bialek W. 2003 Network information and connected
+
+correlations. Phys. Rev. Lett. 91, 238701. (doi:10.1103/PhysRevLett.91.238701)
+
+22. Shlens J, Field GD, Gauthier JL, Grivich MI, Petrusca D, Sher A, Litke AM, Chichilnisky EJ.
+
+2006 The structure of multi-neuron ﬁring patterns in primate retina. J. Neurosci. 26, 8254–8266.
+
+(doi:10.1523/JNEUROSCI.1282-06.2006)
+
+23. Becker OM, Karplus M. 1997 The topology of multidimensional potential energy surfaces:
+
+theory and application to peptide structure and kinetics. J. Chem. Phys. 106, 1495–1517.
+
+(doi:10.1063/1.473299)
+
+24. Mézard M, Parisi G, Virasoro MA 1987 Spin glasses and beyond. Singapore: World Scientiﬁc.
+
+25. Nishimori N. 2001 Statistical physics of spin glasses and information processing—an introduction.
+
+Oxford, UK: Oxford University Press.
+
+26. Roudi Y, Nirenberg S, Latham PE. 2009 Pairwise maximum entropy models for studying large
+
+biological systems: when they can work and when they can’t. PLoS. Comput. Biol. 5, e1000380.
+
+(doi:10.1371/journal.pcbi.1000380)
+
+27. Ganmor E, Segev R, Schneidman E. 2011 The architecture of functional interaction networks
+
+in the retina. J. Neurosci. 31, 3044–3054. (doi:10.1523/JNEUROSCI.3682-10.2011)
+
+28. Yu S, Huang D, Singer W, Nikolic´ D. 2008 A small world of neuronal synchrony. Cereb. Cortex
+
+18, 2891–2901. (doi:10.1093/cercor/bhn047)
+
+29. Roudi Y, Tyrcha J, Hertz J. 2009 Ising model for neural data: model quality and approximate
+
+methods for extracting functional connectivity. Phys. Rev. E 79, 051915. (doi:10.1103/
+
+PhysRevE.79.051915)
+
+30. Amari S, Nakahara H, Wu S, Sakai Y. 2003 Synchronous ﬁring and higher-order interactions
+
+in neuron pool. Neural. Comput. 15, 127–142. (doi:10.1162/089976603321043720)
+
+31. Fair DA, Cohen AL, Power JD, Dosenbach NUF, Church JA, Miezin FM, Schlaggar
+
+BL, Petersen SE. 2009 Functional brain networks develop from a ‘local to distributed’
+
+organization. PLoS. Comput. Biol. 5, e1000381. (doi:10.1371/journal.pcbi.1000381)
+
+32. Van Essen DC et al. 2012 The Human Connectome Project: a data acquisition perspective.
+
+Neuroimage 62, 2222–2231. (doi:10.1016/j.neuroimage.2012.02.018)
+
+33. Watanabe T et al. 2015 Clinical and neural effects of six-week administration of oxytocin on
+
+core symptoms of autism. Brain 138, 3400–3412. (doi:10.1093/brain/awv249)
+
+34. Watanabe T et al. 2015 Effects of rTMS of pre-supplementary motor area on fronto
+
+basal ganglia network activity during stop-signal task. J. Neurosci. 35, 4813–4823.
+
+(doi:10.1523/JNEUROSCI.3761-14.2015)
+

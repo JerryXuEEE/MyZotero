@@ -1,0 +1,803 @@
+Author Manuscript
+
+Author Manuscript
+
+HHS Public Access
+Author manuscript
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+Published in final edited form as: Nat Neurosci. 2018 September ; 21(9): 1148–1160. doi:10.1038/s41593-018-0210-5.
+Cognitive computational neuroscience
+Nikolaus Kriegeskorte1,*, Pamela K. Douglas2 1Department of Psychology, Department of Neuroscience, Department of Electrical Engineering, Zuckerman Mind Brain Behavior Institute, Columbia University, New York, NY, USA.
+2Center for Cognitive Neuroscience, University of California, Los Angeles, Los Angeles, CA, USA.
+Abstract
+To learn how cognition is implemented in the brain, we must build computational models that can perform cognitive tasks, and test such models with brain and behavioral experiments. Cognitive science has developed computational models that decompose cognition into functional components. Computational neuroscience has modeled how interacting neurons can implement elementary components of cognition. It is time to assemble the pieces of the puzzle of brain computation and to better integrate these separate disciplines. Modern technologies enable us to measure and manipulate brain activity in unprecedentedly rich ways in animals and humans. However, experiments will yield theoretical insight only when employed to test braincomputational models. Here we review recent work in the intersection of cognitive science, computational neuroscience and artificial intelligence. Computational models that mimic brain information processing during perceptual, cognitive and control tasks are beginning to be developed and tested with brain and behavioral data.
+Understanding brain information processing requires that we build computational models that are capable of performing cognitive tasks. The argument in favor of task-performing computational models was well articulated by Allen Newell in 1973 in his commentary “You can’t play 20 questions with nature and win”1. Newell was criticizing the state of cognitive psychology. The field was in the habit of testing one hypothesis about cognition at a time, in the hope that forcing nature to answer a series of binary questions would eventually reveal the brain’s algorithms. Newell argued that testing verbally defined hypotheses about cognition might never lead to a computational understanding. Hypothesis testing, in his view, needed to be complemented by the construction of comprehensive taskperforming computational models. Only synthesis in a computer simulation can reveal what the interaction of the proposed component mechanisms actually entails and whether it can account for the cognitive function in question. If we did have a full understanding of an information-processing mechanism, then we should be able to engineer it. “What I cannot create, I do not understand,” in the words of physicist Richard Feynman, who left this sentence on his blackboard when he died in 1988.
+*Correspondence should be addressed to N.K., n.kriegeskorte@columbia.edu. Competing interests The authors declare no competing interests.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 2
+
+Here we argue that task-performing computational models that explain how cognition arises from neurobiologically plausible dynamic components will be central to a new cognitive computational neuroscience. We first briefly trace the steps of the cognitive and brain sciences and then review several exciting recent developments that suggest that it might be possible to meet the combined ambitions of cognitive science (to explain how humans learn and think)2 and computational neuroscience (to explain how brains adapt and compute)3 using neurobiologically plausible artificial intelligence (AI) models.
+
+In the spirit of Newell’s critique, the transition from cognitive psychology to cognitive science was defined by the introduction of task-performing computational models. Cognitive scientists knew that understanding cognition required AI and brought engineering to cognitive studies. In the 1980s, cognitive science made important advances with symbolic cognitive architectures4,5 and neural networks6, using human behavioral data to adjudicate between candidate computational models. However, computer hardware and machine learning were not sufficiently advanced to simulate cognitive processes in their full complexity. Moreover, these early developments relied on behavioral data alone and did not leverage constraints provided by the anatomy and activity of the brain.
+
+With the advent of human functional brain imaging, scientists began to relate cognitive theories to the human brain. This endeavor came to be called cognitive neuroscience7. Cognitive neuroscientists began by mapping cognitive psychology’s boxes (informationprocessing modules) and arrows (interactions between modules) onto the brain. This was a step forward in terms of engaging brain activity, but a step back in terms of computational rigor. Methods for testing the task-performing computational models of cognitive science with brain-activity data had not been conceived. As a result, cognitive science and cognitive neuroscience parted ways in the 1990s.
+
+Cognitive psychology’s tasks and theories of high-level functional modules provided a reasonable starting point for mapping the coarse-scale organization of the human brain with functional imaging techniques, including electroencephalography, positron emission tomography and early functional magnetic resonance imaging (fMRI), which had low spatial resolution. Inspired by cognitive psychology’s notion of the module8, cognitive neuroscience developed its own game of 20 questions with nature. A given study would ask whether a particular cognitive module could be found in the brain. The field mapped an ever increasing array of cognitive functions to brain regions, providing a useful rough draft of the global functional layout of the human brain.
+
+A brain map, at whatever scale, does not reveal the computational mechanism (Fig. 1). However, mapping does provide constraints for theory. After all, information exchange incurs costs that scale with the distance between the communicating regions—costs in terms of physical connections, energy and signal latency. Component placement is likely to reflect these costs. We expect regions that need to interact at high bandwidth and short latency to be placed close together9. More generally, the topology and geometry of a biological neural network constrain its dynamics, and thus its functional mechanism. Functional localization results, especially in combination with anatomical connectivity, may therefore ultimately prove useful for modeling brain information processing.
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 3
+
+Despite methodological challenges10–11, many of the findings of cognitive neuroscience provide a solid basis on which to build. For example, the findings of face-selective regions in the human ventral stream12 have been thoroughly replicated and generalized. Nonhuman primates probed with fMRI exhibit similar face-selective regions, which had evaded explorations with invasive electrodes because the latter do not provide continuous images over large fields of view. Localized with fMRI and probed with invasive electrode recordings, the primate face patches revealed high densities of face-selective neurons13, with invariances emerging at higher stages of hierarchical processing, including mirror-symmetric tuning and view-tolerant representations of individual faces in the anteriormost patch14. The example of face perception illustrates, on one hand, the solid progress in mapping the anatomical substrate and characterizing neuronal responses15 and, on the other, the lack of definitive computational models. The literature does provide clues to the computational mechanism. A brain-computational model of face recognition16 will have to explain the spatial clusters of face-selective units and the selectivities and invariances observed with fMRI17,18 and invasive recordings14,19.
+
+Cognitive neuroscience has mapped the global functional layout of the human and nonhuman primate brain20. However, it has not achieved a full computational account of brain information processing. The challenge ahead is to build computational models of brain information processing that are consistent with brain structure and function and perform complex cognitive tasks. The following recent developments in cognitive science, computational neuroscience and artificial intelligence suggest that this may be achievable.
+
+1. Cognitive science has proceeded from the top down, decomposing complex cognitive processes into their computational components. Unencumbered by the need to make sense of brain data, it has developed task-performing computational models at the cognitive level. One success story is that of Bayesian cognitive models, which optimally combine prior knowledge about the world with sensory evidence21–23. Initially applied to basic sensory and motor processes23,24, Bayesian models have begun to engage complex cognition, including the way our minds model the physical and social world2. These developments occurred in interaction with statistics and machine learning, where a unified perspective on probabilistic empirical inference has emerged. This literature provides essential computational theory for understanding the brain. In addition, it provides algorithms for approximate inference on generative models that can grow in complexity with the available data—as might be required for real-world intelligence25,26.
+
+2. Computational neuroscience has taken a bottom-up approach, demonstrating how dynamic interactions between biological neurons can implement computational component functions. In the past two decades, the field developed mathematical models of elementary computational components and their implementation with biological neurons27,28. These include components for sensory coding29,30, normalization31, working memory32, evidence accumulation and decision mechanisms33–35, and motor control36. Most of these component functions are computationally simple, but they provide building blocks for cognition. Computational neuroscience has also begun to test complex computational models that can explain high-level sensory and cognitive brain representations37,38.
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 4
+
+3. Artificial intelligence has shown how component functions can be combined to create intelligent behavior. Early AI failed to live up to its promise because the rich world knowledge required for feats of intelligence could not be either engineered or automatically learned. Recent advances in machine learning, boosted by growing computational power and larger datasets from which to learn, have brought progress at perceptual39, cognitive40 and control challenges41. Many advances were driven by cognitive-level symbolic models. Some of the most important recent advances are driven by deep neural network models, composed of units that compute linear combinations of their inputs, followed by static nonlinearities42. These models employ only a small subset of the dynamic capabilities of biological neurons, abstracting from fundamental features such as action potentials. However, their functionality is inspired by brains and could be implemented with biological neurons.
+
+The three disciplines contribute complementary elements to biologically plausible computational models that perform cognitive tasks and explain brain information processing and behavior (Fig. 2). Here we review the first steps in the literature toward a cognitive computational neuroscience that meets the combined criteria for success of cognitive science (computational models that perform cognitive tasks and explain behavior) and computational neuroscience (neurobiologically plausible mechanistic models that explain brain activity). If computational models are to explain animal and human cognition, they will have to perform feats of intelligence. AI, and in particular machine learning, is therefore a key discipline that provides the theoretical and technological foundation for cognitive computational neuroscience.
+
+The overarching challenge is to build solid bridges between theory (instantiated in taskperforming computational models) and experiment (providing brain and behavioral data). The first part of this review describes bottom-up developments that begin with experimental data and attempt to build bridges from the data in the direction of theory43. Given brainactivity data, connectivity models aim to reveal the large-scale dynamics of brain activation; decoding and encoding models aim to reveal the content and format of brain representations. The models employed in this literature provide constraints for computational theory, but they do not in general perform the cognitive tasks in question and thus fall short of explaining the computational mechanism underlying task performance.
+
+The second part of this article describes developments that proceed in the opposite direction, building bridges from theory to experiment37,38,44. We review emerging work that has begun to test task-performing computational models with brain and behavioral data. The models include cognitive models, specified at an abstract computational level, whose implementation in biological brains has yet to be explained, and neural network models, which abstract from many features of neurobiology, but could plausibly be implemented with biological neurons. This emerging literature suggests the beginnings of an integrative approach to understanding brain computation, where models are required to perform cognitive tasks, biology provides the admissible component functions, and the computational mechanisms are optimized to explain detailed patterns of brain activity and behavior.
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 5
+
+From experiment toward theory
+Models of connectivity and dynamics.
+One path from measured brain activity toward a computational understanding is to model the brain’s connectivity and dynamics. Connectivity models go beyond the localization of activated regions and characterize the interactions between regions. Neuronal dynamics can be measured and modeled at multiple scales, from local sets of interacting neurons to wholebrain activity45. A first approximation of brain dynamics is provided by the correlation matrix among the measured response time series, which characterizes the pairwise ‘functional connectivity’ between locations. The literature on resting-state networks has explored this approach46, and linear decompositions of the space-time matrix, such as spatial independent component analysis, similarly capture simultaneous correlations between locations across time47.
+By thresholding the correlation matrix, the set of regions can be converted into an undirected graph and studied with graph-theoretic methods. Such analyses can reveal ‘communities’ (sets of strongly interconnected regions), ‘hubs’ (regions connected to many others) and ‘rich clubs’ (communities of hubs)48. Connectivity graphs can be derived from either anatomical or functional measurements. The anatomical connectivity matrix typically resembles the functional connectivity matrix because regions interact through anatomical pathways. However, the way anatomical connectivity generates functional connectivity is better modeled by taking local dynamics, delays, indirect interactions and noise into account49. From local neuronal interactions to large-scale spatiotemporal patterns spanning cortex and subcortical regions, generative models of spontaneous dynamics can be evaluated with brain-activity data.
+Effective connectivity analyses take a more hypothesis-driven approach, characterizing the interactions among a small set of regions on the basis of generative models of the dynamics50. Whereas activation mapping maps the boxes of cognitive psychology onto brain regions, effective connectivity analyses map the arrows onto pairs of brain regions. Most work in this area has focused on characterizing interactions at the level of the overall activation of a brain region. Like the classical brain mapping approach, these analyses are based on regional-mean activation, measuring correlated fluctuations of overall regional activation rather than the information exchanged between regions.
+Analyses of effective connectivity and large-scale brain dynamics go beyond generic statistical models such as the linear models used in activation and information-based brain mapping in that they are generative models: they can generate data at the level of the measurements and are models of brain dynamics. However, they do not capture the represented information and how it is processed in the brain.
+Decoding models.
+Another path toward understanding the brain’s computational mechanisms is to reveal what information is present in each brain region. Decoding can help us go beyond the notion of activation, which indicates the involvement of a region in a task, and reveal the information present in a region’s population activity. When particular content is decodable from activity
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 6
+
+in a brain region, this indicates the presence of the information. To refer to the brain region as ‘representing’ the content adds a functional interpretation51: that the information serves the purpose of informing regions receiving these signals about the content. Ultimately, this interpretation needs to be substantiated by further analyses of how the information affects other regions and behavior52–54.
+Decoding has its roots in the neuronal-recording literature27 and has become a popular tool for studying the content of representations in neuroimaging55–59. In the simplest case, decoding reveals which of two stimuli gave rise to a measured response pattern. The content of the representation can be the identity of a sensory stimulus (to be recognized among a set of alternative stimuli), a stimulus property (such as the orientation of a grating), an abstract variable needed for a cognitive operation, or an action60. When the decoder is linear, as is usually the case, the decodable information is in a format that can plausibly be read out by downstream neurons in a single step. Such information is said to be ‘explicit’ in the activity patterns61.
+Decoding and other types of multivariate pattern analysis have helped reveal the content of regional representations55,56,58,59, providing evidence that brain-computational models must incorporate. However, the ability to decode particular information does not amount to a full account of the neuronal code: it doesn’t specify the representational format (beyond linear decodability) or what other information might additionally be present. Most importantly, decoders do not in general constitute models of brain computation. They reveal aspects of the product, but not the process of brain computation.
+
+Representational models.
+Beyond decoding, we would like to exhaustively characterize a region’s representation, explaining its responses to arbitrary stimuli. A full characterization would also define to what extent any variable can be decoded. Representational models attempt to make comprehensive predictions about the representational space and therefore provide stronger constraints on the computational mechanism than decoding models52,62.
+Three types of representational model analysis have been introduced in the literature: encoding models63–65, pattern component models66 and representational similarity analysis57,67,68. These three methods all test hypotheses about the representational space, which are based on multivariate descriptions of the experimental conditions—for example, a semantic description of a set of stimuli, or the activity patterns across a layer of a neural network model that processes the stimuli52.
+In encoding models, each voxel’s activity profile across stimuli is predicted as a linear combination of the features of the model. In pattern component models, the distribution of the activity profiles that characterizes the representational space is modeled as a multivariate normal distribution. In representational similarity analysis, the representational space is characterized by the representational dissimilarities of the activity patterns elicited by the stimuli.
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 7
+
+Representational models are often defined on the basis of descriptions of the stimuli, such as labels provided by human observers63,69,70. In this scenario, a representational model that explains the brain responses in a given region provides, not a brain computational account, but at least a descriptive account of the representation. Such an account can be a useful stepping-stone toward computational theory when the model generalizes to novel stimuli. Importantly, representational models also enable us to adjudicate among braincomputational models, an approach we will return to in the next section.
+In this section, we considered three types of model that can help us glean computational insight from brain-activity data. Connectivity models capture aspects of the dynamic interactions between regions. Decoding models enable us to look into brain regions and reveal what might be their representational content. Representational models enable us to test explicit hypotheses that fully characterize a region’s representational space. All three types of model can be used to address theoretically motivated questions—taking a hypothesis-driven approach. However, in the absence of task-performing computational models, they are subject to Newell’s argument that asking a series of questions might never reveal the computational mechanism underlying the cognitive feat we are trying to explain. These methods fall short of building the bridge all the way to theory because they do not test mechanistic models that specify precisely how the information processing underlying some cognitive function might work.
+
+From theory to experiment
+To build a better bridge between experiment and theory, we first need to fully specify a theory. This can be achieved by defining the theory mathematically and implementing it in a computational model (Box 1). Computational models can reside at different levels of description, trading off cognitive fidelity against biological fidelity (Fig. 3). Models designed to capture only neuronal components and dynamics71 tend to be unsuccessful at explaining cognitive function72 (Fig. 3, horizontal axis). Conversely, models designed to capture only cognitive functions are difficult to relate to the brain (Fig. 3, vertical axis). To link mind and brain, models must attempt to capture aspects of both behavior and neuronal dynamics. Recent advances suggest that constraints from the brain can help explain cognitive function42,73,74 and vice versa37,38, turning the tradeoff into a synergy.
+In this section, we focus on recent successes with task-performing models that explain cognitive functions in terms of representations and algorithms. Task-performing models have been central to psychophysics and cognitive science, where they are traditionally tested with behavioral data. An emerging literature is beginning to test task-performing models with brain-activity data as well. We will consider two broad classes of model in turn, neural network models and cognitive models.
+
+Neural network models.
+Neural network models (Box 2) have a long history, with interwoven strands in multiple disciplines. In computational neuroscience, neural network models, at various levels of biological detail, have been essential to understanding dynamics in biological neural networks and elementary computational functions27,28. In cognitive science, they defined a
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 8
+
+new paradigm for understanding cognitive functions, called parallel distributed processing, in the 1980s6,75, which brought the field closer to neuroscience. In AI, they have recently brought substantial advances in a number of applications42,74, ranging from perceptual tasks (such as vision and speech recognition) to symbolic processing challenges (such as language translation), and on to motor tasks (including speech synthesis and robotic control). Neural network models provide a common language for building task-performing models that meet the combined criteria for success of the three disciplines (Fig. 2).
+
+Like brains, neural network models can perform feedforward as well as recurrent computations37,76. The models driving the recent advances are deep in the sense that they comprise multiple stages of linear-nonlinear signal transformation. Models typically have millions of parameters (the connection weights), which are set so as to optimize task performance. One successful paradigm is supervised learning, wherein a desired mapping from inputs to outputs is learned from a training set of inputs (for example, images) and associated outputs (for example, category labels). However, neural network models can also be trained without supervision and can learn complex statistical structure inherent to their experiential data.
+
+The large number of parameters creates unease among researchers who are used to simple models with small numbers of interpretable parameters. However, simple models will never enable us to explain complex feats of intelligence. The history of AI has shown that intelligence requires ample world knowledge and sufficient parametric complexity to store it. We therefore must engage complex models (Fig. 3) and the challenges they pose. One challenge is that the high parameter count renders the models difficult to understand. Because the models are entirely transparent, they can be probed cheaply with millions of input patterns to understand the internal representations, an approach sometimes called ‘synthetic neurophysiology’. To address the concern of overfitting, models are evaluated in terms of their generalization performance. A vision model, for example, will be evaluated in terms of its ability to predict neural activity and behavioral responses for images it has not been trained on.
+
+Several recent studies have begun to test neural network models as models of brain information processing37,38. These studies predicted brain representations of novel images in the primate ventral visual stream with deep convolutional neural network models trained to recognize objects in images. Results have shown that the internal representations of deep convolutional neural networks provide the best current models of representations of visual images in inferior temporal cortex in humans and monkeys77–79. When comparing large numbers of models, those that were optimized to perform the task of object classification better explained the cortical representation77,78.
+
+Early layers of deep neural networks trained to recognize objects contain representations resembling those in early visual cortex78,80. As we move along the ventral visual stream,
+higher layers of the neural networks come to provide a better basis for explaining the representations80–82. Higher layers of deep convolutional neural networks also resemble the
+inferior temporal cortical representation in that both enable the decoding of object position, size and pose, along with the category of the object83. In addition to testing these models by
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 9
+
+predicting brain-activity data, the field has begun to test them by predicting behavioral responses reflecting perceived shape84 and object similarity85.
+
+Cognitive models.
+Models at the cognitive level enable researchers to envision the information processing without simultaneously having to tackle its implementation with neurobiologically plausible components. This enables progress on domains of higher cognition, where neural network models still fall short. Moreover, a cognitive model may provide a useful abstraction, even when a process can also be captured with a neural network model.
+Neuroscientific explanations now dominate for functional components closer to the periphery of the brain, where sensory and motor processes connect the animal to its environment. However, much of higher-level cognition has remained beyond the reach of neuroscientific accounts and neural network models. To illustrate some of the unique contributions of cognitive models, we briefly discuss three classes of cognitive model: production systems, reinforcement learning models and Bayesian cognitive models.
+Production systems provide an early example of a class of cognitive models that can explain reasoning and problem solving. These models use rules and logic, and are symbolic in that they operate on symbols rather than sensory data and motor signals. They capture cognition, rather than perception and motor control, which ground cognition in the physical environment. A ‘production’ is a cognitive action triggered according to an if-then rule. A set of such rules specifies the conditions (‘if’) under which each of a range of productions (‘then’) is to be executed. The conditions refer to current goals and knowledge in memory. The actions can modify the internal state of goals and knowledge. For example, a production may create a subgoal or store an inference. If conditions are met for multiple rules, a conflict-resolution mechanism chooses one production. A model specified using this formalism will generate a sequence of productions, which may to some extent resemble our conscious stream of thought while working toward some cognitive goal. The formalism of production systems also provides a universal computational architecture86. Production systems such as ACT-R5 were originally developed under the guidance of behavioral data. More recently such models have also begun to be tested in terms of their ability to predict regional-mean fMRI activation time courses87.
+Reinforcement learning models capture how an agent can learn to maximize its long-term cumulative reward through interaction with its environment88,89. As in production systems, reinforcement learning models often assume that the agent has perception and motor modules that enable the use of discrete symbolic representations of states and actions. The agent chooses actions, observes resulting states of the environment, receives rewards along the way and learns to improve its behavior. The agent may learn a ‘value function’ associating each state with its expected cumulative reward. If the agent can predict which state each action leads to and if it knows the values of those states, then it can choose the most promising action. The agent may also learn a ‘policy’ that associates each state directly with promising actions. The choice of action must balance exploitation (which brings shortterm reward) and exploration (which benefits learning and brings long-term reward).
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 10
+
+The field of reinforcement learning explores algorithms that define how to act and learn so as to maximize cumulative reward. With roots in psychology and neuroscience, reinforcement learning theory is now an important field of machine learning and AI. It provides a very general perspective on control that includes the classical techniques dynamic programming, Monte Carlo and exhaustive search as limiting cases, and can handle challenging scenarios in which the environment is stochastic and only partially observed, and its causal mechanisms are unknown.
+
+An agent might exhaustively explore an environment and learn the most promising action to take in any state by trial and error (model-free control). This would require sufficient time to learn, enough memory, and an environment that does not kill the agent prematurely. Biological organisms, however, have limited time to learn and limited memory, and must avoid interactions that might kill them. Under these conditions, an agent might do better to build a model of its environment. A model can compress and generalize experience to enable intelligent action in novel situations (model-based control). Model-free methods are computationally efficient (mapping from states to values or directly to actions), but statistically inefficient (learning takes long); model-based methods are more statistically efficient, but may require prohibitive amounts of computation (to simulate possible futures)90.
+
+Until experience is sufficient to build a reliable model, an agent might do best to simply store episodes and revert to paths of action that have met with success in the past (episodic control)91,92. Storing episodes preserves sequential dependency information important for model building. Moreover, episodic control enables the agent to exploit such dependencies even before understanding the causal mechanism supporting a successful path of action.
+
+The brain is capable of each of these three modes of control (model-free, model-based, episodic)89 and appears to combine their advantages using an algorithm that has yet to be discovered. AI and computational neuroscience share the goal of discovering this algorithm41,90,93–95, although they approach this goal from different angles. This is an example of how a cognitive challenge can motivate the development of formal models and drive progress in AI and neuroscience.
+
+A third, and critically important, class of cognitive model is that of Bayesian models (Box 3)21,96–98. Bayesian inference provides an essential normative perspective on cognition. It tells us what a brain should in fact compute for an animal to behave optimally. Perceptual inference, for example, should consider the current sensory data in the context of prior beliefs. Bayesian inference simply refers to combining the data with prior beliefs according to the rules of probability.
+
+Bayesian models have contributed to our understanding of basic sensory and motor processes22–24. They have also provided insights into higher cognitive processes of judgment and decision making, explaining classical cognitive biases99 as the product of prior assumptions, which may be incorrect in the experimental task but correct and helpful in the real world.
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 11
+
+With Bayesian nonparametric models, cognitive science has begun to explain more complex cognitive abilities. Consider the human ability to induce a new object category from a single example. Such inductive inference requires prior knowledge of a kind not captured by current feedforward neural network models100. To induce a category, we rely on an understanding of the object, of the interactions among its parts, of how they give rise to its function. In the Bayesian cognitive perspective, the human mind, from infancy, builds mental models of the world2. These models may not only be generative models in the probabilistic sense, but may be causal and compositional, supporting mental simulations of processes in the world using elements that can be re-composed to generalize to novel and hypothetical scenarios2,98,101. This modeling approach has been applied to our reasoning about the physical101–103 and even the social104 world.
+
+Generative models are an essential ingredient of general intelligence. An agent attempting to learn a generative model strives to understand all relationships among its experiences. It does not require external supervision or reinforcement to learn, but can mine all its experiences for insights on its environment and itself. In particular, causal models of processes in the world (how objects cause images, how the present causes the future) can give an agent a deeper understanding and thus a better basis for inferences and actions.
+
+The representation of probability distributions in neuronal populations has been explored theoretically and experimentally105,106. However, relating Bayesian inference and learning, especially structure learning in nonparametric models, to its implementation in the brain remains challenging107. As theories of brain computation, approximate inference algorithms such as sampling may explain cortical feedback signals and activity correlations97,108–110. Moreover, the corners cut by the brain for computational efficiency, the approximations, may explain human deviations from statistical optimality. In particular, cognitive experiments have revealed signatures of sampling111 and amortized inference112 in human behavior.
+
+Cognitive models, including the three classes highlighted here, decompose cognition into meaningful functional components. By declaring their models independent of the implementation in the brain, cognitive scientists are able to address high-level cognitive processes21,97,98 that are beyond the reach of current neural networks. Cognitive models are essential for cognitive computational neuroscience because they enable us to see the whole as we attempt to understand the roles of the parts.
+
+Looking ahead
+Bottom up and top down.
+The brain seamlessly merges bottom-up discriminative and top-down generative computations in perceptual inference, and model-free and model-based control. Brain science likewise needs to integrate its levels of description and to progress both bottom-up and top-down, so as to explain task performance on the basis of neuronal dynamics and provide a mechanistic account of how the brain gives rise to the mind.
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 12
+
+Bottom-up visions, proceeding from detailed measurements toward an understanding of brain computation, have been prominent and have driven the most important recent funding initiatives. The European Human Brain Project and the US BRAIN Initiative are both motivated by bottom-up visions, in which an understanding of brain computation is achieved by measuring and modeling brain dynamics with a focus on the circuit level. The BRAIN Initiative seeks to advance technologies for measuring and manipulating neuronal activity. The Human Brain Project attempts to synthesize neuroscience data in biologically detailed dynamic models. Both initiatives proceed primarily from experiment toward theory and from the cellular level of description to larger-scale phenomena.
+Measuring large numbers of neurons simultaneously and modeling their interactions at the circuit level will be essential. The bottom-up vision is grounded in the history of science. Microscopes and telescopes, for example, have brought scientific breakthroughs. However, it is always in the context of prior theory (generative models of the observed processes) that better observations advance our understanding. In astronomy, for example, the theory of Copernicus guided Galileo in interpreting his telescopic observations.
+Understanding the brain requires that we develop theory and experiment in tandem and complement the bottom-up, data-driven approach by a top-down, theory-driven approach that starts with behavioral functions to be explained113–114. Unprecedentedly rich measurements and manipulations of brain activity will drive theoretical insight when they are used to adjudicate between brain-computational models that pass the first test of being able to perform a function that contributes to the behavioral fitness of the organism. The topdown approach, therefore, is an essential complement to the bottom-up approach toward understanding the brain (Fig. 3).
+
+Integrating Marr’s levels.
+Marr (1982) offered a distinction of three levels of analysis: (i) computational theory, (ii) representation and algorithm, and (iii) neurobiological implementation115. Cognitive science starts from computational theory, decomposing cognition into components and developing representations and algorithms from the top down. Computational neuroscience proceeds from the bottom up, composing neuronal building blocks into representations and algorithms thought to be useful components in the context of the brain’s overall function. AI builds representations and algorithms that combine simple components to implement complex feats of intelligence. All three disciplines thus converge on the algorithms and representations of the brain and mind, contributing complementary constraints116.
+Marr’s levels provide a useful guide to the challenge of understanding the brain. However, they should not be taken to suggest that cognitive science need not consider the brain or that computational neuroscience need not consider cognition (Box 4). Marr was inspired by computers, which are designed by human engineers to precisely conform to high-level algorithmic descriptions. This enables the engineers to abstract from the circuits when designing the algorithms. Even in computer science, however, certain aspects of the algorithms depend on the hardware, such as its parallel processing capabilities. Brains differ from computers in ways that exacerbate this dependence. Brains are the product of evolution and development, processes that are not constrained to generate systems whose behavior can
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 13
+
+be perfectly captured at some abstract level of description. It may therefore not be possible to understand cognition without considering its implementation in the brain or, conversely, to make sense of neuronal circuits except in the context of the cognitive functions they support.
+
+For an example of a challenge that transcends the disciplines, consider a child seeing an escalator for the first time. She will rapidly recognize people on steps traveling upward obliquely. She might think of it as a moving staircase and imagine riding on it, being lifted one story without exerting any effort. She might infer its function and form a new concept on the basis of a single experience, before ever learning the word “escalator”.
+
+Deep neural network models provide a biologically plausible account of the rapid recognition of the elements of the visual experience (people, steps, oblique upward motion, handrail). They can explain the computationally efficient pattern recognition component42. However, they cannot explain yet how the child understands the relationships among the elements, the physical interactions of the objects, the people’s goal to go up, and the function of the escalator, or how she can imagine the experience and instantly form a new concept.
+
+Bayesian nonparametric models explain how deep inferences and concept formation from single experiences are even possible. They may explain the brain’s stunning statistical efficiency, its ability to infer so much from so little data by building generative models that provide abstract prior knowledge98. However, current inference algorithms require large amounts of computation and, as a result, do not yet scale to real-world challenges such as forming the new concept “escalator” from a single visual experience.
+
+On a 20-watt power budget, the brain’s algorithms combine statistical and computational efficiency in ways that are beyond current AI of either the Bayesian or the neural network variety. However, recent work in AI and machine learning has begun to explore the intersection between Bayesian inference and neural network models, combining the statistical strengths of the former (uncertainty representation, probabilistic inference, statistical efficiency) with the computational strengths of the latter (representational learning, universal function approximation, computational efficiency)117–119.
+
+Integrating all three of Marr’s levels will require close collaboration among researchers with a wide variety of expertise. It is difficult for any single lab to excel at neuroscience, cognitive science and AI-scale computational modeling. We therefore need collaborations between labs with complementary expertise. In addition to conventional collaborations, an open science culture, in which components are shared between disciplines, can help us integrate Marr’s levels. Shareable components include cognitive tasks, brain and behavioral data, computational models, and tests that evaluate models by comparing them to biological systems (Box 5).
+
+The study of the mind and brain is entering a particularly exciting phase. Recent advances in computer hardware and software enable AI-scale modeling of the mind and brain. If cognitive science, computational neuroscience and AI can come together, we might be able to explain human cognition with neurobiologically plausible computational models.
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 14
+
+acknowledgements
+This paper benefited from discussions in the context of the new conference Cognitive Computational Neuroscience, which had its inaugural meeting in New York City in September 2017120. We are grateful in particular to T. Naselaris, K. Kay, K. Kording, D. Shohamy, R. Poldrack, J. Diedrichsen, M. Bethge, R. Mok, T. Kietzmann, K. Storrs, M. Mur, T. Golan, M. Lengyel, M. Shadlen, D. Wolpert, A. Oliva, D. Yamins, J. Cohen, J. DiCarlo, T. Konkle, J. McDermott, N. Kanwisher, S. Gershman and J. Tenenbaum for inspiring discussions.
+References
+1. Newell A You can’t play 20 questions with nature and win: projective comments on the papers of this symposium. Technical Report, School of Computer Science, Carnegie Mellon University (1973).
+2. Lake BM, Ullman TD, Tenenbaum JB & Gershman SJ Building machines that learn and think like people. Behav. Brain Sci 40, e253 (2017). [PubMed: 27881212]
+3. Kriegeskorte N & Mok RM Building machines that adapt and compute like brains. Behav. Brain Sci 40, e269 (2017). [PubMed: 29342705]
+4. Simon HA & Newell A Human problem solving: the state of the theory in 1970. Am. Psychol 26, 145–159 (1971).
+5. Anderson JR The Architecture of Cognition (Harvard Univ. Press, Cambridge, MA, USA, 1983). 6. McClelland JL & Rumelhart DE Parallel Distributed Processing (MIT Press, Cambridge, MA, USA,
+1987). 7. Gazzaniga MS ed. The Cognitive Neurosciences (MIT Press, Cambridge, MA, USA, 2004). 8. Fodor JA Precis of The Modularity of Mind. Behav. Brain Sci 8, 1 (1985). 9. Chklovskii DB & Koulakov AA Maps in the brain: what can we learn from them? Annu. Rev.
+Neurosci 27, 369–392 (2004). [PubMed: 15217337] 10. Szucs D & Ioannidis JPA Empirical assessment of published effect sizes and power in the recent
+cognitive neuroscience and psychology literature. PLoS Biol. 15, e2000797 (2017). [PubMed: 28253258] 11. Kriegeskorte N, Simmons WK, Bellgowan PSF & Baker CI Circular analysis in systems neuroscience: the dangers of double dipping. Nat. Neurosci 12, 535–540 (2009). [PubMed: 19396166] 12. Kanwisher N, McDermott J & Chun MM The fusiform face area: a module in human extrastriate cortex specialized for face perception.J. Neurosci 17, 4302–4311 (1997). [PubMed: 9151747] 13. Tsao DY, Freiwald WA, Tootell RB & Livingstone MS A cortical region consisting entirely of face-selective cells. Science 311, 670–674 (2006). [PubMed: 16456083] 14. Freiwald WA & Tsao DY Functional compartmentalization and viewpoint generalization within the macaque face-processing system. Science 330, 845–851 (2010). [PubMed: 21051642] 15. Grill-Spector K, Weiner KS, Kay K & Gomez J The functional neuroanatomy of human face perception. Annu. Rev. Vis. Sci 3, 167–196 (2017). [PubMed: 28715955] 16. Yildirim I et al. Efficient and robust analysis-by-synthesis in vision: a computational framework, behavioral tests, and modeling neuronal representations in Annual Conference of the Cognitive Science Society (eds. Noelle DC et al.) (Cognitive Science Society, Austin, TX, USA, 2015). 17. Kriegeskorte N, Formisano E, Sorger B & Goebel R Individual faces elicit distinct response patterns in human anterior temporal cortex. Proc. Natl Acad. Sci. USA 104, 20600–20605 (2007). [PubMed: 18077383] 18. Anzellotti S, Fairhall SL & Caramazza A Decoding representations of face identity that are tolerant to rotation. Cereb. Cortex 24, 1988–1995 (2014). [PubMed: 23463339] 19. Chang L & Tsao DY The code for facial identity in the primate brain. Cell 169, 1013–1028.e14 (2017). [PubMed: 28575666] 20. Van Essen DC et al. The Brain Analysis Library of Spatial maps and Atlases (BALSA) database. Neuroimage 144(Pt. B), 270–274 (2017). [PubMed: 27074495]
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 15
+
+21. Griffiths TL, Chater N, Kemp C, Perfors A & Tenenbaum JB Probabilistic models of cognition: exploring representations and inductive biases. Trends Cogn. Sci 14, 357–364 (2010). [PubMed: 20576465]
+22. Ernst MO & Banks MS Humans integrate visual and haptic information in a statistically optimal fashion. Nature 415, 429–433 (2002). [PubMed: 11807554]
+23. Weiss Y, Simoncelli EP & Adelson EH Motion illusions as optimal percepts. Nat. Neurosci 5, 598– 604 (2002). [PubMed: 12021763]
+24. Körding KP & Wolpert DM Bayesian integration in sensorimotor learning. Nature 427, 244–247 (2004). [PubMed: 14724638]
+25. MacKay DJ C. Information Theory, Inference, and Learning Algorithms. (Cambridge Univ. Press, Cambridge, 2003)
+26. Murphy KP Machine Learning: A Probabilistic Perspective (MIT Press, Cambridge, MA, USA, 2012).
+27. Dayan P & Abbott LF Theoretical Neuroscience: Computational and Mathematical Modeling of Neural Systems (MIT Press, Cambridge, MA, USA, 2001).
+28. Abbott LF Theoretical neuroscience rising. Neuron 60, 489–495 (2008). [PubMed: 18995824]
+29. Olshausen BA & Field DJ Sparse coding of sensory inputs. Curr. Opin. Neurobiol 14, 481–487 (2004). [PubMed: 15321069]
+30. Simoncelli EP & Olshausen BA Natural image statistics and neural representation. Annu. Rev. Neurosci 24, 1193–1216 (2001). [PubMed: 11520932]
+31. Carandini M & Heeger DJ Normalization as a canonical neural computation. Nat. Rev. Neurosci 13, 51–62 (2011). [PubMed: 22108672]
+32. Chaudhuri R & Fiete I Computational principles of memory. Nat. Neurosci 19, 394–403 (2016). [PubMed: 26906506]
+33. Shadlen MN & Kiani R Decision making as a window on cognition. Neuron 80, 791–806 (2013). [PubMed: 24183028]
+34. Newsome WT, Britten KH & Movshon JA Neuronal correlates of a perceptual decision. Nature 341, 52–54 (1989). [PubMed: 2770878]
+35. Wang X-J Decision making in recurrent neuronal circuits. Neuron 60, 215–234 (2008). [PubMed: 18957215]
+36. Diedrichsen J, Shadmehr R & Ivry RB The coordination of movement: optimal feedback control and beyond. Trends Cogn. Sci 14, 31–39 (2010). [PubMed: 20005767]
+37. Kriegeskorte N Deep neural networks: a new framework for modeling biological vision and brain information processing. Annu. Rev. Vis. Sci 1, 417–446 (2015). [PubMed: 28532370]
+38. Yamins DLK & DiCarlo JJ Using goal-driven deep learning models to understand sensory cortex. Nat. Neurosci 19, 356–365 (2016). [PubMed: 26906502]
+39. Krizhevsky A, Sutskever I & Hinton GE ImageNet classification with deep convolutional neural networks in Advances in Neural Information Processing Systems 25 1097–1105 (Curran Associates, Red Hook, NY, USA, 2012).
+40. Silver D et al. Mastering the game of Go with deep neural networks and tree search. Nature 529, 484–489 (2016). [PubMed: 26819042]
+41. Mnih V et al. Human-level control through deep reinforcement learning. Nature 518, 529–533 (2015). [PubMed: 25719670]
+42. LeCun Y, Bengio Y & Hinton G Deep learning. Nature 521, 436–444 (2015). [PubMed: 26017442]
+43. Cohen JD et al. Computational approaches to fMRI analysis. Nat. Neurosci 20, 304–313 (2017). [PubMed: 28230848]
+44. Forstmann BU, Wagenmakers E-J, Eichele T, Brown S & Serences JT Reciprocal relations between cognitive neuroscience and formal cognitive models: opposites attract? Trends Cogn. Sci 15, 272–279 (2011). [PubMed: 21612972]
+45. Deco G, Tononi G, Boly M & Kringelbach ML Rethinking segregation and integration: contributions of whole-brain modelling. Nat. Rev. Neurosci 16, 430–439 (2015). [PubMed: 26081790]
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 16
+
+46. Biswal B, Yetkin FZ, Haughton VM & Hyde JS Functional connectivity in the motor cortex of resting human brain using echo-planar MRI. Magn. Reson. Med 34, 537–541 (1995). [PubMed: 8524021]
+47. Hyvarinen A, Karhunen J & Oja E Independent Component Analysis (Wiley, Hoboken, NJ, USA, 2001).
+48. Bullmore ET & Bassett DS Brain graphs: graphical models of the human brain connectome. Annu. Rev. Clin. Psychol 7, 113–140 (2011). [PubMed: 21128784]
+49. Deco G, Jirsa VK & McIntosh AR Emerging concepts for the dynamical organization of restingstate activity in the brain. Nat. Rev. Neurosci 12, 43–56 (2011). [PubMed: 21170073]
+50. Friston K Dynamic causal modeling and Granger causality. Comments on: the identification of interacting networks in the brain using fMRI: model selection, causality and deconvolution. Neuroimage 58, 303–305 (2011). author reply 310–311. [PubMed: 19770049]
+51. Dennett DC The Intentional Stance (MIT Press, Cambridge, MA, USA, 1987).
+52. Diedrichsen J & Kriegeskorte N Representational models: a common framework for understanding encoding, pattern-component, and representational-similarity analysis. PLoS Comput. Biol 13,e1005508 (2017). [PubMed: 28437426]
+53. Afraz S-R, Kiani R & Esteky H Microstimulation of inferotemporal cortex influences face categorization. Nature 442, 692–695 (2006). [PubMed: 16878143]
+54. Parvizi J et al. Electrical stimulation of human fusiform face-selective regions distorts face perception. J. Neurosci 32, 14915–14920 (2012). [PubMed: 23100414]
+55. Norman KA, Polyn SM, Detre GJ & Haxby JV Beyond mind-reading: multi-voxel pattern analysis of fMRI data. Trends Cogn. Sci 10, 424–430 (2006). [PubMed: 16899397]
+56. Tong F & Pratte MS Decoding patterns of human brain activity. Annu. Rev. Psychol 63, 483–509 (2012). [PubMed: 21943172]
+57. Kriegeskorte N & Kievit RA Representational geometry: integrating cognition, computation, and the brain. Trends Cogn. Sci 17, 401–412 (2013). [PubMed: 23876494]
+58. Haxby JV, Connolly AC & Guntupalli JS Decoding neural representational spaces using multivariate pattern analysis. Annu. Rev. Neurosci 37, 435–456 (2014). [PubMed: 25002277]
+59. Haynes J-D A primer on pattern-based approaches to fMRI: principles, pitfalls, and perspectives. Neuron 87, 257–270 (2015). [PubMed: 26182413]
+60. Jin X & Costa RM Shaping action sequences in basal ganglia circuits. Curr. Opin. Neurobiol 33, 188–196 (2015). [PubMed: 26189204]
+61. DiCarlo JJ & Cox DD Untangling invariant object recognition. Trends Cogn. Sci 11, 333–341 (2007). [PubMed: 17631409]
+62. Naselaris T & Kay KN Resolving ambiguities of MVPA using explicit models of representation. Trends Cogn. Sci 19, 551–554 (2015). [PubMed: 26412094]
+63. Mitchell TM et al. Predicting human brain activity associated with the meanings of nouns. Science 320, 1191–1195 (2008). [PubMed: 18511683]
+64. Kay KN, Naselaris T, Prenger RJ & Gallant JL Identifying natural images from human brain activity. Nature 452, 352–355 (2008). [PubMed: 18322462]
+65. Dumoulin SO & Wandell BA Population receptive field estimates in human visual cortex. Neuroimage 39, 647–660 (2008). [PubMed: 17977024]
+66. Diedrichsen J, Ridgway GR, Friston KJ & Wiestler T Comparing the similarity and spatial structure of neural representations: a pattern-component model. Neuroimage 55, 1665–1678 (2011). [PubMed: 21256225]
+67. Kriegeskorte N, Mur M & Bandettini P Representational similarity analysis - connecting the branches of systems neuroscience. Front. Syst. Neurosci 2, 4 (2008). [PubMed: 19104670]
+68. Nili H et al. A toolbox for representational similarity analysis. PLoS Comput. Biol 10, e1003553 (2014). [PubMed: 24743308]
+69. Devereux BJ, Clarke A, Marouchos A & Tyler LK Representational similarity analysis reveals commonalities and differences in the semantic processing of words and objects. J. Neurosci 33, 18906–18916 (2013). [PubMed: 24285896]
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 17
+
+70. Huth AG, de Heer WA, Griffiths TL, Theunissen FE & Gallant JL Natural speech reveals the semantic maps that tile human cerebral cortex. Nature 532, 453–458 (2016). [PubMed: 27121839]
+71. Markram H The Blue Brain Project. Nat. Rev. Neurosci 7, 153–160 (2006). [PubMed: 16429124]
+72. Eliasmith C & Trujillo O The use and abuse of large-scale brain models. Curr. Opin. Neurobiol 25, 1–6 (2014). [PubMed: 24709593]
+73. Eliasmith C et al. A large-scale model of the functioning brain. Science 338, 1202–1205 (2012). [PubMed: 23197532]
+74. Hassabis D, Kumaran D, Summerfield C & Botvinick M Neuroscience-inspired artificial intelligence. Neuron 95, 245–258 (2017). [PubMed: 28728020]
+75. Rumelhart DE, Hinton GE & Williams RJ Learning representations by back-propagating errors. Nature 323, 533–536 (1986).
+76. Goodfellow I, Bengio Y & Courville A Deep Learning (MIT Press, Cambridge, MA, USA, 2016).
+77. Yamins DLK et al. Performance-optimized hierarchical models predict neural responses in higher visual cortex. Proc. Natl Acad. Sci. USA 111, 8619–8624 (2014). [PubMed: 24812127]
+78. Khaligh-Razavi S-M & Kriegeskorte N Deep supervised, but not unsupervised, models may explain IT cortical representation. PLoS Comput. Biol 10, e1003915 (2014). [PubMed: 25375136]
+79. Cadieu CF et al. Deep neural networks rival the representation of primate IT cortex for core visual object recognition. PLoS Comput. Biol 10, e1003963 (2014). [PubMed: 25521294]
+80. Güçlü U & van Gerven MAJ Deep neural networks reveal a gradient in the complexity of neural representations across the ventral stream. J. Neurosci 35, 10005–10014 (2015). [PubMed: 26157000]
+81. Eickenberg M, Gramfort A, Varoquaux G & Thirion B Seeing it all: convolutional network layers map the function of the human visual system. Neuroimage 152, 184–194 (2017). [PubMed: 27777172]
+82. Cichy RM, Khosla A, Pantazis D, Torralba A & Oliva A Comparison of deep neural networks to spatio-temporal cortical dynamics of human visual object recognition reveals hierarchical correspondence. Sci. Rep 6, 27755 (2016). [PubMed: 27282108]
+83. Hong H, Yamins DLK, Majaj NJ & DiCarlo JJ Explicit information for category-orthogonal object properties increases along the ventral stream. Nat. Neurosci 19, 613–622 (2016). [PubMed: 26900926]
+84. Kubilius J, Bracci S & Op de Beeck HP Deep neural networks as a computational model for human shape sensitivity. PLoS Comput. Biol 12, e1004896 (2016). [PubMed: 27124699]
+85. Jozwik KM, Kriegeskorte N, Storrs KR & Mur M Deep convolutional neural networks outperform feature-based but not categorical models in explaining object similarity judgments. Front. Psychol 8, 1726 (2017). [PubMed: 29062291]
+86. Moore C & Mertens S The Nature of Computation. (Oxford Univ. Press, Oxford, 2011).
+87. Borst J, Taatgen & Anderson, J. Using the ACT-R cognitive architecture in combination with fMRI data in An Introduction to Model-Based Cognitive Neuroscience (eds. Forstmann BU & Wagenmakers E-J) (Springer, New York, 2014).
+88. Sutton R & Barto A Reinforcement Learning: An Introduction Vol. 1 (MIT Press, Cambridge, MA, USA, 1998).
+89. O’Doherty JP, Cockburn J & Pauli WM Learning, reward, and decision making. Annu. Rev. Psychol 68, 73–100 (2017). [PubMed: 27687119]
+90. Daw ND & Dayan P The algorithmic anatomy of model-based evaluation. Phil. Trans. R. Soc. Lond. B 369, 20130478 (2014). [PubMed: 25267820]
+91. Lengyel M & Dayan P Hippocampal contributions to control: the third way in Advances in Neural Information Processing Systems 20 889–896 (MIT Press, Cambridge, MA, USA, 2008)..
+92. Gershman SJ & Daw ND Reinforcement learning and episodic memory in humans and animals: an integrative framework. Annu. Rev. Psychol 68, 101–128 (2017). [PubMed: 27618944]
+93. Schultz W, Dayan P & Montague PR A neural substrate of prediction and reward. Science 275, 1593–1599 (1997). [PubMed: 9054347]
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 18
+
+94. Sutton R Integrated architectures for learning, planning, and reacting based on approximating dynamic programming in Proceedings of the Seventh International Conference on Machine Learning 216–224 (Morgan Kaufmann, San Francisco, 1990).
+95. Daw ND, Niv Y & Dayan P Uncertainty-based competition between prefrontal and dorsolateral striatal systems for behavioral control. Nat. Neurosci 8, 1704–1711 (2005). [PubMed: 16286932]
+96. Ma WJ Organizing probabilistic models of perception. Trends Cogn. Sci 16, 511–518 (2012). [PubMed: 22981359]
+97. Fiser J, Berkes P, Orbán G & Lengyel M Statistically optimal perception and learning: from behavior to neural representations. Trends Cogn. Sci 14, 119–130 (2010). [PubMed: 20153683]
+98. Tenenbaum JB, Kemp C, Griffiths TL & Goodman ND How to grow a mind: statistics, structure, and abstraction. Science 331, 1279–1285 (2011). [PubMed: 21393536]
+99. Tversky A & Kahneman D Judgment under uncertainty: heuristics and biases in Utility, Probability, and Human Decision Making (eds. Wendt D & Vlek C) 141–162, 10.1007/978-94-010-1834-0_8 (Springer Netherlands, Dordrecht, the Netherlands, 1975).
+100. Lake BM, Salakhutdinov R & Tenenbaum JB Human-level concept learning through probabilistic program induction. Science 350, 1332–1338 (2015). [PubMed: 26659050]
+101. Ullman TD, Spelke E, Battaglia P & Tenenbaum JB Mind games: game engines as an architecture for intuitive physics. Trends Cogn. Sci 21, 649–665 (2017). [PubMed: 28655498]
+102. Battaglia PW, Hamrick JB & Tenenbaum JB Simulation as an engine of physical scene understanding. Proc. Natl Acad. Sci. USA 110, 18327–18332 (2013). [PubMed: 24145417]
+103. Kubricht JR, Holyoak KJ & Lu H Intuitive physics: current research and controversies. Trends Cogn. Sci 21, 749–759 (2017). [PubMed: 28711322]
+104. Pantelis PC et al. Inferring the intentional states of autonomous virtual agents. Cognition 130, 360–379 (2014). [PubMed: 24389312]
+105. Pouget A, Beck JM, Ma WJ & Latham PE Probabilistic brains: knowns and unknowns. Nat. Neurosci 16, 1170–1178 (2013). [PubMed: 23955561]
+106. Orhan AE & Ma WJ Efficient probabilistic inference in generic neural networks trained with nonprobabilistic feedback. Nat. Commun 8, 138 (2017). [PubMed: 28743932]
+107. Tervo DGR, Tenenbaum JB & Gershman SJ Toward the neural implementation of structure learning. Curr. Opin. Neurobiol 37, 99–105 (2016). [PubMed: 26874471]
+108. Buesing L, Bill J, Nessler B & Maass W Neural dynamics as sampling: a model for stochastic computation in recurrent networks of spiking neurons. PLoS Comput. Biol 7, e1002211 (2011). [PubMed: 22096452]
+109. Haefner RM, Berkes P & Fiser J Perceptual decision-making as probabilistic inference by neural sampling. Neuron 90, 649–660 (2016). [PubMed: 27146267]
+110. Aitchison L & Lengyel M The Hamiltonian brain: efficient probabilistic inference with excitatory-inhibitory neural circuit dynamics. PLoS Comput. Biol 12, e1005186 (2016). [PubMed: 28027294]
+111. Sanborn AN & Chater N Bayesian brains without probabilities. Trends Cogn. Sci 20, 883–893 (2016). [PubMed: 28327290]
+112. Dasgupta I, Schulz E, Goodman N & Gershman S Amortized hypothesis generation. Preprint at bioRxiv 10.1101/137190 (2017).
+113. Krakauer JW, Ghazanfar AA, Gomez-Marin A, MacIver MA & Poeppel D Neuroscience needs behavior: correcting a reductionist bias. Neuron 93, 480–490 (2017). [PubMed: 28182904]
+114. Gomez-Marin A, Paton JJ, Kampff AR, Costa RM & Mainen ZF Big behavioral data: psychology, ethology and the foundations of neuroscience. Nat. Neurosci 17, 1455–1462 (2014). [PubMed: 25349912]
+115. Marr D Vision: A Computational Investigation into the Human Representation and Processing of Visual Information (MIT Press, Cambridge, MA, USA, 2010).
+116. Love BC The algorithmic level is the bridge between computation and brain. Top. Cogn. Sci 7, 230–242 (2015). [PubMed: 25823496]
+117. Gal Y & Ghahramani Z Dropout as a Bayesian approximation: representing model uncertainty in deep learning. Preprint at https://arxiv.org/abs/1506.02142 (2016).
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 19
+
+118. Rezende D, Mohamed S, Danihelka I, Gregor K & Wierstra D One-shot generalization in deep generative models. Proc. Int. Conf. Mach. Learn. Appl 48, 1521–1529 (2016).
+119. Kingma D & Welling M Auto-encoding variational Bayes. Preprint at https://arxiv.org/abs/ 1312.6114 (2013).
+120. Naselaris T et al. Cognitive Computational Neuroscience: a new conference for an emerging discipline. Trends Cogn. Sci 22, 365–367 (2018). [PubMed: 29500078]
+121. Ahrens MB et al. Brain-wide neuronal dynamics during motor adaptation in zebrafish. Nature 485, 471–477 (2012). [PubMed: 22622571]
+122. Kietzmann T, McClure P & Kriegeskorte N Deep neural networks in computational neuroscience. Preprint at bioRxiv 10.1101/133504 (2017).
+123. Hornik K Approximation capabilities of multilayer feedforward networks. Neural Netw 4, 251– 257 (1991).
+124. Wyatte D, Curran T & O’Reilly R The limits of feedforward vision: recurrent processing promotes robust object recognition when objects are degraded. J. Cogn. Neurosci 24, 2248–2261 (2012). [PubMed: 22905822]
+125. Spoerer CJ, McClure P & Kriegeskorte N Recurrent convolutional neural networks: a better model of biological object recognition. Front. Psychol 8, 1551 (2017). [PubMed: 28955272]
+126. Hunt LT & Hayden BY A distributed, hierarchical and recurrent framework for reward-based choice. Nat. Rev. Neurosci 18, 172–182 (2017). [PubMed: 28209978]
+127. Schafer AM & Zimmermann HG Recurrent neural networks are universal approximators. Int. J. Neural Syst 17, 253–263 (2007). [PubMed: 17696290]
+128. O’Reilly RC, Hazy TE, Mollick J, Mackie P & Herd S Goal-driven cognition in the brain: a computational framework. Preprint at http://arxiv.org/abs/1404.7591 (2014).
+129. Whittington JCR & Bogacz R An approximation of the error backpropagation algorithm in a predictive coding network with local Hebbian synaptic plasticity. Neural Comput. 29, 1229–1262 (2017). [PubMed: 28333583]
+130. Schiess M, Urbanczik R & Senn W Somato-dendritic synaptic plasticity and errorbackpropagation in active dendrites. PLoS Comput. Biol 12, e1004638 (2016). [PubMed: 26841235]
+131. Marblestone AH, Wayne G & Kording KP Towards an integration of deep learning and neuroscience. Front. Comput. Neurosci 10, 94 (2016). [PubMed: 27683554]
+132. Shadlen MN & Shohamy D Decision making and sequential sampling from memory. Neuron 90, 927–939 (2016). [PubMed: 27253447]
+133. Roelfsema PR & van Ooyen A Attention-gated reinforcement learning of internal representations for classification. Neural Comput. 17, 2176–2214 (2005). [PubMed: 16105222]
+134. Goodfellow I et al. Generative adversarial nets. Preprint at https://arxiv.org/abs/1406.2661 (2014).
+135. Kandel ER, Schwartz JH, Jessell TM, Siegelbaum SA & Hudspeth AJ Principles of Neural Science (McGraw-Hill Professional, New York, 2013).
+136. Bastos AM et al. Canonical microcircuits for predictive coding. Neuron 76, 695–711 (2012). [PubMed: 23177956]
+137. Larkum M A cellular mechanism for cortical associations: an organizing principle for the cerebral cortex. Trends Neurosci. 36, 141–151 (2013). [PubMed: 23273272]
+138. Fries P A mechanism for cognitive dynamics: neuronal communication through neuronal coherence. Trends Cogn. Sci 9, 474–480 (2005). [PubMed: 16150631]
+139. Kumaran D, Hassabis D & McClelland JL What learning systems do intelligent agents need? complementary learning systems theory updated. Trends Cogn. Sci 20, 512–534 (2016). [PubMed: 27315762]
+140. Yuille A & Kersten D Vision as Bayesian inference: analysis by synthesis? Trends Cogn. Sci 10, 301–308 (2006). [PubMed: 16784882]
+141. Helmholtz H Handbuch der physiologischen Optik (Dover, New York, 1860).
+142. Gershman SJ, Horvitz EJ & Tenenbaum JB Computational rationality: a converging paradigm for intelligence in brains, minds, and machines. Science 349, 273–278 (2015). [PubMed: 26185246]
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 20
+
+143. Simon HA Bounded rationality. in Utility and Probability (eds. Eatwell J, Milgate M & Newman P) 15–18, 10.1007/978-1-349-20568-4_5 (Palgrave Macmillan, London, 1990).
+144. Griffiths TL, Lieder F & Goodman ND Rational use of cognitive resources: levels of analysis between the computational and the algorithmic. Top. Cogn. Sci 7, 217–229 (2015). [PubMed: 25898807]
+145. Srikumar V, Kundu G & Roth D On amortizing inference cost for structured prediction Proceedings of the 2012 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning 1114–1124 (Association for Computational Linguistics, Stroudsburg, PA, USA, 2012).
+146. Bengio Y, Scellier B, Bilaniuk O, Sacramento J & Senn W Feedforward initialization for fast inference of deep generative networks is biologically plausible. Preprint at https://arxiv.org/abs/ 1606.01651 (2016).
+147. Ghahramani Z Bayesian non-parametrics and the probabilistic approach to modelling. Philos. Trans. A Math. Phys. Eng. Sci 371, 20110553 (2012). [PubMed: 23277609]
+148. Deng J et al. ImageNet: a large-scale hierarchical image database in 2009 IEEE Conference on Computer Vision and Pattern Recognition 248–255, 10.1109/CVPR.2009.5206848 (IEEE, Piscataway, NJ, USA, 2009).
+149. Beattie C et al. DeepMind Lab. Preprint at https://arxiv.org/abs/1612.03801 (2016).
+150. Griffiths TL Manifesto for a new (computational) cognitive revolution. Cognition 135, 21–23 (2015). [PubMed: 25497482]
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Kriegeskorte and Douglas
+
+Page 21
+
+Author Manuscript
+
+Author Manuscript
+
+Box 1 |
+The many meanings of “model”
+The word “model” has many meanings in the brain and behavioral sciences. Dataanalysis models are generic statistical models that help establish relationships between measured variables. Examples include linear correlation, univariate multiple linear regression for brain mapping, and linear decoding analysis. Effective connectivity and causal-interaction models are, similarly, data-analysis models. They help us infer causal influences and interactions between brain regions. Data-analysis models can serve the purpose of testing hypotheses about relationships among variables (for example, correlation, information, causal influence). They are not models of brain information processing. A box-and-arrow model, by contrast, is an information-processing model in the form of labeled boxes that represent cognitive component functions and arrows that represent information flow. In cognitive psychology, such models provided useful, albeit ill-defined, sketches for theories of brain computation. A word model, similarly, is a sketch for a theory about brain information processing that is defined vaguely by a verbal description. While these are models of information processing, they do not perform the information processing thought to occur in the brain. An oracle model is a model of brain responses (often instantiated in a data-analysis model) that relies on information not available to the animal whose brain is being modeled. For example, a model of ventral temporal visual responses as a function of an abstract shape description, or as a function of category labels or continuous semantic features, constitutes an oracle model if the model is not capable of computing the shape, category or semantic features from images. An oracle model may provide a useful characterization of the information present in a region and its representational format, without specifying any theory as to how the representation is computed by the brain. A brain-computational model (BCM), by contrast, is a model that mimics the brain information processing underlying the performance of some task at some level of abstraction. In visual neuroscience, for example, an image-computable model is a BCM of visual processing that takes image bitmaps as inputs and predicts brain activity and/or behavioral responses. Deep neural nets provide image-computable models of visual processing. However, deep neural nets trained by supervision rely on category-labeled images for training. Because labeled examples are not available (in comparable quantities) during biological development and learning, these models are BCMs of visual processing, but they are not BCMs of development and learning. Reinforcement learning models use environmental feedback that is more realistic in quality and can provide BCMs of learning processes. A sensory encoding model is a BCM of the computations that transform sensory input to some stage of internal representation. An internal-transformation model is a BCM of the transformation of representations between two stages of processing. A behavioral decoding model is a BCM of the transformation from some internal representation to a behavioral output. Note that the label BCM indicates merely that the model is intended to capture brain computations at some level of abstraction. A BCM may abstract from biological detail to an arbitrary degree, but must predict some aspect of brain activity and/or behavior. Psychophysical models that predict behavioral outputs from sensory input and cognitive models that perform cognitive tasks are BCMs formulated at a high
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 22
+
+level of description. The label BCM does not imply that the model is either plausible or consistent with empirical data. Progress is made by rejecting candidate BCMs on empirical grounds. Like microscale biophysical models, which capture biological processes that underlie brain computations, and macroscale brain-dynamical and causalinteraction models, BCMs are models of processes occurring in the brain. However, unlike the other types of process model, BCMs perform the information processing that is thought to be the function of brain dynamics. Finally, the term “model” is used to refer to models of the world employed by the brain, as in model-based reinforcement learning and model-based cognition.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 23
+
+Box 2 |
+Neural network models
+The term “neural network model” has come to be associated with a class of model that is inspired by biological neural networks in that each unit combines many inputs and information is processed in parallel through a network. In contrast to biologically detailed models, which may capture action potentials and dynamics in multiple compartments of each neuron, these models abstract from the biological details. However, they can explain certain cognitive functions, such as visual object recognition, and therefore provide an attractive framework for linking cognition to the brain.
+A typical unit computes a linear combination of its inputs and passes the result through a static nonlinearity. The output is sometimes interpreted as analogous to the firing rate of a neuron. Even shallow networks (those with a single layer of hidden units between inputs and outputs) can approximate arbitrary functions123. However, deep networks (those with multiple hidden layers) can more efficiently capture many of the complex functions needed in real-world tasks. Many applications—for example, in computer vision—use feedforward architectures. However, recurrent neural networks, which reprocess the outputs of their units and generate complex dynamics, have brought additional engineering advances76 and better capture the recurrent signaling in brains35,124–126. Whereas feedforward networks are universal function approximators, recurrent networks are universal approximators of dynamical systems127. Recurrent processing enables a network to recycle its limited computational resources through time so as to perform more complex sequences of computations. Recurrent networks can represent the recent stimulus history in a dynamically compressed format, providing the temporal context information needed for current processing. As a result, recurrent networks can recognize, predict, and generate dynamical patterns.
+Both feedforward and recurrent networks are defined by their architecture and the setting of the connection weights. One way to set the weights is through iterative small adjustments that bring the output closer to some desired output (supervised learning). Each weight is adjusted in proportion to the reduction in the error that a small change to it would yield. This method is called gradient descent because it produces steps in the space of weights along which the error declines most steeply. Gradient descent can be implemented using backpropagation, an efficient algorithm for computing the derivative of the error function with respect to each weight.
+Whether the brain uses an algorithm like backpropagation for learning is controversial. Several biologically plausible implementations of backpropagation or closely related forms of supervised learning have been suggested128–130. Supervision signals might be generated internally131 on the basis of the context provided by multiple sensory modalities; on the basis of the dynamic refinement of representations over time, as more evidence becomes available from the senses and from memory132; and on the basis of internal and external reinforcement signals arising in interaction with the environment133. Reinforcement learning41 and unsupervised learning of neural network parameters119,134 are areas of rapid current progress.
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 24
+
+Neural network models have demonstrated that taking inspiration from biology can yield breakthroughs in AI. It seems likely that the quest for models that can match human cognitive abilities will draw us deeper into the biology135. The abstract neural network models currently most successful in engineering could be implemented with biological hardware. However, they only use a small subset of the dynamical components of brains. Neuroscience has described a rich repertoire of dynamical components, including action potentials108, canonical microcircuits136, dendritic dynamics128,130,137 and network phenomena27, such as oscillations138, that may have computational functions. Biology also provides constraints on the global architecture, suggesting, for example, complementary subsystems for learning139. Modeling these biological components in the context of neural networks designed to perform meaningful tasks may reveal how they contribute to brain computation and may drive further advances in AI.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Kriegeskorte and Douglas
+
+Page 25
+
+Author Manuscript
+
+Author Manuscript
+
+Box 3 |
+Bayesian cognitive models
+Bayesian cognitive models are motivated by the assumption that the brain approximates the statistically optimal solution to a task. The statistically optimal way to make inferences and decide what to do is to interpret the current sensory evidence in light of all available prior knowledge using the rules of probability. Consider the case of visual perception. The retinal signals reflect the objects in the world, which we would like to recognize. To infer the objects, we should consider what configurations of objects we deem possible and how well each explains the image. Our prior beliefs are represented by a generative model that captures the probability of each configuration of objects and the probabilities with which a given configuration would produce different retinal images.
+More formally, a Bayesian model of vision might use a generative model of the joint distribution p(d, c) of the sensory data d (the image) and the causes in the world c (the configuration of surfaces, objects and light sources to be inferred)140. The joint distribution p(d, c) equals the product of the prior, p (c), over all possible configurations of causes and the likelihood, p(d|c), the probability of a particular image given a particular configuration of causes. A prescribed model for p(d|c) would enable us to evaluate the likelihood, the probability of a specific image d given specific causes c. Alternatively, we might have an implicit model for p(d|c) in the form of a stochastic mapping from causes c to data d (images). Such a model would generate natural images. Whether prescribed or implicit, the model of p(d|c) captures how the causes in the world create the image, or at least how they relate to the image. Visual recognition amounts to computing the posterior p(c|d), the probability distribution over the causes given a particular image. The posterior p(c|d) reveals the causes c as they would have to exist in the world to explain the sensory data d141. A model computing p(c|d) is called a discriminative model because it discriminates among images—here mapping from effects (the image) to the causes. The inversion mathematically requires a prior p(c) over the latent causes. The prior p(c) can constrain the interpretation and help reduce the ambiguity resulting from the multiple configurations of causes that can account for any image.
+Basing the inference of the causes c on a generative model of p(d, c) that captures all available knowledge and uncertainty is statistically optimal (i.e., it provides the best inferences given limited data), but computationally challenging (i.e., it may require more neurons or time than the animal can use). Ideally, the generative model p(d, c) implicit to the inference p(c|d) should capture our knowledge not just about image formation, but also the things in the world and their interactions, and our uncertainties about these processes. One challenge is to learn a generative model from sensory data. We need to represent the learned knowledge and the remaining uncertainties. If the generative model is mis-specified, then the inference will not be optimal. For real-world tasks, some degree of misspecification of the model is inevitable. For example, the generative model may contain an overly simplified version of the image-generation process. Another challenge is the computation of the posterior p(c|d). For realistically complex generative models, the inference may require computationally intensive iterative algorithms such as Markov
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 26
+
+chain Monte Carlo, belief propagation or variational inference. The brain’s compromise between statistical and computational efficiency142–144 may involve learning fast feedforward recognition models that speed up frequent component inferences, crystallizing conclusions that are costly to fluidly derive with iterative algorithms. This is known as amortized inference145,146.
+Bayesian cognitive models have recently flourished in interaction with machine learning and statistics. Early work used generative models with a fixed structure that were flexible only with respect to a limited set of parameters. Modern generative models can grow in complexity with the data and discover their inherent structure98. They are called nonparametric because they are not limited by a predefined finite set of parameters147. Their parameters can grow in number without any predefined bound.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 27
+
+Box 4 |
+Why do cognitive science, computational neuroscience and AI need one another?
+Cognitive science needs computational neuroscience, not merely to explain the implementation of cognitive models in the brain, but also to discover the algorithms. For example, the dominant models of sensory processing and object recognition are braininspired neural networks, whose computations are not easily captured at a cognitive level. Recent successes with Bayesian nonparametric models do not yet in general scale to realworld cognition. Explaining the computational efficiency of human cognition and predicting detailed cognitive dynamics and behavior could benefit from studying brainactivity dynamics. Explaining behavior is essential, but behavioral data alone provide insufficient constraints for complex models. Brain data can provide rich constraints for cognitive algorithms if leveraged appropriately. Cognitive science has always progressed in close interaction with artificial intelligence. The disciplines share the goal of building task-performing models and thus rely on common mathematical theory and programming environments.
+Computational neuroscience needs cognitive science to challenge it to engage higherlevel cognition. At the experimental level, the tasks of cognitive science enable computational neuroscience to bring cognition into the lab. At the level of theory, cognitive science challenges computational neuroscience to explain how the neurobiological dynamical components it studies contribute to cognition and behavior. Computational neuroscience needs AI, and in particular machine learning, to provide the theoretical and technological basis for modeling cognitive functions with biologically plausible dynamical components.
+Artificial intelligence needs cognitive science to guide the engineering of intelligence. Cognitive science’s tasks can serve as benchmarks for AI systems, building up from elementary cognitive abilities to artificial general intelligence. The literatures on human development and learning provide an essential guide to what is possible for a learner to achieve and what kinds of interaction with the world can support the acquisition of intelligence. AI needs computational neuroscience for algorithmic inspiration. Neural network models are an example of a brain-inspired technology that is unrivalled in several domains of AI. Taking further inspiration from the neurobiological dynamical components (for example, spiking neurons, dendritic dynamics, the canonical cortical microcircuit, oscillations, neuromodulatory processes) and the global functional layout of the human brain (for example, subsystems specialized for distinct functions, including sensory modalities, memory, planning and motor control) might lead to further AI breakthroughs. Machine learning draws from separate traditions in statistics and computer science, which have optimized statistical and computational efficiency, respectively. The integration of computational and statistical efficiency is an essential challenge in the age of big data. The brain appears to combine computational and statistical efficiency, and understanding its algorithm might boost machine learning.
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 28
+
+Box 5 |
+shareable tasks, data, models and tests: a new culture of multidisciplinary collaboration
+Neurobiologically plausible models that explain cognition will have substantial parametric complexity. Building and evaluating such models will require machine learning and big brain and behavioral datasets. Traditionally, each lab has developed its own tasks, datasets, models and tests with a focus on the goals of its own discipline. To scale these efforts up to meet the challenge, we will need to develop tasks, data, models and tests that are relevant across the three disciplines and shared among labs (see figure). A new culture of collaboration will assemble big data and big models by combining components from different labs. To meet the conjoined criteria for success of cognitive science, computational neuroscience and artificial intelligence, the best division of labor might cut across the traditional disciplines.
+Tasks.
+By designing experimental tasks, we carve up cognition into components that can be quantitatively investigated. A task is a controlled environment for behavior. It defines the dynamics of a task ‘world’ that provides sensory input (for example, visual stimuli) and captures motor output (for example, button press, joystick control or higher-dimensional limb or whole-body control). Tasks drive the acquisition of brain and behavioral data and the development of AI models, providing well-defined challenges and quantitative performance benchmarks for comparing models. The ImageNet tasks148, for example, have driven substantial progress in computer vision. Tasks should be designed and implemented such that they can readily be used in all three disciplines to drive data acquisition and model development (related developments include OpenAI’s Gym, https://gym.openai.com/; Universe, https://universe.openai.com/; and DeepMind’s Lab149). The spectrum of useful tasks includes classical psychophysical tasks employing simple stimuli and responses as well as interactions in virtual realities. As we engage all aspects of the human mind, our tasks will need to simulate natural environments and will come to resemble computer games. This may bring the added benefit of mass participation and big behavioral data, especially when tasks are performed via the Internet150.
+Data.
+Behavioral data acquired during task performance provides overall performance estimates and detailed signatures of success and failure, of reaction times and movement trajectories. Brain-activity measurements characterize the dynamic computations underlying task performance. Anatomical data can characterize the structure and connectivity of the brain at multiple scales. Structural brain data, functional brain data and behavioral data will all be essential for constraining computational models.
+Models.
+Task-performing computational models can take sensory inputs and produce motor outputs so as to perform experimental tasks. AI-scale neurobiologically plausible models
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 29
+
+can be shared openly and tested in terms of their task performance and in terms of their ability to explain a variety of brain and behavioral datasets, including new datasets acquired after definition of the model. Initially, many models will be specific to small subsets of tasks. Ultimately, models must generalize across tasks.
+Tests.
+To assess the extent to which a model can explain brain information processing during a particular task, we need tests that compare models and brains on the basis of brain and behavioral data. Every brain is idiosyncratic in its structure and function. Moreover, for a given brain, every act of perception, cognition and action is unique in time and cannot be repeated precisely because it permanently changes the brain in question. These complications make it challenging to compare brains and models. We must define the summary statistics of interest and the correspondence mapping between model and brain in space and time at some level of abstraction. Developing appropriate tests for adjudicating among models and determining how close we are to understanding the brain is not merely a technical challenge of statistical inference. It is a conceptual challenge fundamental to theoretical neuroscience.
+The interaction among labs and disciplines can benefit from adversarial cooperation134. Cognitive researchers who feel that current computational models fall short of explaining an important aspect of cognition are challenged to design shareable tasks and tests that quantify these shortcomings and to provide human behavioral data to set the bar for AI models. Neuroscientists who feel that current models do not explain brain information processing are challenged to share brain-activity data acquired during task performance and tests comparing activity patterns between brains and models to quantify the shortcomings of the models. Although we will have a plurality of definitions of success, translating these into quantitative measures of the quality of a model is essential and could drive progress in cognitive computational neuroscience, as well as engineering.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 30
+
+interactions among shareable components.
+Tasks, data, models and tests are components (gray nodes) that lend themselves to sharing among labs and across disciplines, to enable collaborative construction and testing of big models driven by big brain and behavioral datasets assembled across labs.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Kriegeskorte and Douglas
+
+Page 31
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 1 |. Modern imaging techniques provide unprecedentedly detailed information about brain activity, but data-driven analyses support only limited insights. a, Two-photon calcium imaging results121 show single-neuron activity for a large population of cells measured simultaneously in larval zebrafish while the animals interact with a virtual environment. b, Human fMRI results70 reveal a detailed map of semantically selective responses while a subject listened to a story. These studies illustrate, on the one hand, the power of modern brain-activity measurement techniques at different scales (a,b) and, on the other, the challenge of drawing insights about brain computation from such datasets. Both studies measured brain activity during complex, time-continuous, naturalistic experience and used principal component analysis (a, bottom; b, top) to provide an overall view of the activity patterns and their representational significance. PC, principal component.
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 32
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 2 |. What does it mean to understand how the brain works? The goal of cognitive computational neuroscience is to explain rich measurements of neuronal activity and behavior in animals and humans by means of biologically plausible computational models that perform real-world cognitive tasks. Historically, each of the disciplines (circles) has tackled a subset of these challenges (white labels). Cognitive computational neuroscience strives to meet all the challenges simultaneously.
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 33
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 3 |. The space of process models. Models of the processes taking place in the brain can be defined at different levels of description and can vary in their parametric complexity (dot size) and in their biological (horizontal axis) and cognitive (vertical axis) fidelity. Theoreticians approach modeling with a range of primary goals. The bottom-up approach to modeling (blue arrow) aims first to capture characteristics of biological neural networks, such as action potentials and interactions among multiple compartments of single neurons. This approach disregards cognitive function so as to focus on understanding the emergent dynamics of small parts of the brain, such as cortical columns and areas, and to reproduce biological network phenomena, such as oscillations. The top-down approach (red arrow) aims first to capture cognitive functions at the algorithmic level. This approach disregards the biological implementation so as to focus on decomposing the information processing underlying task performance into its algorithmic components. The two approaches form the extremes of a continuum of paths toward the common goal of explaining how our brains give rise to our minds. Overall, there is tradeoff (negative correlation) between cognitive and biological fidelity. However, the tradeoff can turn into a synergy (positive correlation) when cognitive constraints illuminate biological function and when biology inspires models that explain cognitive feats. Because intelligence requires rich world knowledge, models of human brain information processing will have high parametric complexity (large dot in the upper right corner). Even if models that abstract from biological details can explain task performance, biologically detailed models will still be needed to explain the neurobiological
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+
+Author Manuscript
+
+Author Manuscript
+
+Kriegeskorte and Douglas
+
+Page 34
+
+implementation. This diagram is a conceptual cartoon that can help us understand the relationships between models and appreciate their complementary contributions. However, it is not based on quantitative measures of cognitive fidelity, biological fidelity and model complexity. Definitive ways to measure each of the three variables have yet to be developed. Figure inspired by ref.122.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Nat Neurosci. Author manuscript; available in PMC 2019 August 22.
+

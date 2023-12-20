@@ -1,0 +1,721 @@
+Neuron, Vol. 45, 651–660, March 3, 2005, Copyright ©2005 by Elsevier Inc. DOI 10.1016/j.neuron.2005.02.014
+
+Deep Brain Stimulation for Treatment-Resistant Depression
+
+Clinical Study
+
+Helen S. Mayberg,1,2,* Andres M. Lozano,3,* Valerie Voon,4 Heather E. McNeely,5 David Seminowicz,6 Clement Hamani,3 Jason M. Schwalb,3 and Sidney H. Kennedy4 1Rotman Research Institute at Baycrest Centre and Departments of Psychiatry and Neurology University of Toronto Toronto, Ontario, M6A 2E1 Canada 2 Emory University School of Medicine Atlanta, Georgia 30322 3 Division of Neurosurgery and Toronto Western Hospital Research Institute University Health Network University of Toronto Toronto, Ontario, M5P 2P2 Canada 4 Department of Psychiatry University Health Network University of Toronto Toronto, Ontario, M5P 2P2 Canada 5 Neuropsychology Lab Department of Psychiatry Center for Addiction and Mental Health University of Toronto Toronto, Ontario, M5T 1R8 Canada 6 Rotman Research Institute at Baycrest Centre and the Institute of Medical Science University of Toronto Toronto, Ontario, M6A 2E1 Canada
+Summary
+Treatment-resistant depression is a severely disabling disorder with no proven treatment options once multiple medications, psychotherapy, and electroconvulsive therapy have failed. Based on our preliminary observation that the subgenual cingulate region (Brodmann area 25) is metabolically overactive in treatmentresistant depression, we studied whether the application of chronic deep brain stimulation to modulate BA25 could reduce this elevated activity and produce clinical benefit in six patients with refractory depression. Chronic stimulation of white matter tracts adjacent to the subgenual cingulate gyrus was associated with a striking and sustained remission of depression in four of six patients. Antidepressant effects were associated with a marked reduction in local cerebral blood flow as well as changes in downstream limbic and cortical sites, measured using positron emission tomography. These results suggest that disrupting focal pathological activity in limbic-cortical circuits us-
+*Correspondence: hmayber@emory.edu (H.S.M.); lozano@uhnres. utoronto.ca (A.M.L.)
+
+ing electrical stimulation of the subgenual cingulate white matter can effectively reverse symptoms in otherwise treatment-resistant depression.
+Introduction
+Major depression is the most common of all psychiatric disorders (Wang, 2003). It ranks among the top causes of worldwide disease burden and is the leading source of disability in adults in North America under the age of 50 (World Health Organization, 2001). While depression can be effectively treated in the majority of patients by either medication or some form of evidence-based psychotherapy (American Psychiatric Association, 2000), up to 20% of patients fail to respond to standard interventions (Fava, 2003; Keller et al., 1992). For these patients, trial-and-error combinations of multiple medications and electroconvulsive therapy are often required (Kennedy and Lam, 2003; Lancet UK ECT Review Group, 2003; Sackeim et al., 2001). For patients who remain severely depressed despite these aggressive approaches, new strategies are needed. We describe a strategy directed at this group of treatment-refractory patients with major depression.
+Converging clinical, biochemical, neuroimaging, and postmortem evidence suggests that depression is unlikely to be a disease of a single brain region or neurotransmitter system. Rather, it is now generally viewed as a systems-level disorder affecting integrated pathways linking select cortical, subcortical, and limbic sites and their related neurotransmitter and molecular mediators (Manji et al., 2001; Mayberg, 1997; Nemeroff 2002; Nestler et al., 2002; Vaidya and Duman, 2001). While mechanisms driving this “system dysfunction” are not yet characterized, they are likely to be multifactorial, with genetic vulnerability, developmental insults, and environmental stressors all considered important and synergistic contributors (Caspi et al., 2003; Heim et al., 2000; Kendler et al., 2001). Treatments for depression can be similarly viewed within this limbic-cortical system framework, where different modes of treatment modulate specific regional targets, resulting in a variety of complementary, adaptive chemical and molecular changes that re-establish a normal mood state (Vaidya and Duman 2001; Hyman and Nestler, 1996, Mayberg 2003).
+Functional neuroimaging studies have had a critical role in characterizing these limbic-cortical pathways (Brody, et al., 2001; Drevets, 1999; Mayberg, 1994, 2003). Our own studies have demonstrated consistent involvement of the subgenual cingulate (Cg25) in both acute sadness and antidepressant treatment effects, suggesting a critical role for this region in modulating negative mood states (Mayberg et al., 1999; Seminowicz et al., 2004). In support of this hypothesis, a decrease in Cg25 activity is reported with clinical response to different antidepressant treatments including specific serotonin reuptake inhibitor (SSRI) antidepressant medications, electroconvulsive therapy (ECT), re-
+
+Neuron 652
+
+petitive transcranial magnetic stimulation (rTMS), and ablative surgery (Dougherty et al., 2003; Goldapple et al., 2004; Malizia, 1997; Mayberg et al., 2000; Mottaghy et al., 2002; Nobler et al., 2001).
+In addition, Cg25 connections to the brainstem, hypothalamus, and insula have been implicated in the disturbances of circadian regulation associated with depression (sleep, appetite, libido, neuroendocrine changes) (Barbas et al., 2003; Freedman et al., 2000; Jurgens and Muller-Preuss, 1977; Maclean, 1990; Ongur et al., 1998). Reciprocal pathways linking Cg25 to orbitofrontal, medial prefrontal, and various parts of the anterior and posterior cingulate cortices form the neuroanatomical substrates by which primary autonomic and homeostatic processes influence various aspects of learning, memory, motivation and reward—core behaviors altered in depressed patients (Barbas et al., 2003; Carmichael and Price, 1996; Haber, 2003; Vogt and Pandya, 1987).
+Recent advances in the surgical treatment of Parkinson’s disease have demonstrated that chronic high-frequency deep brain stimulation (DBS) in pathologically overactive brain circuits produces profound clinical benefits (Benabid, 2003; Lang and Lozano, 1998). We have previously shown that clinically effective DBS in the basal ganglia produces both local and remote changes in neural activity as assessed by positron emission tomography (PET) (Davis et al., 1997). We have now leveraged these observations to investigate whether DBS could be used to modulate pathological brain circuits in depression.
+We tested the hypothesis that the use of chronic stimulation to modulate Cg25 gray matter and interconnected frontal and subcortical regions could reverse the pathological metabolic activity in these circuits and produce clinical benefits in patients with treatmentresistant depression (TRD). This study reports the use of high-frequency subgenual cingulate white matter (Cg25WM) DBS in six TRD patients.
+Results
+Patients All six patients met DSM IV-TR criteria for major depressive disorder (MDD) with a major depressive episode (MDE) of at least 1 year duration diagnosed by structured clinical interview for DSM IV-TR (First et al., 2001), and all had severe depression with a minimum score at entry of 20 on the 17 item Hamilton Depression Rating Scale (HDRS) (Hamilton, 1960). Each met stringent criteria for treatment resistance defined as failure to response to a minimum of four different antidepressant treatments, including medications, evidencebased psychotherapy, or electroconvulsive therapy, administered at adequate doses and duration during the current episode (Fava, 2003; Sackeim et al., 2001; Thase and Rush 1997). Subjects’ demographic characteristics are presented in Table 1.
+Intraoperative Findings DBS electrodes were implanted in Cg25WM under local anesthesia using MR imaging guidance (Figure 1, row 1: A/B and row 2: C/D) (Schaltenbrand and Wahren,
+
+1977). A protocol similar to that used in evaluating stimulation thresholds for efficacy or adverse effects in patients with Parkinson’s disease was adopted for use in these patients (Benabid, 2003; Davis et al., 1997; Lang and Lozano, 1998). The spontaneous report or occurrence of any acute behavioral, cognitive, motor, or autonomic effects was sought during blinded, sequential stimulation of successive, individual contacts (monopolar stimulation, 60 µs pulsewidths, 130 Hz). Voltage was progressively increased up to 9.0 V at each of the eight electrode contacts (four per side), as tolerated. Voltage was increased by approximately 1.0 V every 30 s, with a 15–20 s pause between adjustments, allowing time for patients to identify an effect, if present. Patients reported no motor or sensory phenomena that cued them as to whether current was either on or off.
+All patients spontaneously reported acute effects including “sudden calmness or lightness,” “disappearance of the void,” sense of heightened awareness, increased interest, “connectedness,” and sudden brightening of the room, including a description of the sharpening of visual details and intensification of colors in response to electrical stimulation. Reproducible and reversible changes in these phenomena, time locked with stimulation, were observed at specific contacts and parameters for individual patients and not with sham or subthreshold stimulation at those same sites. Increases in motor speed, volume, and rate of spontaneous speech and improved prosody were observed. In addition, changes in both positive and negative affective rating scores (PANAS scale) (Watson and Clark, 1988) occurred coincident with the patients’ spontaneous statements. There were no overt adverse affective or autonomic changes with stimulation at settings producing these improvements. However, all patients experienced stimulation dose-dependent adverse effects including lightheadedness and psychomotor slowing at high settings (over 7.0 Volts), most often seen at the superior electrode contact.
+Postoperative Findings: Short-Term Stimulation Effects Postoperative MR imaging confirmed the placement of the DBS electrodes within the subgenual cingulate white matter (Cg25WM) bilaterally as targeted. (Figure 1, row 3: E/F). During the 5 day postoperative period, and prior to placement of the pulse generator, daily short sessions of DBS were used to refine final contact selection and stimulation parameters. Systematic testing of individual and paired unilateral and bilateral contacts was performed with a variety of parameters (monopolar [contact anode; case cathode] and bipolar, pulsewidth of 30–250 ␮s, frequency of 10–130 Hz, progressive increase in voltage from 0.0–9.0 Volts). Acute behavioral changes were again observed during these test sessions. Reproducible improvements in interest, motor speed, activity level, and PANAS scores (reduced negative, increased positive scores) were seen during these stimulation sessions generally using the same contacts and parameters that induced effects in the operating room.
+To control for the possibility of a placebo effect, patients were blinded as to which contact was being stim-
+
+Deep Brain Stimulation for Depression 653
+
+Table 1. Patient Demographics
+
+Patient #
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+Group
+
+Gender
+
+F
+
+Current age
+
+48
+
+Age MDD onset
+
+18
+
+Current episode (yrs)
+
+1.5
+
+# Lifetime episodes
+
+12
+
+Hamilton depression score
+
+29
+
+(17 item)
+
+Past ECT
+
+no
+
+Past psychotherapy
+
+yes
+
+Family history MDD
+
+yes
+
+DSM IV diagnosis
+
+UP
+
+Melancholic subtype
+
+yes
+
+Current medicationsa
+
+1–5
+
+M
+
+F
+
+59
+
+45
+
+45
+
+21
+
+3
+
+6
+
+9
+
+3
+
+20
+
+27
+
+yes
+
+yes
+
+yes
+
+yes
+
+no
+
+yes
+
+BPII
+
+UP
+
+no
+
+yes
+
+1, 3
+
+1–4
+
+M
+
+M
+
+48
+
+37
+
+40
+
+19
+
+8
+
+10
+
+1
+
+2
+
+24
+
+26
+
+yes
+
+yes
+
+yes
+
+yes
+
+yes
+
+yes
+
+UP
+
+UP
+
+no
+
+yes
+
+1, 2, 4, 6, 7 1, 7
+
+F 39 34 5 1 25
+yes yes yes UP yes 1, 4, 5, 7
+
+3F/3M 46 ± 8 29.5 ± 12 5.6 ± 3 4.7 ± 5 25 ± 3
+5 of 6 6 of 6 5 of 6 5 UP 4 of 6
+
+MDD, major depressive disorder; ECT, electroconvulsive therapy; DSM IV, Diagnostic and Statistical Manual of Mental Disorders, Version IV; UP, unipolar; BP, bipolar. a Current medications: 1, SSRI/SNRI; 2, bupropion; 3, atypical antipsychotic; 4, benzodiazepine; 5, stimulant; 6, mood stabilizer; 7, other.
+
+ulated and to the parameter settings. Sham stimulation using either 0.0 Volts or subthreshold stimulation failed to elicit any changes in behavior. Randomized, acute off-on-off-on trials of varying short periods of stimulation (1–5 min) at optimal settings produced consistent stimulation-locked behavioral improvements. Unexpectedly, with application of stimulation for progressively longer periods (from 1 to 3 hr), there was an increasing and correspondingly longer carry-over of the beneficial
+Figure 1. DBS Electrode Placement in the Subgenual Cingulate White Matter (Row 1) Sagittal (left, [A]) and coronal (right, [B]) views of the subgenual cingulate target (white circles) localized on the Schaltenbrandt neurosurgical atlas. (Row 2) Sagittal (C) and coronal (D) views of the DBS target mapped on a high-resolution T1 MRI scans for one patient. (Row 3) Sagittal (E) and coronal (F) views of postop MRI scans demonstrating the location of electrodes for a single subject with the ventral contact centered within the predetermined location. sgCg, subgenual cingulate; cc, corpus callosum; g, genu of the corpus callosum; ac, anterior commissure; white circles, electrode target in sgCg white matter; white and black arrows, sgCg gyrus; dotted line, anterior-posterior position of the electrode relative to the ac-g line.
+
+behavioral effects beyond cessation of the stimulation. These longer stimulation periods were free of adverse effects and were the basis for selecting the stimulation settings used chronically.
+Postoperative Selection of Stimulation Parameters Patients were discharged home with stimulation “off” following implantation of the pulse generators. One week later, chronic DBS was initiated using the lowest voltage and specific electrode contacts that had previously produced acute behavioral effects. Parameters of stimulation were reassessed at weekly intervals with minor adjustments in voltage made to optimize clinical effects. Following a 4 week period of parameter optimization, settings generally remained stable for the remainder of the 6 month follow-up period. The mean stimulation parameters used in this group at 6 months were 4.0 Volts, 60 µs pulsewidths, at a frequency of 130 Hz.
+Efficacy of Chronic Bilateral Cg25WM DBS Standard criteria for antidepressant response and remission were applied (Frank et al., 1991). Response was defined as a decrease in the HDRS-17 score of 50% or greater from the pretreatment baseline; remission as an absolute HDRS-17 score <8. One month postop, two patients met criteria for clinical response (Table 2). By 2 months, five of the six patients met the defined response threshold. Continued antidepressant response was seen in four of these subjects, with some variability up to 5 months. At the 6 month study endpoint, antidepressant response was maintained in four subjects (66%). Moreover, three of these subjects achieved remission or near remission of illness. Consistent with the improvements seen in the HDRS-17 scores, comparable changes were also demonstrated on other quantitative depression scales (see Table 3). Presurgical medications and doses were unchanged throughout the 6 month study.
+Normalization of early-morning sleep disturbance (middle insomnia commonly seen in MDD) occurred in the first week of chronic DBS in four of the six subjects (patients 1, 3, 5, and 6) and was the first notable sus-
+
+Neuron 654
+
+Table 2. Hamilton Depression Rating Scale, HDRS-17, Scores over Time for Each Subject
+
+Time
+
+Hamilton Scorea
+
+Pt 1b
+
+Pt 2c
+
+Pt 3b
+
+Pt 4c
+
+Preop baseline
+
+29
+
+1 week postop (acute stimulation)
+
+5
+
+2 weeks postop (DBS off)
+
+9
+
+1 month
+
+10
+
+2 months
+
+13
+
+3 months
+
+2
+
+4 months
+
+4
+
+5 months
+
+5
+
+6 months
+
+5
+
+22
+
+29
+
+24
+
+10
+
+12
+
+18
+
+13
+
+23
+
+18
+
+14
+
+17
+
+20
+
+11
+
+12
+
+18
+
+15
+
+14
+
+25
+
+9
+
+12
+
+24
+
+18
+
+7
+
+23
+
+15
+
+9
+
+23
+
+a Clinical response: decrease HDRS score >50%. Clinical remission: absolute HDRS score <8. b Clinical responders. c Clinical nonresponders.
+
+Pt 5b
+26 17 22 22 10 7 6 8 6
+
+Pt 6b
+25 12 n/a 12 12 14 12 n/a 12
+
+tained symptom change. Over the initial few weeks of continuous DBS, increased energy, interest, and psychomotor speed were additionally reported, with effects generally appreciable a day or two following stimulation adjustments. Patients and their families described renewed interest and pleasure in social and family activities, decreased apathy and anhedonia, as well as an improved ability to plan, initiate, and complete tasks that were reported as impossible to attempt prior to surgery. While all patients continued to report feeling “moderately depressed” for several weeks, several also indicated that the sensations of “painful emptiness” and “void” remitted almost immediately following onset of stimulation at the optimal contacts.
+Two patients failed to show a sustained antidepressant response at the 6 month time point (Table 2). One of these subjects, patient 2, met criteria for clinical response in the first 4 months; however, the level of improvement fluctuated over time, and the maximal benefit could not be recaptured with either a change in the stimulation contact or adjustments in stimulation parameters after 4 months. Patient 4 had no appreciable clinical improvement with chronic stimulation despite trials with various combinations of contacts and stimulation parameters. Of note, the prominent sleep disturbances in these two patients (difficulty falling asleep [patient 4] and hypersomnia [patient 2]) were not affected by DBS, unlike the middle insomnia improvements seen in the other four subjects.
+
+Control Condition: Blinded DBS Discontinuation We next considered that the long-term benefit in the responders could be related to placebo or nonspecific factors. To examine this possibility, after a period of continuous stimulation for 6 months, the effects of cessation and reintroduction of stimulation was examined in patient 1, who had shown the earliest, most robust, and best-sustained clinical response (Table 2). Following blinded discontinuation of bilateral stimulation (stimulators set at 0.0 V), antidepressant effects were maintained for 2 weeks (HDRS = 9; PANAS positive score = 48 of out of a possible 50, PANAS negative score = 10 out of a possible 50 versus 6 month score positive = 50, negative = 10). In weeks 3 and 4 without stimulation, the improvements in mood were also sustained (HDRS = 10). In the context of this sustained euthymia, however, there was a progressive change in behavior characterized by loss of energy and initiative, impaired concentration, and reduced activities, reflected by a drop in the PANAS positive score to 37, without appreciable change in the negative score (negative = 13). At this point, and under continued blinded conditions, the stimulator was turned back on to the previous best settings (3.5 V, PW 60, 130 Hz). This resulted in normalization of symptoms within approximately 48 hr and return to prediscontinuation activities within 1 week (HDRS = 6, PANAS positive = 50, negative = 10 after 1 week of restarting chronic DBS). This remission was sustained at 6 weeks of resu-
+
+Table 3. Psychiatric Ratings: Patient Subgroups
+
+All Patients (n = 6) Mean Scores (SD)
+
+Responders (n = 4) Mean Scores (Range)
+
+Preop 1 mo 3 mo 6 mo Preop
+
+1 mo 3 mo
+
+HDRS 17 25.8
+
+(2.8)
+
+HDRS 24 34.6
+
+(1.9)
+
+MADRS 33.3
+
+(4.5)
+
+CGI
+
+6.2
+
+(0.4)
+
+15.8 12.8 11.5 27.3
+
+(4.7) (7.8) (6.8) (2.1)
+
+25.8 21.2 18.8 35.7
+
+(9.1) (8.7) (10.6) (1.5)
+
+23
+
+17.4 18.5 33.8
+
+(8.5) (10.1) (10.4) (6.7)
+
+5.2
+
+4.2
+
+4.0
+
+6.3
+
+(0.8) (0.6) (1.7) (0.5)
+
+15.3
+
+9.3
+
+(5.4)
+
+(5.9)
+
+25
+
+15.3
+
+(12.5) (3.5)
+
+20.7
+
+11
+
+(11.1) (3.6)
+
+4.7
+
+3.3
+
+(0.6)
+
+(1.0)
+
+Note: f/u MADRAS and HDRS 24 scores not available for patient 6.
+
+6 mo
+7.8 (3.1) 11.3 (2.9) 9.7 (3.8) 3.0 (0.8)
+
+Nonresponders (n = 2) Mean Scores (Range)
+
+Preop
+
+1 mo
+
+3 mo
+
+23 (22–24) 33 (32–34) 33 (31–34) 6 (6)
+
+17 (14–20) 27 (24–30) 27 (25–28) 6 (6)
+
+20 (15–25) 30 (27–33) 27 (21–33) 6 (6)
+
+6 mo
+19 (15–23) 30 (27–33) 29 (25–33) 6 (6)
+
+Deep Brain Stimulation for Depression 655
+
+Figure 2. PET Scans Regional cerebral blood flow changes (CBF PET) in TRD patients at baseline (row 1) and after 3 months (row 2) and 6 months (row 3) of successful treatment with continuous DBS. Sagittal (left) and coronal (right) views. Baseline CBF abnormalities are seen relative to age- and gender-matched healthy control subjects (NC): increases in subgenual cingulate (Cg25) and decrease in dorsolateral prefrontal (F9), ventrolateral prefrontal (F47) and anterior cingulate (Cg24) cortices (row 1, patients 1–5). Three months of DBS relative to baseline (row 2, patients 1, 3, and 5): decreases in Cg25, hypothalamus (Hth), anterior insula (ins), medial frontal (mF10) and orbital frontal (oF11); increases in prefrontal (F9/46) and dorsal cingulate (cg24). This same pattern is maintained at 6 months, although additional increases are seen in the brainstem (bs) (row 3). Slice location is in millimeters relative to anterior commissure. Numbers are Brodmann designations. L, left. Significant CBF increases in red; decreases in blue (p < 0.001).
+med stimulation at comparable levels to the prediscontinuation baseline (HDRS = 4). Taken together, these findings suggest that stimulation of Cg25WM produces long-term improvements in mood that are sustained beyond the period of active stimulation. The cognitive aspects of depression (i.e., poor concentration, apathy) also show sustained improvements, but the observed changes appear to have a different biology and kinetics, decaying closer to the cessation of stimulation.
+PET Measures of Regional Blood Flow: Baseline and Treatment Effects Positron emission tomography was used to characterize the activity in brain networks involved in TRD and to provide a quantitative measure of brain changes associated with stimulation. Baseline, resting-state, cerebral blood flow (CBF) PET scans were performed in the first five study subjects and compared to five age- and sex-matched, nondepressed healthy volunteers. Depressed patients showed a unique pattern of elevated subgenual cingulate (Cg25) blood flow at pretreatment baseline, not previously reported in studies of nontreatment resistant patients. In addition, and consistent with past studies of depressed patients (reviewed in Mayberg, 2003), CBF decreases in prefrontal (BA9/46), premotor (BA6), dorsal anterior cingulate (BA24), and anterior insula were also identified (Figure 2 row 1; Ta-
+
+ble 4, left). A similar pattern of hyperactive Cg25 and hypoactive prefrontal cortex was seen in both the DBS responders and nonresponders (data not shown). Responder versus nonresponder differences at baseline were seen primarily in the magnitude of the prefrontal decreases (responders > nonresponders). Responders also showed an area of hyperactivity in the medial frontal cortex (BA10) not seen in the nonresponders; however, the small sample size precluded further analysis.
+The time course of CBF changes with chronic stimulation of Cg25WM was also examined to establish the relationship of regional brain functioning to behavioral effects. Serial scans were performed after 3 and 6 months in four of the first five patients (1, 2, 3, and 5). Group analyses showed local CBF decreases in Cg25 and adjacent orbital frontal cortex (BA11) after 3 months of stimulation. The long-term responders (patients 1, 3, and 5) showed additional CBF changes at both 3 and 6 months: decreases in hypothalamus, anterior insula, and medial frontal cortex (BA10) as well as increases in dorsolateral prefrontal (BA9/46), dorsal anterior (BA24) and posterior cingulate (BA31), premotor (BA6), and parietal (BA40) regions (Table 4; Figure 2, rows 2 and 3). Neither the medial frontal (BA10) decreases nor the dorsal prefrontal (BA9/46), anterior cingulate (BA24), or parietal (BA40) increases were seen in the nonresponder (patient 2) at either 3 or 6 months (data not shown).
+The stimulation-induced CBF increases in prefrontal cortex (BA9/46) normalized pretreatment abnormalities. Similarly, the Cg25 decreases not only normalized pretreatment dysfunction, but activity in this region with DBS was actually suppressed below that of the controls at both time points, a change also observed in our previous studies of PET scan changes with response to antidepressant medications (Mayberg et al., 2000). Unlike medication, brainstem changes were not seen early with DBS, although changes in the pons were demonstrated at the 6 month time point. Overall, regional changes seen after 3 months were maintained at 6 months in all three responders (Table 4, middle and right sections).
+Neuropsychological Testing A comprehensive neuropsychological battery was performed prior to surgery and after 3 and 6 months of stimulation, coincident with the day of the PET scan sessions. The test battery was designed to differentiate dorsolateral, superior medial, and ventrolateral/orbital frontal behaviors, potentially affected by chronic Cg25WM DBS. Serial testing further allowed differentiation between subacute surgical effects, chronic stimulation effects, and correlations with mood change.
+At baseline, all patients were functioning intellectually in the average range, consistent with estimates of premorbid IQ. Inspection of results over time indicates that surgery itself did not have a negative impact on general cognition (i.e., IQ, language, basic visual-spatial function). Moreover, many specific areas that were below average or impaired at baseline were significantly improved (or trending due to low power) following 6 months of DBS [responders: visuo-motor function, particularly with the nondominant hand, t(2) = 5.8,
+
+Neuron 656
+
+Table 4. PET Blood Flow Changes
+
+Baselinea Patients (n = 5) vs Controls (n = 5)c
+
+3 Months DBS vs Baselineb,c Responders (n = 3)
+
+6 Months DBS vs Baselineb,c Responders (n = 3)
+
+xyz
+
+xyz
+
+z
+
+Coordi-
+
+z
+
+Coordi-
+
+Region BA
+
+⌬ Score nates
+
+Region BA
+
+⌬ Score nates
+
+Region BA
+
+⌬
+
+sgCg Hth
+aIns mFr
+
+25 L [ 5.16 −10 28 −12 sgCg Y −3.67 0 4 −12 OrbF
+L [ 6.05 −38 22 14 Ins 10 R [ 6.22 26 42 16 mFr
+
+25
+
+Y −4.75 −2 8 −10 sgCg
+
+Hth
+
+32/10
+
+Y −5.1 0 34 −8
+
+OrbF
+
+32/10 R Y −4.84 6 46 2
+
+10
+
+R Y −3.98 22 60 −10
+
+R Y −3.76 60 10 −6 Ins
+
+L Y −5.74 −50 16 −16
+
+10
+
+L Y −4.19 −22 62 22 mFr
+
+10
+
+R Y −5.95 34 56 26
+
+24
+
+R Y −5.86 12 22 26
+
+pCg DLPF VLPF dCg
+
+mFr 9
+
+Fr pole 9
+
+31 L [ 4.43 −8 −54 26 pCg 31
+
+R [ 3.88 10 −56 26
+
+31
+
+9 L Y −7.07 −38 28 30 DLPF 9
+
+R Y −4.92 40 20 30
+
+47 L Y −4.66 −52 42 2
+
+46
+
+R Y −4.98 32 26 0
+
+46
+
+24b L Y −5.39 −2 18 28 dCg 24b
+
+PM
+
+6
+
+6
+
+R Y −5.57 12 46 34 mFr L Y −4.87 −5 56 34 L Y −5.96 −28 54 43 R Y −5.19 18 52 34 L [ 4.65 −10 −72 20 R [ 3.51 24 −68 14 L [ 4.05 −26 16 30 DLPF
+
+L [ 4.73 R [ 4.91 L [ 4.06 L [ 4.21 R [ 5.71
+
+−38 32 18 34 22 16 −2 10 28 dCg −52 −4 32 PM 50 0 30
+Par
+
+Caudate aThal n. acc
+
+R Y −4.69 14 2 12 R Y −4.58 12 −6 14 L Y −4.68 −4 10 −4
+
+PAG
+
+25
+
+Y
+
+Y
+
+32/11 L Y
+
+11/10 L Y
+
+RY
+
+LY
+
+10
+
+LY
+
+10
+
+LY
+
+24
+
+RY
+
+24
+
+LY
+
+9
+
+RY
+
+9
+
+RY
+
+9 46/9 46 46 24b 6 6 39 39
+
+R[ L[ R[ L[ L[ L[ R[ L[ R[ RY
+
+a Patients 1–5 versus five age- and gender-matched healthy controls. b Patients 1, 3, and 5. c SPM t maps. Significance threshold: p < 0.001 uncorrected (t > 3.27); cluster size >50 voxels.
+
+z Score
+−3.88 −4.63 −4.97
+−4.41 −4.07 −5.67 −3.53 −4.27 −4.19 −3.79 −3.95 −3.34
+4.63 3.79 4.13 3.84 3.58 3.34 5.92 4.13 4.01 −4.66
+
+xyz Coordinates
+10 20 −4 −2 2 −4 −10 30 −10
+−20 36 −10 58 16 −6 −50 20 −6 −14 56 38 −28 56 32 12 20 20 −16 24 22 6 52 30 2 46 40
+38 12 34 −34 18 24 32 24 10 −38 26 10 −4 4 34 −48 2 22 50 4 28 −36 −56 18 44 −56 10 6 −36 −10
+
+p = 0.014; dorsolateral frontal function (verbal fluency), t(2) = 10.0, p = 0.005; ventral prefrontal function (fewer errors on object alternation task), t(2) = 1.7, p = 0.12; and orbital frontal function (fewer risky choices on the gambling task), t(2) = 6.3, p = 0.012]. Importantly, there were no acquired impairments in orbital frontal functioning to indicate local DBS adverse effects (Kartsounis et al., 1991; Dalgleish et al., 2004). Nonresponders had normal performance on all tests at baseline, with the exception of slowed psychomotor speed (consistent with effects of depression). Repeat testing was only available for one of these subjects.
+Adverse Events Patients 2 and 4 developed local infections related to the connector cable at the chest (patient 2) or scalp (patient 4). Both were treated with intravenous antibiotics. Because of persistent infection in the absence of clinical benefit, the devices were explanted at approximately 6 months with resolution of their infections. No worsening of depressive symptoms was observed in either subject following explantation. Patient 5 developed skin erosion over the hardware and also received antibiotics. While no definitive etiology of these infections was identified, the protocol was modified after patient 5 to implant both the electrodes and pulse genera-
+
+tor in a single surgical session, thus eliminating the several-day period where the electrodes remained externalized.
+Discussion
+In this study, we have demonstrated that high-frequency DBS of the Cg25WM can produce striking behavioral changes in patients with TRD. Acute behavioral effects were time locked to stimulation intraoperatively and during short-term testing sessions. Furthermore, sustained clinical improvements decreased with blinded discontinuation of chronic DBS and were recaptured with reinstitution of stimulation, providing evidence as to the specificity of DBS-mediated changes. PET scan data further indicate that Cg25WM DBS has profound effects on the cerebral networks involved in depression and suggest that reversal of baseline abnormalities correlates with antidepressant benefits. While the number of subjects is small, four of six patients (66%) achieved sustained clinical response or remission at the end of 6 months without changes in concurrent medications. This response rate is striking given the extreme treatment refractoriness of this patient population and the well-documented low and poorly sustained placebo response rates of such pa-
+
+Deep Brain Stimulation for Depression 657
+
+tients (Fava, 2003; Keller, et al., 1992; Kennedy and Lam, 2003; Thase and Rush, 1997; Sackeim et al., 2001).
+The identified CBF change pattern associated with DBS-induced antidepressant effects has important similarities to other therapies for depression. The pattern of reduced activity in the Cg25 and hypothalamus together with prefrontal (BA9) and brainstem increases during DBS are identical to changes reported with antidepressant response to medication (Mayberg et al., 2000). On the other hand, the medial frontal (BA10)/ orbital frontal (BA11) decreases and dorsal cingulate (BA24) increases are similar to the change pattern observed with response to cognitive behavioral therapy (Goldapple et al., 2004). The observation that the changes with DBS seen here features both the antidepressant medication and the CBT- induced changes suggests that Cg25WM DBS acts at a critical node of a distributed mood-regulatory network involved in major depression (Mayberg, 2003; Seminowicz et al., 2004).
+The baseline pattern of subgenual cingulate hyperactivity in combination with frontal hypoactivity described here in this TRD patient group is a finding that is in contrast to the hypoactivity reported in a more rostral region of subgenual medial prefrontal cortex in familial bipolar and unipolar depressed patients (Drevets et al., 1997). This distinction suggests important differences across subtypes of depression that are potentially relevant to the pathophysiology of major depressive disorders and perhaps their treatment.
+Although the mechanisms of action of DBS are incompletely understood, it is clear that stimulation produces both local and remote regional effects (Davis et al. 1997). The behavioral and neuroimaging changes in this study are consistent with suppression of the abnormally elevated baseline Cg25 activity (Figure 2). Possible mechanisms include DBS-induced activation of inhibitory GABA-ergic afferents and/or high frequency stimulation induced synaptic or metabolic failure (Gabbott et al., 1997; Lozano et al., 2002; McIntyre et al., 2004). The remote cortical and brainstem increases could occur as an indirect consequence of trans-synaptic effects in response to decreased activity in Cg25, or direct anterograde or retrograde activation of WM projections coursing through the stimulation field (Barbas et al., 2003; Carmichael and Price, 1996; Haber, 2003; Freedman et al., 2000; Ongur et al., 1998; Jurgens and Muller-Preuss, 1977; Vogt and Pandya, 1987).
+In context of these putative mechanisms, the sudden mood change seen with stimulation in the operating room is consistent with an acute deactivation of a hyperactive Cg25, the region immediately adjacent to the area of stimulation. This region has been previously shown to mediate negative mood (increases with sadness, decreases with alleviation of depressive dysphoria) (Mayberg et al., 1999). Early effects of DBS on sleep, energy and motivation also suggest changes in activity of the hypothalamus and brainstem, regions monosynaptically connected to Cg25 (Barbas et al. 2003; Freedman et al., 2000; Jurgens and Muller-Preuss, 1977; Ongur et al., 1998). The more global changes in functioning, i.e., resolution of the depressive syndrome, as well as the prolonged washout time and associated persistent benefit we have observed beyond
+
+the cessation of stimulation, may reflect long-term changes in neural network properties as a consequence of prolonged stimulation (Carmichael and Price, 1996; Vaidya and Duman, 2001; Haber, 2003; Vogt and Pandya, 1987). This phenomenon of ongoing benefit after DBS discontinuation has been observed in other disorders targeting different brain circuits, including epilepsy, essential tremor, dystonia, and Parkinson’s disease (Hodaie et al. 2002, Kumar et al. 2003; Deep-Brain Stimulation for Parkinson’s Disease Study Group, 2001; Vidailhet et al., 2005).
+Despite these encouraging results, there are limitations to this first study of Cg25WM DBS for TRD. Sample size was small, follow-up was limited, and no sham surgery or systematic placebo control arm was used. There was also inadequate power to identify demographic, clinical, subtype, neuropsychological, or imaging markers that might predict response. It may be relevant that all four responders had their first major depressive episode (MDE) before age 35 and had predominant melancholic features whereas the two nonresponders had first episodes in their 40s and had more atypical symptoms (Table 1). Differences in electrode targeting and placement and stimulation parameters may have also contributed to the observed response variance. The relative contribution of these various factors will require testing of additional subjects. In the future, the possible interactions between DBS and antidepressant medications need to be examined.
+In conclusion, Cg25WM DBS appears to be efficacious for TRD. The treatment is titratable; there are objective imaging correlates of response effects; and the procedure is well tolerated. This approach may represent an effective, novel intervention for severely disabled patients with treatment-resistant depression.
+Experimental Procedures
+Patients This pilot study included six patients with treatment-resistant major depression, referred by mood disorder specialists (Table 1). The clinical diagnosis of major depressive disorder, major depressive episode (MDD-MDE) was independently confirmed by two psychiatrists and a research coordinator using the Structured Clinical Interview for DSM-IV (First et al., 2001). Patients were selected for surgery because they were resistant to all available therapeutic options. All had failed to respond to a minimum of four different classes of antidepressant medications, prescribed at maximal tolerable doses. Failed treatments included SSRI, venlafaxine, bupropion, monoamine oxidase inhibitor, and tricyclic antidepressants, as well as augmentation strategies using lithium, atypical antipsychotics, and anticonvulsants. Five of the six patients had received electroconvulsive therapy, and all had attempted cognitive behavioral therapy without clinical improvement. Patients with cerebrovascular risk factors or a previous stroke; documented head trauma or neurodegenerative disorders; other Axis I psychiatric diagnoses including schizophrenia, bipolar disorder, panic disorder, obsessive compulsive disorder, or evidence of global cognitive impairment were excluded. Patients with psychotic symptoms, current history of substance abuse, daily use of alcohol in the previous 3 months, or active suicidal ideations were also excluded. Other exclusion criteria included age over 60, pregnancy (risk of radiation exposure from the PET scans), general contraindications for DBS surgery (cardiac pacemaker/defibrillator or other implanted devices), and inability or unwillingness to comply with long-term follow-up. Final selection was made by consensus of the investigator team. Additional subjects were screened but either did
+
+Neuron 658
+
+not meet inclusion/exclusion criteria or were accepted but declined.
+Informed Consent Process The study protocol was reviewed and approved by three separate ethics committees at the University of Toronto: Toronto Western Hospital, Centre for Addiction and Mental Health, and Baycrest Centre for Geriatric Care. All potential subjects were referred by a psychiatrist that was not involved in the research protocol. They were then seen independently by two psychiatrists (V.V. and S.K.) for diagnostic assessment and if potentially eligible, introductory discussions took place. In all cases, the referring psychiatrist was involved in discussions of the potential benefits and the potential risks associated with DBS. During subsequent meetings with one of the principal investigators (H.S.M.), a family member was invited to attend and did so in all cases. Only after these discussions, were interested candidates referred to the neurosurgical principle investigator (A.L.), who explained the surgical procedure. Interested candidates were offered informed consent forms to read and further discuss as needed. The average time from initial assessment to signing consent was 6–8 weeks.
+Surgery The general surgical procedure for the implantation of DBS electrodes has been previously described (Abosch and Lozano, 2003). A stereotactic frame (Leksell G; Elekta, Inc., Atlanta, GA) was affixed to the patient’s head on the morning of surgery, and preoperative MR images were obtained (Signa, 1.5 tesla; General Electric, Milwaukee, WI). The x, y, and z coordinates of the anterior (AC) and posterior commissures (PC) were determined using axial 3D T1 MR images. To target the subgenual cingulate white matter target, a midline T2 sagittal image was chosen, and the cingulate gyrus below the genu of the corpus callosum was identified (Figure 1, row 1) (Schaltenbrand and Wahren, 1977). A line was traced from the most anterior aspect (genu) of the corpus callosum to the anterior commissure and the midpoint was selected (Figure 1, row 2, left). The T2 coronal section correspondent to the plane of this midpoint was identified, and the coordinates of the transition between the gray and white matters of area 25 were calculated (Figure 1, row 2, right).
+In the operating room under local anesthesia, a burr hole was drilled 2 cm from the midline in front of the coronal suture. The underlying dura mater was opened, and the exposed pial surface coagulated. Tisseal (Immuno, Vienna, Austria) was used to prevent cerebrospinal fluid egress and minimize brain shift. The Leksell arc was attached to the head frame and set to the target coordinates. Microrecordings were started 10 mm above the target using electrodes made from parylene-C-insulated tungsten wires and plated with gold and platinum. Tip lengths ranged from 15 to 40 ␮m and impedances ranged from 0.2 to 1.5 M⍀. Cell activity was amplified (DAM 80 WPI Instruments) with a gain of 1000 and initially filtered to 0.1–10 kHz. The signal was displayed on an oscilloscope and directed to a window discriminator (Winston Electronics) and an audio monitor (Grass AM 8, with noise clipping circuit). In the present study, microelectrode mapping was mainly used to confirm the anatomic location of the gray and white matters of area 25, characterized respectively by the recording of neuronal activity and cell sparse areas. The transition between these two regions was chosen as the final target for the implantation of the electrodes. Final electrode location was confirmed by postoperative MRI (example, Figure 1, row 3).
+DBS quadripolar electrodes (Medtronic 3387; Medtronic, Inc., Minneapolis, MN) were implanted bilaterally. Each of the four electrode contacts was tested for adverse effects and clinical benefits. These contacts were numbered from 0 to 3 (right hemisphere) and 4 to 7 (left hemisphere), 0 and 4 being the most ventral and 3 and 7 the most dorsal contacts. The electrodes remained externalized for 5–7 days for clinical testing. They were then connected to a pulse generator (Kinetra, Medtronic, Minneapolis, MN) that was implanted in the infraclavicular region under general anesthesia. Prophylactic antibiotics were used for 24 hr after each of the surgical procedures.
+
+Clinical Evaluation and Follow-Up Clinical efficacy was evaluated using standardized ratings by the study psychiatrist blinded to the current stimulus parameters and/or changes. Standardized ratings included the Hamilton Depression Rating Scale (HDRS-17 and 24 item versions) (Frank, et al., 1991), the Montgomery Asberg Depression Scale (MADRS) (Montgomery and Asberg, 1979), the Clinical Global Impressions Scale (CGI) (National Institute of Mental Health, 1970), and the Positive and Negative Affective Scale (PANAS) (Watson and Clark 1988) (Table 3). Ratings were performed weekly for the first 3 months and biweekly until the study endpoint at 6 months, following baseline assessments at enrollment and 1 week prior to surgery. Medications were unchanged throughout the 6 month follow-up period.
+PET Scanning Acquisition and Data Analysis Regional cerebral blood flow PET scans (rCBF) were acquired preoperatively and after 3 and 6 months of chronic DBS (Fox et al., 1984). Five CBF scans were acquired in each subject at each time point. A comparative scan-set (one time point only) was also acquired under identical scanning conditions in a group of five ageand sex-matched healthy volunteers. All scans were acquired with subjects resting, with eyes closed and no explicit cognitive or motor instructions. Scans were acquired on a GEMS/Scanditronix 2048b camera (15 parallel slices; 6.5 mm center-to-center interslice distance) using measured attenuation correction (68Ge/68Ga transmission scans). rCBF was measured using the bolus [15O]water technique (35 mCi 15O-water dose/scan; scan duration 60 s) (Mayberg et al., 1999). Scans were spaced a minimum of 11 min apart to accommodate radioactive decay to background levels. Mood state (sadness and anxiety) was assessed at the end of each scan using a seven-point analog scale and the PANAS to verify behavioral stability over the course of the five scans (Watson and Clark, 1988).
+Statistical analyses were performed using SPM99 (Wellcome Department of Cognitive Neurology, London, UK) implemented in Matlab (version 5.3, Mathworks Inc., Sherborn, MA). PET scans were first realigned and then spatially normalized into standard threedimensional space relative to the anterior commissure using the MNI ICBM 152 stereotactic template within SPM99. The images were then corrected for differences in the whole-brain global mean, and smoothed using a Gaussian kernel to a final in-plane resolution of 10 mm at full-width at half-maximum. Baseline abnormalities (patients versus controls) and changes with chronic DBS (3 months versus baseline, 6 months versus baseline) were assessed using general linear models (peak voxel threshold p = 0.001; cluster threshold 50 voxels (voxel = 2 mm3) (Worsley et al., 1996). Resulting t values were lastly converted to z scores for interpretation. Brain locations are reported as x, y, z coordinates in MNI space with approximate Brodmann areas (BA) identified by mathematical transformation of SPM99 coordinates into Talairach space (http:// www.mrc-cbu.cam.ac.uk/Imaging/) (Table 3).
+Neuropsychological Testing A comprehensive battery of neuropsychological tests was administered at three time points to establish baseline intellectual and cognitive abilities prior to surgery/stimulation and to monitor for changes over time (3 months, 6 months). Tests were chosen to tap general cognitive and intellectual function, as well as four domains of frontal function (Bechara et al. 1994; Freedman et al., 1998; Lang et al., 1999; Spreen and Strauss, 1998). Parallel versions were used where possible to minimize effects of repetition, and scores are corrected for effects of age, gender, and education, where appropriate. The following tests were administered: Wechsler Adult Intelligence Scale-III; North American Adult Reading Test; Trail Making Tests A and B; Boston Naming Test; Benton Judgment of Line Orientation Test; Hopkins Verbal Learning Test; Brief Visual Spatial Memory Test, Revised; Finger Tapping Test; Grooved Pegboard Test; Controlled Oral Word Association Test; Wisconsin Cart Sorting Test; Stroop Color Word Test; Emotional Stroop Task; Object Alternation Test; Iowa Gambling Task; and the International Affective Picture System Ratings. A subset of tests is presented. Paired t tests were used to compare differences between the baseline and 6 months data to determine the probability that the actual mean
+
+Deep Brain Stimulation for Depression 659
+
+difference is consistent with zero. This comparison is aided by the reduction in variance achieved by taking the differences, and thus is a good choice for use with a small sample. A more detailed discussion of neuropsychological results will be published separately.
+Supplemental Data The authors’ conflict of interest statement can be found online at http://www.neuron.org/cgi/content/full/45/5/651/DC1/.
+Acknowledgments
+This study was supported by a distinguished Investigator Award to H.S.M. from the National Alliance for Research in Schizophrenia and Depression (NARSAD). We thank Kari Fulton for patient screening and coordination; Doug Hussey and Alvina Ng for acquisition of the PET studies; Jonathan Dostrovsky and William Hutchison for intraoperative electrophysiological studies; Jean Saint-Cyr for assistance with MR imaging; and Stanley Mayberg and Paul Holzheimer for critical review of the manuscript.
+Received: January 4, 2005 Revised: February 4, 2005 Accepted: February 11, 2005 Published: March 2, 2005
+References
+Abosch, A., and Lozano, A.M. (2003). Stereotactic neurosurgery for movement disorders. Can. J. Neurol. Sci. 4, S72–S82. American Psychiatric Association, A.M. (2000). Practice guideline for the treatment of patients with major depressive disorder (revision). Am. J. Psychiatry 157, 1–45. Barbas, H., Saha, S., Rempel-Clower, N., and Ghashghaei, T. (2003). Serial pathways from primate prefrontal cortex to autonomic areas may influence emotional expression. BMC Neurosci. 4, 25. Bechara, A., Damasio, A.R., Damasio, H., and Anderson, S.W. (1994). Insensitivity to future consequences following damage to human prefrontal cortex. Cognition 50, 7–15. Benabid, A.L. (2003). Deep brain stimulation for Parkinson’s disease. Curr. Opin. Neurobiol. 13, 696–706. Brody, A.L., Barsom, M.W., Bota, R.G., and Saxena, S. (2001). Prefrontal-subcortical and limbic circuit mediation of major depressive disorder. Semin. Clin. Neuropsychiatry 6, 102–112. Carmichael, S.T., and Price, J.L. (1996). Connectional networks within the orbital and medial prefrontal cortex of macaque monkeys. J. Comp. Neurol. 371, 179–207. Caspi, A., Sugden, K., Moffitt, T.E., Taylor, A., Craig, I.W., Harrington, H., McClay, J., Mill, J., Martin, J., Braithwaite, A., and Poulton, R. (2003). Influence of life stress on depression: moderation by a polymorphism in the 5-HTT gene. Science 301, 386–389. Dalgleish, T., Yiend, J., Bramham, J., Teasdale, J.D., Ogilvie, A.D., Malhi, G., and Howard, R. (2004). Neuropsychological processing associated with recovery from depression after stereotactic subcaudate tractotomy. Am. J. Psychiatry 161, 1913–1916. Davis, K.D., Taub, E., Houle, S., Lang, A.E., Dostrovsky, J.O., Tasker, R.R., and Lozano, A.M. (1997). Globus pallidus stimulation activates the cortical motor system during alleviation of parkinsonian symptoms. Nat. Med. 3, 671–674. Deep-Brain Stimulation for Parkinson's Disease Study Group (2001). Deep-brain stimulation of the subthalamic nucleus or the pars interna of the globus pallidus in Parkinson’s disease. N. Engl. J. Med. 345, 956–963. Dougherty, D.D., Weiss, A.P., Cosgrove, R., Alpert, N.M., Cassem, E.H., Nierenberg, A.A., Price, B.H., Mayberg, H.S., Fischman, A.J., and Rauch, S.L. (2003). Cerebral metabolic correlates as potential predictors of response to cingulotomy for major depression. J. Neurosurg. 99, 1010–1017.
+
+Drevets, W.C. (1999). Prefrontal cortical-amygdalar metabolism in major depression. Ann. N Y Acad. Sci. 877, 614–637.
+Drevets, W.C., Price, J.L., Simpson, J.R., Jr., Todd, R.D., Reich, T., Vannier, M., and Raichle, M.E. (1997). Subgenual prefrontal cortex abnormalities in mood disorders. Nature 386, 824–827.
+Fava, M. (2003). Diagnosis and definition of treatment-resistant depression. Biol. Psychiatry 53, 649–659.
+First, M.B., Spitzer, R.L., Gibbon, M., and Williams, J.B.W. (2001). Clinical Interview for DSM-IVTR (SCID-I): User’s Guide and Interview–Research Version (New York: New York Psychiatric Institute Biometrics Research Department).
+Fox, P.T., Mintun, M.A., Raichle, M.E., and Herscovitch, P. (1984). A noninvasive approach to quantitative functional brain mapping with H2 (15)O and positron emission tomography. J. Cereb. Blood Flow Metab. 4, 329–333.
+Frank, E., Prien, R.F., Jarrett, R.B., Keller, M.B., Kupfer, D.J., Lavori, P.W., Rush, A.J., and Weissman, M.M. (1991). Conceptualization and rationale for consensus definitions of terms in major depressive disorder. Remission, recovery, relapse, and recurrence. Arch. Gen. Psychiatry 48, 851–855.
+Freedman, M., Black, S., Ebert, P., and Binns, M. (1998). Orbitofrontal function, object alternation and perseveration. Cereb. Cortex 8, 18–27.
+Freedman, L.J., Insel, T.R., and Smith, Y. (2000). Subcortical projections of area 25 (subgenual cortex) of the macaque monkey. J. Comp. Neurol. 421, 172–188.
+Gabbott, P.L., Jays, P.R., and Bacon, S.J. (1997). Calretinin neurons in human medial prefrontal cortex (areas 24a,b,c, 32#, and 25). J. Comp. Neurol. 381, 389–410.
+Goldapple, K., Segal, Z., Garson, C., Lau, M., Bieling, P., Kennedy, S., and Mayberg, H. (2004). Modulation of cortical-limbic pathways in major depression: treatment specific effects of cognitive behavioral therapy. Arch. Gen. Psychiatry 61, 34–41.
+Haber, S.N. (2003). The primate basal ganglia: parallel and integrative networks. J. Chem. Neuroanat. 26, 317–330.
+Hamilton, M.A. (1960). Rating scale for depression. J. Neurol. Neurosurg. Psychiatry 23, 56–62.
+Heim, C., Newport, D.J., Heit, S., Graham, Y.P., Wilcox, M., Bonsall, R., Miller, A.H., and Nemeroff, C.B. (2000). Pituitary-adrenal and autonomic responses to stress in women after sexual and physical abuse in childhood. JAMA 284, 592–597.
+Hodaie, M., Wennberg, R.A., Dostrovsky, J.O., and Lozano, A.M. (2002). Chronic anterior thalamus stimulation for intractable epilepsy. Epilepsia 43, 603–608.
+Hyman, S.E., and Nestler, E.J. (1996). Initiation and Adaptation: a paradigm for understanding psychotropic drug action. Am. J. Psychiatry 153, 151–162.
+Jurgens, U., and Muller-Preuss, P. (1977). Convergent projections of different limbic vocalization areas in the squirrel monkey. Exp. Brain Res. 29, 75–83.
+Kartsounis, L.D., Poynton, A., Bridges, P.K., and Bartlett, J.R. (1991). Neuropsychological correlates of stereotactic subcaudate tractotomy. A prospective study. Brain 114, 2657–2673.
+Keller, M.B., Lavori, P.W., Mueller, T.I., Endicott, J., Coryell, W., Hirschfeld, R.M., and Shea, T. (1992). Time to recovery, chronicity, and levels of psychopathology in major depression. A 5 year prospective followup of 431 subjects. Arch. Gen. Psychiatry 49, 809– 816.
+Kendler, K.S., Thornton, L.M., and Gardner, C.O. (2001). Genetic risk, number of previous depressive episodes, and stressful life events in predicting onset of major depression. Am. J. Psychiatry 158, 582–586.
+Kennedy, S.H., and Lam, R.W. (2003). Enhancing outcomes in the management of treatment resistant depression: a focus on atypical antipsychotics. Bipolar Disord. 158, 36–47.
+Kumar, R., Lozano, A.M., Sime, E., and Lang, A.E. (2003). Longterm follow-up of thalamic deep brain stimulation for essential and parkinsonian tremor. Neurology 9, 1601–1604.
+Lancet UK ECT Review Group (2003). Efficacy and safety of
+
+Neuron 660
+
+electroconvulsive therapy in depressive disorders: a systematic review and meta-analysis. Lancet 361, 799–808.
+Lang, A.E., and Lozano, A.M. (1998). Parkinson’s disease. Second of two parts. N. Engl. J. Med. 339, 1130–1143.
+Lang, P.J., Bradley, M.M., and Cuthbert, B.N. (1999). International Affective Picture Rating System (IAPS): Instruction Manual and Affective Ratings. Technical Report A-4 (Gainseville, FL: The Centre for Research in Psychophysiology, University of Florida).
+Lozano, A.M., Dostrovsky, J., Chen, R., and Ashby, P. (2002). Deep brain stimulation for Parkinson’s disease: disrupting the disruption. Lancet Neurol. 1, 225–231.
+Maclean, P.D. (1990). The Triune Brain in Evolution: Role in Paleocerebral Function (New York, NY: Plenum).
+Malizia, A. (1997). Frontal lobes and neurosurgery for psychiatric disorders. J. Psychopharmacol. 11, 179–187.
+Manji, J.K., Drevets, W.C., and Charney, D.S. (2001). The cellular neurobiology of depression. Nat. Med. 7, 541–547.
+Mayberg, H.S. (1994). Frontal lobe dysfunction in secondary depression. J. Neuropsychiatry Clin. Neurosci. 6, 428–442.
+Mayberg, H.S. (1997). Limbic-cortical dysregulation: a proposed model of depression. J. Neuropsychiatry Clin. Neurosci. 9, 471– 481.
+Mayberg, H.S. (2003). Modulating dysfunctional limbic-cortical circuits in depression: towards development of brain-based algorithms for diagnosis and optimised treatment. Br. Med. Bull. 65, 193–207.
+Mayberg, H.S., Liotti, M., Brannan, S.K., McGinnis, S., Mahurin, R.K., Jerabek, P.A., Silva, J.A., Tekell, J.L., Martin, C.C., and Fox, P.T. (1999). Reciprocal limbic-cortical function and negative mood: converging PET findings in depression and normal sadness. Am. J. Psychiatry 156, 675–682.
+Mayberg, H.S., Brannan, S.K., Mahurin, R.K., McGinnis, S., Silva, J.A., Tekell, J.L., Jerabek, P.A., Martin, C.C., and Fox, P.T. (2000). Regional metabolic Effects of fluoxetine in major depression: serial changes and relationship to clinical response. Biol. Psychiatry 48, 830–843.
+McIntyre, C.C., Savasta, M., Kerkerian-Le Goff, L., and Vitek, J.L. (2004). Uncovering the mechanism(s) of action of deep brain stimulation: activation, inhibition, or both. Clin. Neurophysiol. 115, 1239–1248.
+Mottaghy, F.M., Keller, C.E., Gangitano, M., Ly, J., Thall, M., Parker, J.A., and Pascual-Leone, A. (2002). Correlation of cerebral blood flow and treatment effects ofrepetitive transcranial magnetic stimulation in depressed patients. Psychiatry Res. 115, 1–14.
+Montgomery, S.A., and Asberg, M. (1979). A new depression scale designed to be sensitive to change. Br. J. Psychiatry 134, 382–389.
+National Institute of Mental Health, M. (1970). CGI: Clinical global impressions. In Manual for the ECDEU Assessment Battery. 2, W. Guy and R.R. Bonato, eds. (Chevy Chase, MD: National Institute of Mental Health).
+Nestler, E.J., Barrot, M., DiLeone, R.J., Eisch, A.J., Gold, S.J., and Monteggia, L.M. (2002). Neurobiology of depression. Neuron 34, 13–25.
+Nemeroff, C.B. (2002). Recent advances in the neurobiology of depression. Psychopharmacol. Bull. 36 (Suppl.), 6–23.
+Nobler, M.S., Oquendo, M.A., Kegeles, L.S., Malone, K.M., Campbell, C.C., Sackeim, H.A., and Mann, J.J. (2001). Decreased regional brain metabolism after ECT. Am. J. Psychiatry 158, 305–308.
+Ongur, D., An, X., and Price, J.L. (1998). Prefrontal cortical projections to the hypothalamus in Macaque Monkeys. J. Comp. Neurol. 401, 480–505.
+Sackeim, H.A., Rush, A.J., George, M.S., Marangell, L.B., Husain, M.M., Nahas, Z., Johnson, C.R., Seidman, S., Giller, C., Haines, S., et al. (2001). Vagus nerve stimulation (VNS) for treatment-resistant depression: efficacy, side effects, and predictors of outcome. Neuropsychopharmacology 25, 713–728.
+Schaltenbrand, G., and Wahren, W. (1977). Atlas for Stereotaxy of the Human Brain, Second Edition (Stuttgart, Germany: Thieme Verlag).
+
+Seminowicz, D.A., Mayberg, H.S., McIntosh, A.R., Goldapple, K.K., Kennedy, S., Segal, Z., and Rafi-Tari, S. (2004). Limbic-Frontal Circuitry in Major Depression: A Path Modeling Metanalysis. Neuroimage 22, 409–418.
+Spreen, O., and Strauss, E.A. (1998). Compendium of Neuropsychological Tests, Second Edition (New York, NY: Oxford University Press).
+Thase, M.E., and Rush, A.J. (1997). When at first you don’t succeed: Seuqntial strategies for antidepressant nonrsponders. J. Clin. Psychiatry 58 (Suppl.), 23–29.
+Vaidya, V.A., and Duman, R.S. (2001). Depresssion–emerging insights from neurobiology. Br. Med. Bull. 57, 61–79.
+Vidailhet, M., Vercueil, L., Houeto, J.L., Krystkowiak, P., Benabid, A.L., Cornu, P., Lagrange, C., Tezenas du Montcel, S., Dormont, D., Grand, S., et al. (2005). Bilateral deep-brain stimulation of the globus pallidus in primary generalized dystonia. N. Engl. J. Med. 352, 59–67.
+Vogt, B.A., and Pandya, D.N. (1987). Cingulate cortex of the rhesus monkey II: Cortical afferents. J. Comp. Neurol. 262, 271–289.
+Wang, P.S. (2003). National Co-morbidity survey replication. The epidemiology of major depressive disorder: results from the National co-morbidity Survey Replication (NCS-R). JAMA 289, 3095– 3105.
+Watson, D., and Clark, L.A. (1988). Development and validation of brief measures of positive and negative affect: the PANAS scales. Personality Soc. Psychol. 6, 1063–1070.
+World Health Organization. (2001). Chapter 2: Burden of Mental and Behavioral Disorders. In The WHO Report 2001: Mental Health, New Understanding, New Hope. http://www.who.int/whr/2001/ chapter2/en/Index3.html.
+Worsley, K.J., Marrett, S., Neelin, P., Vandal, A.C., Friston, K.J., and Evans, A.C. (1996). A unified statistical approach for determining significant signals in images of cerebral activation. Hum. Brain Mapp. 4, 58–73.
+

@@ -1,0 +1,1129 @@
+NeuroImage: Clinical 4 (2014) 209–231
+Contents lists available at ScienceDirect
+NeuroImage: Clinical
+journal homepage: www.elsevier.com/locate/ynicl
+Review
+Functional brain imaging studies of youth depression: A systematic review☆
+Rebecca Kerestes a,⁎, Christopher G. Davey a,b, Katerina Stephanou a, Sarah Whittle a, Ben J. Harrison a
+a Melbourne Neuropsychiatry Centre, Department of Psychiatry, The University of Melbourne & Melbourne Health, Melbourne, Australia b Orygen Youth Health Research Centre, The University of Melbourne, Australia
+
+article info
+Article history: Received 12 June 2013 Received in revised form 13 November 2013 Accepted 18 November 2013 Available online 11 December 2013
+Keywords: Major depressive disorder (MDD) Youth Functional magnetic resonance imaging (fMRI)
+
+abstract
+Background: There is growing interest in understanding the neurobiology of major depressive disorder (MDD) in youth, particularly in the context of neuroimaging studies. This systematic review provides a timely comprehensive account of the available functional magnetic resonance imaging (fMRI) literature in youth MDD. Methods: A literature search was conducted using PubMED, PsycINFO and Science Direct databases, to identify fMRI studies in younger and older youth with MDD, spanning 13–18 and 19–25 years of age, respectively. Results: Twenty-eight studies focusing on 5 functional imaging domains were identiﬁed, namely emotion processing, cognitive control, affective cognition, reward processing and resting-state functional connectivity. Elevated activity in “extended medial network” regions including the anterior cingulate, ventromedial and orbitofrontal cortices, as well as the amygdala was most consistently implicated across these ﬁve domains. For the most part, ﬁndings in younger adolescents did not differ from those in older youth; however a general comparison of ﬁndings in both groups compared to adults indicated differences in the domains of cognitive control and affective cognition. Conclusions: Youth MDD is characterized by abnormal activations in ventromedial frontal regions, the anterior cingulate and amygdala, which are broadly consistent with the implicated role of medial network regions in the pathophysiology of depression. Future longitudinal studies examining the effects of neurodevelopmental changes and pubertal maturation on brain systems implicated in youth MDD will provide a more comprehensive neurobiological model of youth depression.
+© 2013 The Authors. Published by Elsevier Inc. All rights reserved.
+
+Contents
+1. Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 210 2. Method . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 210
+2.1. Literature search . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 210 2.2. Study selection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 211 3. Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 211 3.1. Emotion processing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 211 3.2. Cognitive control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 222 3.3. Affective cognition . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 223 3.4. Reward processing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 224 3.5. Resting-state studies . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 225 4. Supplementary quantitative analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 226 5. Overall summary & consideration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 226 5.1. Future approaches for biomarker research in youth MDD: The extended medial prefrontal cortical network of MDD . . . . . . . . . . . 227 5.2. Concluding remarks . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 228 Role of funding source . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 228 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 228
+
+☆ This is an open-access article distributed under the terms of the Creative Commons Attribution-NonCommercial-No Derivative Works License, which permits non-commercial use, distribution, and reproduction in any medium, provided the original author and source are credited.
+⁎ Corresponding author at: Melbourne Neuropsychiatry Centre, The University of Melbourne, Melbourne, Victoria, Australia. Tel.: +61 3 8344 1847; fax: +61 3 9348 0469. E-mail addresses: rebecca.kerestes@unimelb.edu.au (R. Kerestes), c.davey@unimelb.edu.au (C.G. Davey), kstep@student.unimelb.edu.au (K. Stephanou), swhittle@unimelb.edu.au
+(S. Whittle), habj@unimelb.edu.au (B.J. Harrison).
+2213-1582/$ – see front matter © 2013 The Authors. Published by Elsevier Inc. All rights reserved. http://dx.doi.org/10.1016/j.nicl.2013.11.009
+
+210
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+1. Introduction
+Major depressive disorder (MDD) is the single greatest cause of disability and morbidity in adolescence and young adulthood (Jamison et al., 2006), and is associated with social and academic impairment, and recurrent illness through adulthood (Birmaher et al., 2007; Jamison et al., 2006). By the time a young person reaches 25 years of age the prevalence of MDD is as high as 24% (Lewinsohn et al., 1998), with the peak age of onset occurring between 15 and 29 years of age (Blazer et al., 1994). Depression is also a signiﬁcant contributor to mortality in this age group: it is the illness most often associated with suicide, which is the third leading cause of death for youth aged 15–24 (CDC, 2007). The fact that most ﬁrst episodes of depression emerge during early adolescence (starting at puberty) through to early adulthood underscores the importance of research focusing on this age cohort. Research in youth MDD not only will allow us to better understand the etiology of depression at its onset, but will also help work towards better clinical interventions to prevent recurrent, chronic episodes.
+Inﬂuential models of adolescent brain development have emphasized the importance of social (increased reward-seeking behavior and peer afﬁliation), neural (protracted cortical maturation of prefrontal brain areas), and hormonal (onset of puberty and subsequent rise in sex hormones) changes in contributing to the onset of adolescent depression (Casey et al., 2008, 2011; Ernst et al., 2006; Forbes and Dahl, 2005). These models propose that increased reward-seeking and risk-taking behaviors that are characteristic of adolescence may be underpinned by a temporal mismatch between the development of brain networks that support emotion generation and reward-processing (e.g., striatum, amygdala), and those implicated in the cognitive regulation of emotion (e.g., prefrontal cortex). Prefrontal cortical regions supporting cognitive–affective processes such as the cognitive regulation of emotion follow a protracted course of maturation compared to subcortical regions supporting reward and emotion, with development continuing into young adulthood (Gogtay et al., 2004; Rubia, 2012). This temporal imbalance of subcortical and cortical maturation, in conjunction with genetic and other environmental risk factors (e.g., stress) is suggested to render adolescents more vulnerable to depression. An alternative model, proposed by Davey et al. (2008) argues that the development of the prefrontal cortex itself may contribute to adolescent-onset MDD. Speciﬁcally, it is proposed that adolescent development of the prefrontal cortex promotes decision-making with respect to complex, and often distal, social rewards. It is hypothesized that when such rewards are not achieved, this suppresses the reward system, resulting in depressive symptoms (Davey et al., 2008).
+In parallel with a growing focus on the clinical management of depression in youth (McGorry, 2007), there is an emerging research focus on the neurobiological correlates of the disorder during this age period. One such area that has shown recent promise is the application of neuroimaging to examine the neural underpinnings of youth MDD. Studies employing such techniques, in particular functional magnetic resonance imaging (fMRI), are relevant for the investigation of neural mechanisms that may contribute to the emergence of depression in youth, and for the identiﬁcation of potential biomarkers that may be associated with early stages of the illness. While existing neuroimaging studies in youth MDD have been informed by structural and functional imaging studies in adult patients, there are several compelling reasons why a greater focus on younger samples is both necessary and important for expanding current neurobiological models of the disorder. For example, studies of youth populations are less confounded by factors that are associated with the natural trajectory of the illness (e.g., functional impairments) and medications. Further, as mentioned, adolescence is characterized by rapid cortical maturation (increased synaptic pruning, myelination and neuronal plasticity) of neural areas implicated in emotional perception and regulation and reward processing (Gogtay et al., 2004; Rubia, 2012; Sowell et al., 2004) that, when altered during development, may give rise to depressive pathophysiology that has
+
+distinct underlying mechanisms from those in adult-onset MDD. In addition, pubertal processes have been linked to adolescent depression, particularly for girls, where there is evidence that early pubertal maturation is associated with increased risk for the development of depression (Angold and Costello, 2006; Ge et al., 2001).
+In light of the above discussion, recent neuroimaging studies of youth MDD employing task-based and resting-state fMRI have begun to reveal abnormalities in neural networks implicated in emotion generative (i.e., bottom-up) processes, as well as cognitive regulatory (i.e., top-down) processes. However, to date, most studies of youth MDD have examined restricted age ranges that typically end at age 18 despite the fact that neuroimaging studies of adolescent brain development have shown that maturation of prefrontal cortical brain regions continues well into early adulthood (Gogtay et al., 2004; Sowell et al., 2004). A greater focus on studies of youth depression encompassing mid-adolescence through to young adulthood (i.e., up to 25 years of age) is also necessary given that the peak age of onset of the disorder coincides with this age period. The US Food and Drug Administration's (FDA) black-box warning about the potential use of antidepressants to precipitate suicidal behaviors also extends to this older age, suggesting that the neurobiological factors that underlie the effects distinguish youth from adults (US FDA, 2007). Finally, studies examining this age cohort are clinically relevant in the context of some clinical youth mental health services, which extend their treatment programs to 25-year olds (McGorry, 1998, 2007). Thus a systematic review is warranted that captures studies of youth MDD, spanning 13–25 years of age. To date, only one review of the adolescent MDD literature has been published (Hulvershorn et al., 2011). This review provided a broad overview of studies across various imaging modalities including diffusion tensor imaging (DTI), structural and functional MRI and magnetic resonance spectroscopy (MRS). In summary, it emphasized cortico-limbic alterations as being central to emotional dysregulation in adolescent MDD. However while their review focused on studies of childhood and adolescent depression, it did not explicitly focus on studies of youth MDD up to 25 years of age, or make comparisons between younger and older youth with MDD.
+Therefore the aims of this article are to provide an updated, systematic review of fMRI studies in adolescent and youth MDD populations, and to directly compare ﬁndings between younger and older youth with MDD. For the reasons previously stated, we selected studies that included patients ranging from early adolescence to early adulthood (13–25 years old). We focused our review on fMRI studies, and as such, aimed to build on the Hulvershorn et al. (2011) review by providing a more detailed description of fMRI studies and their implications. We also included task-based functional connectivity studies in youth MDD, whereas the Hulvershorn et al. (2011) review focused only on studies employing resting-state functional connectivity. Furthermore, to provide a more comprehensive account of the literature we extended our search to encompass neuroimaging studies of adult MDD, in order to identify studies that included young samples (mean age ≤ 25 years old). To this end we identiﬁed additional four studies. One of the studies identiﬁed focused on ﬁrst-episode MDD patients with a mean age slightly higher than our cut-off of 25 (Guo et al., 2011; see Table 1). This study was included in the review.
+2. Method
+2.1. Literature search
+A computerized search using the databases PubMED, PsycINFO and Science Direct, covering the period from January 2001 to September 2012, was conducted using the following key search terms (* = truncated): “adolescen* AND depress* AND brain imaging”, and advanced searches: “youth* NEAR/5 depression AND (brain OR imaging)”. January 2001 was chosen as the start date because the ﬁrst neuroimaging study in adolescent MDD was published in 2001. Additional
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+211
+
+age ﬁlters were activated in PubMED to further reﬁne the search, which included: adolescence (13–18 years) and young adulthood (19–25 years). The reference lists of articles meeting the inclusion criteria as well as recently published reviews were also searched manually for relevant articles.
+2.2. Study selection
+Studies were included if they: (i) Utilized fMRI (task based and/or resting state); (ii) included individuals with a diagnosis of MDD using recognized diagnostic criteria such as DSM-IV (APA, 2000) or ICD-10 (World Health Organization, 2008); (iii) included individuals who were in the age range of early-mid adolescence (13–18), and/or young adulthood (19–25); (iv) statistically compared the MDD group to a group of healthy controls (for non-treatment studies); and (v) were published in English. Due to variability in the age parameters used to deﬁne groups across studies and ‘pooling’ of participants within studies across ages ranging from late childhood/early adolescence through to late adolescence (e.g., 11–18), some studies who recruited individuals as young as 8 were considered for inclusion in the current review. We did not exclude treatment studies or studies where overlapping samples (i.e., the same cohort of patients) were used, although these will be identiﬁed as such when reviewed below.
+3. Results
+The literature search for fMRI studies conducted in adolescent and youth MDD yielded a total of 26 studies. Two studies were subsequently excluded as they focused on childhood MDD (8–10 years), which was outside of the focus of this review and has been reviewed elsewhere (Hulvershorn et al., 2011). Of the remaining 24 studies, 20 were taskbased fMRI studies, two of which were treatment studies, and four were resting-state fMRI studies. Of the 20 task-based fMRI studies, 4 employed emotional processing paradigms (Mingtian et al., 2012; Tao et al., 2012; Thomas et al., 2001; Yang et al., 2010), 6 employed reward-processing paradigms (Davey et al., 2011; Forbes et al., 2006, 2009, 2010; Olino et al., 2011; Shad et al., 2011), and 5 employed cognitive-control paradigms encompassing a range of processes including selective and sustained attention, decision making and response inhibition (Chantiluke et al., 2012; Davey et al., 2012a; Halari et al., 2009; Pan et al., 2011; Yang et al., 2009). Five further studies examined the cognitive regulation of emotional stimuli, hereafter referred to as affective cognition (Beesdo et al., 2009; Lau et al., 2009, 2010; Perlman et al., 2012; Roberson-Nay et al., 2006). While the majority of the 20 taskbased fMRI studies focused on the conventional assessment of brain regional activation (i.e., activity increases) and deactivation (i.e., activity decreases) in response to imaging task demands, 2 of these studies also reported on the analysis of task-based functional connectivity1. Of the 4 resting-state functional connectivity studies2, 3 acquired data while participant's eyes were closed (Davey et al., 2012b; Jiao et al., 2011; Jin et al., 2011) and one study did not specify (Cullen et al., 2009). All of these resting-state studies were based on imaging sequences that ranged from 6 to 12 min in duration. Our broader literature search of the adult MDD literature revealed another 4 studies that
+1 Task-based functional connectivity analyses are often used to complement the conventional assessment of brain activations/deactivations. Such analyses are geared towards assessing changes in the strength of correlated activity among certain brain regions of interest when comparing different task conditions. As such they are typically performed on (and informed by) the same experimental data that was used to assess activations/ deactivations.
+2 Resting-state functional connectivity studies are instead based on the collection of fMRI/BOLD signal time-series in the absence of any task demands (e.g., subjects laying quietly in the scanner over a duration of several minutes with their eyes closed). The analysis of these data can take several forms, but all exploit the fact that brain regions with strong anatomical connections typically show organized spontaneous correlations in their functional activity over time (e.g., minutes).
+
+included young people with ﬁrst-episode MDD up to the age of 25 (Guo et al., 2011; Matthews et al., 2008; Zhong et al., 2011; Zhu et al., 2012). Two of these studies reported on emotional processing paradigms (Matthews et al., 2008; Zhong et al., 2011) and 2 reported on resting state functional connectivity measures (Guo et al., 2011; Zhu et al., 2012). The 28 studies included in our review are summarized comprehensively in Table 1.
+Results from the 28 identiﬁed studies will be reviewed in order of their primary domain as follows: emotional processing, cognitive control, affective cognition, reward-based decision-making, and restingstate functional connectivity. To capture the distinction between adolescent-onset MDD (i.e., 13–18 years old) and early-adulthood onset MDD (19–25), we compare commonalities and differences between studies with a mean age of b 18 and N18 years old years old within each domain, where feasible. In addition, we qualitatively summarize youth ﬁndings in comparison to adult studies where the same paradigm or approach has been used. However, it was not the aim of this review to provide a comprehensive summary of the literature in adult MDD, which has been done elsewhere recently (Phillips et al., 2008; Price and Drevets, 2010).
+3.1. Emotion processing
+Emotion dysregulation is a core feature of MDD (APA, 2000). In an attempt to unravel the neural underpinnings of disrupted emotion processing, there have been numerous task-based fMRI studies examining emotion processing in adult MDD populations (see Stuhrmann et al., 2011 for review). The most widely used approach for examining emotional processing in the adult and youth MDD literature has involved measuring evoked neural responses to emotional faces. Emotional faces have been widely used because they are salient, socially relevant stimuli that capture attention rapidly and are associated with robust activation in medial prefrontal regions, the amygdala, insula and visual cortical regions that are implicated in face recognition and emotion decoding (Haxby et al., 2002; Vuilleumier et al., 2001). In addition, MDD, which is characterized by biased facial emotion processing towards negative faces, makes facial stimuli particularly relevant for studying the neurobiological correlates of the disorder (see Bourke et al., 2010 for review). Studies of MDD examining emotion processing using emotional face stimuli use tasks that target rapid, automatic (i.e., bottom-up) emotion generative processes. These tasks typically probe limbic (e.g., amygdala, hippocampal) activation (Hariri et al., 2000). Some of these tasks are explicit; that is they require an overt response to the emotional content of the face (e.g., identifying the emotional expression of a face), while others are implicit (e.g., passive viewing or labeling the gender of a face portraying different emotional expressions).
+The most commonly used paradigm in the youth MDD literature has been an adaptation of the emotional face-matching paradigm originally developed by Hariri et al. (2000). The emotional face-matching paradigm is a well-validated task that has been shown to reliably activate the amygdala in healthy adults (Hariri et al., 2000, 2002) and adolescents (Yang et al., 2007). Furthermore, the task has proved to be a sensitive probe of depression-related brain abnormalities, that have been further shown to predict treatment response in adults with MDD (Lisiecka et al., 2011). In healthy adults and adolescents, performance of such face-matching tasks, is most consistently associated with robust amygdala activation to fearful target faces, although amygdala activation to happy and angry faces has been reported (Yang et al., 2003, 2007).
+In studies of emotional processing in adolescent and youth MDD using an emotional face-matching paradigm, the most consistent ﬁnding has been that of elevated amygdala activation to threat-related (i.e., fearful, angry) faces compared to task control (e.g., shapematching) conditions. Five of the 6 studies, which include samples with a mean age ranging from 12 to 24.5 years have reported predominantly left-sided (Mingtian et al., 2012; Tao et al., 2012; Yang et al.,
+
+Table 1 Overview of the 28 fMRI studies identiﬁed in youth MDD.
+
+Authors (publication, year)
+
+Sample size
+
+Emotion processing studies
+
+1. Thomas
+
+5 MDD
+
+et al.
+
+12 GAD
+
+(2001)
+
+12 HC
+
+2. Matthews et al. (2008)
+
+15 MDD 16 HC
+
+Age range 8–16
+19–30
+
+Mean
+
+Axis 1 diagnosis/
+
+age (SD) comorbid illnesses
+
+First episode
+
+Mean duration of illness/MDE
+
+Medication status
+
+12.3 (2.7) 12.8 (2.1) 12.2 (2.6)
+24.5 (5.5) 24.3 (5.0)
+
+Primary diagnosis of GAD. Separate sample of girls with primary diagnosis of MDD (n = 5). 2 of MDD patients had comorbid GAD MDD. 46.6% patients had co-morbid (past, not current) depressive &/or anxiety disorders: dysthymia (3), PTSD (2), GAD and panic disorder (1), dysthymia and panic disorder (1)
+
+Not reported
+Not reported
+
+Not reported Not reported
+
+All medicationfree
+All medicationfree
+
+3. Yang et al. 12 MDD
+
+(2010)
+
+12 HC
+
+13–17 15.9 (1.4) MDD. No current
+
+Yes
+
+15.4 (1.7) comorbid Axis 1 disorders
+
+Diagnosed for study
+
+All medicationfree
+
+4. Zhong et al. (2011)
+
+29 MDD 26 ‘at-risk’ for MDD 31 HC
+
+18–22
+
+20.4 (1.8) MDD. No current
+
+Yes
+
+20.6 (0.9) comorbid Axis 1 disorders
+
+20.8 (1.5)
+
+Not reported All medicationfree
+
+Imaging modality Analysis (ROI, whole-brain)
+
+Task(s)
+
+Signiﬁcant ﬁndings
+
+fMRI fMRI and FC
+fMRI fMRI
+
+Whole-brain ROI-bilateral extended amygdala. Used as seedregion in FC analyses
+ROI-bilateral amygdala Whole-brain ROI-bilateral amygdala Whole-brain
+
+Passive viewing task with fearful and neutral Ekman faces. No overt responses required, children instructed to focus centrally and get an overall sense of the faces. Hariri face-matching task with fearful, happy and angry faces. Sensiromotor control condition. Participants instructed to match by emotional expression, 1 of 2 visually presented probe faces to a target face via button press.
+Hariri face-matching task with fearful, happy and angry faces. Sensiromotor control condition. Instructions as above.
+Hariri face-matching task with fearful and angry faces. Sensorimotor control condition. Instructions as above.
+
+MDD b HC and GAD in L amygdala to fearful faces (vs. ﬁxation cross). n.s. in right amygdala for fearful faces (vs. neutral faces or ﬁxation). fMRI ﬁndings: MDD N HC in bilateral extended amygdala to all emotional faces during face-matching (vs. control) condition. FC ﬁndings: MDD N HC connectivity between bilateral extended amygdala and subgenual ACC but reduced connectivity between extended amygdala and pregenual ACC. Negative correlation between BDI-2 scores and FC between extended amygdala and pregenual ACC such that higher BDI-2 scores were associated with weaker connectivity. n.s. correlation between symptom severity and strength of extended amygdala-subgenual connectivity. MDD N HC in L amygdala and bilateral ACC to all emotional faces during face-matching (vs. control) condition. n.s. group × emotion interaction. MDD N HC in L amygdala and bilateral insula to all emotional faces during face-matching (vs. control) condition. MDD b HC L DLPFC (BA 8, 47) to all emotional faces (vs. control) condition. MDD N ‘at-risk’ group: medial, middle and superior frontal gyri (SFG) to all emotional faces (vs. control) condition. Positive correlation between CSQ scores (measuring cognitive vulnerability) and L amygdala responsiveness to emotional faces in all subjects, controlling for CES-D scores.
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+212
+
+5. Mingtian et al. (2012)
+
+27 MDD 25 HC
+
+17–24 20.4 (1.9) MDD. No current
+
+Yes
+
+20.9 (1.5) comorbid Axis 1 disorders
+
+Not reported All medicationfree
+
+fMRI
+
+6. Tao et al. (2012)a
+
+15 MDD 17 HC
+
+11–18 14.2 (1.9) MDD. 31.6% comorbid 14.9 (2.5) anxiety, 10.5% ADHD
+
+68.4% 1stepisode 26.3% 2nd episode 5.3% 3rd episode
+
+19.2 ± 19.5 months
+
+Treatment (open label) study. MDD patients assigned to 8-week FLX treatment and continued treatment. Patients could not receive CBT while on medication
+
+fMRI
+
+Cognitive control studies
+
+7. Halari
+
+21 MDD
+
+et al.
+
+21 HC
+
+(2009)
+
+14–17 16.2 (.8) MDD. No current
+
+Yes
+
+16.3 (1.1) comorbid Axis 1 disorders
+
+Not reported All medicationfree
+
+fMRI
+
+8. Yang et al. 13 MDD
+
+(2009)
+
+13 HC
+
+13–17 16.0 (1.5) MDD. No current
+
+Not
+
+Not reported All medication-
+
+15.8 (1.5) comorbid Axis 1 disorders reported
+
+free
+
+fMRI
+
+ROI-bilateral amygdala Whole-brain
+ROI-bilateral amygdala, orbitofrontal cortex (OFC), subgenual ACC Whole-brain
+
+Hariri face-matching task with fearful and angry faces. Sensorimotor control condition. Instructions as above.
+Gender discrimination task with fearful and neutral Ekman faces. Participants need to select the gender of each face and ignore the emotional content.
+
+MDD N HC in L amygdala to emotional faces during face-matching (vs. control) condition. Positive correlation between bilateral amygdala activation and CES-D scores in MDD patients. Whole brain ﬁndings: MDD N HC in L MFG (BA 9), L STG (BA 22), L ITG (BA 20) and L thalamus MDD b HC in right SFG (BA 10). Baseline: MDD N HC in bilateral frontal lobe, temporal lobe, putamen, insula, R amygdala and hippocampus. Following 8week treatment with FLX: no signiﬁcant between group differences in amygdala activity for fearful vs. neutral contrast (i.e., activity normalized). For the OFC, MDD adolescents had greater L and R OFC activity at baseline but not week 8 that approached signiﬁcance for R but not L OFC. For the subgenual ACC, at baseline MDD adolescents had greater activation in L and R subgenual ACC which normalized by week 8. The magnitude of effect approached signiﬁcance for R but not L subgenual ACC.
+
+Whole-brain Whole-brain
+
+3 tasks to assess executive function: Simon task (interference inhibition and selective attention), Stop task (response inhibition) and Switch task (cognitive ﬂexibility/attentional set shifting). Stop-signal task with “X” and “O” visual stimuli paired with an auditory tone. Participants were asked to press a button as quickly as possible whenever they see the letter “X” or “O” but to inhibit their motor response when an auditory tone is delivered (“stop” trials). Inhibition is measured by
+
+MDD b HC in lateral PFC regions (DLPFC, VLPFC), ACG, insula, occipital and parietal lobe areas during all 3 tasks. No sex × group interactions were observed.
+MDD N HC in a large cluster localized to subgenual ACC, extending into pregenual ACC during all-stop vs. no-stop condition. MDD b HC in medial frontal gyrus and visual cortex. Greater subgenual ACC activation associated with higher CDRS-R scores, indicating greater depressive symptoms. In contrast, greater bilateral
+
+(continued on next page)
+
+213
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+Table 1 (continued)
+
+Authors (publication, year)
+
+Sample size
+
+Cognitive control studies 8. Yang et al. (2009)
+
+Age range
+
+9. Pan et al. (2011)
+
+15 MDD suicide attempters (ATT) 15 MDD nonattempters (NAT) 14 HC
+
+13–17
+
+10. Chantiluke 20 MDD et al. (2012) 21 HC
+
+13–18
+
+11. Davey
+et al. (2012a)b
+
+18 MDD 19 HC
+
+15–24
+
+Mean
+
+Axis 1 diagnosis/
+
+age (SD) comorbid illnesses
+
+First episode
+
+Mean duration of illness/MDE
+
+Medication status
+
+Imaging modality
+
+16.2 (0.8) 15.9 (1.5) 15.2 (1.4)
+
+MDD. Patients were excluded if they had current/life-time Hx of bipolar disorder or psychosis
+
+Not reported
+
+Not reported
+
+10 ATT and 7 NAT on AD
+
+fMRI
+
+16.2 (.8) MDD. No current
+
+Yes
+
+16.3 (1.1) comorbid Axis 1 disorders
+
+Not reported All medicationfree
+
+fMRI
+
+18.9 (2.2) MDD. 33.3% comorbid 19.9 (2.7) anxiety
+
+50% ﬁrstepisode
+
+median length of MDE = 10.5 months
+
+9 patients on AD
+
+fMRI (task) and resting-state FC
+
+Analysis (ROI, whole-brain) Whole-brain
+Whole-brain
+Whole-brain (task-based activity) Subgenual ACC as seed region in FC analyses
+
+Task(s)
+
+Signiﬁcant ﬁndings
+
+comparing neural responses to all stop trials vs. go trials.
+Go/No-Go task. Participants presented with stimuli (letters) and are instructed to respond, via button press, to visually presented letters (“Go” condition; 75% of trials) and to inhibit responses to the “No-Go” trials (letter “V”). Blocks are interleaved with rest condition (ﬁxation cross). Response inhibition measured by comparing neural responses to “No-Go” trial following a “Go” trial. Continuous Performance Task (CPT) measuring selective and sustained attention. Participants are instructed to detect and respond to infrequent targets (letters X and O) that are embedded in highly frequent non-targets (letters A–N). For every 3 correct responses made for the ‘rewarded’ letter, the participant earns 1 lb and one of 2 color bars (blue/red) rises. For every 3 correct responses for the ‘non-rewarded’ target letter, the color bar still rises but no monetary reward is given. To measure brain activation associated with “sustained attention” the contrast was: non-reward target vs. non-target. For brain activation associated with “reward” the contrast was: reward targets vs. non-reward targets. Multi-source interference task (MSIT) used to examine response inhibition. Participants need to respond to the identity (numerical value, not position of) visually presented target numbers in a 3 digit sequence that corresponded to button box
+
+task-related medial frontal gyrus activation associated with lower scores on the CDRS-R. NAT N HC in L insula during response inhibition (during Go/No-Go trials.) NAT N ATT in R ACC. ATT group did not show the expected activation differences compared to HC during the Go/No-Go trials. No signiﬁcant correlations between brain regions that emerged from the 3 × 2 interaction and anxiety, depression, medication status, gender, or pubertal status.
+For sustained attention: within-group analyses revealed activation of bilateral cerebellum, inferior temporal, parietal and occipital cortices. MDD showed additional activation in DLPFC and medial PFC. HC N MDD in cluster localized to occipital cortex extending into left precuneus. No areas were activated more in MDD group compared to HC. For reward, HC N MDD in R IFC, ACC, thalamus, caudate and putamen, R hippocampal and middle temporal gyri. Depression scores on a CBCL scale correlated negatively with activation in the hippocampus/ temporal lobe cluster. Cerebellum activation correlated with activation in the IFC/ACC across all subjects in the depressed group, reﬂected as compensatory response for reduced frontal lobe activation. MSIT associated with robust activation in frontoparietal areas (see paper for extra detail). fMRI ﬁndings: n.s. betweengroup differences in activation. FC ﬁndings for subgenual ACC: HC participants showed task-related decreases in
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+214
+
+Affective cognition studies
+
+12. Roberson- 10 MDD
+
+Nay et al. (2006)b
+
+11 anxiety disorders
+
+23 HC
+
+9–16
+
+13.8 (2.7) MDD. 40% comorbid 11.5 (1.5) anxiety disorder 14.8 (2.2)
+
+Not
+
+Not reported All medication-
+
+reported
+
+free
+
+fMRI
+
+13. Beesdo
+et al. (2009)b
+
+26 MDD w/wo anxiety disorders (MDD only n = 12) 16 anxiety disorders 45 HC
+
+11–16
+
+14.1 (2.2) MDD ‘only’ 12.7 (1.8) sample—no comorbid 13.9 (2.2) anxiety disorders
+
+Not
+
+Not reported All medication-
+
+reported
+
+free
+
+fMRI
+
+responses (index ﬁnger for ‘1’, middle for ‘2’ and ring ﬁnger for ‘3’. Congruent and incongruent trials (see paper for extra detail). The main focus of study was to look at how FC in the subgenual ACC changed between restingstate periods (expected activation) and performance of the incongruent MSIT condition (i.e., expected deactivation).
+
+connectivity between the subgenual ACC and right ventral caudate/nucleus accumbens. MDD patients showed greater connectivity between subgenual ACC and ventromedial PFC at rest compared to task-performance.
+
+ROI-bilateral amygdala Whole-brain
+ROI-bilateral amygdala, OFC (medial and lateral)
+
+Cognitive–affective task as in Beesdo et al. (2009) with encoding and recognition memory phase. Encoding phase: Participants view and rate face stimuli as below in Beesdo et al. (2009). Recognition phase: participants are shown 24 of the same actors as in the encoding phase and 24 new actors and have to identify if they had previously seen the actor.
+Cognitive–affective task examining attentional modulation of emotion. Participants view faces (neutral, fear, angry and happy) and are instructed to either pay attention to the face by rating the face stimuli on 5-point scales (1 not at all; 5 very): “How hostile is this face?” “How afraid are you of this face?” and “How wide is the nose?”. On 4th block, participants “passively” viewed faces (unconstrained attention).
+
+MDD N HC in amygdala for “all faces remembered” vs. “all forgotten”. No main effect of emotion (angry, fearful, happy, neutral) on amygdala activation when collapsed across both memory conditions. Final whole-brain analysis of the entire sample for successful vs. unsuccessful encoding (collapsed across all emotions) revealed activations in the middle frontal gyrus extending into the orbitofrontal cortex, and left medial temporal lobe. Fearful face viewing: Sig group × attention–condition interaction in bilateral amygdala. Post-hoc t-tests for fearful-afraid (rating) vs. fearful-passive showed between group differences in L amygdala. MDD patients showed greater amygdala activity compared to healthy controls both when patients with comorbid anxiety were included and excluded. Passive viewing: Sig group × face-emotion interactions in bilateral amygdala. Post-hoc t-tests for fearful passive vs. happy passive revealed greater amygdala activation in anxious group vs. HC. MDD (with and without comorbid anxiety) showed deactivation of amygdala response to fearful vs. happy faces. OFC activation during fearful face viewing: MDD N HC (trend effect but not signiﬁcant). OFC
+
+(continued on next page)
+
+215
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+Table 1 (continued)
+
+Authors (publication, year)
+
+Sample size
+
+Affective cognition studies 13. Beesdo
+et al. (2009)b
+
+Age range
+
+Mean
+
+Axis 1 diagnosis/
+
+age (SD) comorbid illnesses
+
+First episode
+
+Mean duration of illness/MDE
+
+Medication status
+
+14. Lau et al. (2009)b
+
+31 MDD and anxiety disorder patients (MDD only = 6) 33 HC
+
+11–16
+
+13.5 (2.3) 13.7 (2.7)
+
+MDD and anxiety disorders. 13 patients had MDD with comorbid anxiety disorders (separation anxiety, GAD). 6 MDD ‘only’. Remaining patients had mixed anxiety disorders (social phobia, separation anxiety disorder, GAD)
+
+Not reported
+
+Not reported
+
+All medicationfree
+
+15. Lau et al. (2010)b
+16. Perlman et al. (2012)
+
+27 MDD and anxiety patients 31 HC
+14 MDD 14 HC
+
+9–18
+
+13.4 (2.3) 13.7 (2.6)
+
+MDD and anxiety disorders. 13 had MDD with comorbid anxiety disorders (as above), 5 had MDD ‘only’. Remaining patients had mixed anxiety disorders (as above)
+
+Not
+
+Not reported All medication-
+
+reported
+
+free
+
+13–17 15.7 (1.5) MDD. No current
+
+Not
+
+Not reported All medication-
+
+15.1 (1.6) comorbid Axis 1 disorders reported
+
+free
+
+Imaging modality Analysis (ROI, whole-brain)
+
+Task(s)
+
+Signiﬁcant ﬁndings
+
+fMRI + genotyping of serotonin transporter alleles (S and LG carriers vs. LA homozygotes
+fMRI + genotyping of BDNF gene polymorphisms (Val/Met carriers vs. Val/Val homozygotes)
+fMRI (task) and resting-state FC
+
+ROI-bilateral amygdala
+ROI-amygdala and anterior hippocampus
+ROI-bilateral amygdala. Used as seed region in FC analyses
+
+Task as in Beesdo et al. (2009). Analyses focused on the amygdala response for the “how afraid” (vs. ﬁxation) condition only, for each of the emotions (angry, fearful, happy and neutral).
+As above in Lau et al. (2009) except analyses were focused on the amygdala and anterior hippocampus.
+Cognitive reappraisal task consisting of 2 conditions: “Reduce” and “Maintain”. Picture stimuli are negative images taken from IAPS with ratings between 2 and 3.5 on valence and 5–7 on arousal. During “maintain” condition, participants are instructed to look at the picture and maintain any emotion they feel towards the picture. On “reduce” trials, participants have to use cognitive reappraisal techniques to effectively reduce the negative affect they associate with the stimulus. At the end of each block, participants rate how negative
+
+activation during passive viewing: anxiety group N HC and MDD for the contrast fearful passive-happy passive (when MDD patients with comorbid anxiety were included and excluded). Signiﬁcant genotype × diagnosis × facial emotion interaction characterized fearful and happy faces and ﬁndings were opposite in MDD group compared to HC group. In MDD group, ﬁnding of greater amygdala activity occurred in LALA individuals than S/LG carriers (opposite to HC group). Weaker ﬁndings for happy faces; interaction was driven from patient group only, where LALA individuals showed more amygdala activity than S/LG carriers. Amygdala activation to fearful faces during afraid ratings was modulated by genotype. Signiﬁcant genotype x diagnosis interaction (no effects of emotion). Met carriers N Val homozygote carriers in bilateral anterior hippocampus and amygdala during “how afraid” ratings of all faces irrespective of emotion. fMRI ﬁndings: n.s. between group differences in activation during reappraisal of negative images (reappraise negative– maintain negative condition). No differences in subjective ratings of reappraisal success. FC ﬁndings: MDD b HC in amygdala-medial PFC and amygdala insula connectivity during “Maintain” condition. MDD N HC in amygdalamedial PFC connectivity during “Reduce” condition.
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+216
+
+Reward processing studies
+
+17. Forbes
+
+14 MDD
+
+et al.
+
+17 HC
+
+(2006)
+
+9–17
+
+14.6 (1.6) 14.4 (1.8)
+
+MDD. Comorbid disorders: dysthymia (2), GAD (10), social phobia (5), panic disorder (1), and separation anxiety disorder (1)
+
+Not
+
+Not reported
+
+reported
+
+All medicationfree
+
+fMRI
+
+18. Forbes
+et al. (2009)b
+
+15 MDD 28 HC
+
+8–17
+
+13.5 (2.1) 13.1 (2.6)
+
+MDD. Comorbid disorders: GAD (8), social anxiety (3), panic disorder (1)
+
+Not
+
+Not reported All medication-
+
+reported
+
+free
+
+fMRI
+
+19. Forbes
+et al. (2010)a
+
+13 MDD
+
+10–16
+
+12.9 (2.3)
+
+MDD. Comorbid disorders: GAD (10). Of the 10 with MDD and GAD 3 also had separation anxiety disorder, 1 had social phobia, 1 had panic disorder and 1 had both social phobia and panic disorder
+
+Not reported
+
+Not reported
+
+Treatment (open-label) study. Patients assigned to 8week treatment with FLX or citalopram + CBT or CBT alone
+
+fMRI
+
+they feel on a scale from 1 to 4.
+
+ROI-bilateral ACC (BA 32, 24), amygdala, caudate, inferior, middle, superior, and medial OFC
+ROI-striatum encompassing bilateral ventral striatum and caudate (head, body, tail), and ‘PFC’ region encompassing medial regions (BA 24, 25, 32, 10, 11) and lateral (BA 9) areas
+ROI-striatum as in Forbes et al. (2009) and medial PFC (BA 32 and medial areas BA 9 and 10) Changes in symptoms and rate of symptom change/ reduction over time were analyzed using a growth curve model to produce two variables (intercept and slope) respectively
+
+Reward processing task with decision making/ anticipation phase and outcome phase. Participant chooses between constant or varying magnitude and probability of rewards. 4 trial types: high probability/ high magnitude, high probability/low magnitude, low probability/high magnitude, low probability/ low magnitude.
+Guessing card task with monetary reward. Participants have to guess (through button press) whether the value of a visually presented card with a possible value of 1–9 is higher or lower than 5. This is followed by an anticipation phase, after which the value of the card is presented and feedback is given (win, loss or neutral).
+Guessing card task as above in Forbes et al. (2009)
+
+Decision making phase: MDD N HC in L superior OFC. MDD b HC in bilateral caudate and R inferior OFC, especially during high-magnitude reward conditions. Outcome phase: MDD b HC in the ACC, amygdala, R and mid superior OFC regions to small compared to large wins or losses. Amygdala hyperactivation to large wins. Direction of OFC activation in MDD patients during outcome phase dependent on magnitude of reward. In decision phase: correlation between depression severity and amygdala and R inferior OFC activity in MDD patients. In outcome phase: correlations with ACC, L amygdala and bilateral caudate in MDD patients. Reward anticipation and outcome: MDD b HC in bilateral caudate. MDD N HC in DLPFC. MDD also showed greater activation in medial PFC (BA 10) during reward outcome only. After adjusting for differences in pubertal maturation, ﬁndings in caudate remained signiﬁcant. Findings in DLPFC remained evident only within the mid/late developmental group. Sex and age accounted for a large amount of variance in real-world positive affect. CBT + medication (vs. CBT alone) associated with lower depressive and anxiety symptoms at discharge. Baseline striatal and medial PFC activities were predictors of treatment response: ﬁnal general clinical severity was associated with striatal reactivity during reward outcome. Greater striatal reactivity during reward anticipation was associated with faster rate of anxiety symptom
+
+(continued on next page)
+
+217
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+Table 1 (continued)
+
+Authors (publication, year)
+
+Sample size
+
+Reward processing studies 19. Forbes
+et al. (2010)a
+
+20. Davey et al. (2011)
+
+19 MDD 20 HC
+
+21. Olino
+et al. (2011)b
+
+10 MDD 16 HC
+
+22. Shad et al. (2011)
+
+22 MDD 22 HC
+
+Resting-state studies
+
+23. Cullen
+
+12 MDD
+
+et al.
+
+14 HC
+
+(2009)
+
+Age range
+15–24
+8–16 12–20
+
+Mean
+
+Axis 1 diagnosis/
+
+age (SD) comorbid illnesses
+
+First episode
+
+Mean duration of illness/MDE
+
+Medication status
+
+18.6 (2.2) MDD. 29.4% 19.3 (2.9) comorbid anxiety
+
+52.9% ﬁrstepisode
+
+Median length of MDE = 9 months
+
+9 patients on AD
+
+13.31 (2.49)
+
+MDD. Comorbid disorders: GAD (9). Of the 9 with MDD and GAD 3 also had social phobia, and 1 had panic disorder
+
+Not reported
+
+Not reported
+
+All medicationfree
+
+15.0 (2.1) 16.0 (2.1)
+
+MDD. 5 patients had comorbid anxiety disorders including anxiety and ADHD
+
+Not
+
+Not reported Not reported
+
+reported
+
+Imaging modality fMRI
+fMRI fMRI
+
+Analysis (ROI, whole-brain)
+
+Task(s)
+
+Signiﬁcant ﬁndings
+
+ROI-bilateral amygdala Whole-brain
+ROI-striatum encompassing bilateral caudate (head, body, tail) and putamen ROI-dorsal ACC (BA 24, 32), OFC (BA 11, 47), mPFC (BA 8, 10) Whole-brain
+
+Social feedback task during which participants receive social feedback from people (faces) they believe were evaluating them. Participants are presented with photographs of faces (‘positive feedback’ faces and control faces) and post-scan had to rate on a scale (1–9) how good it made them feel to discover those people (positive feedback faces) “liked” them. Guessing card task as above in Forbes et al. (2009)
+Wheel of Fortune (WOF) task, a monetary, two-choice task that allows for the separate examination of reward selection, anticipation and outcome. 3 wheels are presented that are divided into different slices and colors representing the probability of winning (25% vs. 75%) and magnitude ($6 or $3 vs. $2 or $1) of reward.
+
+decline; conversely greater medial PFC activity during reward anticipation associated with a slower rate of decline in anxiety symptoms. No signiﬁcant ﬁndings with depression scores. No associations with neural activity during outcome of reward. MDD N HC in bilateral amygdala during positive feedback (vs. control) condition. MDD N HC in ventrolateral PFC, pregenual ACC and anterior insular cortex during processing of faces in general (irrespective of feedback).
+MDD b HC in caudate during reward anticipation following a win (positive feedback). n.s. between group differences for reward anticipation following a loss, non-win and non-loss. For high risk (25% chance event) vs. equal risk (50/50), HC N MDD in the R ventrolateral OFC. MDD N HC in the R caudal and L dorsal OFC. n.s. between group differences for risk/reward (25/75) vs. control. Correlations between functional ROIs and risk-related behavior showed the proportion of high-risk (25% chance probability) behavior correlated negatively with BOLD signal change in L ACC and R ACC in healthy controls.
+
+15–19
+
+16.5 (0.9) MDD. Comorbid
+
+No
+
+16.8 (1.5) disorders: GAD (7), Social
+
+Phobia (3), PTSD (2) and
+
+ADHD (3)
+
+26.5 ± 25.9 months
+
+10 patients on AD, fMRI resting-state antipsychotics and FC stimulants
+
+FC “seed-based” analyses. N/A Seed regions included bilateral (seed in R and L) subgenual ACC (BA 25),
+
+MDD group showed reduced FC between subgenual ACC and several regions including the supragenual ACC, R medial frontal cortex (BA 10), L IFC
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+218
+
+amygdala and supragenual ACC (BA 32)
+
+24. Jiao et al. 18 MDD 13–17 15.8 (1.2) MDD. 58.8% comorbid
+
+Yes
+
+(2011)
+
+18 HC
+
+16.2 (0.9) anxiety disorder
+
+N6 months
+
+All medicationfree
+
+fMRI resting-state
+
+Analysis of resting state N/A activations using ALFF approach. ALFF values for frontal lobe ROIs and subcortical/paralimbic ROIs were averaged within each group to create a “frontal ALFF” and “subcortical/paralimbic” ALFF value respectively
+
+25. Jin et al. (2011)
+
+16 MDD 16 HC
+
+15–18 17.1 (1.3) MDD. No current
+
+Yes
+
+17.3 (1.5) comorbid Axis 1 disorders
+
+5.02 ± 1.4 months
+
+All medicationfree
+
+fMRI resting-state FC
+
+FC using GTA based on
+
+N/A
+
+small-world networks of
+
+the brain where brain net-
+
+works are represented
+
+graphically as nodes
+
+connected by edges
+
+26. Guo et al. 17 MDD
+
+(2011)
+
+17 HC
+
+27. Davey
+et al. (2012b)b
+
+As in Davey et al. (2012a) above
+
+18–43 26.5 (7.7) MDD. No current
+
+Yes
+
+24.2 (4.4) comorbid Axis 1 disorders
+
+2.59 ± 1.33 months
+
+Treatment study. MDD patients assigned to 6 week treatment with an SSRI, SNRI or TCA
+
+fMRI resting-state (baseline only)
+
+ReHo—provides a measure N/A of intra-regional activity ﬂuctuations between an index voxel and its neighboring voxels
+
+As in Davey et al. (2012a) above
+
+As in Davey et al. (2012a) above
+
+As in Davey et al. (2012a) above
+
+As in Davey et al. (2012a) above
+
+As in Davey et al. (2012a) above
+
+As in Davey et al. (2012a) above
+
+fMRI resting-state FC
+
+FC “seed-based” analyses. N/A Seed region was focused on cingulate sub-regions (subgenual ACC, pregenual ACC, anterior mid-cingulate and
+
+(BA 47) and insular cortex. n.s. differences in amygdala or supragenual ACC seeds. No correlations between FC and symptom severity scores on BDI, duration of illness, medication status or presence of anxiety disorder. MDD N HC ALFF in 5 regions: R DLPFC, bilateral IFG and within the IFG at the triangular region and orbital region. MDD b HC ALFF In subcortical regions including the L insular, bilateral caudate, and left hippocampus. Mean values of “frontal” ALFF demonstrated sig higher values than “para-limbic” ALFF in both MDD and HC groups. Sig between-group difference revealed increased frontal lobe ALFF and concurrent decreased subcortical/para-limbic ALFF in MDD. This was interpreted to reﬂect an imbalance. MDD showed higher restingstate connectivity in restingstate networks compared to HC. Regions included were: ACC, DLPFC, medial and inferior prefrontal cortex, insula, amygdala and temporal cortices. Disrupted small-world properties found in amygdala and PFC-related connections in MDD, reﬂecting impaired organization and efﬁciency Connections between the amygdala and temporal cortices, amygdala-precentral cortex, amygdala-postcentral cortex and prefrontal-inferior parietal lobe correlated positively with duration of illness in MDD patients. MDD b HC ReHo in L cerebellum posterior lobe, R fusiform gyrus, L parahippocampal gyrus, and the R postcentral gyrus. MDD N HC ReHo in R ITG. 3 main ﬁndings: 1) MDD N HC in connectivity between the subgenual ACC and dorsomedial PFC; 2) MDD N HC in connectivity between the pregenual ACC
+(continued on next page)
+
+219
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+220
+
+Table 1 (continued)
+
+Authors (publication, year)
+
+Sample size
+
+Age range
+
+Mean
+
+Axis 1 diagnosis/
+
+age (SD) comorbid illnesses
+
+First episode
+
+Mean duration of illness/MDE
+
+Medication status
+
+Imaging modality Analysis (ROI, whole-brain)
+
+Task(s)
+
+Signiﬁcant ﬁndings
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+Resting-state studies 27. Davey
+et al. (2012b)b
+
+posterior mid-cingulate (MCC)
+
+28. Zhu et al. 32 MDD
+
+(2012)
+
+33 HC
+
+18–22
+
+20.53
+
+MDD. No current
+
+Yes
+
+(1.8)
+
+comorbid Axis 1 disorders
+
+20.3 (1.6)
+
+10.53 ± 7.10 All medication-
+
+months
+
+free
+
+fMRI resting-state FC
+
+ICA-data driven approach N/A used to measure FC across maximally spatially independent networks (components) of coherently activated voxels. ICA used to identify the DMN
+
+and left DLPFC; and 3) MDD b HC in connectivity between the pregenual ACC and caudate nucleus body bilaterally. Positive correlation between BDI scores and connectivity strength between the subgenual ACC and dorsomedial PFC. Negative correlation between depression severity and connectivity between anterior MCC and left dorsal caudate nucleus. MDD N HC ICA (connectivity) in dorsal mPFC/ventral ACC, ventral mPFC and medial orbital PFC. MDD b HC in posterior cingulate cortex (PCC)/ precuneus, R angular gyrus (AG), and L AG/precuneus. In MDD group, increased FC in anterior medial cortex correlated positively with rumination score, while decreased FC in posterior medial cortex correlated negatively with autobiographical memory.
+
+Note: aTreatment study. bDenotes overlapping samples. Abbreviations: MDD: major depressive disorder; GAD: generalized anxiety disorder; ADHD: attention deﬁcit hyperactivity disorder; ATT: suicide attempters; NAT: non-suicide attempters; HC: healthy controls; SD: standard deviation; MDE: major depressive episode; fMRI: functional magnetic resonance imaging; FC: functional connectivity; ROI: region of interest; ALFF: amplitude of low frequency ﬂuctuation; GTA: graph theory analysis; ReHo: regional homogeneity; ICA: independent component analysis; ACC: anterior cingulate cortex; DLPFC: dorsolateral prefrontal cortex; MFG: middle frontal gyrus; STG: superior temporal gyrus; ITG: inferior temporal gyrus; SFG: superior frontal gyrus; OFC: orbitofrontal cortex; ACG: anterior cingulate gyrus; IFC: inferior frontal cortex; IFG: inferior frontal gyrus; DMN: default mode network; BDNF: brain derived neurotrophic factor; FLX: ﬂuoxetine; CBT: cognitive behavioral therapy; AD: antidepressant; SSRI: selective serotonin reuptake inhibitor; SNRI: serotonin noradrenaline reuptake inhibitor; TCA: tricyclic antidepressant; BDI: Beck Depression Inventory; BDI-2: Beck Depression Inventory-II; CSQ: client satisfaction questionnaire; CES-D: center for epidemiologic studies depression scale; CDRS-R: children's depression rating scale revised; CBCL: child behavior checklist.
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+221
+
+2010; Zhong et al., 2011), but also bilateral (Matthews et al., 2008) elevated amygdala activity in patients compared to age and gender matched healthy controls. Furthermore, 3 of the 6 studies report a positive correlation between amygdala activation or connectivity and depression symptom severity scores (Matthews et al., 2008; Mingtian et al., 2012; Zhong et al., 2011). In the only imaging treatment study of youth MDD using an implicit, emotional face task where participants had to explicitly label the gender of the face, 8-week treatment with ﬂuoxetine was associated with reduced (relative to baseline) left-sided amygdala activation in response to fearful (vs. neutral) faces, that was comparable to healthy controls (Tao et al., 2012). This study also reported greater bilateral orbitofrontal cortex (OFC) and subgenual anterior cingulate cortex (ACC) activation at baseline to fearful faces (vs. neutral faces) that was normalized following 8-week treatment with ﬂuoxetine. However, this study did not ascertain whether any of the baseline imaging parameters predicted response vs. non-response.
+In contrast to ﬁndings of elevated amygdala activation found across all studies of emotion processing in adolescent and youth MDD, Thomas et al. (2001) reported blunted amygdala activation to emotional (fearful) faces (vs. ﬁxation cross) in a sample of depressed children and adolescents aged 8–16. This ﬁnding is discrepant compared to other studies conducted in similar age cohorts and may be explained by the differences in the tasks used as well as patient sample characteristics. Whereas the former studies utilized tasks that required low-level attentional responses to stimuli (i.e., forced matching by facial expression or gender), thus potentially tapping into automated or subliminal affective responding, Thomas et al. (2001) used a passive viewing task where
+
+no response was required; and rather than using a control task (i.e., neutral faces), Thomas et al. (2001) employed a ﬁxation cross as the comparison condition. Furthermore, the small sample size of MDD patients (n = 5), inclusion of only females, and large variance in age within the MDD group in the Thomas et al. (2001) study makes direct comparisons with the other studies difﬁcult. Collectively, however, these emotional face-matching studies provide support for altered activity in emotion processing networks in youth MDD that is speciﬁc to threat-related emotional stimuli.
+Findings in studies with a mean age N 18 are consistent with those in adolescent MDD cohorts (i.e., b 18 years old) and have reported amygdala hyperactivity and altered subgenual ACC connectivity, for example, in line with ﬁndings of increased subgenual ACC activation in adolescent MDD during the processing of fearful faces (Tao et al., 2012). Matthews et al. (2008) provided evidence that altered amygdala-ACC connectivity is implicated in young adult-onset MDD. The authors used functional connectivity analyses2 to examine functional coupling between the bilateral extended amygdala (EA) and the ACC during performance of the face-matching task in a sample of young adults (mean age 24.5) with MDD. They reported increased connectivity between the bilateral EA and subgenual ACC and attenuated connectivity between bilateral EA and pregenual ACC during the face-matching condition (collapsed across all faces). Furthermore, a negative correlation was found between depressive symptoms, as measured by Beck Depression Inventory (BDI) scores, and connectivity between the amygdala and pregenual ACC, such that higher BDI scores (indicating greater depression severity) was associated with weaker connectivity between these
+
+Fig. 1. The extended medial prefrontal network of youth MDD. Shown are brain regions most consistently implicated in fMRI studies of adolescent and youth MDD across 5 domains of functioning. The center panel shows the ‘hub’ of the extended medial network, comprising the anterior cingulate (pregenual, mid-cingulate and subgenual cingulate cortices) and posterior cingulate cortices, and ventromedial prefrontal cortex encompassing medial portions of BA 10 and caudal portions of orbitofrontal cortex/BA 11. Left panel: Cortical regions of the extended medial prefrontal network showing dorsolateral prefrontal cortex (top) and the medial and lateral portions of the orbitofrontal cortex (bottom). Right panel: Coronal slices showing subcortical regions including the amygdala (top) and striatum (bottom). The coronal slice of the striatum (MNI coordinate y = 12 mm) shows the dorsal caudate, and the dorsal and ventral divisions of the putamen.
+
+222
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+two regions. These ﬁndings suggest a dysfunction of medial prefrontal cortical (PFC) network areas and interconnected limbic regions including the amygdala, which support emotional processing in youth MDD.
+Collectively, the ﬁndings in emotion processing studies of youth MDD are similar to those reported in adult patients with MDD. A large number of neuroimaging studies have examined emotional processing in adult MDD utilizing emotional pictures (Anand et al., 2005; Davidson et al., 2003; Tremblay et al., 2005), words (Canli et al., 2004; Epstein et al., 2006; Siegle et al., 2002, 2006, 2007) and faces (Anand et al., 2007; Dannlowski et al., 2007; Frodl et al., 2010; Fu et al., 2004, 2008a,b; Gotlib et al., 2005; Sheline et al., 2001; Surguladze et al., 2005; Suslow et al., 2010; Victor et al., 2010). Studies employing the emotional face-matching task, implicit gender labeling tasks and passive viewing tasks have predominantly reported elevated amygdala activation to negative threatening (fearful, angry) and non-threatening (sad) faces in adult depressed patients (Dannlowski et al., 2007; Fu et al., 2004; Peluso et al., 2009; Sheline et al., 2001; Surguladze et al., 2005; Suslow et al., 2010; Victor et al., 2010).
+Consistent with functional connectivity ﬁndings in adolescent MDD, Chen et al. (2008) reported reduced left-sided amygdala connectivity with the ACC during an implicit face processing task in adults with MDD that increased (normalized) following 8-week treatment with ﬂuoxetine. In a movement towards identifying imaging biomarkers of treatment response using emotional processing paradigms, adult studies have shown that pre-treatment response in areas of the extended medial network including the amygdala and ACC may represent biomarkers of treatment response to cognitive behavioral therapy (CBT) (Fu et al., 2008b; Siegle et al., 2006). For example, greater pregenual ACC deactivation to sad facial expressions at baseline (i.e., pretreatment) predicted better CBT response in a sample of depressed adults (Fu et al., 2008b). Similarly, greater pre-treatment amygdala activation and pregenual ACC deactivation during the processing of negative words in a self-referential context predicted better CBT response in a depressed cohort (Siegle et al., 2006).In summary, the reviewed studies demonstrate consistent evidence of hyperactivity in the amygdala and altered connectivity between the amygdala and ACC during emotional processing of negative facial stimuli in youth (both adolescent and young adult-onset) MDD. These ﬁndings, which appear to be evident during evaluative and encoding processes, are the most consistent for fearful faces, although the speciﬁcity of these ﬁndings to threatrelated negative emotion vs. non-threat-related emotions (e.g., sadness) has not been evaluated. Further, there is emerging evidence that abnormal activity in these areas and the OFC, invoked by emotional stimuli, can be normalized following treatment with antidepressant medication (Tao et al., 2012). These ﬁndings, particularly of elevated amygdala activation have also been found in adolescents at-risk for MDD (Monk et al., 2008), which suggests that increase in amygdala activity may represent a neurobiological marker for MDD vulnerability. Importantly, the ﬁndings are consistent with models of adolescent MDD that emphasize the rapid development and hyperactivity of limbic networks (i.e., amygdala, hippocampus) supporting emotion generation, and concurrent inefﬁcient cognitive networks, in contributing to the onset of psychopathology (Ernst et al., 2006). However, across all the reviewed studies, only emotional faces were used and thus the ﬁndings are not generalizable to other relevant stimuli for studying emotional processing in MDD. Future studies are needed to determine how speciﬁc these ﬁndings are to the processing of emotional faces by using, for example, emotional stimuli such as pictures and words. Further, in addition to accumulating evidence for the role of the amygdala in depression, abnormal amygdala activity is implicated in many psychiatric disorders, in particular anxiety disorders (see Etkin and Wager, 2007 for review). The amygdala is a part of a interoceptive network in which the insula plays a primary role, that mediates awareness about perceived bodily arousal states (e.g., sympathetic arousal) (Craig, 2002) and activity in these regions has been shown to correlate with physiological measures of autonomic arousal (Critchley et al., 2004,
+
+2005; Evans et al., 2009). Given the highly co-morbid prevalence of anxiety disorders in young people with MDD (see Table 1), future studies combining fMRI with psychophysiology-based measurements of autonomic arousal (e.g., respiration, electrodermal activity, heart rate variability) will help further delineate the role of the amygdala in moderating anxiety in youth MDD.
+3.2. Cognitive control
+In line with early neuropsychological studies of MDD that demonstrated pronounced deﬁcits in a range of cognitive domains (for review, see Austin et al., 2001), a large body of research has focused on the neural correlates of cognitive control in MDD (for review, see Diener et al., 2012). These studies have traditionally employed tasks that examine “cold” (i.e., non-emotional) cognitive control processes, encompassing working memory, selective and sustained attention, response inhibition, attentional set-shifting/cognitive ﬂexibility, motor inhibition and verbal ﬂuency. Through experimenter manipulation of task difﬁculty, these studies have revealed subtle deﬁcits in cognitive performance in patients with MDD. Studying cognitive control processes in youth MDD is particularly important for understanding the neural mechanisms associated with disrupted cognitive control present in the early stages (i.e., the ﬁrst-episode) of the illness.
+Neuroimaging studies examining “cold” cognitive control processes in youth MDD have examined a range of processes using a diverse range of tasks that predominantly capture selective and sustained attention (e.g., Simon task), response inhibition (e.g., Go/No-Go task, multisource interference task; MSIT, Stop Signal task) or both of these cognitive processes (e.g., continuous performance task; CPT). These tasks are generally designed to probe fronto-cingulate and parieto-temporal lobe areas, as well as basal-ganglia regions implicated in executive control processes. They are associated with robust activation in medial and superior frontal cortices, inferior parietal cortex and basal ganglia regions in healthy controls (Aron et al., 2007; Rubia, 2012; Simmonds et al., 2008; Small et al., 2005).
+Five studies to date have examined such cognitive control processes in youth MDD (Chantiluke et al., 2012; Davey et al., 2012a; Halari et al., 2009; Pan et al., 2011; Yang et al., 2009). Of note, 4 of these studies were conducted in adolescents (age range 13–18), while one study focused on mid-adolescence to young adulthood (age range 15–24) (Davey et al., 2012a). Collectively, these studies have reported mixed results. Some studies have reported robust widespread reductions in activation of fronto-cingulate regions subserving cognitive control and performance monitoring including dorsolateral (DLPFC; BA 9/46) and ventrolateral (VLPFC; BA 45/47) divisions of the PFC and dorsal ACC (24/32) in depressed youths. These ﬁndings have been obtained during tasks of sustained attention (CPT), attentional set-shifting and performance monitoring (Switch task) (Chantiluke et al., 2012; Halari et al., 2009). In contrast, during tasks of response inhibition, studies have reported no signiﬁcant activation differences in lateral divisions of the PFC, but have reported differences in anterior cingulate activation between depressed youth and controls. For example, during the performance of a Go/No-Go (Pan et al., 2011) and Stop Signal task (Yang et al., 2009), depressed adolescents demonstrated elevated ACC activation (BA 32) and subgenual ACC activation (BA 25) during response inhibition, with no reported differences in lateral divisions of the PFC during these tasks.
+In a recent study conducted in a slighter older sample of depressed youths, Davey et al. (2012a) examined deactivation and functional connectivity of the subgenual ACC during response inhibition using the MSIT. Depressed adolescents, compared to healthy peers, demonstrated increased connectivity between the subgenual ACC and ventromedial PFC (BA 10) during rest compared to task-performance (rest N response inhibition). Moreover, the magnitude of this connectivity predicted the corresponding task-related fronto-parietal activation during the task. These ﬁndings, which occurred in the absence of behavioral performance and between-group activation differences, corroborate the
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+223
+
+available ﬁndings of fronto-cingulate abnormalities during executive– attentional control processes in younger samples of depressed adolescents (Chantiluke et al., 2012; Yang et al., 2009).
+Direct comparisons to adult studies that have examined selective and sustained attention, attentional set-shifting and response inhibition are made difﬁcult by the different paradigms used, and so a broader discussion is provided here. Neuroimaging studies of adult MDD have explored a more diverse range of executive functions including working memory, verbal ﬂuency, response inhibition, motor inhibition, planning, sustained attention and attentional set-shifting. These studies are somewhat consistent with the youth MDD literature implicating deﬁcits in similar areas; speciﬁcally the lateral PFC and ACC, although the directionality of the ﬁndings is not always consistent. Studies in adult patients examining cognitive control with a wide range of tasks including the Stroop task, Go/No-Go, CPT and working memory tasks report on predominantly reduced left-sided DLPFC activation with some evidence of reduced bilateral VLPFC and ACC activation, although elevated activation in these regions (compared to controls) has also been reported (Elliott et al., 1997; Fitzgerald et al., 2008; Harvey et al., 2005; Holmes et al., 2005; Hugdahl et al., 2004; Langenecker et al., 2007; Okada et al., 2003; Siegle et al., 2007; Wagner et al., 2006). In contrast to the adult MDD literature, where elevated activity in DLPFC, VLPFC and dorsal ACC in MDD patients have emerged when behavioral performance is matched to healthy controls (e.g., Harvey et al., 2005; Matsuo et al., 2007; Wagner et al., 2006), the same does not appear to be true for youth MDD. That is, of the ﬁve studies examining cognitive control in youth MDD, all reported equal behavioral performance on the cognitive tasks in the absence of elevated PFC activation, with no associations between neural activity and performance. Thus, unlike in studies of adult MDD where observations of elevated fronto-cingulate activation during matched task performance have been suggested to reﬂect a compensatory response or failure to deactivate as cognitive load increases, this argument cannot be made for studies of youth MDD.
+In summary, the available literature in youth MDD is inconsistent. There is some evidence for altered fronto-cingulate activation, and this has been found in adolescent samples (13–18 years old). Only one study has examined functional connectivity, and this was in a slightly older depressed sample (Davey et al., 2012a). The ﬁndings however, of reduced fronto-cingulate connectivity during cognitive control processes are consistent with the ﬁndings of reduced functional activation in frontal regions in depressed adolescents (i.e., mean age b 18 years old). Collectively, these studies, which predominantly implicate lateral divisions of the prefrontal cortex, namely DLPFC and VLPFC, and medial network areas including the ACC, are in line with neurobiological models of adult MDD (Mayberg, 1997; Phillips et al., 2008; Price and Drevets, 2010, 2012). These models propose that abnormalities in fronto-cingulate and fronto-parietal regions supporting higher-order (top-down) cognitive control processes result in the clinical phenomenology of impaired concentration, sustained attention and increased distractibility. However, the directionality and laterality of the ﬁndings have not been consistent with ﬁndings in adult MDD. Given that cortical maturation of prefrontal regions supporting cognitive control processes lags behind in adolescence, and continues to develop into the midtwenties, it is not surprising that inconsistencies arise when comparisons are made to the adult MDD literature. Furthermore, cognitive deficits emerge and become more severe with recurrent MDD and are more pronounced in late-onset MDD patients compared to patients who have their ﬁrst episode of illness in adolescence or early adulthood (Bora et al., 2012). Future longitudinal studies of youth MDD are needed to map brain activity subserving cognitive control, over time, to better understand the trajectory of cognitive control deﬁcits in youth MDD.
+3.3. Affective cognition
+More recently there has been a shift in the affective neuroscience literature that emphasizes the importance of examining neural systems at
+
+the interface of cognition and emotion, including the higher-order cognitive control of emotion. This burgeoning area of research referred to as affective cognition has important implications for understanding the pathophysiology of MDD which is characterized by increased susceptibility to emotional distraction (Fales et al., 2009; Johnstone et al., 2007; Wang et al., 2008) and impaired abilities to regulate emotional processing using cognitive strategies such as cognitive reappraisal (Beauregard et al., 2006; Dolcos et al., 2006; Fladung et al., 2010). These two sub-processes of affective-cognition: emotional distraction by cognition, and cognitive regulation of emotion, despite their similarities, can be analyzed as distinct sub-processes using different paradigms. Emotional distraction has often been examined in adult MDD using tasks of response inhibition and selective attention with an added emotional component: for example the Emotional Go/No-Go task, Emotional Stroop task, and Emotional Odd-ball task (Dichter et al., 2009; Elliott et al., 2002; Fales et al., 2008; Johnstone et al., 2007; Wang et al., 2008). The cognitive regulation of emotion is often assessed using tasks that require participants to cognitively reevaluate an emotional stimulus (e.g., ﬁlm clip, picture, autobiographical script) in order to make it less negative, using cognitive reappraisal strategies (Beauregard et al., 2006; Johnstone et al., 2007; Ochsner et al., 2002). The study of the cognitive control of emotion, in particular cognitive reappraisal is very relevant to youth MDD because cognitive regulatory strategies such as reappraisal are a key component of CBT, the ﬁrst-line recommended treatment for young people with MDD.
+The most commonly used paradigm for examining neural activity associated with affective cognition in youth MDD has been an emotion–attention interference task. This task, which assesses the effects of emotional stimuli on the ability to perform a cognitive task, requires participants to view emotional faces (fearful, angry, happy) while under varying attentional conditions (Beesdo et al., 2009; Lau et al., 2009, 2010; Roberson-Nay et al., 2006). Of note, the passive viewing condition, which measures implicit emotion perception is similar to and can be compared with studies of emotional processing in youth MDD (reviewed above) as it measures emotion recognition and perception and does not require overt cognitive processes. Examining neural activity during the 3 constrained attention conditions of this task allows for the separate analysis of the attentional control of emotion as compared to baseline emotional processing (passive viewing condition).
+Five studies have examined affective cognition in youth MDD. Four of these studies, using over-lapping samples (i.e., some of the same patients) (see Table 1), have used the emotion–attention interference task described above. These studies, which have focused on samples encompassing late childhood to late adolescence (9–18) have all reported elevated amygdala activation in depressed youths compared to controls, during the viewing of fearful faces when attention was focused on internally experienced fear (“How afraid are you of this face?” “How hostile is this face?”) (Beesdo et al., 2009; Lau et al., 2009, 2010) with weaker evidence of amygdala activation for happy faces. Incorporating a memory component to the emotion–attention task to assess the effects of emotional distracter stimuli on memory encoding, RobersonNay et al. (2006) compared neural activation during exposure to faces subsequently remembered to those that were forgotten. They found that although depressed patients performed the task more poorly overall, they displayed elevated left-sided amygdala activation to faces that were subsequently encoded vs. those that were not encoded, regardless of the emotional-valence (fearful, happy, angry and neutral).
+One recent preliminary study (Perlman et al., 2012) examined cognitive reappraisal in a small sample of 14 adolescents with MDD using a well-validated paradigm developed by Ochsner et al. (2002, 2004). In this task participants are presented with negative pictures of people or scenes (e.g., a terminally ill woman in a hospital bed) and are instructed to either react naturally to the emotional content of the picture without altering their response (“Maintain”) or to reinterpret the picture (“Reappraise”) so that it no longer elicits a negative response. Although no signiﬁcant between-group differences were found during
+
+224
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+the reappraisal of negative images (reappraise N maintain condition), the study reported increased amygdala activity but decreased connectivity with medial PFC and insula regions during the maintenance of negative affect in MDD patients. Despite the lack of signiﬁcant ﬁndings during cognitive reappraisal, the authors interpreted their ﬁndings of reduced amygdala–medial PFC and amygdala–insula connectivity during the viewing of negative emotional stimuli (“maintain” condition) to reﬂect inefﬁcient regulation of the amygdala by the medial PFC and poor integration of emotional responses into the insula for interoceptive awareness. The preliminary results of this study provide some support for an altered extended medial PFC network including the amygdala in youth MDD, although these ﬁndings require replication.
+Studies of affective cognition in adult MDD are not very consistent with those studies in youth MDD (Dichter et al., 2009; Elliott et al., 2002; Fales et al., 2008; Johnstone et al., 2007; Wang et al., 2008), although the paradigms used have been quite different. These studies have used tasks including the Emotional Go/No-Go task, Emotional Stroop task, and Emotional Odd-ball task, which tap into neural regions that are implicated in maintaining goal-directed behavior (i.e., performance) during the presence of emotional distracter stimuli. These studies have reported altered (predominantly reduced) lateral PFC (DLPFC, inferior frontal gyrus), and medial PFC (ventromedial PFC, ACC and posterior cingulate) activation in depressed patients. In a similar paradigm to that reported in Roberson-Nay et al. (2006), Hamilton and Gotlib (2008) reported that depressed adults showed an enhanced amygdala response to negative but not positive emotional pictures that were subsequently remembered compared to those that were not. In addition, the authors reported increased right-sided amygdala connectivity with the hippocampus and putamen that correlated positively with depression severity. These ﬁndings, which are only partly consistent with those of RobersonNay et al. (2006), who found enhanced amygdala response to all emotion types, support a role for the amygdala in the enhanced encoding and memory of emotional material, particularly of negative valence, in depression, and provide further evidence for a link between enhanced memory of negative emotional stimuli in MDD, and illness severity. Studies of cognitive reappraisal in adult patients provide more compelling evidence of altered activation in neural regions supporting cognitive reappraisal. In contrast to Perlman et al. (2012), who did not ﬁnd any group differences during reappraisal of negative images (vs. passive viewing), studies in adult patients consistently report on predominantly elevated activation in lateral PFC (BA 45/47), and medial PFC regions during the cognitive reappraisal of negative stimuli compared to healthy controls (Beauregard et al., 2006; Erk et al., 2010; Johnstone et al., 2007; Sheline et al., 2009).
+In summary, studies examining affective cognition in youth MDD have shown consistent evidence of elevated amygdala activation during tasks when information needs to be ignored or suppressed. Further, there is some preliminary evidence of altered medial PFC-limbic connectivity during the maintenance of negative affect in youth MDD (Perlman et al., 2012). Overall, the literature in youth MDD is not consistent with ﬁndings in adult MDD. As with studies of emotion processing, all of these studies included patients who were medication-free, thus allowing for the examination of biological abnormalities without the confounding effects of medication. However, no study to date has examined the effects of pubertal maturation on the activity of brain regions implicated in cognitive–affective processes in youth MDD. This is a signiﬁcant omission given that: i) pubertal processes are linked to depression, particularly in girls (Angold and Costello, 2006; Ge et al., 2001); ii) there is some evidence to suggest that emotion regulation processes mediate the link between pubertal maturation and depression (Crockett et al., 2013) and; iii) emotion regulation processes are fundamental to CBT, the ﬁrst-line recommended treatment for young people with MDD (Beck, 1976). These studies will have important implications for future CBT-focused studies in adolescents and young adults with MDD, and will help create a more comprehensive model of youth MDD.
+
+3.4. Reward processing
+The examination of brain function related to positive affect in MDD, in particular reward processing, is important for identifying abnormalities in reward-related brain regions that may be associated with key affective and motivational features of MDD (e.g., anhedonia). Studying reward processing in adolescence is particularly important because adolescence is characterized by rapid development of subcortical areas implicated in reward processing (e.g., striatum, nucleus accumbens) (Rubia, 2012), and is associated with social changes including increased peer afﬁliation and reward-seeking behavior in social contexts, that may contribute to the onset of MDD (Davey et al., 2008; Ernst et al., 2006; Morgan et al., 2012). In light of this, studies have examined the mechanisms of reward processing in adolescent MDD by using tasks that allow for the analysis of reward selection, anticipation and consummatory (outcome) phases of reward to capture the complex decision-making processes underlying real-world reward processing and positive-affect.
+Reward processing in youth MDD has traditionally been studied in the context of decision-making about monetary rewards (Forbes et al., 2006, 2009, 2010; Olino et al., 2011; Shad et al., 2011), although one recent study has examined reward processing in the context of social feedback (Davey et al., 2011). The most widely used tasks in the youth MDD literature have been monetary card-guessing tasks (Forbes et al., 2006, 2009, 2010; Olino et al., 2011). These tasks are used to capture the anticipation and consummatory phases of reward and probe underlying reward-related brain areas implicated in these processes including the ventral striatum, OFC, medial PFC including the ACC, and closely connected regions including the amygdala. In these studies, the cardguessing task typically involves 3 phases: a decision making, anticipation and reward outcome phase, although the decision-making and anticipation phases are usually analyzed together. The monetary cardguessing task has been shown to reliably activate the dorsal and ventral striatum and is a sensitive measure of differential striatal responses to reward and punishment in young, healthy adults (Delgado et al., 2000) and adolescents (Forbes et al., 2009). Another task that has recently been used in the youth literature and is commonly used in the adult literature, is a 2-choice monetary Wheel of Fortune (WOF) task (Shad et al., 2011, see Table 1). The WOF task differs from card guessing tasks as it involves participants choosing from 2 monetary wheels that contain varying probabilities of winning money (25/75% wheel, 50/50% wheel) with small ($2 or $1) and large ($6 or $3) magnitudes. Unlike card-guessing tasks, the WOF task allows for the separate examination of reward selection, independent of anticipation and feedback.
+Of the 6 studies examining reward processing in youth MDD, 5 have utilized monetary reward tasks (Forbes et al., 2006, 2009, 2010; Olino et al., 2011; Shad et al., 2011) and, as mentioned, 1 study examined social rewards in the context of positive feedback (Davey et al., 2011). These studies have most consistently reported diminished striatal activation during reward anticipation and outcome in depressed youth versus healthy controls (Forbes et al., 2006, 2009, 2010). These effects appear to persist following positive feedback (i.e., a win in the previous trial) (Olino et al., 2011) and are associated with lower self-reported positive affect (Forbes et al., 2009). Findings have been bilateral and localized predominantly to the caudate (head and body). There is also evidence for diminished activation in the ACC and altered activation in the OFC and amygdala during reward anticipation and outcome. Additionally, there is some evidence that the directionality of OFC activation is dependent on the probability (high vs. low risk) and magnitude (small vs. large) of the reward outcome (Forbes et al., 2006). Speciﬁcally, in a study utilizing a monetary guessing task where participants were required to make choices about possible rewards with varying probabilities and magnitudes, depressed adolescents showed attenuated activation in bilateral inferior OFC compared to controls during reward anticipation, particularly when the magnitude of the reward was high. Conversely, they showed elevated bilateral middle and superior OFC activation compared to controls during reward anticipation, particularly
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+225
+
+when the magnitude of reward was low. During the outcome phase, depressed adolescents demonstrated blunted OFC activation particularly following a loss and low-magnitude reward; however following a high magnitude win, depressed adolescents demonstrated elevated leftsided inferior OFC activation.
+Directly comparing ﬁndings in adolescent-onset MDD studies with studies in early-adulthood MDD onset using reward-based monetary paradigms shows similarities. In particular, ﬁndings of differential OFC responses to probability and outcome of reward mentioned above have also been shown in a study employing the WOF task in a sample of 18–22 year olds (Shad et al., 2011, see Table 1). Similarly, in a study of 15–24 year olds with MDD utilizing a social feedback task, hyperactivity of the amygdala was reported during positive feedback—a ﬁnding consistent with amygdala hyperactivation to large wins in monetary cardguessing tasks in younger (i.e., adolescent-onset) MDD patients (Forbes et al., 2006). Finally, there is some evidence that pre-treatment striatal and mPFC activity during reward processing may be a valid predictor of treatment response to psychotherapy and medication in adolescents with MDD (Forbes et al., 2010), although this ﬁnding has not been replicated in older (N18 years old) cohorts.
+In the only study to examine gender and pubertal development as moderators of neural activation during reward processing and depressive symptoms, greater activity in mPFC including medial frontal gyrus (BA 10) and anterior cingulate (BA 32) during reward outcome was associated with increased depressive symptoms in boys two years later. An important ﬁnding of the study was that reduced caudate activation during reward anticipation predicted increases in depressive symptoms that were speciﬁc to adolescents in mid-late puberty (Morgan et al., 2012).
+Studies in adult depressed patients employing monetary reward (Dichter et al., 2009; Pizzagalli et al., 2009; Smoski et al., 2011; Stoy et al., 2012), and positive feedback tasks (Steele et al., 2007) are largely consistent with ﬁndings in youth MDD. These studies have most consistently reported blunted caudate and putamen activation during reward selection, anticipation and outcome (Pizzagalli et al., 2009; Smoski et al., 2009, 2011; Stoy et al., 2012), and following positive feedback (‘win’) in a card-guessing task (Steele et al., 2007). However activation in the caudate has been more localized to the ventral caudate/nucleus accumbens in studies of adult MDD. Further, imaging treatment studies provide some evidence for a state-related abnormality of the ventral striatum. For example, pre-treatment hypoactivity of the ventral striatum associated with the anticipation of gain and loss during a Monetary Incentive Delay (MID) task was normalized following 6-week treatment with the SSRI citalopram (Stoy et al., 2012). Similarly, in a treatment study examining the therapeutic effects of behavioral activation (a form of psychotherapy) on neural responses to reward anticipation and feedback during the WOF task, MDD patients exhibited increased activation in the left caudate nucleus during reward anticipation following treatment (Dichter et al., 2009). The authors interpreted these ﬁndings as reﬂecting increased mesolimbic functioning (i.e., antidepressantinduced changes of dopamine neurotransmission), and, at the behavioral level, increased motivation and goal-directed behavior in the context of anticipating rewards. In parallel with observations of reduced striatal activity, some studies have reported on medial PFC hyperactivity during reward processing in adult MDD (Keedwell et al., 2005; Knutson et al., 2008; Smoski et al., 2009). Using a MID task, Knutson et al. (2008) reported increased dorsal ACC activation that was associated with increasing gain during reward anticipation. Using the WOF task, Smoski et al. (2009) reported elevated OFC activation during reward selection, although the ﬁnding of increased ACC activation was not replicated.
+In summary, studies of youth MDD have utilized robust paradigms that allow for the examination of reward processing in the context of monetary rewards, but also social feedback. These studies have consistently found blunted striatal activation and altered OFC activation during risky-decision making about monetary rewards, and following reward outcome. These ﬁndings, coupled with observations of elevated
+
+activity in other ventromedial PFC regions including medial frontal gyrus (BA 10) (Forbes et al., 2009) and limbic regions including the amygdala (Davey et al., 2011) during positive feedback, suggest abnormal reward processing in young people with MDD, that may be driven by: i) a diminished striatal response to reward (during anticipation and outcome); and concurrently ii) an ‘over-active’ medial PFC system. Furthermore, there is growing evidence that mPFC activation moderates treatment response differently in females and males, and may serve as a predictive neural biomarker in youth MDD. An interesting ﬁnding amongst these studies is that functional activation reported in the caudate was predominantly localized to the head and body (dorsal division) of the caudate. Given the well-established role of the ventral striatum in reward processing and reward-based decision-making, one might have expected differences in functional activity to be localized to the nucleus accumbens, which is situated at the ventral portion of the head of the caudate. Differences in the anatomical localization of ﬁndings in the caudate (i.e., dorsal vs. ventral) may have relevant implications for understanding the pathophysiology of the disorder and should be considered in future studies. Finally, there is emerging evidence that suggests gender and puberty moderate neural responses to reward and interact to predict depressive symptoms differently in boys and girls (Morgan et al., 2012). In order to provide a more comprehensive neurobiological model of adolescent MDD, it will be important to tease apart the effects of pubertal stage vs. pubertal timing, on brain function in adolescent MDD.
+3.5. Resting-state studies
+Recent advances in the application of brain imaging to study psychiatric disorders have lead to examining alterations in the organization and connectivity of brain networks (Fornito and Bullmore, 2010). One such approach, namely resting-state functional connectivity, allows for the examination of spontaneous ﬂuctuations of the BOLD signal (~0.04 Hz) that occur during resting conditions across spatially distributed brain regions (Fox and Raichle, 2007; Harrison et al., 2008). Functional connectivity-based MRI has been used to localize functional connectivity abnormalities across a range of psychiatric disorders, and to identify connectivity patterns that predict treatment response, as well as clinical measures of illness severity (Fox and Greicius, 2010; Hamilton et al., 2011; Sheline et al., 2010; Zhang and Raichle, 2010). In addition, functional connectivity-based methods offer an attractive framework for studying psychiatric disorders due to their practical beneﬁts including minimal demands on patient compliance and short acquisition times. Further, the highly replicable nature of resting-state fMRI measurements within and across subjects makes the technique potentially more universally comparable (Shehzad et al., 2009; Van Dijk et al., 2010).
+In light of this, 6 studies have examined resting-state functional connectivity in youth with MDD (Cullen et al., 2009; Davey et al., 2012b; Guo et al., 2011; Jiao et al., 2011; Jin et al., 2011; Zhu et al., 2012). Some of these studies have been in adolescent onset MDD (Cullen et al., 2009; Jiao et al., 2011; Jin et al., 2011; Zhu et al., 2012) while others have focused on early adult-onset MDD (Davey et al., 2012b; Guo et al., 2011). These studies have used a range of methods to measure functional connectivity including seed-based correlations, graph theory analysis (GTA) and independent component analysis (ICA) (Cullen et al., 2009; Davey et al., 2012b; Jin et al., 2011; Zhu et al., 2012) (see Table 1 and Margulies et al., 2010 for review). For analysis of resting-state activity, studies have used complimentary methods that quantify the magnitude of ﬂuctuations in the BOLD signal. These methods have been based on amplitude of low-frequency ﬂuctuation (ALFF) (Jiao et al., 2011) and regional homogeneity (ReHo) (Guo et al., 2011) approaches (see Table 1 for a description of resting-state measures).
+These studies consistently implicate abnormally increased restingstate functional connectivity in medial PFC areas including the pregenual ACC (most consistently BA 32) and subgenual (BA 25) ACC,
+
+226
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+and dorsomedial (BA 8) and ventromedial (BA 10) divisions of the PFC in adolescent and youth MDD (Cullen et al., 2009; Davey et al., 2012b; Jiao et al., 2011; Jin et al., 2011; Zhu et al., 2012). Of note, these medial PFC areas are also components of the default mode network (DMN), a network of brain regions that exhibit elevated activity during rest and become deactivated during goal-directed behavior (i.e., during task performance). DMN activity is thought in part to reﬂect selfreferential processing (Greicius et al., 2003; Raichle et al., 2001; Sheline et al., 2009; Stuhrmann et al., 2011), and as such, failure to deactivate DMN areas during tasks requiring cognitive engagement is thought to reﬂect an ‘inability’ to disengage from self-related thought processes.
+In a recent study Davey et al. (2012b) performed a seed-based functional connectivity analysis in a sample of 18 depressed adolescents and 19 controls using seeds in sub-regions of the ACC, namely subgenual ACC, pregenual ACC, and anterior and posterior mid-cingulate cortices. The authors reported that depressed adolescents demonstrated increased functional connectivity between i) the subgenual ACC and dorsomedial PFC and ii) the pregenual ACC and left DLPFC. Further, the magnitude of the subgenual ACC-dorsomedial PFC connectivity difference signiﬁcantly predicted patients' illness severity, which was stronger for unmedicated patients. This ﬁnding of increased functional connectivity between subgenual ACC and dorsomedial PFC and relationship to illness severity, adds to a growing body of literature demonstrating the prognostic utility of fMRI in predicting illness severity and treatment response based on measures of cingulate activity and connectivity, which is particularly robust for the pregenual ACC (Kemp et al., 2008; Pizzagalli, 2011). The ﬁndings are also supported by other resting state functional connectivity studies in adolescent MDD utilizing different connectivity techniques (also see Davey et al., 2012a in “cognitive control” section above). For example, in a recent study utilizing ICA to identify and analyze the DMN in a larger group of depressed young adults (n = 32) and healthy controls (n = 33), young depressed adults showed increased functional connectivity in the dorsomedial PFC extending into ventral ACC (BA 9 to 24/32), and ventromedial PFC (BA 10/11) (Zhu et al., 2012), that correlated with self-report measures of rumination. Indirect support for this pattern of connectivity ﬁndings comes from another study which utilized GTA in depressed adolescents and healthy controls and reported overall reduced connectivity across networks in the brain, but increased connectivity within bilateral ACC, dorsolateral and medial PFC, as well as amygdala and temporal cortices (Jin et al., 2011). The ﬁndings from this study, which were in a younger sample of depressed patients (age range 15–18 years old), implicate overlapping regions as those reported in Davey et al. (2012b). Taken together, these ﬁndings are compelling because they were derived using different methodological approaches and in slightly different age groups (mean age b 18 and N18 years old respectively), but implicate similar neural regions that are disturbed in youth MDD.
+Emerging ﬁndings from resting-state studies in adult MDD are largely consistent with the youth ﬁndings, and provide support for altered resting-state activity and connectivity in DMN regions, with some evidence for associations with symptom proﬁles (Greicius et al., 2007; Hamilton et al., 2011; Liu et al., 2012; Sheline et al., 2010; Yao et al., 2009; Zeng et al., 2012; Zhang et al., 2011). Three studies have demonstrated increased functional connectivity between the subgenual ACC and dorsomedial PFC using seed-based analyses (Hamilton et al., 2011; Sheline et al., 2010) and ICA (Greicius et al., 2007), lending further support for the view of an altered medial PFC network in MDD, in which the ACC is a ‘hub’. The ﬁnding of increased pregenual ACC-left dorsolateral PFC connectivity in youth MDD has not previously been reported in adult MDD but suggests that the DLPFC may be a potential candidate for future fMRI biomarker research. Further research is needed to test whether this is an abnormality speciﬁc to youth MDD.
+In summary, resting state functional connectivity abnormalities in DMN areas, particularly implicating subgenual ACC, dorsomedial and ventromedial PFC, have been reported in youth MDD. These ﬁndings,
+
+which have been found in medicated and unmedicated patients and across wide age ranges spanning mid adolescence into early adulthood, also correlate with distinct symptom proﬁles such as rumination and illness severity. The ﬁndings, which are in alignment with resting-state abnormalities in DMN regions (including the ACC and dorsomedial PFC) in older adult MDD patients, support recent models of depression, that emphasize the importance of medial network disturbances in contributing to the clinical manifestation of disrupted visceromotor and self-referential processes including depressive rumination. Given the substantial evidence of disrupted subgenual ACC activity in MDD, and its clinical importance as a target site for deep brain stimulation (DBS) (see Drevets et al., 2008 for review; Holtzheimer et al., 2012), future studies examining the treatment implications of this region in youth populations holds as a promising avenue of research.
+4. Supplementary quantitative analysis
+To compliment our qualitative, systematic review, we conducted a quantitative analysis of the 28 reviewed studies. Indices of effect sizes (indexed by z-scores) for the 7 main neural regions implicated in youth MDD across the 5 reviewed primary domains, can be found in Inline Supplementary Table S1 (supplementary material). These 7 neural regions are discussed below and are also shown in Fig. 1. Overall, our analysis indicates that across all domains, functional differences between depressed and non-depressed youth are most robust in the ventromedial PFC (including the OFC) and amygdala, indexed by the highest z-scores across the 5 reviewed domains (maximum z score = 5.4 and 4.0, respectively). While evidence for the ventromedial PFC appears to be bilateral, there is stronger evidence for a role of the left amygdala in youth MDD. The DLPFC, which was most consistently implicated in the cognitive control and resting-state domains, also showed robust bilateral z-scores (maximum z score = 4.8). Overall, studies in older youths (i.e., mean age N18 years old) had slightly higher z-scores than studies in samples with a mean age b18 years old.
+Inline Supplementary Table S1 can be found online at http://dx.doi. org/10.1016/j.nicl.2013.11.009.
+5. Overall summary & consideration
+In the present article, we have systematically reviewed the available fMRI studies in youth MDD across 5 functional domains of functioning to provide a comprehensive account of the literature to date. Collectively, the literature provides mounting evidence of altered functional activations and connectivity in extended medial prefrontal network regions in youth MDD, including the ACC, ventromedial PFC, OFC, and closely related subcortical areas including the amygdala and striatum in youth MDD (Fig. 1; also see Inline Supplementary Table S1 in the supplementary material). These reported alterations, which are present during resting-state conditions, tasks of emotional processing, cognitive control, affective cognition and reward-based decision-making were present in medicated and unmedicated patients. Across the 5 reviewed domains, the most consistently implicated areas were the ACC, speciﬁcally pregenual and subgenual divisions, the ventromedial PFC and the amygdala. Activity within, and connectivity between these regions also showed associations with clinical measures of depression severity (Davey et al., 2012b; Forbes et al., 2006; Matthews et al., 2008; Mingtian et al., 2012; Yang et al., 2009), duration of illness (Jin et al., 2011), rumination scores (Zhu et al., 2012) and cognitive vulnerability (Zhong et al., 2011). Of note, these signiﬁcant correlations were reported predominantly in the emotion processing and resting-state domains, where the most consistent and robust alterations in activity and connectivity were found. Furthermore, activity in the subgenual ACC and amygdala appears to be responsive to antidepressant treatment in depressed adolescents (Tao et al., 2012), although these observations require replication. These neural regions, which are implicated in neurobiological models of MDD (Mayberg, 1997; Phillips et al., 2008;
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+227
+
+Price and Drevets, 2010, 2012) and have been used as biological targets for clinical interventions in adult patients (including DBS and CBT), could guide future imaging treatment studies of youth MDD.
+Comparisons to the adult MDD literature revealed the most consistent ﬁndings for emotion processing and resting-state functional connectivity studies, with some support for studies using reward-based decisionmaking tasks. While drawing comparisons to the adult MDD literature are important and useful for delineating common neurobiological mechanisms of the disorder, it is equally important to acknowledge the differences in youth vs. adult MDD, which are to be expected given the rapid neurodevelopment that occurs over the adolescent and early-adulthood years. Inconsistencies between the youth and adult MDD literature were apparent when examining studies of cognitive control and affective cognition. Although some evidence was shown for fronto-cingulate and fronto-parietal lobe abnormalities during “cold” cognitive processes, the directionality of the ﬁndings is less consistent in youth compared to adult MDD. For affective cognition, in studies of emotional distraction, the amygdala was the only region that was consistently reported as hyperactive across the youth and adult MDD studies, although the paradigms used in these two ages groups differed. For cognitive reappraisal, the lack of ﬁndings during cognitive reappraisal of negative emotional stimuli in youth MDD sits apart from ﬁndings in adult MDD, which implicate hyperactive lateral PFC regions. The inconsistencies in the cognitive control studies between the youth and adult MDD literature may be due, in part, to the fact that cognitive deﬁcits emerge and become more severe with recurrent MDD (Bora et al., 2012), and therefore abnormalities in brain regions subserving cognitive control would be expected more so in older MDD patients compared to patients who have their ﬁrst episode in early adulthood. This idea is also supported by the lack of behavioral performance differences during tasks of cognitive control in youths with MDD compared to their healthy peers, indicating that cognitive functioning is not yet compromised. Furthermore, cortical maturation of the prefrontal cortex lags behind subcortical/limbic regions implicated in emotion generative and reward processes (Rubia, 2012), which may contribute to the inconsistencies in the cognitive control domain (Rubia, 2012).
+Despite the small number of fMRI studies in youth MDD, the available literature provides evidence of altered activation and connectivity in neural regions implicated in emotion processing and its regulation and selfreferential processing, key processes known to be abnormal in affective disorders including depression. Furthermore, comparisons between studies of adolescent-onset MDD with those in early-adulthood MDD revealed similar ﬁndings across all 5 domains, implicating similar neural regions. It is interesting to note, however, that of the 8 studies reporting signiﬁcant associations between clinical measures of depression and brain activity/ connectivity, 5 of those studies were in older youth samples, with a mean age N18 years old. This observation speaks further to the importance of neurodevelopmental and environmental changes occurring across this age period that may contribute to the clinical manifestation of depressive symptoms that is more apparent in older patients who have had recurrent MDEs. However, due to small sample sizes in the reviewed studies, and an imbalance of the number of studies containing samples with a mean age of b 18 and N18 years old (20 studies and 8 studies respectively), this argument is speculative. While we have provided a supplementary quantitative analysis that shows a pattern of higher z-scores in studies with older youth (i.e., mean age N18 years old) compared to younger adolescents, a formal meta-analysis of these studies providing a statistical measure of the effect sizes of the main ﬁndings reported, and statistical differences between groups (i.e., younger adolescents vs. older youth) is warranted.
+5.1. Future approaches for biomarker research in youth MDD: The extended medial prefrontal cortical network of MDD
+The current available literature in youth MDD is broadly consistent with a prevailing ‘extended medial prefrontal network’ neurobiological
+
+model of depression (see Fig. 1). Based largely on functional imaging studies of adult MDD, the extended medial prefrontal network model proposes that MDD is associated with alterations in a medial network consisting of ventrally located medial PFC regions including the ventromedial PFC (encompassing medial portions of BA 10 and caudal portions of the OFC, BA11) and anterior cingulate cortex (pregenual, midcingulate and subgenual divisions) together with closely related regions including the striatum, amygdala and thalamus (Price and Drevets, 2010, 2012). Importantly, areas of the extended medial prefrontal network are implicated in emotional processes including the generation of affect and modulation of autonomic responses associated with emotional stimuli (Hariri et al., 2000; LaBar et al., 2003; Morris et al., 1998; see Phan et al., 2002 for review). These areas also overlap with DMN regions that are implicated in self-referential processes. Furthermore, these areas interact dynamically with ‘executive-control’ network areas, namely DLPFC and VLPFC together with anatomically connected parietal lobe areas (Seeley et al., 2007), to regulate mood and cognitive functions including the cognitive regulation of emotion.
+We propose that, while it is important to interpret the ﬁndings of youth MDD within the context of neurobiological models that are founded on adolescent brain development and risk for psychopathology, the extended medial prefrontal model of MDD can also be used as a theoretical framework within which to understand the neuroimaging ﬁndings in youth MDD. This model is particularly relevant for understanding alterations of medial prefrontal regions, where the most consistent evidence is shown in youth MDD. The ACC in particular, shows altered resting-state functional connectivity with the amygdala, dorsomedial PFC and executive-control network areas including the DLPFC (Davey et al., 2012b; Greicius et al., 2007; Hamilton et al., 2011; Sheline et al., 2010). Altered functional connectivity between the subgenual ACC and dorsomedial PFC may represent a neural basis for depressive rumination and altered self-referential processing in youth MDD. Similarly, we propose that altered connectivity between the subgenual ACC and amygdala together with observations of amygdala hyperactivity during emotional processing tasks may represent heightened emotional reactivity to emotional and social stimuli. In contrast to medial PFC regions, ﬁndings from studies of cognitive control in youth MDD less consistently implicate abnormalities in executive control regions compared to adult MDD studies. This is, however, consistent with a model in which alterations in activity of the extended medial frontal network are the primary pathology in depression, and alterations in dorsolateral areas that subserve executive functioning are secondary. Abnormalities in prefrontal regions subserving higher-order executive functions would therefore be more expected in older adults who have experienced recurrent and longer lasting depressive episodes (Price and Drevets, 2010). Given that ﬁndings in adolescent and youth MDD patients are consistent with an altered extended medial PFC network, a greater emphasis is needed in future task-based studies to focus on medial network regions, by employing paradigms that focus on depression-relevant maladaptive processes that tap into these regions, including self-referential processing, rumination and guilt (Berman et al., 2011; Kedia et al., 2008; Sheline et al., 2009; Yoshimura et al., 2009).
+There are important limitations of the reviewed studies that need to be addressed. Firstly, although some studies ensured that patients were medication-free, and these were more pronounced in particular domains (e.g., cognitive control, emotion processing), in many of the reviewed studies patients were medicated and therefore the neuroimaging ﬁndings were confounded by medication effects. In addition, in many of the reviewed studies, there was a high prevalence of comorbid disorders in depressed patients, particularly anxiety disorders, which makes it difﬁcult to delineate the speciﬁcity of the ﬁndings to MDD per se. Findings of amygdala hyperactivity in particular, have also been reported in at-risk individuals and in numerous psychiatric illnesses. Amygdala hyperactivity may therefore not be speciﬁc to MDD, and rather a neural substrate of trait anxiety predisposing psychiatric illness.
+
+228
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+An outstanding issue that has been neglected in the current literature is the effects of pubertal maturation (measured as either pubertal maturation stage or pubertal timing) on the reactivity of neural systems implicated in adolescent MDD. Many of the current studies have recruited depressed patients with wide age-ranges, for example, spanning 8 to 17 years old in the same cohort (see Table 1). While some imaging studies have matched samples on pubertal maturation (i.e., Tanner stage), only 1 study has examined the effects of pubertal maturation (pre/ early vs. mid/late groups based on Tanner stage) on depressionrelated brain activation by examining a group by pubertal maturation interaction (Forbes et al., 2009). This issue is important to address because pubertal processes, particularly early-onset pubertal maturation, have been linked to adolescent MDD (Angold and Costello, 2006; Ge et al., 2001). As discussed above, the onset of puberty and subsequent rise of pubertal hormones is associated with important neuroendocrine changes that are intricately linked with substantial remodeling of the adolescent brain including development of structural brain networks supporting cognitive–affective processes (e.g., lateral PFC development) (see Ladouceur, 2012 for review) and development of neurotransmitter systems (e.g., development of the dopaminergic system) (Sisk and Zehr, 2005). However, what is not known is whether pubertal maturation interacts with neural systems involved in cognitive–affective processes. It has been suggested that altered development of brain regions implicated in emotion regulation (particularly DLPFC and VLPFC and their connections with ventromedial PFC and amygdala) likely contribute to depression (Casey et al., 2011; Davey et al., 2008; Ernst et al., 2006). Further, there is evidence that emotion regulation processes mediate the link between pubertal maturation and depression (Crockett et al., 2013). A future avenue of research may be to examine brain activity during cognitive–affective processes in early-onset puberty vs. lateonset puberty in adolescent girls to see if there is a moderating effect of puberty on brain activation, and depressive symptoms.
+Another limitation inherent in the reviewed studies relates to the ‘pooling’ together of patients across wide age-ranges. None of the reviewed studies stratiﬁed their neuroimaging analyses by age group and thus the imaging ﬁndings do not account for the potential effects of different stages of brain maturation and development that occur across adolescence and early adulthood. Future longitudinal neuroimaging studies of young people with MDD are warranted to reﬂect continuities in brain development across the adolescent period extending into the mid-twenties, through consideration of developmental-stage in study designs.
+Future neuroimaging studies also need to shift the focus towards examining adolescents at high-risk for MDD (either deﬁned as having at least one ﬁrst-degree relative with a diagnosis of MDD, or another risk-factor such as subthreshold depressive symptoms or at-risk temperament), to better understand brain markers of disease susceptibility. While a limitation of the current review is that we did not focus on studies conducted in adolescents and young people at-risk for MDD, it is an area that warrants further research. Recent evidence from fMRI as well as Diffusion Tensor Imaging (DTI) studies in adolescents and young people at-risk for MDD (based on positive family history) provide compelling evidence of altered fronto-limbic responses to emotional stimuli (Mannie et al., 2011; Monk et al., 2008), altered putamen and insula activation during reward anticipation (Gotlib et al., 2010) and white matter deﬁcits (Huang et al., 2011). Thus future studies in at-risk adolescents and youth, compared at different developmental stages in the context of emotion processing and resting-state study contexts will represent signiﬁcant advances towards biomarker identiﬁcation.
+Furthermore, future imaging studies of youth MDD should endeavor to utilize paradigms that assess other symptoms and features of the disorder, such as excessive experiences of moral emotions including guilt and shame (Pulcu et al., 2013), and increased susceptibility to negative emotions resulting from social rejection or exclusion (Masten et al., 2011). It will also be of interest for future neuroimaging studies to examine brain activity related to guilt, shame and other ruminative
+
+thought processes in the context of treatments such as CBT and other mindfulness-based techniques. Such treatments are used to treat patients with chronic, recurrent depression, and may prove to be effective for treating the disorder in young people.
+Finally, while the available literature can usefully guide future research into the pathophysiology of youth MDD, the clinical utility of the ﬁndings is equally important. It is hoped that in the future imaging ﬁndings may assist ‘real world’ clinical decision-making by, for example, identifying neural activation patterns that predict treatment response at the individual-level. For example CBT, which exerts its clinical efﬁcacy in depression by enhancing putative cognitive regulatory strategies (including reappraisal processes), is currently recommended as ﬁrst-line treatment for youth MDD. Yet, there is an absence of good CBTfocused imaging studies in youth MDD. Given evidence in the adult MDD literature for a role of the pregenual ACC and amygdala in predicting treatment response to CBT, and the clinical implications of identifying such biomarkers that can distinguish between responders and non-responders to treatment, future treatment studies employing functional MRI in the context of randomized clinical trials will be important for ultimately testing the prognostic utility of fMRI.
+5.2. Concluding remarks
+The ﬁeld of neuroimaging in youth MDD is a burgeoning area of research, however it is still in its infancy. To date, 28 neuroimaging studies utilizing fMRI have been conducted in youth (adolescent and young adult) patients (b 25 years of age) with MDD. These studies overwhelmingly implicate abnormalities in the extended medial network in youth MDD, with robust ﬁndings in the ACC and amygdala. Moreover, there is some evidence for brain biomarkers of treatment response, which remains a promising avenue of future research, particularly in emotion processing and resting-state study contexts. In contrast, cognitive control deﬁcits are less pronounced in youth MDD and are not as strongly supported by studies in adult MDD. Studies of affective cognition are only beginning to emerge and thus inferences about the similarities and differences to the adult MDD literature are too premature to make. Future longitudinal studies examining the effects of neurodevelopmental changes and pubertal maturation on brain systems implicated in reward and cognitive–affective processes will be pivotal for advancing our understanding of the illness. As the ﬁeld of youth psychiatry continues to work towards better clinical treatment and management of youth MDD, neuroimaging studies employing fMRI-based approaches in the context of treatment studies will be equally important to identify biological markers of the illness that may have power in predicting treatment response, and ultimately illness recovery.
+Role of funding source
+A/Prof Harrison is supported by a National Health and Medical Research Council of Australia (NHMRC) Clinical Career Development Award (I.D. 628509). Dr Davey is supported by an NHMRC Early Career Fellowship (I.D. 628922). Dr Whittle is supported by an NHMRC Biomedical Career Development Award (I.D. 1007716). This work was also partly supported by NHMRC Project Grant (I.D. 1064643).
+References
+Anand, A., Li, Y., Wang, Y., Wu, J., Gao, S., Bukhari, L., Mathews, V.P., Kalnin, A., Lowe, M.J., 2005. Activity and connectivity of brain mood regulating circuit in depression: a functional magnetic resonance study. Biol. Psychiatry 57 (10), 1079–1088.
+Anand, A., Li, Y., Wang, Y., Gardner, K., Lowe, M.J., 2007. Reciprocal effects of antidepressant treatment on activity and connectivity of the mood regulating circuit: an FMRI study. J. Neuropsychiatry Clin. Neurosci. 19 (3), 274–282.
+Angold, A., Costello, E.J., 2006. Puberty and depression. Child Adolesc. Psychiatr. Clin. N. Am. 15 (4), 919–937 (ix).
+APA, 2000. Diagnostic and Statistical Manual of Mental Disorders—DSM-IV-TR. American Psychiatric Association, Washington.
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+229
+
+Aron, A.R., Durston, S., Eagle, D.M., Logan, G.D., Stinear, C.M., Stuphorn, V., 2007. Converging evidence for a fronto–basal-ganglia network for inhibitory control of action and cognition. J. Neurosci. 27 (44), 11860–11864.
+Austin, M.P., Mitchell, P., Goodwin, G.M., 2001. Cognitive deﬁcits in depression: possible implications for functional neuropathology. Br. J. Psychiatry 178, 200–206.
+Beauregard, M., Paquette, V., Levesque, J., 2006. Dysfunction in the neural circuitry of emotional self-regulation in major depressive disorder. Neuroreport 17 (8), 843–846.
+Beck, A., 1976. Cognitive Therapy and the Emotional Disorders. International Universities Press.
+Beesdo, K., Lau, J.Y., Guyer, A.E., McClure-Tone, E.B., Monk, C.S., Nelson, E.E., Fromm, S.J., Goldwin, M.A., Wittchen, H.U., Leibenluft, E., Ernst, M., Pine, D.S., 2009. Common and distinct amygdala-function perturbations in depressed vs anxious adolescents. Arch. Gen. Psychiatry 66 (3), 275–285.
+Berman, M.G., Peltier, S., Nee, D.E., Kross, E., Deldin, P.J., Jonides, J., 2011. Depression, rumination and the default network. Soc. Cogn. Affect. Neurosci. 6 (5), 548–555.
+Birmaher, B., Brent, D., Bernet, W., Bukstein, O., Walter, H., Benson, R.S., Chrisman, A., Farchione, T., Greenhill, L., Hamilton, J., Keable, H., Kinlan, J., Schoettle, U., Stock, S., Ptakowski, K.K., Medicus, J., 2007. Practice parameter for the assessment and treatment of children and adolescents with depressive disorders. J. Am. Acad. Child Adolesc. Psychiatry 46 (11), 1503–1526.
+Blazer, D., Kessler, R., McGonagle, K., Swartz, M., 1994. The prevalence and distribution of major depression in a national community sample: the National Comorbidity Survey. Am. J. Psychiatr. 151 (7), 979–986.
+Bora, E., Harrison, B.J., Yucel, M., Pantelis, C., 2012. Cognitive impairment in euthymic major depressive disorder: a meta-analysis. Psychol. Med. 1–10.
+Bourke, C., Douglas, K., Porter, R., 2010. Processing of facial emotion expression in major depression: a review. Aust. N. Z. J. Psychiatry 44 (8), 681–696.
+Canli, T., Sivers, H., Thomason, M.E., Whitﬁeld-Gabrieli, S., Gabrieli, J.D., Gotlib, I.H., 2004. Brain activation to emotional words in depressed vs healthy subjects. Neuroreport 15 (17), 2585–2588.
+Casey, B.J., Getz, S., Galvan, A., 2008. The adolescent brain. Dev. Rev. 28 (1), 62–77. Casey, B., Jones, R.M., Somerville, L.H., 2011. Braking and accelerating of the adolescent
+brain. J. Res. Adolesc. 21 (1), 21–33. CDC, 2007. Injuries and Violence are leading Causes of Death. CDC. Chantiluke, K., Halari, R., Simic, M., Pariante, C.M., Papadopoulos, A., Giampietro, V., Rubia,
+K., 2012. Fronto-striato-cerebellar dysregulation in adolescents with depression during motivated attention. Biol. Psychiatry 71 (1), 59–67. Chen, C.H., Suckling, J., Ooi, C., Fu, C.H., Williams, S.C., Walsh, N.D., Mitterschiffthaler, M.T., Pich, E.M., Bullmore, E., 2008. Functional coupling of the amygdala in depressed patients treated with antidepressant medication. Neuropsychopharmacology 33 (8), 1909–1918. Craig, A.D., 2002. How do you feel? Interoception: the sense of the physiological condition of the body. Nat. Rev. Neurosci. 3 (8), 655–666. Critchley, H.D., Wiens, S., Rotshtein, P., Ohman, A., Dolan, R.J., 2004. Neural systems supporting interoceptive awareness. Nat. Rev. Neurosci. 7 (2), 189–195. Critchley, H.D., Rotshtein, P., Nagai, Y., O'Doherty, J., Mathias, C.J., Dolan, R.J., 2005. Activity in the human brain predicting differential heart rate responses to emotional facial expressions. Neuroimage 24 (3), 751–762. Crockett, L.J., Carlo, G., Wolff, J.M., Hope, M.O., 2013. The role of pubertal timing and temperamental vulnerability in adolescents' internalizing symptoms. Dev. Psychopathol. 25 (2), 377–389. Cullen, K.R., Gee, D.G., Klimes-Dougan, B., Gabbay, V., Hulvershorn, L., Mueller, B.A., Camchong, J., Bell, C.J., Houri, A., Kumra, S., Lim, K.O., Castellanos, F.X., Milham, M.P., 2009. A preliminary study of functional connectivity in comorbid adolescent depression. Neurosci. Lett. 460 (3), 227–231. Dannlowski, U., Ohrmann, P., Bauer, J., Kugel, H., Arolt, V., Heindel, W., Kersting, A., Baune, B.T., Suslow, T., 2007. Amygdala reactivity to masked negative faces is associated with automatic judgmental bias in major depression: a 3 T fMRI study. J. Psychiatry Neurosci. 32 (6), 423–429. Davey, C.G., Yucel, M., Allen, N.B., 2008. The emergence of depression in adolescence: development of the prefrontal cortex and the representation of reward. Neurosci. Biobehav. Rev. 32 (1), 1–19. Davey, C.G., Allen, N.B., Harrison, B.J., Yucel, M., 2011. Increased amygdala response to positive social feedback in young people with major depressive disorder. Biol. Psychiatry 69 (8), 734–741. Davey, C.G., Yucel, M., Allen, N.B., Harrison, B.J., 2012a. Task-related deactivation and functional connectivity of the subgenual cingulate cortex in major depressive disorder. Front. Psychiatry 3, 14. Davey, C.G., Harrison, B.J., Yucel, M., Allen, N.B., 2012b. Regionally speciﬁc alterations in functional connectivity of the anterior cingulate cortex in major depressive disorder. Psychol. Med. 42 (10), 2071–2081. Davidson, R.J., Irwin, W., Anderle, M.J., Kalin, N.H., 2003. The neural substrates of affective processing in depressed patients treated with venlafaxine. Am. J. Psychiatr. 160 (1), 64–75. Delgado, M.R., Nystrom, L.E., Fissell, C., Noll, D.C., Fiez, J.A., 2000. Tracking the hemodynamic responses to reward and punishment in the striatum. J. Neurophys. 84 (6), 3072–3077. Dichter, G.S., Felder, J.N., Smoski, M.J., 2009. Affective context interferes with cognitive control in unipolar depression: an fMRI investigation. J. Affect. Disord. 114 (1–3), 131–142. Diener, C., Kuehner, C., Brusniak, W., Ubl, B., Wessa, M., Flor, H., 2012. A meta-analysis of neurofunctional imaging studies of emotion and cognition in major depression. Neuroimage 61 (3), 677–685. Dolcos, F., Kragel, P., Wang, L., McCarthy, G., 2006. Role of the inferior frontal cortex in coping with distracting emotions. Neuroreport 17 (15), 1591–1594. Drevets, W.C., Savitz, J., Trimble, M., 2008. The subgenual anterior cingulate cortex in mood disorders. CNS Spectr. 13 (8), 663–681.
+
+Elliott, R., Baker, S.C., Rogers, R.D., O'Leary, D.A., Paykel, E.S., Frith, C.D., Dolan, R.J., Sahakian, B.J., 1997. Prefrontal dysfunction in depressed patients performing a complex planning task: a study using positron emission tomography. Psychol. Med. 27 (4), 931–942.
+Elliott, R., Rubinsztein, J.S., Sahakian, B.J., Dolan, R.J., 2002. The neural basis of moodcongruent processing biases in depression. Arch. Gen. Psychiatry 59 (7), 597–604.
+Epstein, J., Pan, H., Kocsis, J.H., Yang, Y., Butler, T., Chusid, J., Hochberg, H., Murrough, J., Strohmayer, E., Stern, E., Silbersweig, D.A., 2006. Lack of ventral striatal response to positive stimuli in depressed versus normal subjects. Am. J. Psychiatr. 163 (10), 1784–1790.
+Erk, S., Mikschl, A., Stier, S., Ciaramidaro, A., Gapp, V., Weber, B., Walter, H., 2010. Acute and sustained effects of cognitive emotion regulation in major depression. J. Neurosci. 30 (47), 15726–15734.
+Ernst, M., Pine, D.S., Hardin, M., 2006. Triadic model of the neurobiology of motivated behavior in adolescence. Psychol. Med. 36 (3), 299–312.
+Etkin, A., Wager, T.D., 2007. Functional neuroimaging of anxiety: a meta-analysis of emotional processing in PTSD, social anxiety disorder, and speciﬁc phobia. Am. J. Psychiatr. 164 (10), 1476–1488.
+Evans, K.C., Dougherty, D.D., Schmid, A.M., Scannell, E., McCallister, A., Benson, H., Dusek, J.A., Lazar, S.W., 2009. Modulation of spontaneous breathing via limbic/paralimbicbulbar circuitry: an event-related fMRI study. Neuroimage 47 (3), 961–971.
+Fales, C.L., Barch, D.M., Rundle, M.M., Mintun, M.A., Snyder, A.Z., Cohen, J.D., Mathews, J., Sheline, Y.I., 2008. Altered emotional interference processing in affective and cognitive-control brain circuitry in major depression. Biol. Psychiatry 63 (4), 377–384.
+Fales, C.L., Barch, D.M., Rundle, M.M., Mintun, M.A., Mathews, J., Snyder, A.Z., Sheline, Y.I., 2009. Antidepressant treatment normalizes hypoactivity in dorsolateral prefrontal cortex during emotional interference processing in major depression. J. Affect. Disord. 112 (1–3), 206–211.
+Fitzgerald, P.B., Srithiran, A., Benitez, J., Daskalakis, Z.Z., Oxley, T.J., Kulkarni, J., Egan, G.F., 2008. An fMRI study of prefrontal brain activation during multiple tasks in patients with major depressive disorder. Hum. Brain Mapp. 29 (4), 490–501.
+Fladung, A.K., Baron, U., Gunst, I., Kiefer, M., 2010. Cognitive reappraisal modulates performance following negative feedback in patients with major depressive disorder. Psychol. Med. 40 (10), 1703–1710.
+Forbes, E.E., Dahl, R.E., 2005. Neural systems of positive affect: relevance to understanding child and adolescent depression? Dev. Psychopathol. 17 (3), 827–850.
+Forbes, E.E., Christopher May, J., Siegle, G.J., Ladouceur, C.D., Ryan, N.D., Carter, C.S., Birmaher, B., Axelson, D.A., Dahl, R.E., 2006. Reward-related decision-making in pediatric major depressive disorder: an fMRI study. J. Child Psychol. Psychiatry 47 (10), 1031–1040.
+Forbes, E.E., Hariri, A.R., Martin, S.L., Silk, J.S., Moyles, D.L., Fisher, P.M., Brown, S.M., Ryan, N.D., Birmaher, B., Axelson, D.A., Dahl, R.E., 2009. Altered striatal activation predicting real-world positive affect in adolescent major depressive disorder. Am. J. Psychiatr. 166 (1), 64–73.
+Forbes, E.E., Olino, T.M., Ryan, N.D., Birmaher, B., Axelson, D., Moyles, D.L., Dahl, R.E., 2010. Reward-related brain function as a predictor of treatment response in adolescents with major depressive disorder. Cogn. Affect. Behav. Neurosci. 10 (1), 107–118.
+Fornito, A., Bullmore, E.T., 2010. What can spontaneous ﬂuctuations of the blood oxygenation-level-dependent signal tell us about psychiatric disorders? Curr. Opin. Psychiatry 23 (3), 239–249.
+Fox, M.D., Greicius, M., 2010. Clinical applications of resting state functional connectivity. Front. Syst. Neurosci. 4, 19.
+Fox, M.D., Raichle, M.E., 2007. Spontaneous ﬂuctuations in brain activity observed with functional magnetic resonance imaging. Nat. Rev. Neurosci. 8 (9), 700–711.
+Frodl, T., Bokde, A.L., Scheuerecker, J., Lisiecka, D., Schoepf, V., Hampel, H., Moller, H.J., Bruckmann, H., Wiesmann, M., Meisenzahl, E., 2010. Functional connectivity bias of the orbitofrontal cortex in drug-free patients with major depression. Biol. Psychiatry 67 (2), 161–167.
+Fu, C.H., Williams, S.C., Cleare, A.J., Brammer, M.J., Walsh, N.D., Kim, J., Andrew, C.M., Pich, E.M., Williams, P.M., Reed, L.J., Mitterschiffthaler, M.T., Suckling, J., Bullmore, E.T., 2004. Attenuation of the neural response to sad faces in major depression by antidepressant treatment: a prospective, event-related functional magnetic resonance imaging study. Arch. Gen. Psychiatry 61 (9), 877–889.
+Fu, C.H., Mourao-Miranda, J., Costafreda, S.G., Khanna, A., Marquand, A.F., Williams, S.C., Brammer, M.J., 2008a. Pattern classiﬁcation of sad facial processing: toward the development of neurobiological markers in depression. Biol. Psychiatry 63 (7), 656–662.
+Fu, C.H., Williams, S.C., Cleare, A.J., Scott, J., Mitterschiffthaler, M.T., Walsh, N.D., Donaldson, C., Suckling, J., Andrew, C., Steiner, H., Murray, R.M., 2008b. Neural responses to sad facial expressions in major depression following cognitive behavioral therapy. Biol. Psychiatry 64 (6), 505–512.
+Ge, X., Conger, R.D., Elder Jr., G.H., 2001. Pubertal transition, stressful life events, and the emergence of gender differences in adolescent depressive symptoms. Dev. Psychol. 37 (3), 404–417.
+Gogtay, N., Giedd, J.N., Lusk, L., Hayashi, K.M., Greenstein, D., Vaituzis, A.C., Nugent III, T.F., Herman, D.H., Clasen, L.S., Toga, A.W., Rapoport, J.L., Thompson, P.M., 2004. Dynamic mapping of human cortical development during childhood through early adulthood. Proc. Natl. Acad. Sci. U. S. A. 101 (21), 8174–8179.
+Gotlib, I.H., Sivers, H., Gabrieli, J.D., Whitﬁeld-Gabrieli, S., Goldin, P., Minor, K.L., Canli, T., 2005. Subgenual anterior cingulate activation to valenced emotional stimuli in major depression. Neuroreport 16 (16), 1731–1734.
+Gotlib, I.H., Hamilton, J.P., Cooney, R.E., Singh, M.K., Henry, M.L., Joormann, J., 2010. Neural processing of reward and loss in girls at risk for major depression. Arch. Gen. Psychiatry 67 (4), 380–387.
+Greicius, M.D., Krasnow, B., Reiss, A.L., Menon, V., 2003. Functional connectivity in the resting brain: a network analysis of the default mode hypothesis. Proc. Natl. Acad. Sci. U. S. A. 100 (1), 253–258.
+
+230
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+Greicius, M.D., Flores, B.H., Menon, V., Glover, G.H., Solvason, H.B., Kenna, H., Reiss, A.L., Schatzberg, A.F., 2007. Resting-state functional connectivity in major depression: abnormally increased contributions from subgenual cingulate cortex and thalamus. Biol. Psychiatry 62 (5), 429–437.
+Guo, W.B., Liu, F., Xue, Z.M., Yu, Y., Ma, C.Q., Tan, C.L., Sun, X.L., Chen, J.D., Liu, Z.N., Xiao, C.Q., Chen, H.F., Zhao, J.P., 2011. Abnormal neural activities in ﬁrst-episode, treatment-naive, short-illness-duration, and treatment-response patients with major depressive disorder: a resting-state fMRI study. J. Affect. Disord. 135 (1–3), 326–331.
+Halari, R., Simic, M., Pariante, C.M., Papadopoulos, A., Cleare, A., Brammer, M., Fombonne, E., Rubia, K., 2009. Reduced activation in lateral prefrontal cortex and anterior cingulate during attention and cognitive control functions in medication-naive adolescents with depression compared to controls. J. Child Psychol. Psychiatry 50 (3), 307–316.
+Hamilton, J.P., Gotlib, I.H., 2008. Neural substrates of increased memory sensitivity for negative stimuli in major depression. Biol. Psychiatry 63 (12), 1155–1162.
+Hamilton, J.P., Chen, G., Thomason, M.E., Schwartz, M.E., Gotlib, I.H., 2011. Investigating neural primacy in Major Depressive Disorder: multivariate Granger causality analysis of resting-state fMRI time-series data. Mol. Psychiatry 16 (7), 763–772.
+Hariri, A.R., Bookheimer, S.Y., Mazziotta, J.C., 2000. Modulating emotional responses: effects of a neocortical network on the limbic system. Neuroreport 11 (1), 43–48.
+Hariri, A.R., Mattay, V.S., Tessitore, A., Kolachana, B., Fera, F., Goldman, D., Egan, M.F., Weinberger, D.R., 2002. Serotonin transporter genetic variation and the response of the human amygdala. Science 297 (5580), 400–403.
+Harrison, B.J., Pujol, J., Ortiz, H., Fornito, A., Pantelis, C., Yucel, M., 2008. Modulation of brain resting-state networks by sad mood induction. PLoS One 3 (3), e1794.
+Harvey, P.O., Fossati, P., Pochon, J.B., Levy, R., Lebastard, G., Lehericy, S., Allilaire, J.F., Dubois, B., 2005. Cognitive control and brain resources in major depression: an fMRI study using the n-back task. Neuroimage 26 (3), 860–869.
+Haxby, J.V., Hoffman, E.A., Gobbini, M.I., 2002. Human neural systems for face recognition and social communication. Biol. Psychiatry 51 (1), 59–67.
+Holmes, A.J., MacDonald III, A., Carter, C.S., Barch, D.M., Andrew Stenger, V., Cohen, J.D., 2005. Prefrontal functioning during context processing in schizophrenia and major depression: an event-related fMRI study. Schizophr. Res. 76 (2–3), 199–206.
+Holtzheimer, P.E., Kelley, M.E., Gross, R.E., Filkowski, M.M., Garlow, S.J., Barrocas, A., Wint, D., Craighead, M.C., Kozarsky, J., Chismar, R., Moreines, J.L., Mewes, K., Posse, P.R., Gutman, D.A., Mayberg, H.S., 2012. Subcallosal cingulate deep brain stimulation for treatment-resistant unipolar and bipolar depression. Arch. Gen. Psychiatry 69 (2), 150–158.
+Huang, H., Fan, X., Williamson, D.E., Rao, U., 2011. White matter changes in healthy adolescents at familial risk for unipolar depression: a diffusion tensor imaging study. Neuropsychopharmacology 36 (3), 684–691.
+Hugdahl, K., Rund, B.R., Lund, A., Asbjornsen, A., Egeland, J., Ersland, L., Landro, N.I., Roness, A., Stordal, K.I., Sundet, K., Thomsen, T., 2004. Brain activation measured with fMRI during a mental arithmetic task in schizophrenia and major depression. Am. J. Psychiatr. 161 (2), 286–293.
+Hulvershorn, L.A., Cullen, K., Anand, A., 2011. Toward dysfunctional connectivity: a review of neuroimaging ﬁndings in pediatric major depressive disorder. Brain Imaging Behav. 5 (4), 307–328.
+Jamison, D.T., Breman, J.B., Measham, A.R., Alleyne, G., Claeson, M., Evans, D.B., Jha, P., Mills, A., Musgrove, P., 2006. Priorities in Health: Disease Control Priorities Companion Volume. World Bank Publications, Washington DC.
+Jiao, Q., Ding, J., Lu, G., Su, L., Zhang, Z., Wang, Z., Zhong, Y., Li, K., Ding, M., Liu, Y., 2011. Increased activity imbalance in fronto-subcortical circuits in adolescents with major depression. PLoS One 6 (9), e25159.
+Jin, C., Gao, C., Chen, C., Ma, S., Netra, R., Wang, Y., Zhang, M., Li, D., 2011. A preliminary study of the dysregulation of the resting networks in ﬁrst-episode medicationnaive adolescent depression. Neurosci. Lett. 503 (2), 105–109.
+Johnstone, T., van Reekum, C.M., Urry, H.L., Kalin, N.H., Davidson, R.J., 2007. Failure to regulate: counterproductive recruitment of top-down prefrontal-subcortical circuitry in major depression. J. Neurosci. 27 (33), 8877–8884.
+Kedia, G., Berthoz, S., Wessa, M., Hilton, D., Martinot, J.L., 2008. An agent harms a victim: a functional magnetic resonance imaging study on speciﬁc moral emotions. J. Cogn. Neurosci. 20 (10), 1788–1798.
+Keedwell, P.A., Andrew, C., Williams, S.C., Brammer, M.J., Phillips, M.L., 2005. A double dissociation of ventromedial prefrontal cortical responses to sad and happy stimuli in depressed and healthy individuals. Biol. Psychiatry 58 (6), 495–503.
+Kemp, A.H., Gordon, E., Rush, A.J., Williams, L.M., 2008. Improving the prediction of treatment response in depression: integration of clinical, cognitive, psychophysiological, neuroimaging, and genetic measures. CNS Spectr. 13 (12), 1066–1086.
+Knutson, B., Bhanji, J.P., Cooney, R.E., Atlas, L.Y., Gotlib, I.H., 2008. Neural responses to monetary incentives in major depression. Biol. Psychiatry 63 (7), 686–692.
+LaBar, K.S., Crupain, M.J., Voyvodic, J.T., McCarthy, G., 2003. Dynamic perception of facial affect and identity in the human brain. Cereb. Cortex 13 (10), 1023–1033.
+Ladouceur, C.D., 2012. Neural systems supporting cognitive–affective interactions in adolescence: the role of puberty and implications for affective disorders. Front. Integr. Neurosci. 6, 65.
+Langenecker, S.A., Kennedy, S.E., Guidotti, L.M., Briceno, E.M., Own, L.S., Hooven, T., Young, E.A., Akil, H., Noll, D.C., Zubieta, J.K., 2007. Frontal and limbic activation during inhibitory control predicts treatment response in major depressive disorder. Biol. Psychiatry 62 (11), 1272–1280.
+Lau, J.Y., Goldman, D., Buzas, B., Fromm, S.J., Guyer, A.E., Hodgkinson, C., Monk, C.S., Nelson, E.E., Shen, P.H., Pine, D.S., Ernst, M., 2009. Amygdala function and 5-HTT gene variants in adolescent anxiety and major depressive disorder. Biol. Psychiatry 65 (4), 349–355.
+Lau, J.Y., Goldman, D., Buzas, B., Hodgkinson, C., Leibenluft, E., Nelson, E., Sankin, L., Pine, D.S., Ernst, M., 2010. BDNF gene polymorphism (Val66Met) predicts amygdala and
+
+anterior hippocampus responses to emotional faces in anxious and depressed adolescents. Neuroimage 53 (3), 952–961. Lewinsohn, P., Rohde, P., Seeley, J., 1998. Major depressive disorder in older adolescents: prevalence, risk factors, and clinical implications. Clin. Psychol. Rev. 18 (7), 765–794. Lisiecka, D., Meisenzahl, E., Scheuerecker, J., Schoepf, V., Whitty, P., Chaney, A., Moeller, H.J., Wiesmann, M., Frodl, T., 2011. Neural correlates of treatment outcome in major depression. Int. J. Neuropsychopharmacol. 14 (4), 521–534. Liu, C.H., Ma, X., Wu, X., Li, F., Zhang, Y., Zhou, F.C., Wang, Y.J., Tie, C.L., Zhou, Z., Zhang, D., Dong, J., Yao, L., Wang, C.Y., 2012. Resting-state abnormal baseline brain activity in unipolar and bipolar depression. Neurosci. Lett. 516 (2), 202–206. Mannie, Z.N., Taylor, M.J., Harmer, C.J., Cowen, P.J., Norbury, R., 2011. Frontolimbic responses to emotional faces in young people at familial risk of depression. J. Affect. Disord. 130 (1–2), 127–132. Margulies, D.S., Bottger, J., Long, X., Lv, Y., Kelly, C., Schafer, A., Goldhahn, D., Abbushi, A., Milham, M.P., Lohmann, G., Villringer, A., 2010. Resting developments: a review of fMRI post-processing methodologies for spontaneous brain activity. MAGMA 23 (5–6), 289–307. Masten, C.L., Eisenberger, N.I., Borofsky, L.A., McNealy, K., Pfeifer, J.H., Dapretto, M., 2011. Subgenual anterior cingulate responses to peer rejection: a marker of adolescents' risk for depression. Dev. Psychopathol. 23 (1), 283–292. Matsuo, K., Glahn, D.C., Peluso, M.A., Hatch, J.P., Monkul, E.S., Najt, P., Sanches, M., Zamarripa, F., Li, J., Lancaster, J.L., Fox, P.T., Gao, J.H., Soares, J.C., 2007. Prefrontal hyperactivation during working memory task in untreated individuals with major depressive disorder. Mol. Psychiatry 12 (2), 158–166. Matthews, S.C., Strigo, I.A., Simmons, A.N., Yang, T.T., Paulus, M.P., 2008. Decreased functional coupling of the amygdala and supragenual cingulate is related to increased depression in unmedicated individuals with current major depressive disorder. J. Affect. Disord. 111 (1), 13–20. Mayberg, H.S., 1997. Limbic-cortical dysregulation: a proposed model of depression. J. Neuropsychiatry Clin. Neurosci. 9 (3), 471–481. McGorry, P., 1998. Beyond adolescent psychiatry: the logic of a youth mental health model. Aust. N. Z. J. Psychiatry 32 (1), 138–140. McGorry, P.D., 2007. The specialist youth mental health model: strengthening the weakest link in the public mental health system. Med. J. Aust. 187 (7 Suppl.), S53–S56. Mingtian, Z., Shuqiao, Y., Xiongzhao, Z., Jinyao, Y., Xueling, Z., Xiang, W., Yingzi, L., Jian, L., Wei, W., 2012. Elevated amygdala activity to negative faces in young adults with early onset major depressive disorder. Psychiatry Res. 201 (2), 107–112. Monk, C.S., Klein, R.G., Telzer, E.H., Schroth, E.A., Mannuzza, S., Moulton III, J.L., Guardino, M., Masten, C.L., McClure-Tone, E.B., Fromm, S., Blair, R.J., Pine, D.S., Ernst, M., 2008. Amygdala and nucleus accumbens activation to emotional facial expressions in children and adolescents at risk for major depression. Am. J. Psychiatr. 165 (1), 90–98. Morgan, J.K., Olino, T.M., McMakin, D.L., Ryan, N.D., Forbes, E.E., 2012. Neural response to reward as a predictor of increases in depressive symptoms in adolescence. Neurobiol. Dis. 52, 66–74. Morris, J.S., Friston, K.J., Buchel, C., Frith, C.D., Young, A.W., Calder, A.J., Dolan, R.J., 1998. A neuromodulatory role for the human amygdala in processing emotional facial expressions. Brain 121 (Pt 1), 47–57. Ochsner, K.N., Bunge, S.A., Gross, J.J., Gabrieli, J.D., 2002. Rethinking feelings: an FMRI study of the cognitive regulation of emotion. J. Cogn. Neurosci. 14 (8), 1215–1229. Ochsner, K.N., Ray, R.D., Cooper, J.C., Robertson, E.R., Chopra, S., Gabrieli, J.D., Gross, J.J., 2004. For better or for worse: neural systems supporting the cognitive down- and up-regulation of negative emotion. Neuroimage 23 (2), 483–499. Okada, G., Okamoto, Y., Morinobu, S., Yamawaki, S., Yokota, N., 2003. Attenuated left prefrontal activation during a verbal ﬂuency task in patients with depression. Neuropsychobiology 47 (1), 21–26. Olino, T.M., McMakin, D.L., Dahl, R.E., Ryan, N.D., Silk, J.S., Birmaher, B., Axelson, D.A., Forbes, E.E., 2011. “I won, but I'm not getting my hopes up”: depression moderates the relationship of outcomes and reward anticipation. Psychiatry Res. 194 (3), 393–395. Pan, L.A., Batezati-Alves, S.C., Almeida, J.R., Segreti, A., Akkal, D., Hassel, S., Lakdawala, S., Brent, D.A., Phillips, M.L., 2011. Dissociable patterns of neural activity during response inhibition in depressed adolescents with and without suicidal behavior. J. Am. Acad. Child Adolesc. Psychiatry 50 (6), 602–611 (e603). Peluso, M.A., Glahn, D.C., Matsuo, K., Monkul, E.S., Najt, P., Zamarripa, F., Li, J., Lancaster, J.L., Fox, P.T., Gao, J.H., Soares, J.C., 2009. Amygdala hyperactivation in untreated depressed individuals. Psychiatry Res. 173 (2), 158–161. Perlman, G., Simmons, A.N., Wu, J., Hahn, K.S., Tapert, S.F., Max, J.E., Paulus, M.P., Brown, G.G., Frank, G.K., Campbell-Sills, L., Yang, T.T., 2012. Amygdala response and functional connectivity during emotion regulation: a study of 14 depressed adolescents. J. Affect. Disord. 139 (1), 75–84. Phan, K.L., Wager, T., Taylor, S.F., Liberzon, I., 2002. Functional neuroanatomy of emotion: a meta-analysis of emotion activation studies in PET and fMRI. Neuroimage 16 (2), 331–348. Phillips, M.L., Ladouceur, C.D., Drevets, W.C., 2008. A neural model of voluntary and automatic emotion regulation: implications for understanding the pathophysiology and neurodevelopment of bipolar disorder. Mol. Psychiatry 13 (9), 833–857. Pizzagalli, D.A., 2011. Frontocingulate dysfunction in depression: toward biomarkers of treatment response. Neuropsychopharmacology 36 (1), 183–206. Pizzagalli, D.A., Holmes, A.J., Dillon, D.G., Goetz, E.L., Birk, J.L., Bogdan, R., Dougherty, D.D., Iosifescu, D.V., Rauch, S.L., Fava, M., 2009. Reduced caudate and nucleus accumbens response to rewards in unmedicated individuals with major depressive disorder. Am. J. Psychiatr. 166 (6), 702–710. Price, J.L., Drevets, W.C., 2010. Neurocircuitry of mood disorders. Neuropsychopharmacology 35 (1), 192–216. Price, J.L., Drevets, W.C., 2012. Neural circuits underlying the pathophysiology of mood disorders. Trends Cogn. Sci. 16 (1), 61–71.
+
+R. Kerestes et al. / NeuroImage: Clinical 4 (2014) 209–231
+
+231
+
+Pulcu, E., Zahn, R., Elliott, R., 2013. The role of self-blaming moral emotions in major depression and their impact on social-economical decision making. Front. Psychol. 4, 310.
+Raichle, M.E., MacLeod, A.M., Snyder, A.Z., Powers, W.J., Gusnard, D.A., Shulman, G.L., 2001. A default mode of brain function. Proc. Natl. Acad. Sci. U. S. A. 98 (2), 676–682.
+Roberson-Nay, R., McClure, E.B., Monk, C.S., Nelson, E.E., Guyer, A.E., Fromm, S.J., Charney, D.S., Leibenluft, E., Blair, J., Ernst, M., Pine, D.S., 2006. Increased amygdala activity during successful memory encoding in adolescent major depressive disorder: an FMRI study. Biol. Psychiatry 60 (9), 966–973.
+Rubia, K., 2012. Functional brain imaging across development. Eur. Child Adolesc. Psychiatry 22 (12), 719–731.
+Seeley, W.W., Menon, V., Schatzberg, A.F., Keller, J., Glover, G.H., Kenna, H., Reiss, A.L., Greicius, M.D., 2007. Dissociable intrinsic connectivity networks for salience processing and executive control. J. Neurosci. 27 (9), 2349–2356.
+Shad, M.U., Bidesi, A.P., Chen, L.A., Ernst, M., Rao, U., 2011. Neurobiology of decision making in depressed adolescents: a functional magnetic resonance imaging study. J. Am. Acad. Child Adolesc. Psychiatry 50 (6), 612–621 (e612).
+Shehzad, Z., Kelly, A.M., Reiss, P.T., Gee, D.G., Gotimer, K., Uddin, L.Q., Lee, S.H., Margulies, D.S., Roy, A.K., Biswal, B.B., Petkova, E., Castellanos, F.X., Milham, M.P., 2009. The resting brain: unconstrained yet reliable. Cereb. Cortex 19 (10), 2209–2229.
+Sheline, Y.I., Barch, D.M., Donnelly, J.M., Ollinger, J.M., Snyder, A.Z., Mintun, M.A., 2001. Increased amygdala response to masked emotional faces in depressed subjects resolves with antidepressant treatment: an fMRI study. Biol. Psychiatry 50 (9), 651–658.
+Sheline, Y.I., Barch, D.M., Price, J.L., Rundle, M.M., Vaishnavi, S.N., Snyder, A.Z., Mintun, M.A., Wang, S., Coalson, R.S., Raichle, M.E., 2009. The default mode network and self-referential processes in depression. Proc. Natl. Acad. Sci. U. S. A. 106 (6), 1942–1947.
+Sheline, Y.I., Price, J.L., Yan, Z., Mintun, M.A., 2010. Resting-state functional MRI in depression unmasks increased connectivity between networks via the dorsal nexus. Proc. Natl. Acad. Sci. U. S. A. 107 (24), 11020–11025.
+Siegle, G.J., Steinhauer, S.R., Thase, M.E., Stenger, V.A., Carter, C.S., 2002. Can't shake that feeling: event-related fMRI assessment of sustained amygdala activity in response to emotional information in depressed individuals. Biol. Psychiatry 51 (9), 693–707.
+Siegle, G.J., Carter, C.S., Thase, M.E., 2006. Use of FMRI to predict recovery from unipolar depression with cognitive behavior therapy. Am. J. Psychiatr. 163 (4), 735–738.
+Siegle, G.J., Thompson, W., Carter, C.S., Steinhauer, S.R., Thase, M.E., 2007. Increased amygdala and decreased dorsolateral prefrontal BOLD responses in unipolar depression: related and independent features. Biol. Psychiatry 61 (2), 198–209.
+Simmonds, D.J., Pekar, J.J., Mostofsky, S.H., 2008. Meta-analysis of Go/No-go tasks demonstrating that fMRI activation associated with response inhibition is task-dependent. Neuropsychologia 46 (1), 224–232.
+Sisk, C.L., Zehr, J.L., 2005. Pubertal hormones organize the adolescent brain and behavior. Front. Neuroendocrinol. 26 (3–4), 163–174.
+Small, D.M., Gitelman, D., Simmons, K., Bloise, S.M., Parrish, T., Mesulam, M.M., 2005. Monetary incentives enhance processing in brain regions mediating top-down control of attention. Cereb. Cortex 15 (12), 1855–1865.
+Smoski, M.J., Felder, J., Bizzell, J., Green, S.R., Ernst, M., Lynch, T.R., Dichter, G.S., 2009. fMRI of alterations in reward selection, anticipation, and feedback in major depressive disorder. J. Affect. Disord. 118 (1–3), 69–78.
+Smoski, M.J., Rittenberg, A., Dichter, G.S., 2011. Major depressive disorder is characterized by greater reward network activation to monetary than pleasant image rewards. Psychiatry Res. 194 (3), 263–270.
+Sowell, E.R., Thompson, P.M., Toga, A.W., 2004. Mapping changes in the human cortex throughout the span of life. Neuroscientist 10 (4), 372–392.
+Steele, J.D., Kumar, P., Ebmeier, K.P., 2007. Blunted response to feedback information in depressive illness. Brain 130 (Pt 9), 2367–2374.
+Stoy, M., Schlagenhauf, F., Sterzer, P., Bermpohl, F., Hagele, C., Suchotzki, K., Schmack, K., Wrase, J., Ricken, R., Knutson, B., Adli, M., Bauer, M., Heinz, A., Strohle, A., 2012. Hyporeactivity of ventral striatum towards incentive stimuli in unmedicated depressed patients normalizes after treatment with escitalopram. J. Psychopharmacol. 26 (5), 677–688.
+Stuhrmann, A., Suslow, T., Dannlowski, U., 2011. Facial emotion processing in major depression: a systematic review of neuroimaging ﬁndings. Biol. Mood Anxiety Disord. 1 (1), 10.
+Surguladze, S., Brammer, M.J., Keedwell, P., Giampietro, V., Young, A.W., Travis, M.J., Williams, S.C., Phillips, M.L., 2005. A differential pattern of neural response toward sad versus happy facial expressions in major depressive disorder. Biol. Psychiatry 57 (3), 201–209.
+
+Suslow, T., Konrad, C., Kugel, H., Rumstadt, D., Zwitserlood, P., Schoning, S., Ohrmann, P., Bauer, J., Pyka, M., Kersting, A., Arolt, V., Heindel, W., Dannlowski, U., 2010. Automatic mood-congruent amygdala responses to masked facial expressions in major depression. Biol. Psychiatry 67 (2), 155–160.
+Tao, R., Calley, C.S., Hart, J., Mayes, T.L., Nakonezny, P.A., Lu, H., Kennard, B.D., Tamminga, C.A., Emslie, G.J., 2012. Brain activity in adolescent major depressive disorder before and after ﬂuoxetine treatment. Am. J. Psychiatr. 169 (4), 381–388.
+Thomas, K.M., Drevets, W.C., Dahl, R.E., Ryan, N.D., Birmaher, B., Eccard, C.H., Axelson, D., Whalen, P.J., Casey, B.J., 2001. Amygdala response to fearful faces in anxious and depressed children. Arch. Gen. Psychiatry 58 (11), 1057–1063.
+Tremblay, L.K., Naranjo, C.A., Graham, S.J., Herrmann, N., Mayberg, H.S., Hevenor, S., Busto, U.E., 2005. Functional neuroanatomical substrates of altered reward processing in major depressive disorder revealed by a dopaminergic probe. Arch. Gen. Psychiatry 62 (11), 1228–1236.
+US Food and Drug Administration, 2007. Revisions to product labeling. Available at: http:// www.fda.gov/Drugs/DrugSafety/InformationbyDrugClass/UCM096273 (Accessed on: 7/9/2013).
+Van Dijk, K.R., Hedden, T., Venkataraman, A., Evans, K.C., Lazar, S.W., Buckner, R.L., 2010. Intrinsic functional connectivity as a tool for human connectomics: theory, properties, and optimization. J. Neurophys. 103 (1), 297–321.
+Victor, T.A., Furey, M.L., Fromm, S.J., Ohman, A., Drevets, W.C., 2010. Relationship between amygdala responses to masked faces and mood state and treatment in major depressive disorder. Arch. Gen. Psychiatry 67 (11), 1128–1138.
+Vuilleumier, P., Armony, J.L., Driver, J., Dolan, R.J., 2001. Effects of attention and emotion on face processing in the human brain: an event-related fMRI study. Neuron 30 (3), 829–841.
+Wagner, G., Sinsel, E., Sobanski, T., Kohler, S., Marinou, V., Mentzel, H.J., Sauer, H., Schlosser, R.G., 2006. Cortical inefﬁciency in patients with unipolar depression: an event-related FMRI study with the Stroop task. Biol. Psychiatry 59 (10), 958–965.
+Wang, L., LaBar, K.S., Smoski, M., Rosenthal, M.Z., Dolcos, F., Lynch, T.R., Krishnan, R.R., McCarthy, G., 2008. Prefrontal mechanisms for executive control over emotional distraction are altered in major depression. Psychiatry Res. Neuroimaging 163 (2), 143–155.
+World Health Organization, 2008. ICD-10: International Statistical Classiﬁcation of Diseases and Related Health Problems. World Health Organization, Geneva.
+Yang, T.T., Menon, V., Reid, A.J., Gotlib, I.H., Reiss, A.L., 2003. Amygdalar activation associated with happy facial expressions in adolescents: a 3-T functional MRI study. J. Am. Acad. Child Adolesc. Psychiatry 42 (8), 979–985.
+Yang, T.T., Simmons, A.N., Matthews, S.C., Tapert, S.F., Bischoff-Grethe, A., Frank, G.K., Arce, E., Paulus, M.P., 2007. Increased amygdala activation is related to heart rate during emotion processing in adolescent subjects. Neurosci. Lett. 428 (2–3), 109–114.
+Yang, T.T., Simmons, A.N., Matthews, S.C., Tapert, S.F., Frank, G.K., Bischoff-Grethe, A., Lansing, A.E., Wu, J., Brown, G.G., Paulus, M.P., 2009. Depressed adolescents demonstrate greater subgenual anterior cingulate activity. Neuroreport 20 (4), 440–444.
+Yang, T.T., Simmons, A.N., Matthews, S.C., Tapert, S.F., Frank, G.K., Max, J.E., BischoffGrethe, A., Lansing, A.E., Brown, G., Strigo, I.A., Wu, J., Paulus, M.P., 2010. Adolescents with major depression demonstrate increased amygdala activation. J. Am. Acad. Child Adolesc. Psychiatry 49 (1), 42–51.
+Yao, Z., Wang, L., Lu, Q., Liu, H., Teng, G., 2009. Regional homogeneity in depression and its relationship with separate depressive symptom clusters: a resting-state fMRI study. J. Affect. Disord. 115 (3), 430–438.
+Yoshimura, S., Ueda, K., Suzuki, S., Onoda, K., Okamoto, Y., Yamawaki, S., 2009. Selfreferential processing of negative stimuli within the ventral anterior cingulate gyrus and right amygdala. Brain Cogn. 69 (1), 218–225.
+Zeng, L.L., Shen, H., Liu, L., Wang, L., Li, B., Fang, P., Zhou, Z., Li, Y., Hu, D., 2012. Identifying major depression using whole-brain functional connectivity: a multivariate pattern analysis. Brain 135 (Pt 5), 1498–1507.
+Zhang, D., Raichle, M.E., 2010. Disease and the brain's dark energy. Nat. Rev. Neurol. 6 (1), 15–28.
+Zhang, J., Wang, J., Wu, Q., Kuang, W., Huang, X., He, Y., Gong, Q., 2011. Disrupted brain connectivity networks in drug-naive, ﬁrst-episode major depressive disorder. Biol. Psychiatry 70 (4), 334–342.
+Zhong, M., Wang, X., Xiao, J., Yi, J., Zhu, X., Liao, J., Wang, W., Yao, S., 2011. Amygdala hyperactivation and prefrontal hypoactivation in subjects with cognitive vulnerability to depression. Biol. Psychol. 88 (2–3), 233–242.
+Zhu, X., Wang, X., Xiao, J., Liao, J., Zhong, M., Wang, W., Yao, S., 2012. Evidence of a dissociation pattern in resting-state default mode network connectivity in ﬁrst-episode, treatment-naive major depression patients. Biol. Psychiatry 71 (7), 611–617.
+

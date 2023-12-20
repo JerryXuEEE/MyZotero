@@ -1,0 +1,458 @@
+Dynamics in cortical activity revealed by resting-state MEG rhythms
+Cite as: Chaos 30, 123138 (2020); https://doi.org/10.1063/5.0025189 Submitted: 13 August 2020 . Accepted: 30 November 2020 . Published Online: 18 December 2020
+J. Mendoza-Ruiz, C. E. Alonso-Malaver, M. Valderrama, O. A. Rosso, and J. H. Martinez
+ARTICLES YOU MAY BE INTERESTED IN
+Inverse mechano-electrical reconstruction of cardiac excitation wave patterns from mechanical deformation using deep learning Chaos: An Interdisciplinary Journal of Nonlinear Science 30, 123134 (2020); https:// doi.org/10.1063/5.0023751 Oscillation behavior driven by processing delay in diffusively coupled inactive systems: Cluster synchronization and multistability Chaos: An Interdisciplinary Journal of Nonlinear Science 30, 123137 (2020); https:// doi.org/10.1063/5.0025958 Dynamics of multilayer networks with amplification Chaos: An Interdisciplinary Journal of Nonlinear Science 30, 123136 (2020); https:// doi.org/10.1063/5.0025529
+
+Chaos 30, 123138 (2020); https://doi.org/10.1063/5.0025189 © 2020 Author(s).
+
+30, 123138
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+Dynamics in cortical activity revealed by resting-state MEG rhythms
+
+Cite as: Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Submitted: 13 August 2020 · Accepted: 30 November 2020 · Published Online: 18 December 2020
+
+View Online
+
+Export Citation
+
+J. Mendoza-Ruiz,1 C. E. Alonso-Malaver,1 M. Valderrama,2 O. A. Rosso,3 and J. H. Martinez2,4,a)
+
+AFFILIATIONS
+1Department of Statistics, Universidad Nacional de Colombia, Cr 45 #26-85, Bogotá, Colombia 2Department of Biomedical Engineering, Universidad de los Andes, Cr 1 #18A-12, Bogotá, Colombia 3Instituto de Física, Universidade Federal de Alagoas (UFAL), BR 104 Norte km 97, 57072-970 Maceió, Alagoas, Brazil 4Instituto de Física Interdisciplinar y Sistemas Complejos, IFISC (CSIC-UIB) Campus Universitat de les Illes Balears, E-07122 Palma de Mallorca, Spain
+a)Author to whom correspondence should be addressed: johemart@gmail.com
+
+CrossMark
+
+ABSTRACT
+The brain is a biophysical system subject to information flows that may be thought of as a many-body architecture with a spatiotemporal dynamics described by its neuronal structures. The oscillatory nature of brain activity allows these structures (nodes) to be described as a set of coupled oscillators forming a network where the node dynamics and that of the network topology can be studied. Quantifying its dynamics at various scales is an issue that claims to be explored for several brain activities, e.g., activity at rest. The resting-state (RS) associates the underlying brain dynamics of healthy subjects that are not actively compromised with sensory or cognitive processes. Studying its dynamics is highly non-trivial but opens the door to understand the general principles of brain functioning, as well as to contrast a passive null condition vs the dynamics of pathologies or non-resting activities. Here, we hypothesize about how the spatiotemporal dynamics of cortical fluctuations could be for healthy subjects at RS. To do that, we retrieve the alphabet that reconstructs the dynamics (entropy–complexity) of magnetoencephalography (MEG) signals. We assemble the cortical connectivity to elicit the dynamics in the network topology. We depict an order relation between entropy and complexity for frequency bands that is ubiquitous for different temporal scales. We unveiled that the posterior cortex conglomerates nodes with both stronger dynamics and high clustering for α band. The existence of an order relation between dynamic properties suggests an emergent phenomenon characteristic of each band. Interestingly, we find the posterior cortex as a domain of dual character that plays a cardinal role in both the dynamics and structure regarding the activity at rest. To the best of our knowledge, this is the first study with MEG involving information theory and network science to better understand the dynamics and structure of brain activity at rest for different bands and scales.
+Published under license by AIP Publishing. https://doi.org/10.1063/5.0025189
+
+Studying the RS dynamics is highly non-trivial but opens the door to understand the general principles of brain functioning. A relevant question is how much information the cortical fluctuations convey among neural structures. Entropy and complexity are candidates to evaluate the information content of MEG signals of healthy subjects. We propose to capture the dynamics of cortical structures and that of the functional network at different bands for several timescales via ordinal patterns and clustering coefficient. We evidence an order relation between entropy and complexity regarding brain rhythms. We unveil the posterior cortex as the one that conglomerates structures with high levels of both dynamics and clustering. Our results confirm the emergence of certain information processing typical
+
+of each band with topographical localization at the occipital lobe.
+I. INTRODUCTION
+The human brain is likely one of the most complicated structures we face, being this major cause for learning about and fascination concerning its dynamics and how different activities are organized and carried out. At present, we may want to say that the anatomical shape of the human brain is well known; however, in terms of its dynamics and the way it creates thoughts, processes emotions, and perceptions, it is now not entirely understood. The development of new signal acquisition and image processing
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-1
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+technologies has allowed us to observe the interior of the living brain and infer aspects of its functioning. The brain operates via generating small electrical imbalances in the neuronal membranes. The functional imaging will enable us to identify the most active regions. This identification can be made by determining electrical activity (EEG), monitoring the magnetic fields (MEG), or with the help of pickup effects of metabolic facets (PET and fMRI).
+The cerebrum, cerebellum, and brainstem are, from an anatomical point of view, the formed part of the brain.1 The dominant part of the brain (more than three-quarters of the brain’s total volume) is the cerebrum, and it is a pinky-gray wrinkled structure. The longitudinal fissure divides the cerebrum into the left and right hemispheres, which are connected by the so-called corpus callosum. It performs higher functions such as interpreting touch, vision, hearing, and speech. It is responsible for thinking, making judgments, planning, problem-solving, decision-making, intelligence, reasoning, learning, and memory. Structurally, the right and left hemispheres show up extensively similar. In most people, the right (left) hemisphere is responsible for the control of the left (right) side of the body. Meanwhile, the right hemisphere is more involved with sensory inputs, such as auditory and visual, spatial-temporal awareness, creative abilities; the left is the more academic and logical side of the brain.1 Under the cerebrum is placed the cerebellum. Its predominant feature is to coordinate muscle movement, preserve posture, and balance. The brainstem acts as a relay core connecting the cerebrum and the cerebellum to the spinal cord. It performs many automated functions such as heart rate, body temperature, wake and sleep cycles, digestion, sneezing, coughing, vomiting, and swallowing.1
+Nerve cells consist of a cell body, dendrites, and axons. There are over 1000 types of brain cells, which fall into two broad cell groups: neurons and glial cells. Neuron carry information through electrical and chemical signals. Glial cells provide neurons with structural support, protection, and supply nutrition.
+The cerebral cortex is the outer layer of the cerebrum, the bulging wrinkled surface; it is commonly known as gray matter (from its color), which contrasts with the white in the layer below. Bulges and grooves help divide the cortex into four paired lobes: frontal, temporal, parietal, and occipital. The human cortex comprises six layers, each one with a distinct pattern neuron type. Cortical neurons receive and send signals to different brain areas, inclusive of separate components of the cortex. Neurons in the cortex are arranged with the cell body on the top (their receiving parts, dendrites point up to the surface), while threads that carry messages to different cells (axons) are oriented down. Some axons lengthen below the cortex and form part of the “white matter” connective tissue that carries records to remote brain areas. Other axons go through the lower layers of the cortex to join with other cortical cells. The cerebral cortex thickness varies from about 2 to 5 mm and cell numbers from 10 × 109 to more than 50 × 109 neurons and, about 5–10 times, this number of supporting glial cells.1
+Brain neurons form an interconnected web and communicate with each other by exchanging neurotransmitters. The neurons are not, in general, in physical contact, and they are separated by a thin gap called the synaptic cleft.1
+
+A nerve impulse or signal can be thought of as a tiny brief “spike” of electricity traveling through a neuron. It consists of chemical ions and mineral particles (mainly sodium, potassium, and chloride) electrically charged moving across the cell’s membrane from one side to the other. These impulses, in most neurons, are of the same strength (about 100 mV) and of the same duration (1 ms) but travel at varying speed. The information they convey depends on how frequently they pass in terms of impulses per second, where they come, and where they are heading. The synaptic cleft separating the membranes of sending (pre-synaptic) cell and receiving (postsynaptic) cell has a width of some 20 nm. The gap is so narrow that the neurotransmitters molecules can pass across it extraordinarily quickly by simple diffusion.1
+Action potentials are nerve signals formed by a series of discrete impulses; they travel down the axon to nerve terminal where neurotransmitter is released, producing changes in the post-synaptic membrane. If the signal has an excitatory effect in the neuron (depolarization, a reduction of conductance membrane, and transmembrane potential) is named the “excitatory post-synaptic potential” (EPSP), commonly located at dendrites. When the effect is inhibitory type (hyper-polarization effect), is called the “inhibitory post-synaptic potential” (IPSP), located typically on the neuron cell body. Induced electrical currents are generated by a combination of EPSP and IPSP flow within and around the neuron, with acceptable potential field to be recorded on the scalp. These ionic currents are in the range of nano-ampere (10−9 A). When they flow, they generate magnetic induction that can be measured on the scale of femtoteslas (10−15 T).1
+The electroencephalography (EEG)2,3 and the magnetoencephalography (MEG)4,5 are the most frequently used non-invasive physiologic techniques. EEG and MEG are different but complementary techniques recorded at the scalp for observing brain electromagnetic activity.5 EEG measures the electrical activity in order of microvolts (µV) of ionic current that flows during synaptic excitation of many pyramidal neurons in the cortical cortex. This current generates magnetic field by induction, in scales of femtoteslas (fT), measurable by MEG. The signals recorded over the scalp have a poor relationship with neuron individual activity. They are spatial-temporally smoothed versions of cortical pyramidal neuron activity under an area of ≈10 cm2 and a time resolution of ms. The amplitude and frequencies of EEG and MEG signals (brain waves) change from one state of human to another, such as wakefulness and sleep, and also change with age. Based on the frequency content of brain waves, five bands are commonly defined: δ ∈ [0.5 − 4) Hz, θ ∈ (4 − 7) Hz, α ∈ (8 − 13) Hz, β ∈ (14 − 29) Hz, and γ ≥ 30 Hz.6
+In the present work, our starting point is a series of temporarily equal-spaced measurements of surface MEG at the scalp, which we will denote by X (t). These values are a measure of the electromagnetic activity of neuronal activity at a high degree of processing by the central nervous system. In consequence, it is expected that these signals have a non-linear behavior, present complex structures, and are dependent on cognitive activity. We aim to extract from them useful and quantifiable information about the dynamics that generate them. We will use an approach based on information theory, which takes into account the temporal causality with which the data are generated. To evaluate these quantifiers, we must first determine a probability distribution function (PDF) associated with
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-2
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+the corresponding X (t) time series. The methodology used is the one proposed by the Bandt–Pompe7 (BP) symbolic representation of the time series, which is simple and robust and takes into account the temporal causality of the data in a natural way. Then, given the BP Probability Distribution Function, BP-PDF (P), two quantifiers based on information theory quantifiers (ITQs) are evaluated, the Shannon entropy S[P]8,9 and the effective statistical complexity measure C[P].10,11 In particular, Rosso and co-workers12 show that based on these two quantifiers, a planar representation, called the causal entropy–complexity plane, can be constructed. In this plane, time series originated by dynamical systems with different behaviors (deterministic, chaotic, and stochastic) have different localization.
+On the other hand, in recent years, the structure and function of the brain have begun to be investigated using network complex science, offering a large number of quantitative tools for its study.13–15 In particular, one can consider each electrode as a node of a network and use corresponding measure signals to establish their interconnections, defining in this way the different brain “Regions of Interest” (ROIs).
+Cortical activations allow being studied in a two-face direction described above: by looking at the dynamics of cortical signals or by taking into account the dynamics occurring in the brain connectivity. Brain dynamics characterization has been used to explore the reorganization of networks in mild cognitive impairment,16 the modularity of connectivity patterns in epilepsy brain networks and normal subjects,17 the effects of memory in brain networks in old and young individuals, the interchange of information between brain hemispheres in resting-state,18 the characterization of visuomotor/imaginary movement in EEG,19–22 to name a few. From the perspective of ITQ, they were used to characterize and classify EEG records from control and epileptic patients;23–27 it has also been applied to differentiate processing information zones for subjects with Alzheimer at several frequency bands,28 to evidence the irreversibility aspect of EEG at resting-state29 and epilepsy,30 to unveil a relationship between the dynamics of electrophysiological signals and the brain network structure,31 and even to propose a new ordinal-structure methodology to better account for the information transit between brain signals.32
+While the applicability of these methodologies spans over a wide range of neural phenomena, these applications are also of importance when concerning the activation of healthy subjects that are not actively compromised with the sensory or cognitive processes. This fact allows one to contrast results from pathologies or non-resting activities vs a passive null condition also called the Resting-State (RS). The RS becomes useful to observe the underlying brain dynamics under normal M/EEG, specifically for the α rhythm, which accounts for the range of frequencies with the highest energy in the spectrum.33–36 The dynamics and structure of RS have been explored all over the last decade. However, the relation between dynamics and topology of the brain at rest is still poorly understood. It is in this scenario where this work lies. We hypothesized about how could be the information content of the MEG time series for a healthy group of subjects at RS. Specifically, how the spatiotemporal complexity of cortical fluctuations behaves. To do that, we captured the dynamical properties of oscillations at the level of ROIs. We measure the dynamical properties of both the entropy and complexity through symbolic representation and computed structural
+
+features extracted from the connectivity pattern. We evidenced entropy–complexity correlations at different temporal scales. Our results depict an order relation among dynamical parameters for several frequency bands. We unveiled the occipital lobe as the one with higher levels of complexity in the α band. We detected cortical regions of high levels of network clustering around the same occipital lobe. This fact highlights the role of the occipital lobe where cortical regions influence both the dynamics (entropy–complexity) and the structure (clustering).
+The organization of our paper is as follows: Sec. II describes the MEG dataset from the Human Connectome Project. Section III is divided into three parts. The first accounts for the extraction of the information content from cortical signal X (t) (the Bandt–Pompe methodology), the second is about the computation of the ITQ’s entropy (H) and statistical complexity (C) for X (t), and the last one for describing the statistical coherence to gather functional networks and network properties, i.e., clustering (cw). Section IV introduces the results of the multiscale analysis in several frequency bands, with special attention on the α rhythm. In Sec. V, we related the results with structure and dynamics. Section VI is for conclusions.
+II. DATASET
+Dataset consists of MEG time series X (t). In this preliminary study, 190 magnetometers were located in the scalps of 40 healthy adult subjects (21 male, 19 female). The range of age was chosen to represent adults beyond the age of major neurodevelopmental changes and before the onset of neurodegenerative conditions. Cortical signals were collected using a MAGNES 3600 system (4D Neuroimaging San Diego) lodged in a magnetically shielded room, with subjects laying down with open eyes, instructed to relax, and fixation maintained on a red crosshair projected on a dark background. Magnetic field measures were taken in empty rooms to avoid excessive environmental noise and to estimate noise base levels. Data preprocessing was conducted to evaluate signal accuracy, identify low-quality sensors, avoid sharp increases in noise levels, and to confirm rough linearity in the sampling frequency range. Correlations among neighbor sensors, variance ratio, and z-score values were conducted to detect flawed sensors. The procedure allowed us to identify some low-quality channels, which were then used in an iterative independent component analysis to identify other low-quality signals. The cardiac, ocular, and muscular activity were filtered from brain signals to remove artifacts. 20 consecutive trials of 1018 samples each were taken shaping the time series for all individuals. Each X (t) is of M = 20 360 length with a sample frequency of 508.6 Hz.37 The experiment is reported in the Human Connectome Project. See detailed explanations in the work of Van Essen et al. and Larson-Prior et al.38,39 We tested weak stationarity of signals with the augmented Dicky–Fuller routine40 before using the bandpass filter41 to gather the bands (θ , α, β, and γ ). All computations were performed with the statistical software R 3.6.1.
+III. METHODS
+A. Bandt–Pompe methodology for PDF
+For the time series under study, we follow the BP procedure7 to associate a time causal probability distribution (BP-PDF) to it.
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-3
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+The BP methodology is based on a symbolization technique and a phase space reconstruction (embedding dimension D and embedding lag τ ) in order to obtain suitable partition of data series. The PDF is obtained from the ordinal pattern sequence of the length vectors D.
+Let X ≡ {xt, t = 1, . . . , T; xt ∈ R} a time series of length T. We identified the M = T − (D − 1)τ overlapping segments (vectors), being D ∈ N, D ≥ 2 the pattern length (embedding dimension). From now on and without loss of generality, we consider τ = 1 (τ ∈ N),
+
+Xs = (xs, xs+1, xs+2, . . . , xs+(D−1)).
+
+(1)
+
+The vector components of Xs are ordered in an increasing order to find the indices r0, r1, r2, . . . , r(D−1) such that
+
+xs+r0 ≤ xs+r1 ≤ xs+r2 ≤ · · · ≤ xs+r(D−1) .
+
+(2)
+
+The corresponding D-tuples (or words) π = (r0, r1, r2, . . . , r(D−1)) are symbols corresponding to the original segments (vectors) and can be assumed to be any of the D! possible permutations of the set {0, 1, 2, . . . , (D − 1)}.
+Then, the permutation entropy (Shannon entropy) of the Bandt–Pompe PDF ( (D)) is defined as
+
+S[ (D)] = − p(π ) ln(p(π )),
+
+(3)
+
+{π }
+
+where {π } represents the summation over all the D! possible permutations of order D. p(π ) ≥ 0 is the relative frequency of occurrences of the permutation π and clearly satisfied {π} p(π ) = 1.
+The BP-PDF, (D) is invariant before monotonic transformations of the time series values. The optimal value of the pattern length D is strongly related to the phenomenology of the event under study and the availability of the data; however, as a rule of thumb, we choose the maximum D value such that T D! in order to obtain a good statistic.
+Let us see an example of the procedure to obtain the BP-PDF. Figure 1(a) depicts the finite collection of samples:
+X(t) = {−8.1, 61, 73, 196, 166, 180, 102, 97, 53, 280}, the time series length is T = 9, and taken D = 3, we can form M = T − (D − 1) = 8 segments.
+If D = 3, then we have six possible patterns, given by π1 = {x1 ≤ x2 ≤ x3}, π2 = {x1 ≤ x3 ≤ x2}, π3 = {x2 ≤ x1 ≤ x3}, π4 = {x3 ≤ x1 ≤ x2}, π5 = {x2 ≤ x3 ≤ x1}, and π6 = {x1 ≤ x2 ≤ x1}. Figure 1(b) shows the eight obtained 3-tuples.
+The pattern probability is p(π1) = p(π6) = 2/8 and p(π2) = p(π3) = p(π4) = p(π5) = 1/8, which conforms the obtained BP-PDF (D=3) shown in Fig. 1(c).
+
+B. Dynamics
+The randomness in the system is measured through normalized permutation entropy defined as
+
+H[P] = S[P] = Smax
+
+−1 Smax
+
+N j=1
+
+pj
+
+ln(pj),
+
+(4)
+
+where P = {pj = 1, . . . , N} denotes the PDF representing the actual state of the system. Smax = S[Pe] = ln N = ln(D!) is a normalization
+
+FIG. 1. Ordinal pattern extraction procedure for D = 3. (a) Original signal X(t), with length T = 9. (b) Ordinal patterns extracted from X(t). (c) Ordinal pattern probability distribution (BP-PDF).
+
+constant, obtained from the equilibrium probability distribution Pe = {p(je) = 1/N, ∀j = 1, . . . , N}. In this way, 0 ≤ H[P] ≤ 1, being the extreme values for a complete ordered and uncorrelated random system. H[P] allows comparisons between the proportion of information contained in a system with different amount of states.
+A second measure that allows characterizing the emergence of new properties and organization in the system is the statistical complexity, such that 0 ≤ C[P] ≤ 1,
+
+C[P] = H[P] · Q[P, Pe].
+
+(5)
+
+Q[P, Pe] stands for normalized Jensen–Shannon divergence, a nonEuclidean distance between observed and uniform probability dis-
+tributions,
+
+Q[P, Pe] = Q0
+
+S
+
+(P + Pe) 2
+
+−
+
+S[P] 2
+
+−
+
+S[Pe] 2
+
+,
+
+(6)
+
+with Q0 as a normalization constant,42
+
+Q0 = −2
+
+N+1
+
+−1
+ln(N + 1) − 2 ln(2N) + ln(N) .
+
+N
+
+(7)
+
+Note also the global character of both introduced quantifiers, entropy [Eq. (4)], and complexity [Eq. (5)]. That is, their values do not change with different orderings of the component of the PDF.
+The statistical complexity quantifies the existence of correlational structures, giving a measure of the complexity of a time series. In the case of perfect order (H[P] = 0) or total randomness (H[P] = 1) of a time series coming from a dynamical system, we
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-4
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+have C[P] = 0, meaning that the signal possesses no structure. Inbetween these two extreme instances, a large range of possible stages of physical structure may be realized by a dynamical system.10,43,44
+Therefore, the C[P] quantifies the disorder but also the degree of correlational structures in the time series. It is evident that complexity C is not a trivial function of the entropy due to its dependence with two PDF, and it has consequences in the range that this ITQ can take. For a given entropy H-value, the complexity C runs on a precise range limited by minimum Cmin and maximum Cmax values. These extreme values depend only on the probability space dimension and, of course, on the functional form adopted for the entropy and disequilibrium.45
+The temporal evolution of entropy H[P] and complexity C[P] can be analyzed using a two-dimensional diagram called entropy–complexity plane H × C. Ordinal patterns represent a natural alphabet from the time series, and their probability distribution
+(D) ≡ P allows the computation of some measures to quantify the randomness and complexity in the related system.45,46
+Dynamical properties were computed for all signals. To control the experiment, each one was contrasted with 50 surrogate versions via the Iterative Amplitude Adjusted Fourier Transform (IAAFT).47–49 The H × C-plane was generated for all dimensions D to evaluate potential correlations between both parameters in all bands. Due to the intimate closeness of the α rhythm with RS, we focused on quantifies H and C at cortical ROI as well as how they are distributed at a local level in the scalp for this band, in particular, at an intermediate observational scale D = 5. Remaining bands are compared in the supplementary material.
+
+C. Structure
+
+The statistical coherence Cij(f) quantifies the intra-frequency relation between two signals assigning 0 (1) when they evolve
+autonomous (synchronized) at a frequency f.50,51 In Eq. (8), Sij(f) stands for the cross-spectral density between signals Xi(t) and Xj(t) and Sii(f) and Sjj(f) for their autospectral densities, respectively,
+
+Cij(f)
+
+=
+
+|Sij(f)|2 . Sii(f)Sjj(f)
+
+(8)
+
+The pondered interaction wij between two signals at a specific band is taken as the average of Cij(f) along with its respective frequencies. The pairwise interrelation among n signals unveils the connectivity
+structure among cortical ROIs. This connectivity is associated with
+the adjacency matrix W,
+
+W=
+
+wij, i = j, 0, otherwise.
+
+(9)
+
+W is a n × n positive and symmetric matrix representing the functional network of cortical ROIs, where rows and columns i, j represent the respective nodes and wij its link weight. The link weight wij exclusively depends on the activity correlation at certain frequencies. The set {wij} measures the statistical interrelations among pairwise nodes without taking into account causal relations.
+The network science studies the way by which nodes and their links are organized. It provides a series of associated metrics allowed to quantify the network structure by taking into account their strongest links. To do that, each network is filtered by removing
+
+spurious or weakest connections. Therefore, the structural properties of the resulting graph depend on how much connectivity of the inferred network is maintained. Following an efficient cost optimization filter, we threshold the matrices by optimizing the balance between the network efficiency and its wiring cost.52
+We retrieve the minimum spanning tree of each graph by preserving its stronger links. This way, the connection density highlights the properties of the network while preserving its sparsity and maximizing the balance between the network efficiency and the link density.5 Thus, we quantify network features to understand what would be the role of nodes in the process of segregation of information and to detect the ROIs of cardinal importance in the cortical wiring. Specifically, we capture the node clustering and the eigenvector centrality.
+Clustering is defined as the capacity of a network to form connected groups of three nodes; that is, the fraction of triangles is potentially connected around a node. When the clustering increases, the segregation of the information also increases.15 The segregation is then associated with the presence of specialized processing in specific and densely regions of interconnected nodes. Equation (10) stands for the weighted variant of the local clustering,
+
+cw(i) =
+
+2 ki(ki −
+
+1)
+
+j,k∈n
+
+(wijwjkwki)1/3,
+
+(10)
+
+which takes into account the number of links ki of a node i and the weights among nodes i, j, k.15,53 A node with high clustering is
+
+assumed to be one with a high probability of forming triads with
+
+its first neighbors, also linked among them. Otherwise, its clustering
+
+index is low. The mean clustering index represents a network that,
+
+in average, presents clustered connectivity.
+
+Another role a node has is that by which it facilitates com-
+
+munication among specialized regions promoting a functional inte-
+
+gration of information. Eigenvector centrality ec(i) is a microscale
+
+measure that captures the node centrality by considering the global
+
+information of W. While cw(i) is estimated by considering its first
+
+neighbors, ec(i) made use of the importance of all nodes in the
+
+networks using spectral methods. W is positive and real-squared;
+
+therefore, there exist n real non-negative eigenvalues. W can be writ-
+
+ten as W = UKUT, where U is a matrix of eigenvectors and K a
+
+diagonal matrix of its eigenvalues. The Perron–Frobenius theorem
+
+states that W has a unique largest eigenvalue with an associated
+
+eigenvector having all positive entries. ec is then the normalized ver-
+
+sion of this eigenvector, where ec(i) is the centrality of the node i.54
+
+It implies that a node with a higher ec(i) is the one that is connected
+
+to highly connected nodes, also called hubs.
+
+cw and ec were identified for frontal, occipital, parietal, and temporal lobes. For a better comparison, we normalized cw with respect to the average of a set of 50 surrogate matrices. We take the
+
+mean value of clustering cw(i) for all over the 40 subjects. We repeat
+
+the process The cw n(i)
+
+by using the 50 randomized is the normalized version of
+
+versions c∗w(i) per subject. clustering with respect to
+
+its rewired versions cw n(i) = cw(i)/c∗w(i). This normalization allows
+
+us to focus on structural changes of networks, avoiding variations
+
+of the average weights of the connectivity.31 In this vein, we keep
+
+cw n(i) ≥ 1 since this does not come from a random hidden structure. Normalized network features were topographically associated
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-5
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+with each lobe, in particular, for the α band. Finally, we performed a
+principal component analysis (PCA) between {H ∧ C} and {cw ∧ ec} to scrutinize potential relationships between dynamics and structure
+for each lobe.
+
+IV. RESULTS
+We introduce results in the following way. We show the behavior of entropy H and complexity C for all bands at embedding dimensions D ranging from 3 to 7. We make known the order relation of dynamic parameters in the H × C-plane in terms of frequencies and scales. Subsequent results focused on the α band due to its importance for RS. We focused on the topographic distribution of H, C for D = 5. Finally, we also introduced the structural parameters cw and ec for each lobe and its topographical distribution.
+Preliminary exploration of signals showed some differentiation in the autocorrelation function (ACF) in terms of frequency bands. The higher a band, the faster its ACF tends to zero. Oscillatory and sign alternation traits of ACF evidence some type of seasonal behavior. Partial autocorrelation function (PACF) takes into account inter-lag effects in contrast to ACF. The ACF of signals also evidenced a similar behavior obtained with PACF. This fact suggests that cortical dynamics might change on frequency bands for RS. Although the statistical viewpoint indicates differences in bands, we are interested in the causal perspective of the signals’ dynamics. In other words, we want to evidence whether such differences are captured through spatiotemporal patterns associated with each rhythm.
+A. Dynamics
+To capture dynamical parameters, we computed the BP-PDF for filtered signals at several dimensions D. The corresponding normalized Shannon entropy H and statistical complexity C were evaluated. In Figs. 2 and 3, the histogram PDF of obtained values for entropy H and complexity C is shown. For a single band, PDFs of entropy are inversely ordered with respect to the dimensions D. The bigger the observational scale D, the less the entropy. For the θ band, entropy ranges span around a order phase from (HD=7 ≤ 0.2) to an entropy value (HD=3 ≤ 0.5). The set of entropies per dimension moves forward away from the ordered zone. In the α band, it goes from (HD=7 ≈ 0.2) up to (HD=3 ≤ 0.5). The β band extends its entropies from (HD=7 ≈ 0.3) to (HD=3 ≈ 0.58). This pattern remains constant when exploring higher frequencies. A reduced set of symbols is allowed for D = 3, and the richness of possible patterns has to be re-distributed in a few degrees of freedom.
+In contrast to H, statistical complexity C behaves in a particular way. In principle, Figs. 3(a) and 3(b) show a similar organization pattern as for H. The observational scale D appears to be inversely ordered with respect to the complexity levels. This behavior is kept in cortical activity at frequency bands θ and α. For instance, α complexities span over a range of (CD=7 ≈ 0.2) up to a complexity degree (CD=3 ≤ 0.275).
+The PDF for D = 3, 4, 5 decreases their complexity levels for the β band, breaking it up in the order previously maintained. For β, scales D = {3, 4, 5} are now directly proportional to their complexity levels, for instance, CD=3 β = 0.253, CD=4 β = 0.281, and
+
+FIG. 2. Entropy probability distributions for D = 3 (red), D = 4 (green), D = 5 (purple), D = 6 (yellow), and D = 7 (blue). Each panel depicts the set of entropies per bands (a) θ, (b) α, (c) β, and (d) γ . Entropy is inversely proportional to higher D.
+CD=5 β = 0.294. Cortical activity at the γ band magnifies this new ordering by expanding the distances among PDFs of C for different D-scales. Table I in the supplementary material summarizes the mean values for H and C for all bands and Ds.
+FIG. 3. Complexity probability distributions. Similar conventions of Fig. 2. Complexities of both (a) θ and (b) α decrease inversely proportional to the dimension D. A change of order occurs when complexities decrease for low scales D = 3, 4, and 5 in (c) β and (d) γ .
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-6
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+FIG. 4. H × C-plane for dimensions D = 3 (a) , D = 4 (b), D = 5 (c), D = 6 (d), and D = 7 (e). Each subplot accounts for bands θ (red), α (blue), β (yellow), and γ (green). Gray curves represent the limits Cmin and Cmax. There is an order relation among H and C for all frequencies.
+
+Previous results depict the independent organization of H and C based on D and bands but nothing says about a potential relationship between both parameters. For a single value of H, C may span over a range limited by Cmin and Cmax. Then, we ask how the relationship of the entropy and complexity evolves for different bands? The entropy–complexity plane H × C allows following the time evolution of a dynamical system for different D dimensions.
+A negative relation between H and C occurs for D = 3 [Fig. 4(a)]. The first bands accumulate higher levels of complexity in contrast to those of fast frequencies, which increment their randomness. While the order relation among frequencies is kept, H and C are now in the region of positive relationships for D = 4 [Fig. 4(b)]. Now, fast frequencies increase their complexity, while lower bands start to reach regions of deterministic behavior. This relationship increases its slope for all frequencies at D = 5 and now locate it on the deterministic region of the H × C-plane [Fig. 4(c)]. This tendency is near the values of maximum complexity for D = 6 [Fig. 4(d)] and is very close to the limits when D = 7. Note that although the slope of the relationship changes from negative (for D = 3) to positive (since D = 4), the order relation among bands is maintained for all dimensions. It may suggest the existence of band-dynamics of its own that is well captured by the Bandt–Pompe methodology. We chose D = 5 to better observe its dynamics for being the dimension in-between a short observation scale (D = 3) and an oversampling of symbols due to D = 7. Under the assumption that a surrogate time series destroys all of its nonlinear dependencies, we construct a set of 50 randomized versions
+
+per signal to compute their dynamical parameters. We compare the original H (and C) for each ROI with respect to the empirical distribution of those captured from random versions of signals via the Kolmogorov–Smirnov test and Bonferroni corrected. The nonlinear character of a signal is assumed when the comparison rejects the null hypothesis that the dynamical parameters came up from time series with uncorrelated amplitudes. Nonlinearity was detected for entropy in θ , α, and γ oscillations with p − value ≤ 0.01. β oscillations do not reject the null hypothesis. All bands reject the null hypothesis regarding complexity. The information processing at the cortical level suggests to be driven by a nonlinear system presents in the dynamical properties of MEG time series.
+Due to the relevance of the α band for RS, we focus our attention on the topography distribution of H and C in the scalp so as to unveil cortical regions of high levels of dynamics. Specifically, we take the average of entropy H and C and observe their spatial distribution on scalp (Fig. 5). Remaining bands are also shown in the supplementary material. Note that the H × C-plane has a positive correlation for D = 5, and then nodes of higher entropy match with ROIs of higher complexity. The parieto-occipital lobe contains the majority of ROIs with high levels of H and C. These regions exhibit an increment of cortical activity under passive attention processes, and they are also associated with visual stimuli perception and spatial recognition.55 These results are in accordance with RS experiments, which highlight the occipital lobe as the one with the major activity. In the global perspective, entropy ranges between zero and one. Its mean value for D = 5 is rather low ( HD=5 alpha = 0.272).
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-7
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+FIG. 5. Topographical distribution of H (a) and C (a) for α with D = 5. Dashed lines divide the cortical surface into lobes. Node sizes are proportional to the average of entropy and complexity. High dynamical activity is located in the posterior parietal cortex and the occipital lobe.
+The fact that the parieto-occipital lobe reaches these entropy levels may indicate that brain signals tend to have an organized distribution of its dynamics at this cortical region. The supplementary material contains H and C for the remaining bands.
+B. Structure
+The dynamic analysis is performed on the activity of independent ROIs’ activations. However, this approximation cannot take into account the statistical dependencies of ROIs’ activations. In this sense, another spatial pattern may also arise due to these interdependencies of cortical brain signals. Hence, we reconstructed the functional network of the α activity in order to capture topological features of relevance for information processing in RS. We computed the clustering and eigenvector centrality for all subjects and take their average value cw and ec, respectively. We assessed both normalized cw n and ec n by accounting for counterparts from 50 rewired networks per subject. Network features were contrasted with those obtained from randomized matrices using a Mann–Whitney test at the node level. Regarding the clustering index, p-values were significantly less than 0.05 for occipital and posterior-parietal regions and an important portion of the temporal lobe. There are no significant differences in eigenvector centrality. A normalized quantity higher than one implies a network parameter that is extracted from the real nature of the system. Otherwise, it would entail a network feature that is captured from a random configuration. We allocated features to each cortical lobe as it is shown in Fig. 6. Boxplots of Fig. 6(a) indicate that clustering architecture arises from the structural organization of functional networks since normalized values are greater than one. Notice how the occipital lobe accumulates ROIs with the highest clustering index. Interestingly, this region also intensifies its dynamics for the α band. On the other hand, Fig. 6(b) suggests that eigenvectors are similar to those extracted from random versions of networks ec ≤ ec∗.
+Having said so, the natural step is to examine how the topographical distribution of the clustering architecture is at the node level. Figure 7 depicts the functional network for α highlighting
+
+FIG. 6. Normalized network features. They are allocated to cortical lobes: frontal (orange), occipital (green), parietal (cyan), and temporal (purple). (a) Clustering cw n is higher than one for all lobes and (b) eigenvector centrality ec n is lower than one.
+which nodes belong to each lobe. We highlight the nodes with a high level of clustering. They are dispersed mainly in occipital and temporal lobes, specialized regions that process information regarding attention, sensory and visual stimuli, and auditive perception.55,56 Several posterior regions of the cortex reveal ROIs with active roles for the segregation of information due to its high clustering. The fact that those regions reside in different lobes may reflect some integration type of information concerning the α band.57,58 The connectivity maps for additional bands are shown in the supplementary material.
+V. STRUCTURE AND DYNAMICS
+The hypothesis of adaptive coevolutionary networks was stated in the work by Gross and Blasius.59–61 They established that certain dynamics of the nodes are related to that associated with the topology of the network. Functional networks are not a steady-state of a biophysical object, in particular, because of the oscillatory character of the ROI at several timescales. We consider exploring this potential relationship, under the assumption that brain networks are continuously evolving, even at RS. The occipital lobe engages the presence of high dynamics activity (H, C) and a relevant role of structure (cw). For this reason, we now explore whether this lobe associates some quantifiable relationship among its dynamical parameters and network features. A Principal Component Analysis (PCA) was performed with five variables: entropy H, complexity C, eigenvector centrality ec, strength s, and clustering cw. Each variable contains 190 observations. The average over 40 subjects. We incorporate the cortical lobe as a supplementary variable related to each ROI. The factorial plane preserves 91.6 % of the variability of the parameters: 58.4 % is in the first component and 33.2 % is in the second one. See the supplementary material. Dynamical parameters are best explained since they preserve a variability greater than 99%. See the row Total variability for H (99.34) and C (99.16) also in the supplementary material. The network features ec and s are the best associated with the first component with 86.53% and 66.01% of the explained variability. In contrast, (H, C) are more related to the second component with 59.33 % and 49.12 %, respectively. Entropy and complexity are positively related to the second component, while network parameters are inversely related to it. This indicates linear independence between dynamics and structure.
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-8
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+FIG. 7. Functional network for the α band. Dashed lines divide the cortex surface into lobes. Node sizes are proportional to clustering cw. High clustering ROIs are located mainly in temporal and occipital lobes. Links are drawn with the same width for simplicity.
+Most of the occipital and parietal nodes are located at the righthand side of the plane according to the results introduced above. Specifically, the occipital lobe concentrates nodes with both high dynamics and structural levels. The fact that PCA considers a linear combination of variables and the absence of such a relationship between both classes might hint a nonlinear relationship worthwhile to explore in future works.
+We performed a complimentary analysis. As entropy leads to complexity and clustering accounts for significant values for all lobes, we measure the interaction of H and cw. We performed linear fits taken into account the node stratification for each lobe. Linear fits are far from explaining the entropy variability throughout a linear relation with cw. R2 values are low. Results for linear fits are shown in the supplementary material. Nonetheless, these approximations are preliminary ones and do not imply the absence of a potential relationship. More studies must be done in order to verify any interrelation between introduced dynamical parameters and topology features.
+VI. CONCLUSIONS
+We have introduced the first study that characterizes the dynamics and structure of cortical fluctuations of healthy subjects in RS for different frequency bands. The cohort of this work stands out for being in an age range higher than the age of major neurodevelopmental changes and before the onset of neurodegenerative
+
+conditions. We use ordinal patterns as a robust methodology to extract the alphabet that constructs the information content of MEG signals. By using information theory, we capture the complexity and entropy as dynamic parameters. We found that the clustering coefficient plays an important role in the topology of the functional network created from the synchronization of the signals’ powers at different frequencies. We highlight the relevance of the occipital lobe as the domain that concentrates cortical structures that play a dual role in both the dynamics and the network structure for the α band.
+Ordinal patterns capture information in high-order dimensions of a nonlinear system. The timescales at which the amount of information is captured from a dynamic system are those embedding dimensions. In this sense, the amount of information contained in the MEG signals increases as we observe the system in low dimensionality. The lower the dimensionality, the higher the amount of information contained in MEG signals. The larger the frequency band, the more entropy in the signals. However, cortical signals have entropy values below 0.6, which implies that cortical fluctuations are moderately ordered for either all observation scales or bands. Although our study focuses on RS, it highlights that similar results were obtained at the microscale level. The work of Montani et al.62 developed models of spiking neurons with a diversity of different neurocomputational properties of biological neurons. Similarly, they find that the degree of order decreases as entropy increases.
+Resting brain activity assumes an interdependence of multiple states that evolve in a non-random manner,63,64 which implies that there is a complex dynamic that shows the rich temporal structure of cortical activations in RS.65 We then capture this complexity as another dynamic parameter of the MEG signals and associate it with their levels of randomness using the H × C-plane. Importantly, we found an order relation in the dynamics of cortical fluctuations with marked gaps between each oscillation rhythm. The faster the oscillations, the information is processed with higher levels of complexity and entropy.
+The recent work of Echegoyen et al.28 discriminates MEG signals from subjects with mild cognitive impairment and Alzheimer’s in different frequency bands. However, it does not show an order relation between each rhythm and the entropy ranges. At the same time, Baravalle et al.21 demonstrated that an order relation appears for slow rhythms. However, this order relation changes for fast oscillations, specifically in EEG of subjects performing a visuomotor task. In contrast, our results show that the H × C-plane differentiates the dynamic of MEG signals with a marked order associated with each band, which implies that each rhythm has a preference to occupy specific states of the system. Interestingly, this order relation remains independent of the observation scale, suggesting the existence of some consistency in the local dynamics associated with the RS.
+The α rhythm reaches the highest power in RS and associates the posterior zone of the cortex. In this sense, the strong dynamic of the occipital lobe is well captured by the methodology used in this work. We evaluated the importance of cortical lobes that contain ROIs with high levels of information processing. We find the posterior-parietal and occipital lobes as those that accumulate cortical regions where information processing associates high levels of entropy and complexity for the α band. These results are consistent with those of the recent work by Quintero-Quiroz et al.,36 who
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-9
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+analyzed the dynamics of EEG signals in RS. They found that the posterior zone of the cerebral cortex concentrates ROIs with high entropy compared to the other zones. It is also interesting to note that this region marks the difference between the levels of entropy and complexity of MEG signals in healthy subjects with different cognitive reserves.31
+Overall, the methodology used discriminates spatiotemporal patterns for different frequencies. The θ band showed a distribution in the posterior cortex and some regions of the temporal lobe that is associated with the processing of information from visual stimuli. The β band highlights regions of the frontal lobe, and the γ accentuates some areas of the cortical periphery. Interestingly, although this work focused on MEG in RS, the work of Baravalle21 highlights regions of high entropy in areas similar to those found in this work but using EEG of subjects with visuomotor tasks. A comparison between findings allows us to find certain similarities between these two works. On the one hand, we work with MEG of RS with open eyes. On the other hand, they work on a visuomotor task of healthy subjects. Therefore, we speculate that visual activity might have a central role in the topographic distribution of ROIs with high dynamics in the different frequency bands.
+Regarding network analysis, we find that clustering is of cardinal importance, while the role of other network parameters, such as eigenvector centrality or strength, is still unclear. High clustering levels are due to the high density of connections between functionally related regions of the network in the α band. It is also related to the phenomenon of functional segregation, in which specialized regions carry out information processing. In this sense, we find the occipital lobe and some temporal ROIs as regions that concentrate a high level of clustering. Interestingly, clustering has formerly been associated with the robustness of a functional network in RS. Specifically, the clustering of functional networks is bound-up to the robustness when occurring loss of information between hemispheres in the α band.18 Although the work shows the importance of the occipital lobe in information processing for dynamics (H, C) and structure (cw), no statistical relationship was found between these parameters.
+It is well known that the MEG technique is extremely sensitive to diverse factors such as skin conductance, arousal, eye movements, among others that may add noise and lead to artifacts. For this reason, a preprocessing pipeline is continually performed for filtering and cleaning raw data. However, some preprocessing techniques depend on both parameters that must be tuned ad hoc, and filters that can mitigate the presence of noise but profoundly influence the results. In this sense, although a high sampling frequency in the signals leads to a high temporal resolution, it can also induce drawbacks when capturing ordinal patterns. An oversampling could hide the real dynamics of a signal, promoting the existence of ascending and descending patterns mostly associated with periodic time series. The excess of these types of patterns would decrease the richness of other states that coexist in the signals, creating very ordered probability distributions that lead to low entropy.
+Increasing the observation window increases the possible states of the system but does not eliminate the low entropy of the distributions. As a consequence, complexity approaches the theoretical maximum levels for large embedding dimensions. This fact may explain why the dynamical parameters in the frequency bands radically
+
+change when increasing the observation dimension. Because the Bandt and Pompe methodology is sensitive to the observational scale, oversampling can strongly influence both the observed patterns captured and the system dynamics.
+The fact that H preserves an ordering in contrast with C confirms the effect of “capturing several temporal scales,” a property already observed in previous work by using the BP methodology. When working with D = 3, our observational windows is a bit shortsighted. When going to high-order scales, we attempt with a more clear landscape where the new ordering is preserved in the remaining dynamics. This new ordering is kept all along the rest of the dimensions, even in the extreme D = 7. Therefore, we consider working with D = 5 as the working dimension because of its intermediate length of patterns. With all of this, the grouping structure of different bands, that is to say, the clouds of pairs (h,c) preserve an order for all dimensions D in the H × C plane. The pairs (h,c) are part of a non-Euclidean manifold, and they are only understandable in the neighborhood of both entropy–complexity, simultaneously, which leads to difficulties for direct comparisons. It is worth mentioning that we worked with the standard BP methodology and not with the weighted version (accounting for samples’ amplitudes) that could give complementary information in the H × C plane. However, this is considered a worthy perspective for future works.
+D = 5 is between a low temporal resolution observation scale and one that takes the complexity of the system to its maximum limit. This dimension has been used in previous works in neuroscience to highlight the statistical differences when comparing subjects with Alzheimer vs healthy or groups of different ages.66,67
+Beyond being barriers, these observations can be taken as challenges useful for future studies. For example, instead of taking the amplitudes of the time series, we can consider the patterns obtained by taking the relative differences between the local maxima when working with highly sampled signals. This procedure could avoid oversampling and capture the richness of the patterns. On the other hand, although we did not evidence a statistical relationship between the dynamics and structure, another study found a relation between entropy–complexity and clustering/strength for the cognitive reserve phenomenon. This fact suggests the need for further studies with other perspectives to give plausible explanations about this potential relationship in RS (e.g., using nonlinear correlations for connectivity matrices such as information entropy or synchronization likelihood).
+Even so, the potential of the Bandt–Pompe methodology is demonstrated independent of potential drawbacks in the signals. The methodology has the potential to detect changes in the topographic distribution of regions with dynamic activity, as well as characterizing rhythms at which the brain operates in RS. Although many questions remain open, to the best of our knowledge, this is one of the first studies with MEG signals that shed light on the understanding of the dynamics and structure around RS activity using a technique that involves information theory, symbolic dynamics, and network science.
+Converging evidence suggests that the Bandt–Pompe methodology is robust to noise and efficient for its ability to extract knowledge of the dynamics of a system. In this case, we demonstrate the existence of an order relationship present in the RS dynamics and strongly marked in the frequency bands. It should be noted that such
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-10
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+a relationship is ubiquitous among different observational scales. Our evidence highlights the cardinal role of the posterior region of cortex in the α band, particularly the occipital lobe. This region conglomerates neural structures in charge of information processing that play a dual role in dynamics-structure, which might be considered as a fingerprint of the RS.
+SUPPLEMENTARY MATERIAL
+See the supplementary material that contains a comparative analysis of the dynamics-structure along the remaining frequency bands θ , β, γ and also shows an exploration of the linear relations between H and cw for α band in other cortical lobes.
+ACKNOWLEDGMENTS
+J.H.M. thanks the Colombian Ministry of Science, Technology and Innovation, Colciencias Call #811, for supporting this research, and M. R. Huartos for valuable conversations. J.H.M. also acknowledges funding from the project from the Spanish Ministry of Science and Innovation, the AEI and FEDER (EU) under the Maria de Maeztu program for Units of Excellence in R&D (MDM-20170711). He also is grateful to J. M. Buldú and D. Papo for cardinal suggestions.
+DATA AVAILABILITY
+The experimental MEG dataset corresponds to the “Human Connectome Project.” See detailed explanations in Van Essen’s and Larson’s work.38,39 The data that support the findings of this study are available within the article.
+REFERENCES
+1R. Carter, S. Aldrige, M. Page, and S. Parker, The Human Brain Book, 3rd ed. (Penguin Random House, DK, London, 2019). 2A. Jackson and D. Bolger, “The neurophysiological bases of EEG and EEG measurement: A review for the rest of us,” Psychophysiology 51, 1061–1071 (2014). 3M. Cohen, “Where does EEG come from and what does it mean?,” Trends Neurosci. 40, 208–218 (2017). 4M. Hämäläinen, R. Hari, R. J. Ilmoniemi, J. Knuutila, and O. V. Lounasmaa, “Magnetoencephalography—Theory, instrumentation, and applications to noninvasive studies of the working human brain,” Rev. Mod. Phys. 65, 413–497 (1993). 5S. Baillet, “Magnetoencephalography for brain electrophysiology and imaging,” Nat. Neurosci. 20, 327–339 (2017). 6C. S. Herrmann, D. Strüber, R. F. Helfrich, and A. K. Engel, “EEG oscillations: From correlation to causality,” Int. J. Psychophysiol. 103, 12–21 (2016). 7C. Bandt and B. Pompe, “Permutation entropy: A natural complexity measure for time series,” Phys. Rev. Lett. 88, 174102 (2002). 8C. E. Shannon, “A mathematical theory of communication,” Bell Syst. Tech. J. 27, 379–423 (1948), 623–656. 9C. E. Gray and W. Weaver, The Mathematical Theory of Communication (University of Illinois Press, 1949). 10P. W. Lamberti, M. T. Martín, A. Plastino, and O. A. Rosso, “Intensive entropic non-triviality measure,” Physica A 334, 119–131 (2004). 11M. T. Martín, A. Plastino, and O. A. Rosso, “Generalized statistical complexity measures: Geometrical and analytical properties,” Physica A 369, 439–462 (2006).
+12O. A. Rosso, H. A. Larrondo, M. T. Martín, A. Plastino, and M. Fuentes, “Distinguishing noise from chaos,” Phys. Rev. Lett. 99, 154102 (2007).
+
+13L. da F. Costa, F. A. Rodrigues, G. Travieso, and P. R. V. Boas, “Characterization of complex networks: A survey of measurements,” Adv. Phys. 56, 167–242 (2007). 14E. Bullmore and O. Sporns, “Complex brain networks: Graph theoretical analysis of structural and functional systems,” Nat. Rev. Neurosci. 10, 186–198 (2009). 15M. Rubinov and O. Sporns, “Complex network measures of brain connectivity: Uses and interpretations,” NeuroImage 52, 1059–1069 (2010). 16J. M. Buldú, R. Bajo, N. C. F. Maestú, I. Leyva, P. Gil, I. Sendiña-Nadal, J. A. Almendral, A. Nevado, F. del Pozo, and S. Boccaletti, “Reorganization of funtional networks in mild cognitive impairment,” PLoS ONE 6, e19584 (2011). 17M. Chavez, M. Valencia, V. Navarro, V. Latora, and J. Martinerie, “Functional modularity of background activity in normal and epileptic brain networks,” Phys. Rev. Lett. 104, 118701 (2010). 18J. H. Martínez, J. Buldú, D. Papo, F. D. V. Fallani, and M. Chavez, “Role of inter-hemispheric connections in functional brain networks,” Sci. Rep. 8, 10246 (2018). 19R. Baravalle, N. Guisande, M. Granado, O. A. Rosso, and F. Montani, “Characterization of visuomotor/imaginary movements in EEG: An information theory and complex network approach,” Front. Phys. 7, 115 (2019). 20R. Baravalle, O. A. Rosso, and F. Montani, “Discriminating imagined and nonimagined task in the motor cortex area: Entropy-complexity plane with a wavelet decomposition,” Physica A 511, 27–39 (2018). 21R. Baravalle, O. A. Rosso, and F. Montani, “Rhythmic activities of the brain: Quantifying the high complexity of beta and gamma oscillations during visuomotor tasks,” Chaos 28, 075513 (2018). 22R. Baravalle, O. A. Rosso, and F. Montani, “Causal Shannon-Fisher characterization of motor/imagery movements in EEG,” Entropy 20, 660 (2018). 23O. A. Rosso, M. T. Martín, A. Figliola, K. Keller, and A. Plastino, “EEG analysis using wavelet-based informational tools,” J. Neurosci. Methods 153, 163–182 (2006).
+24O. A. Rosso, W. Hyslop, R. Gerlach, R. L. L. Smith, J. Rostas, and M. Hunter, “Quantitative EEG analysis of the maturational changes associated with childhood absence epilepsy,” Physica A 356, 184–189 (2005).
+25O. A. Rosso, A. Mendes, J. A. Rostas, M. Hunter, and P. Moscato, “Distinguishing childhood absence epilepsy patients from controls by the analysis of their background brain electrical activity,” J. Neurosci. Methods 177, 461–468 (2009).
+26O. A. Rosso, A. Mendes, R. Berreta, J. A. Rostas, M. Hunter, and P. Moscato, “Distinguishing childhood absence epilepsy patients from controls by the analysis of their background brain activity (II): A combinatorial optimization approach for electrode selection,” J. Neurosci. Methods 181, 257–267 (2009). 27F. Redelico, F. Traversaro, M. C. Garcéda, W. Silva, O. A. Rosso, and M. Risk, “Classification of normal and pre-ictal EEG signals using permutation entropies and a generalized linear model as a classifier,” Entropy 19, 72 (2017). 28I. Echegoyen, D. López-Sanz, J. H. Martínez, F. Maestú, and J. M. Buldú, “Pertmutation entropy and statistical complexity in mild cognitive impairment and Alzheimer disease: An analysis based on frequency bands,” Entropy 22, 116 (2020). 29M. Zanin, B. Güntekin, T. Aktürk, and L. Hanoglu, “Time reversibility of resting-state activity in the healthy brain and pathology,” Front. Physiol. 10, 1619 (2020). 30J. H. Martínez, J. L. Herrera-Diestra, and M. Chavez, “Detection of time reversibility in time series by ordinal patterns analysis,” Chaos 28, 123111 (2018). 31J. Martínez, M. E. López, P. Ariza, M. Chavez, J. A. Pineda-Pardo, D. LópezSanz, P. Gil, F. Maestú, and J. M. Buldú, “Functional brain networks reveal the existence of cognitive reserve and the interplay between network topology and dynamics,” Sci. Rep. 8, 10525 (2018). 32I. Echegoyen, V. Vera-Ávila, R. Sevilla-Escoboza, J. H. Martínez, and J. M. Buldú, “Ordinal synchronization: Using ordinal patterns to capture interdependencies between time series,” Chaos Solitons Fractals 119, 8–18 (2019). 33C. Stam, “Nonlinear dynamical analysis of EEG and MEG: Review of an emerging field,” Clin. Neurophysiol. 116, 2266–2301 (2005). 34J. R. Barry, A. R. Clarke, S. J. Johnstone, C. A. Magee, and J. A. Rushby, “EEG differences between eyes-closed and eyes-open resting conditions,” Clin. Neurophysiol. 118, 2765–2773 (2007).
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-11
+
+Chaos
+
+ARTICLE
+
+scitation.org/journal/cha
+
+35A. Khanna, A. Pascual-Leonea, C. M. Michel, and F. Farzan, “Microstates in resting-state EEG: Current status and future directions,” Neurosci. Biobehav. Rev. 49, 105–113 (2015). 36C. Quintero-Quiroz, L. Montesano, A. J. Pons, M. C. Torrent, J. García-Ojalvo, and C. Masoller, “Differentiating resting brain states using ordinal symbolic analysis,” Chaos 28, 106307 (2018). 37H. C. Project, “WU-Minn HCP MEG initial data release: Reference manual,” 2014. 38D. C. Van Essen, K. Ugurbil, E. Auerbach, D. Barch, T. E. J. Behrens, R. Bucholz, A. Chang, L. Chen, M. Corbetta, S. W. Curtiss et al., “The Human Connectome Project: A data acquisition perspective,” Neuroimage 62, 2222–2231 (2012). 39L. J. Larson-Prior, R. Oostenveld, S. D. Penna, G. Michalareas, F. Prior, A. Babajani-Feremi, J. M. Schoffelen, L. Marzetti, F. de Pasquale, F. D. Pompeo, J. Stout, M. Woolrich, Q. Luo, R. Bucholz, P. Fries, V. Pizzella, G. L. Romani, M. Corbetta, and A. Z. Snyder, “Adding dynamics to the Human Connectome Project with MEG,” Neuroimage 80, 190–201 (2013). 40W. A. Fuller, Introduction to Statistical Time Series (John Wiley & Sons, 2009), Vol. 428. 41M. Cohen, Analyzing Neural Time Series Data: Theory and Practice (MIT Press, 2014). 42J. Tiana-Alsina, M. C. Torrent, O. A. Rosso, C. Masoller, and J. GarciaOjalvo, “Quantifying the statistical complexity of low-frequency fluctuations in semiconductor lasers with optical feedback,” Phys. Rev. A 82, 013819 (2010). 43R. Lopez-Ruiz, H. L. Mancini, and X. Calbet, “A statistical measure of complexity,” Phys. Lett. A 209, 321–326 (1995). 44O. A. Rosso, L. D. Micco, H. A. Larrondo, M. T. Martín, and A. Plastino, “Generalized statistical complexity measure,” Int. J. Bifurcat. Chaos 20, 775–785 (2010). 45O. A. Rosso, L. C. Carpi, P. M. Saco, M. G. Ravetti, A. Plastino, and H. A. Larrondo, “Causality and the entropy–complexity plane: Robustness and missing ordinal patterns,” Physica A 391, 42–55 (2012). 46O. A. Rosso, L. C. Carpi, P. M. Saco, M. G. Ravetti, H. A. Larrondo, and A. Plastino, “The Amigó paradigm of forbidden/missing patterns: A detailed analysis,” Eur. Phys. J. B 85, 419 (2012). 47J. Theiler, S. Eubank, A. Longtin, B. Galdrikian, and J. D. Farmer, “Testing for nonlinearity in time series: The method of surrogate data,” Physica D 58, 77–94 (1992). 48K. T. Dolan and M. L. Spano, “Surrogate for nonlinear time series analysis,” Phys. Rev. E 64, 046128 (2001). 49T. Schreiber and A. Schmitz, “Surrogate time series,” Physica D 142, 346–382 (2000). 50G. C. Carter, “Coherence and time delay estimation,” Proc. IEEE 75, 236–255 (1987). 51M. A. Kramer, “An introduction to field analysis techniques: The power spectrum and coherence,” in Science of Large Data Sets: Spikes, Fields, Voxels (Society for Neuroscience, 2013), Vol. 202, pp. 18–25.
+
+52F. D. V. Fallani, V. Latora, and M. Chavez, “A topological criterion for filtering information in complex brain networks,” PLoS Comput. Biol. 13, e1005305 (2017). 53J. P. Onnela, J. Saramäki, J. Kertész, and K. Kaski, “Intensity and coherence of motifs in weighted complex networks,” Phys. Rev. E 71, 065103 (2005). 54S. Boccaletti, V. Latora, Y. Moreno, M. Chávez, and D.-U. Hwang, “Complex networks: Structure and dynamics,” Phys. Rep. 424, 175–308 (2006). 55J. Huang, see https://www.msdmanuals.com/professional/neurologic-dis orders/function-and-dysfunction-of-the-cerebral-lobes/overview-of-cerebral-fun ction for “Overview of Cerebral Function” (2019); accessed 10 November 2019. 56P. Billeke, F. Zamorano, M. Chavez, D. Cosmelli, and F. Aboitiz, “Functional cortical network in alpha band correlates with social bargaining,” PLoS ONE 10, e109829 (2014). 57M. Boersma, D. Smit, H. M. A. de Bie, V. B. G. C. M, D. I. Boomsma, E. J. C. de Geus, H. A. Delemarre-van de Waal, and C. J. Stam, “Network analysis of restingstate EEG in the developing young brain: Structure comes with maturation,” Hum. Brain Mapp. 32, 413–425 (2011). 58J. Gómez-Ramírez, S. Freedman, D. Mateos, J. L. Pérez-Velázquez, and T. A. Valiante, “Exploring the alpha desynchronization hypothesis in resting state networks with intracranial electroencephalography and wiring cost estimates,” Sci. Rep. 7, 15670 (2017). 59T. Gross and B. Blasius, “Adaptive coevolutionary networks: A review,” J. R. Soc. Interface 5, 259–271 (2008). 60G. Miritello, E. Moro, and R. Lara, “Dynamical strength of social ties in information spreading,” Phys. Rev. E 83, 045102 (2011). 61D. Papo, M. Zanin, J. Pineda-Pardo, S. Boccaletti, and J. Buldu, “Functional brain networks: Great expectations, hard times and the big leap forward,” Philos. Trans. R. Soc. B 369, 20130525 (2014). 62F. Montani, L. Baravalle, L. Momtagie, and O. A. Rosso, “Causal information quantification of prominent dynamical features of biological neurons,” Philos. Trans. R. Soc. A 373, 1–9 (2015). 63T. Kenet, D. Bibitchkov, M. Tsodyks, A. Grinvald, and A. Arieli, “Spontaneously emerging cortical representations of visual attributes,” Nature 425, 954–956 (2003). 64J. M. Beggs and D. Plenz, “Neuronal avalanches in neocortical circuits,” J. Neurosci. 23, 11167–11177 (2003). 65A. L. Goldberger, L. A. N. Amaral, J. M. Hausdorff, P. Ch. Ivanov, C.-K. Peng, and H. E. Stanley, “Fractal dynamics in physiology: Alterations with disease and aging,” Proc. Natl. Acad. Sci. USA. 99, 2466–2472 (2002). 66H. Azami, K. Smith, A. Fernandez, and J. Escudero, “Evaluation of restingstate magnetoencephalogram complexity in Alzheimer’s disease with multivariate multiscale permutation and sample entropies,” in 37th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC) (IEEE, Milan, 2015), pp. 7422–7425. 67E. Shumbayawonda, A. Fernández, M. P. Hughes, and D. Abásolo, “Permutation entropy for the characterisation of brain activity recorded with magnetoencephalograms in healthy ageing,” Entropy 19, 141 (2017).
+
+Chaos 30, 123138 (2020); doi: 10.1063/5.0025189 Published under license by AIP Publishing.
+
+30, 123138-12
+

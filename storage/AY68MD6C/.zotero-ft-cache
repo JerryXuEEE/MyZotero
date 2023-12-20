@@ -1,0 +1,541 @@
+Translational Psychiatry
+
+www.nature.com/tp
+
+1234567890();,:
+
+ARTICLE OPEN
+Network effects of Stanford Neuromodulation Therapy (SNT) in
+
+treatment-resistant major depressive disorder: a randomized,
+
+controlled trial
+
+Jean-Marie Batail1,2,5, Xiaoqian Manish Saggar 4,6 and Nolan
+
+XRi.aWo1i,l5l,iaAmzeseza1t,4,A6 ✉zeez1,5,
+
+Claudia
+
+Tischler3,
+
+Ian
+
+H.
+
+Kratter
+
+1,4, James H. Bishop1,
+
+© The Author(s) 2023
+
+Here, we investigated the brain functional connectivity (FC) changes following a novel accelerated theta burst stimulation protocol known as Stanford Neuromodulation Therapy (SNT) which demonstrated signiﬁcant antidepressant efﬁcacy in treatment-resistant depression (TRD). In a sample of 24 patients (12 active and 12 sham), active stimulation was associated with signiﬁcant pre- and post-treatment modulation of three FC pairs, involving the default mode network (DMN), amygdala, salience network (SN) and striatum. The most robust ﬁnding was the SNT effect on amygdala-DMN FC (group*time interaction F(1,22) = 14.89, p < 0.001). This FC change correlated with improvement in depressive symptoms (rho (Spearman) = −0.45, df = 22, p = 0.026). The post-treatment FC pattern showed a change in the direction of the healthy control group and was sustained at the one-month follow-up. These results are consistent with amygdala-DMN connectivity dysfunction as an underlying mechanism of TRD and bring us closer to the goal of developing imaging biomarkers for TMS treatment optimization.
+Trial registration: ClinicalTrials.gov NCT03068715
+Translational Psychiatry (2023)13:240 ; https://doi.org/10.1038/s41398-023-02537-9
+
+INTRODUCTION Failure to achieve complete remission in treating Major Depressive Disorder (MDD) leads to increased morbidity, relapse rates [1], and suicidality [2]. Elucidating the neural mechanisms associated with treatment response could improve therapeutics—via an approach based on personalized psychiatry [3]—and better our understanding of the neurophysiology of treatment-resistant depression (TRD). Biological mechanisms in MDD have been investigated using network-level whole-brain approaches, such as functional connectivity (FC) imaging, which has led to a better understanding of biological mechanisms of MDD [3, 4]. Three core circuits have been identiﬁed in depression: the medial prefrontal–posterior cingulate default mode network (DMN), the fronto-parietal central executive network (CEN), and the cingulo-opercular salience network (SN) [5]. The latter two are known to have an inhibitory function over the DMN and a crucial role in the regulation of cognitive and emotional processes [5]. Recent ﬁndings have shown that in patients with depression, the DMN has a greater FC with dorsomedial prefrontal cortex (dmPFC) [6], subgenual ACC (sgACC) [7], and subgenual prefrontal cortex (sgPFC) than in healthy controls and is associated with rumination [8]. Some work has emphasized that cognitive control and reward-related networks are associated with treatment resistance in depression [9]. Both DMN FC and anterior insula glucose metabolism predict
+
+response to antidepressant (ATD) therapy, suggesting that there may be functional markers within both the DMN and the SN that can guide treatment selection such as pharmacotherapy or cognitive behavior therapy [10–12]. Interestingly, the literature on rTMS treatment response is converging toward using the anticorrelation between the DLPFC, a part of the CEN, and the sgACC to predict clinical outcomes [13–16]. Thus, some randomized controlled studies have emphasized that left or bilateral DLPFC TMS / intermittent Theta Burst Stimulation (iTBS) could be associated with modiﬁcations within and between FC of SN, CEN, and DMN. [17–20] Whereas one study failed to elicit such effect probably due to lack of statistical power [21]. However, whether TMS alters CEN and SN regulation of the DMN remains unclear.
+Indeed, relatively little is known about brain functional correlates of ATD treatment. Most studies exploring this question utilize typical ATD therapies, which are inherently confounded by nonspeciﬁc factors due to the duration of time between initiation and ATD effect. More recently, other pharmacological agents like ketamine and psilocybin have demonstrated rapid ATD effects, suggesting that they may be able to help address this issue. However, the contribution of these drugs in the study of the mechanisms of action might be limited by non-speciﬁc pharmacological action [22, 23] and lack of effective blinding—i.e. poorly assessed and unsuccessful [24]—which impairs the generalizability
+
+1Stanford Brain Stimulation Lab, Stanford, CA, USA. 2Pôle Hospitalo-Universitaire de Psychiatrie Adulte, Centre Hospitalier Guillaume Régnier, Rennes, France. 3Baylor College of Medicine, Houston, TX, USA. 4Department of Psychiatry and Behavioral Sciences, Stanford University, Stanford, CA, USA. 5These authors contributed equally: Jean-Marie Batail, Xiaoqian Xiao, Azeezat Azeez. 6These authors jointly supervised this work: Manish Saggar, Nolan R. Williams. ✉email: nolanw@stanford.edu
+Received: 9 June 2023 Revised: 20 June 2023 Accepted: 21 June 2023
+
+J.-M. Batail et al.
+
+2
+
+of the ﬁndings. In the current study, we investigated resting state participants provided informed consent for the study prior to participation,
+
+FC changes observed immediately and one-month after a course and all procedures were approved by the Stanford School of Medicine
+
+of an accelerated, high-dose, intermittent theta burst stimulation Institutional Review Board.
+
+(iTBS) protocol with functional MRI-guided targeting—termed
+
+Stanford Neuromodulation Therapy (SNT) [25]. This protocol resulted in a high remission rate of 57.1% immediately after ﬁve
+
+Stanford Neuromodulation Therapy (SNT) Participants received active or sham STN, a 5-day, high-dose, accelerated
+
+days of treatment and 46.2% remission at one-month post- iTBS treatment protocol that has been described in detail previously [25].
+
+treatment [25]. While the efﬁcacy of TMS in general [26] and SNT [25, 27] in particular have been investigated, less is known about the downstream neural effects of treatment response. Therefore, the efﬁcacy, rapidity, and durability of SNT suggest that it is an ideal therapeutic paradigm to investigate functional changes
+
+The baseline resting state fMRI scan was used to determine the location of the personalized target within the left dorsolateral prefrontal cortex (lDLPFC) for stimulation according to an algorithm that selects the area within the lDLPFC with the most negative FC with the sgACC, again as described in previous publications [25, 27].
+
+associated with treatment response. Furthermore, the recent RCT with an intact blind allows us to investigate the downstream effects of ATD treatment while controlling for many of the concerns noted above. We aimed to address the following mechanistic questions: What are the acute effects of SNT therapy
+
+Clinical assessment Participants’ depressive symptoms were assessed using the MADRS [28]. MADRS assessments were performed at the baseline, immediate-post and one-month follow-up visits.
+
+on resting state FC? What is the relationship between stimulationinduced FC changes and clinical changes? How does participant resting-state FC compare to that of healthy controls? Are these alterations sustained over one-month post-treatment?
+To this end, we investigated the effects of active Stanford Neuromodulation Therapy—as compared to sham stimulation— on FC immediately after 5 days of treatment. Next, we examined
+
+MRI image data acquisition and preprocessing All participants were screened for MRI safety prior to any scanning procedures. MRI scans were acquired, and clinical assessments were performed on the same day. Each participant underwent identical baseline and post-treatment MRI scans consisting of structural and resting-state functional MRI acquisitions. All MRI scans were acquired using a 3TGE Discovery MR750 scanner with a 32-channel head-neck imaging coil at the
+
+the relationship between FC changes and clinical changes from Center for Cognitive and Neurobiological Imaging at Stanford.
+
+baseline to the immediate-post visit. Finally, we explored whether baseline FC was different from that of a healthy control group, and if so, whether active stimulation could normalize it. We hypothesized that active stimulation would be associated with signiﬁcant changes in FC from baseline to the immediate-post visit and that these FC changes would be associated with the extent of clinical change. As exploratory hypotheses, we postulated that 1/ the FC at baseline would differ between TRD participants and
+
+High-resolution structural images using GE’s BRAVO sequence (threedimensional, T1-weighted) were acquired for the whole brain (FOV = 256 × 256mm; matrix=256 × 256 voxel; slice thickness = 0.9 mm; TR = 2530 ms, TE = 2.98 ms, ﬂip angle = 7°). During the 8-min resting state scan, participants were instructed to keep their eyes open, and their attention focused on a central ﬁxation point, which consisted of a black screen with a white ﬁxation cross.
+Participants were also instructed to let their minds wander freely and
+avoid repetitive thoughts. Whole-brain resting-state scans were collected
+
+healthy controls, and the FC changes induced by active with a 3X simultaneous multi-slice (i.e., multiband) acquisition echo planar
+
+stimulation would eliminate this difference 2/ the induced FC changes in the active group immediately post-stimulation would be sustained at one-month. In this paper, the overarching goal was to explore regional/distant functional brain response and its relationship with clinical changes.
+
+imaging (EPI) sequence: TR = 2000ms, TE = 30 ms, ﬂip angle = 77°, slice acceleration factor = 3, FOV=230 × 230mm, matrix = 128 × 128 voxel, 1.8 × 1.8 mm2 in-plane resolution, 87 contiguous axial slices parallel to the anterior commissure–posterior commissure line, yielding >1.4 M voxels every 2 s. The head motion of participants was effectively minimized using memory foam and inﬂatable padding. Participant alertness during the
+
+resting state task was monitored using in-scanner video cameras.
+
+METHODS
+
+As noted above, 5 subjects were excluded (see CONSORT diagram—Fig. S1 supplementary material) from the analyses because of large head movement
+
+Participants
+
+during the scanning (mean fd > 0.2 mm, or max fd > 5 mm or more than 40%
+
+Detailed information regarding the subjects, experimental design, and of data points FD > 0.5 mm). Hence this report included 12 participants in the
+
+clinical data analysis have been previously reported [25]. Brieﬂy, 32 subjects active arm and 12 participants in the sham arm for the immediate-post
+
+with a sole primary diagnosis of MDD were recruited for this double- analyses, and 11 participants in each arm for the one-month analyses.
+
+blinded, sham-controlled RCT, and 29 participants who continued to meet
+
+MRI data were preprocessed using FMRIPREP version 20.2.025 [RRID:SCR
+
+inclusion criteria received either active (N = 14) or sham (N = 15) SNT. We 016216]. Each T1-weighted (T1w) volume was corrected for intensity non-
+
+enrolled participants suffering from a moderate to severe depressive uniformity using N4BiasFieldCorrection v2.1.0 [29] and skull-stripped using
+
+episode (Hamilton Depression Rating Scale [HDRS] ≥ 20 and Montgomery antsBrainExtraction.sh v2.1.0 (using the OASIS template). Spatial normal-
+
+and Åsberg Depression Rating Scale [MADRS] ≥20) and were required to ization to the ICBM 152 Nonlinear Asymmetrical template version 2009c
+
+have not responded to at least one antidepressant medication (minimum [[30], RRID:SCR 008796] was performed through nonlinear registration with
+
+trial duration of six weeks) to be eligible for the study. All participants were the antsRegistration tool of ANTs v2.1.0 [[31], RRID:SCR 004757], using
+
+TMS naïve. 5 of 29 subjects were excluded from the current analyses brain-extracted versions of both T1w volume and template. Brain tissue
+
+because of insufﬁcient MRI quality (see MRI section for further details). The segmentation of cerebrospinal ﬂuid (CSF), white-matter (WM) and gray-
+
+one-month MRI was not obtained for 2 subjects (i.e., only baseline and matter (GM) was performed on the brain-extracted T1w using fast [32] (FSL
+
+immediate-post follow-up scans were obtained). In summary, 24 subjects v5.0.9, RRID:SCR 002823).
+
+(12 active, 12 sham) were included in the analyses that include the
+
+Resting state data were motion-corrected using mcﬂirt (FSL v5.0.9 [33]).
+
+immediate-post follow-up, and 22 subjects were included in the analyses This was followed by co-registration to the corresponding T1w using
+
+that include the one-month follow-up (for CONSORT diagram see boundary-based registration [34] with six degrees of freedom using ﬂirt
+
+supplementary ﬁgure S1). For our exploratory analyses, we enrolled a (FSL). Motion correcting transformations, BOLD-to-T1w transformation and
+
+healthy control (HC) group of 22 subjects (17 female), for descriptive T1w-to-template (MNI) warp were concatenated and applied in a single
+
+statistics see results section. Healthy participants were provided with step using antsApplyTransforms (ANTs v2.1.0) using Lanczos interpolation.
+
+informed consent. The Mini International Neuropsychiatric Interview was Framewise displacement [35] was calculated for each functional run using
+
+performed on all healthy participants. Exclusion from the study was any the implementation of Nipype. All volumes with framewise displacement
+
+history of psychiatric or neurological disorders (depression and chronic (FD) greater than 0.5 mm were excluded. ICA-based Automatic Removal Of
+
+pain, substance abuse), left handness, pregnancy, and MR incompatibility Motion Artifacts (AROMA) was used to generate aggressive noise
+
+and those afﬁliated with the university students, faculty, staff). Each HC was regressors and create a variant of data that is non-aggressively denoised
+
+scanned once, and clinical assessment (see below) was administered at the [36]. The average signal within anatomically-derived eroded CSF and WM
+
+time of scan to conﬁrm the absence of psychiatric disorders. All masks were included as confounder regressors. All data were spatially
+
+Translational Psychiatry (2023)13:240
+
+J.-M. Batail et al.
+
+3
+
+smoothed (6-mm-full-width, half-maximal Gaussian kernel) and temporal signiﬁcant differences in clinical characteristics between the sham
+
+bandpass ﬁltered (0.01–0.1 Hz). Data were detrended using Nilearn [37].
+
+and active groups, except for baseline MADRS scores (higher in
+
+the sham group). Therefore, baseline MADRS scores, in addition to
+
+Regions of interest (ROI) ROIs were pre-deﬁned from brain cortical and subcortical regions. Cortical parcellation was extracted from Schaefer’s brain parcellation [38]. We used
+
+gender, age, Maudsley score, duration of MDD, were added to our regression models as covariate in hypothesis 1 testing (2 × 2 ANOVA). To make sure the clinical efﬁcacy of SNT in the subset of
+
+the 100 parcels version and included 7 networks: CEN, DMN, SN, dorsal participants included here, with neuroimaging data, we then
+
+attention network (DAN), limbic network (LN), somatomotor network (SMN), and visual network (VN). The subcortical regions we predeﬁned for further analysis included: the amygdala (AMY), striatum (STR), thalamus (THAL) and hippocampus (HIP). The bilateral executive, sensorimotor and limbic sub-regions of the striatum were predeﬁned using the Oxford-GSKImanova Striatal Connectivity Atlas (striatum-con-label-thr25-3sub) [39]. We extracted sub-regions of the amygdala (AMY) using the Juelich histological atlas. There were six ROIs in total: the bilateral centro-median
+
+tested the effects of group (active/sham), time (baseline/
+immediate-post/one-month), and group by time interaction on
+MADRS total score using repeated measures ANOVA. In line with our previous publication [25], we found a signiﬁcant effect of group (F(1,20) = 28.76, p < 0.001), time (F(2,42) = 19.72, p < 0.001), and group*time interactions (F(2,42) = 6.92, p = 0.003). A description of the whole population can be found in our previous
+
+amygdala (CMA), bilateral latero-basal amygdala (LBA) and bilateral publication [25].
+
+superﬁcial amygdala (SA) [40]. Bilateral thalamus and hippocampus were
+
+The HC group had a mean age of 41.7 years (range = 21–69 years),
+
+extracted from the Harvard-Oxford cortical and subcortical structural atlases (FSL v5.0.9 [33]). The threshold used for the Juelich and HarvardOxford ROIs was 25%. A total of 116 ROIs were used. The full ROIs list is available as table s9 in the supplementary materials.
+
+all of whom underwent the same resting state scan protocol as
+the MDD cohort. At baseline, the HC group did not differ from the active group with respect to age (HC = 41.77 ± 12.99; active group = 50.99 ± 15.17, t(32) = 1.86, p = 0.071). The HC group
+
+Statistical analysis All statistical analyses were conducted with R v4.2.1 [41].
+Functional Connectivity (FC) was calculated as the Pearson correlation coefﬁcient of the brain activity time series pairwise for all 116 × 116 ROIs (seeds). All Pearson correlation coefﬁcients were then transformed into Fisher’s Z scores for further analysis, which are reported as our main FC outcome.
+To test our primary hypothesis, we ﬁrst determined which FC pairs were signiﬁcantly altered by active as compared to sham SNT stimulation from baseline to immediate-post. As a second step, we looked at the
+
+had more females as compared to the active group (77.27%
+vs 22.73%).
+Finally, we tested the effectiveness of our blinding. At the end of treatment day 1, one-way t tests indicated no signiﬁcant differences from chance (chance guess metric = 0.50) in the sham (mean guess metric = 0.34, p = 0.19) and active (mean guess metric = 0.53, p = 0.79) treatment groups. At treatment day 5, one-way t tests indicated no signiﬁcant differences from chance (chance guess metric = 0.50) in the sham (mean guess metric =
+
+relationship between FC changes and clinical changes. Finally, we 0.39, p = 0.56) and active (mean guess metric = 0.42, p = 0.52)
+
+performed several exploratory analyses: (1) we assessed the sustainability of SNT-induced FC alterations at one-month following treatment, and (2) we compared our TRD group to a healthy control group to determine if there were baseline differences, and if so, whether those differences were affected by SNT treatment.
+
+treatment groups. There was no relationship between the change in guess metric—between treatment day 1 and 5—and the change in MADRS scores—between baseline and immediate-post visit (r = −0.22, p = 0.44).
+
+We conducted our statistical analyses as follows:
+
+FC changes from baseline to post-treatment
+
+1. 2 (active and sham groups) × 2 (baseline and immediate-post visits) repeated measures ANOVA with statistical signiﬁcance set at p ≤ 0.001. Then, on signiﬁcant FC pairs, Post Hoc analyses were corrected for
+
+In this analysis, we tested which FC pairs were signiﬁcantly altered by active as compared to sham SNT stimulation from baseline to immediate-post. 8 of 6670 FC pairs elicited a signiﬁcant group
+
+multiple comparisons across all comparisons (active—sham * baseline —immediate-post) using the Bonferroni correction (p ≤ 0.05). 2. Spearman correlation tests, on the signiﬁcant group*time interaction FC pairs that survived to Bonferroni correction, between FC changes and
+absolute MADRS changes from baseline to the immediate-post visit
+were conducted. 3. Exploratory hypotheses testing on the signiﬁcant group*time interac-
+tion FC pairs that survived to Bonferroni correction. ANOVAs—followed by post-hoc t-test Bonferroni correction—were conducted to compare
+
+(active vs sham) * time (baseline vs immediate-post) interaction
+(see supplementary Table S2). Three pairs survived to post-hoc
+Bonferroni correction (Table 1, Fig. 1). Two of them involved the amygdala ROI, with signiﬁcant pre-post decrease FC right AMY (superﬁcial) and left SN (medial 3) and increase FC between left AMY (superﬁcial) and left DMN (prefrontal cortex 3). One of them involved the striatum network with signiﬁcant pre-post increase FC between right STR (sensorimotor) and right SN (frontal-
+
+mean FC z-scores between baseline, immediate-post, one-month visits operculum-insula 1). Note that sham stimulation did not induce
+
+and the healthy control group.
+
+any signiﬁcant pre-post change in FC for the left AMY (superﬁcial)
+
+—left DMN (prefrontal cortex 3) pair (z-value = −2.04, p = 0.245)
+
+or the right STR (sensorimotor)—right SN (frontal-operculum-
+
+RESULTS Treatment outcomes Demographic information of the study subjects is summarized in Table S1 (supplementary material). In this cohort there were no
+
+insula 1) pair (z-value = −1.55, p = 0.734) pair. Interestingly, sham stimulation was associated with a signiﬁcant pre-post increase in FC of the right AMY (superﬁcial)—left SN (medial 3) FC pair (zvalue = 3.20, p = 0.008), whereas active stimulation induced a signiﬁcant pre-post decrease in FC (z-value = −2.69, p = 0.04).
+
+Table 1. Summary of signiﬁcant group (active vs sham) by time (baseline vs immediate-post) interaction—p ≤ 0.001 (not adjusted).
+
+Seed 1 LH AMY Sa RH AMY Sa RH STR sensorimotora
+
+Seed 2 LH DMN PFC3 LH SN Med3 RH SN FrOperIns1
+
+Pre-post effect in active group ➚ ➘ ➚
+
+F-value 14.890 17.294 19.035
+
+p 0.00085 0.00041 0.00025
+
+In bold main network. LH left hemisphere, RH right hemisphere. Network Name: AMY amygdala, DMN default mode network, SN salience network, STR striatum.
+Nodes abbreviations: PFC prefrontal cortex, Med medial, FrOperIns frontal-operculum-insula, S superﬁcial. aThese FC pairs survived post-hoc Bonferroni correction.
+
+Translational Psychiatry (2023)13:240
+
+4
+Superior
+Anterior LeŌ
+
+J.-M. Batail et al.
+
+Strength of connecƟon (F-stat)
+
+suggesting a maintenance of the effect following active stimulation (left AMY (superﬁcial)—left DMN (prefrontal cortex 3): t(21.07) = 0.9, Bonferroni corrected p = 1; right AMY (superﬁcial)—left SN (medial 3): t(21.33) = 0.47, Bonferroni corrected p = 1; right STR (sensorimotor)—right SN (frontal-operculum-insula 1) t(19.56) = 1.16, Bonferroni corrected p = 1). Again, for more details on the post-hoc
+paired t-tests please see supplementary Tables S6, S7, S8.
+
+SN
+STR
+DMN
+AMY
+Fig. 1 Glass brain visualization of the three FC pairs that survived Bonferroni correction (Table 1). Networks name: AMY: amygdala, DMN: default mode network, SN: salience network, STR: striatum. The thickness of each connecting edge is representative of the F-statistic, strength of connection, between corresponding seeds.
+Effect sizes (Cohen’s d) were calculated as a measure of the magnitude of the pre-post change (see supplementary Table S3).
+Relationship between FC changes and depression severity changes from baseline to post-treatment In this analysis, we tested whether any FC changes induced by SNT were correlated with clinical changes. We found that changes in two of three FC pairs (Table 1) were signiﬁcantly associated with change in depression severity as measured by the MADRS (Fig. 2). Speciﬁcally, the left AMY (superﬁcial)—left DMN (prefrontal cortex 3) FC pair exhibited a negative correlation (rho(Spearman) = −0.45, df = 22, p = 0.026) between FC changes and MADRS changes. That is, the greater the increase in FC, the less depressed the participant became after SNT. Conversely, the right AMY (superﬁcial)—left SN (medial 3) FC pair exhibited a positive correlation (rho (Spearman)=0.49, df = 22, p = 0.015) between FC changes and MADRS changes, meaning that the greater the decrease, the less depressed the participant became after SNT. No FC pairs demonstrated a statistically signiﬁcant correlation with sham SNT.
+Exploratory hypotheses We performed further analyses to test (1) whether FC at baseline differed between TRD participants and healthy controls and, if so, whether the FC changes induced by active stimulation eliminated this difference, and (2) if the induced FC changes in the active group immediately post-stimulation were sustained at one month.
+FC z-score comparison between active group post-treatment and HC Two pairs (of three) exhibited immediate-post mean FC z-scores in the active group that were not statistically different from the mean FC z-scores in the healthy control group (Fig. 2). These pairs were the left AMY (superﬁcial)—left DMN (prefrontal cortex 3) (t(14.56) = −1.19, Bonferroni corrected p = 1) and the right STR (sensorimotor)—right SN (frontal-operculum-insula 1) (t (27.57) = 0.81, Bonferroni corrected p = 1). Interestingly, the baseline left AMY (superﬁcial)—left DMN (prefrontal cortex 3) FC z-score was signiﬁcantly lower than the HC group (t(24.87) = −7.07, Bonferroni corrected p ≤ 0.001), suggesting that active stimulation changed AMY-DMN FC in the direction of the HC group. For more details on the post-hoc paired t-tests see supplementary Tables S6, S7, S8.
+FC z-score comparison between active group post-treatment and one-month The three pairs that exhibited a signiﬁcant group*time interaction from baseline to immediate-post did not show a statistically signiﬁcant difference between immediate-post and one-month,
+
+DISCUSSION The present study examined brain functional connectivity changes in TRD patients participating in a clinical trial of SNT. By using an RCT design and performing analyses of the interaction between the treatment effect (before vs. after treatment) and the group effect (active vs. sham), we explored the functional response to treatment while controlling for placebo effects. Our pre-deﬁned ROI approach identiﬁed three seed pairs with statistically signiﬁcant changes with SNT. First, amygdala-DMN FC signiﬁcantly increased from baseline to immediate-post after active SNT as compared to sham, and greater increases correlated with better clinical outcomes. Subsequent exploratory analysis was consistent with a possible normalization of pathological baseline FC. Second, amygdala-SN FC signiﬁcantly decreased from baseline to immediate-post after active SNT as compared to sham. Again, greater decreases correlated with better outcomes. Third, striatum-SN FC signiﬁcantly increased from baseline to immediate-post after active SNT as compared to sham. These results offer a unique insight into the putative mechanisms underlying the ATD effect of SNT—a high dose, fMRI-guided, accelerated intermittent TBS protocol—in TRD. Overall, our study conﬁrmed that from a dimensional perspective the DLPFC targeted TMS is efﬁcacious on depressive symptoms, as demonstrated recently in a transdiagnosis meta-analysis [42], and evidenced that the antidepressant effect associated with SNT protocol may be mediated by regional brain FC within DMN, amygdala, striatum, and SN.
+Our ﬁndings highlight a central role of altered DMN FC as a mechanism of therapeutic effect and raise the possibility that this change could serve as a biomarker of therapeutic outcomes following SNT. DMN FC has been frequently reported to be abnormal in MDD but with inconsistencies in the differences observed [6, 43]. For example, contrary to the currently favored hypothesis of DMN hyperconnectivity in MDD [6], one recent large trial reported a decrease within DMN FC to be characteristic of patients suffering from recurrent MDD as compared to healthy controls [43]. Further, DMN functional activity has been linked with key MDD clinical components such as self-referential thinking [6, 44] and is hypothesized to be involved in pharmacological and nonpharmacological antidepressant mechanisms of action [45–48]. Increases within and between DMN intrinsic connectivity have been elicited in patients who remitted from depression [49], and an association between DMN-related connectivity and response—to both DLPFC [18, 50] and DMPFC [51] TMS—also has been reported. Notably, in Liston and al. study, baseline FC between sgACC and DMN was abnormally elevated in MDD patients, as compared to controls, and a full 5-week course of conventional TMS normalized this abnormal FC pattern [50]. Others have reported that the ATD effect following ketamine [52] or ATD medications [53] is associated with decreased DMN-CEN connectivity, while another study found an increased DMN-STR FC after 2 weeks of duloxetine treatment with FC changes correlating with symptom improvement [54]. Lastly, ketamine infusions (as compared to placebo) increased DMN-SN connectivity, which normalized as compared to healthy controls [55].
+Antidepressant effects previously have been associated with a decrease within DMN FC [5, 10–12] as well as between DMN FC (CEN [53] and STR [54]), but we did not detect any such changes here. One possible explanation is the conservative p-value
+
+Translational Psychiatry (2023)13:240
+
+A
+
+1
+
+3
+
+J.-M. Batail et al. 5
+2 R = - 0.45, p = 0.026
+4
+
+B
+
+1
+
+2 R = 0.49, p = 0.015
+
+Sup
+Ant LeŌ
+
+3
+
+4
+
+C
+
+1
+
+Sup Ant
+LeŌ
+2 R = - 0.18, p = 0.39
+
+3
+
+4
+
+Sup
+Ant LeŌ
+Fig. 2 Grids summarizing the three FC pairs that demonstrated the strongest group*time interaction, relationship between FC and clinical changes or trend to normalization to HC FC level (Bonferroni corrected). A LH AMY S—LH DMN PFC3, B RH AMY S—LH SN Med3, C RH STR sensorimotor—RH SN FrOperIns1. Panels 1: group*time interaction plot from baseline to immediate-post; Panels 2: Correlation between MADRS changes and FC changes from baseline to immediate-post; Panels 3: barplot illustrating mean FC z-score post-hoc comparisons between group FC across three timepoints and healthy control group; Panels 4: glass brain visualization of the corresponding FC pair. LH: left hemisphere, RH: right hemisphere. Networks name: AMY (red nodes): amygdala, DMN (yellow nodes): default mode network, SN (light blue nodes): salience network, STR (green nodes): striatum. The thickness of each connecting edge is representative of the F-statistic, strength of connection, between corresponding seeds. FC: functional connectivity; HC: healthy control group. ****p ≤ 0.001, *p ≤ 0.05.
+Translational Psychiatry (2023)13:240
+
+J.-M. Batail et al.
+
+6
+
+threshold we chose (p ≤ 0.001) to reduce the risk of Type I errors. connectivity compared to between-network connectivity [63]. This
+
+Indeed, had we used a less conservative p-value threshold latter result highlights the importance of this network in the
+
+(p ≤ 0.005) then a statistically signiﬁcant decrease within DMN prediction of response to TMS. From a mechanistic standpoint, SN
+
+connectivity would have been found (supplementary Tables S4, FC with other networks might mediate downstream effects of
+
+S5). Note that the effect size for the within DMN connectivity DLPFC-targeted TMS. Indeed, the relationship between TMS and
+
+change was moderate (Cohen’s d = −0.557, supplementary Table S5), resting connectivity may only be observed when very speciﬁc
+
+again consistent with the notion that a larger sample size might cortical systems, such as the SN, are activated [64]. Furthermore,
+
+have provided the necessary power to detect this putative effect there is evidence that DLPFC stimulation induces dopamine release
+
+of SNT.
+
+in SN-corticostriatocortical (CSC) loop circuits [58]. The modulation
+
+Moreover, we found a large effect of active stimulation on the of DLPFC—as an SN cortical—is thought to have downstream
+
+AMY-DMN connectivity (ES = −0.872) suggesting a strong down- effect on SN-CSC loop and would be associated with ATD response
+
+stream effect of active SNT on this network. In addition, SNT [58]. Our study demonstrates that active SNT modulates the SN-CSC
+
+altered other amygdala-centered connectivity patterns. Namely, loop which supports the literature on the ATD mechanism of action
+
+following the SNT course, amygdala FC was increased with the of DLPFC TMS. Our ﬁndings highlight the central role of the SN for
+
+DMN and decreased with the SN. Both FC patterns were the ATD effect of FC-guided lDLPFC aiTBS. Taken together, the SN is
+
+associated with clinical changes with negative and positive likely to be a key hub of the propagation of the effects of TMS in
+
+correlations, respectively. Note that amygdala-DMN mean FC at general and SNT more speciﬁcally.
+
+the immediate-post visit was not statistically different from HC FC
+
+Our results must be interpreted considering several limitations.
+
+and was sustained at the one-month follow-up. Together with First, the small sample size might have affected our ability to
+
+abnormal baseline FC (as compared to HC), our results suggest a detect additional relevant functional brain responses following
+
+modiﬁcation of amygdala-DMN FC in the direction of HC. Across SNT. Thus, we should mention that the amygdala-SN model was
+
+all results, amygdala-DMN FC change demonstrated the most not well distributed residuals. A follow up study with a larger
+
+robust evidence in terms of relevance to the mechanism of action sample size is needed to replicate these ﬁndings and further
+
+of SNT. Several pieces of evidence in the literature support our explore the mechanistic basis of ATD response to FC-guided
+
+ﬁndings. Indeed, a decreased amygdala-DMN FC has been related lDLPFC aiTBS. Second, our HC group was not matched by sex with
+
+to an ongoing major depressive episode [56, 57]. Moreover, our depressed patients, which may impact the results of those
+
+abnormal amygdala connectivity with the affective network— exploratory analyses in an unknown manner. Finally, we would like
+
+hyperconnectivity with hippocampi/parahippocampi and bilateral to highlight that in our depressed sample females represented
+
+ventromedial OFC as well as hypoconnectivity with bilateral insula 33.33% and 41.67% of both sham and active groups—respectively
+
+and left caudate—has been identiﬁed as a marker of emotional —which is an unusual sex ratio for this illness. Our results should
+
+dysregulation in depressed adults [57]. In our study, baseline be interpreted considering this characteristic of our sample.
+
+amygdala—DMN FC was abnormally low as compared to the HC
+
+To conclude, our recently published clinical trial demonstrated
+
+group. Active SNT changed this connectivity pattern which was the high efﬁcacy of SNT, an accelerated, high-dose, iTBS protocol
+
+not statistically different from HC anymore and was associated with functional MRI-guided targeting, for TRD [25]. In this paper,
+
+with a better outcome. This result suggests a modiﬁcation of FC— we report the SNT-associated changes in the whole-brain
+
+in the direction of HC—of emotion regulation network in SNT- functional organization. This study presented the unique oppor-
+
+responsive patients and is consistent with a top-down regulation tunity to investigate the relationship between rapid ATD effects
+
+model that previously has been proposed [6, 7, 10]. This result is and alterations in FC. Speciﬁcally, we investigated the effect of
+
+also consistent with the hypothesis that patients suffering from active SNT—as compared to sham stimulation—on FC immedi-
+
+depression experience a higher sensitivity to negative stimuli [6]. ately after a course of 5 days of treatment. Then, we explored the
+
+Of note, our comparisons with a HC were exploratory and relationship between FC changes and clinical changes from
+
+therefore must be cautiously interpreted, as the HC group differed baseline to immediate-post visit as well as the maintenance of the
+
+from the active SNT group with respect to gender.
+
+effect at the one-month follow-up. We found that the FC changes
+
+The salience network is another important network identiﬁed as induced by SNT are distributed across key networks involved in
+
+modulated by SNT in our study. We found increased connectivity depression pathophysiology. While the modest sample size
+
+between the SN and the striatum that reached HC group limited statistical power, some networks still exhibited strong
+
+connectivity levels at the immediate-post visit as well as at one- group*time interactions, suggesting a speciﬁc alteration of brain
+
+month follow-up. In addition, decreased connectivity with the FC following an active stimulation course. Our results can be
+
+amygdala was noted and was associated with better clinical summarized by three main ﬁndings: (1) FC changes support
+
+outcomes. The SN is thought to be a crucial contributor to MDD improved regulation of emotion and reward processing after SNT;
+
+pathophysiology given its involvement in depressive cognitions (2) amygdala-centered network changes are central to the
+
+[58]. The SN is involved in the detection of environmental changes therapeutic effect of SNT; and (3) while not a primary objective
+
+[3] and, if needed, it coordinates additional processing and of the study, we tested the promise of a relationship between
+
+initiation of appropriate cognitive control [3]. Substantial evidence functional connectivity and clinical-outcome and explored any FC
+
+points to the SN as a network relevant to many different ATD change following active stimulation in comparison to a HC group.
+
+therapies, including TMS [18, 51]. First, some studies have reported In conclusion, we report the ﬁrst evidence of downstream effects
+
+that baseline low within SN FC might be predictive of low on brain functional connectivity of a rapid acting and highly
+
+response to ATD [59, 60]. Second, insula baseline task-based effective high dose, accelerated iTBS protocol. Further study with a
+
+hyperactivity has been reported to be predictive of ATD/ greater sample size is warranted to conﬁrm these preliminary
+
+chronotherapy response [60]. Third, increased SN FC is a marker results and to better understand the mechanism of action of SNT.
+
+of response to DLPFC TMS [61], which we also found to be the
+
+case for SNT. Fourth, DMPFC-TMS responders exhibited higher
+
+baseline SN-sgACC FC [62], which suggests that the SN FC change is associated with antidepressant response to cortical stimulation, regardless of the target. Fifth, recent work reported that only salience network segregation was associated with symptom improvement following active 10 Hz TMS, using a segregation
+
+REFERENCES
+1. Ferrari AJ, Charlson FJ, Norman RE, Patten SB, Freedman G, Murray CJL, et al. Burden of depressive disorders by country, sex, age, and year: ﬁndings from the Global Burden of Disease Study 2010. PLoS Med. 2013;10:e1001547.
+2. Zhdanava M, Pilon D, Ghelerter I, Chow W, Joshi K, Lefebvre P. et al. The pre-
+
+measure deﬁned as the relative strength of within-network
+
+valence and national burden of treatment-resistant depression and major
+
+Translational Psychiatry (2023)13:240
+
+J.-M. Batail et al.
+
+7
+
+depressive disorder in the United States. J Clin Psychiatry [Internet]. 2021;82:20m13699. 3. Williams LM. Precision psychiatry: a neural circuit taxonomy for depression and anxiety. Lancet Psychiatry. 2016;3:472–80. 4. Etkin A, Büchel C, Gross JJ. The neural bases of emotion regulation. Nat Rev Neurosci. 2015;16:693–700. 5. Chen AC, Oathes DJ, Chang C, Bradley T, Zhou ZW, Williams LM, et al. Causal interactions between fronto-parietal central executive and default-mode networks in humans. Proc Natl Acad Sci USA. 2013;110:19944–9. 6. Sheline YI, Barch DM, Price JL, Rundle MM, Vaishnavi SN, Snyder AZ, et al. The default mode network and self-referential processes in depression. Proc Natl Acad Sci. 2009;106:1942–7. 7. Greicius MD, Flores BH, Menon V, Glover GH, Solvason HB, Kenna H, et al. Restingstate functional connectivity in major depression: abnormally increased contributions from subgenual cingulate cortex and thalamus. Biol Psychiatry. 2007;62:429–37. 8. Hamilton JP, Farmer M, Fogelman P, Gotlib IH. Depressive rumination, the default-mode network, and the dark matter of clinical neuroscience. Biol Psychiatry. 2015;78:224–30. 9. Fettes PW, Moayedi M, Dunlop K, Mansouri F, Vila-Rodriguez F, Giacobbe P, et al. Abnormal functional connectivity of frontopolar subregions in treatmentnonresponsive major depressive disorder. Biol Psychiatry Cogn Neurosci Neuroimaging. 2018;3:337–47. 10. Chin Fatt CR, Jha MK, Cooper CM, Fonzo G, South C, Grannemann B, et al. Effect of intrinsic patterns of functional brain connectivity in moderating antidepressant treatment response in major depression. Am J Psychiatry. 2019;177:143–54. 11. Goldstein-Piekarski AN, Staveland BR, Ball TM, Yesavage J, Korgaonkar MS, Williams LM. Intrinsic functional connectivity predicts remission on antidepressants: a randomized controlled trial to identify clinically applicable imaging biomarkers. Transl Psychiatry. 2018;8:57. 12. McGrath CL, Kelley ME, Holtzheimer PE, Dunlop BW, Craighead WE, Franco AR, et al. Toward a neuroimaging treatment selection biomarker for major depressive disorder. JAMA Psychiatry. 2013;70:821–9. 13. Baeken C, Marinazzo D, Wu GR, Van Schuerbeek P, De Mey J, Marchetti I, et al. Accelerated HF-rTMS in treatment-resistant unipolar depression: Insights from subgenual anterior cingulate functional connectivity. World J Biol Psychiatry. 2014;15:286–97. 14. Weigand A, Horn A, Caballero R, Cooke D, Stern AP, Taylor SF, et al. Prospective validation that subgenual connectivity predicts antidepressant efﬁcacy of transcranial magnetic stimulation sites. Biol Psychiatry. 2018;84:28–37. 15. Cash RFH, Zalesky A, Thomson RH, Tian Y, Cocchi L, Fitzgerald PB. Subgenual functional connectivity predicts antidepressant treatment response to transcranial magnetic stimulation: independent validation and evaluation of personalization. Biol Psychiatry. 2019;86:e5–7. 16. Fox MD, Buckner RL, Liu H, Chakravarty MM, Lozano AM, Pascual-Leone A. Resting-state networks link invasive and noninvasive brain stimulation across diverse psychiatric and neurological diseases. Proc Natl Acad Sci. 2014;111:E4367–75. 17. Taylor H, Nicholas P, Hoy K, Bailey N, Tanglay O, Young IM, et al. Functional connectivity analysis of the depression connectome provides potential markers and targets for transcranial magnetic stimulation. J Affect Disord. 2023;329:539–47. S0165-032700244-6 18. Godfrey KEM, Muthukumaraswamy SD, Stinear CM, Hoeh N. Decreased salience network fMRI functional connectivity following a course of rTMS for treatmentresistant depression. J Affect Disord. 2022;300:235–42. 19. Zheng A, Yu R, Du W, Liu H, Zhang Z, Xu Z, et al. Two-week rTMS-induced neuroimaging changes measured with fMRI in depression. J Affect Disord. 2020;270:15–21. 20. Chou PH, Tu CH, Chen CM, Lu MK, Tsai CH, Hsieh WT, et al. Bilateral theta-burst stimulation on emotional processing in major depressive disorder: A functional neuroimaging study from a randomized, double-blind, sham-controlled trial. Psychiatry Clin Neurosci. 2023;77:233–40. 21. Taylor SF, Ho SS, Abagis T, Angstadt M, Maixner DF, Welsh RC, et al. Changes in brain connectivity during a sham-controlled, transcranial magnetic stimulation trial for depression. J Affect Disord. 2018;232:143–51. 22. Zanos P, Gould TD. Mechanisms of ketamine action as an antidepressant. Mol Psychiatry. 2018;23:801–11. 23. Kwan AC, Olson DE, Preller KH, Roth BL. The neural basis of psychedelic action. Nat Neurosci. 2022;25:1407–19. 24. Scott AJ, Sharpe L, Colagiuri B. A systematic review and meta-analysis of the success of blinding in antidepressant RCTs. Psychiatry Res. 2022;307:114297. 25. Cole EJ, Phillips AL, Bentzley BS, Stimpson KH, Nejad R, Barmak F, et al. Stanford Neuromodulation Therapy (SNT): a double-blind randomized controlled trial. Am J Psychiatry. 2022;179:132–41.
+
+26. Brunoni AR, Chaimani A, Moffa AH, Razza LB, Gattaz WF, Daskalakis ZJ, et al. Repetitive transcranial magnetic stimulation for the acute treatment of major depressive episodes: a systematic review with network meta-analysis. JAMA Psychiatry. 2017;74:143–52.
+27. Cole EJ, Stimpson KH, Bentzley BS, Gulser M, Cherian K, Tischler C, et al. Stanford accelerated intelligent neuromodulation therapy for treatment-resistant depression. Am J Psychiatry. 2020;177:716–26.
+28. Montgomery SA, Asberg M. A new depression scale designed to be sensitive to change. Br J Psychiatry J Ment Sci. 1979;134:382–9.
+29. Tustison NJ, Avants BB, Cook PA, Zheng Y, Egan A, Yushkevich PA, et al. N4ITK: improved N3 bias correction. IEEE Trans Med Imaging. 2010;29:1310–20.
+30. Fonov V, Evans A, McKinstry R, Almli C, Collins D. Unbiased nonlinear average age-appropriate brain templates from birth to adulthood. NeuroImage. 2009;47:S102.
+31. Avants B, Epstein C, Grossman M, Gee J. Symmetric diffeomorphic image registration with cross-correlation: Evaluating automated labeling of elderly and neurodegenerative brain. Med Image Anal. 2008;12:26–41.
+32. Zhang Y, Brady M, Smith S. Segmentation of brain MR images through a hidden Markov random ﬁeld model and the expectation-maximization algorithm. IEEE Trans Med Imaging. 2001;20:45–57.
+33. Jenkinson M, Bannister P, Brady M, Smith S. Improved optimization for the robust and accurate linear registration and motion correction of brain images. NeuroImage. 2002;17:825–41.
+34. Greve DN, Fischl B. Accurate and robust brain image alignment using boundarybased registration. NeuroImage. 2009;48:63–72.
+35. Power JD, Mitra A, Laumann TO, Snyder AZ, Schlaggar BL, Petersen SE. Methods to detect, characterize, and remove motion artifact in resting state fMRI. NeuroImage. 2014;84:320–41.
+36. Pruim RHR, Mennes M, van Rooij D, Llera A, Buitelaar JK, Beckmann CF. ICAAROMA: a robust ICA-based strategy for removing motion artifacts from fMRI data. NeuroImage. 2015;112:267–77.
+37. Abraham A, Pedregosa F, Eickenberg M, Gervais P, Mueller A, Kossaiﬁ J. et al. Machine learning for neuroimaging with scikit-learn. Front Neuroinformatics. 2014;8:14
+38. Schaefer A, Kong R, Gordon EM, Laumann TO, Zuo XN, Holmes AJ, et al. Localglobal parcellation of the human cerebral cortex from intrinsic functional connectivity MRI. Cereb Cortex. 2018;28:3095–114.
+39. Tziortzi AC, Haber SN, Searle GE, Tsoumpas C, Long CJ, Shotbolt P, et al. Connectivity-based functional analysis of dopamine release in the striatum using diffusion-weighted mri and positron emission tomography. Cereb Cortex. 2014;24:1165–77.
+40. Eickhoff SB, Paus T, Caspers S, Grosbras MH, Evans AC, Zilles K, et al. Assignment of functional activations to probabilistic cytoarchitectonic areas revisited. NeuroImage. 2007;36:511–21.
+41. R Core Team. R: A Language and Environment for Statistical Computing [Internet]. Vienna, Austria: R Foundation for Statistical Computing; 2016. Available from: https://www.R-project.org/
+42. Kan RLD, Padberg F, Giron CG, Lin TTZ, Zhang BBB, Brunoni AR, et al. Effects of repetitive transcranial magnetic stimulation of the left dorsolateral prefrontal cortex on symptom domains in neuropsychiatric disorders: a systematic review and cross-diagnostic meta-analysis. Lancet Psychiatry. 2023;10:252–9.
+43. Yan CG, Chen X, Li L, Castellanos FX, Bai TJ, Bo QJ, et al. Reduced default mode network functional connectivity in patients with recurrent major depressive disorder. Proc Natl Acad Sci. 2019;116:9078–83.
+44. Fossati P. Circuit based anti-correlation, attention orienting, and major depression. CNS Spectr. 2019;24:94–101.
+45. Di Simplicio M, Norbury R, Harmer CJ. Short-term antidepressant administration reduces negative self-referential processing in the medial prefrontal cortex in subjects at risk for depression. Mol Psychiatry. 2012;17:503–10.
+46. Nejad A, Fossati P, Lemogne C. Self-referential processing, rumination, and cortical midline structures in major depression. Front Hum Neurosci. 2013;7:666.
+47. Yoshimura S, Okamoto Y, Onoda K, Matsunaga M, Okada G, Kunisato Y, et al. Cognitive behavioral therapy for depression changes medial prefrontal and ventral anterior cingulate cortex activity associated with self-referential processing. Soc Cogn Affect Neurosci. 2014;9:487–93.
+48. Komulainen E, Heikkilä R, Nummenmaa L, Raij TT, Harmer CJ, Isometsä E, et al. Short-term escitalopram treatment normalizes aberrant self-referential processing in major depressive disorder. J Affect Disord. 2018;236:222–9.
+49. Korgaonkar MS, Goldstein-Piekarski AN, Fornito A, Williams LM. Intrinsic connectomes are a predictive biomarker of remission in major depressive disorder. Mol Psychiatry. 2020;25:1537–49.
+50. Liston C, Chen AC, Zebley BD, Drysdale AT, Gordon R, Leuchter B, et al. Default mode network mechanisms of transcranial magnetic stimulation in depression. Biol Psychiatry. 2014;76:517–26.
+
+Translational Psychiatry (2023)13:240
+
+J.-M. Batail et al.
+
+8
+
+51. Persson J, Struckmann W, Gingnell M, Fällmar D, Bodén R. Intermittent theta burst stimulation over the dorsomedial prefrontal cortex modulates resting-state connectivity in depressive patients: a sham-controlled study. Behav Brain Res. 2020;394:112834.
+52. Scheidegger M, Walter M, Lehmann M, Metzger C, Grimm S, Boeker H, et al. Ketamine decreases resting state functional network connectivity in healthy subjects: implications for antidepressant drug action. PLoS ONE. 2012;7:e44799.
+53. McCabe C, Mishor Z. Antidepressant medications reduce subcortical–cortical resting-state functional connectivity in healthy volunteers. NeuroImage. 2011;57:1317–23.
+54. An J, Li L, Wang L, Su YA, Wang Y, Li K, et al. Striatal functional connectivity alterations after two-week antidepressant treatment associated to enduring clinical improvement in major depressive disorder. Front Psychiatry. 2019;10:884.
+55. Evans JW, Szczepanik J, Brutsché N, Park LT, Nugent AC, Zarate CA. Default mode connectivity in major depressive disorder measured up to 10 days after ketamine administration. Biol Psychiatry. 2018;84:582–90.
+56. Wackerhagen C, Veer IM, Erk S, Mohnke S, Lett TA, Wüstenberg T, et al. Amygdala functional connectivity in major depression—disentangling markers of pathology, risk and resilience. Psychol Med. 2020;50:2740–50.
+57. Tang S, Lu L, Zhang L, Hu X, Bu X, Li H, et al. Abnormal amygdala resting-state functional connectivity in adults and adolescents with major depressive disorder: a comparative meta-analysis. EBioMedicine 2018;36:436.
+58. Peters SK, Dunlop K, Downar J. Cortico-striatal-thalamic loop circuits of the salience network: a central pathway in psychiatric disease and treatment. Front Syst Neurosci. 2016;10:104.
+59. Geugies H, Opmeer EM, Marsman JBC, Figueroa CA, van Tol MJ, Schmaal L, et al. Decreased functional connectivity of the insula within the salience network as an indicator for prospective insufﬁcient response to antidepressants. NeuroImage Clin. 2019;24:102064.
+60. Dunlop K, Talishinsky A, Liston C. Intrinsic brain network biomarkers of antidepressant response: a review. Curr Psychiatry Rep. 2019;21:87.
+61. Ge R, Blumberger DM, Downar J, Daskalakis ZJ, Dipinto AA, Tham JCW, et al. Abnormal functional connectivity within resting-state networks is related to rTMS-based therapy effects of treatment resistant depression: a pilot study. J Affect Disord. 2017;218:75–81.
+62. Salomons TV, Dunlop K, Kennedy SH, Flint A, Geraci J, Giacobbe P, et al. Restingstate cortico-thalamic-striatal connectivity predicts response to dorsomedial prefrontal rTMS in major depressive disorder. Neuropsychopharmacology 2014;39:488–98.
+63. Fan J, Tso IF, Maixner DF, Abagis T, Hernandez-Garcia L, Taylor SF. Segregation of salience network predicts treatment response of depression to repetitive transcranial magnetic stimulation. NeuroImage Clin. 2019;22:101719.
+64. Hawco C, Voineskos AN, Steeves JKE, Dickie EW, Viviano JD, Downar J, et al. Spread of activity following TMS is related to intrinsic resting connectivity to the salience network: a concurrent TMS-fMRI study. Cortex 2018;108:160–72.
+ACKNOWLEDGEMENTS
+Supported by a Brain and Behavior Research Foundation Young Investigator Award (to Dr. Williams), Charles R. Schwab, the David and Amanda Chao Fund II, the Amy Roth PhD Fund, the Neuromodulation Research Fund, the Lehman Family, the Still Charitable Trust, the Marshall and Dee Ann Payne Fund, the Gordie Brookstone Fund, the Mellam Family Foundation, and the Baszucki Brain Research Fund. Additional
+
+support was provided by an NIH Director’s New Innovator Award (DP2; MH119735) to MS.
+AUTHOR CONTRIBUTIONS
+1. Research Project: A. Conception; B. Design, logistics, budgeting; C. Screening; D. Execution/Data acquisition; E. Treatment administration and monitoring. 2. Statistical Analysis: A. Design; B. Execution, C. Review and critique; 3. Manuscript Preparation: A. Writing of ﬁrst draft; B. Review, critique, and revisions for important intellectual content, and approval of ﬁnal version. JMB: 1E, 2A, 2B, 2C, 3A, 3B. XX: 1D, 2A, 2B, 2C, 3B. AA: 1D, 2A, 2B, 2C, 3. CT: 1C, 1D, 1E, 3B. IHK: 2C, 3B. JHB: 1B, 1D, 1E, 2C, 3B. MS: 2A, 2C, 3B. NRW: 1A, 1B, 1C, 1D, 1E, 3B.
+CONFLICT OF INTEREST
+Dr. Williams is a named inventor on Stanford-owned intellectual property relating to accelerated TMS pulse pattern sequences and neuroimaging-based TMS targeting; he has served on scientiﬁc advisory boards for Otsuka, NeuraWell, Magnus Medical, and Nooma as a paid advisor; and he has equity/stock options in Magnus Medical, NeuraWell, and Nooma. All other authors declare no conﬂicts of interest.
+ADDITIONAL INFORMATION
+Supplementary information The online version contains supplementary material available at https://doi.org/10.1038/s41398-023-02537-9.
+Correspondence and requests for materials should be addressed to Nolan R. Williams.
+Reprints and permission information is available at http://www.nature.com/ reprints
+Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional afﬁliations.
+Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit http:// creativecommons.org/licenses/by/4.0/.
+© The Author(s) 2023
+
+Translational Psychiatry (2023)13:240
+

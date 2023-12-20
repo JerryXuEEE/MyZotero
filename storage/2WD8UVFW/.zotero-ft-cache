@@ -1,0 +1,716 @@
+VOLUME 61, NUMBER 3
+
+PHYSICAL REVIEW LETTERS
+
+18 JULY 1988
+
+Chaos in Random Neural Networks
+' H. Sompolinsky and A. Crisanti
+ATd'c T Bell Laboratories, Murray Hill, New Jersey 07974, and
+Racah Institute of Physics, The Hebrew University, 91904 Jerusalem, Israel
+
+and
+
+Fachbereich Physik, Universitat
+
+H. J. Sommers '~
+Gesa-mthochschule Essen, D-4300 Essen, Federal Republic of Germany
+(Received 30 March 1988)
+
+A continuous-time dynamic model of a network of N nonlinear elements interacting via random asym-
+
+~ metric couplings is studied. A self-consistent mean-field theory, exact in the N
+
+limit, predicts a
+
+transition from a stationary phase to a chaotic phase occurring at a critical value of the gain parameter.
+
+The autocorrelations of the chaotic flow as well as the maximal Lyapunov exponent are calculated.
+
+PACS numbers: 05.45.+b, 05.20.—y, 47.20.Tg, 87. 10.+e
+
+Theoretical investigations of the onset and the nature
+
+of chaotic flows in deterministic dynamical systems have
+focused, in recent years, mainly on systems with few degrees of freedom. ' Quite often chaos is achieved in these systems by the variation of a parameter through a se-
+quence of bifurcation points, which represent increasing complexity of the motion. It is still an open question
+
+whether these scenarios are realized in large systems which cannot be described by a small number of collective modes. In this Letter we study the nature of chaotic
+— flows in a deterministic nonlinear system a neural — network consisting of many localized degrees of free-
+dom. We show that in the limit of infinite number of degrees of freedom, there is a sharp transition (as a function of the parameter of nonlinearity) from a stationary state to a chaotic flow. This transition as well as the sta-
+
+tistical properties of the chaotic flow is described by time-dependent self-consistent mean-field theory. The
+
+maximal Lyapunov exponent is derived from the fluctuations about the mean-field solutions. In the context of
+neurobiology, the study of chaos in neural networks may be relevant to the understanding of the appearance of spontaneous irregular patterns of activity in neural as-
+
+semblies.
+
+~ ( The model
+("neurons")
+
+consists
+fS;(t)I,
+
+of N localized
+i =1, . . . , N,
+
+wchoenrteinuo—us1
+
+variables
+S; 1.
+
+Associated with each neuron, a local field h;,
+
++~, & h; &
+
+is defined through the relationship S;(t)
+
+=|Ii(h;(t)) where p(x) is a nonlinear gain function
+
+which defines the input (h;) -output (S;) characteristics
+
+of the neurons. In the biological context, h; may be re-
+
+lated to the membrane potential of the nerve cell and S;
+
+to its electrical activity (e.g., its firing rate). The func-
+
+tion
+p(+
+
+~y)(x=)
+
+is
+~1,
+
+pas(su—mxe)d
+
+=
+
+—top(xh)a.ve
+
+a For
+
+sigmoid shape concreteness we
+
+choose the function
+
+y(x) =tanh(gx),
+) where the constant g 0 measures the degree of non-
+
+linearity of the neural response. The dynamics of the
+' network is given by N coupled first-order difl'erential
+equations ("circuit" equations)
+
+g g hi
+
+=
+
+—h;+
+
+N
+g=l
+
+Jt)SI
+
+=
+
+—h;+
+
+jv
+g=l
+
+Jtl
+
+tlat(h,
+
+)
+
+Here J;J is the synaptic efficacy which couples the output of the (presynaptic) jth neuron to the input of the (post-
+synaptic) ith neuron, and J;; =0. In electrical terms Eqs.
+
+(2) are II'irchhoff equations in which the left-hand side
+
+represents the current leakage due to the membrane ca-
+
+pacitance; the first term in the right-hand side represents
+
+the current through the membrane resistance and the
+
+last term denotes the input current flowing to the cell
+
+due to the activity of the other cells. For simplicity the
+
+microscopic time constant has been set equal to unity.
+
+We consider here networks with random synaptic cou-
+plings. Each of the JJ's is an independent random vari-
+
+able which can be assumed for convenience to have a
+
+Gaussian distribution. The mean of J;J is zero whereas
+the variance is [J;ilJ=J /N. With this normalization
+
+the intensive parameter in the case of (1) is the dimen-
+
+sionless gain parameter gJ.
+If the synaptic matrix J were symmetric then Eqs. (2)
+
+would describe a relaxation of a global energy function,
+
+which for random couplings is just a spin-glass Hamil-
+
+tonian. Here we study synaptic matrices where J;i and Ji; are uncorrelated in which case the dynamics in gen-
+
+eral is nonrelaxational. In this case the long-time behav-
+
+N~ ~ ior may depend on the particular realization of the J~'s.
+
+However, in the limit
+
+a well defined typical
+
+behavior exists, the properties of which are described
+
+below.
+
+The long-time properties of the solutions of Eqs. (2)
+
+for large N have been studied by the method of the dynamical mean-field theory (MFT) originally devel-
+
+oped for spin-glasses. This theory is exact in the limit
+
+~. of N
+
+The essential result of this MFT is quite
+
+simple. The dynamics of the system at long times can be
+
+1988 The American Physical Society
+
+259
+
+VOLUME 61, NUMBER 3
+
+PHYSICAL REVIEW LETTERS
+
+18 JULY 1988
+
+reduced to a self-consistent which reads
+h, (t) = —h, (t)+g;(t).
+
+equation
+
+of a single neuron,
+(3)
+
+The term q, is a time-dependent Gaussian field which is generated by the random inputs from the other neurons,
+i.e., the last term in Eqs. (2). Obviously, the mean of q,
+is zero. Its second moment is determined self-consis-
+
+tently from Eq. (2), yielding
+
+(&, (t) &, (t+.)) =J'c(.),
+
+(4)
+
+where the average autocorrelation function
+c(.) =[w 'g, -s, (t)s, (t+z)]J
+
+is evaluated with use of Eqs. (1) and (3),
+
+C(z) =(y(h;(t))y(h;(t+ z)))
+
+and
+
+h;(t) = Ji f dt'e' 'tl;(t').
+
+J Square brackets with a subscript denote average over
+the distribution of J. The angular brackets denote
+
+averaging with respect to the Gaussian distribution of g;.
+
+Thus Eq. (4) represents a self-consistent equation for
+
+the time-dependent autocorrelation C(t) N. ote that in
+
+deriving Eq. (4) we have assumed that the system
+
+reached depend
+
+a satisfactory steady state only on time separations and
+
+sCo(tt)ha=t Cc(or—retla)t.isons
+
+Instead of our solving the equation for C(t) it is more
+
+convenient to study explicitly the local-field autocorrela-
+
+tion
+
+~(.) =(h, (t)h, (t+.)),
+
+(5)
+
+=J which by Eqs. (3) and (4) obeys 8 —6 C. Equations
+
+(4) and (5) can be reduced to the following equation for
+
+j = —av/a~,
+
+(6)
+
+a'+ = — V(W)
+
+'
+—,
+
+4 —oo Dz
+
+p + ooDxe((~(0) —i~i)'t x+ [~i 't z) 2
+
+(7)
+
+where Dz =dz exp( —z /2)/(2n) 't and, in general,
+
+@@((xx))==
+
+fpdyp(y). (gJ) ' ln
+
+In the
+cosh(gJx).
+
+particular Equation
+
+example
+(6)
+
+of can
+
+(1)
+be
+
+viewed as a one-dimensional motion of h(t) under the
+
+Newtonian potential V(h). There are important bound-
+
+ary conditions difl'erentiable
+
+for even
+
+the solutions function, i.e.,
+
+of
+d(
+
+E—q.t)(=6A): (t()i,)
+
+h(t) is a
+5(0) =0.
+
+This implies that the orbit must have zero initial kinetic
+
+(6(0). energy. (ii) h(t) is bounded by ih(t) i
+
+Note
+
+that the potential V is a self consistent po-tential. It de-
+
+pends parametrically on A(0), the value of which has to
+
+be consistent with Eq. (6). We now study the solutions
+
+— of Eqs. (6) and (7). gJ & 1, zero ftxed point
+
+For a g. ain parameter less
+
+than unity, V(A) is of the form shown in Fig. 1(a), in the
+( allowed regime i h(t) i h(0). The only bounded clas-
+sical orbit with d(0) =0 is 6(t)=0. The vanishing of
+the ("steady state") equal-time correlations implies that
+: the system (2) flows to the zero fixed point [h;—0}, for
+
+all (or almost all) initial conditions. The stability of the
+zero fixed point below gJ=1 can be deduced by our
+
+linearizing the equations of motion (2), noting that the
+— maximal real part of the eigenvalues of J is l. gJ & 1, chaotic phase. For gJ & 1 the form of V(A)
+
+is not unique but depends on the assumed magnitude of
+
+A(0). Furthermore, for a given V(h) there is a continu-
+
+um of self-consistent solutions of Eq. (6). In general
+
+there exists a value Ai(gJ) such that for d (0) in the regime 0 &5(0) &Ai, V(A) has the form shown in Fig.
+
+1(b). For such a potential the solutions of Eq. (6) are
+
+periodic orbits, implying that the system converges to
+
+limited cycles. If A(0) & hl the potential has the
+
+double-well form of Fig. 1(c). In this case, the solution
+
+with
+Fig.
+
+the lowest
+1(c)] has
+
+(Newtonian)
+h(t) =A, where
+
+energy
+—A & 0
+
+[denoted by a in is independent of
+
+time. This static solution corresponds to a nonzero fixed
+
+point of the system (2), and would be analogous to a
+
+spin-glass freezing which occurs in systems with random
+symmetric J. Other solutions with negative energies
+
+(denoted by b) correspond to limited cycles with nonzero
+averages. Solutions with positive energies (denoted by c)
+
+are oscillations around zero values.
+
+Which of the many solutions correspond to stable at-
+
+tractors? In fact, a study of the stability of the MFT to
+
+fluctuations, which will be outlined below, shows that
+
+none of the above solutions (for gJ & 1) are stable. The
+
+only stable solution is the one with zero energy, denoted
+
+~. by d in Fig. 1(c), for which h(t) decreases monotonical
+
+ly to zero as t
+
+The decay of the correlations be-
+
+tween two points along the flow implies that the flow is
+
+chaotic. For
+h(t) =ecosh
+
+gJ=1+,
+(et/J3),
+
+thwehercehaoet=icgJso—lut1io«n 1.foNr ohte(t)thaits
+
+— as gJ 1+ the amplitude of the flow vanishes as
+h(0) e. At the same time the relaxation time of the
+
+'=[ ]' autocorrelation
+laxation time
+
+diverges is given
+
+as by
+
+za:1/e.
+z
+
+—In8
+
+general,
+V(0)/86
+
+this
+
+reas
+
+can be deduced from Eq. (6). In the "Ising" limit, 'o
+
+— gJ
+
+(1 ~—,2/tnh)e
+
+relaxation
+'t'
+
+time approaches
+
+the value
+
+r
+
+— Fluctuations and Lyapunov exponent In order. to
+
+study the stability of the flows to fluctuations we add to
+
+Eq. (2) an infinitesimal external source, h;(t), and study the linear perturbation of the flow, given by I;J(t,t')
+
+260
+
+VOLUME 61, NUMBER 3
+
+PHYSICAL REVIEW LETTERS
+
+18 JULY 1988
+
+(a) v(z) v(z)
+ji
+
+FIG. 1. Qualitative shape of the self-consistent classical potential V(4) in the range ~5~ ~Zt(0). (a) The case of gJ & 1.
+(b) gJ & 1 and 0 & 5 & h~. (c) gJ & 1 and 6 & A| (see text).
+A solution starting at the point marked a is a static state. The points b and c are examples of initial conditions leading to solutions which oscillate around nonzero and zero values, respectively. The orbit starting at d decays to zero. The dots mark the energies of the various solutions.
+=bh;(t)/bhf(t') It is more .convenient to study the
+average quantity 1 (t) defined by
+
+which yields information regarding the maximal Lya-
+
+punov exponent k. This exponent, which measures the
+
+sensitivity of the flow to a perturbation of the initial con-
+
+" ditions in a random direction, is given by the asymptotic
+time dependence Z (t), i.e.,
+
+x- lim in(x'(r))/2r.
+
+(9)
+
+In the case of a stable point, k is negative. If the attrac-
+tor is a stable limit cycle or quasiperiodic, k should be zero. On the other hand, in the case of a chaotic attractor X is positive indicating the exponential growth of a perturbation of the initial condition in random directions.
+Calculating the fluctuations about the MFT we find that x (r) can be written as
+
+g Z'(r) = Z„exp(2ro„r ), n=o
+r & 0, with ro„= —I + (1 E„)'i2—, where E„are the ei-
+genvalues of the one-dimensional Schrodinger equation,
+
+) ( e'/ar -' a'V/a-~') y„(r) =E„y.(r),
+and E„+~ E„. From Eq. (9) it follows that
+
+(10)
+
+X = —1+ (1 —Eo) '
+
+where Eo is "fluctuation
+
+the ground-state
+potential" W(t)
+
+=e—netrlgyV/8o6f,
+
+Eq.
+is
+
+(10). The
+determined
+
+by the classical solution, h(t), about which perturbations
+
+are made. When 6 is constant, W(t) is also constant,
+
+) :W(t)—W, and
+E W yielding
+J; zero fixed point,
+
+XthW=e =—sp11e—c+tgru(1m—Wohfe)n'Ecie„.
+
+is the continuum
+
+In the
+X =gJ
+
+—ca1seinodifcatht-e
+
+ing the instability of this fixed point when gJ & 1. The
+
+static "spin-glass" fixed point also has a negative W, i.e.,
+
+a positive X (for all gJ & 1), implying that it is not a
+
+stable fixed point.
+
+The analysis of Eq. (10) for a time-dependent h(t) is
+
+more complicated. However, by differentiation of Eq.
+(6) it is readily seen that y(t) =h(t) is an eigenstate of Eq. (10) with E=O. This state represents a fluctuation
+
+of the initial condition in the direction of the flow. In the
+
+case of oscillatory A(t), the zero-energy eigenstate is
+
+part of a band of eigenvalues extending to negatiue energies, leading again to a positive Lyapunov exponent. '
+
+In the case of the chaotic solution, W(t) is a sym-
+metric potential well with a single tninimum at t=0.
+
+The zero-energy solution is a bound state with an odd
+wave function, y(t) =h(t), which has a single node, y(0) =0. Thus there is exactly one bound state, the
+
+ground state, with negative energy yielding a positive X
+
+as expected for a chaotic flow. We thus conclude that
+
+the chaotic solution is the only stable solution of the
+
+MFT for gJ & 1. ' Solving Eq. (10) for the chaotic
+
+2-e solution near gJ=1 one finds that
+ishes continuously as e=—gJ —1 0.
+
+In
+
+/2, the
+
+i.e., it van-
+Ising limit,
+
+gJ ~, X diverges as In(gJ), similar to the result for
+
+products of random matrices. '
+
+An important question is how many positive Lyapunov
+exponents appear above gJ=I. The distribution of the
+I Lyapunov exponents cannot be evaluated from (t).
+
+However, the fact that the exponential divergence of X (t) with time is observed in the theory even after the
+
+limit N eo has been taken indicates that the number
+
+of positive Lyapunov exponents for gJ & 1 is macroscop-
+
+261
+
+VOLUME 61, NUMBER 3
+
+PHYSICAL REVIEW LETTERS
+
+18 JULY 1988
+
+ic, i.e., proportional to N.
+
+To what extent do the above predictions correspond to
+
+the typical behavior of a system with a finite, large value
+
+of N? To check this point we have solved Eqs. (2) nu-
+merically for systems with sizes up to N =1000. A de-
+
+tailed account of the simulations will be given elsewhere.
+
+The most important novel feature of the numerical re-
+
+sults is the existence of an intermediate regime of gJ
+
+~ separating the stationary and the chaotic phases. For
+sizes N 100, in almost all cases, a rapid decay to a
+zero fixed point is observed for gJ&1, whereas for
+gJ &2 the behavior is chaotic. However, as gJ is in-
+
+creased above unity one first observes the appearance of
+
+either nonzero stationary states, or more often, limited
+
+cycles. These limited cycles become increasingly more
+
+complex as gJ is increased until the motion becomes
+
+chaotic. The limit cycles vary strongly from one realiza-
+tion of J to another and are therefore probably not relat-
+
+ed directly to the unstable periodic solutions of the MFT.
+
+In fact, comparing the behavior of diH'erent system sizes
+
+we find that the range of gJ where this intermediate be-
+
+havior is observed shrinks as N increases. It therefore
+
+seems that a system with a finite number of degrees of
+
+freedom N undergoes a transition from a stationary state
+
+to chaos through intermediate stages of limit cycles with
+
+increasing complexity. However, the range of gJ where
+
+~ these bifurcations occur shrinks to zero with N so that in
+
+the limit N
+
+a sharp transition to chaos emerges as
+
+predicted by the MFT.
+
+Several intriguing questions remain to be answered.
+
+First, the above proposed picture for the behavior of
+
+large finite systems has yet to be systematically tested.
+
+In addition, further characterization of the strange at-
+
+tractor, e.g., evaluation of the whole distribution of
+
+Lyapunov exponents, is needed. Finally, it will be very
+
+interesting to study extensions of the present model to
+
+networks with short range synapti-c matrices in finite
+
+spatial dimensions. Detailed presentation of the calcula-
+
+tions will be given elsewhere.
+
+Special thanks to P. C. Hohenberg for most valuable
+
+discussions. We have also benefitted from discussions
+
+with D. Ben Simon, B. Derrida, D. S. Fisher, D. Klein-
+
+feld, P. B. Littlewood, I. Procaccia, B. Shraiman, and
+
+A. Vulpiani. This research is partially supported by a
+
+grant of the U. S.A. -Israel Binational Science Foundation. One of us (H. J.S.) acknowledges support from the
+
+Deutsche Forschungsgemeinschaft,
+bereich No. 237.
+
+Sonderforschungs-
+
+Permanent address.
+Present address: Institute for Advanced Studies, Hebrew
+University, 91904 Jerusalem, Israel. 'For a review on the theory of deterministic chaos see, e.g. ,
+J.-P. Eckmann and D. Ruelle, Rev. Mod. Phys. 57, 617 (1985);
+G. Paladin and A. Vulpiani, Phys. Rep. 156, 147 (1987). 2Most previous studies of these phenomena employ neural
+models with few degrees of freedom. See, e.g., M. R. Guevara et al. , IEEE Trans. Syst. Man Cybern. 13, 790 (1983).
+This model is similar to that studied by S. I. Amari, IEEE Trans. Syst. Man Cybern. 2, 643 (1972), who, however, did
+not investigate self-consistent time-dependent solutions,
+4Collective complex dynamical behavior which is specific to
+discrete-time systems has been studied by M. Y. Choi and B. A. Huberman, Phys. Rev. B 28, 254 (1983).
+5For recent study of networks with an energy function see,
+e.g. , J. J. Hopfield and D. W. Tank, Science 233, 625 (1986),
+and references therein.
+For a review on spin-glass theory see, e.g., K. Binder and A. P. Young, Rev. Mod. Phys. 58, 801 (1986).
+H. Sompolinsky and A. Zippelius, Phys. Rev. B 25, 6860 (1982); A. Crisanti and H. Sompolinsky, Phys. Rev. A 36, 4922 (1987).
+Usually the autocorrelation is defined by averaging over
+initial conditions. However, after averaging over J;J s, the steady-state limit of C is dependent of the initial conditions.
+H. J. Sommers, A. Crisanti, H. Sompolinsky, and Y. Stein, Phys. Rev. Lett. 60, 1895 (1988).
+' A. Crisanti and H. Sompolinsky, Phys. Rev. A 37, 4865 (1988).
+''In principle the average over J should be performed on
+ink; however, in the present case g is self-averaging so that
+the averaging and the logarithm can be interchanged.
+'2Formally we find that the MFT solutions are stable only if
+there is a gap in the Spectrum of E, below E =0. The unstable
+periodic solutions presumably correspond to the set of unstable
+limit cycles which reside on the chaotic attractor. See
+D. Ruelle, Thermodynamic Formalism (Addison-Wesley, Reading, MA, 1978); and D. Auerbach er al. , Phys. Rev. Lett. 58, 2387 (1987).
+' J. E. Cohen and C. M. Newman, Ann. Probab. 12, 283
+(1984); C. M. Newman, Commun. Math. Phys. 103, 121
+(1986); A. Crisanti, G. Paladin, and A. Vulpiani, J. Stat. Phys.
+(to be published).
+
+262
+

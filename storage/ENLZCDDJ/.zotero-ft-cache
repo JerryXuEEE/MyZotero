@@ -1,0 +1,191 @@
+
+
+
+JavaScript is disabled on your browser. Please enable JavaScript to use all the features on this page. Skip to main content Skip to article
+Elsevier logo ScienceDirect
+
+    Journals & Books 
+
+    Search 
+
+My Account Sign in
+
+    Access through  Hong Kong Baptist Univers…
+    Purchase PDF
+    Other access options
+
+Article preview
+
+    Abstract
+    Introduction
+    Section snippets
+    References (77)
+    Cited by (55) 
+
+Elsevier
+NeuroImage
+Volume 200 , 15 October 2019, Pages 38-50
+NeuroImage
+Tracking dynamic brain networks using high temporal resolution MEG measures of functional connectivity
+Author links open overlay panel Prejaas Tewarie a , Lucrezia Liuzzi a , George C. O'Neill a , Andrew J. Quinn b , Alessandra Griffa c , Mark W. Woolrich b , Cornelis J. Stam d , Arjan Hillebrand d 1 , Matthew J. Brookes a 1
+Show more
+Add to Mendeley
+Share
+Cite
+https://doi.org/10.1016/j.neuroimage.2019.06.006 Get rights and content
+Abstract
+
+Fluctuations in functional interactions between brain regions typically occur at the millisecond time scale. Conventional connectivity metrics are not adequately time-resolved to detect such fast fluctuations in functional connectivity . At the same time, attempts to use conventional metrics in a time-resolved manner usually come with the selection of sliding windows of fixed arbitrary length. In the current work, we evaluated the use of high temporal resolution metrics of functional connectivity in conjunction with non-negative tensor factorisation to detect fast fluctuations in connectivity and temporally evolving subnetworks. To this end, we used the phase difference derivative, wavelet coherence , and we also introduced a new metric, the instantaneous amplitude correlation . In order to deal with the inherently noisy nature of magnetoencephalography data and large datasets, we make use of recurrence plots and we used pair-wise orthogonalisation to avoid spurious estimates of functional connectivity due to signal leakage. Firstly, metrics were evaluated in the context of dynamically coupled neural mass models in the presence and absence of delays and also compared to conventional static metrics with fixed sliding windows. Simulations showed that these high temporal resolution metrics outperformed conventional static connectivity metrics. Secondly, the sensitivity of the metrics to fluctuations in connectivity was analysed in post-movement beta rebound magnetoencephalography data, which showed time locked sensorimotor subnetworks that modulated with the post-movement beta rebound. Finally, sensitivity of the metrics was evaluated in resting-state magnetoencephalography, showing similar spatial patterns across metrics, thereby indicating the robustness of the current analysis. The current methods can be applied in cognitive experiments that involve fast modulations in connectivity in relation to cognition. In addition, these methods could also be used as input to temporal graph analysis to further characterise the rapid fluctuation in brain network topology.
+Introduction
+
+Large-scale functional interactions in the brain are assumed to be reflected in statistical interdependencies between time-series of neuronal activity (Friston et al., 1996), which can be quantified by magnetoencephalography (MEG) and electroencephalography (EEG). These functional interactions (functional connectivity, FC) are characterized by non-trivial spatiotemporal patterns in MEG/EEG data, which have so far predominantly been treated in a ‘static connectivity’ sense, i.e. interactions are estimated over relatively large time windows, typically on the order of seconds for MEG/EEG and tens of seconds for functional Magnetic Resonance Imaging (fMRI) (Hutchison et al., 2013; O'Neill et al., 2018, O'Neill et al., 2017). However, recent studies have shown that the brain operates at several timescales, including at fast timescales, which is reflected in strong fluctuations of both neuronal activity and neuronal interactions (Baker et al., 2014; Vidaurre et al. 2016, 2017; O’Neill et al., 2018; de Pasquale et al., 2017; O'Neill et al., 2017, 2018). There is evidence that neuronal interactions appear in so-called dynamic cell assemblies that form and dissolve over time (Breakspear et al., 2004). By collapsing neuronal interactions over time, potentially crucial information about how large cell assemblies (sub-networks) emerge and dissolve is missed. Furthermore, recent studies have demonstrated that taking into account the temporal domain of oscillations or neuronal interactions may give better insight into abnormal brain function in neurological diseases (Carbo et al., 2017; Kim et al., 2017; Watanabe and Rees, 2017; Sitnikova et al., 2018; Stam et al., 2005). Therefore, there is a pressing need to take into account the dynamics of functional interactions to obtain a complete picture of brain function in the healthy brain, as well as in neurological disorders.
+
+Analysis of the dynamics of functional interactions has especially been of interest in the field of fMRI (Griffa et al., 2017; Preti et al., 2017). Here, sliding window or point process approaches are often used to quantify fluctuations in functional connectivity (Allen et al., 2014). However, the limited temporal resolution of fMRI means that only fluctuations in the order of seconds can be detected and that the duration of the data acquisition should be sufficiently long in order to detect any non-stationary process (Hindriks et al., 2016). The superior temporal resolution of MEG and EEG is an advantage over fMRI, particularly when studying temporal fluctuations of connectivity. Studies on dynamic connectivity with MEG have indeed shown that functional networks can emerge and dissolve on a millisecond time-scale (Brookes et al., 2018; Vidaurre et al., 2018), but also fluctuate in the order of seconds (O'Neill et al., 2018, O'Neill et al., 2017). Some earlier EEG studies pointed out that functional interactions may even be scale-free (Stam and De Bruin, 2004; Van de Ville et al., 2010).
+
+However, most of the metrics of functional connectivity currently used in MEG/EEG studies require relatively large numbers of samples (Colclough et al., 2016; Fraschini et al., 2016), i.e. a time-window of certain length is required. Estimates of dynamic FC can then only be obtained using a (fixed) sliding window approach, which means that dynamics on faster or slower time-scales may be missed and, practically, a window-length needs to be defined a-priori . Furthermore, recent work has shown that the time scales of network formation and dissolution is continuously fluctuating during a MEG recording (Baker et al., 2014; Vidaurre et al. 2016, 2018; López et al., 2019), and thus a fixed sliding window approach may not be the best approach to capture the underlying temporal evolution of connectivity.
+
+An alternative to fixed sliding window approaches in conjunction with conventional connectivity metrics is to employ metrics of functional connectivity that have a high temporal resolution. Here, we introduce a new metric, which is derived from the often used amplitude envelope correlation metric (Brookes et al., 2011; Hipp et al., 2012). The assumption is that if two neuronal populations show periods with simultaneous increases in power, then these periods could serve as windows that promote connectivity. Recent work has demonstrated that there is a tendency for simultaneous increases in power to coincide with increases in phase-based connectivity between two regions (Tewarie et al., 2018; Vidaurre et al., 2018). This new metric is referred to as instantaneous amplitude correlation (IAC) and is an addition to other metrics with high temporal resolution such as the phase difference derivative (Breakspear et al., 2004), wavelet coherence (Grinsted et al., 2004), and the synchronisation likelihood (Stam and Van Dijk, 2002). All these metrics provide information on connectivity at a high temporal resolution. However, the use of metrics with high temporal resolution also typically comes with the disadvantage of low signal to noise ratio (SNR). This is naturally the result of using insufficient time points to base the estimate on. A recently introduced approach solves this by using a Hidden Markov Model with multivariate autoregressive observation model (HMM-MAR). This identifies a finite set of states, with each state having distinct spectral and cross-spectral properties, allowing for data to be pooled over repeated state visits (i.e. effectively using data driven time windows) and thereby providing a wealth of time-points for the MAR to be estimated for each state (Vidaurre et al., 2016, 2017).
+
+An alternative way to mitigate the effects of having insufficient time points is to use recurrence plots, a well-known method in the analysis of nonlinear dynamics (Eckmann et al., 1987; Deco et al., 2017a, Deco et al., 2017b). A recurrence plot reveals the times at which the phase space trajectory of a dynamical system visits roughly the same area in phase space during its evolution (analogous to states in HMM-based approaches). This can be used in the context of neuronal oscillations to provide data driven windows during which the system is in the same states. These windows can then be fed into connectivity analysis to potentially reduce the effect of noise, i.e. data driven windows are used to temporally aggregate sample by sample connectivity data. The resulting connectivity tensors, containing the estimates of dynamic FC, can be used for temporal graph analysis (Holme and Saramäki, 2012) and for the extraction of temporally evolving subnetworks (Khambhati et al., 2018).
+
+In the current paper we analyse how well high temporal resolution metrics of functional connectivity, including our new metric IAC, can detect genuine modulations in functional connectivity. This is done both with, and without, the use of recurrence plots. The manuscript is divided into two parts. Given a lack of ground truth in empirical MEG data, we first make use of parameterised connected neural mass models to generate simulated dynamic functional connectivity data. We use this model to test how sensitive the different approaches are to detect modulations in functional connectivity for short and longer state durations. We evaluate these metrics also in comparison to conventional metrics using a fixed sliding window approach. We then analyse how the sensitivity of the time-resolved connectivity metrics is affected by various levels of signal-to-noise ratio of the simulated data. In part two, we illustrate how the use of high temporal resolution metrics of functional connectivity can be applied to detect fluctuations of connectivity during the well-known post-movement beta rebound, as previous studies have demonstrated that the beta rebound co-occurs with an increase in connectivity (Vidaurre et al., 2016; Tewarie et al., 2018). This is followed by an analysis of resting-state data where we assess the use of data driven windows based on recurrence plots, and the subsequent extraction of temporally evolving subnetworks using non-negative tensor factorisation.
+Section snippets
+High temporal resolution measures of functional connectivity
+
+We employed three different metrics of instantaneous functional connectivity: The phase difference derivative (Breakspear et al., 2004), the wavelet coherence (Grinsted et al., 2004) and the instantaneous amplitude correlation .
+
+The phase difference derivative (PDD) is a measure that captures the stability of phase relationships between two time-series. We extracted the instantaneous phase of each signal i as φ i ( t ) = a t a n ( I [ A i ( t ) ] / R [ A i ( t ) ] ) , where A i ( t ) , the analytic signal, was obtained using the
+Datasets
+
+We used data from two different datasets. A trial based and a continuously recorded dataset were used as separate proof for the new methods. We used a self-paced motor dataset to test our metrics, since our previous work has demonstrated that the PDD was sensitive and robust to detect connectivity patterns related to unilateral self-paced button press responses and modulated on the same time scale as the post-movement beta rebound (Tewarie et al., 2018). In the current work, we were interested
+Part 1: performance of dynamic FC metrics for simulated data with known ground truth and comparison to conventional metrics
+
+First, we tuned the scale parameter of the gamma distribution to obtain different mean state durations for the coupling time-series k (see Fig. 2B). For every scale parameter we simulated 30 iterations of neural mass signals, and for each iteration, we simulated a different time-series for k . All sample by sample connectivity time-series were estimated from these coupled neural mass time-series. Connectivity time-series for all three metrics were correlated with the ground truth of k using the
+Discussion
+
+Understanding the formation and dissolution of temporal electrophysiological networks is believed to be crucial to understand ongoing cognitive function. However, capturing temporal fluctuations in functional connectivity adds another level of difficulty to connectivity analysis. Since it has been argued that neuronal oscillatory dynamics, as well as fluctuations in connectivity, can be characterized by scale-freeness (Stam and De Bruin, 2004; Linkenkaer-Hansen et al., 2001), there is a need to
+Acknowledgments
+
+This work was funded by a Medical Research Council New Investigator Research Grant ( MR/M006301/1 ) awarded to MJB. We also acknowledge Medical Research Council Partnership Grant ( MR/K005464/1 ).
+References (77)
+
+    C.A. Andersson et al.
+    The N-way toolbox for MATLAB
+    Chemom. Intell. Lab. Syst.
+    (2000)
+    R. Bro
+    PARAFAC. Tutorial and applications
+    Chemom. Intell. Lab. Syst.
+    (1997)
+    M.J. Brookes et al.
+    Altered temporal stability in dynamic neural networks underlies connectivity changes in neurodevelopment
+    Neuroimage
+    (2018)
+    M.J. Brookes et al.
+    Measuring functional connectivity using MEG: methodology and comparison with fcMRI
+    Neuroimage
+    (2011)
+    M.J. Brookes et al.
+    A multi-layer network approach to MEG connectivity analysis
+    Neuroimage
+    (2016)
+    M.J. Brookes et al.
+    Optimising experimental design for MEG beamformer imaging
+    Neuroimage
+    (2008)
+    G.L. Colclough et al.
+    A symmetric multivariate leakage correction for MEG connectomes
+    Neuroimage
+    (2015)
+    G.L. Colclough et al.
+    How reliable are MEG resting-state connectivity metrics?
+    Neuroimage
+    (2016)
+    G. Deco et al.
+    Single or multiple frequency generators in on-going brain activity: a mechanistic whole-brain model of empirical MEG data
+    Neuroimage
+    (2017)
+    A.K. Engel et al.
+    Intrinsic coupling modes: multiscale interactions in ongoing brain activity
+    Neuron
+    (2013)
+
+View more references
+Cited by (55)
+
+    Connectivity-based Meta-Bands: A new approach for automatic frequency band identification in connectivity analyses
+    2023, NeuroImage
+    Show abstract
+
+    The majority of electroencephalographic (EEG) and magnetoencephalographic (MEG) studies filter and analyse neural signals in specific frequency ranges, known as “canonical” frequency bands. However, this segmentation, is not exempt from limitations, mainly due to the lack of adaptation to the neural idiosyncrasies of each individual. In this study, we introduce a new data-driven method to automatically identify frequency ranges based on the topological similarity of the frequency-dependent functional neural network. The resting-state neural activity of 195 cognitively healthy subjects from three different databases (MEG: 123 subjects; : 27 subjects; : 45 subjects) was analysed. In a first step, MEG and EEG signals were filtered with a narrow-band filter bank (1 Hz bandwidth) from 1 to 70 Hz with a 0.5 Hz step. Next, the connectivity in each of these filtered signals was estimated using the orthogonalized version of the amplitude envelope correlation to obtain the frequency-dependent functional neural network. Finally, a community detection algorithm was used to identify communities in the frequency domain showing a similar network topology. We have called this approach the “Connectivity-based Meta-Bands” (CMB) algorithm. Additionally, two types of synthetic signals were used to configure the hyper-parameters of the CMB algorithm. We observed that the classical approaches to band segmentation are partially aligned with the underlying network topologies at group level for the MEG signals, but they are missing individual idiosyncrasies that may be biasing previous studies, as revealed by our methodology. On the other hand, the sensitivity of EEG signals to reflect this underlying frequency-dependent network structure is limited, revealing a simpler frequency parcellation, not aligned with that defined by the “canonical” frequency bands. To the best of our knowledge, this is the first study that proposes an unsupervised band segmentation method based on the topological similarity of functional neural network across frequencies. This methodology fully accounts for subject-specific patterns, providing more robust and personalized analyses, and paving the way for new studies focused on exploring the frequency-dependent structure of brain connectivity.
+    A systematic review and methodological analysis of EEG-based biomarkers of Alzheimer's disease
+    2023, Measurement: Journal of the International Measurement Confederation
+    Show abstract
+    Afterword: The road ahead for connectomics
+    2023, Connectome Analysis: Characterization, Methods, and Analysis
+    Reward network dysfunction is associated with cognitive impairment after stroke
+    2023, NeuroImage: Clinical
+    Show abstract
+    Mixtures of large-scale dynamic functional brain network modes
+    2022, NeuroImage
+    Citation Excerpt :
+
+    Recently, other models that provide a mode description of neuroimaging data have been proposed. Ponce-Alvarez et al. and Tewarie et al. used non-negative tensor factorisation to identify dynamic overlapping spatial patterns of connectivity (Ponce-Alvarez et al., 2015; Tewarie et al., 2019). Núñez et al. used community detection on a time series of FC matrices to identify repeated patterns of connectivity (Núñez et al., 2021).
+    Show abstract
+    Spatio-temporal dynamics of large-scale electrophysiological networks during cognitive action control in healthy controls and Parkinson's disease patients
+    2022, NeuroImage
+    Show abstract
+
+View all citing articles on Scopus
+
+1
+
+    Equal contribution.
+
+View full text
+© 2019 Elsevier Inc. All rights reserved.
+Substances (2)
+Generated by , an expert-curated chemistry database.
+
+    chemical structure for citicoline
+    chemical structure for phenyramidol 
+
+Recommended articles
+
+    Optimising experimental design for MEG resting state functional connectivity measurement
+    NeuroImage, Volume 155, 2017, pp. 565-576
+    Lucrezia Liuzzi , …, Matthew J. Brookes
+    Assessing dynamic functional connectivity in heterogeneous samples
+    NeuroImage, Volume 157, 2017, pp. 635-647
+    B.C.L. Lehmann , …, L. Geerligs
+    A multi-layer network approach to MEG connectivity analysis
+    NeuroImage, Volume 132, 2016, pp. 425-438
+    Matthew J. Brookes , …, Peter G. Morris
+
+Show 3 more articles
+Article Metrics
+Citations
+
+    Citation Indexes: 48 
+
+Captures
+
+    Readers: 127 
+
+plumX logo
+View details
+Elsevier logo with wordmark
+
+    About ScienceDirect
+    Remote access
+    Shopping cart
+    Advertise
+    Contact and support
+    Terms and conditions
+    Privacy policy 
+
+We use cookies to help provide and enhance our service and tailor content and ads. By continuing you agree to the use of cookies .
+
+All content on this site: Copyright © 2023 Elsevier B.V., its licensors, and contributors. All rights are reserved, including those for text and data mining, AI training, and similar technologies. For all open access content, the Creative Commons licensing terms apply.
+RELX group home page
+Feedback 

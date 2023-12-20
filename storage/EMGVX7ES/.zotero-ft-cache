@@ -1,0 +1,245 @@
+PRL 118, 258101 (2017)
+
+PHYSICAL REVIEW LETTERS
+
+week ending 23 JUNE 2017
+
+Local Dynamics in Trained Recurrent Neural Networks
+Alexander Rivkind1,2,* and Omri Barak1,2,†
+1Faculty of Medicine, Technion–Israel Institute of Technology, Haifa 32000, Israel 2Network Biology Research Laboratories, Technion–Israel Institute of Technology, Haifa 32000, Israel
+(Received 18 December 2015; revised manuscript received 5 March 2017; published 23 June 2017)
+Learning a task induces connectivity changes in neural circuits, thereby changing their dynamics. To elucidate task-related neural dynamics, we study trained recurrent neural networks. We develop a mean field theory for reservoir computing networks trained to have multiple fixed point attractors. Our main result is that the dynamics of the network’s output in the vicinity of attractors is governed by a low-order linear ordinary differential equation. The stability of the resulting equation can be assessed, predicting training success or failure. As a consequence, networks of rectified linear units and of sigmoidal nonlinearities are shown to have diametrically different properties when it comes to learning attractors. Furthermore, a characteristic time constant, which remains finite at the edge of chaos, offers an explanation of the network’s output robustness in the presence of variability of the internal neural dynamics. Finally, the proposed theory predicts statedependent frequency selectivity in the network response.
+DOI: 10.1103/PhysRevLett.118.258101
+
+Task learning is considered the raison d’etre of recurrent neural networks (RNNs), studied in the context of neuroscience and machine learning [1,2]. Yet, a theoretical understanding of trained RNN dynamics is lacking, with most of the existing physics literature addressing either random networks [3–7], designed networks [8–10], or a designed control setting [11–13].
+In this Letter, we advance a theory of trained RNN dynamics. We consider an initially random, chaotic network whose output is trained to produce several target values and then fed back to the network, yielding multiple fixed point attractors. This setting underlies complex tasks that were analyzed phenomenologically using rate models [1,14,15] and are the subjects of attempts [16] to extend to more realistic task performing networks [17]. Using a mean field analysis, we derive the effect of training on the output dynamics in the vicinity of the training targets. The resulting dynamics are qualitatively different from those induced by a random modification of the same form and magnitude as induced by training [18]. The stability, which is a critical property for such training [19], is then assessed, showing that training success depends on the network’s nonlinearity. Next, we show that multiple training targets can lead to state-specific frequency selectivity, as observed in task-adapted biological neuronal circuits [20,21]. Finally, the settling time of an output of a perturbed RNN is shown to remain finite at the edge of the chaos, contrary to the varying internal state dynamics [22,23], for which the settling time is known to diverge [3].
+Model and training protocol.—Reservoir computing [24,25] is a popular and simple paradigm for training RNNs. A network of neurons with random recurrent connectivity (referred to as the reservoir) is equipped with readout weights trained to produce a desired output while
+
+keeping the rest of the connectivity fixed. The dynamics [3–5,26] are given by
+
+x_ ¼ −x þ Wr þ wFBz þ winu
+
+ð1Þ
+
+with state x ∈ RN representing the synaptic input and the firing rate given by rðtÞ ¼ ϕ(xðtÞ), where ϕðxÞ is an
+elementwise nonlinear function of x, commonly set to ϕðxÞ ¼ tanhðxÞ. Output z ¼ wToutrðtÞ and input uðtÞ are fed into the network via weight vectors wFBðrespectively; winÞ ∈ RN with elements independent identically distributed. Elements of the connectivity matrix W ∈ RN×N are independent identically distributed as Wij ∼ N ð0; g2N−1Þ
+with g being a gain parameter.
+The goal of the training process is to have the output zðtÞ approximate some predefined target function fðtÞ. In
+the echo state training method [25], one breaks the readout-
+feedback loop, creating an auxiliary open loop system
+defined as
+
+x_ ¼ −x þ Wr þ wFBf þ winu;
+
+ð2Þ
+
+in which the target function fðtÞ, rather than the readout zðtÞ ¼ wToutrðtÞ, is injected via the feedback weights wFB. If this open loop system is globally stable, linear regression can be used to find wout so that zOL ¼ wToutr ≈ f, which becomes exact for large networks. While open loop
+
+stability, known as the fading memory property, is assumed
+
+in both echo state and first-order reduced and controlled error training [25–27], the Achilles heel of the training
+
+procedure is the subsequent transition back to the closed
+
+loop dynamics (1). Here instability can arise and a variety
+
+of other phenomena may emerge. Fortunately, the random-
+
+ness of the internal connections and their intactness during
+
+the training enable a detailed analysis of the trained
+
+network as reported in what follows.
+
+0031-9007=17=118(25)=258101(5)
+
+258101-1
+
+© 2017 American Physical Society
+
+PRL 118, 258101 (2017)
+
+PHYSICAL REVIEW LETTERS
+
+week ending 23 JUNE 2017
+
+Dynamics of a trained network.—Here, we assume zero input (u ≡ 0) and train the network to have M ≪ N
+fixed points of (1), corresponding to constant output levels z ∈ fA1; …; AMg with respective solutions x¯1; …; x¯M and rates r¯1; …; r¯M.
+For a given target fðtÞ ≡ A, fading memory implies
+that the open loop system (2) converges to a unique stable state x¯, given by
+
+x¯ ¼ Wϕðx¯Þ þ wFBA;
+
+ð3Þ
+
+and that the spectral radius ρ of the linearized open loop dynamics WR0, given by ρ2 ¼ g2hr02i [7,18], is smaller than one. Here R0ij ¼ δijr0i with r0 ¼ ϕ0ðx¯Þ ¼ ðdϕ=dxÞjx¼x¯ is a diagonal matrix of linearized rate functions. The average h:i is taken over neurons and by the mean field theory (MFT) assumption equals the ensemble average
+over realizations of W. Importantly, asymptotic stability of the open loop system
+(2) does not guarantee stability of the closed loop system
+(1). This can be understood by considering the linearization
+of the latter:
+
+δx_ ¼ ½−I þ ðW þ wFBwToutÞR0δx:
+
+ð4Þ
+
+For large N, the resulting spectrum consists of a disklike spectral density region of radius ρ associated with WR0 as in the open loop system and other eigenvalues related to the feedback loop term wFBwTout. We will show that exactly M eigenvalues correspond to the latter and that their loci
+can fall either inside or outside the spectral density disk.
+Figure 1 shows how these loci determine the stability,
+convergence times, and oscillations for networks that
+comply with fading memory.
+We will derive these eigenvalues of the closed loop system by analyzing the open loop gain—the response of the open loop output to a small perturbation in the drive f ¼ A þ δfðtÞ. In the Fourier domain, the state perturbation XðωÞ is given by
+
+iωXðωÞ ¼ −XðωÞ þ WR0XðωÞ þ wFBFðωÞ; ð5Þ
+
+leading to the open loop gain:
+
+GOLðωÞ ¼ Z½ωjFðωÞ ≡ 1 ¼ wToutR0X½ωjFðωÞ ≡ 1: ð6Þ
+
+Poles of (6) correspond to the spectrum of the linearized open loop system, and we thus expect N poles. We will show, however, that the mean field estimate for (6) is of the order M ≪ N. This fact should be interpreted as a lack of observability [32] of all except M linear modes of the network. Algebraically, it means that N − M out of the N poles of GOLðωÞ are canceled by zeros. Consequently, since the closed loop gain is given by
+
+GCLðωÞ ¼ GOLðωÞ½1 − GOLðωÞ−1;
+
+ð7Þ
+
+only loci of M eigenvalues are updated when closing the loop, while the rest of the spectrum remains unchanged.
+
+This finding is far from being obvious a priori: Closing the loop is equivalent to a rank one perturbation wFBwTout in (4). On the one hand, such a perturbation with an appro-
+priately chosen wout could, in principle, arbitrarily modify all the eigenvalues of the spectrum [27]. On the other hand, for a
+case of wout independent of the initial connectivity matrix W, only one eigenvalue will change, as follows from a formula
+for spectral density devised in Ref. [18]. Single training target.—We estimate GOLðωÞ for
+N → ∞ and M ¼ 1 using second-order statistics of x¯
+and X. Following the notation in Ref. [4], we denote the deterministic (independent of W) part of the solution x¯ of (3) by x¯0 and the stochastic one by x¯1. Namely, we have x¯0 ¼ wFBA and x¯1 ¼ Wϕðx¯Þ with elements x¯1i distributed as x¯1i ∼ N ð0; σ2Þ. Variance σ2 of an individual element of the state vector can be obtained self-consistently, according to σ2 ¼ g2hϕ2ðwFBA þ σyÞi with y being a zero mean unit variance Gaussian variable.
+The solution X of (5) is represented similarly to the state vector x¯ but with the stochastic part X1 further decomposed into X1∥ and X1⊥. Defined by X1∥ ¼ αðωÞx¯1 and hX1⊥x¯1i ≡ 0, these components correspond to the response of internal units
+to external perturbations in a direction that is parallel, and respectively orthogonal, to the state x¯1. Beyond the technical
+aspect in the MFT derivation, it is instructive to consider this
+decomposition in relation to network dynamics. The case of jX1∥j ≪ jX1⊥j leads to a time scale difference between output and internal dynamics, which is discussed below Eq. (9). Furthermore, the subspace orthogonal to x¯1, of which X1⊥ is a member, can be used by adaptive algorithms [26] for
+improving the stability of training targets that are unstable
+with the least mean square readout used in this work. From Eqs. (3) and (5), the correlation between x¯1 and X1
+can be obtained, leading to a linear equation for αðωÞ. Realizing that the readout vector wout in the case of M ¼ 1 is simply the vector r¯, normalized and scaled by the desired
+output amplitude, we obtain the open loop gain as a mean field estimate of hrr0Xi:
+
+GOLðωÞ
+
+¼
+
+ð1
+
+−
+
+Aβ0 β1 þ
+
+iωÞ
+
+ð8Þ
+
+with frequency-independent coefficients β0;1 derived in Ref. [27]. The derivation of (8) required neglecting X1⊥ due to the following argument: The vectors x¯1 ¼ Wr¯ and X1 ¼ ð1 þ iωÞ−1WR0X both result from a product with W and are thus jointly Gaussian. Orthogonality to x¯1 thus renders the vector X1⊥ independent of x¯1 and of all its functions.
+The single pole of (8) leads to a single (uncanceled) pole λout ¼ −ð1 − Aβ0 − β1Þ of the closed loop gain (7) and corresponds to a single eigenvalue of (4). The rest of its
+spectrum, corresponding to canceled poles, remains intact
+compared to the open loop system [Figs. 1(a)–1(c)].
+
+258101-2
+
+PRL 118, 258101 (2017)
+
+PHYSICAL REVIEW LETTERS
+
+week ending 23 JUNE 2017
+
+FIG. 1. The analysis of a trained RNN is shown for representative cases compliant with the fading memory property (ρ < 1). (a) Internal dynamics are slow compared to network output (τnet > τout). (b) The opposite case (τnet < τout), where the internal state is dominated by output feedback. (c) Unstable case (τout < 0). (d) Unstable oscillatory solution around one of the targets for M ¼ 3. Left: Mean field estimate (red) of the closed loop spectrum compared with a finite size realization (blue dots, N ¼ 3000). Middle: A transient response for a δ-like perturbation is shown for both output (thick line) and for ten random neurons (thin lines). Right: A MFT estimation (red) of open loop gain is compared with a finite size realization (blue). The black cross at 1 þ 0i helps visualize the Nyquist criterion. (a) inset: Finite size effects (for other cases, where ρ is significantly smaller than unity, finite size effects are small and not shown). Parameters: The output value was set to A ¼ 1 for all the cases except (d), where A1;2;3 ¼ f0.5; 1.0; 1.5g (inset) and A1 is analyzed. Nonlinearity ϕðxÞ ¼ tanhðxÞ was used except (c), for which ϕðxÞ ¼ maxð0; x − 0.1Þ. The connectivity strength scale g was set to 1.5,
+0.5, 1.1, and 1.0 for the cases (a), (b), (c), and (d), respectively.
+
+Interestingly, for a commonly used ϕðxÞ ¼ tanhðxÞ and, more generally, for any sigmoidal activation function ϕðxÞ with an inflection point at zero, the pole λout is always negative and the trained system is thus always stable.
+Conversely, it is always unstable for a rectified linear activation function ϕðxÞ ¼ maxð0; x − xthÞ with positive threshold xth. To check, one expresses λout as
+
+λout ¼ −σ−2g2hϕðx0Þ½ϕðx0Þ − x0ϕ0ðx0Þi
+
+ð9Þ
+
+where x0 ¼ wFBA þ σy, and observes that the integrand is always non-negative (respectively, nonpositive) for an origin-centered sigmoid (respectively, rectified linear) activation function. The situation with all positive but saturating activation functions (e.g., those investigated in
+
+258101-3
+
+PRL 118, 258101 (2017)
+
+PHYSICAL REVIEW LETTERS
+
+week ending 23 JUNE 2017
+
+Ref. [33]) is more complicated, and both stable and
+unstable settings exist.
+The maximum Lyapunov exponent of the system (1) does not necessarily coincide with λout but rather with maxðλout; ρ − 1Þ. In particular, for sigmoids mentioned above, τout ≡ −ðλoutÞ−1 remains finite even for networks at the edge of chaos, where, by definition, the time constant of the internal activity diverges as τnet ¼ ð1 − ρÞ−1 [3,18]. The case of τnet ≫ τout is demonstrated in Fig. 1(a) and can explain the experimental observation [22,23] of the robust-
+ness of functionally important signals in the presence of
+highly varying underlying neural activity. From this point of view, the convergence of GOLðωÞ to its MFT estimate as
+shown in Fig. 1(a) (inset) can be interpreted as the subspace
+X⊥ becoming unobservable from the output. Multiple training targets.—For M ¼ 1 the open loop
+gain (8) has a single pole, which implies that a dc gain smaller than unity [GOLðω ¼ 0Þ < 1] is a sufficient and
+necessary condition for the stability of (1). This is not the case for M > 1. The least mean square readout weight
+vector in this case is given by
+
+X M wout ¼ N−1 kmr¯m;
+m¼1
+
+ð10Þ
+
+where the coefficient vector k is derived from the correlation matrix of the states r¯. The open loop gain around the nth fixed point is hence
+
+X M GOn LðωÞ ¼ kmGnmðωÞ
+m¼1
+
+ð11Þ
+
+with a diagonal term Gnn similar to (8) and cross terms GnmðωÞ ¼ hr¯TmR0nXnðωÞi which can be brought to a form
+
+GnmðωÞ
+
+¼
+
+Knmðiω − znmÞ ðiω − pnnÞðiω − pnmÞ
+
+ð12Þ
+
+with Knm, znm, pnm, and pnn derived in Ref. [27]. Thus, we conclude that the local dynamics of the output of the closed
+loop system (7) is governed by an Mth-order ordinary
+differential equation. This follows from noting that the sum of Eq. (11) renders GOn LðωÞ and GCnLðωÞ Mth-order rational functions of ω.
+The MATLAB code for the mean field calculation of GOLðωÞ is provided in Ref. [34] along with a detailed derivation of (12) [27].
+The higher order of GCL in a multiple fixed point
+setting implies that the stability condition on the dc gain GOLðω ¼ 0Þ < 1 is no longer sufficient. A counterexample, shown in Fig. 1(d), demonstrates the emergence of
+complex poles corresponding to unstable oscillatory behav-
+ior. Thus, stability requires the evaluation of all M poles of GCLðωÞ. Alternatively, the Nyquist criterion [35,36] can be applied to the open loop system GOLðωÞ avoiding a direct
+
+analysis of GCLðωÞ. Specifically, stability depends on whether the curve GOLðωÞ from −∞ to þ∞ does not encircle the point 1 þ 0i in the complex plane (black crosses in Fig. 1) [37].
+Importantly, stable resonances may also emerge due to the same mechanisms. Resonances are characteristic to a specific steady state z ¼ An of the network rather than to the network in general. Figure 2 demonstrates such a statedependent frequency selectivity in a bistable network. Such selectivity is well known in biological neural circuits [20,21], and our theory suggests that it can emerge as an inherent consequence of having multiple steady states (e.g., fixed points) rather than due to some dedicated frequency adaptation process. Remarkably, resonance emerges by perturbing through an arbitrary input win in (1), and not only through wFB, since the resonant eigenvalues shown in Fig. 2 also dictate the slowest time scale of the system as a whole, regardless of the input details.
+While no fully analytical treatment for the resonance characteristics is available, we note that we commonly observed resonance frequencies in the range of ω0 ≈ 0.1–0.5. Interestingly, Rajan, Abbott, and Sompolinsky [4] predicted enhanced chaos suppression by stimuli in a very similar frequency range, indicating a possible connection between the two phenomena. Supplemental Material (Sec. 2) contains several bounds on these frequencies, but a full analysis is beyond the scope of the current work.
+Naturally, many questions arise concerning a generalization of these results to more complex settings, such as input-dependent outputs, time-varying targets, advanced adaptive training algorithms, and dynamics in the noisy (chaotic) regime beyond the fading memory domain [1,26,38]. The initial investigation of a simple dynamical task [15,39] shows that the local stability around fixed points determines training success and failure [27], indicating the relevance of our work to more complex, timedependent settings. The derivation of an analytical solution
+FIG. 2. Network with stable fixed points at A1 ¼ 0.5 (blue) and A3 ¼ 1.5 (orange) exhibits frequency selectivity around the lower fixed point A1, while at the higher fixed point A3 no such selectivity exists. GCL for both cases is shown along with the spectrum (top inset) and transient response for the same white noise input (green) delivered through win to both fixed points. The settings of Fig. 1(d) were used, except that here g ¼ 0.9.
+
+258101-4
+
+PRL 118, 258101 (2017)
+
+PHYSICAL REVIEW LETTERS
+
+week ending 23 JUNE 2017
+
+for such a case (left for a future work) requires an extension of the dynamical mean field theory [3,4] to a nonstationary case. Obviously, there also exist failure mechanisms that are not determined by local dynamics; in particular, there is an inherent trade-off between stability and sensitivity to external input. As for chaotic networks, our analysis indicates a smooth transition between chaotic and fading memory regime. In particular, according to Eq. (9), the output feedback loop remains formally stable at the edge of chaos, while the assumption of ρ < 1 which was used to derive this equation becomes invalid. Numerical simulations of this setting show that the output becomes noisy but remains stable [27].
+In conclusion, we considered high-dimensional networks adapted to produce a desired low-dimensional output. The output is being interpreted here as a firing rate but can also stand for stable gene expression [40] or a variety of other observables [41]. In all these cases, the network’s internal state remains high dimensional and hard to interpret or investigate directly. The method of combining a mean field approach with system analysis presented here enables predictions ranging from instability to extreme robustness of the network of interest.
+We thank Larry Abbott, Naama Brenner, Lukas Geyrhofer, Vishwa Goudar, Leonid Mirkin, Daniel Soudry, and Merav Stern for their valuable comments. O. B. is supported by a Marie Curie Career Integration Grants, Seventh Framework Program (FP7) of the European Commission (Grant No. 2013-618543), by Fondation Adelis, and by the Israel Science Foundation (Grant No. 346/16).
+*arivkind@tx.technion.ac.il †omri.barak@gmail.com [1] V. Mante, D. Sussillo, K. V. Shenoy, and W. T. Newsome, Nature (London) 503, 78 (2013). [2] Y. LeCun, Y. Bengio, and G. Hinton, Nature (London) 521, 436 (2015). [3] H. Sompolinsky, A. Crisanti, and H. J. Sommers, Phys. Rev. Lett. 61, 259 (1988). [4] K. Rajan, L. F. Abbott, and H. Sompolinsky, Phys. Rev. E 82, 011903 (2010). [5] M. Stern, H. Sompolinsky, and L. F. Abbott, Phys. Rev. E 90, 062710 (2014). [6] J. Kadmon and H. Sompolinsky, Phys. Rev. X 5, 041030 (2015). [7] M. Massar and S. Massar, Phys. Rev. E 87, 042809 (2013). [8] J. J. Hopfield, Proc. Natl. Acad. Sci. U.S.A. 79, 2554 (1982). [9] E. Gardner, J. Phys. A 21, 257 (1988). [10] R. Ben-Yishai, R. L. Bar-Or, and H. Sompolinsky, Proc. Natl. Acad. Sci. U.S.A. 92, 3844 (1995). [11] O. V. Popovych, C. Hauptmann, and P. A. Tass, Phys. Rev. Lett. 94, 164102 (2005). [12] K. Pyragas, Phys. Lett. A 170, 421 (1992).
+
+[13] E. Ott, C. Grebogi, and J. A. Yorke, Phys. Rev. Lett. 64, 1196 (1990).
+[14] F. Carnevale, V. de Lafuente, R. Romo, O. Barak, and N. Parga, Neuron 86, 1067 (2015).
+[15] D. Sussillo and O. Barak, Neural Comput. 25, 626 (2013).
+[16] L. Abbott, B. DePasquale, and R.-M. Memmesheimer, Nat. Neurosci. 19, 350 (2016).
+[17] S. A. Neymotin, G. L. Chadderdon, C. C. Kerr, J. T. Francis, and W. W. Lytton, Neural Comput. 25, 3263 (2013).
+[18] Y. Ahmadian, F. Fumarola, and K. D. Miller, Phys. Rev. E 91, 012820 (2015).
+[19] D. V. Buonomano, Neuron 63, 423 (2009). [20] G. Buzsaki, Rhythms of the Brain (Oxford University,
+New York, 2006). [21] S. L. Brincat and E. K. Miller, Nat. Neurosci. 18, 576
+(2015). [22] U. Rokni, A. G. Richardson, E. Bizzi, and H. S. Seung,
+Neuron 54, 653 (2007). [23] S. Druckmann and D. B. Chklovskii, Curr. Biol. 22, 2095
+(2012). [24] W. Maass, T. Natschläger, and H. Markram, Neural Comput.
+14, 2531 (2002). [25] H. Jaeger, German National Research Center for Informa-
+tion Technology, GMD Technical Report No. 148 (2001). [26] D. Sussillo and L. F. Abbott, Neuron 63, 544 (2009). [27] See Supplemental Material at http://link.aps.org/
+supplemental/10.1103/PhysRevLett.118.258101, which includes Refs. [28–31], for (i) fading memory property and rank one perturbations, (ii) derivation of open loop gain, and (iii) discussion about extending this work beyond fixed points. [28] K. J. Aström and R. M. Murray, in Ref. [27], Chap. 7. [29] G. Hennequin, T. P. Vogels, and W. Gerstner, Neuron 82, 1394 (2014). [30] I. B. Yildiz, H. Jaeger, and S. J. Kiebel, Neural Netw. 35, 1 (2012). [31] G. Manjunath and H. Jaeger, Neural Comput. 25, 671 (2013). [32] K. J. Aström and R. M. Murray, Feedback Systems: An Introduction for Scientists and Engineers (Princeton University, Princeton, NJ, 2010), Chap. 6. [33] F. Mastrogiuseppe and S. Ostojic, PLoS Comput. Biol. 13, e1005498 (2017). [34] See Supplemental Material at http://link.aps.org/ supplemental/10.1103/PhysRevLett.118.258101 for the MATLAB code. [35] H. Nyquist, Bell Syst. Tech. J. 11, 126 (1932). [36] K. J. Aström and R. M. Murray, in Ref. [27], Chap. 9. [37] Because of the echo state property, the open loop system is stable, and the criterion is necessary and sufficient. [38] T. Matsuki and K. Shibata, Reward-Based Learning of a Memory-Required Task Based on the Internal Dynamics of a Chaotic Neural Network (Springer, New York, 2016), pp. 376–383. [39] G. M. Hoerzer, R. Legenstein, and W. Maass, Cereb. Cortex 24, 677 (2014). [40] S. Ciliberti, O. C. Martin, and A. Wagner, Proc. Natl. Acad. Sci. U.S.A. 104, 13591 (2007). [41] B. Barzel and A.-L. Barabási, Nat. Phys. 9, 673 (2013).
+
+258101-5
+

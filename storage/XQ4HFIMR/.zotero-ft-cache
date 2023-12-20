@@ -1,0 +1,719 @@
+Cerebral Cortex, January 2017;27: 660–679
+doi:10.1093/cercor/bhv249 Advance Access Publication Date: 29 October 2015 Original Article
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+ORIGINAL ARTICLE
+A Computational Model of Major Depression: the Role of Glutamate Dysfunction on Cingulo-Frontal Network Dynamics
+Juan P. Ramirez-Mahaluf1, Alexander Roxin1,2, Helen S. Mayberg3 and Albert Compte1
+1Institut d’Investigacions Biomèdiques August Pi i Sunyer (IDIBAPS), Barcelona, Spain, 2Centre de Recerca Matemàtica, Bellaterra, Spain and 3School of Medicine, Emory University, Atlanta, GA, USA
+Address correspondence to Albert Compte, IDIBAPS, Rosselló 149, 08036 Barcelona, Spain. Email: acompte@clinic.ub.es
+
+Abstract
+Major depression disease (MDD) is associated with the dysfunction of multinode brain networks. However, converging evidence implicates the reciprocal interaction between midline limbic regions (typiﬁed by the ventral anterior cingulate cortex, vACC) and the dorso-lateral prefrontal cortex (dlPFC), reﬂecting interactions between emotions and cognition. Furthermore, growing evidence suggests a role for abnormal glutamate metabolism in the vACC, while serotonergic treatments (selective serotonin reuptake inhibitor, SSRI) effective for many patients implicate the serotonin system. Currently, no mechanistic framework describes how network dynamics, glutamate, and serotonin interact to explain MDD symptoms and treatments. Here, we built a biophysical computational model of 2 areas (vACC and dlPFC) that can switch between emotional and cognitive processing. MDD networks were simulated by slowing glutamate decay in vACC and demonstrated sustained vACC activation. This hyperactivity was not suppressed by concurrent dlPFC activation and interfered with expected dlPFC responses to cognitive signals, mimicking cognitive dysfunction seen in MDD. Simulation of clinical treatments (SSRI or deep brain stimulation) counteracted this aberrant vACC activity. Theta and beta/gamma oscillations correlated with network function, representing markers of switch-like operation in the network. The model shows how glutamate dysregulation can cause aberrant brain dynamics, respond to treatments, and be reﬂected in EEG rhythms as biomarkers of MDD.
+Key words: bistability, deep brain stimulation, theta, serotonin, subgenual
+
+Introduction
+Major depression disease (MDD) is the most common of all psychiatric disorders (Kessler et al. 2003), characterized by persistent negative mood and selective deﬁcits in cognitive, circadian, and motor functions. While much evidence related to MDD has been acquired using a broad range of methods, there is no single mechanistic model able to integrate and explain the variety of observations.
+Converging clinical, biochemical, neuroimaging, and postmortem evidence demonstrates cortical, subcortical, and limbic involvement in the pathophysiology of MDD (Mayberg 1997;
+
+Manji et al. 2001; Vaidya and Duman 2001; Nemeroff 2002; Nestler et al. 2002). Furthermore, multiple studies point at the ventral anterior cingulate cortex (vACC) as the critical hub within this distributed network of regions that drives alterations in system dynamics in MDD. For one, the vACC is consistently involved in acute sadness (Mayberg et al. 1999; Liotti et al. 2000; Smith et al. 2011). Secondly, neuroimaging studies reveal hyperactivity of vACC in MDD patients (Mayberg et al. 1999, 2005; Seminowicz et al. 2004). Thirdly, vACC hyperactivity is reduced after clinical response to MDD treatments: Selective serotonin reuptake inhibitor (SSRI) medication (Mayberg et al. 2000; Drevets et al.
+
+© The Author 2015. Published by Oxford University Press. All rights reserved. For Permissions, please e-mail: journals.permissions@oup.com
+
+660
+
+A Computational Model of Major Depression Ramirez-Mahaluf et al. | 661
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+2002; Goldapple et al. 2004), electroconvulsive therapy (ECT; Nobler et al. 2001), repetitive transcranial magnetic stimulation (rTMS; Mottaghy et al. 2002; Fox et al. 2012), ablative surgery (Malizia 1997; Dougherty et al. 2003), vagus nerve stimulation (Pardo et al. 2008), and deep brain stimulation (DBS; Mayberg et al. 2005). In addition, patients responding to treatment differed from nonresponders in network subsystems involving both limbic afferents and cortical efferents of vACC (Seminowicz et al. 2004). Finally, the vACC drives the dynamics of default mode network (DMN) in resting depressed patients in correlation with the length of their depressive episodes (Greicius et al. 2007). Also, in rodent models of depression, optogenetic stimulation in the medial prefrontal cortex (homologous to vACC in humans) modulates depression-related behavior (Covington et al. 2010; Warden et al. 2012; Kumar et al. 2013; Veerakumar et al. 2014).
+On the other hand, MDD is also characterized by hypoactivity in both dorsal anterior cingulate cortex and dorsolateral prefrontal cortex (dlPFC; Bench et al. 1992; Mayberg 1997; Kennedy 2001; Videbech et al. 2002; Oda et al. 2003), which is reverted after successful treatment with serotonergic medications (Mayberg et al. 2000; Kennedy 2001; Botteron et al. 2002; Vlassenko et al. 2004) and DBS (Mayberg et al. 2005). This opposite alteration of dlPFC and vACC in the MDD seems to reﬂect an operating principle of these networks, rather than disease-dependent impairments speciﬁc to each area. Indeed, in healthy humans, the vACC routinely increases its activity in response to emotional tasks (Drevets and Raichle 1998; Bush et al. 2000; Liotti et al. 2000; Smith et al. 2011) and it reduces its activity upon cognitive demands (Drevets and Raichle 1998; Bush et al. 2000; Simpson et al. 2001). Conversely, dlPFC typically activates in cognitive tasks (Cohen et al. 1993; Jonides et al. 1993; McCarthy et al. 1994), and it decreases its activation in emotional tasks (Perlstein et al. 2002; Dolcos and McCarthy 2006; Dolcos et al. 2008). In addition to their opposite functionality, the vACC and dlPFC are intrinsically anticorrelated during spontaneous activity in depressed patients (Fox et al. 2012), often embedded in larger networks of consistently correlated areas [for instance, DMN (Raichle et al. 2001; Greicius et al. 2003; Fox and Raichle 2007) and cognitive control network (CCN; Cole and Schneider 2007; Cole et al. 2012), respectively]. We hypothesize that this anticorrelation is a result of mutual disynaptic inhibition between the vACC and dlPFC. Two lines of evidence give support to this mechanistic hypothesis. For one, there is an anatomic substrate for such mutual interaction in that subregions of vACC have prevalent, large synapses onto inhibitory neurons in dlPFC (Medalla and Barbas 2010). For a second, the dlPFC sites with strongest anticorrelation with vACC are the locations where TMS has the best clinical efﬁcacy in depressed patients (Fox et al. 2012).
+In line with this hypothesis, EEG and MEG studies demonstrate the coordination of oscillatory activity in prefrontal and anterior cingulate cortex in the time scales of synaptic interactions during focused attention: Rhythmic cortical activation at 4–8 Hz is generated between these 2 regions in what is usually termed frontal midline theta (Asada et al. 1999; Tsujimoto et al. 2006; Hsieh and Ranganath 2014). Also, alpha (8–12 Hz) and beta/low gamma (12–40 Hz) synchronization, characteristic of cognitive operation in the fronto-parietal network (Ray and Cole 1985; Siegel et al. 2012), is recruited by negative valence information in the vACC (Lipsman, Kaping, et al. 2014). Importantly, alterations of these fast circuit dynamics are associated with MDD: The amplitude of the theta vACC rhythm in MDD patients has been shown to correlate with treatment outcome (Pizzagalli et al. 2001; Mulert et al. 2007; Iosifescu et al. 2009; Korb et al. 2009; Pizzagalli 2011; Broadway et al. 2012), and beta-band
+
+activity in frontal scalp electrodes correlates positively with the severity of depression (Pizzagalli et al. 2002).
+In addition to systems-level anomalies, a picture of cellular and synaptic vACC dysfunction in the MDD is now emerging. A smaller vACC volume characterizes MDD in neuroanatomical studies (Drevets et al. 1997; Botteron et al. 2002; Hastings et al. 2004; Yucel et al. 2008), partly reﬂecting a reduction in glial cell density and neuronal soma size (Ongür, Drevets, et al. 1998; Rajkowska et al. 1999; Cotter et al. 2001; Manji et al. 2001). Functionally, the downregulation of the glutamine synthetase and glial high-afﬁnity glutamate transporters (Choudary et al. 2005) suggest increased glutamatergic activity in the synaptic cleft in MDD patients. Additional converging evidence points at altered glutamatergic metabolism as a mediator of MDD pathology (Sanacora et al. 2012). Indeed, the progressive nature of MDD (Keller et al. 1992; Kendler 2000; Kendler et al. 2001) has been correlated with a progressive change of glutamate metabolism in the vACC (Portella et al. 2011), and in resting-state studies, glutamate metabolism alterations correlate with vACC hyperactivation and MDD symptoms (Walter et al. 2009; Horn et al. 2010). Our understanding of the mechanisms of MDD treatments is also evolving. The uneven distribution of serotonin receptors in the cingulate gyrus, with the highest density of 5-hydroxytryptamine (5-HT1A) receptors in the vACC (Santana et al. 2004; Palomero-Gallagher et al. 2009), suggests that the selective action of SSRI treatments might be mediated by hyperpolarization of vACC neurons through the 5-HT1A receptor (Andrade et al. 1986; Béïque et al. 2004).
+High-frequency DBS in the subcallosal white matter has been reported as an effective strategy for treatment-resistant patients (Mayberg et al. 2005; Lozano et al. 2008; Kennedy et al. 2011; Holtzheimer et al. 2012). Chronic stimulation of the subgenual cingulate white matter was associated with remission of symptoms, marked reduction in vACC activity, and increase in dlPFC activity relative to the baseline (Mayberg et al. 2005). The effective action of DBS mainly targets a conﬂuence of white matter tracts intersecting immediately adjacent to the subcallosal ACC (vACC) (Johansen-Berg et al. 2008; Riva-Posse et al. 2014; Choi et al. 2015). Current evidence suggests 3 possible mechanisms for the DBS therapeutic action: The response to DBS is mediated by the direct activation of interneurons in the vACC (Mayberg et al. 2005), by impact on pathways linking the vACC to the frontal cortex via the uncinate fasciculus (Riva-Posse et al. 2014), and by impact on projections to downstream serotonergic targets in the dorsal raphe (Hamani et al. 2010, 2012; Veerakumar et al. 2014; Jiménez-Sánchez et al. 2015; Srejic et al. 2015). Consistent with this, optogenetic stimulation of mPFC neuronal cell bodies (Covington et al. 2010; Kumar et al. 2013) or glutamatergic mPFC projections to the dorsal raphe nucleus (Warden et al. 2012) reduces depression-related behavior in rodents.
+Taken together, these data indicate that the vACC and its interactions with the dlPFC play a key role in the brain network dynamics abnormalities that subserve MDD, the associated mood and cognitive deﬁcits, and in the outcome of treatments. We hypothesized that MDD would be caused by unbalanced mutual inhibition between emotional (vACC) and cognitive (dlPFC) networks due to deﬁcient glutamate reuptake in vACC. In this view, vACC and dlPFC circuits, as critical hubs of larger computing networks, serve a “switch-like” function, driving the computations being carried out in larger distributed networks, and progressive hyperactivation of the vACC would result in exacerbated emotional and deﬁcient cognitive processing, characteristic of more treatment-resistant depressed states.
+The wealth of converging evidence onto speciﬁc mechanisms suggests that a computational modeling approach may be able to
+
+662 | Cerebral Cortex 2017, Vol. 27, No. 1
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+integrate these data, test the hypotheses dynamically, and provide a detailed mechanistic understanding of MDD on which to base model-derived hypotheses for further experiments. We provide here a biophysical computational model of MDD pathophysiology based on the neural dynamics within the vACC and between the vACC and dlPFC, and their modulation by glutamate metabolism deﬁcits and serotonergic treatments. Our cingulate– frontal network model can integrate coherently the core clinical symptoms, disease progression, electrophysiology, and the response to SSRI and DBS treatments in MDD.
+
+Materials and Methods
+We tested our hypothesis in a simpliﬁed computational network model composed of 2 subcircuits, one involved in emotional (vACC) and one in cognitive processing (dlPFC; Fig. 1A). vACC was assumed to receive inputs from the limbic system (amygdala and hippocampus) (Ishikawa and Nakamura 2003), and respond to the emotional components of the task as part of a larger network of areas dealing with emotion (Devinsky et al. 1995; Ishikawa and Nakamura 2003; Vogt 2009). Inputs from posterior parietal cortex activated dlPFC in response to cognitive demands (MacDonald et al. 2000; Edin et al. 2009). vACC and dlPFC circuits mutually suppressed each other’s activity through disynaptic inhibition (Fig. 1A). vACC and dlPFC represent the network hubs that drive activity in larger computing networks (DMN and CCN, respectively), which we do not simulate for simplicity. We associate hyperactivation (hypoactivaton) of the vACC or dlPFC circuits with exacerbated (deﬁcient) emotional or cognitive processing, respectively.
+
+Spiking Network Model
+We built our cingulo-frontal network of vACC- and dlPFCinterconnected subnetworks with excitatory and inhibitory spiking neurons (integrate-and-ﬁre model; Tuckwell 1988) using the Brian simulator (Goodman and Brette 2009; www. briansimulator.org, python code available in Supplementary Material). Each subnetwork contained NE = 800 pyramidal cells and NI = 200 interneurons, where their membrane potential Vm followed
+
+Cm
+
+dVm dt
+
+¼
+
+ÀgmðVmðtÞ
+
+À
+
+VL Þ
+
+À
+
+Isyn ðtÞ
+
+ð1Þ
+
+with resting potential VL = −70 mV, leak conductance gm, and membrane capacitance Cm. When Vm crosses a prescribed threshold Vth = −50 mV, an action potential is emitted and the membrane voltage is kept at a reset potential Vres = −55 mV for a refractory time period τref. See parameter values in Table 1. All neurons connected with other neurons in the network in an
+all-to-all connectivity diagram. The total synaptic current Isyn(t) was given by recurrent exci-
+tatory inputs through AMPA (IAMPA,rec) and NMDA (INMDA,rec) receptors, inhibitory inputs through GABAA receptors (IGABA), and excitatory inputs from external areas through AMPA receptors (IAMPA,ext):
+
+IsynðtÞ ¼ IAMPA;extðtÞ þ IAMPA;recðtÞ þ INMDA;recðtÞ þ IGABA;recðtÞ: ð2Þ
+
+Conductance-based postsynaptic currents were modeled according to Isyn = gsyn s (Vm – Vsyn), where gsyn is a synaptic conductance (Table 1), s is a synaptic gating variable, and Vsyn is the synaptic reversal potential (excitatory synapses Vsyn = 0 and inhibitory
+
+Figure 1. Schematic of network architecture and mechanisms. (A) The conceptual network model included 2 subsets of networks: (1) The emotional network including vACC and (2) the cognitive network including dlPFC. The vACC and dlPFC are the hubs of each network, reciprocally connected via disynaptic inhibition. Each subnetwork included recurrently coupled excitatory pyramidal cells (E cells) and inhibitory interneurons (I cells). Emotional inputs from the limbic system target vACC and cognitive inputs from posterior parietal cortex (PPC) impinge on dlPFC. (B) Schematic drawing illustrating the slower glutamate reuptake in vACC described in MDD, which we simulated as a slow-down of glutamate decay in the synapses. (C) Schematic drawing illustrating the action of SSRIs through 5-hydroxytryptamine (5-HT1A) receptors: An increase in an outward K+ current causes a small hyperpolarization of vACC excitatory cells, which is what we simulate computationally.
+
+Table 1 Parameter values used in the simulations
+
+Single-cell parameters
+Pyramidal cells gm = 25 nS Cm = 0.5 nF τref = 2 ms Synaptic parameters
+Onto pyramidal neurons gAMPA;extsyn = 0.21 nS gAMPA;recsyn = 0.024 nS gNMDA;recsyn = 0.044 nS gGABAsyn = 0.1 nS
+
+Interneurons gm = 20 nS Cm = 0.2 nF τref = 1 ms
+Onto interneurons gAMPA;extsyn = 0.16 nS gAMPA;recsyn = 0.008 nS gNMDA;recsyn = 0.024 nS gGABAsyn = 0.097 nS
+
+A Computational Model of Major Depression Ramirez-Mahaluf et al. | 663
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+synapses Vsyn = −70 mV). AMPAR and GABAAR synaptic gating variables were modeled as an instantaneous jump of magnitude
+1 when a spike occurred in the presynaptic neuron followed by an
+exponential decay with time constant τAMPA = 2 ms for AMPARs and τGABA = 10 ms for GABAARs. The NMDA conductance was voltage-dependent, with gsyn multiplied by 1/(1 + [Mg2+] exp (−0.062 Vm)/3.57), [Mg2+] = 1.0 mM, and its gating variable s was modeled by
+
+ds dt
+
+¼
+
+À1 τ NMDA
+
+s
+
+þ
+
+αsxð1
+
+À
+
+sÞ;
+
+dx dt
+
+¼
+
+À1 τx
+
+x
+
+þ
+
+X
+i
+
+δðt
+
+À
+
+ti Þ;
+
+ð3Þ
+
+where x models neurotransmitter concentration in the synapse, ti are presynaptic spike times, and τNMDA = 100 ms is the decay time, τx = 2 ms is the rise time, and αs = 0.5 kHz controls the saturation properties of NMDAR.
+The unspeciﬁc external input IAMPA,ext was modeled as uncorrelated Poisson spike trains through AMPA synapses of conductance gAMPA, ext to each neuron at a rate of vext = 1800 Hz. The fast dynamics of AMPARs made this input contribute signiﬁcantly to trial-to-trial variability. For simplicity, we did not model NMDARs in these connections, but this would not affect the results. Neurons in and across each model circuit, vACC and dlPFC, were connected all to all. The 2 circuits were reciprocally connected through AMPA excitatory synapses onto inhibitory neurons with conductance gAMPAsyn = 0.1 nS (Fig. 1A).
+In MDD networks, we simulated deﬁcient glutamate reuptake by increasing the time constant of synaptic glutamate decay τAMPA (Choudary et al. 2005): τAMPA = 2.05 ms (mild MDD), τAMPA = 2.1 ms (moderate MDD), and τAMPA = 2.15 ms (severe MDD; Fig. 1B). Glutamate transporters can remove glutamate from the synaptic cleft with an effective time constant of 0.5 ms (Auger and Attwell 2000), a much faster time scale than the effective time constant of NMDAR-mediated synaptic transmission (∼100 ms), so that the impact of glutamate reuptake slow-down should be marginal on NMDAR-mediated transmission.
+The action of SSRIs via 5-hydroxytryptamine (5-HT1A) receptors in the vACC was simulated as a hyperpolarization of excitatory cells (Andrade et al. 1986; Béïque et al. 2004), by reducing the resting potential from its value in the healthy condition (VL = −70 mV) to a value that depends on the dose of SSRI (Fig. 1C; for the maximal SSRI dose used, VL = −70.6 mV, Fig. 4). We simulated DBS as periodic excitation at 130 Hz of AMPAR-mediated excitatory synapses onto inhibitory neurons of vACC. The parameters for DBS stimulation were the following: duration = 0.01 ms, interpulse interval = 7.69 ms, and intensity gDBSsyn = 0.6 nS.
+We ran these spiking simulations in our computational cluster (168 CPUs 2.3 MHz, 156 Gb RAM) with a time step Δt = 0.1 ms, which provided the best compromise between computational precision and run time. The average run time for simulations of duration 100 s was 18 000 ± 300 s (mean ± SEM). To characterize typical network behavior in spike histograms, we ran a large number (50) of long simulations (100 s), and we reduced simulation time by a factor 10 by using smaller network sizes (80 excitatory and 20 inhibitory neurons) with rescaled synaptic weights.
+Spectral analysis was performed using the Chronux software package (Bokil et al. 2010) on Matlab. Chronux built-in multitaper spectral estimation (5 tapers, time-bandwidth = 3 Hz) was used to estimate frequency spectra ( power spectra). To have long enough time series to perform the spectral analysis in the studied range of frequency, we used a window size of 1 s taken from activated states. To compare the spectral properties of
+
+simulated local ﬁeld potentials (LFP) obtained from different network model simulations, we normalized each power spectrum by the variance of the signal. Error bars for spectral estimation represent the jackknife 95% conﬁdence interval (CI).
+
+Firing Rate Network Model
+The dynamics of the network can be analyzed conceptually in a simpler ﬁring rate model:
+
+τe
+
+drve dt
+
+¼
+
+Àrve
+
+þ
+
+φe ðGee
+
+fD rve
+
+À
+
+Gei rvi
+
+þ
+
+Ive
+
+þ
+
+Ie
+
+fD
+
+þ
+
+ΔIe Þ;
+
+τi
+
+drvi dt
+
+¼
+
+Àrvi
+
+þ
+
+φi ðGie
+
+fD rve
+
+À
+
+Gii rvi
+
+þ
+
+Gx rde
+
+þ
+
+Ivi
+
+þ
+
+Ii
+
+fD
+
+þ
+
+ΔIi Þ;
+
+ð4Þ
+
+τe
+
+drde dt
+
+¼
+
+Àrde
+
+þ
+
+φe ðGee rde
+
+À
+
+Gei rdi
+
+þ
+
+Ide
+
+þ
+
+Ie Þ;
+
+τi
+
+drdi dt
+
+¼
+
+Àrdi
+
+þ
+
+φi ðGie rde
+
+À
+
+Gii rdi
+
+þ
+
+Gx rve
+
+þ
+
+Idi
+
+þ
+
+Ii Þ;
+
+where rev and riv ðred and ridÞ are, respectively, the ﬁring rates of the excitatory and inhibitory populations in the ventral (dorsal) subnetwork. Excitatory and inhibitory neurons were characterized by the time constants τe and τi, respectively, and φe and φi are the corresponding neuronal input–output function relating output ﬁring rate to input currents. Within each subnetwork, Gee is the effective connection strength between excitatory neurons, Gie is the effective connection strength from excitatory to inhibitory neurons, Gii is the effective connection strength between inhibitory neurons, and Gei is the effective connection strength from inhibitory to excitatory neurons. Gx is the effective excitatory connection strength across subnetworks, targeting only inhibitory neurons. Ie and Ii are inputs from neurons external to the network, which control the excitability of neurons and determine the neurons’ spontaneous ﬁring rates. Iev; Ied; Iiv; and Iid are excitatory inputs from neurons external to the network (e.g., parietal cortex or amygdala), which represent either emotional or cognitive stimuli. Parameters fD (fD > 1), ΔIe, and ΔIi were used to simulate glutamate dysfunction associated with MDD, modulation of excitability associated with SSRI treatments, and modulation of interneurons associated with DBS treatment, respectively, in the vACC subnetwork. We analyzed mathematically the dynamics of these subnetworks (see Supplementary Material) and we present here succinctly the main relevant results.
+To gain an understanding of the dynamics in equation (4), which are relevant for this manuscript, we actually need only to analyze a single isolated area: dorsal or ventral. The reason is that when one area is activated, it strongly inhibits the other, effectively shutting it off (see “4D system and 2D reduction” in Supplementary Material for a detailed explanation). Therefore, we can consider the system of 2 coupled equations:
+
+τe
+
+drve dt
+
+¼
+
+Àrve
+
+þ
+
+φe ðGee
+
+fD rve
+
+À
+
+Gei rvi
+
+þ
+
+Ive
+
+þ
+
+Ie
+
+fD
+
+þ
+
+ΔIe Þ;
+
+τi
+
+drvi dt
+
+¼
+
+Àrvi
+
+þ
+
+φi ðGie
+
+fD rve
+
+À
+
+Gii rvi
+
+þ
+
+Ivi
+
+þ
+
+Ii
+
+fD
+
+þ
+
+ΔIi Þ:
+
+The intrinsic dynamics of this network depends crucially on the effective strength of synaptic connections as well as on the relative time constants of integration of the excitatory and inhibitory populations of neurons. Speciﬁcally, the networks can exhibit bistable behavior only if the effective gain associated with changes in total inhibitory input received by the population of
+
+664 | Cerebral Cortex 2017, Vol. 27, No. 1
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+excitatory neurons is overcome by sufﬁciently strong gain in recurrent excitation. This condition is met when the parameters satisfy the following formula:
+
+fD Gee φe0
+
+>1þ
+
+fD Gei Gie φi0 φe0 1 þ Giiφi0
+
+;
+
+ð5Þ
+
+where φe0ðφi0Þ is the gain of the excitatory (inhibitory) population of neurons, evaluated for a given level of external input. (Strictly speaking, this condition indicates the presence of a so-called Saddle-Node bifurcation, see Supplementary Material for details.)
+Furthermore, oscillations can also emerge in the networks if the gain in the recurrent excitation is both sufﬁciently strong and fast to transiently overcome ﬂuctuations in the inhibitory feedback. This (Hopf Bifurcation, see Supplementary Material for details) happens when
+
+fD Gee φe0
+
+>
+
+1
+
+þ
+
+τe τi
+
+ð1
+
+þ
+
+Gii φi0 Þ:
+
+ð6Þ
+
+And, the resulting oscillatory instability has a frequency of
+
+ω
+
+¼
+
+s1ﬃﬃﬃﬃþﬃﬃτﬃﬃiﬃGτﬃﬃﬃeiﬃiﬃﬃφﬃﬃﬃi0ﬃ1
+
+þ
+
+fD Gei Gie φi0 φe0 1 þ Giiφi0
+
+À
+
+1=2 fDGeeφe0 :
+
+ð7Þ
+
+It is easy to see from this formula that when the networks are in the bistable regime, and hence equation (5) is nearly satisﬁed, the frequency of oscillations is low, that is, oscillations are slow. The frequency of oscillation goes to zero exactly when equation (6) is satisﬁed, indicating the co-occurrence of a Saddle-Node and a Hopf bifurcation (see Supplementary Material for details). Experimentally, cortical oscillations are characterized by broad peaks in the power spectrum. Such structures can be obtained from simulations when oscillations are not stable limit cycles, but rather reﬂect the presence of damped oscillatory modes which are driven by ongoing ﬂuctuations in the network activity. In our networks, there is a broad range of parameter values for which equations (5) and (6) are nearly satisﬁed and hence for which such damped oscillations occur in the bistable regime. To see how the amplitude and frequency of oscillations depends on parameters in detail, see “Stability of the solutions” in Supplementary Material.
+We investigated how the parameter fD affected these dynamics when the system was residing in such a bistable, damped oscillatory regime for fD = 1. To this end, we speciﬁed the input– output functions as
+
+8
+
+<
+
+0;
+
+if x < 0
+
+φe ðxÞ
+
+¼
+
+:
+
+pAﬃﬃxﬃﬃﬃ2ﬃﬃ;ﬃﬃﬃﬃﬃﬃﬃﬃﬃ 2A x À 3=4;
+
+if if
+
+0 x 1 x>1
+
+ð8Þ
+
+and φi(x) = αφe(x). We found that the bistable range of the dynamics ΔIe could increase or decrease as fD grew. The condition that makes sense in our context is a reduction of ΔIe with fD, because that means that more advanced MDD has more difﬁcult treatment (Figs 6 and 8). We found that this dependency was achieved if inhibitory neurons operated in the ﬂuctuation-driven regime where their response to external inputs is supralinear, and not if they were linearly or sublinearly transforming input currents into output ﬁring rates. For a detailed discussion, see Supplementary Material, “How the region of bistability changes as a function of fD”.
+
+In the graphs of Figures 6 and 7, we used the following parameters: Gee = 0.09 s, Gie = 0.04 s, Gei = 0.0275 s, Gii = 0.0075 s, Gx = 0.025 s, Iex = 0.163, Iix = 0.1, Iev = 0, Ied = 0, Iiv = 0, Iid = 0, τe = 20 ms, τi = 20 ms, A = 20 Hz, α = 4, fD = 1 (healthy), fD = 1.05 (mild MDD), fD = 1.15 (moderate MDD), and fD = 1.25 (severe MDD) and in Figure 7B: ΔIev = 0.005, ΔIev = 0.02, ΔIev = 0.08, initial condition, rev = 4 sp/s.
+Results
+Healthy Operation Based on Reciprocal Suppression Between the Cognitive and Emotional Networks
+We simulated situations of strong conﬂicting emotional and cognitive demand (Fig. 2A), with purely emotional (sadness provocation task, SP task; Liotti et al. 2000) or purely cognitive (working memory task, WM task; Fuster and Alexander 1971) task epochs. The simulated tasks (SP and WM tasks) were chosen to emphasize the competitive aspect of emotional and cognitive processes. In addition, we modeled also resting epochs before and after these tasks, in which none of the modules received task-dependent inputs.
+We tuned our “healthy” cingulo-frontal network model, so that each subnetwork showed 2 stable states (Fig. 2B), one with neurons ﬁring asynchronously at low rates (0.5–1 sp/s) and another one with asynchronous ﬁring at higher rates (25–30 sp/s, Fig. 2B,C), synchronized at theta (2–8 Hz) and beta/gamma (12–50 Hz) frequencies (Fig. 2D). Normal or “healthy” operation occurred if the dlPFC or vACC circuits stabilized the high-rate state only during epochs of high cognitive or emotional demands, respectively, that is, only following the activation of their speciﬁc afferents. Thus, in the SP epoch, vACC responded persistently to transient stimuli, while brief inputs to dlPFC in the WM epoch triggered its persistent activation (Fig. 2). We modeled persistent activity in the vACC and dlPFC circuits based on available electrophysiological data for relevant behavioral protocols: Human ACC neurons show sustained modulations in cognitive and emotional tasks (Davis et al. 2000, 2005) characterized by synchronization in the theta and beta/low gamma bands (Asada et al. 1999; Tsujimoto et al. 2010; Lipsman, Kaping, et al. 2014), and monkey studies report persistently active neurons in relation to punishment or reward in the vACC (Koyama et al. 2001; Shidara and Richmond 2002; Amemori and Graybiel 2012; Monosov and Hikosaka 2012), and in WM tasks in the dlPFC (Fuster and Alexander 1971; Funahashi et al. 1989; Goldman-Rakic 1995).
+A key factor in the “healthy” operation of this system was the ability of the network to switch from emotional to cognitive processing (Fig. 2B,C) when the ﬁrst cognitive signal arrived to dlPFC. In our network, this occurred through mutual inhibitory mechanisms between the 2 circuits, so that activation of dlPFC caused the deactivation of neuron ﬁring in vACC.
+Progressive Nature of MDD
+We tested the hypothesis that slower glutamate reuptake in the vACC is a causal mediator of MDD symptoms in our vACC– dlPFC network model (Choudary et al. 2005; Walter et al. 2009; Horn et al. 2010; Portella et al. 2011; Fig. 1B).
+First, for the early stages of MDD (mild MDD network, Fig. 3A), a mere 2.5% slow-down in glutamate decay in the vACC generated aberrant activity (∼40 sp/s) in the vACC during the resting epoch. As vACC was already activated when emotional stimuli arrived during the SP epoch, the dynamics of vACC did not change. During the WM epoch, the dlPFC network responded partially to the ﬁrst inputs, but it was able to respond correctly to
+
+A Computational Model of Major Depression Ramirez-Mahaluf et al. | 665
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+Figure 2. “Healthy” operation in the network is the ability to switch from emotional to cognitive processing. (A) We simulated a task composed of (1) 10-s resting epoch, (2) 15-s SP epoch (vACC received 3 brief stimulus every 5 s), (3) 15-s WM epoch (dlPFC received 3 brief stimulus every 5 s), and (4) 20-s resting epoch. Stimulation pulses were 250 ms long Poisson trains at 200 sp/s impinging on AMPARs with conductance 2.4 nS. (B) Sample activity in 4 neurons of each network in one simulation. In black, vACC neurons and in gray, dlPFC neurons. (C) Histograms of average population activity in each network during one task simulation. Upper panels correspond to dlPFC activity (gray) and lower panels to vACC activity (black). (D) Local ﬁeld potentials (LFP) normalized power spectrum for the activated state. In both subnetworks (vACC and dlPFC), spectra are characterized by the coexistence of theta (2–8 Hz) and beta/gamma (12–50 Hz) synchronization. Jackknife error bars around the mean mark the 95% CI.
+
+subsequent inputs. Although the dlPFC showed a slight alteration in the pattern of activation, it was still able to turn off activity in the vACC during the WM epoch.
+With a 5% slow-down in glutamate decay in the vACC, we simulated a network with moderate MDD (Fig. 3B): vACC still showed aberrant activity, but the dlPFC network barely responded to cognitive inputs in the WM epoch, being unable to turn off the vACC effectively in the WM epoch. A further slow-down of glutamate decay caused more severe disruption of network dynamics, in what we call the severe MDD network (Fig. 3C): vACC showed aberrant activity that was not modulated, neither in the SP epoch nor in the WM epoch. The synaptic imbalance induced by slower glutamate decay in vACC resulted in strong stabilization of the persistent activity state and destabilization of the low-rate state in vACC, whereas dlPFC became
+
+completely inhibited by vACC, and it was unable to respond to cognitive inputs in the WM epoch. The severe MDD model showed a complete inability to switch from emotional to cognitive processing.
+In summary, the progressive slow-down of glutamate decay generated aberrant activity in the vACC, which was characterized by sustained vACC activation in the absence of emotional signals and by the inability to switch off when dlPFC received cognitive inputs. We interpreted this pattern as the generation of a spontaneous negative emotional state, which becomes impervious to stimuli with the progression of disease, reminiscent of the clinical progression of “mood symptoms” (mild MDD model) to “progressive loss of affect reactivity” (severe MDD model). In turn, dlPFC also showed alterations as it could not be persistently activated in response to a cognitive signal, due to hyperactivity in
+
+666 | Cerebral Cortex 2017, Vol. 27, No. 1
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+Figure 3. Glutamate decay slow-down reproduces the progressive nature of MDD. (A) Mild MDD network (2.5% slow-down in glutamate decay in the vACC). Activity histograms for a single simulation show aberrant activity in the vACC during the resting epoch. Although dlPFC only responded partially to the ﬁrst inputs, it was still able to turn off activity in the vACC during the WM epoch. (B) Moderate MDD network (5% slow-down in glutamate decay in the vACC). vACC showed aberrant activity in resting epochs and dlPFC showed diminished responsivity to cognitive inputs, now being unable to turn off vACC. (C) Severe MDD network (7.5% slow-down in glutamate decay in the vACC). Aberrant vACC activity was not modulated by any kind of inputs. (D) LFP normalized power spectrum in the vACC. Synchronization in the theta frequency range was progressively reduced, whereas beta/gamma rhythms were enhanced as glutamate decay was gradually slowed down (healthy, 2.5% and 7.5% slow-down in glutamate decay). Jackknife error bars around the mean mark the 95% CI.
+
+the vACC. This would be interpreted as a cognitive impairment that progresses with MDD (“cognitive symptoms”; Fig. 3A–C).
+Interestingly, the synchronization properties of the vACC active state were also altered by glutamate decay slow-down. Synchronization in the theta frequency range was progressively reduced, whereas beta/gamma rhythms were enhanced as glutamate decay was slowed down further (Fig. 3D). This is consistent with results, showing that frontal beta rhythms correlate
+
+positively with the severity of depression (Pizzagalli et al. 2001; Neumann et al. 2014).
+Serotonin Treatment Response Decreases with the Progression of the Disease
+Additionally, we simulated the effects of SSRI treatments on the MDD networks by modeling the effect of SSRIs through 5-HT1A
+
+A Computational Model of Major Depression Ramirez-Mahaluf et al. | 667
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+receptors as a small hyperpolarization of vACC excitatory neurons (Andrade et al. 1986; Béïque et al. 2004; Santana et al. 2004; Palomero-Gallagher et al. 2009; Fig. 1C). In each MDD network model, we progressively increased the dose of SSRI treatment, and we identiﬁed various behavioral responses that can be grouped into 3 groups: “nonresponse,” “optimal response,” and “emotional inhibition” (Fig. 4).
+Nonresponse to SSRI was found across all MDD network models when the synaptic imbalance was too big to be counteracted by SSRI hyperpolarization (Fig. 4A). In this situation, SSRI treatment was insufﬁcient to alter MDD network dynamics and the vACC maintained robust aberrant activity irrespective of the task epoch. The dlPFC network was completely inhibited by the vACC, it could only respond brieﬂy to cognitive inputs during the WM epoch, and it was unable to inhibit the vACC. Despite SSRI treatment, this MDD network model remained unable to switch from emotional to cognitive processing.
+At the other extreme, we found an “emotional inhibition response” when the hyperpolarization induced by SSRIs exceeded the hyperexcitability generated by glutamate decay slow-down in the vACC network (Fig. 4B). SSRI treatment could turn off aberrant activity in vACC in the resting epoch. However, SSRI-induced hyperpolarization also inhibited the response of vACC to emotional stimuli during the SP epoch, thus preventing healthy activation in emotional periods. This pattern is reminiscent of “emotional ﬂatness,” a known adverse effect of SSRI treatments (Walsh et al. 2006; Price et al. 2009). Following SSRI-induced inhibition of vACC, the dlPFC network restored its normal response to cognitive inputs.
+Adjusting SSRI doses between these 2 cases we found an “optimal response” scenario, in which treated MDD networks presented a behavior close to normal (Fig. 4C,D). In these networks, the SSRI treatment suppressed aberrant activity in the vACC and allowed it to respond to emotional inputs by entering the persistent activation that corresponded to healthy emotional processing. Response to cognitive inputs in the dlPFC was similar to normal. In these simulations, activation of the cognitive network turned off the vACC.
+In summary, adjusted SSRI treatment doses could improve the function of the networks by deactivating the aberrantly active vACC of our MDD models and thus restoring close-to-normal emotional and cognitive processing (Fig. 4C). However, the optimal response to SSRI was worse in simulations with slower glutamate decay (simulating more severe MDD conditions), in which the stability of healthy states could not be fully recovered (Fig. 4D). We demonstrated the progressive deterioration of the response to optimal treatment in 50 repeated simulations of 2 network models: A mild MDD model and a severe MDD model, both treated with an “optimal” dose of SSRI (Fig. 4C,D). For the mild MDD model, most trial simulations presented healthy-like behavior (Fig. 4C) and only a small percentage (18%) had unstable persistent activity during the SP epoch. Instead, the optimally treated severe MDD model presented a higher incidence of abnormal trials (38%, Fig. 4D), with aberrant vACC hyperactivity during the resting epoch or unstable persistent activity during the SP period.
+This could be graphically illustrated by repeating simulations for healthy and severe MDD models in a range of membrane potentials for vACC excitatory neurons (representing progressive dose–response to SSRI treatments). Figure 4E plots the mean ﬁring rate of excitatory neurons over stable active (upper branches) and inactive (lower branches) network states. The graph demonstrates the existence of a “bistable range” in which network function is bistable between the 2 network states. Treatments falling
+
+within this bistable range can recover the proper network function. The fact that the severe MDD network has a narrower bistable range gives a mechanistic explanation to the difﬁculty of ﬁnding optimal treatments for this network (Fig. 4E).
+In addition, optimal treatment also recovered the oscillatory dynamics characteristic of the healthy activated state, since SSRI treatment enhanced theta oscillations and suppressed rhythmic activity in the beta/gamma band (Fig. 4F).
+Deep Brain Stimulation Restores Bistability in the Treatment-Resistant Model
+We also simulated the acute effects of DBS in a treatment-resistant network model. We tested 2 hypotheses for the mechanism of action of DBS in the vACC of MDD treatment-resistant patients. The ﬁrst hypothesis considers that the therapeutic action of DBS is mediated by the serotonin system (Hamani et al. 2010, 2012; Veerakumar et al. 2014; Jiménez-Sánchez et al. 2015; Srejic et al. 2015). The second hypothesis postulates that DBS acts by activating interneurons in the vACC (Mayberg et al. 2005). The mechanism of action through the serotonin system was presented above. Essentially, DBS would converge on the same serotonin receptor activation mechanism presented so far by stimulating serotonin release in the vACC, as opposed to slowing down serotonin reuptake as SSRIs did. This would enhance the dynamical range of this serotonergic mechanism to achieve the stabilization of the circuit.
+In addition, we explored the mechanistic hypothesis that DBS action is mediated by the activation of interneurons in vACC. We generated an MDD “treatment-resistant” model by slowing down by 10% the glutamate decay in vACC and treating it with an insufﬁcient dose of SSRI (−70.5 mV resting potential; Fig. 5A). Then, we simulated DBS treatment in our treatment-resistant network model by stimulating AMPARs onto the inhibitory population of vACC with excitatory periodic trains at 130 Hz (Materials and Methods). The main effect of simulated DBS was a rescue of the switch function between emotional and cognitive processing (Fig. 5B). In addition, in most of the simulations, DBS treatment also suppressed aberrant activity in the vACC (Fig. 5B, top), but in other simulations aberrant activity was present during the resting epoch (Fig. 5B, bottom). In those simulations with no aberrant vACC activity, vACC responded to emotional inputs by entering the persistent activation that corresponded to healthy emotional processing. Response to cognitive inputs in the dlPFC was normal and it could turn off the vACC (Fig. 5B). Thus, DBS compensated the synaptic imbalance through the activation of the vACC inhibitory population, with secondary effects on frontal cortex.
+In addition, DBS treatment also recovered the oscillatory dynamics characteristic of the healthy activated state: DBS treatment enhanced theta oscillations and suppressed rhythmic activity in the beta/gamma band (Fig. 5C). These oscillations and the incidence of abnormal trials where aberrant activity appeared in the resting epoch (Fig. 5B, bottom) indicated that the treatment-resistant model treated with DBS had a narrower bistable range (data not shown), similar to our results above following the serotonin treatment (Fig. 4E).
+Dynamics of a Rate-Model Network
+The qualitative match between our network model dynamics (both in the time scale of task epochs and in the synaptic scale of fast network oscillations) and the symptoms and physiology in MDD patients prompted us to investigate the dynamical
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+668 | Cerebral Cortex 2017, Vol. 27, No. 1
+Figure 4. Serotonin treatment response on MDD network models decreases with the progression of the disease. (A) Nonresponse: A moderate MDD model (5% slow-down in glutamate decay) treated with a low dose of SSRI (VL = −70.05 mV), vACC showed aberrant activity in resting epochs, and dlPFC showed diminished responsivity to cognitive inputs. (B) Emotional inhibition: A moderate MDD model (5% slow-down in glutamate decay) treated with a high dose of SSRI (VL = −70.5 mV); SSRI treatment could turn off aberrant activity in vACC in the resting epoch, but also inhibited the response of vACC to emotional stimuli during the SP epoch. (C) Optimal response on mild MDD model: Mild MDD (2.5% glutamate decay slow-down) treated with an optimized dose of SSRI (VL = −70.18 mV). (D) Optimal response on severe MDD model: Severe MDD (7.5% glutamate decay slow-down) treated with an optimized dose of SSRI (VL = −70.6 mV). (E) Bifurcation diagram for healthy and severe MDD models: Mean ﬁring rate of excitatory neurons over stable active (upper branches) and inactive (lower branches) network states. The red (yellow) dots represent stable states for the healthy (severe MDD) model. The plot shows the existence of a bistable range, in which network function is bistable between the 2 network states. The blue dotted line represents the baseline network’s operating regime, which is in the bistable range in the healthy model. For the severe MDD model, the baseline network’s operating regime is on the right side of the bistable range, where only the high-rate state (activated state) is stable. The violet dotted line represents the hyperpolarization generated by the SSRI treatment in the optimal response. Note that the reduction in the bistable range in the severe MDD network generates a reduction in the stability of both activated and inactivated states. (F) LFP normalized power spectrum in the vACC of a severe MDD network treated with SSRI. Severe MDD model (7.5% glutamate decay slow-down) treated with progressively increasing doses of SSRI (VL = −70, −70.4, and −70.6 mV). Synchronization in the theta frequency range was progressively enhanced, whereas beta/gamma rhythm amplitude decreased as the dose of SSRI increased. Jackknife error bars around the mean mark the 95% CI.
+
+A Computational Model of Major Depression Ramirez-Mahaluf et al. | 669
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+Figure 5. DBS restores the switch between emotional and cognitive processes. (A) MDD network resistant to SSRI treatment: In a severe MDD model (10% slow-down in glutamate decay) treated with an insufﬁcient dose of SSRI (VL = −70.5 mV), vACC showed aberrant activity in resting epochs and dlPFC showed diminished responses to cognitive inputs. (B) DBS in treatment-resistant model: Treatment-resistant model (10% glutamate decay slow-down and VL = −70.5 mV) treated with DBS at 130 Hz, simulated as impulses onto AMPARs on vACC interneurons. (C) LFP normalized power spectrum in the vACC of a severe MDD network treated with SSRI and DBS. Severe MDD model (10% glutamate decay slow-down) untreated (VL = −70), treated with an insufﬁcient dose of SSRI (VL = −70.5), and treated with SSRI (VL = −70.5) and DBS. Synchronization in the theta frequency range was progressively enhanced, whereas beta/gamma rhythm amplitude decreased with the dose of SSRI and DBS. Jackknife error bars around the mean mark the 95% CI.
+
+structure of our networks in a simpliﬁed ﬁring rate model (Materials and Methods) in order to gain insights on the conditions for optimal treatment of our networks.
+We built a rate-model network to simulate the dynamics of our spiking network model. Two coupled differential equations described the dynamics of the excitatory and inhibitory ﬁring rates in each of the vACC and dlPFC subnetworks (see eq. 4 in
+
+Materials and Methods), and related them to the relevant network parameters. These include the synaptic coupling strengths within and between subnetworks, the parameter fD controlling the degree of vACC excitatory enhancement in MDD conditions (corresponding to glutamate decay slow-down in the spiking network model), and the current ΔIev which controls the excitability of vACC excitatory neurons and it is used to simulate SSRI
+
+670 | Cerebral Cortex 2017, Vol. 27, No. 1
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+Figure 6. Graphical interpretation of vACC dynamics in healthy and MDD conditions. (A) The graphical representation of solutions of the rate model upon varying baseline excitability ΔIev presented a bistable dynamics (fD = 1). Each subnetwork presented 2 stable attractors: The low rate (lower branch) and the high rate (upper branch) attractors, which coexisted for a range of ΔIev (bistable range). The blue dotted line represents the baseline network’s operating regime. Inset: Schematic of an “energy landscape” representation that illustrates graphically the network’s dynamics in A for a given value of ΔIev (baseline excitability). Population activity (ball) seeks minimum-energy states, but ﬂuctuations can push activity uphill to change attractor. (B) Attractor solutions for the MDD rate model after enhancing recurrent
+excitation in vACC (fD = 1.05 for mild MDD, fD = 1.15 for moderate MDD, and fD = 1.25 for severe MDD). The bistable range became narrower and got displaced to more negative currents progressively. MDD networks operated outside the bistable range for vACC, where only the activated state of the upper branch is stable. (C)
+Schematic “energy landscape” visualization of B. The energy slope increases with recurrent excitation (fD) and the population activity (ball) seeks minimum-energy states, which in MDD networks are only activated states. (D) Nonresponse and emotional inhibition following SSRI treatment in the moderate MDD model (fD = 1.15): A low-dose SSRI keeps the vACC network out of the bistable range, where only the activated state is stable (nonresponse), and a high-dose SSRI moved the vACC network
+beyond the bistable range, where only the inactivated state is stable (emotional inhibition). (E) Optimal response to SSRI treatment. The severe MDD network model (fD = 1.25) treated with an optimal dose of SSRI (ΔIev = −0.035) operated in the bistable range, but the bistable range was narrower, and thus states were more unstable than in the healthy network (gray). (F) DBS treatment through interneurons: Severe MDD model (fD = 1.25) treated with DBS increases the inhibitory current (Iiv = 0.026) and operates in the bistable range (cyan dotted line).
+
+treatments. Electrical stimulation of vACC inhibitory neurons in the spiking network simulations corresponds in the rate model to an increment in the external current ðΔIivÞ in vACC.
+In the healthy condition (fD = 1), the 2 subnetworks are equivalent and we tuned the parameters so they had a bistable regime (Fig. 6A and Supplementary Fig. 1), consistent with the dynamics of our spiking simulations (Fig. 2). For a range of ΔIev (bistable range), each subnetwork presented 2 stable attractors (continuous lines in Fig. 6A): The low rate (lower branch) and the high rate (upper branch) attractors. These 2 stable attractors can be understood as 2 stable states where the network tends to stay because they have lower “energy cost” (Fig. 6A, inset). On the other hand, the unstable attractors (discontinuous lines in Fig. 6A) can be understood as transient states between stable states. The network tends to avoid these states because they have a higher “energy cost” (Fig. 6A, inset).
+In the baseline operating regime, at a speciﬁc level of neuronal excitability in the vACC circuit ΔIev (blue dotted line), the network has 2 possible stable states and it resides in the low-rate attractor during the resting epoch of the task. When a brief input arrives to the network that activates it, the network jumps to the upper branch (high-rate state) and, when the stimulus is removed the network, maintains the high-rate stable state. A sudden increase in negative external current (for instance, when dlPFC causes inhibition in vACC) will cause the network to settle again in the low-rate state (see Supplementary Fig. 1). The “healthy” behavior
+
+of the network, therefore, depends on the existence of a bistable dynamics in the operating regime of the network, and in its tuning so the states are reasonably stable (blue dotted line far enough from bistable range borders), but they can be destabilized with reasonable inputs (blue dotted line close enough to bistable range borders) in order to effect the switch from one attractor state to the other.
+The dynamics of our MDD networks could be conceptually understood in the simpliﬁed rate model. The slow-down of glutamate decay in the spiking network simulations corresponded in the rate model to an increase in the effective strength of excitation in vACC (fD >1). This manipulation in the rate model displaced the stability curve to more negative currents progressively (Fig. 6B and Supplementary Fig. 2). As a result, MDD networks at the baseline operating regime (blue dotted line) were outside the bistable range for vACC, where the low-rate state destabilized and only the high-rate state was progressively more stable (Fig. 6C). This generated permanent persistent activity in the vACC module of MDD networks. In addition, the limit of the bistable range for jumping from the upper to the lower branch moved progressively farther, so that with the progression of the disease the network needed more and more negative current (inhibition) to switch from the high-rate to the low-rate state. This explains conceptually our observation in the spiking network simulations that, with increasing synaptic imbalance, the vACC network became hyperactive and it was progressively more difﬁcult to inhibit.
+
+A Computational Model of Major Depression Ramirez-Mahaluf et al. | 671
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+The impact of SSRIs on MDD networks can be also explained conceptually in the rate model. The SSRI-induced hyperpolarization of vACC excitatory neurons in the spiking network simulations corresponded in the rate network model (eq. 4) to a negative term added to the external current ðΔIevÞ in the vACC. This manipulation in the rate model (Fig. 6D,E) displaced the baseline operating regime to a more negative value (violet dotted lines). Depending on the severity of MDD (fD) and the effect of the SSRI ðΔIevÞ; we found 3 conditions that explain the dynamics observed in the spiking network simulations (nonresponse, emotional inhibition, and optimal response, respectively, Fig. 4). For insufﬁcient SSRI hyperpolarization, the network operated on the right side of the bistable range, so the low-rate state was unstable and the vACC maintained a high-rate state irrespective of task conditions (“Low dose” case, Fig. 6D). For excessive SSRI hyperpolarization ΔIev; the vACC network operated at the left of the bistable range, where only the low-rate state was stable so that no high-rate attractor could be stabilized (“High dose,” Fig. 6D). Finally, ΔIev could be tuned so the vACC network operated within the bistable range and both low- and high-rate states were stable, approaching the healthy condition behavior (“optimal response,” Fig. 6E).
+As with the spiking model (Fig. 4D), tuning ΔIev to be in the bistable range (optimal response condition, Fig. 6E) was more difﬁcult for networks with larger fD. This is due to the fact that the bistable range becomes narrower as fD increases (Fig. 6B). This is not generally the case in our rate-model network, but a number of conditions are required to obtain this effect (see Supplementary Material). As it turns out, under these conditions, oscillatory dynamics in and around the bistable range are important markers of network dynamics, and we will argue in the following that this may underlie their correlation with MDD and treatment outcome.
+The effects of DBS on treatment-resistant networks could also be qualitatively explained in the rate model. The mechanism of action of DBS through the serotonin system acting on vACC excitatory neurons corresponds in the rate model (eq. 4) to a further negative increment in the external current ðÀΔIevÞ; which was presented above. On the other hand, electrical stimulation of vACC inhibitory neurons in the spiking network simulations corresponds in the rate model (eq. 4) to an increment in the external current ðΔIivÞ in the vACC. This manipulation in the rate model (Fig. 6F) displaced the baseline operating regime toward more positive values where the bistable range is recovered (cyan dotted line in Fig. 6F). This result is in line with our observations in the spiking network simulations (Fig. 5). Similar to serotonin treatment ðΔIev; Fig. 6E), tuning Iiv to be in the bistable range was more difﬁcult for networks with larger fD due to the narrower bistable range.
+Oscillations as Markers of Bistable Network Dynamics
+The gradual reduction in the bistable range with the progression of MDD (fD; Fig. 6B) is a robust network phenomenon when slow oscillatory activity is present, as long as excitatory ﬁring rates remain at moderate levels. This is due to the oscillatory instability, which becomes more prominent as the effective gain in recurrent excitation increases, see equation (6) in Materials and Methods. The effective gain increases with fD, but only if the gain in the neuronal response φe0 does not decrease, which essentially means avoiding a saturation in ﬁring rates. One way to achieve this is to have the inhibitory neurons convert their inputs to ﬁring rate outputs through an expansive nonlinearity (see Materials and Methods). When this is the case, the jump in excitatory ﬁring
+
+rates from the low activity to the high activity state drives an ampliﬁed inhibitory response, keeping excitatory ﬁring rates at moderate levels. In these conditions, the network states of the upper branch closer to the knee of the bistable range become unstable quickly as fD increases (see Supplementary Fig. 2), and the remaining stable network states in the bistable range converge with damped oscillatory dynamics (Fig. 7A,B) in the theta frequency range. These oscillations have larger amplitude for networks operating near the bistable range limit of the upper branch (Fig. 7A,B). Thus, network oscillations in the 2- to 8-Hz frequency range characterize active states that sit close to the edge of the bistable range, and are thus easier to be switched off by external events. This analysis suggests that theta rhythms in frontal areas could be markers of bistable dynamics being activated in the course of cognitive function.
+Our ﬁring rate network model did not show oscillatory activity in the beta range of frequencies. This was in contrast with our spiking network simulations (Fig. 2D) and led us to think that the underlying cause of such rhythms could be spike synchronization of periodic neural oscillators, which could be only visible in spiking simulations. We tested this hypothesis by injecting external currents to excitatory neurons of the vACC module in our spiking network in order to change the ﬁring rate of these neurons. We found that this manipulation changed also the frequency of fast oscillations in the network in proportion to ﬁring rate changes (Fig. 7C,D), suggesting indeed that these oscillations emerge from spike synchronization mechanisms. While our spiking network generated fast network oscillations through this oscillator coupling mechanism, other plausible synchronization mechanisms to generate fast oscillations in activated networks have been proposed (Kopell et al. 2000; Tamás et al. 2000; Brunel and Wang 2003).
+Crucial to our analysis of network oscillations and bistable dynamics is that, whatever the mechanistic origin of fast oscillations is, these fast rhythms can coexist with slower theta rhythms in and near the bistable range. In this case, they will be modulated inversely in relation to manipulations that modulate network excitability, and they will conjointly mark the proximity of network dynamics to this bistable range of operation. We summarize this view schematically in Figure 8: Severity of MDD should correlate negatively with the amplitude of theta rhythms and positively with the amplitude of beta/gamma oscillations, because networks more affected by a glutamate dysfunction would operate further away from the bistable range edge (Fig. 8A). Also, the treatment (representing a displacement along the axis ΔIev) should induce complementary modulation of these rhythms with larger theta and weaker and slower beta/ gamma marking a proximity to the desired operating regime in the bistable range, and thus better prospects for treatment outcome (Fig. 8B).
+Discussion
+We provide here a biophysical computational model for cingulofrontal cortex dysfunction in MDD. The model articulates mechanistically a role for cingulo-frontal brain areas in alternating between cognitive and emotional processing according to task demands in healthy subjects. The model can explain how the potentiation of excitatory transmission in the vACC (as a result of slower glutamate reuptake in MDD) compromises the ability of the cingulo-frontal network to switch from emotional to cognitive processing, remaining in a permanent negative emotional state that characterizes MDD symptoms. Treatments of MDD can also be simulated, converging on a mechanism of vACC
+
+672 | Cerebral Cortex 2017, Vol. 27, No. 1
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+Figure 7. Mechanisms of oscillations. Theta and beta oscillations coexist in the bistable range, but differ in their mechanism. (A) Bistable range for the moderate MDD model (ﬁring rate network, fD = 1.1). We selected 3 network conditions (ΔIev = 0.005, 0.02, and 0.08, respectively) in the upper branch, progressively approaching the edge of the bistable range, to illustrate transient dynamics in B. (B) Damped oscillatory dynamics in the theta frequency range were generated by perturbing the steady state (initial condition, rev = 4 sp/s) of the 3 conditions indicated in A. Damped oscillations had larger amplitude for networks operating near the bistable range limit of the upper branch A. (C) Spiking simulations can present additional high-frequency oscillations. Normalized power spectra of spiking network activity upon progressive depolarization of the vACC excitatory population (depolarizing currents −0.015, 0, and 0.04 nA in ever lighter shades of gray, respectively) in the severe MDD model (spiking network, 7.5% glutamate decay slow-down) revealed changes in the amplitude and frequency of beta/gamma oscillations. (D) The mechanism of high-frequency oscillations in spiking simulations (C) kept a ﬁxed relationship between neuronal ﬁring rate and oscillation frequency, indicating that beta oscillations emerged in the spiking simulations through an oscillator coupling mechanism. Scatter plot shows the frequency of the power spectrum peak in the beta/gamma range versus the network’s mean ﬁring rate for a range of vACC depolarizing currents −0.015 to 0.06 nA (grayscale bar).
+
+deactivation that recovers network function close to the normal, healthy condition. These different network dynamics are characterized by speciﬁc rhythms in the theta and beta/gamma bands, which can be used to identify the regime of bistable operation of the network.
+The model integrates a wide range of disparate clinical, biochemical, electrophysiological, neuroimaging, and postmortem studies in MDD. The model explains how slower glutamate reuptake in vACC (Ongür, Drevets, et al. 1998; Cotter et al. 2001; Choudary et al. 2005) disrupts the synaptic balance (Walter et al. 2009; Horn et al. 2010), causes hyperactivity in the vACC (Mayberg et al. 1999, 2005; Seminowicz et al. 2004), and generates a persistent negative mood through the inability to disengage from emotional processing during cognitive tasks (Watts and Sharrock 1985; Paelecke-Habermann et al. 2005; Rose and Ebmeier 2006; Gohier et al. 2009; Disner et al. 2011). Progressive slowdown of glutamate reuptake in the vACC can be related to the progression of MDD (Portella et al. 2011) and weaker response to SSRI treatment as the disease progresses (Keller et al. 1992; Kendler 2000; Kendler et al. 2001). In parallel to the emotional subsystem alteration, the model proposes that the reciprocal suppression between emotional and cognitive hubs, vACC and dlPFC, is the substrate for the cognitive impairment and dorsal frontal hypoactivity characteristic of MDD (Bench et al. 1992; Mayberg 1997; Kennedy 2001; Videbech et al. 2002; Oda et al. 2003; Mayberg et al. 2005). The treatments simulated in the model were effective when they turned off the aberrantly active vACC in agreement
+
+with previous neuroimaging reports (Mayberg et al. 2000, 2005; Drevets et al. 2002; Goldapple et al. 2004). Importantly, the model provides a theoretical framework to interpret the observed relationship between theta and beta/gamma frontal rhythms and cognitive processing (Ray and Cole 1985; Asada et al. 1999; Tsujimoto et al. 2006; Siegel et al. 2012; Hsieh and Ranganath 2014), and how these rhythms are associated with MDD treatment outcome (Pizzagalli et al. 2001; Mulert et al. 2007; Iosifescu et al. 2009; Korb et al. 2009; Pizzagalli 2011; Broadway et al. 2012) and severity of disease (Pizzagalli et al. 2002).
+Recent papers have shown single units and LFP recordings in vACC in treatment-resistant patients during electrode implantation (Lipsman, Kaping, et al. 2014; Lipsman, Nakao, et al. 2014; Neumann et al. 2014). The spontaneous ﬁring rate of subgenual neurons is not modulated by external inputs (Lipsman, Nakao, et al. 2014), in contrast with dorsal ACC neurons in nondepressed patients, which show brisk responses to a variety of stimulation conditions (Davis et al. 2000, 2005). In monkey studies, vACC neurons have also been shown to be highly modulated by external inputs (Koyama et al. 2001; Monosov and Hikosaka 2012). This suggests that nonresponsive vACC neurons are characteristic of MDD, consistent with the lack of stimulus responses in vACC in our severe MDD models (Figs 3C and 4A). Human studies also show the implication of vACC beta oscillations in depression: 15–20 Hz beta LFP activity is recruited during negative valence information processing in the vACC of bipolar patients (Lipsman, Kaping, et al. 2014). Neumann et al. (2014) report higher 8–14 Hz
+
+A Computational Model of Major Depression Ramirez-Mahaluf et al. | 673
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+Figure 8. Schematic summary: disease and oscillations. Theta and beta oscillations mark the distance to the bistable range. (A) Bistable range diagrams for mild and severe MDD models (ﬁring rate network, fD = 1.05 and 1.25, respectively). In the upper branch, the black oscillation represents schematically the amplitude of theta oscillations generated by the oscillatory instability, and the gray oscillation represents schematically the amplitude of beta-gamma generated by synchronization. As the severity of the MDD model increases, the network’s state (black dotted line) lies further away from the bistable range edge and the amplitude of the theta oscillation is reduced and beta-gamma is increased. (B) Following a treatment (by reducing network excitability to gray dotted line), the system moves leftward approaching the stability limit of the upper branch. As the system approaches the bistable range, the amplitude of theta oscillations (black) increases and the frequency and amplitude of beta/ gamma oscillations (gray) decrease. A network with more amplitude of theta oscillations is closer to the limits of the bistable range and is more likely to be brought into the optimized operating regime by small network hyperpolarization (i.e., SSRI or DBS treatment).
+alpha power in MDD patients, which correlates with the severity of depressive symptoms, and spectral peaks in the beta band in individual patients. All this electrophysiological evidence recorded from patients is still limited and evolving. As more data from these studies become available, models will beneﬁt of more stringent experimental constrains and their predictions will be more directly testable.
+The study of the dynamics of MDD treatments has clinical relevance. Here, we simulate the SSRI effects after the therapeutic delay, which is around 2 weeks of treatment (Anderson et al. 2000; Mitchell 2006). On the other hand, the acute effect of DBS that we simulated occurs a few seconds after turning on the stimulating electrode (Mayberg et al. 2005; Holtzheimer et al. 2012; Choi et al. 2015). Both treatments also have chronic effects that may be qualitatively different (Deshauer et al. 2008;
+
+Holtzheimer et al. 2012). Extensions of our network models could therefore shed light on these issues if plasticity mechanisms are considered, but this is currently out of the scope of this manuscript. Also, other treatments have been described as effective for depression: ECT (Nobler et al. 2001), rTMS (Mottaghy et al. 2002; Fox et al. 2012), ketamine (Berman et al. 2000), and cognitive behavioral therapy (CBT; Gloaguen et al. 1998). We did not attempt to simulate these treatments here, although the model can also accommodate them. For instance, rTMS, unlike SSRI, would act in the dlPFC and through effective inhibitory interactions turn off vACC hyperactivity (Fox et al. 2012); CBT could also act in the dlPFC, by increasing its local recurrent connectivity and thus enhancing its ability to modulate vACC hyperactivity (Siegle et al. 2006).
+We provide a network model composed of 2 areas, vACC and dlPFC, which are necessary (according to the data) and sufﬁcient (from our model results) to explain several features of the pathophysiology and behavior in MDD and its treatment. However, these areas are part of a much more complex network, including the thalamus, amygdala, hippocampus, nucleus accumbens, medial prefrontal cortex, orbito-frontal cortex, and dorsal ACC, among others (Mayberg 1997, 2009; Ongür, An, et al. 1998; Seminowicz et al. 2004; Ghashghaei et al. 2007; Lehman et al. 2011; Zikopoulos and Barbas 2012). We chose to simulate 2 areas that represented the hubs of emotional and cognitive brain networks, and we labeled them according to available evidence implicating vACC and dlPFC in these roles, also supported by evidence of direct connections between these regions (Barbas et al. 1999; Medalla and Barbas 2010). Nevertheless, our conclusions are not dependent on the speciﬁc identity of these hubs and they would also apply to distributed networks that effectively resulted in 2 mutually inhibiting, compact subnetworks combining several brain areas. Also, our model does not even require direct disynaptic inhibition between the 2 hub networks of emotional and cognitive processing. Instead, effective inhibitory interactions through additional sets of interposed areas would yield similar results.
+Anatomically, the vACC includes the BA25 and the ventral portions of BA32 and BA24, and has been described as both a visceral-motor (Freedman et al. 2000; Öngür and Price 2000) and emotional-centric region (Bush et al. 2000), and the dlPFC includes the BA46 and BA9 and has been described as a cognitive region (MacDonald et al. 2000; Cole and Schneider 2007). There is experimental evidence for anatomical connections between these 2 regions. While only weak evidence of direct projections between BA25 and BA9 has been reported (Vogt and Pandya 1987; Barbas et al. 1999), BA25 is instead densely connected with BA32 (Barbas and Pandya 1989), which in turn is well connected with BA9 and targets preferentially BA9 inhibitory neurons (Barbas and Pandya 1989; Barbas et al. 1999; Medalla and Barbas 2010). These connections provide an effective inhibitory interaction between vACC and dlPFC. Consistent with this, DBS is known to be effective on treatment-resistant MDD patients when it targets pathways linking the vACC to the dorsal cingulate cortex via the cingulum bundle and to the ventromedial frontal cortex via the uncinate fasciculus (Riva-Posse et al. 2014) and when it is associated with increases in theta-range oscillations in frontal cortex (Broadway et al. 2012). According to our model, vACC deactivation by DBS would cause prefrontal disinhibition through multisynaptic interactions, thus allowing dlPFC normal cognitive activations associated with theta rhythms (Fig. 2D).
+The model is not attempting to simulate all the complexity of MDD. MDD is a complex psychiatric illness, with several biopsychosocial factors, sensitive to various treatments, and dependent on multiple molecular processes (such as glucocorticoids,
+
+674 | Cerebral Cortex 2017, Vol. 27, No. 1
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+inﬂammatory cytokines, brain-derived growth factors, neurotransmitters, and neuropeptides), genetic factors, plasticity processes, etc. (Maletic et al. 2007; Krishnan and Nestler 2008). Our network model could not possibly integrate all these elements at this point so we opted to simplify the model and include those biological, anatomical, and electrophysiological details that appeared to have a more direct impact in testing our initial hypothesis. This choice of mechanisms could need revision depending on what questions we want our model to address. For instance, if we were interested in exploring chronic versus acute treatment effects, plasticity mechanisms should be incorporated.
+An additional limitation of our study is the stereotyped response patterns in the 2 areas. vACC and dlPFC have a rich repertoire of neuronal responses depending on the behavioral task. Thus, dlPFC activates during emotional tasks with a cognitive component (Sanfey et al. 2003) and vACC activates in cognitive tasks with emotional component (Rogers et al. 2004). Neurons in both areas can be coactivated by emotion and cognition, depending on the task (Kennerley et al. 2011; Monosov and Hikosaka 2012). In our model, we chose to simulate purely emotional and cognitive tasks (SP and WM), in order to emphasize the competitive aspect of emotional and cognitive processes and thus simplify our modeling to 2 areas with clearly delimited responses to either cognitive or emotional task components. Extensions of the model to address more integrated task designs should take into account the diverse set of stimulus and task selectivities observed in vACC.
+One important result from our study is the detailed analysis of underlying mechanisms for the emergence of oscillatory dynamics within the bistable range of a recurrent circuit (Fig. 7 and Supplementary Material). While the precise conditions for the coexistence of bistability and oscillations in such networks have been identiﬁed in previous studies, for example Borisyuk and Kirillov 1992, ours is the ﬁrst to discuss how the nature of the resulting oscillatory dynamics impacts the functionality of the circuit as a bistable switch. Speciﬁcally, our analysis has implications for the interpretation of theta- and beta-band rhythms in cognitive function and MDD. For one, the association between frontal midline theta and cognitive function (Hsieh and Ranganath 2014) would be interpreted within our model as marking the activation of bistable memory circuits during such tasks. Also, our model predicts a complementary modulation of theta and beta/gamma bands as a system moves in and out of bistable function, as it is often observed during cognitive processes (Lara and Wallis 2014). Viewing MDD as a systemic imbalance that perturbs bistable dynamics in the vACC, theta-band activity would be a marker of proximity to the desired bistable operating regime (Fig. 8B) and this would support its utility as a biomarker of treatment outcome in MDD (Pizzagalli 2011). One ﬁnal prediction emanating from our model’s dynamics is the complementary relationship between theta and beta/gamma activity in MDD patients before and after treatment (both SSRI and DBS treatments). Assuming that MDD treatments represent excitability changes, that is, displacements along the axis of the bistable range in Figure 8, the process of calibrating treatments would scan the region of network dynamics where these 2 rhythms have complementary patterns (Fig. 8B) and thus lead to a negative correlation that could be observed electrophysiologically. We note that our model is dependent on multiple parameters and its dynamics are not constrained to very speciﬁc neuronal rhythms, but generalize to neighboring bands. Thus, all our predictions regarding fast oscillations in the beta/gamma band would apply to the alpha band (Neumann et al. 2014) in networks with lower ﬁring rates (Fig. 7C,D).
+
+Few psychiatric diseases have been studied with computational models (Hoffman and Dobscha 1989; Cohen and ServanSchreiber 1992; Cohen et al. 1996; Hoffman 1997; Ownby 1998; Braver et al. 1999; Salum et al. 2000; Hoffman and McGlashan 2001; Loh et al. 2007; Rolls, Loh, Deco 2008; Rolls, Loh, Deco, et al. 2008; Cano-Colino and Compte 2012). In depression, a very interesting study was published in 1990 by Sashin and Callahan (1990), where they studied mood disorders by combining concepts of psychoanalysis and system dynamics. The authors proposed in their model that a hysteretic loop underlies abnormal affective response, which bears some similarity to the biologically grounded mechanism that we propose in our network model (Fig. 6). Another recent model studied the role of hippocampal neurogenesis in depression (Becker et al. 2009). However, our model is the ﬁrst to integrate a broad range of evidence of cingulo-frontal network dynamics alterations in MDD and its treatments in a uniﬁed theory. These results underscore the potential of quantitative modeling approaches to psychiatric diseases as a means of articulating coherent mechanistic frameworks that integrate disperse results and generate new modelderived hypotheses to test experimentally (Wang and Krystal 2014; Siekmeier 2015).
+Supplementary Material
+Supplementary material can be found at: http://www.cercor. oxfordjournals.org/.
+Funding
+This work was funded by the Ministry of Economy and Competitiveness of Spain and the European Regional Development Fund (refs: BFU2009-09537 and BFU2012-34838); by NIMH (refs: 1RO1MH073719 and P50 MH077083); and by Dana Foundation, Woodruff Fund, Stanley Medical Research Institute and the Hope for Depression Research Foundation. J.P.R-.M. was supported by the Spanish Ministry of Economy and Competitiveness (FPI program).
+Notes
+The work was carried out at the Esther Koplowitz Centre, Barcelona. We thank Helen Barbas for fruitful discussions. Conﬂict of Interest: H.S.M. has a consulting agreement with St Jude Medical, Inc., which has licensed her intellectual property to develop SCC DBS for the treatment of severe depression (US 2005/0033379A1). The terms of these arrangements have been reviewed and approved by Emory University in accordance with their conﬂict of interest policies. H.S.M. has a current grant funding from the Dana Foundation, the National Institute of Mental Health (NIMH), and the Hope for Depression Research Foundation.
+References
+Amemori K, Graybiel AM. 2012. Localized microstimulation of primate pregenual cingulate cortex induces negative decisionmaking. Nat Neurosci. 15:776–785.
+Anderson IM, Nutt DJ, Deakin JFW. 2000. Evidence-based guidelines for treating depressive disorders with antidepressants: a revision of the 1993 British Association for Psychopharmacology guidelines. J Psychopharmacol. 14:3–20.
+Andrade R, Malenka RC, Nicoll RA. 1986. A G protein couples serotonin and GABAB receptors to the same channels in hippocampus. Science. 234:1261–1265.
+
+A Computational Model of Major Depression Ramirez-Mahaluf et al. | 675
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+Asada H, Fukuda Y, Tsunoda S, Yamaguchi M, Tonoike M. 1999. Frontal midline theta rhythms reﬂect alternative activation of prefrontal cortex and anterior cingulate cortex in humans. Neurosci Lett. 274:29–32.
+Auger C, Attwell D. 2000. Fast removal of synaptic glutamate by postsynaptic transporters. Neuron. 28:547–558.
+Barbas H, Ghashghaei H, Dombrowski SM, Rempel-Clower NL. 1999. Medial prefrontal cortices are uniﬁed by common connections with superior temporal cortices and distinguished by input from memory-related areas in the rhesus monkey. J Comp Neurol. 410:343–367.
+Barbas H, Pandya DN. 1989. Architecture and intrinsic connections of the prefrontal cortex in the rhesus monkey. J Comp Neurol. 286:353–375.
+Becker S, Macqueen G, Wojtowicz JM. 2009. Computational modeling and empirical studies of hippocampal neurogenesis-dependent memory: effects of interference, stress and depression. Brain Res. 1299:45–54.
+Béïque J-C, Campbell B, Perring P, Hamblin MW, Walker P, Mladenovic L, Andrade R. 2004. Serotonergic regulation of membrane potential in developing rat prefrontal cortex: coordinated expression of 5-hydroxytryptamine (5-HT)1A, 5HT2A, and 5-HT7 receptors. J Neurosci. 24:4807–4817.
+Bench CJ, Friston KJ, Brown RG, Scott LC, Frackowiak RSJ, Dolan RJ. 1992. The anatomy of melancholia—focal abnormalities of cerebral blood ﬂow in major depression. Psychol Med. 22:607–615.
+Berman RM, Cappiello A, Anand A, Oren DA, Heninger GR, Charney DS, Krystal JH. 2000. Antidepressant effects of ketamine in depressed patients. Biol Psychiatry. 47:351–354.
+Bokil H, Andrews P, Kulkarni JE, Mehta S, Mitra P. 2010. Chronux: a platform for analyzing neural signals. J Neurosci Methods. 192:146–151.
+Borisyuk RM, Kirillov AB. 1992. Bifurcation analysis of a neural network model. Biol Cybern. 66:319–325.
+Botteron KN, Raichle ME, Drevets WC, Heath AC, Todd RD. 2002. Volumetric reduction in left subgenual prefrontal cortex in early onset depression. Biol Psychiatry. 51:342–344.
+Braver TS, Barch DM, Cohen JD. 1999. Cognition and control in schizophrenia: a computational model of dopamine and prefrontal function. Biol Psychiatry. 46:312–328.
+Broadway JM, Holtzheimer PE, Hilimire MR, Parks NA, DeVylder JE, Mayberg HS, Corballis PM. 2012. Frontal theta cordance predicts 6-month antidepressant response to subcallosal cingulate deep brain stimulation for treatment-resistant depression: a pilot study. Neuropsychopharmacology. 37:1764–1772.
+Brunel N, Wang X-J. 2003. What determines the frequency of fast network oscillations with irregular neural discharges? I. Synaptic dynamics and excitation-inhibition balance. J Neurophysiol. 90:415–430.
+Bush G, Luu P, Posner MI. 2000. Cognitive and emotional inﬂuences in anterior cingulate cortex. Trends Cogn Sci. 4:215–222.
+Cano-Colino M, Compte A. 2012. A computational model for spatial working memory deﬁcits in schizophrenia. Pharmacopsychiatry. 45(Suppl 1):S49–S56.
+Choi KS, Riva-Posse P, Gross RE, Mayberg HS. 2015. Mapping the “depression switch” during intraoperative testing of subcallosal cingulate deep brain stimulation. JAMA Neurol. Advance Access published September 26, doi: 10.1001/jamaneurol. 2015.2564.
+Choudary PV, Molnar M, Evans SJ, Tomita H, Li JZ, Vawter MP, Myers RM, Bunney WE, Akil H, Watson SJ, et al. 2005. Altered cortical glutamatergic and GABAergic signal transmission
+
+with glial involvement in depression. Proc Natl Acad Sci USA. 102:15653–15658. Cohen JD, Braver TS, O’Reilly RC. 1996. A computational approach to prefrontal cortex, cognitive control and schizophrenia: recent developments and current challenges. Philos Trans R Soc Lond B Biol Sci. 351:1515–1527. Cohen JD, Forman SD, Braver TS, Casey BJ, Servan-Schreiber D, Noll DC. 1993. Activation of the prefrontal cortex in a nonspatial working memory task with functional MRI. Hum Brain Mapp. 1:293–304. Cohen JD, Servan-Schreiber D. 1992. Context, cortex, and dopamine: a connectionist approach to behavior and biology in schizophrenia. Psychol Rev. 99:45–77. Cole MW, Schneider W. 2007. The cognitive control network: integrated cortical regions with dissociable functions. Neuroimage. 37:343–360. Cole MW, Yarkoni T, Repovs G, Anticevic A, Braver TS. 2012. Global connectivity of prefrontal cortex predicts cognitive control and intelligence. J Neurosci. 32:8988–8999. Cotter D, Mackay D, Landau S, Kerwin R, Everall I. 2001. Reduced glial cell density and neuronal size in the anterior cingulate cortex in major depressive disorder. Arch Gen Psychiatry. 58:545–553. Covington HE, Lobo MK, Maze I, Vialou V, Hyman JM, Zaman S, LaPlant Q, Mouzon E, Ghose S, Tamminga CA, et al. 2010. Antidepressant effect of optogenetic stimulation of the medial prefrontal cortex. J Neurosci. 30:16082–16090. Davis KD, Hutchison WD, Lozano AM, Tasker RR, Dostrovsky JO. 2000. Human anterior cingulate cortex neurons modulated by attention-demanding tasks. J Neurophysiol. 83:3575–3577. Davis KD, Taylor KS, Hutchison WD, Dostrovsky JO, McAndrews MP, Richter EO, Lozano AM. 2005. Human anterior cingulate cortex neurons encode cognitive and emotional demands. J Neurosci. 25:8402–8406. Deshauer D, Moher D, Fergusson D, Moher E, Sampson M, Grimshaw J. 2008. Selective serotonin reuptake inhibitors for unipolar depression: a systematic review of classic longterm randomized controlled trials. CMAJ. 178:1293–1301. Devinsky O, Morrell MJ, Vogt BA. 1995. Contributions of anterior cingulate cortex to behaviour. Brain. 118(Pt 1):279–306. Disner SG, Beevers CG, Haigh EAP, Beck AT. 2011. Neural mechanisms of the cognitive model of depression. Nat Rev Neurosci. 12:467–477. Dolcos F, Diaz-Granados P, Wang L, McCarthy G. 2008. Opposing inﬂuences of emotional and non-emotional distracters upon sustained prefrontal cortex activity during a delayedresponse working memory task. Neuropsychologia. 46: 326–335. Dolcos F, McCarthy G. 2006. Brain systems mediating cognitive interference by emotional distraction. J Neurosci. 26: 2072–2079. Dougherty DD, Weiss AP, Cosgrove GR, Alpert NM, Cassem EH, Nierenberg AA, Price BH, Mayberg HS, Fischman AJ, Rauch SL. 2003. Cerebral metabolic correlates as potential predictors of response to anterior cingulotomy for treatment of major depression. J Neurosurg. 99:1010–1017. Drevets WC, Bogers W, Raichle ME. 2002. Functional anatomical correlates of antidepressant drug treatment assessed using PET measures of regional glucose metabolism. Eur Neuropsychopharm. 12:527–544. Drevets WC, Price JL, Simpson JR, Todd RD, Reich T, Vannier M, Raichle ME. 1997. Subgenual prefrontal cortex abnormalities in mood disorders. Nature. 386:824–827.
+
+676 | Cerebral Cortex 2017, Vol. 27, No. 1
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+Drevets WC, Raichle ME. 1998. Reciprocal suppression of regional cerebral blood ﬂow during emotional versus higher cognitive processes: implications for interactions between emotion and cognition. Cogn Emot. 12:353–385.
+Edin F, Klingberg T, Johansson P, McNab F, Tegnér J, Compte A. 2009. Mechanism for top-down control of working memory capacity. Proc Natl Acad Sci USA. 106:6802–6807.
+Fox MD, Buckner RL, White MP, Greicius MD, Pascual-Leone A. 2012. Efﬁcacy of transcranial magnetic stimulation targets for depression is related to intrinsic functional connectivity with the subgenual cingulate. Biol Psychiatry. 72:595–603.
+Fox MD, Raichle ME. 2007. Spontaneous ﬂuctuations in brain activity observed with functional magnetic resonance imaging. Nat Rev Neurosci. 8:700–711.
+Freedman LJ, Insel TR, Smith Y. 2000. Subcortical projections of area 25 (subgenual cortex) of the macaque monkey. J Comp Neurol. 421:172–188.
+Funahashi S, Bruce CJ, Goldman-Rakic PS. 1989. Mnemonic coding of visual space in the monkey’s dorsolateral prefrontal cortex. J Neurophysiol. 61:331–349.
+Fuster JM, Alexander GE. 1971. Neuron activity related to shortterm memory. Science. 173:652–654.
+Ghashghaei HT, Hilgetag CC, Barbas H. 2007. Sequence of information processing for emotions based on the anatomic dialogue between prefrontal cortex and amygdala. Neuroimage. 34:905–923.
+Gloaguen V, Cottraux J, Cucherat M, Blackburn IM. 1998. A metaanalysis of the effects of cognitive therapy in depressed patients. J Affect Disord. 49:59–72.
+Gohier B, Ferracci L, Surguladze SA, Lawrence E, El Hage W, Keﬁ MZ, Allain P, Garre J-B, Le Gall D. 2009. Cognitive inhibition and working memory in unipolar depression. J Affect Disord. 116:100–105.
+Goldapple K, Segal Z, Garson C, Lau M, Bieling P, Kennedy S, Mayberg H. 2004. Modulation of cortical-limbic pathways in major depression: treatment-speciﬁc effects of cognitive behavior therapy. Arch Gen Psychiatry. 61:34–41.
+Goldman-Rakic P. 1995. Cellular basis of working memory. Neuron. 14:477–485.
+Goodman DF, Brette R. 2009. The Brian simulator. Front Neurosci. 3:192–197.
+Greicius MD, Flores BH, Menon V, Glover GH, Solvason HB, Kenna H, Reiss AL, Schatzberg AF. 2007. Resting-state functional connectivity in major depression: abnormally increased contributions from subgenual cingulate cortex and thalamus. Biol Psychiatry. 62:429–437.
+Greicius MD, Krasnow B, Reiss AL, Menon V. 2003. Functional connectivity in the resting brain: a network analysis of the default mode hypothesis. Proc Natl Acad Sci USA. 100:253–258.
+Hamani C, Diwan M, Macedo CE, Brandão ML, Shumake J, Gonzalez-Lima F, Raymond R, Lozano AM, Fletcher PJ, Nobrega JN. 2010. Antidepressant-like effects of medial prefrontal cortex deep brain stimulation in rats. Biol Psychiatry. 67:117–124.
+Hamani C, Machado DC, Hipólide DC, Dubiela FP, Suchecki D, Macedo CE, Tescarollo F, Martins U, Covolan L, Nobrega JN. 2012. Deep brain stimulation reverses anhedonic-like behavior in a chronic model of depression: role of serotonin and brain derived neurotrophic factor. Biol Psychiatry. 71:30–35.
+Hastings RS, Parsey RV, Oquendo MA, Arango V, Mann JJ. 2004. Volumetric analysis of the prefrontal cortex, amygdala, and hippocampus in major depression. Neuropsychopharmacology. 29:952–959.
+
+Hoffman RE. 1997. Neural network simulations, cortical connectivity, and schizophrenic psychosis. MD Comput. 14:200–208.
+Hoffman RE, Dobscha SK. 1989. Cortical pruning and the development of schizophrenia: a computer model. Schizophr Bull. 15:477–490.
+Hoffman RE, McGlashan TH. 2001. Neural network models of schizophrenia. Neuroscientist. 7:441–454.
+Holtzheimer PE, Kelley ME, Gross RE, Filkowski MM, Garlow SJ, Barrocas A, Wint D, Craighead MC, Kozarsky J, Chismar R, et al. 2012. Subcallosal cingulate deep brain stimulation for treatment-resistant unipolar and bipolar depression. Arch Gen Psychiatry. 69:150–158.
+Horn DI, Yu C, Steiner J, Buchmann J, Kaufmann J, Osoba A, Eckert U, Zierhut KC, Schiltz K, He H, et al. 2010. Glutamatergic and resting-state functional connectivity correlates of severity in major depression—the role of pregenual anterior cingulate cortex and anterior insula. Front Syst Neurosci. 4:33.
+Hsieh L-T, Ranganath C. 2014. Frontal midline theta oscillations during working memory maintenance and episodic encoding and retrieval. Neuroimage. 85(Part 2):721–729.
+Iosifescu DV, Greenwald S, Devlin P, Mischoulon D, Denninger JW, Alpert JE, Fava M. 2009. Frontal EEG predictors of treatment outcome in major depressive disorder. Eur Neuropsychopharmacol. 19:772–777.
+Ishikawa A, Nakamura S. 2003. Convergence and interaction of hippocampal and amygdalar projections within the prefrontal cortex in the rat. J Neurosci. 23:9987–9995.
+Jiménez-Sánchez L, Castañé A, Pérez-Caballero L, GrifollEscoda M, López-Gil X, Campa L, Galofré M, Berrocoso E, Adell A. 2015. Activation of AMPA receptors mediates the antidepressant action of deep brain stimulation of the infralimbic prefrontal cortex. Cereb Cortex. 133:1–12.
+Johansen-Berg H, Gutman DA, Behrens TEJ, Matthews PM, Rushworth MFS, Katz E, Lozano AM, Mayberg HS. 2008. Anatomical connectivity of the subgenual cingulate region targeted with deep brain stimulation for treatment-resistant depression. Cereb Cortex. 18:1374–1383.
+Jonides J, Smith EE, Koeppe RA, Awh E, Minoshima S, Mintun MA. 1993. Spatial working memory in humans as revealed by PET. Nature. 363:623–625.
+Keller MB, Lavori PW, Mueller TI, Endicott J, Coryell W, Hirschfeld RMA, Shea T. 1992. Time to recovery, chronicity, and levels of psychopathology in major depression: a 5-year prospective follow-up of 431 subjects. Arch Gen Psychiatry. 49:809–816.
+Kendler KS. 2000. Stressful life events and previous episodes in the etiology of major depression in women: an evaluation of the “Kindling” hypothesis. Am J Psychiatry. 157:1243–1251.
+Kendler KS, Thornton LM, Gardner CO. 2001. Genetic risk, number of previous depressive episodes, and stressful life events in predicting onset of major depression. Am J Psychiatry. 158:582–586.
+Kennedy SH. 2001. Changes in regional brain glucose metabolism measured with positron emission tomography after paroxetine treatment of major depression. Am J Psychiatry. 158:899–905.
+Kennedy SH, Giacobbe P, Rizvi SJ, Placenza FM, Nishikawa Y, Mayberg HS, Lozano AM. 2011. Deep brain stimulation for treatment-resistant depression: follow-up after 3 to 6 years. Am J Psychiatry. 168:502–510.
+Kennerley SW, Behrens TEJ, Wallis JD. 2011. Double dissociation of value computations in orbitofrontal and anterior cingulate neurons. Nat Neurosci. 14:1581–1589.
+
+A Computational Model of Major Depression Ramirez-Mahaluf et al. | 677
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+Kessler RC, Berglund P, Demler O, Jin R, Koretz D, Merikangas KR, Rush AJ, Walters EE, Wang PS. 2003. The epidemiology of major depressive disorder. JAMA. 289:3095–3105.
+Kopell N, Ermentrout GB, Whittington MA, Traub RD. 2000. Gamma rhythms and beta rhythms have different synchronization properties. Proc Natl Acad Sci USA. 97:1867–1872.
+Korb AS, Hunter AM, Cook IA, Leuchter AF. 2009. Rostral anterior cingulate cortex theta current density and response to antidepressants and placebo in major depression. Clin Neurophysiol. 120:1313–1319.
+Koyama T, Kato K, Tanaka YZ, Mikami A. 2001. Anterior cingulate activity during pain-avoidance and reward tasks in monkeys. Neurosci Res. 39:421–430.
+Krishnan V, Nestler EJ. 2008. The molecular neurobiology of depression. Nature. 455:894–902.
+Kumar S, Black SJ, Hultman R, Szabo ST, DeMaio KD, Du J, Katz BM, Feng G, Covington HE, Dzirasa K. 2013. Cortical control of affective networks. J Neurosci. 33:1116–1129.
+Lara AH, Wallis JD. 2014. Executive control processes underlying multi-item working memory. Nat Neurosci. 17:876–883.
+Lehman JF, Greenberg BD, McIntyre CC, Rasmussen SA, Haber SN. 2011. Rules ventral prefrontal cortical axons use to reach their targets: implications for diffusion tensor imaging tractography and deep brain stimulation for psychiatric illness. J Neurosci. 31:10392–10402.
+Liotti M, Mayberg HS, Brannan SK, McGinnis S, Jerabek P, Fox PT. 2000. Differential limbic–cortical correlates of sadness and anxiety in healthy subjects: implications for affective disorders. Biol Psychiatry. 48:30–42.
+Lipsman N, Kaping D, Westendorff S, Sankar T, Lozano AM, Womelsdorf T. 2014. Beta coherence within human ventromedial prefrontal cortex precedes affective value choices. Neuroimage. 85:769–778.
+Lipsman N, Nakao T, Kanayama N, Krauss JK, Anderson A, Giacobbe P, Hamani C, Hutchison WD, Dostrovsky JO, Womelsdorf T, et al. 2014. Neural overlap between resting state and self-relevant activity in human subcallosal cingulate cortex—single unit recording in an intracranial study. Cortex. 60:139–144.
+Loh M, Rolls ET, Deco G. 2007. A dynamical systems hypothesis of schizophrenia. PLoS Comput Biol. 3:e228.
+Lozano AM, Mayberg HS, Giacobbe P, Hamani C, Craddock RC, Kennedy SH. 2008. Subcallosal cingulate gyrus deep brain stimulation for treatment-resistant depression. Biol Psychiatry. 64:461–467.
+MacDonald AW, Cohen JD, Stenger VA, Carter CS. 2000. Dissociating the role of the dorsolateral prefrontal and anterior cingulate cortex in cognitive control. Science. 288:1835–1838.
+Maletic V, Robinson M, Oakes T, Iyengar S, Ball SG, Russell J. 2007. Neurobiology of depression: an integrated view of key ﬁndings. Int J Clin Pract. 61:2030–2040.
+Malizia AL. 1997. The frontal lobes and neurosurgery for psychiatric disorders. J Psychopharmacol. 11:179–187.
+Manji HK, Drevets WC, Charney DS. 2001. The cellular neurobiology of depression. Nat Med. 7:541–547.
+Mayberg HS. 1997. Limbic-cortical dysregulation: a proposed model of depression. J Neuropsychiatry Clin Neurosci. 9:471–481.
+Mayberg HS. 2009. Targeted electrode-based modulation of neural circuits for depression. J Clin Invest. 119:717–725.
+Mayberg HS, Brannan SK, Tekell JL, Silva JA, Mahurin RK, McGinnis S, Jerabek PA. 2000. Regional metabolic effects of ﬂuoxetine in major depression: serial changes and relationship to clinical response. Biol Psychiatry. 48:830–843.
+
+Mayberg HS, Liotti M, Brannan SK, McGinnis S, Mahurin RK, Jerabek PA, Silva JA, Tekell JL, Martin CC, Lancaster JL, et al. 1999. Reciprocal limbic-cortical function and negative mood: converging PET ﬁndings in depression and normal sadness. Am J Psychiatry. 156:675–682.
+Mayberg HS, Lozano AM, Voon V, McNeely HE, Seminowicz D, Hamani C, Schwalb JM, Kennedy SH. 2005. Deep brain stimulation for treatment-resistant depression. Neuron. 45:651–660.
+McCarthy G, Blamire AM, Puce A, Nobre AC, Bloch G, Hyder F, Goldman-Rakic P, Shulman RG. 1994. Functional magnetic resonance imaging of human prefrontal cortex activation during a spatial working memory task. Proc Natl Acad Sci USA. 91:8690–8694.
+Medalla M, Barbas H. 2010. Anterior cingulate synapses in prefrontal areas 10 and 46 suggest differential inﬂuence in cognitive control. J Neurosci. 30:16068–16081.
+Mitchell AJ. 2006. Two-week delay in onset of action of antidepressants: new evidence. Br J Psychiatry. 188:105–106.
+Monosov IE, Hikosaka O. 2012. Regionally distinct processing of rewards and punishments by the primate ventromedial prefrontal cortex. J Neurosci. 32:10318–10330.
+Mottaghy FM, Keller CE, Gangitano M, Ly J, Thall M, Parker JA, Pascual-Leone A. 2002. Correlation of cerebral blood ﬂow and treatment effects of repetitive transcranial magnetic stimulation in depressed patients. Psychiatry Res. 115:1–14.
+Mulert C, Juckel G, Brunnmeier M, Karch S, Leicht G, Mergl R, Möller H-J, Hegerl U, Pogarell O. 2007. Prediction of treatment response in major depression: integration of concepts. J Affect Disord. 98:215–225.
+Nemeroff CB. 2002. Recent advances in the neurobiology of depression. Psychopharmacol Bull. 36(Suppl 2):6–23.
+Nestler EJ, Barrot M, DiLeone RJ, Eisch AJ, Gold SJ, Monteggia LM. 2002. Neurobiology of depression. Neuron. 34:13–25.
+Neumann W-J, Huebl J, Brücke C, Gabriëls L, Bajbouj M, Merkl A, Schneider G-H, Nuttin B, Brown P, Kühn AA. 2014. Different patterns of local ﬁeld potentials from limbic DBS targets in patients with major depressive and obsessive compulsive disorder. Mol Psychiatry. 19:1186–1192.
+Nobler MS, Oquendo MA, Kegeles LS, Malone KM, Campbell CC, Sackeim HA, Mann JJ. 2001. Decreased regional brain metabolism after ect. Am J Psychiatry. 158:305–308.
+Oda K, Okubo Y, Ishida R, Murata Y, Ohta K, Matsuda T, Matsushima E, Ichimiya T, Suhara T, Shibuya H, et al. 2003. Regional cerebral blood ﬂow in depressed patients with white matter magnetic resonance hyperintensity. Biol Psychiatry. 53:150–156.
+Ongür D, An X, Price JL. 1998. Prefrontal cortical projections to the hypothalamus in macaque monkeys. J Comp Neurol. 401:480–505.
+Ongür D, Drevets WC, Price JL. 1998. Glial reduction in the subgenual prefrontal cortex in mood disorders. Proc Natl Acad Sci USA. 95:13290–13295.
+Öngür D, Price JL. 2000. The organization of networks within the orbital and medial prefrontal cortex of rats, monkeys and humans. Cereb Cortex. 10:206–219.
+Ownby RL. 1998. Computational model of obsessive‐compulsive disorder: examination of etiologic hypothesis and treatment strategies. Depress Anxiety. 8:91–103.
+Paelecke-Habermann Y, Pohl J, Leplow B. 2005. Attention and executive functions in remitted major depression patients. J Affect Disord. 89:125–135.
+Palomero-Gallagher N, Vogt BA, Schleicher A, Mayberg HS, Zilles K. 2009. Receptor architecture of human cingulate
+
+678 | Cerebral Cortex 2017, Vol. 27, No. 1
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+
+cortex: evaluation of the four-region neurobiological model. Hum Brain Mapp. 30:2336–2355. Pardo JV, Sheikh SA, Schwindt GC, Lee JT, Kuskowski MA, Surerus C, Lewis SM, Abuzzahab FS, Adson DE, Rittberg BR. 2008. Chronic vagus nerve stimulation for treatment-resistant depression decreases resting ventromedial prefrontal glucose metabolism. Neuroimage. 42:879–889. Perlstein WM, Elbert T, Stenger VA. 2002. Dissociation in human prefrontal cortex of affective inﬂuences on working memory-related activity. Proc Natl Acad Sci USA. 99:1736–1741. Pizzagalli D, Pascual-Marqui RD, Nitschke JB, Oakes TR, Larson CL, Abercrombie HC, Schaefer SM, Koger JV, Benca RM, Davidson RJ. 2001. Anterior cingulate activity as a predictor of degree of treatment response in major depression: evidence from brain electrical tomography analysis. Am J Psychiatry. 158:405–415. Pizzagalli DA. 2011. Frontocingulate dysfunction in depression: toward biomarkers of treatment response. Neuropsychopharmacology. 36:183–206. Pizzagalli DA, Nitschke JB, Oakes TR, Hendrick AM, Horras KA, Larson CL, Abercrombie HC, Schaefer SM, Koger JV, Benca RM, et al. 2002. Brain electrical tomography in depression: the importance of symptom severity, anxiety, and melancholic features. Biol Psychiatry. 52:73–85. Portella MJ, De Diego-Adeliño J, Gómez-Ansón B, MorganFerrando R, Vives Y, Puigdemont D, Pérez-Egea R, Ruscalleda J, Álvarez E, Pérez V. 2011. Ventromedial prefrontal spectroscopic abnormalities over the course of depression: a comparison among ﬁrst episode, remitted recurrent and chronic patients. J Psychiatr Res. 45:427–434. Price J, Cole V, Goodwin GM. 2009. Emotional side-effects of selective serotonin reuptake inhibitors: qualitative study. Br J Psychiatry. 195:211–217. Raichle ME, MacLeod AM, Snyder AZ, Powers WJ, Gusnard DA, Shulman GL. 2001. A default mode of brain function. Proc Natl Acad Sci USA. 98:676–682. Rajkowska G, Miguel-Hidalgo JJ, Wei J, Dilley G, Pittman SD, Meltzer HY, Overholser JC, Roth BL, Stockmeier CA. 1999. Morphometric evidence for neuronal and glial prefrontal cell pathology in major depression. Biol Psychiatry. 45:1085–1098. Ray WJ, Cole HW. 1985. EEG alpha activity reﬂects attentional demands, and beta activity reﬂects emotional and cognitive processes. Science. 228:750–752. Riva-Posse P, Choi KS, Holtzheimer PE, McIntyre CC, Gross RE, Chaturvedi A, Crowell AL, Garlow SJ, Rajendra JK, Mayberg HS. 2014. Deﬁning critical white matter pathways mediating successful subcallosal cingulate deep brain stimulation for treatment-resistant depression. Biol Psychiatry. 76:963–969. Rogers RD, Ramnani N, Mackay C, Wilson JL, Jezzard P, Carter CS, Smith SM. 2004. Distinct portions of anterior cingulate cortex and medial prefrontal cortex are activated by reward processing in separable phases of decision-making cognition. Biol Psychiatry. 55:594–602. Rolls ET, Loh M, Deco G. 2008. An attractor hypothesis of obsessive-compulsive disorder. Eur J Neurosci. 28:782–793. Rolls ET, Loh M, Deco G, Winterer G. 2008. Computational models of schizophrenia and dopamine modulation in the prefrontal cortex. Nat Rev Neurosci. 9:696–709. Rose EJ, Ebmeier KP. 2006. Pattern of impaired working memory during major depression. J Affect Disord. 90:149–161. Salum C, Morato S, Roque-da-Silva AC. 2000. Anxiety-like behavior in rats: a computational model. Neural Netw. 13: 21–29.
+
+Sanacora G, Treccani G, Popoli M. 2012. Towards a glutamate hypothesis of depression: an emerging frontier of neuropsychopharmacology for mood disorders. Neuropharmacology. 62:63–77.
+Sanfey AG, Rilling JK, Aronson JA, Nystrom LE, Cohen JD. 2003. The neural basis of economic decision-making in the Ultimatum Game. Science. 300:1755–1758.
+Santana N, Bortolozzi A, Serrats J, Mengod G, Artigas F. 2004. Expression of serotonin1A and serotonin2A receptors in pyramidal and GABAergic neurons of the rat prefrontal cortex. Cereb Cortex. 14:1100–1109.
+Sashin JI, Callahan J. 1990. A model of affect using dynamical systems. Ann Psychoanal. 18:213–231.
+Seminowicz D, Mayberg H, McIntosh A, Goldapple K, Kennedy S, Segal Z, Raﬁ-Tari S. 2004. Limbic–frontal circuitry in major depression: a path modeling metanalysis. Neuroimage. 22:409–418.
+Shidara M, Richmond BJ. 2002. Anterior cingulate: single neuronal signals related to degree of reward expectancy. Science. 296:1709–1711.
+Siegle GJ, Carter CS, Thase ME. 2006. Use of fMRI to predict recovery from unipolar depression with cognitive behavior therapy. Am J Psychiatry. 163:735–738.
+Siegel M, Donner TH, Engel AK. 2012. Spectral ﬁngerprints of largescale neuronal interactions. Nat Rev Neurosci. 13:121–134.
+Siekmeier PJ. 2015. Computational modeling of psychiatric illnesses via well-deﬁned neurophysiological and neurocognitive biomarkers. Neurosci. Biobehav. Rev. 57:365–380.
+Simpson JR, Snyder AZ, Gusnard DA, Raichle ME. 2001. Emotioninduced changes in human medial prefrontal cortex: I. During cognitive task performance. Proc Natl Acad Sci USA. 98:683–687.
+Smith R, Fadok RA, Purcell M, Liu S, Stonnington C, Spetzler RF, Baxter LC. 2011. Localizing sadness activation within the subgenual cingulate in individuals: a novel functional MRI paradigm for detecting individual differences in the neural circuitry underlying depression. Brain Imaging Behav. 5:229–239.
+Srejic LR, Hamani C, Hutchison WD. 2015. High-frequency stimulation of the medial prefrontal cortex decreases cellular ﬁring in the dorsal raphe. Eur J Neurosci. 41:1219–1226.
+Tamás G, Buhl EH, Lörincz A, Somogyi P. 2000. Proximally targeted GABAergic synapses and gap junctions synchronize cortical interneurons. Nat Neurosci. 3:366–371.
+Tsujimoto T, Shimazu H, Isomura Y. 2006. Direct recording of theta oscillations in primate prefrontal and anterior cingulate cortices. J Neurophysiol. 95:2987–3000.
+Tsujimoto T, Shimazu H, Isomura Y, Sasaki K. 2010. Theta oscillations in primate prefrontal and anterior cingulate cortices in forewarned reaction time tasks. J Neurophysiol. 103: 827–843.
+Tuckwell HC. 1988. Introduction to theoretical neurobiology: volume 1, linear cable theory and dendritic structure. Cambridge, UK: Cambridge University Press.
+Vaidya VA, Duman RS. 2001. Depresssion—emerging insights from neurobiology. Br Med Bull. 57:61–79.
+Veerakumar A, Challis C, Gupta P, Da J, Upadhyay A, Beck SG, Berton O. 2014. Antidepressant-like effects of cortical deep brain stimulation coincide with pro-neuroplastic adaptations of serotonin systems. Biol Psychiatry. 76:203–212.
+Videbech P, Ravnkilde B, Pedersen TH, Hartvig H, Egander A, Clemmensen K, Rasmussen NA, Andersen F, Gjedde A, Rosenberg R. 2002. The Danish PET/depression project: clinical symptoms and cerebral blood ﬂow. A regions-of-interest analysis. Acta Psychiatr Scand. 106:35–44.
+
+A Computational Model of Major Depression Ramirez-Mahaluf et al. | 679
+
+Vlassenko A, Sheline YI, Fischer K, Mintun MA. 2004. Cerebral perfusion response to successful treatment of depression with different serotoninergic agents. J Neuropsychiatry Clin Neurosci. 16:360–363.
+Vogt B. 2009. Cingulate neurobiology and disease. New York, USA: Oxford University Press.
+Vogt BA, Pandya DN. 1987. Cingulate cortex of the rhesus monkey. II: cortical afferents. J Comp Neurol. 262:271–289.
+Walsh R, Victor B, Bitner R. 2006. Emotional effects of sertraline: novel ﬁndings revealed by meditation. Am J Orthopsychiatry. 76:134–137.
+Walter M, Henning A, Grimm S, Schulte RF, Beck J, Dydak U, Schnepf B, Boeker H, Boesiger P, Northoff G. 2009. The relationship between aberrant neuronal activation in the pregenual anterior cingulate, altered glutamatergic metabolism, and anhedonia in major depression. Arch Gen Psychiatry. 66:478–486.
+
+Wang X-J, Krystal JH. 2014. Computational psychiatry. Neuron. 84:638–654.
+Warden MR, Selimbeyoglu A, Mirzabekov JJ, Lo M, Thompson KR, Kim S-Y, Adhikari A, Tye KM, Frank LM, Deisseroth K. 2012. A prefrontal cortex-brainstem neuronal projection that controls response to behavioural challenge. Nature. 492:428–432.
+Watts FN, Sharrock R. 1985. Description and measurement of concentration problems in depressed patients. Psychol Med. 15:317–326.
+Yucel K, McKinnon MC, Chahal R, Taylor VH, Macdonald K, Joffe R, MacQueen GM. 2008. Anterior cingulate volumes in never-treated patients with major depressive disorder. Neuropsychopharmacology. 33:3157–3163.
+Zikopoulos B, Barbas H. 2012. Pathways for emotions and attention converge on the thalamic reticular nucleus in primates. J Neurosci. 32:5338–5350.
+
+Downloaded from https://academic.oup.com/cercor/article/27/1/660/3056182 by Library user on 26 October 2023
+

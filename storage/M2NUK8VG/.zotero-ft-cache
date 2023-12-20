@@ -1,0 +1,2136 @@
+UCSF
+UC San Francisco Previously Published Works
+Title Time-varying dynamic network model for dynamic resting state functional connectivity in fMRI and MEG imaging
+Permalink https://escholarship.org/uc/item/6wz1651b
+Authors Jiang, Fei Jin, Huaqing Gao, Yijing et al.
+Publication Date 2022-07-01
+DOI 10.1016/j.neuroimage.2022.119131
+Peer reviewed
+
+eScholarship.org
+
+Powered by the California Digital Library University of California
+
+Author Manuscript
+
+Author Manuscript
+
+HHS Public Access
+Author manuscript
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+Published in final edited form as: Neuroimage. 2022 July 01; 254: 119131. doi:10.1016/j.neuroimage.2022.119131.
+Time-varying dynamic network model for dynamic resting state functional connectivity in fMRI and MEG imaging
+Fei Jianga,1,*, Huaqing Jinb,1, Yijing Gaoc, Xihe Xiec, Jennifer Cummingsc, Ashish Rajc,2, Srikantan Nagarajanc,2 aDepartment of Epidemiology and Biostatistics, University of California, San Francisco, CA 94158, USA
+bDepartment of Statistics and Actuarial Science, the University of Hong Kong, CN, Hong Kong
+cDepartment of Radiology and Biomedical Imaging, University of California, San Francisco, CA 94158, USA
+Abstract
+Dynamic resting state functional connectivity (RSFC) characterizes fluctuations that occur over time in functional brain networks. Existing methods to extract dynamic RSFCs, such as slidingwindow and clustering methods that are inherently non-adaptive, have various limitations such as high-dimensionality, an inability to reconstruct brain signals, insufficiency of data for reliable estimation, insensitivity to rapid changes in dynamics, and a lack of generalizability across multiply functional imaging modalities. To overcome these deficiencies, we develop a novel and unifying time-varying dynamic network (TVDN) framework for examining dynamic resting state functional connectivity. TVDN includes a generative model that describes the relation between a low-dimensional dynamic RSFC and the brain signals, and an inference algorithm that automatically and adaptively learns the low-dimensional manifold of dynamic RSFC and detects dynamic state transitions in data. TVDN is applicable to multiple modalities of functional neuroimaging such as fMRI and MEG/EEG. The estimated low-dimensional dynamic RSFCs manifold directly links to the frequency content of brain signals. Hence we can evaluate TVDN performance by examining whether learnt features can reconstruct observed brain signals. We conduct comprehensive simulations to evaluate TVDN under hypothetical settings. We then demonstrate the application of TVDN with real fMRI and MEG data, and compare the results with existing benchmarks. Results demonstrate that TVDN is able to correctly capture the dynamics of
+This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-nc-nd/4.0/) *Corresponding author. Fei.Jiang@ucsf.edu (F. Jiang). 1co-first authors. 2co-last authors with equal contribution. 5. Code & data availability Simulated and pre-processed data and code that support the findings of this study are available from the GitHub repository at https://github.com/feigroup/TVDN. The code used to produce basic figures can be run as interactive Jupyter notebooks. Instructions for downloading and setting up the computing requirements are documented in the README file. 6. Credit author statement 1. Fei Jiang: method development and is responsible for ensuring that the descriptions are accurate and agreed by all authors. 2. Huaqing Jin; numerical experiments programming, software development, 3. Yi-jing Gao, MEG data preprocessing 4. 5. Xihe Xie, Jennifer Cummings, fMRI data preprocessing 6. Ashish Raj, Srikantan Nagarajan are responsible for ensuring that the descriptions are accurate accurate and agreed by all authors.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 2
+
+brain activity and more robustly detect brain state switching both in resting state fMRI and MEG data.
+
+Keywords
+Brain state switch; Dynamic resting state functional connectivity; Change point detection; Functional magnetic resonance; Magnetoencephalography; Multi-modality imaging
+1. Introduction
+The human brain’s functional activity can be described as highly dynamic functional networks arising from a structural network whose fluctuations over time form the basis for complex cognitive functions and consciousness (Bassett et al., 2011; Deco and Jirsa, 2012; Duan et al., 2020; Liu et al., 2022; 2022; Pasquini et al., 2020; Shine et al., 2015). This view of brain function highlights the importance of time sensitive descriptions of brain network activity for understanding the functional relevance of alterations in the network function that may underlie different behavioral states and conditions(Varela et al., 2001). Recent experiments using fMRI data have demonstrated that global brain signals transition between states of high and low connectivity strength over time (Zalesky et al., 2014) and these fluctuations are related to coordinated patterns of network topology (Betzel et al., 2016). Studies suggest that dynamic fluctuations in the network structure also relate to fluctuations in the cognitive function (Shine et al., 2015). Therefore, analyses of functional neuroimaging data to examine time-varying reconfiguration of the global network structure may provide a unique opportunity to gain insights into the dynamics of functional brain networks, their association with behavioral states, and their alterations in disease and therapeutic interventions.
+To appropriately describe synchronous temporal fluctuations in neuroimaging data, many data driven approaches have been used, especially with the resting state functional connectivity (RSFC) which describes how brain activity is correlated across regions when an explicit task is not being performed. Many studies have shown that this functional connectivity provides a powerful and informative framework for exploring brain organization (Bullmore and Sporns, 2009; Greicius, 2008; Shine et al., 2015). RSFC studies have been described both for blood-oxygen level-dependent (BOLD) data measured with functional magnetic resonance imaging (fMRI) (Biswal et al., 1997; Calhoun et al., 2001; Greicius et al., 2003) and for faster time scale neural oscillatory network changes measured with magnetoencephalography (MEG) (Englot et al., 2015; Ranasinghe et al., 2017) or electroencephalography (EEG) imaging (Brookes et al., 2011; Dominguez et al., 2013; Hohlefeld et al., 2013). Approaches for RSFC analyses include seed-based correlations (Lv et al., 2018), independent component analysis (Beckmann et al., 2005) and dynamic mode decomposition (Brunton et al., 2016; Kutz et al., 2016). Recent work has also focused on recovering the static RSFC from the underlying structural connectivity via graph methods like the network diffusion model (Abdelnour et al., 2014) and algebraic spectral graph expansions (Abdelnour et al., 2018; Becker et al., 2018; Meier et al., 2016; Tewarie et al., 2020). of dynamic changes in functional network architecture. To date,
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 3
+most existing statistical techniques for RSFC have assumed that the functional connectivity structure is stationary over a dataset, which is in direct contrast to emerging data that suggest the strength of connectivity between regions is variable over time. Therefore, the development of statistical methods that enable exploration of dynamic changes in the functional connectivity is currently of great importance to the neuroscience community.
+The extension of current techniques to capture the dynamic changes in RSFC during the scan period is a lively yet evolving topic. It is well known that the brain at rest is in fact quite dynamic, with RSFC capable of changing over a matter of seconds to minutes (Hutchison et al., 2013). This time varying pattern, namely the dynamic functional connectivity, has been shown to constitute novel imaging biomarkers for identifying neurological dysfunctions such as schizophrenia, autism and various forms of dementia (Damaraju et al., 2014; Filippi et al., 2019; Long et al., 2020; Ma et al., 2014; Mash et al., 2019; Pasquini et al., 2020; Rashid et al., 2016; 2014; Schumacher et al., 2019). For instance, dynamic FC may underlie the neuropathology of major depressive disorder (Long et al., 2020), can assess the abnormal brain states for schizophrenia (Duan et al., 2020) and it can identify early mild cognitive impairment for dementia (Wee et al., 2016) and distinguish Alzheimer’s Disease (AD) patients from healthy controls (Schumacher et al., 2019). Thus, the dynamic component of RSFC may serve as an additional biomarker of neurological disorders - a key motivation of current work.
+Currently, the most common approach to extract dynamic RSFCs relies on the slidingwindow method, which generally consists of two steps: (1) divide signals into segments of the equal duration; (2) implement the traditional seed based method (Biswal et al., 1995; Fox et al., 2005), independent component analysis (Allen et al., 2014; Calhoun et al., 2001; van de Ven et al., 2004), or the dynamic mode decomposition method (Brunton et al., 2016; Kutz et al., 2016) on the segments sequentially. While the sliding-window method is practically attractive since it enables the use of earlier static methods in the dynamic context, it presents several limitations and trade-offs, which will be discussed in detail in Section 4.1. One notable issue is that current methods for dynamic functional connectivity (FC) analysis do not account for biological constraints or biophysically realistic models of brain activity and state switches. This represents a lost opportunity to overcome some of the limitations noted in Section 4.1. Here we propose a novel model for extracting dynamic FC that relies on discrete and discontinuous “state changes” in brain activity. Indeed, there is mounting evidence that the brain’s dynamics results from its cycling through a number of brain-states, i.e., the transient, patterned, quasi-stable states or patterns of the brain activity (Coquelet et al., 2021; Croce et al., 2020; Michel and Koenig, 2018), separated by brain state switches, such that while the FC during brain states may be considered stationary, FC during the transitions between brain states are subject to discontinuous, abrupt or nonsmooth events (Li et al., 2013; Saper et al., 2010; Vidaurre et al., 2017). In addition to being more biologically realistic, this approach allows us to benefit from several constraints, especially the concept that the spatial features of brain activity might be stationary, while the coupling between these stationary structures might be temporally dynamic. For instance, the spatial structures may arise from the underlying structural connectivity, while the temporal parameters describe the dynamic switching between brain networks over time. Therefore, while the spatial structure of the FC patterns is considered stationary due to the linkage
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 4
+with the structure of the brain, how these spatial features work together is allowed to vary over time. It is further possible to constrain the dynamics of the temporal parameters. Rather than randomly or continuously traversing through the latent state-space, RSFCs most likely undergo discrete and discontinuous shifts, resulting in the concept of “brain states” (Li et al., 2013; Saper et al., 2010; Vidaurre et al., 2017). Hence we recommend to impose piece-wise constancy to these temporally changing coefficients. We show that using these powerful constraints, it is possible to overcome the trade-offs and limitations currently pertinent to the dynamic RSFC analysis.
+We present a unified solution for extracting dynamic FCs from both fMRI and MEG data, which directly addresses these limitations. We call this method the time-varying dynamic network (TVDN) framework. We develop a novel automatic and provably statistically optimal inference algorithm based on the TVDN model to infer the dynamics that underlie the model. We extract the stationary spatial features and detect the dynamic brain state switches adaptively. The algorithm is able to divide the brain signals into uneven segments, each of which contains brain activities in a stationary brain state. Once the parameters have been successfully inferred, the entire spatio-temporal noise-free imaging signal can be reconstructed through a high dimensional linear forward model - a feature that is rarely available in current methods. The algorithm involves a few tuning or hyper-parameters, which are automatically selected to minimize the uncertainties of the number of switches across independent samples. We expect that the presented TVDN framework will prove effective in robustly generating dynamic FC features that will serve as useful biomarkers of neurological and neurodegenerative diseases.
+
+2. Materials and methods
+The dynamic FC contains spatial and temporal components (Lang et al., 2012). The spatial features of the dynamic FC capture the links among brain regions (Alexander-Bloch et al., 2010; Brier et al., 2014; Geerligs et al., 2015; Sanz-Arigita et al., 2010; Van Den Heuvel et al., 2009). The temporal features characterize the state changes of brain activity (Di et al., 2013; Gonzalez-Castillo et al., 2015; Kitzbichler et al., 2011; Moussa et al., 2011; Shirer et al., 2012). Furthermore, the spatial features are constrained by the stable brain structures, and hence they must be consistent over the signal sampling time and across the image modalities. Moreover, different modalities have distinct temporal resolutions, and therefore the temporal features are distinct across the modalities. Considering these characteristics of the spatial and temporal features, we develop a novel methodology to extract the time invariant spatial features and time varying temporal features. Fig. 1 shows a flowchart of the estimation procedure. The purple oval represents TVDN inputs, and red ovals represent TVDN outputs. The blue rectangles represent the building blocks of TVDN, which we discuss in detail in Section 2.3.3.
+2.1. Time-varying dynamic network
+Let Xi(t) be the brain signal at time t on the ith brain region of interest (ROI), Xi′(t) be the derivative of Xi(t) with respect to t with t ∈ [0, T], representing the increment of brain activity at time t. Furthermore, let d be the number of ROIs, we write
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 5
+
+X(t) = {X1(t), …, Xd(t)}T, and X′(t) = {X1′ (t), …, Xd′ (t)}T. In practice, instead of the true signal, we observe a noisy signal at n discrete acquisition time points. Denote tj as the jth acquisition time, to accommodate the noisy data, we write
+
+Yj = X(tj) + ϵj,
+
+(1)
+
+where ϵj, j = 1, …, n, are independent mean zero random errors. Furthermore, we assume
+
+X′(tj) = A(tj)X(tj),
+
+(2)
+
+where A(tj) is a time-varying unknown matrix of size d × d. We name model (1) and (2) together the time-varying dynamic network (TVDN) model, where the dynamics of the resting state functional connectivity are captured by the time-varying matrix A(t). Model (2) is a direct extension of the dynamic mode decomposition model (Brunton et al., 2016; Kutz et al., 2016). To see the connection, first note that (2) is equivalent to X(t + dt) = {A(t)dt + I}X(t), where dt is the unit measurement time and I is an identity matrix. When A(t) is a fixed matrix over time, we can consider A(t)dt + I as a constant matrix. Then model (2) reduces to the dynamic mode decomposition model extensively studied in Brunton et al. (2016) and Kutz et al. (2016). Furthermore, when A(·) is a fixed matrix where A(·) = −βℒ, then the model (2) is also a network diffusion model (Abdelnour et al., 2014) that explains how brain activations from different ROIs are coupled together to generate new signals via the structural connectivity given by the matrix Laplacian ℒ and the diffusivity constant β. Other algebraic graph relationships have also been proposed, such that A may be given by the eigenvectors of the structural (Abdelnour et al., 2018) or functional connectivity matrix (Becker et al., 2018), after a suitable transformation of the eigenvalues. While these approaches do not readily accommodate time-varying features of A, they point to an important property of the eigenvectors of A, which may be considered as resting state networks (RSN) (Abdelnour et al., 2018; 2014). Because these RSNs represent static brain connections or other non-dynamic brain substrates, we propose the following constraints that together constitute the TVDN model:
+1. The eigen-decomposition of A(tj) is in the form of
+A(tj) = UΛ(tj)U−1,
+
+where we fix the eigenvector U but allow the eigenvalues to depend on time. Under this formulation, U may be considered as a set of spatial features that are stationary over time. The absolute magnitudes of the (time-varying) eigenvalues govern the relative importance of each of the RSNs. This constraint reflects the biological concept that the spatial features of brain activity might be stationary, while the coupling between these stationary structures might be temporally dynamic.
+2. We then impose the condition that dynamicity in FCs arises from discrete and potentially discontinuous shifts (“brain state switches”) in activity, which we accommodate by allowing the eigenvalues, i.e. diagonal elements of Λ(t), to be
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 6
+piece-wise constant functions of time, reflecting the phenomenon that the brain has a tendency to stay within, with sporadic cycling between the RSNs (Vidaurre et al., 2017). Therefore, let τ0 = (τk, k = 0, 1, …, M, M + 1; τ0 = 0, τM + 1 = T ) be a set of true switching points, dividing the signal to M + 1 stationary segments, we write
+Λ(t) = Λ(τk) if τk − 1 < t ≤ τk, and Λ(τk) ≠ Λ(τk + 1), Λ(τk) ≠ Λ(τk − 1) .
+
+Such formulation suggests that when t ∈ (τ0k − 1, τ0k], Λ(t) has a constant value at Λ(τ0k). And the values of Λ(·) are different at distinct time points that fall into two consecutive segments constructed by the switching points.
+3. The number of nonzero eigenvalues in Λ(t), t ∈ [0, T] represents the number of intrinsic brain states in the brain activity data. It is well known that only a few RSNs are typically operational in the brain, and the canonical RSFC can be well captured by 7 – 20 such RSNs (Yeo et al., 2011). In prior graph theoretic models also, A(·) are assumed to be low rank matrices (Abdelnour et al., 2018; Raj et al., 2019). It is therefore plausible to assert that the number of such RSNs or brain state is quite small. Hence our final constraint is that
+rank{A(t)} = rank{Λ(t)} ≤ r ≪ d,
+
+where r is the maximal rank for A(t), t ∈ [0, T], representing the number of distinct brain states.
+
+2.2. Model interpretations
+Since A(t) is constant in a given segment, the solution of the ordinary differential Eq. (2) in the kth segment is given by X(t) = U exp{Λ(τk)(t − τ0k − 1)}U−1X0k, where X0k is the initial value at the kth segment and Λ(t) is a constant matrix in the kth segment. Let us define the real and imaginary components of the jth eigenvalue as λj = γj + i2πfj. Then the underlying signal in the kth segment satisfies
+
+X(t) = ∑r Uj exp{(γj + i2πfj)(t − τ0k − 1)}{(U−1)j}TX0k,
+
+(3)
+
+j=1
+
+where (U−1j is the jth row of U−1. The real term γj is interpreted as a coefficient that determines the growth or decay of the signal during this segment, and the imaginary component fj is interpreted as the oscillation frequency of the mode (Kunert-Graf et al., 2019) in cycles per sample interval, which is 2 seconds for fMRI data and 1/60 seconds for
+MEG data). Therefore, when an estimator for Λ(t), say Λ(t), is available for the kth segment, we can directly infer the grow/decay constant in the segment as Re{Λ(t)}f and the signal frequency as Im{Λ(t)}f /2π, where f is the sampling frequency of the signals.
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 7
+
+It is worth mentioning that in situations where mulitple modalities are available for the same subject, e.g. fMRI and MEG, the spatial features U may be considered to be shared between the modalities. In those cases TVDN will be able to aggregate the signals to generate a common estimator for U across the modalities. Then this common estimator will be used to obtain the modality specific temporal features Λ(t), where the information borrowing is clearly embedded in the estimation through sharing U. Augmentation with multi-modal data can potentially improve estimation accuracy.
+
+2.3. Estimation of the spatial and temporal features
+We estimate the spatial feature U through a kernel based method and detect the critical points for brain state switches via a switch detection algorithm.
+
+2.3.1. Notation—Let t1, …, tn denote n signal acquisition time points. We denote Mr and
+Mr×r be the first r column and the first r × r block of M, respectively. Furthermore, define ∥ ℳ ∥ be the cardinality of an arbitrary set ℳ. Let ‖M‖F be the Frobenius norm of matrix M. For a vector a, let ‖a‖1, ‖a‖2 be its L1, L2 norm, respectively. Let M−1 be the generalized
+inverse of matrix M.
+
+2.3.2. B-spline smoothing—To obtain a proper estimator for X(t) and X′(t) from the noisy observation Y(t), we first de-noise the signals through the B-spline smoothing as follows
+
+Γ
+
+=
+
+argminΓ
+
+n
+∑ ‖Yj
+j=1
+
+−
+
+ΓB(tj)‖22,
+
+=
+
+n
+∑
+
+YjB(tj)T
+
+n
+∑
+
+B(tj)B(tj)T
+
+−1
+
+j=1
+
+i=1
+
+and
+X(tj) = ΓB(tj), X′(tj) = ΓBr′ (tj),
+
+where B(·) is the bth order B-spline basis with N interior knots and X and X′ are the smoothed version of X and X′, respectively. The B-spline estimation generates an estimator of A(t). When the sample size increases, this estimator will approach to A(t) consistently as shown in Theorem 1 in Appendix E.2. This leads to the consistent estimations of U and Λ(t) in the subsequent procedures. The de-noising step is necessary to generate a good estimator for X′(t). In practice, people can use other de-noising techniques, such as using Fourier-base or eigen-base expansion to approximate X(t). We choose B-spline method because it has well established statistical properties.
+2.3.3. Estimation of the spatial features U—On these smoothed signals, we estimate the matrix A(ts) at any time point of interest ts by minimizing
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 8
+
+n
+ℒ{A(ts)} = ∑
+
+X′(tj) − A(ts)X(tj) T X′(tj) − A(ts)X(tj) Kℎ(tj − ts),
+
+(4)
+
+j=1
+
+where Kℎ( | x | ) = 1/ℎK( | x | /ℎ) is a kernel function with h be the bandwidth. Here Kℎ( | x | ) is a deceasing function of |x|. Hence when estimating A(ts), Kℎ( | x | ) weighs the samples higher when they are closer to ts. The width h of the kernel controls how “local” the estimator of A(t) is; if it is large, then the estimator of A(t) would hardly change over time, and
+it would reduce to the dynamic mode decomposition model (Kunert-Graf et al., 2019). A
+typical choice of Kh(|x|) is the Gaussian density function with the standard deviation h. The bandwidth h is often selected to satisfy h → 0 when n → ∞ so that even if n grows, when
+estimate A(ts), the amount of information used in the estimation remains fixed. In Fig. 2, we show the weights Kh(t − 180) across t ∈ [1, 360] in seconds for fMRI and weights Kh(t − 30) across t ∈ [1, 60] in seconds for MEG when the rule-of-thumb bandwidth h (page 48 in
+Silverman (1986)) was selected.
+
+Minimizing ℒ{A(ts)} has a close form solution for A(ts) as
+
+n
+∑
+
+X′(tj)X(tj)T Kℎ(tj − ts)
+
+n
+∑
+
+−1 {X(tj)X(tj)T}Kℎ(tj − ts) ,
+
+j=1
+
+j=1
+
+which is the Nadaraya-Watson estimator (Nadaraya, 1964; Watson, 1964) regularly used to estimate functions at specific time points.
+
+To account for the fact that M = ∑nj = 1 {X(tj)X(tj)T}Kℎ(tj − ts) can be a low rank matrix, we
+replace the matrix inverse above with a truncated-rank inverse such that all eigenvalues of
+M below a threshold value are set to zero and removed from the pseudo-inverse. Formally, define a truncation function ρλ as ρλ(M) = B1diag{σjI(σj > λ), j = 1, …, min(m, n)}B2T, where B1, B2 are the left and right singular vectors and σj is the jth singular value of M. Here we choose a truncation threshold b0 = O(ℎ2r + n−1/2N1/2ℎ2d), which is in the order of ‖XWXT − XWXT‖F /n with W = diag{Kℎ(tj − ts), j = 1, …, n} for a specific time point ts and N be the number of B-spline basis. Here, as shown in Theorem 1 in Appendix E.2, the first order h2r comes from the kernel smoothing and the second term n−1/2N1/2ℎ2d comes from the B-spline smoothing. When n → ∞ and n−1/2N1/2 0 as n → ∞, the error ‖XWXT − XWXT‖F /n and quantity b0 go to 0 if sufficient samples are collected overtime.
+Thus, the estimation of A(ts) is
+
+A(ts)
+
+=
+
+n
+∑
+j=1
+
+X′(tj)X(tj)T
+
+Kℎ(tj
+
+−
+
+ts)ρb−01
+
+n
+∑
+
+{X(tj)X(tj)T}Kℎ(tj − ts)
+
+j=1
+
+.
+
+The truncation function is specially designed for the high correlated sequences where the XWXT is a low rank matrix, but XWXT can be full ranked due to the additional
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 9
+estimation error ‖XWXT − XWXT‖F /n. Using the truncation function helps to remove spurious eigenvalues, which not only improves the estimation accuracy but also stabilizes the computation.
+When X is full row rank matrix, let MS ⊆ {1, …, n} be the set of time indices, we can show that ‖∑s ∈ MS A(ts) − A(ts)‖F / MS = Op(ℎ2r + n−1 N1/2dr), which goes to 0 when the sample size increases under mild conditions. Here, the first term h2r is the order of the estimation error in the kernel regression procedure and the second term n−1 N1/2dr is the order of the error from the B-spline smoothing procedure. When h → 0 and n−1 N1/2 0 as n → ∞, the estimation error of ∑s ∈ MS A(ts)/ MS vanishes along with the increment of the sample size. This suggests that we need sufficient samples to recover the underlying true parameters. This fact also explains the phenomenon in the real data analysis that the reconstruction of the MEG signals is better than that of the fMRI signals. Therefore, we extract the estimator for U as the eigenvector of ∑s ∈ MS A(ts), denoted as U.
+2.3.4. Brain-state switch detection—Define Mr. as the first r rows of matrix M, and Mr×r as the first r × r block matrix of M. Because
+X′(t) = A(t)X(t) = UrΛr × r(t)(U−1)r . X(t),
+
+after obtaining U we reduce the data dimension as
+
+(U−1)r . X′(t) = Λr × r(t)(U−1)r . X(t) .
+
+(5)
+
+It is worth mentioning that multiplying both sides by (U−1)r ⋅ X(t) projects the d dimensional ROIs to a lower r dimensional space. Furthermore, Λr×r(t) is a diagonal matrix, which contains only r unknown parameters. Such dimension reduction procedure is crucial for
+speeding up and stabilizing the switch detection algorithm, which makes the brain state
+switch detection practically feasible for signals from a large number of ROIs.
+
+Let X′(t) = (U−1)r ⋅ X′(t) and X(t) = (U−1)r ⋅ X(t), we obtain the estimator for true switch number M and locations τk’s through minimizing a modified Bayesian information criteria
+(MBIC) defined as
+
+MBIC(τ, M) =
+
+M
+∑
+
+ℒ(τk + 1, τk + 1) + 2rlog(n)κ(M + 1),
+
+k=0
+
+where κ is a constant, and
+τk + 1
+ℒ(τk + 1, τk + 1) = − ∑ log[Φ{X′(s) − ΛkX(s), 0, Σk}]
+s = τk + 1
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 10
+
+with Φ(x, a, s) be the multivariate normal density function with mean a and variance covariance matrix s evaluated at x. To solve the minimization problem, we iterate over all possible segmentations of the sequence. For the samples in a given segment, say s ∈ (τk + 1, τk + 1], we obtain Λk as
+
+Λk
+
+=
+
+argminΛk
+
+s
+
+τk +
+∑
+= τk
+
+1 +
+
+1
+
+{X′(s)
+
+−
+
+ΛkX(s)}T{X′(s)
+
+−
+
+ΛkX(s)},
+
+subject to the fact that Λk is a r × r diagonal matrix, and obtain Σk as the estimated sample covariates defined as
+
+Σk =
+
+τk + 1
+∑
+
+{X′(s) − ΛkX(s)}{X′(s) − ΛkX(s)}T/(τk + 1 − τk) .
+
+s = τk + 1
+
+We then find the best segmentation, that is the best (τ, M) that minimizes MBIC (τ, M) as the estimated locations and number of the switch points. In short, we obtain the estimators as
+(τ, M) = argminτ, MMBIC(τ, M) .
+
+We employ the dynamic programming algorithm as detailed in Algorithm 1 following
+Jackson et al. (2005); Killick et al. (2012) to efficiently evaluate all possible segmentations
+and obtain τ and M. The dynamic programming algorithm finds the optimal value recursively, avoiding re-computing the ℒ over overlapped segments (Bellman and Roth, 1969; Bement and Waterman, 1977; Du et al., 2016a; Yau and Zhao, 2016). The computational cost is O(rn2 Mmax) and storage is O(rnMmax), where Mmax is the maximum number of switches points in the signal (Du et al., 2016b).
+
+Dynamic programming algorithm.
+
+Algorithm 1:
+
+Input:
+
+(1)
+
+Lmin,
+
+the
+
+minimum
+
+distance
+
+between
+
+two
+
+change
+
+points;
+
+(2)
+
+Mmax,
+
+the
+
+maximum
+
+number
+
+of
+
+changepoints; (3) κ value.
+
+1. For 0 ≤ i ≤ n − Lmin + 1 and i + Lmin ≤ j ≤ n + 1, calculate ℒ(ti, tj).
+
+2. Initialize H tj ∣ 0 = ℒ(tj + 1, tn + 1), j = 0, …, n − Lmin + 1. 3. For 1 ≤ s ≤ Mmax and 0 ≤ i ≤ n − s − Lmin, update
+
+H ti ∣ s
+
+=
+
+min
+
+i + Lmin ≤ j ≤ n − (s − 1)
+
+ℒ(ti + 1, tj) + H tj ∣ s − 1
+
+.
+
+Record the locations of s change points that yield H t0 s , denoted by Js.
+
+4. For 1 ≤ s ≤ Mmax, find
+
+M = argmins H t0 ∣ s + 2r log(n)κ(s + 1).
+
+The corresponding estimated switch point set is τ = JM.
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Jiang et al.
+
+Page 11
+
+Author Manuscript
+
+Author Manuscript
+
+Output: τ and M.
+2.4. Competing methods: Sliding window approaches
+We also implement the sliding window approaches: time-varying seed based (TVCOR), time-varying principal component analysis (TVPCA) and time-varying dynamic mode model (TVDMD). We perform TVCOR, TVPCA and TVDMD as follows where we construct windows in different sizes sliding by four frames in each step. Let Sl be the set of time point indices in the sliding-window l, l = 1, …, L. For matrix (Yj, tj ∈ Sl), TVCOR calculates the pairwise correlation between signals from different ROIs, TVPCA extracts the principal components, TVDMD extracts the dynamic modes (Brunton et al., 2016; Kunert-Graf et al., 2019) from the brain signals. Next we vectorize the resulting correlations, principal components and dynamic modes and cluster them into four clusters, corresponding to the number of true segments in the simulation. Finally, we obtain the switch locations as the time points where the vectorized correlations, principal components and dynamic modes switch the cluster memberships.
+3. Results
+3.1. Simulation study We construct A(tj) = UΛ(tj)U−1 for j = 1, …, 180, where Λ(s) is diagonal matrix whose diagonal terms are eigenvalues and U is the matrix whose columns are eigenvectors and eigenvectors estimated from a functional magnetic resonance imaging (fMRI). Here Λ(s) is a rank six matrix, which contains three switches at the 50, 99, 144 th time points. We simulate data from model (1) and (2), where ϵj = UΛ(1)U−1ξj/10, j = 1, …, n and ξj is a sparse error vectors with 10% nonzero entries. Each nonzero element in ξj is independently generated from a normal distribution with standard error (t2 − t1)/8. We simulate the data 100 times with the same set of parameters. Then we implement TVDN to obtain the estimated spatial feature U, the switch locations and the temporal features Λ(s), where we select κ = 1.53 throughout the simulations so that the algorithm detects the correct number of switch points in over 80% of the simulated samples.
+We plot the estimated switches in Fig. 3(a). The result shows that TVDN captures the brain state switch accurately. To illustrate the estimation results, we reconstruct the data by using estimated spatial and temporal features. We show the mean of the estimators at selected brain regions and the 95% empirical confidence interval, that includes 2.5% and 97.5% quantiles of the estimators over 100 simulations in Fig. 3(b). Fig. 3(b) shows that TVDN recovers the original noiseless sequence and the confidence intervals cover the true signals. We also add an additional simulation scenario when the switch points are distributed unevenly across the time in Fig. 12(b) in Appendix B. The result shows that TVDN detects the correct switch points in most of the simulations (82%). Finally, we examine the effect of B-spline knots selections on TVDN reconstruction errors Fig. 12(c) in Appendix B by plotting the distributions of the reconstruction errors across different B-spline knots selections. The results show that TVDN is insensitive to the selection of the B-spline knots
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 12
+
+so that the distributions of the reconstruction errors are consistent across different selections of the number of B-spline knots.
+
+In the left panel of Fig. 4(a), we plot the reconstruction errors defined as
+
+∫ n
+∑ ‖Ys − exp
+s=1
+
+ts
+
+2
+
+0
+
+A(u)du Y1‖ ,
+2
+
+(6)
+
+when different ranks for U are selected in the estimations. The results show that the estimation error substantially drops from the setting when r = 4 to the setting when r = 6. Furthermore, when r > 6, the reconstruction error starts to incline. The convex phenomenon
+attributes to the tradeoff between the dimension reduction described in (5) and switch detection accuracy: when selecting a larger r, the transformation (U−1)r . X(t) contains more information in X(t), but it increases the estimation errors for the brain state switch detection algorithm; on the other hand, selecting a smaller r improves the switch detection accuracy, but (U−1)r . X(t) contains less information in the original data. On the right panel in Fig. 4(a), we show the MBIC values when selecting κ = 1.53, which reach the minimum when three switches are selected.
+
+We compare TVDN with the sliding window approaches: TVCOR, TVPCA and TVDMD. The detailed implementations of these competing methods are described in Section 2.4 in Appendix. We select six (the rank of A(s)) principal components and dynamic modes throughout the simulations.
+
+Fig. 4 (b) plots the distribution of the Hausdorrff distance between the true and estimated switches for the different methods. A smaller Hausdorrff distance implies a better estimation. It can be seen that the switches from TVDN have the smallest Hausdorrff distance with the truth. There are several occasions that the sliding-window approaches outperform the TVDN method. This is because we specify the true number of segments in the sliding-window approaches, while we leave this parameter unknown in the TVDN approach and allow TVDN to choose it adaptively. To illustrate the pattern in more details, we plot the resulting switch locations from the sliding-window methods in Fig. 4(c). Fig. 4(c) shows that none of the three methods correctly identifies the switches. In addition, the sliding-window based methods are sensitive to the window size changes, which leads to substantial different results when varying the window sizes.
+Finally, we adopt the same simulation procedure while assume a time invariant A(s). Then we implement TVDN on the resulting high dimensional sequences and reconstruct the observed data. We show the mean of the estimators and 95% confidence intervals in Fig. 12 in Appendix. The results show that even if A(s) is stationary over time, TVDN correctly extracts the spatial and temporal features from the brain signals.
+
+3.2. TVDN results for resting state fMRI data We present the TVDN detection results from one fMRI sequence in Fig. 5(a). We also obtain the growth/decay constant Re{Λ( ⋅ )}f and the signal frequency as Im{Λ( ⋅ )}f /2π, where f
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 13
+
+= 0.5 Hz is the sampling frequency of the fMRI signal. It can be seen from Fig. 5(b) that the resting state fMRI brain signals are active in the frequency range between 0.001 and 0.007 Hz. We calculated the Pearson correlation between the weighted spatial features, that is, column sum of UΛ(t), and the seven canonical networks from Yeo et al. (2011)’s independent component analysis. As shown in Fig. 5(c), the subject’s weighted spatial features have the strongest correlation with the limbic network in the first segment (0.38), with the ventral attention network in the second (0.443), third (0.415), sixth (0.432) and eighth (0.32) segments, with the dorsal attention network (0.24) in the fourth segment. This changing correlation pattern is indicative of brain state switches over time, demonstrating that different functional networks are operational at various times. In order to visualize the changing spatial patterns, we plotted the weighted spatial features across the segments on the brain surface in Fig. 5(d). The results again illustrate that the spatial pattern reflecting brain state switches among frontal, parietal and occipital lobes over time. We also present the estimated spatial eigen-mode, that is the modulus of the estimated U matrix in (e).
+We also plot, in Fig. 13 in Appendix, the pair-wise connectivity measure in each segment, defined by exp(−‖x1 − x2‖2), where x1, x2 represent signal sequences from two brain regions. Fig. 13 shows that the connectivity increases gradually over time. For comparison we show analogous results from TVDOR, TVPCA and TVDMD methods with different window sizes in Fig. 14 in the Appendix. The latter results suggest that these existing sliding-window methods are sensitive to tuning parameters and do not give coherent switch times when different window sizes are selected. Another representative example similar to the above is given in Fig. 15; its connectivity measures in Fig. 16 and the results from competing methods 17 in Appendix.
+
+3.3. TVDN results for resting state MEG data
+We evaluated TVDN on resting state MEG data, where we consider series of de-trended MEG source signals with d = 68 ROIs. Note that for MEG data, we did not filter the source signals because the high time resolution MEG data contain clear fluctuation trends that are not overwhelmed by the noise.
+We obtain the detection results as shown in Fig. 6. We also obtain the growth/decay constant Re{Λ( ⋅ )}f and the signal frequency as Im{Λ( ⋅ )}f /2π, where f = 60 Hz is the sampling frequency for the MEG signal. The results in Fig. 6(a) show that there are seven switches in the signal. In addition, the brain is active in the frequency range between 0 to 6 Hz as shown in Fig. 6(b). We also plot the correlation between the weighted spatial features and the seven canonical network in Fig. 6(c). It can be seen that the subject’s weighted spatial features have the strongest correlation with the visual network in the first segment (0.31), with the dorsal attention network in the second (0.32), third (0.45), fifth (0.28) and sixth (0.44) segments, with limbic network (0.29) in the seventh segment, and with frontopartietal network (0.62) in the eighth segment. These correlations are larger than those from the resting state fMRI (Fig. 5). Finally, we view the weighted spatial features across the segments in Fig. 6(d). We also present the estimated spatial eigen-mode, that is the modulus of the estimated U matrix in (e). In addition, we plot, in Fig. 18 in Appendix, the pair-wise connectivity measure in each segment, which shows that the connectivity increases from
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 14
+
+the first to the third segment, decreases from the fourth to the sixth segment, and increases again until the end of the time. We further show the results from the existing sliding-window methods in Fig. 19 in the Appendix, which demonstrates that the sliding-window methods are sensitive to the window size selection. Another representative example is given in Fig. 20, the corresponding connectivity measures in Fig. 21 and results from competing methods in Fig. 22 in Appendix.
+
+3.4. TVDN results for task based MEG data
+To validate the accuracy of the brain state switch detection, we evaluate TVDN on MEG recordings during a simple eyes-open to eyes-close task-switching experiment, where six eye close and open tasks blocks were performed within one minute and the switch times were manually labeled. In Fig. 7, we show the detection results based on the MEG data from two subjects. Clearly, the switch locations from TVDN are very close to the manually labeled ones, which suggests TVDN can correctly identify the brain state switch times. Take the first sample as an example, we obtain the growth/decay constant and the signal frequency with f = 120 Hz be the sampling frequency for the two task based MEG signals. The brain is active in the frequency between 0 to 12 Hz as shown in Fig. 23 (a) in Appendix, which is higher than that from the resting state MEG. Furthermore, we obtain the band passed signals in alpha band (8–12 Hz), and re-estimated the U and Λ based on the filtered the signals. We then calculate the Pearson correlation between the re-estimated weighted spatial features and the seven canonical networks. As shown in Fig. 23(b) in Appendix, although the correlations with the visual network change over time, the switch patterns do not exactly follow the eyes-open and eyes-close states. This implies there are brain state changes that are unrelated to the visual network during the data acquisition period. Moreover, the brain views of the re-estimated weighted spatial features in Fig. 23(c) illustrate that the brain state in alpha band switches in between inferior parietal and supra marginal in the parietal lobe in most of the segment, while it switches to occipital lobe at the end of the time. We also plot in Fig. 24 in Appendix the pair-wise connectivity measure in each segment base on the unfiltered signal, which shows that the connectivity decreases from the first to the fourth segment, increases from the fourth to the fifth segment, and decreases again to the end of the time. We further show the results from the TVCOR, TVPCA, and TVDMD methods in Fig. 25 in Appendix, which suggests none of the methods provides robust result across the selected window sizes. Finally, base on the second sample, we show the growth/decay constants, signal frequency, correlations with the canonical networks and brain views in Fig. 26, the connectivity measures in Fig. 24 and the results from competing methods in Fig. 28 in Appendix.
+
+3.5. Comparison to benchmark methods We implemented TVDN on 103 fMRI datasets. The distribution of the number of switches and ranks are displayed in Fig. 8 (a) and (b), respectively, which show around 50% samples have eight switches and over 65% samples have seven distinct brain states (ranks) in the resting state.
+We further evaluated the correlations between TVDN spatial features with the seven canonical networks from Yeo et al. (2011)’s independent component analysis under selected
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 15
+
+κ and r. We extract the spatial features as the moduli of the first r columns of U from each subject, and project them to [0, 1] interval. We also implemented the TVPCA, TVDMD methods to obtain the corresponding principal components and dynamic modes from each segment as the spatial features, and calculated their correlations with the canonical networks. We plot the distributions of the maximum correlations between the canonical networks and the spatial features from TVDN, TVPCA and TVDMD across 103 samples in Fig. 8(c). It can be seen that although TVDN has far fewer spatial features compared with TVPCA and TVDMD (each subject has only r spatial features), the distribution of the maximum correlation is similar with those from TVPCA and TVDMD. In addition, we plot the prediction errors versus the number of switches from TVDN and TVDMD in Fig. 8(d). To obtain the prediction error, for each segment in between two consecutive switch points, we use the first half of the fMRI records as the training data to estimate A(t) in the segments. Then we use the rest of the signals as the testing data, and calculate the related prediction errors defined as
+
+∫ Nt−es1t∑ ‖Ys − exp s
+
+s 0 A(u)du Ys0‖2/‖Ys‖2,
+
+where Ys is the sth observed signals, Ys0 is first signal in the testing sample, Ntest is the total number of testing sample (half of the signal length) and the summation is over the test signals. We average the corresponding prediction errors across the segments and individuals for the TVDN and TVDMD methods. For the TVDN method, we further construct the 95% confidence bands of the prediction errors as 2.5% (lower) and 97.5% (upper) quantiles of the errors in the 103 study samples. We do not show the 95% confidence band from TVDMD because it almost covers the entire plotted area. Fig. 8(d) shows that TVDN has smaller prediction error than TVDMD, especially when the number of switches is larger than four. It also suggests that when the number of switches is small, each segment contains sufficient samples to recover the large number of parameters in TVDMD. Therefore, when there are less than four switches, TVDN and TVDMD perform equally well in prediction as the confidence band cover both curves. However, when the number of switches is moderately large, the sample in each segment is no longer enough to provide accurate estimations for TVDMD parameters. Therefore, the more parsimonious TVDN method yields substantially smaller prediction errors than the TVDMD method.
+To illustrate the robustness of TVDN, in Fig. 9, we plot the distribution of the number of switches from TVDN and the sliding-window methods when different kernel bandwidths and window sizes are selected, respectively. Note that the kernel bandwidth in TVDN serves the same function as the window sizes in the sliding-window methods. For each window size, we adjust the kernel bandwidth so that the lower 2.5% and upper 97.5% of the Gaussian kernel correspond to the left and right endpoints of the window, respectively. It can be seen that TVCOR, TVPCA and TVDMD are sensitive to the window size selection – the larger the window size, the smaller the number of detected brain switches. In contrast, TVDN is robust to the kernel bandwidth selection, with only small shifts of the distribution center with increasing kernel bandwidth.
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 16
+
+To show the reproducibility of our method, we split the 103 subjects in the fMRI study to two samples with approximately equal sample sizes (52/51). We then implement TVDN on the two samples separately and study the distributions of the number switch points, the ranks, and the correlation of the spatial features with the canonical networks. We present the results in Fig. 10. These distributions are coherent in the two samples, which demonstrates the reproducibility of TVDN.
+
+3.6. Testing null hypothesis of static functional connectivity
+TVDN is designed to estimate the time-varying functional connectivity, it inevitably returns time-resolved estimates of functional connectivities that vary to some degree with time. It is important to evaluate whether the estimated time varying functional connectivities significantly deviate from those that might have been obtained from time series generated by a process that lacks state switching (Lurie et al., 2020). To this end, we develop a testing procedure to test that whether a sequence contains switch points. More specifically, when a sequence has been divided to multiple segments after the TVDN detection, we use the first half of the signals in each segment as the training data and the rest of the signals as the testing data. Under the alternative hypothesis that there is at least one switch point, we use the first half of the signals in each segment to estimate A(t) based on the model X′(t) = A(t)X(t). We then predict the second half of the signals using the segment-specific estimator for A(t), and calculate the prediction error as
+
+Nt−es1t
+
+M
+∑
+
+nk
+∑ ‖Yks − exp{A(τk)s}Yk0‖2/‖Yks‖2,
+
+k = 1s = 1
+
+where M is estimated number of switch points, nk is the number of testing sample in the kth segment, τk the kth estimated switch points, A(τk) is the estimator for A(τk) based on the training data in the kth segment, Yk0 is the initial observed value in the kth segment from the testing data and Ntest is the total sample size of the testing data. Note that the summation is taken over the testing data on the kth segments. Under the null hypothesis, we combine
+the training data from all segments, and perform a resampling procedure to construct the
+null distribution of the prediction error. More specifically, we sample paires of estimated X′(t) and X(t) with replacement from training data and estimate A matrix based on the static model X′(t) = AX(t). We then use the estimated A to predict the signals in the testing sample and calculate the prediction errors as
+
+Nt−es1t
+
+M
+∑
+
+nk
+∑ ‖Yks − exp{As}Yk0‖2/‖Yks‖2,
+
+k = 1s = 1
+
+where A is estimator for A using the sampled training data. We repeat this procedure 100 times and obtain the p-value as the percentage of prediction errors from null distribution that are less than the prediction error under the alternative. We show the 100 prediction errors under the null hypothesis versus the prediction error under the alternative hypothesis for the two resting state and two eye open/closed MEG data in Fig. 11 (a)–(d). The results show
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 17
+that all p-values are less than 0.05, suggesting there is at least one switch point in every sequence. Furthermore, we plot the p-values for the fMRI data from 103 healthy subjects in Fig. 11(e). The results show that all p-values are less than 0.05, suggesting that every fMRI signal has at least one switch point.
+
+4. Discussion and conclusion
+We proposed a novel biologically-constrained model of the brain state evolution during resting-state functional recording, called the TVDN model. We presented an optimal algorithm to infer the model’s parameters and to extract the spatial and temporal features from resting state brain signals. The method relies on the assumption that while the spatial signatures of RSFC, given by the eigenvectors of the forward model, are static, the evolution of temporal features, given by the eigenvalues, is dynamic within the recording duration. We developed an eigenvector estimation technique to extract consistent spatial features across signal acquisition times. In addition, we proposed a dynamic programming based algorithm to detect temporal switches adaptively based on the signal oscillation patterns, under the biologically-inspired assumption that state transitions are abrupt rather than smooth in time. Using the inferred spatial and temporal features, we can reconstruct the underlying mean signals that generate the noisy observations. This may be considered a model-based smoothing operation, with several potential applications. Thus, our method is a legitimate generative model of dynamic functional activity in the brain. In addition, the ability to reconstruct noiseless signals gives the algorithm an opportunity to tune its parameters using a reconstruction error metric to be minimized. We evaluated the method on thorough simulated data, followed by a rigorous characterization of its performances on empirical fMRI and MEG data from the BIL laboratory at UCSF. The simulation study shows that TVDN captures the true brain switch locations and is able to recover the true signal that generates the observed ones. In the empirical study, for comparison we implemented several competing techniques, including TVCOR, TVPCA and TVDMD methods. Compared with competing methods, TVDN produces smaller set of spatial features but their correlations with the seven canonical networks have the same distributions as those from the TVCOR, TVPCA and TVDMD methods. This suggests the smaller set of spatial features from TVDN is sufficient to explain the brain connection patterns. Furthermore, TVDN provides more robust temporal features, which are adaptive to the signals and noises from different data and are insensitive to the tuning parameters, such as kernel bandwidth. In addition, the evaluation on the eye-opening-closing task data shows that TVDN captures the brain state switches accurately. More importantly, TVDN has significantly smaller prediction errors than TVDMD does when predicting “future” activity in the same segment. Last but not least, the resulting temporal features include instantaneous estimates of the active oscillation frequency of functional activity, thus imparting the method with attributes of a model-based alternative to conventional time-frequency analysis.
+The ultimate solution to improving the estimation accuracy on fMRI data is to integrate multi-modality data into the analysis. It is therefore highly advantageous that TVDN is naturally able to handle multimodality data. To understand this aspect intuitively, note that the stationary spatial features are by design modality invariant, and can be shared across multiple modalities. This imparts the TVDN framework with the ability to integrate
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 18
+
+information from both fMRI and MEG to estimate the spatial features. For example, we could train TVDN on concatenated data (over time) from different modalities to obtain shared spatial features. These shared spatial features can then be used to estimate the modality-specific temporal features, using information from both fMRI and MEG at each step, which will certainly improve estimation accuracy. While in this study we have shown how TVDN can operate seamlessly on both fMRI and MEG, we have not integrated the two for the current analysis because the data from paired samples are not available. Evaluating its performance on synchronized multi-modality data would require larger collaborative studies involving both the fMRI and MEG centers.
+One question of clinical interest is whether the dynamic RSFC predicts clinical outcomes, such as cognitive scores and disease risk. To address the question, the first and foremost step is to extract subject-specific dynamic RSFC features. However, the dynamic RSFC features from existing sliding-window methods give a set of RSNs of varying numbers across subjects, which makes it difficult to explicitly define unique spatial and temporal features for each subject. In contrast, TVDN extracts subject-specific dynamic RSFCs from both the fMRI and MEG data, which generates explicit spatial and temporal features that can be directly used to predict clinical outcomes. Evaluate the relationship between the dynamic RSFC features and clinical outcomes may potentially generate novel biomarkers for disease prediction.
+
+4.1. Related methods
+Sliding-window approaches are the most popular methods to extract dynamic RSFC from brain imaging data. However, the most popular seed-based sliding window approaches do not typically allow for reconstructing the original brain signals in time or space, since they do not require a model of signal generation. And the temporal resolution of the inferred dynamic FC is inherently limited by the window length, which in turn is constrained by the requirement to have sufficient samples and signal-to-noise ratio within each window. In practice, this tradeoff means that only slow changes in brain dynamics can be detected or tracked. Furthermore, in almost all current implementations, the sliding-window width is typically pre-specified and is not adaptable to the signal statistics or sampling noise in real time. In addition, they do not generate common features from the multiple modalities that may be available from a single subject (e.g. fMRI and MEG). This impedes information sharing across modalities and precludes benefiting from shared or redundant information between modalities.
+Moreover, these methods typically suffer from very high data dimensionality, since at each window, the brain state is given by an entire network or several high-dimensional independent components - with no a priori notion of which features are actually evolving and which are static. Therefore the ability to detect discrete brain state switches then becomes dependent on the ability of unsupervised clustering algorithms like k-means or hierarchical clustering, to overcome the so-called“curse of dimensionality”. Finally, most dynamic extensions to static FC methods are purely data-driven and are not informed by biologically plausible modes of dynamicity in the brain, since they do not constrain which brain signal features can change dynamically and how - this aspect is discussed below.
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 19
+
+Therefore, sliding-window approaches present several limitations that must be overcome to gain further progress in critical neuroscience and clinical applications. Several extensions of current methods have been proposed to address some of these limitations. To improve the sliding-window seed-based correlation approach, Faghiri et al. (2020) proposed a new metric replacing Pearson correlation between signals. Furthermore, Vergara et al. (2020) proposed a robust method to determine the number of brain states from the sliding window methods. Hidden Markov models (Baum and Petrie, 1966) are an another robust alternative to capture brain state switches in the frequency domain. Vidaurre et al. (2017) and Quinn et al. (2018) used group level data to estimate the model parameters, assuming that study subjects share the same latent structure. Vidaurre et al. (2016) combined multivariate autoregression model (Penny and Roberts, 2002) and hidden Markov model to obtain brain transitions, assuming that brain oscillations depend on the signals in a short time period prior to the current time. However, neither the improved sliding window methods nor the hidden Markov models are able to extract both the static spatial and dynamic temporal features from non-stationary time series. It is possible that further extension of these methods to account for both static and dynamic features will prove worthwhile, but out of scope of the current work. Furthermore, because the HMM model involves a large number of parameters, ad hoc dimension reduction procedures are always performed to reduce the computation burden. For example, the computational time of the HMM method proposed in Vidaurre et al. (2018) grows polynomially with the number of states. When studying the whole brain signals, the number of regions of interest was reduced by using the principal component method, the number of latent state was restricted to be a small number, and the time series were split to segments using sliding windows to facilitate the computation. The computational time of TVDN grows linearly with the number of ROIs (please see the discussion in the last paragraph of Section 2.3.4), which avoids restricting the number of brain states and does not require to use ad hoc sliding windows to split the time series.
+
+4.2. Limitations and future directions
+In our implementation, the tuning parameters of TVDN for fMRI were selected to minimize the average reconstruction error, and for MEG they were selected to minimize prediction error from cross validation among brain regions. A better tuning strategy might be to use cross-validation across individuals, where the data are split between training and testing individuals, and the tuning parameters are selected to minimize the prediction error in the testing individuals. However, because our switch detection relies on the entire time series of the whole brain, there is no existing method to split the study samples and validate parameter selection in the temporal switch detection procedure. Furthermore, a smaller prediction error may not necessarily imply a better prediction of disease states, like neurodegenerative disease risk. When the disease outcomes are available, an appropriate parameter selection strategy would be to select the tuning parameters that minimize the disease prediction error. Additional data and further research along these lines are ongoing in our laboratory.
+Generally, fMRI signals have lower signal-to-noise ratio and temporal resolution than source-reconstructed MEG signals, which limits the former’s sample size available for parameter estimation. Hence, the brian state switching patterns extracted by TVDN from
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 20
+MEG appear clearer than those from fMRI, with larger correlation with canonical networks. This suggests that MEG imaging could be a more informative technique to capture dynamic RSFC than fMRI. It is possible that alternative smoothing approaches other than the one taken here might prove more effective on fMRI. It is possible that deconvolution of the hemodynamic response function might be helpful on fMRI data, an aspect that was not considered here.
+
+Appendix A.: Additional methods and data preprocessing procedure
+A1. Tuning parameter selection
+We choose rank r so that the first r moduli of the eigenvalues of ∑t A(t) comprise 80% of the total sum of them, where the summation is taken over a random subset of times. Furthermore, we select the bandwidth for kernel in (4) to be the rule-of-thumb bandwidth times 0.5. Moreover, for the resting state fMRI data, we select κ to minimize the variation of the number of switches across the subjects. For the resting state MEG data we select κ through resampling over acquisition time. More specifically, for a given κ, we select five subsamples, where the jth sample contains data at times 5t + j with j = 1, …, 5 and t = 1, …, (n − 5)/5. Since the five sequences are in conjunction with each other, they should have similar numbers of switches.
+
+A2. Data and preprocessing
+A2.1. fMRI data
+Resting state fMRI data from 103 health subject were acquired at the UCSF Neuroimaging Center using a Siemens 3T TIM TRIO scanner using a T2* -weighted AC-PC aligned echo planar imaging (EPI) sequence with the following parameters: TR = 2000 ms, TE = 29 ms, flip angle = 75, FOV = 240 x 240, slice thickness = 3.5 mm. Each fMRI was recorded over six minutes with 0.5 Hz sampling rate. Preprocessing included slice-timing correction (Cox and Hyde, 1997), image realignment to correct for motion (Jenkinson and Smith, 2001), and intensity normalization. The head-motion parameters were estimated before any spatiotemporal filtering was used (Jenkinson et al., 2002). After regression of nuisance signals, fMRI was coregistered on the T1-weighted anatomical image, and the resulting time-series were normalized to MNI space with the non-linear registration from ANTS (Avants et al., 2009). Following time series extraction, data were detrended and a bandpass filter was applied between 0.009 and 0.08 Hz. To remove the boundary effect from the filtering procedure, we removed the first 25 sampling points. Hence, the total length of the signal is 155.
+
+A2.2. MEG data
+MEG data were acquired in the Biomagnetic Imaging Laboratory at University of California, San Francisco (UCSF) with an Omega 2000 whole-head MEG system from CTF Inc. (Coquitlam, BC, Canada) with 1200 Hz sampling rate. For resting state data analysis, two subjects were instructed simply to keep their eyes closed and stay awake. We collected 4 trials per subject, each trial of 1-min length with a sampling rate of 1200 Hz. We randomly
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Jiang et al.
+
+Page 21
+chose 10 seconds or equivalently 12000 time samples for brain source reconstructions for each subject. Additionally, for one subject, MEG data were collected across two sessions for an eye-opening-closing task. To measure eye opening and closing, two pairs of Electrooculography (EOG) electrodes were placed to the left and right of the eye during MEG scans. A potential difference was recorded when the subject blinked eyes and a signal peak occurred in the EOG channel of scanned data. We manually labeled EOG peaks to indicate time periods of eye opening and closing for TVDN analyses. Across both resting and eye-opening task, all MEG sensor locations were co-registered to each subject’s anatomical MRI scans. The leadfield for each subject was calculated in NUTMEG (Dalal et al., 2004) using a single-sphere head model (two spherical orientation leadfields) and an 8 mm voxel grid. Each column was normalized to have a norm of unity. The data were digitally filtered to remove DC offset and any other noisy artifact outside of the 1 to 45 Hz bandpass range.
+To infer the neuronal activity in the source space from the MEG recordings, which were in sensor space, source localization was performed using time-frequency optimized adaptive beamforming (Dalal et al., 2004) using the custom-built open source NUTMEG software tool. Since this study focuses on the cortical areas and only the sources belonging to the 68 cortical regions were selected based on the Desikan-Killiany parcellations. The time-course of activity in each of the 68 brain regions was estimated by averaging the time-course of source activity estimated from voxels within a 20 mm radius of its centroid.
+The resting state MEG data were downsampled to 600 Hz, while the eye-opening-closing MEG data were downsampled to 1200 Hz in our analysis.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Jiang et al.
+Appendix B.: Additional simulation results Appendix C.: fMRI additional results
+
+Page 22
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 12.
+(a) The simulation results with no switch. Here A(t) has six ranks. The black lines are the true X(t) at four selected regions. The red solid and dash curves are the mean and median of the estimators and above and below blue curves are the 95% empirical confidence intervals. The figures from left to right represent the results of the estimators whose mean squared errors follow on the 0%, 25%, 50%,75% quantiles of the mean squared errors across all simulations. The confidence intervals are narrow because the simulated random errors have small variabilities. (b) The switch points detection results for the setting when the difference between the switch points are significant different. (c) The reconstruction errors are insensitive to the number of B-spline knots selection.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 23
+
+Fig. 13. The pairwise connectivity over 90 ROIs from the first fMRI example.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 14. The brain state switch detection is not robust across different window size selections for the sliding-window approaches on the first fMRI example.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Jiang et al.
+Appendix D.: MEG additional results
+
+Page 24
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 15. The results from the second fMRI sample. (a) The real sequences with switch locations (black dash lines) detected by TVDN. (b) Changes of growth/decay constant (Re{Λ( ⋅ )}f), changes of the frequencies (Im{Λ( ⋅ )}f /2π). (c) The Pearson correlation between the weighted spatial features and the seven canonical networks. (d) The weighted spatial features across different segments detected by TVDN. (e) The static spatial features i.e.
+the moduli of first r columns of the U matrix.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 25
+
+Fig. 16. The pairwise connectivity over 90 ROIs from the second fMRI example.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 17. The brain state switch detection is not robust across different window size selections for the sliding-window approaches on the second fMRI example.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Jiang et al.
+
+Page 26
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 18. The pairwise connectivity over 68 ROIs from the first MEG resting state example.
+Fig. 19. The brain state switch detection is not robust across different window size selections for the sliding-window approaches on the first MEG resting state example.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Jiang et al.
+
+Page 27
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 20. The results from the second resting state MEG record. (a) The real sequences with switch locations (black dash lines) detected by TVDN. (b) Changes of growth/decay constant (Re{Λ( ⋅ )}f), changes of the frequencies (Im{Λ( ⋅ )}f /2π). (c) The Pearson correlation between the weighted spatial features and the seven canonical network. (d) The weighted spatial features across different segments detected by TVDN. (e) The static spatial features
+i.e. the moduli of first r columns of the U matrix.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Jiang et al.
+
+Page 28
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 21. The pairwise connectivity over 68 ROIs from the second MEG resting state example.
+Fig. 22. The brain state switch detection is not robust across different window size selections for the sliding-window approaches on the second MEG resting state example.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 29
+
+Fig. 23. The results from the first eye-opening-closing MEG record. (a) Changes of growth/
+decay constant (Re{Λ( ⋅ )}f), changes of the frequencies (Im{Λ( ⋅ )}f /2π). (b) The Pearson correlation between the weighted spatial features and the seven canonical networks. (c) The weighted spatial features across different segments detected by TVDN with eye-openingclosing labels. (e) The static spatial features i.e. the moduli of first r columns of the U matrix.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Jiang et al.
+
+Page 30
+Fig. 24. The pairwise connectivity over 68 ROIs from the first MEG eyes-open and eyes-close example.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 25. The brain state switch detection is not robust across different window size selections for the sliding-window approaches on the first MEG eye-opening-closing example.
+Fig. 26. Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 31
+The results from the second eye-opening-closing MEG record. (a) Changes of growth/ decay constant (Re{Λ( ⋅ )}f), changes of the frequencies (Im{Λ( ⋅ )}f /2π). (b) The Pearson correlation between the weighted spatial features and the seven canonical networks. (c) The weighted spatial features across different segments detected by TVDN with eye-openingclosing labels. (e) The static spatial features i.e. the moduli of first r columns of the U matrix.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 27. The pairwise connectivity over 68 ROIs from the second MEG eyes-open and eyes-close example.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Jiang et al.
+
+Page 32
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 28. The brain state switch detection is not robust across different window size selections for the sliding-window approaches on the second MEG eye-opening-closing example.
+Appendix E.: Statistical consistency
+We show the statistics consistency of estimating A(t) and U in the following sections. These theoretic results support the statistical convergence rates of A(t) and U presented in Section 2.3.3. First we list the regularity conditions that are necessary to prove the statistical consistency.
+E1. Regularity conditions
+A1 In the kernel function Kℎ(t) = K(t/ℎ)/ℎ, K is a second order symmetric kernel function that satisfies ∫ K(t)dt = 1, ∫ K2(t)dt < ∞, and ∫ t2 K(t)2dt < ∞. h satisfies h → 0 when n → ∞.
+A2 Xi(t) is bounded on [0,1]. A3 Define the knots t−b + 1 = ⋯ = t0 = 0 < t1 < … < tN < 1 = tN + 1 = ⋯ = tN + b,
+where N is the number of interior knots and [0, 1] is divided into N + 1 subintervals. N satisfies N → ∞, N−1 n(logn)−1 → ∞ when n → ∞. A4 And for t in (τ0k, τ0k + 1]‖A(t)‖op(τ0k + 1 − τ0k)/n ≤ 1, k = 1, …, M0. Assume Xi(t) ∈ Cq([0, T ]), there is N + b dimensional γ0i, and a bth order Bspline such that supx ∈ [0, T ] BT(t)γ0i − Xi(t) = Op(N−s), And denote Γ0 = (γ0i, i = 1, …, d)T.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 33
+
+A6 Let hp be the distance between the (p + 1)st and pth interior knots and let
+
+ℎb
+
+=
+
+b
+
+≤
+
+max p≤N
+
++ bℎp,
+
+ℎs
+
+=
+
+b≤
+
+min p≤N
+
++
+
+bℎp.
+
+There
+
+exists
+
+a
+
+constant
+
+cℎb, 0
+
+<
+
+cℎb
+
+<
+
+∞
+
+such that ℎb/ℎs < cℎb. Therefore, ℎb = O(N−1), ℎs = O(N−1).
+
+E2. Theorem of the statistical consistency
+We show the consistency of the A(t) and U in Theorem 1. Below we first show that the brain activity Xi(t) is a smooth function and can be approximated consistently with B-spline function in Proposition 1. By utilizing the results from Proposition 1 and Lemma 1, Theorem 1 and Remark 1 establish the consistency of A(t) and U.
+Proposition 1. Assume Condition (A4) holdes, for given s, there is a Bspline function supt ∈ [0, 1] B(t)Tγ0i − Xi(t) = Op(N−s) with order b > s.
+Proof. By the fact that each element in A(s) is a piece-wise constant function we can write
+M0
+A(t) = ∑ Ak I(τ0k/n < t ≤ τ0k + 1/n),
+k=0
+
+where τ00 = 0 and τ0M0+1 = n. We first show that for t ∈ (τ0k/n, τ0k + 1/n] by the induction
+
+k−1
+
+Xi(t) = exp ∑ Al(τ0l + 1 − τ0l)/n + Ak(t − τ0k/n) X0 .
+
+(7)
+
+l=0
+
+First (7) holds for t ∈ (τ00/n, τ01/n] because for any constant matrix M, X′(t) = MX(t) as a closed form solution as
+X(t) = exp(Mt)X0 .
+
+Suppose (7) holds for t ∈ (τ0k/n, τ0k + 1/n], we show that it holds for t ∈ (τ0k + 1/n, τ0k + 2/n]. For any t ∈ (τ0k + 1/n, τ0k + 2/n], we have
+X(t) = exp{Ak + 1(t − τ0k + 1/n)}X(τ0k + 1/n) = exp{Ak + 1(t − τ0k + 1)/n)}
+k−1
+exp ∑ Al(τ0l + 1 − τ0l)/n + Ak(τ0k + 1 − τ0k)/n X0
+l=0 k
+= exp ∑ Al(τ0l + 1 − τ0l)/n + Ak + 1(t − τ0k + 1/n) X0,
+l=0
+
+which is the same as the relation in 7 . Hence, (7) holds. By the Taylor expansion, t ∈ (τ0k/n, τ0k + 1/n] we have
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 34
+
+X(t)
+
+=
+
+X(τ0k
+
+/n)
+
++
+
+s
+∑
+l=1
+
+Akl (t
+
+− τ0k/ l!
+
+n)l
+
+X(τ0k
+
++
+
+1/n)
+
++
+
+∞
+∑
+l=s
+
+Akl (t
+
+− τ0k/n)l l!
+
+X(τ0k
+
++
+
+1
+
+/n)
+
+=
+
+X(τ0k/n)
+
++
+
+s
+∑
+l=1
+
+Akl (t
+
+− τ0k/n)l l!
+
+X(τ0k
+
++
+
+1/
+
+n)
+
++
+
+Rs
+
+where
+
+Rs1
+
+=
+
+∑l∞=
+
+s1
+
+Akl (t
+
+− τ0k/n)l l!
+
+X(τ0k
+
++
+
+1/n).
+
+Now
+
+by
+
+the
+
+Condition
+
+(A4)
+
+that
+
+‖Ak‖op(τ0k + 1 − τ0k/n) ≤ 1, we have there is a s1 such that
+
+‖Rs1‖2
+
+≤
+
+‖ l
+
+∞
+∑
+= s1
+
+Al(t
+
+− τ0k/n)l l!
+
+X(τ0k
+
++
+
+1/n)‖ 2
+
+≤
+
+(t
+
+−
+
+τ0k/n)s1‖Aks1‖op‖X(τ0k
+
++
+
+∞
+1/n)‖2 ∑
+l=1
+
+1/k!
+
+= (t − τ0k/n)s1‖Aks1‖op‖X(τ0k + 1/n)‖2e
+
+= Op(N−s) .
+
+Furthermore, because for any s1 degree polynormal function there is a b ≥ s1 − 1 order exact Bspline representation (De Boor, 1978), we have conclude that there is a Bspline function B( ⋅ )Tγ0i − Xi(t) = Op(N−s) with order b > s for t ∈ [0, 1]. □
+
+Lemma 1. Assume Bk, k = 1, …, d are B-spline bases with equally distributed knots. There is a constant Db > 0 such that for each spline ∑kd = 1ckBk(t), and for each 1 ≤ p ≤ ∞
+
+∫ Db‖c′‖p ≤
+
+1 0
+
+d
+
+p 1/p
+
+∑ ckBk(t) dt ≤ ‖c′‖p,
+
+k=1
+
+where c′ = {ck{(tk − tk − r)/b}1/p, k = 1, …, d}T, where d is the number of basis and b is the distance between B-spline knots.
+Proof. This is a direct consequence of Theorem 5.4.2 on page 145 in DeVore and Lorentz (1993). □
+Theorem 1. Assume Conditions (A1)–(A6) hold. Let Ux ∈ ℝd × d, Vx ∈ ℝd × n and Σx ∈ ℝd × d be the left, right singular vectors and singular value matrix of the rank q matrix X, with q ≤ r.
+Assume E{‖X(t)‖2} = Op(1) and E{‖ϵ(t)‖2} = Op(1). Suppose
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+nN−1{X(t) − X(t)} = G1(t){1 + op(1)} nN−3/2{X′(t) − X′(t)} = G2(t){1 + op(1)}
+
+Page 35
+
+G1(t) = G2(t) =
+
+nN−1
+
+n
+∑
+
+{Yi − Xi(ti)}B(ti)T
+
+n
+∑
+
+B(ti)B(ti)T
+
+−1 B(t)
+
+i=1
+
+i=1
+
+nN−3/2
+
+n
+∑
+
+{Yi − Xi(ti)}B(ti)T
+
+n
+∑
+
+B(ti)B(ti)T
+
+−1 B′(t)
+
+i=1
+
+i=1
+
+G1(t), G2(t) are mean 0 Gaussian vectors with each element to be of order Op(1).
+
+A(ts)
+
+≡
+
+n
+∑ Kℎ(tj
+j=1
+
+−
+
+ts)X′(tj)X(tj)TρC−{1ℎ2
+
++
+
+n−1/2N1/2ℎ2d}
+
+n
+∑
+
+Kℎ(tj − ts)X(tj)X(tj)T
+
+,
+
+j=1
+
+for some constant C > 0. And if |MS| = O(n), when h → 0, we have
+
+MS −1 ∑ A(ts) − A(ts)UxqUTxq = D(ℎ2r + n−1/2N1/2d)
+
+s ∈ MS
+
+F
+
+for some constant D > 0 and Ur satisfies
+Ur − Upr F = Op(ℎ2r + n−1 N1/2d),
+
+where Upqr is the eigenvector of ∑s ∈ MS A(ts)UxqUxTq. Proof. Let W = diag{Kh(tj − ts), j = 1, …, n}, for each t s, we have
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 36
+
+n−1
+
+n
+∑
+
+Kℎ(tj
+
+−
+
+ts)X′(tj)X(tj)T
+
+j=1
+
+=
+
+n−1
+
+n
+∑
+
+Kℎ(tj
+
+−
+
+ts)X′(tj)X(tj)T
+
++
+
+R1(ts)
+
++
+
+R2(t2)
+
+j=1
+
+n
+
+= n−1 ∑ Kℎ(tj − ts)A(tj)X(tj)X(tj)T + R1(ts) + R2(t2)
+
+j=1
+
+n
+
+= n−1 ∑ ℎ−1 K{(tj − ts)/ℎ}A(tj)X(tj)X(tj)T + R1(ts) + R2(t2)
+
+j=1
+
+∫=
+
+T 0
+
+ℎ−1
+
+K{(t − ts)/ℎ}A(t)X(t)X(t)TdPn(t) + R1(ts) + R2(t2)
+
+(8)
+
+∫=
+
+T 0
+
+K(u)A(ts + ℎu)X(ts + ℎu)X(ts + ℎu)TdPn(u) + R1(ts) + R2(t2)
+
+∫=
+
+T 0
+
+K(u){A(ts) + A′(ts)ℎu + A″(ts)ℎ2u2{1 + op(1)}}X(ts + ℎu)X(ts + ℎu)Td
+
+Pn(u) + R1(ts) + R2(t2)
+
+∫ = A(ts) 0 T K(u)X(ts + ℎu)X(ts + ℎu)Td Pn(u) + ℎ2RkQ1{1 + op(1)} + R1(ts)
+
++ R2(ts)
+
+= A(ts)XWXT /n + ℎ2 RkQ1{1 + op(1)} + R1(ts) + R2(t2),
+
+where Pn is the empirical measure of t,
+Q1 = {A′(ts)X′(ts)X(ts)T + A′(ts)X(ts)X′(ts)T + A″(ts)X(ts)X(ts)T}, ‖Q1‖F = Op(r),
+
+R1(ts)
+
+≡
+
+n−1
+
+n
+∑
+
+Kℎ(tj
+
+−
+
+ts)X′(tj){X(tj)
+
+−
+
+X(tj)}T
+
+j=1
+
+n
+∑ = n−1 Kℎ(tj − ts)[X′(tj) + n−1/2N3/2G2(tj){1 + op(1)}]
+
+(9)
+
+j=1
+
+× [n−1/2N1/2G1(tj){1 + op(1)}]T,
+
+R2(ts)
+
+≡
+
+n−1
+
+n
+∑
+
+Kℎ(tj
+
+−
+
+ts){X′(tj)
+
+−
+
+X′(tj)}X(tj)T
+
+j=1 n
+
+(10)
+
+∑ = n−1 Kℎ(tj − ts)n−1/2N3/2G2(tj){1 + op(1)}X(tj)T,
+
+j=1
+
+and recall that
+
+∫ Rk =
+
+T 0
+
+K(u)u2 d Pn(u) .
+
+Similarly we have
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 37
+
+n−1
+
+n
+∑
+
+Kℎ(tj − ts)X(ts)X(ts)T
+
+j=1
+
+= n−1
+
+n
+∑
+
+Kℎ(tj − ts)X(ts)X(ts)T + R3(ts) + R4(ts)
+
+j=1
+
+∫=
+
+T 0
+
+K(u)X(ts + ℎu)X(ts + ℎu)Td
+
+Pn(u) + ℎ2RkQ{1 + op(1)} + R3(ts) + R4(ts)
+
+= XWXT /n + ℎ2RkQ{1 + op(1)} + R3(ts) + R4(ts),
+
+where
+
+Q = {X′(ts)X′(ts)T + X(ts)X″(ts)T + X″(ts)X(ts)T}, ‖Q‖F = Op(r)
+
+R3 ≡ n−1
+
+n
+∑
+
+Kℎ(tj − ts){X(ts) − X(ts)}X(ts)T
+
+j=1
+
+= n−1
+
+n
+∑
+
+Kℎ(tj − ts)n−1/2N1/2G1(ts){1 + op(1)}X(ts)T
+
+j=1
+
+R4 ≡ n−1
+
+n
+∑
+
+Kℎ(tj − ts)X(ts){X(ts) − X(ts)}T
+
+j=1
+
+= n−1
+
+n
+∑
+
+Kℎ(tj − ts)[X(ts) + n−1/2 N1/2G1(ts){1 + op(1)}]
+
+j=1
+
+× n−1/2 N1/2G1(ts)T{1 + op(1)} .
+
+By the asymptotic bias of the kernel regression estimator, and the fact that R3, R4 are rank d matrices, we have
+‖R3‖F = C1n−1/2 N1/2ℎ2 d, ‖R4‖F = C2n−1/2 N1/2ℎ2d
+
+for positive constants C1, C2, where the last equality holds by the order of the asymptotic bias of the kernel estimator. Furthermore, let Σxq be the upper q × q diagonal matrix of Σx
+and Vxq be first q column of Vx, we can write
+
+XWXT = Ux ΣxqVxTqWVxqΣxq 0 UxT .
+
+0
+
+0
+
+Hence, as h → 0, there is a C such that
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 38
+
+∑ ρC−{1ℎ2 + n−1/2N1/2ℎ2d}
+
+n−1 n Kℎ(tj − ts)X(tj)X(tj)T
+j=1
+
+= (XWXT /n)−1
+
+(11)
+
+= Ux ΣxqVxTqWVxqΣxq/n −1 0 UxT .
+
+0
+
+0
+
+Combine (8) and (11), and Condition that A(ts) is rank r matrix, we have
+
+A(ts) − A(ts)UxqUxTq
+
+= ℎ2RkQ1{1 + op(1)}(XWXT /n)−1
+
+(12)
+
++ R1(ts)(XWXT /n)−1 + R2(t2)(XWXT /n)−1
+
+= Op(ℎ2r1/2) + R1(ts)(XWXT /n)−1 + R2(t2)(XWXT /n)−1
+
+(13)
+
+The last equality holds because Q1 (XWXT /n)−1 is a rank r matrix and ‖Q1(XWXT /n)−1‖F = r‖Q1(XWXT /n)−1‖2 = Op( r) by the fact that ‖X(t)‖2 = Op(1) and in
+turn ‖X′(t)‖2 = ‖A(t)X(t)‖2 = ‖A(t)‖op‖X(t)‖2 = Op(1). Furthermore,
+
+‖ MS −1 ∑ R1(ts)(XWXT /n)−1‖
+
+s ∈ MS
+
+F
+
+n
+= ‖n−1 ∑
+
+MS −1
+
+∑
+
+Kℎ(tj − ts)[X′(tj) + n−1/2N3/2G2(tj){1 + op(1)}]
+
+j=1
+
+s ∈ MS
+
+× [n−1/2N1/2G1(tj){1 + op(1)}]T(XWXT /n)−1‖F
+
+= ‖n−1
+
+n
+∑
+
+ft(tj)[X′(tj) + n−1/2N3/2G2(tj){1 + op(1)}]
+
+j=1
+
+[n−1/2N1/2G1(tj){1 + op(1)}]T
+
+× (XWXT /n)−1‖F
+
+= D1n−1/2N−1/2q,
+
+where D1 is a positive constant and ft(·) is the density function for t. The third line holds because MS −1∑s ∈ MS Kℎ(tj − ts) is a consistant estimator for ft(tj). The last equality holds by the arguments as follows. First let
+Qa(t) = ft(t)[X′(t) + n−1/2N3/2G2(t){1 + op(1)}]
+
+and qk(t) be its kth element. Then by the definition of G1 in the Theorem statement, the second to the last equality can be written as
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 39
+
+‖n−1
+
+n
+∑
+
+Qa(tj)B(tj)T
+
+n
+∑
+
+B(ti)B(ti)T
+
+−1
+
+j=1
+
+i=1
+
+n
+∑
+
+B(ti){Yi − X(ti)}T(XWXT
+
+/n)−1‖F
+
+i=1
+
+× {1 + op(1)}
+
+∫ = ‖
+
+0 T Qa(t)B(t)Tdt
+
+n
+∑
+
+B(ti)B(ti)T
+
+i=1
+
+−1
+
+n
+∑
+
+B(ti){Yi − X(ti)}T(XWXT
+
+/n)−1‖F {1 + op(1)} .
+
+i=1
+
+∫ ≤ ‖
+
+0 T Qa(t)B(t)Tdt
+
+n
+∑
+
+B(ti)B(ti)T
+
+i=1
+
+−1 i
+
+n
+∑
+=1
+
+B(ti){Yi
+
+−
+
+X(ti)}T‖op
+
+× (XWXT /n)−1F {1 + op(1)} .
+
+Now because ∫0T qk(t)Bl(t)dt = qk(t∗)∫0T Bl(t)dt = Op(tk − tk − b) = Op(N−1) by the mean value theorem and Lemma 1 with p = 1 . Therefore, each element in
+
+∫0 T Qa(t)B(t)Tdt
+
+n
+∑
+
+B(ti)B(ti)T
+
+i=1
+
+−1
+
+is of order Op(N−1). Furthermore, each element in G1 is of order Op(1), and hence each element in
+
+n
+∑
+
+B(ti)B(ti)T
+
+−1
+
+n
+∑
+
+B(ti){Yi − X(ti)}T
+
+i=1
+
+i=1
+
+is of order n−1/2N1/2 by the definition of G1 in the theorem statement. Therefore,
+
+‖n−1
+
+n
+∑
+
+Qa(tj)B(tj)T
+
+n
+∑
+
+B(ti)B(ti)T
+
+−1 {Yi − X(ti)}T‖
+
+j=1
+
+i=1
+
+max
+
+= Op(n−1/2N1/2N−1) = Op(n−1/2N−1/2)
+
+and hence
+
+‖n−1
+
+n
+∑
+
+Qa(tj)B(tj)T
+
+n
+∑
+
+B(ti)B(ti)T
+
+−1 {Yi − X(ti)}T‖
+
+j=1
+
+i=1
+
+op
+
+= Op(dn−1/2N−1/2) .
+
+Now combine with the fact that (XWXT /n)−1 is a rank q matrix, we obtain the result in the last equality.
+Similarly, we have
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 40
+
+MS −1‖ ∑ R2(ts)(XWXT /n)−1‖ = D2n−1/2N1/2d
+
+s ∈ MS
+
+F
+
+for some positive constants D2. Combine with (12), we have
+
+MS −1‖ ∑ A(ts) − ∑ A(ts)UxqUxTq‖ = D(ℎ2r + n−1/2N1/2d)
+
+s ∈ MS
+
+s ∈ MS
+
+F
+
+for positive constant D. The first r column of the eigenvector of MS −1∑s ∈ MS A(ts)UxqUxTq is Up respectively. Hence ‖Ur − Upr‖ = Op(rℎ2 + n−1/2N1/2d) as h → 0. This proves the result. □
+Remark 1. Theorem 1 shows that when XWXT is a full rank matrix, ∑s ∈ MS A(ts)/ MS converges to ∑s ∈ MS A(ts)/ MS consistently. Hence Ur Ur with probability one. If XWXT is a low rank matrix, ∑s ∈ MS A(ts)/ MS converges to a projection of ∑s ∈ MS A(ts)/ MS on the sub-space of Rq, where q is the rank of XWXT. In practice, if XWXT is a low rank matrix, we can first project X to full rank sub-space and perform the TVDN algorithm on the projected signals. The conditions
+nN−1{X(t) − X(t)} = G1(t){1 + op(1)} nN−3/2{X′(t) − X′(t)} = G2(t){1 + op(1)}
+
+are the general properties of B-spline estimator as shown in (Jiang et al., 2019; 2015). We use the result without proof.
+References
+Abdelnour F, Dayan M, Devinsky O, Thesen T, Raj A, 2018. Functional brain connectivity is predictable from anatomic network’s laplacian eigen-structure. Neuroimage 172, 728–739. [PubMed: 29454104]
+Abdelnour F, Voss HU, Raj A, 2014. Network diffusion accurately models the relationship between structural and functional brain connectivity networks. Neuroimage 90, 335–347. [PubMed: 24384152]
+Alexander-Bloch AF, Gogtay N, Meunier D, Birn R, Clasen L, Lalonde F, Lenroot R, Giedd J, Bullmore ET, 2010. Disrupted modularity and local connectivity of brain functional networks in childhood-onset schizophrenia. Front. Syst .Neurosci 4, 147. [PubMed: 21031030]
+Allen EA, Damaraju E, Plis SM, Erhardt EB, Eichele T, Calhoun VD, 2014. Tracking whole-brain connectivity dynamics in the resting state. Cerebral cortex 24, 663–676. [PubMed: 23146964]
+Avants BB, Tustison N, Song G, 2009. Advanced normalization tools (ants). Insight j 2, 1–35. Bassett DS, Wymbs NF, Porter MA, Mucha PJ, Carlson JM, Grafton ST, 2011. Dynamic
+reconfiguration of human brain networks during learning. Proceedings of the National Academy of Sciences 108, 7641–7646. Baum LE, Petrie T, 1966. Statistical inference for probabilistic functions of finite state markov chains. The annals of mathematical statistics 37, 1554–1563.
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 41
+Becker C, Pequito S, Pappas G, Miller M, Grafton S, Bassett D, Preciado VM, 2018. Spectral mapping of brain functional connectivity from diffusion imaging. Sci. Rep 8. [PubMed: 29311689]
+Beckmann CF, DeLuca M, Devlin JT, Smith SM, 2005. Investigations into resting-state connectivity using independent component analysis. Philosophical Transactions of the Royal Society B: Biological Sciences 360, 1001–1013.
+Bellman R, Roth R, 1969. Curve fitting by segmented straight lines. J. Am. Stat. Assoc 64, 1079–1084. Bement T, Waterman M, 1977. Locating maximum variance segments in sequential data. Journal of the
+International Association for Mathematical Geology 9, 55–61. Betzel RF, Avena-Koenigsberger A, Goñi J, He Y, de Reus MA, Griffa A, Vértes PE, Miíic B, Thiran
+J-P, Hagmann P, van den Heuvel M, Zuo X-N, Bullmore ET, Sporns O, 2016. Generative models of the human connectome. Neuroimage 124, 1054–1064. [PubMed: 26427642] Biswal B, Zerrin Yetkin F, Haughton VM, Hyde JS, 1995. Functional connectivity in the motor cortex of resting human brain using echo-planar mri. Magn. Reson. Med 34, 537–541. [PubMed: 8524021] Biswal BB, Kylen JV, Hyde JS, 1997. Simultaneous assessment of flow and bold signals in restingstate functional connectivity maps. NMR. Biomed 10, 165–170. [PubMed: 9430343] Brier MR, Thomas JB, Fagan AM, Hassenstab J, Holtzman DM, Benzinger TL, Morris JC, Ances BM, 2014. Functional connectivity and graph theory in preclinical Alzheimer’s disease. Neurobiol. Aging 35, 757–768. [PubMed: 24216223] Brookes MJ, Hale JR, Zumer JM, Stevenson CM, Francis ST, Barnes GR, Owen JP, Morris PG, Nagarajan SS, 2011. Measuring functional connectivity using meg: methodology and comparison with fcmri. Neuroimage 56, 1082–1104. [PubMed: 21352925] Brunton BW, Johnson LA, Ojemann JG, Kutz JN, 2016. Extracting spatial–temporal coherent patterns in large-scale neural recordings using dynamic mode decomposition. J. Neurosci. Methods 258, 1–15. [PubMed: 26529367] Bullmore E, Sporns O, 2009. Complex brain networks: graph theoretical analysis of structural and functional systems. Nat. Rev. Neurosci 10, 186–198. [PubMed: 19190637] Calhoun VD, Adali T, Pearlson GD, Pekar JJ, 2001. A method for making group inferences from functional MRI data using independent component analysis. Hum. Brain. Mapp 14, 140–151. [PubMed: 11559959] Coquelet N, De Tiège X, Roshchupkina L, Peigneux P, Goldman S, Woolrich M, Wens V, 2021. Microstates and power envelope hidden markov modeling probe bursting brain activity at different timescales. BioRxiv. Cox RW, Hyde JS, 1997. Software tools for analysis and visualization of fMRI data. NMR in Biomedicine: An International Journal Devoted to the Development and Application of Magnetic Resonance In Vivo 10, 171–178. Croce P, Quercia A, Costa S, Zappasodi F, 2020. Eeg microstates associated with intra-and intersubject alpha variability. Sci. Rep 10, 1–11. [PubMed: 31913322] Dalal SS, Zumer J, Agrawal V, Hild K, Sekihara K, Nagarajan S, 2004. Nutmeg: a neuromagnetic source reconstruction toolbox. Neurology & clinical neurophysiology: NCN 2004, 52. [PubMed: 16012626] Damaraju E, Allen E, Belger A, Ford J, McEwen S, Mathalon D, Mueller B, Pearlson G, Potkin S, Preda A, Turner J, Vaidya J, van Erp T, Calhoun V, 2014. Dynamic functional connectivity analysis reveals transient states of dysconnectivity in schizophrenia. NeuroImage: Clinical 5, 298– 308. [PubMed: 25161896] De Boor C, 1978. A Practical Guide to Splines, vol. 27. Springer-Verlag, New York. Deco G, Jirsa VK, 2012. Ongoing cortical activity at rest: criticality, multistability, and ghost attractors. J. Neurosci 32, 3366–3375. [PubMed: 22399758] DeVore RA, Lorentz GG, 1993. Constructive approximation, vol. 303. Springer Science & Business Media, New York. Di X, Gohel S, Kim EH, Biswal BB, 2013. Task vs. rest’different network configurations between the coactivation and the resting-state brain networks. Front. Hum. Neurosci 7, 493. [PubMed: 24062654]
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 42
+Dominguez LG, Stieben J, Velazquez JLP, Shanker S, 2013. The imaginary part of coherency in autism: differences in cortical functional connectivity in preschool children. PLoS. ONE 8, e75941. [PubMed: 24098409]
+Du C, Kao C-LM, Kou S, 2016. Stepwise signal extraction via marginal likelihood. J. Am. Stat. Assoc 111, 314–330. [PubMed: 27212739]
+Du C, Kao C-LM, Kou S, 2016. Stepwise signal extraction via marginal likelihood. J. Am. Stat. Assoc 111, 314–330. [PubMed: 27212739]
+Duan X, Hu M, Huang X, Su C, Zong X, Dong X, He C, Xiao J, Li H, Tang J, et al. , 2020. Effect of risperidone monotherapy on dynamic functional connectivity of insular subdivisions in treatment-naive, first-episode schizophrenia. Schizophr. Bull 46, 650–660. [PubMed: 31504959]
+Englot DJ, Hinkley LB, Kort NS, Imber BS, Mizuiri D, Honma SM, Findlay AM, Garrett C, Cheung PL, Mantle M, Tarapore PE, Knowlton RC, Chang EF, Kirsch HE, Nagarajan SS, 2015. Global and regional functional connectivity maps of neural oscillations in focal epilepsy. Brain 138, 2249–2262. [PubMed: 25981965]
+Faghiri A, Iraji A, Damaraju E, Belger A, Ford J, Mathalon D, Mcewen S, Mueller B, Pearlson G, Preda A, Turner J, Vaidya JG, Van Erp TG, Calhoun VD, 2020. Weighted average of shared trajectory: a new estimator for dynamic functional connectivity efficiently estimates both rapid and slow changes over time. J. Neurosci. Methods 334, 108600. [PubMed: 31978489]
+Filippi M, Spinelli EG, Cividini C, Agosta F, 2019. Resting state dynamic functional connectivity in neurodegenerative conditions: a review of magnetic resonance imaging findings. Front. Neurosci 13. [PubMed: 30760975]
+Fox MD, Snyder AZ, Vincent JL, Corbetta M, Van Essen DC, Raichle ME, 2005. The human brain is intrinsically organized into dynamic, anticorrelated functional networks. Proceedings of the National Academy of Sciences 102, 9673–9678.
+Geerligs L, Renken RJ, Saliasi E, Maurits NM, Lorist MM, 2015. A brain-wide study of age-related changes in functional connectivity. Cerebral cortex 25, 1987–1999. [PubMed: 24532319]
+Gonzalez-Castillo J, Hoy CW, Handwerker DA, Robinson ME, Buchanan LC, Saad ZS, Bandettini PA, 2015. Tracking ongoing cognition in individuals using brief, whole-brain functional connectivity patterns. Proceedings of the National Academy of Sciences 112, 8762–8767.
+Greicius M, 2008. Resting-state functional connectivity in neuropsychiatric disorders. Curr. Opin. Neurol 21, 424–430. [PubMed: 18607202]
+Greicius MD, Krasnow B, Reiss AL, Menon V, 2003. Functional connectivity in the resting brain: a network analysis of the default mode hypothesis. Proceedings of the National Academy of Sciences 100, 253–258.
+Hohlefeld F, Huchzermeyer C, Huebl J, Schneider G-H, Nolte G, Brücke C, Schönecker T, Kühn A, Curio G, Nikulin VV, 2013. Functional and effective connectivity in subthalamic local field potential recordings of patients with parkinson’s disease. Neuroscience 250, 320–332. [PubMed: 23876322]
+Hutchison RM, Womelsdorf T, Allen EA, Bandettini PA, Calhoun VD, Corbetta M, Della Penna S, Duyn JH, Glover GH, Gonzalez-Castillo J, Handwerker DA, Keilholz S, Kiviniemi V, Leopold DA, de Pasquale F, Sporns O, Walter M, Chang C, 2013. Dynamic functional connectivity: promise, issues, and interpretations. Neuroimage 80, 360–378. [PubMed: 23707587]
+Jackson B, Scargle JD, Barnes D, Arabhi S, Alt A, Gioumousis P, Gwin E, Sangtrakulcharoen P, Tan L, Tsai TT, 2005. An algorithm for optimal partitioning of data on an interval. IEEE Signal Process Lett. 12, 105–108.
+Jenkinson M, Bannister P, Brady M, Smith S, 2002. Improved optimization for the robust and accurate linear registration and motion correction of brain images. Neuroimage 17, 825–841. [PubMed: 12377157]
+Jenkinson M, Smith S, 2001. A global optimisation method for robust affine registration of brain images. Med. Image Anal 5, 143–156. [PubMed: 11516708]
+Jiang F, Baek S, Cao J, Ma Y, 2019. A Functional Single Index Model. Statistica Sinica, preprint. Jiang F, Ma Y, Wang Y, 2015. Fused kernel-spline smoothing for repeatedly measured outcomes in
+a generalized partially linear model with functional single index. Ann. Stat 43, 1929. [PubMed: 26283801]
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 43
+Killick R, Fearnhead P, Eckley IA, 2012. Optimal detection of changepoints with a linear computational cost. J. Am. Stat. Assoc 107, 1590–1598.
+Kitzbichler MG, Henson RN, Smith ML, Nathan PJ, Bullmore ET, 2011. Cognitive effort drives workspace configuration of human brain functional networks. J. Neurosci 31, 8259–8270. [PubMed: 21632947]
+Kunert-Graf JM, Eschenburg K, Galas D, Kutz JN, Rane S, Brunton BW, 2019. Extracting reproducible time-resolved resting state networks using dynamic mode decomposition. Front. Comput. Neurosci 13, 75. [PubMed: 31736734]
+Kutz JN, Brunton SL, Brunton BW, Proctor JL, 2016. Dynamic mode decomposition: data-driven modeling of complex systems. SIAM.
+Lang EW, Tomé AM, Keck IR, Górriz-Sáez J, Puntonet CG, 2012. Brain connectivity analysis: a short survey. Computational intelligence and neuroscience.
+Li X, Lim C, Li K, Guo L, Liu T, 2013. Detecting brain state changes via fiber-centered functional connectivity analysis. Neuroinformatics 11, 193–210. [PubMed: 22941508]
+Liu H, Hu K, Peng Y, Tian X, Wang M, Ma B, Wu Y, Sun W, Liu B, Li A, et al. , 2022. Dynamic reconfiguration of human brain networks across altered states of consciousness. Behav. Brain Res 419, 113685. [PubMed: 34838931]
+Long Y, Cao H, Yan C, Chen X, Li L, Castellanos FX, Bai T, Bo Q, Chen G, Chen N, et al. , 2020. Altered resting-state dynamic functional brain networks in major depressive disorder: findings from the rest-meta-mdd consortium. NeuroImage: Clinical 26, 102163. [PubMed: 31953148]
+Lurie DJ, Kessler D, Bassett DS, Betzel RF, Breakspear M, Kheilholz S, Kucyi A, Liégeois R, Lindquist MA, McIntosh AR, et al. , 2020. Questions and controversies in the study of timevarying functional connectivity in resting fmri. Network Neurosci. 4, 30–69.
+Lv H, Wang Z, Tong E, Williams LM, Zaharchuk G, Zeineh M, Goldstein-Piekarski AN, Ball TM, Liao C, Wintermark M, 2018. Resting-state functional mri: everything that nonexperts have always wanted to know. American Journal of Neuroradiology 39, 1390–1399. [PubMed: 29348136]
+Ma S, Calhoun VD, Phlypo R, Adalı T, 2014. Dynamic changes of spatial functional network connectivity in healthy individuals and schizophrenia patients using independent vector analysis. Neuroimage 90, 196–206. [PubMed: 24418507]
+Mash LE, Linke AC, Olson LA, Fishman I, Liu TT, Müller RA, 2019. Transient states of network connectivity are atypical in autism: a dynamic functional connectivity study. Hum. Brain. Mapp 40, 2377–2389. [PubMed: 30681228]
+Meier J, Tewarie P, Hillebrand A, Douw L, van Dijk BW, Stufflebeam SM, Van Mieghem P, 2016. A mapping between structural and functional brain networks. Brain Connect. 6, 298–311. [PubMed: 26860437]
+Michel CM, Koenig T, 2018. Eeg microstates as a tool for studying the temporal dynamics of wholebrain neuronal networks: a review. Neuroimage 180, 577–593. [PubMed: 29196270]
+Moussa MN, Vechlekar CD, Burdette JH, Steen MR, Hugenschmidt CE, Laurienti PJ, 2011. Changes in cognitive state alter human functional brain networks. Front. Hum. Neurosci 5, 83. [PubMed: 21991252]
+Nadaraya EA, 1964. On estimating regression. Theory of Probability & Its Applications 9, 141–142. Pasquini L, Toller G, Staffaroni A, Brown JA, Deng J, Lee A, Kurcyus K, Shdo SM, Allen I,
+Sturm VE, et al. , 2020. State and trait characteristics of an-terior insula time-varying functional connectivity. Neuroimage 208, 116425. [PubMed: 31805382] Penny W, Roberts S, 2002. Bayesian multivariate autoregressive models with structured priors. IEE Proceedings-Vision, Image and Signal Processing 149, 33–41. Quinn AJ, Vidaurre D, Abeysuriya R, Becker R, Nobre AC, Woolrich MW, 2018. Task-evoked dynamic network analysis through hidden markov modeling. Front. Neurosci 12, 603. [PubMed: 30210284] Raj A, Cai C, Xie X, Palacios E, Owen J, Mukherjee P, Nagarajan S, 2019. Spectral graph theory of brain oscillations. bioRxiv 589176. Ranasinghe KG, Hinkley LB, Beagle AJ, Mizuiri D, Honma SM, Welch AE, Hubbard I, Mandelli ML, Miller ZA, Garrett C, et al. , 2017. Distinct spatiotemporal patterns of neuronal functional connectivity in primary progressive aphasia variants. Brain 140, 2737–2751. [PubMed: 28969381]
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Jiang et al.
+
+Page 44
+Rashid B, Arbabshirani MR, Damaraju E, Cetin MS, Miller R, Pearlson GD, Calhoun VD, 2016. Classification of schizophrenia and bipolar patients using static and dynamic resting-state fMRI brain connectivity. Neuroimage 134, 645–657. [PubMed: 27118088]
+Rashid B, Damaraju E, Pearlson GD, Calhoun VD, 2014. Dynamic connectivity states estimated from resting fmri identify differences among schizophrenia, bipolar disorder, and healthy control subjects. Front. Hum. Neurosci 8, 897. [PubMed: 25426048]
+Sanz-Arigita EJ, Schoonheim MM, Damoiseaux JS, Rombouts SA, Maris E, Barkhof F, Scheltens P, Stam CJ, 2010. Loss of ‘small-world’networks in alzheimer’s disease: graph analysis of fmri resting-state functional connectivity. PLoS ONE 5.
+Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE, 2010. Sleep state switching. Neuron 68, 1023–1042. [PubMed: 21172606]
+Schumacher J, Peraza LR, Firbank M, Thomas AJ, Kaiser M, Gallagher P, O’Brien JT, Blamire AM, Taylor JP, 2019. Dynamic functional connectivity changes in dementia with lewy bodies and alzheimer’s disease. NeuroImage: Clinical 22, 101812. [PubMed: 30991620]
+Shine JM, Koyejo O, Bell PT, Gorgolewski KJ, Gilat M, Poldrack RA, 2015. Estimation of dynamic functional connectivity using multiplication of temporal derivatives. Neuroimage 122, 399–407. [PubMed: 26231247]
+Shirer WR, Ryali S, Rykhlevskaia E, Menon V, Greicius MD, 2012. Decoding subject-driven cognitive states with whole-brain connectivity patterns. Cerebral cortex 22, 158–165. [PubMed: 21616982]
+Silverman BW, 1986. Density Estimation for Statistics and Data Analysis, vol. 26. CRC press. Tewarie P, Prasse B, Meier J, Santos F, Douw L, Schoonheim M, Stam C, 5. Van Mieghem P,
+Hillebrand A, 2020. Mapping functional brain networks from the structural connectome: relating the series expansion and eigenmode approaches. Neuroimage 216, 116805. [PubMed: 32335264] Van Den Heuvel MP, Stam CJ, Kahn RS, Pol HEH, 2009. Efficiency of functional brain networks and intellectual performance. J. Neurosci 29, 7619–7624. [PubMed: 19515930] Varela F, Lachaux J-P, Rodriguez E, Martinerie J, 2001. The brainweb: phase synchronization and large-scale integration. Nat. Rev. Neurosci 2, 229–239. [PubMed: 11283746] van de Ven VG, Formisano E, Prvulovic D, Roeder CH, Linden DE, 2004. Functional connectivity as revealed by spatial independent component analysis of fMRI measurements during rest. Hum. Brain. Mapp 22, 165–178. [PubMed: 15195284] Vergara VM, Salman M, Abrol A, Espinoza FA, Calhoun VD, 2020. Determining the number of states in dynamic functional connectivity using cluster validity indexes. J. Neurosci. Methods 337, 108651. [PubMed: 32109439] Vidaurre D, Hunt LT, Quinn AJ, Hunt BA, Brookes MJ, Nobre AC, Woolrich MW, 2018. Spontaneous cortical activity transiently organises into frequency specific phase-coupling networks. Nat. Commun 9, 1–13. [PubMed: 29317637] Vidaurre D, Quinn AJ, Baker AP, Dupret D, Tejero-Cantero A, Woolrich MW, 2016. Spectrally resolved fast transient brain states in electrophysiological data. Neuroimage 126, 81–95. [PubMed: 26631815] Vidaurre D, Smith SM, Woolrich MW, 2017. Brain network dynamics are hierarchically organized in time. Proceedings of the National Academy of Sciences 114, 12827–12832. Watson GS, 1964. Smooth regression analysis. Sankhyā: The Indian Journal of Statistics, Series A 359–372 Wee C-Y, Yang S, Yap P-T, Shen D For the Alzheimers Disease NeuroimagingInitiative Initiative, 2016. Sparse temporally dynamic resting-state functional connectivity networks for early mci identification. Brain Imaging Behav. 10, 342–356. [PubMed: 26123390] Yau CY, Zhao Z, 2016. Inference for multiple change points in time series via likelihood ratio scan statistics. Journal of the Royal Statistical Society: Series B 78, 895–916. Yeo BT, Krienen FM, Sepulcre J, Sabuncu MR, Lashkari D, Hollinshead M, Roffman JL, Smoller JW, Zöllei L, Polimeni JR, Fischl B, Liu H, Buckner RL, 2011. The organization of the human cerebral cortex estimated by intrinsic functional connectivity. J. Neurophysiol 106, 1125. [PubMed: 21653723] Zalesky A, Fornito A, Cocchi L, Gollo LL, Breakspear M, 2014. Time-resolved resting-state brain networks. Proceedings of the National Academy of Sciences 111, 10341–10346
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Jiang et al.
+
+Page 45
+
+Fig. 1. TVDN pipline. The purple ovals represent TVDN inputs, and red oval represents TVDN outputs. The blue rectangles represent the building blocks of TVDN. Two multimodality kernel examples are provided and will be discussed in Section 2.3.3.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Jiang et al.
+
+Page 46
+
+Fig. 2.
+The weights Kh(t − 180) across t ∈ [1, 360] in seconds for fMRI (left) and weights Kh(t − 30) across t ∈ [1, 60] in seconds for MEG (right) when the rule-of-thumb bandwidth h.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Jiang et al.
+
+Page 47
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 3. The simulation results with three switches. TVDN detects the true brain state switches and can reconstruct the true signal. (a) Switch times. Red lines are the true switch times and the
+dots are the estimated locations. (b) The black lines are the true X(t) at four selected regions. The red solid and dash curves are the mean and median of the estimators and above and below blue curves are the 95% empirical confidence intervals. The figures from left to right represent the results of the estimators whose mean squared errors fall at the 0%, 25%, 50% and 75% quantiles of the mean squared errors across all simulations.
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Jiang et al.
+
+Page 48
+
+Fig. 4.
+The simulation results with three switches. Here A(t) has six ranks. (a) Left: the boxplot of
+the reconstruction error in (6) from 100 simulations when choosing different ranks for A(t) in the estimation. Right: the boxplot of the MBIC values at different number of switches when κ = 1.53. (b) Hausdorrff distance between true switches and the estimated switches. The window sizes (wsize) selected are 10 (left) and 20 (right) for the sliding-window based
+methods. (c) Chang point locations for window sizes 10 (top) and 20 (bottom) for the
+TVCOR (left), TVPCA (middle) and TVDMD (right) methods.
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Jiang et al.
+
+Page 49
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 5. The results from the first fMRI dataset. (a) The real sequences with switch locations (black dash lines) detected by TVDN. (b) Changes of growth/decay constant (Re{Λ( ⋅ )}f), changes of the frequencies (Im{Λ( ⋅ )}f /2π). (c) The Pearson correlation between the weighted spatial features and the seven canonical networks. (d) The weighted spatial features across different
+segments detected by TVDN. (e) The static spatial features i.e. the moduli of first r columns of the U matrix.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Jiang et al.
+
+Page 50
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 6. The results from the first resting state MEG dataset. (a) The real sequences with switch locations detected by TVDN. The dash lines are the detected brain state switches. (b) Changes of growth/decay constant (Re{Λ( ⋅ )}f), changes of the frequencies (Im{Λ( ⋅ )}f /2π). (c) The Pearson correlation between the weighted spatial features and the seven canonical networks. (d) The weighted spatial features across different segments detected by TVDN. (e)
+The static spatial features i.e. the moduli of first r columns of the U matrix.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Jiang et al.
+
+Page 51
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 7. TVDN captures the task-switching dynamics in two eyes-open to eyes-close task-switching MEG records. The the real sequences with switch locations detected by TVDN. The black dashed lines are the detected brain state switches. The red solid lines are the manually labeled switch times.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Jiang et al.
+
+Page 52
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 8. The distribution of the spatial features are similar from different approaches (c) and the related prediction errors from TVDN are smaller compare with those from TVDMD, the only existing method that allows for the reconstruction of the signals (d). (a) The distribution of the number of switches across samples. (b) The distribution of the brain state across samples. (c) The distributions of the maximum correlation between the spatial features from TVPCA, TVDMD, and TVDN methods with the canonical networks. (d) The average related prediction errors from the TVDN and TVDMD methods. The shaded area is the 95% confidence band from the TVDN method. The 95% confidence band from TVDMD covers the entire plotted area, which we do not show.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Jiang et al.
+
+Page 53
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 9. TVDN’s brain state switch detection is robust to the kernel bandwidth selection but the sliding-window methods are sensitive to the window size selection. The distributions of the switch points when different window sizes (wsize) are chosen for the sliding-window methods and different kernel bandwidths are chosen for TVDN. The kernel bandwidths are adjusted so that the lower 2.5% and upper 97.5% quantiles of the Gaussian kernel correspond to the left and right endpoints of the window, respectively.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Jiang et al.
+
+Page 54
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 10. The distributions of the number switch points (a), the ranks (b), and the correlation of the spatial features with the canonical networks (c) are the same in the first and second halves of the fMRI samples.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+
+Author Manuscript
+
+Jiang et al.
+
+Page 55
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Author Manuscript
+
+Fig. 11. The p-values of testing whether there are switch points. (a), (b) p-values from two MEG resting state data examples. (c), (d) p-values from two eye open/closed data examples. (e) p-values from 103 fMRI data. The red dots in (a)–(d) are the log of the prediction errors across 100 simulations under the null hypothesis. The black line is the log of the prediction error of TVDN method under the alternative hypothesis. The red dots in (e) are the percentage of errors under null hypothesis that is less than the one from TVDN method. The black line is 0.05 cutoff value.
+Neuroimage. Author manuscript; available in PMC 2023 February 21.
+

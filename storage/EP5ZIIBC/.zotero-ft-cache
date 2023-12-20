@@ -1,0 +1,682 @@
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 20, 2023 from IP address 202.155.223.2.
+NEUROSCIENCE
+
+Segregation, integration, and balance of large-scale resting brain networks conﬁgure different cognitive abilities
+
+Rong Wanga,b,c,d,1 , Mianxin Liub,e,1, Xinhong Chenga, Ying Wuc,d,f, Andrea Hildebrandtg,h,2 , and Changsong Zhoub,i,2
+
+aCollege of Science, Xi’an University of Science and Technology, Xi’an 710054, China; bDepartment of Physics, Centre for Nonlinear Studies, Beijing–Hong
+Kong–Singapore Joint Centre for Nonlinear and Complex Systems (Hong Kong), Institute of Computational and Theoretical Studies, Hong Kong Baptist University, Hong Kong; cSchool of Aerospace Engineering, Xi’an Jiaotong University, Xi’an 710049, China; dState Key Laboratory for Strength and Vibration of Mechanical Structures, Xi’an Jiaotong University, Xi’an 710049, China; eSchool of Biomedical Engineering, ShanghaiTech University, Shanghai 201210, China; fNational Demonstration Center for Experimental Mechanics Education, Xi’an Jiaotong University, Xi’an 710049, China; gDepartment of Psychology, Carl von Ossietzky Universita¨ t Oldenburg, 26129 Oldenburg, Germany; hResearch Center Neurosensory Science, Carl von Ossietzky Universita¨ t Oldenburg, 26129 Oldenburg, Germany; and iDepartment of Physics, Zhejiang University, Hangzhou 310027, China
+
+Edited by Marcus E. Raichle, Washington University in St. Louis, St. Louis, MO, and approved April 5, 2021 (received for review October 28, 2020)
+
+Diverse cognitive processes set different demands on locally segregated and globally integrated brain activity. However, it remains an open question how resting brains conﬁgure their functional organization to balance the demands on network segregation and integration to best serve cognition. Here we use an eigenmode-based approach to identify hierarchical modules in functional brain networks and quantify the functional balance between network segregation and integration. In a large sample of healthy young adults (n = 991), we combine the whole-brain resting state functional magnetic resonance imaging (fMRI) data with a mean-ﬁled model on the structural network derived from diffusion tensor imaging and demonstrate that resting brain networks are on average close to a balanced state. This state allows for a balanced time dwelling at segregated and integrated conﬁgurations and highly ﬂexible switching between them. Furthermore, we employ structural equation modeling to estimate general and domain-speciﬁc cognitive phenotypes from nine tasks and demonstrate that network segregation, integration, and their balance in resting brains predict individual differences in diverse cognitive phenotypes. More speciﬁcally, stronger integration is associated with better general cognitive ability, stronger segregation fosters crystallized intelligence and processing speed, and an individual’s tendency toward balance supports better memory. Our ﬁndings provide a comprehensive and deep understanding of the brain’s functioning principles in supporting diverse functional demands and cognitive abilities and advance modern network neuroscience theories of human cognition.
+functional brain network | hierarchical modules | segregation–integration
+balance | human cognition | structural equation modeling
+T he brain dynamically reconﬁgures its functional organization to support diverse cognitive task performances (1, 2). Successful reconﬁguration underlying better task performance relies not only on sufﬁciently independent processing in specialized subsystems (i.e., segregation) but also on effective global cooperation between different subsystems (i.e., integration) (1–6). It has been observed that diverse cognitive tasks set different demands on segregation and integration (3, 5, 7–12). Higher segregation has been linked to simple motor tasks, and higher integration seems to underlie performance on tasks with a heavy cognitive load (8–12). However, it remains a great challenge to understand how the brain’s functional organization is conﬁgured to support heterogeneous demands on segregation and integration for diverse cognitive processes.
+Independently from speciﬁc task demands, the brain’s functional organization at rest can mirror relevant task-induced activity patterns and thus predict task performance (13, 14). Emerging evidence suggests that smaller differences between
+
+functional patterns at rest versus task states can facilitate better cognitive performance (13–16). Since diverse cognitive tasks differently demand on segregation and integration (3, 5, 7–12), the brain’s functional organization at rest is expected to possess the intrinsic capability of supporting diverse cognitive processes. Furthermore, previous studies suggest that healthy resting brains operate near a critical state to render the capability of rapidly exploring and switching in the brain’s state space with large operating repertoires (3, 13, 17–19). Resting brains are thus supposed to balance the segregation and integration (17, 20), so as to satisfy competing cognitive demands. However, this theory still lacks empirical evidence regarding whether large-scale brain networks at rest entail a balance between segregation and integration and whether the functional balance is associated with individual differences in cognitive abilities.
+Signiﬁcance
+Mastering diverse cognitive tasks is crucial for humans. We study how the brain’s functional organization at rest is conﬁgured to support diverse cognitive phenotypes. Emphasizing the multilevel, hierarchical modular structure of brain’s functional connectivity to derive eigenmode-based measures, we demonstrate that the resting brain’s functional organization in healthy young adults is conﬁgured to maintain a balance between network segregation and integration. This functional balance is associated with better memory. Furthermore, brains tending toward stronger segregation versus integration foster different cognitive abilities. Thus, the segregation– integration balance empowers the brain to support diverse cognitive abilities. These ﬁndings yield high potential to understand the role of whole-brain resting state dynamics in human cognition and to develop neural biomarkers of atypical cognition.
+Author contributions: R.W., M.L., A.H., and C.Z. designed research; R.W. and M.L. performed research; R.W., M.L., A.H., and C.Z. contributed new reagents/analytic tools; R.W. and M.L. analyzed data; X.C. prepared the ﬁgures and manuscript format; Y.W. edited the manuscript; and R.W., M.L., X.C., Y.W., A.H., and C.Z. wrote the paper.y
+The authors declare no competing interest.y
+This article is a PNAS Direct Submission.y
+This open access article is distributed under Creative Commons Attribution License 4.0 (CC BY).y
+1 R.W. and M.L. contributed equally to this work.y
+2 To whom correspondence may be addressed. Email: cszhou@hkbu.edu.hk or andrea. hildebrandt@uni-oldenburg.de.y
+This article contains supporting information online at https://www.pnas.org/lookup/suppl/ doi:10.1073/pnas.2022288118/-/DCSupplemental.y
+Published May 31, 2021.
+
+PNAS 2021 Vol. 118 No. 23 e2022288118
+
+https://doi.org/10.1073/pnas.2022288118 | 1 of 11
+
+To date, most of the relationships between brain functional conﬁgurations at rest and cognitive abilities are based on single tasks (7–12) that assess only speciﬁc aspects of cognition. General and domain-speciﬁc cognitive abilities are modeled at the latent level based on multiple tasks in differential psychology (21–24). These latent cognitive abilities are generalizations across tasks of the same domain and account for measurement error (25), and thus, they are much more suitable to reveal the neural basis of individual differences in human cognition. Recently, a cross-disciplinary network neuroscience theory (NNT) proposed a general framework to investigate the neural basis of cognitive abilities relying on system-wide topology characteristics and the dynamics of brain networks (26). According to NNT, brain networks functioning in an easy-to-reach state serve crystallized intelligence, whereas a difﬁcult-to-reach state is needed for ﬂuid intelligence (26). General cognitive ability, which is a statistical summary of ﬂuid and crystallized intelligence, is considered to be facilitated by the capacity to ﬂexibly switch between the above mentioned network states, i.e., an optimal balance between local and global processing (26). These predictions are still built upon a fragile empirical basis (27). Elucidating the relationship between functional balance and different cognitive abilities is crucial for validating and reframing NNT, particularly regarding the question of whether a functional balance in the brain at the resting state is beneﬁcial for general cognitive ability of individuals.
+Before these questions can be robustly answered, the balance between segregation and integration in the large-scale brain must be explicitly deﬁned and quantiﬁed. The modular structure of brain’s functional connectivity (FC) networks is known to provide the basis for specialized information processing within modules and the integration between them (8, 10, 15, 26, 28, 29). Although many studies have applied measures based on modules
+
+at a single level to study functional segregation and integration (7, 8, 10, 15, 28, 30), empirical evidence for a balance in the brain’s functional organization is still lacking. In fact, brain FC networks are hierarchically organized (31–33). Such an organization potentially supports nested segregation and integration across multiple levels. However, the classically applied modular partition at a single level does not allow the detection of hierarchical modules across multiple levels (34, 35). This insufﬁciency seems to be the main reason for the lack of a robust quantitative deﬁnition of the balance between segregation and integration.
+Here we explicitly identiﬁed the functional balance based on hierarchical modules of resting brain FC networks and explored associations with diverse cognitive abilities in a sample of 991 heathy young adults from the Washington University–University of Minnesota Consortium (WU-Minn) Human Connectome Project (HCP) (36). Using our previously published method called nested-spectral partition (NSP) based on eigenmodes (19), we ﬁrst detected hierarchical modules in FC networks to propose an explicit balance measure. Second, we combined real data and a Gaussian linear model to demonstrate the functional balance in the group-averaged brain at the resting state. Then, we investigated individual differences in the balance and relationships to the temporal switching between segregated and integrated states. Finally, we applied structural equation modeling (SEM) to estimate latent factors of general and domain-speciﬁc cognitive abilities and investigated how segregation, integration, and their balance conﬁgure them.
+Results
+Hierarchical Modules in FC Networks. Since the length of functional magnetic resonance imaging (fMRI) series affects the dynamic properties of FC networks (29), we concatenated the fMRI data across four scanning sessions and all individuals to obtain a stable
+
+A
+
+B
+
+C
+
+D
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 20, 2023 from IP address 202.155.223.2.
+
+Fig. 1. Hierarchical segregation and integration in FC networks. (A) The stable average FC network and its hierarchical modules. The black dashed lines represent the boundaries of hierarchical modules suggested by the NSP method. (B) Hierarchical modular partition in the ﬁrst four functional modes, where modules in each level (gray and green) are detected according to the positivity or negativity of eigenvector components. (C) Spatial patterns corresponding to the ﬁrst four functional modes. (D) Pipeline of deﬁning hierarchical segregation and integration. The combination of contribution Λ2 and module number M provides hierarchical functional components Hi at different levels. Since the modular size may be heterogeneous even for the same module number in each level (see an example of six nodes partitioned into two modules, where the modular sizes of 1 and 5 generate higher integration and lower segregation than the sizes of 3 and 3), the hierarchical components Hi need to be corrected. Then, the ﬁrst level contributes to the global integration, and the 2nd to 360th levels contain the multilevel segregation components. A functional balance is deﬁned when the global integration component equals the total segregation component.
+
+2 of 11 | PNAS https://doi.org/10.1073/pnas.2022288118
+
+Wang et al. Segregation, integration, and balance of large-scale resting brain networks conﬁgure different
+cognitive abilities
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 20, 2023 from IP address 202.155.223.2.
+NEUROSCIENCE
+
+average FC network comprising N = 360 regions (Fig. 1A). The NSP method was applied to detect hierarchical modules in the FC network according to the functional modes (i.e., eigenvalues Λ and eigenvectors U ) which were sorted in descending order of Λ (Materials and Methods). At the ﬁrst level, corresponding to the ﬁrst eigenvector with the same sign for each region (Fig. 1B), the stable average FC network has the largest coactivation mode, effectively involving the whole brain in a single module (Fig. 1C). At the second level, brain regions are partitioned into two large modules that correspond to positive and negative signs in the second eigenvector (Fig. 1B). This functional partition pattern nearly coincides with the division between the anterior and posterior brain regions (Fig. 1C), suggesting that the second mode reﬂects the modular division of the brain into anterior and posterior functional systems. Furthermore, according to the negativity and positivity of the third eigenvector, each module at the second level was further subdivided into two modules at the third level (Fig. 1B). Successively, with the increasing order of functional modes, the FC network is modularly partitioned into multiple levels. The hierarchically partitioned FC network has higher average link weights within modules than between modules across multiple levels (Fig. 1A), clearly manifesting the hierarchical modules of the FC network.
+Hierarchical Segregation and Integration in FC Networks. Hierarchical modules of brain FC networks involve hierarchically segregated and integrated interactions between regions. At a speciﬁc level, regions with the same sign of eigenvector components (e.g., negative or positive) within a module are jointly activated to achieve functional integration, whereas the opposite activation (e.g., negative and positive signs) of regions indicates segregation between modules. The integration of smaller segregated modules at a high-order level (e.g., ith mode) leads to the formation of a larger module at the lower-order level
+
+(i.e., (i − 1)th mode), which further generates segregation with other large modules at this lower-order level. Thus, functional segregation and integration are intricately interrelated and hierarchically organized in a nested manner across multiple levels. We deﬁned a weighted module number Hi (Eq. 2) to quantify the nested segregation and integration. The functional component at the ﬁrst level measures the degree of global integration and is denoted as the integration component HIn (Eq. 4). Functional components across all higher levels (i.e., 2nd to 360th levels) quantify the hierarchical segregation and are summed to obtain an overall measure of the segregation component HSe (Eq. 5).
+Aiming to conﬁrm the validity of HIn and HSe , we implemented a Gaussian linear process on structural connectivity (SC) networks and produced simulated individual FC matrices for sufﬁciently long time frames (19, 37) (Materials and Methods). At an intermediate coupling in the model (i.e., c = 70), the simulated FC networks were most similar to the empirical FC network. This similarity is indicated by the same mean correlation, a minimal distance between real and simulated FC matrices, and the minimal difference in regional degrees, the same characteristic path length, clustering coefﬁcient, and global efﬁciency (Fig. 2 C and D and SI Appendix, Fig. S1). These results suggest that resting brains correspond to the dynamic point at the critical coupling (c = 70) in the Gaussian model.
+For small couplings (e.g., c = 20), brain regions are relatively independent and form sparse FC networks (Fig. 2A), as indicated by correlation values approaching zero (Fig. 2B). This state is only able to support segregated activity and is insufﬁcient for large-scale integration. Correspondingly, segregation components Hi (i ≥ 2) have high values, while the global integration component is small (Fig. 2B). In contrast, for strong couplings (e.g., c = 120), brain regions are strongly and densely connected
+
+A
+
+c=20
+
+c=70
+
+c=120
+
+Real brain
+
+B
+
+C
+
+E
+
+G
+
+D
+
+F
+
+H
+
+Fig. 2. Balance between hierarchical segregation and integration. (A) Simulated and real stable FC networks visualized using BrainNet Viewer (38). The binarizing threshold was 0.65. (B) Probability density function (pdf) of correlation values in brain FC matrices and the hierarchical components Hi in each level. (C and D) Mean correlation coefﬁcients of simulated FC matrices and the Euclidean distance between the real stable FC matrix and simulated individual FC matrices at different c. (E and F) Modularity Q and participation coefﬁcient PC based on the seven functional subsystems (SI Appendix, Fig. S2) at a single level (39). (G and H) The integration component HIn, segregation component HSe, and balance predictor HB vary with c. Here the shadows indicate the standard deviation across individuals, the horizontal green lines represent the corresponding values in the real stable FC network, and the vertical dashed lines mark the critical coupling (c = 70).
+
+Wang et al. Segregation, integration, and balance of large-scale resting brain networks conﬁgure different cognitive abilities
+
+PNAS | 3 of 11 https://doi.org/10.1073/pnas.2022288118
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 20, 2023 from IP address 202.155.223.2.
+
+to form globally synchronized patterns (Fig. 2A), as indicated by correlation values distributed toward 1 (Fig. 2B). This large-scale synchronization recruits the whole brain, exhibiting a high integration component H1 and small segregation components (Fig. 2B). This state does not allow specialized activity. Thus, during the dynamic transition from asynchronous to synchronous states, global integration increases and segregation decreases, which is consistent with classical graph-based measures of decreased modularity and increased participation coefﬁcient (Fig. 2 E and F). Crucially, this dynamic transition could be well described by an increased HIn and a decreased HSe (Fig. 2G), indicating the effectiveness of HIn and HSe in characterizing segregated and integrated activity, respectively.
+Segregation–Integration Balance in Large-Scale Resting Brains. Interestingly, the curves of HIn and HSe in the Gaussian model intersect at the critical coupling c = 70 (Fig. 2G). Thus, the competition between integration and segregation HB =HIn − HSe increases from negative values to positive values and crosses zero at c = 70 (Fig. 2H), indicating a theoretical balance between segregation and integration in the Gaussian model. This balanced state is not revealed by the monotonically changed modularity and participation coefﬁcient based on single-level modules (Fig. 2 E and F). Most importantly, resting brains of heathy young adults are close to the balanced state with HB in the real stable FC network approaching zero (HB = −0.106; Fig. 2H). Indeed, the fMRI signals inevitably contain measurement noise originating from various sources other than neural activity, which would artiﬁcially bring more segregation components into the real FC network. However, resting brains correspond to the critical coupling (c = 70) in the Gaussian model wherein the balance between segregation and integration theoretically exists. Thus, our results provide theoretical and empirical evidence that at the population level, healthy young brains at rest tend to maintain a balance between segregation and integration.
+Individual Differences in the Segregation–Integration Balance. To study individual differences in the segregation–integration balance, we constructed individual static FC networks from four concatenated fMRI sessions. The segregation and integration components in individual FC networks were calibrated to overcome the effects of a shorter fMRI series on segregation, integration, and their balance (Materials and Methods and SI Appendix, Fig. S3). This calibration restores the balance at the between-person level and is appropriate to investigate the intrinsic relationship between brain measures and cognitive abilities (SI Appendix, Table S1).
+In an individual with a sparse FC network, brain regions are relatively separated with respect to their functional activation, and thus, they generate a strong segregation component (large negative HB ; Fig. 3 A–C). In contrast, an individual brain with a dense FC network is highly integrated, corresponding to a strong integration component and large positive HB . Put differently, individual brains with overly sparse or overly dense FC networks do not display a balance between segregation and integration. However, an individual brain with an intermediate density of FC network is in a balanced state, with HB ≈ 0 (Fig. 3 A–C). Across individuals, the modularity and participation coefﬁcient relate to HB in a nonlinear manner (Fig. 3 D and E and SI Appendix, Fig. S4). Importantly, these coefﬁcients vary substantially for a speciﬁc HB value, particularly in segregated brains with large negative HB , indicating that HB based on hierarchical modules more precisely identiﬁes the balanced state and individual differences therein than the single-level measures. Thus, HB may offer a more effective representation of an individual’s tendency toward segregation vs. integration, with greater potential to be associated with cognitive abilities.
+
+A HB=-0.277
+
+B
+
+C
+HB=-0.026
+D
+HB=0.344
+E
+
+Fig. 3. Individual differences in the segregation–integration balance. (A) Brain FC networks visualized for three individuals with a tendency toward segregation (HB = −0.277), balance (HB = −0.026), and integration (HB = 0.344). The binarizing threshold was 0.65. The corresponding hierarchical components Hi are also displayed. (B and C) Calibrated segregation component HSe and integration component HIn, as well as the balance indicator HB for all individuals who were sorted according to increasing values of HB. (D and E) Corresponding individual modularity and participation coefﬁcient.
+Balance Supports Flexible Dynamic Transition between Segregated and Integrated States. To investigate the temporal switching between segregated and integrated states, we computed temporally dynamic FC networks. The mean segregation and integration components in dynamic FC networks for each individual were also calibrated to the corresponding individual static values (Materials and Methods), such that the data length-independent measure of ﬂexible transition between different states were obtained.
+The patterns of switching between segregated and integrated states differ signiﬁcantly between individuals (Fig. 4). For an individual brain with static HB < 0, most dynamic processes occur in the segregated state (i.e., HB (t)< 0; Fig. 4A), accompanied by a long dwell time TSe (Eq. 9 and Fig. 4B). In contrast, an individual brain with static HB > 0 has a long dwell time TIn in the integrated state (i.e., HB (t)> 0; Fig. 4 A and B). The static HB values across individuals range from negative to positive values. As such, the brain exhibits a competition of dwell times between increased TIn and decreased TSe , as marked by TB = TIn − TSe comprising a range of negative to positive values. Crucially, for an individual brain with static HB ≈ 0, the dwell times in the integrated and segregated states are nearly equal, with a strong linear correlation between TB and HB across individuals (r = 0.973), where TB ≈ 0 matches HB ≈ 0 (Fig. 4C). These ﬁndings indicate the coexistence of a static and dynamic balance between segregated and integrated states.
+Individual brains with high segregation or integration do not readily switch between segregated and integrated states (Fig. 4A). Contrarily, an individual brain with static HB ≈ 0 exhibits apparently more frequent state transitions, as characterized by the highest switching frequency fIS (Eq. 10), and brains tending toward segregation or integration exhibit reduced fIS (Fig. 4D). Thus, a balanced brain is most ﬂexible in its dynamic transitions between segregated and integrated states.
+Furthermore, brains with higher segregation or integration substantially deviate from the balanced state during the switching process, whereas the deviation for the brain with static
+
+4 of 11 | PNAS https://doi.org/10.1073/pnas.2022288118
+
+Wang et al. Segregation, integration, and balance of large-scale resting brain networks conﬁgure different
+cognitive abilities
+
+A
+
+B
+
+E
+
+C
+
+F
+
+D
+
+G
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 20, 2023 from IP address 202.155.223.2.
+NEUROSCIENCE
+
+Fig. 4. Functional balance supports more frequent state transitions. (A) The activation patterns, temporal modularity Q (t)(black line), and HB (t)(red line) of dynamic FC networks for three individuals (Fig. 3A) tending toward segregation (Upper; HB = −0.277), balance (Middle; HB = −0.026), and integration (Lower; HB = 0.344). Here the activation of a region is measured by the node degree. The blue lines mark the transition between segregated and integrated states. (B and C) Dwell time in the integrated state (TIn) and segregated state (TSe), as well as the time difference TB which is positively correlated to HB across individuals. (D) Switching frequency fIS between segregated and integrated states. (E) Distributions of HB (t) for the three individuals. (F and G) Deviation degree from the balance to segregated state (DSe) and integrated state (DIn), as well as the total deviation DIS.
+
+HB ≈ 0 is relatively small (Fig. 4A). With increasing static HB , the distribution of HB (t)shifts from large negative to large positive values (Fig. 4E), and it is approximately zero for HB = 0, reﬂecting the minimal deviation from the balanced state. To further conﬁrm these results, we deﬁned a degree of deviation from the balance to segregated or integrated states (DSe and DIn ; Eq. 11). An individual brain with a strong tendency toward segregation (static HB < 0) more strongly deviates toward a segregated state, with large DSe . A brain with static HB > 0 deviates toward integrated states, with large DIn (Fig. 4F). For the brain with HB ≈ 0, DIn and DSe are approximately equal (Fig. 4F), indicating equal deviation from balance toward segregated and integrated states. More importantly, the smallest total deviation DIS = DIn + DSe is observed for brains with static HB ≈ 0, whereas the total deviation is increased for brains with a tendency toward segregation or integration (Fig. 4G). This deviation reﬂects a balanced competition between segregated and integrated states during dynamic reconﬁguration to obtain an overall balanced brain.
+Segregation, Integration, and Their Balance Predict Different Cognitive Abilities. To study how segregation, integration and their balance are associated with different cognitive abilities across individuals, we used SEM. We estimated the latent factors of general and three domain-speciﬁc cognitive abilities from nine speciﬁc task performance indicators, spanning reasoning, crystallized intelligence, processing speed and memory (Materials and Methods).
+We ﬁrst separately tested linear relationships between different network measures (i.e., HB , HSe , and DSe ; SI Appendix, Table S1, for further associations) and cognitive ability factors in the entire sample (Fig. 5 and SI Appendix, Fig. S5). Three cognitive abilities (i.e., general cognitive ability, crystallized intelligence, and processing speed) are signiﬁcantly associated with the brain measures (Fig. 5B). First, the general cognitive ability factor is positively associated with HB (standardized coefﬁcient
+
+estimate β = 0.087, P = 0.037) and negatively associated with HSe (β = −0.113, P = 0.007) and DSe (β = −0.155, P < 0.001). Second, the crystallized intelligence factor is negatively related to HB (β = −0.125, P = 0.016) and positively related to HSe (β = 0.148, P = 0.005) and DSe (β = 0.166, P = 0.002). Third, the processing speed factor is negatively associated with HB (β = −0.097, P = 0.016) and positively associated with HSe (β = 0.093, P = 0.022) and DSe (β = 0.089, P = 0.029). Thus, a higher general cognitive ability relates to stronger integration, whereas greater segregation supports better crystallized intelligence and processing speed. Importantly, equivalent brain–behavior associations are not obtained using graph-based network measures at a single level (SI Appendix, Table S1). Our results emphasize the advantages of hierarchical module analysis for understanding the neural basis of individual differences in cognitive abilities.
+Notably, the memory factor is not linearly associated with any of the considered brain measures (Fig. 5A and SI Appendix, Fig. S5). However, a nonlinear relationship may exist such that memory may be most strongly facilitated by the functional balance. To test such nonlinearity, we partitioned the entire sample into groups of segregated (SG), balanced (BG), and integrated (IG) individuals and investigated latent ability differences between them by multiple group SEM (Materials and Methods). For a speciﬁc partition (Fig. 5C), the latent means of cognitive abilities in the three groups are signiﬁcantly different (P = 0.048). In detail, the latent mean of general cognitive ability monotonically increases from the SG to IG. The latent differences between the SG and BG and between the BG and IG have small effect sizes (Cohen’s d = 0.25 and 0.38), suggesting the highest general cognitive ability in the IG. In contrast, the latent mean of crystallized intelligence decreases from the SG to IG. The difference between the SG and BG reveals a medium effect size (d = 0.48), and the difference between the BG and IG is small (d = 0.27), indicating the better crystallized intelligence in the SG. The same trend of a monotonic decrease occurs for
+
+Wang et al. Segregation, integration, and balance of large-scale resting brain networks conﬁgure different cognitive abilities
+
+PNAS | 5 of 11 https://doi.org/10.1073/pnas.2022288118
+
+A
+B D
+C
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 20, 2023 from IP address 202.155.223.2.
+
+Fig. 5. Brain–behavior relationship in SEMs. (A) Schematic representation of the SEM testing the linear relationship between HB and cognitive abilities. Here nine cognitive performance indicators (Materials and Methods) were included in the model to estimate general cognitive ability (g), crystallized intelligence (cry), processing speed (spd), and memory (mem). Standardized factor loadings are displayed on the loading paths. Regression weights of latent factors
+onto HB are indicated as standardized estimates (β). (B) β coefﬁcients estimated in SEMs using HB, HSe, and DSe. The models ﬁt the data well: CFI > 0.95, SRMR < 0.08, and RMSEA < 0.08 (SI Appendix, Fig. S5). ∗P < 0.05 and ∗∗P < 0.01. (C) Distribution of individual static HB. The blue lines (HB = −0.117 and 0.123) represent the cutoff values for a speciﬁc partition. The group sizes are also provided (red text). This SEM ﬁts well with CFI = 0.974, SRMR = 0.036,
+and RMSEA = 0.049. (D) Estimated group-speciﬁc latent means for the four cognitive abilities. Cohen’s d effect size estimates indicating group differences in cognitive abilities are displayed in red.
+
+processing speed from the SG to IG. Latent differences between the SG and BG, as well as between the BG and IG, reveal small effect sizes (d = 0.26 and 0.21), indicating the highest processing speed in the SG. These group differences are consistent with the linear associations estimated in the entire sample (Fig. 5B). Most importantly, the largest latent mean of memory was observed in the BG, whereas memory performance is smaller in both the SG and IG. The differences between the SG and BG, as well as between the BG and IG, indicate medium effects (d = 0.46 and 0.46), supporting the highest memory in the BG.
+Importantly, the above reported group differences are robust for different partitions into three groups (SI Appendix, Fig. S6). Further partitioning the BG into two subgroups (i.e., resulting in four groups) also led to equivalent results (SI Appendix, Fig. S7). These ﬁndings provide robust evidence that higher general cognitive ability is associated with stronger integration, that higher crystallized intelligence and processing speed rely on stronger segregation, and that memory is the strongest in individuals at the balance between segregation and integration during rest.
+
+Discussion
+By proposing a hierarchical module approach to brain FC networks, we explicitly identiﬁed the functional balance between segregation and integration. Using the large-scale WU-Minn HCP dataset and a Gaussian linear model, we provided theoretical and empirical evidence that healthy young brains at rest are on average close to the balanced state. This state allows the brain to frequently switch between segregated and integrated conﬁgurations. Compared with graph-based network measures at a single level, our approach is more effective for revealing the intricate role of segregation, integration, and their balance in different cognitive abilities across individuals. General cognitive ability is facilitated by higher global integration, better crystallized intelligence and processing speed are associated with higher segregation, and memory proﬁts from the tendency toward the balance. Our results not only provide an effective analysis of hierarchical modules in brain FC networks but also reveal the functioning principles of resting brains to support diverse cognitive demands by conﬁguring the functional organization to segregation, integration, or balance.
+
+6 of 11 | PNAS https://doi.org/10.1073/pnas.2022288118
+
+Wang et al. Segregation, integration, and balance of large-scale resting brain networks conﬁgure different
+cognitive abilities
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 20, 2023 from IP address 202.155.223.2.
+NEUROSCIENCE
+
+Network Segregation–Integration Balance of Healthy Young Brains at Rest. The appealing hypothesis of resting brain at a balance between segregation and integration has been accepted by many researchers (3, 4, 13, 17, 18, 27, 40, 41). Although several methods have been proposed to identify segregated and integrated brain states and the competition within and between modules is expected to capture the balance (10, 18, 42–44), developing a quantitative deﬁnition of the balance was still considered a great challenge. We argued that segregated and integrated brain activities are hierarchically organized across pronounced modules in FC networks (31, 32) and found that eigenmodes can reﬂect the hierarchical modular partition. By characterizing the competition between hierarchical segregation and integration based on eigenmodes, we identiﬁed the explicit balance and provided theoretical and empirical evidence that brain functional organizations at rest are on average conﬁgured to a balanced state, but there are also signiﬁcant individual variations in segregation, integration, and balance. This study provides quantitative evidence for the segregation–integration balance in large-scale resting brains of heathy young adults, although the hypothesis has been investigated for many years (3, 4, 13, 17, 18, 27, 40, 41).
+Balance Supports Fast Reconﬁguration of Brain’s Functional Organizations. Dynamical reconﬁguration of brain functional organization between segregated and integrated states associates with diverse cognitive abilities and neurological disorders (13, 15, 43–46). For example, Parkinson’s disease is associated with a longer dwell time in segregated states and a lower number of transitions between segregated and integrated states (43– 45), and individuals with higher intelligence dwells less often transition into states of particularly high network segregation (13). However, previous studies used single-level methods (e.g., k -means clustering) to detect different brain states (15, 43, 45), which are unable to quantify a clear borderline for segregated and integrated states. Recently, Hilger et al. theoretically assumed a functional balance in a group of individuals (Mage = 47.19 years old) and regarded the group mean modularity as the borderline for identifying segregated and integrated states (13). Beyond the theoretical assumptions, we provided a complete quantitative framework for identifying segregated and integrated states. We found that balanced brains work with a balanced time in segregated and integrated states and a highly frequent state switching. Thus, the functional balance allows for more ﬂexible reconﬁguration in brain functional organization (2), which is assumed to be necessary for the brain to transit from resting to task states in a timely manner. Our approach has great potential for future investigations of brain’s dynamic reconﬁgurations and their relationships with cognitive abilities during aging, cognitive training, and mental disorders.
+Network Segregation, Integration, and Their Balance Predict Different Cognitive Abilities. Our work demonstrated that segregation, integration, and their balance predict different cognitive abilities. Even if general cognitive ability is supposed to be facilitated by the balance in NNT, system-wide evidence for such an association remains controversial (21–24). For example, previous studies reported a relationship between the general cognitive ability and global efﬁciency of resting FC networks (22, 23), but a recent replication study with WU-Minn HCP data did not observe the relationship (24). Our results further conﬁrmed that the single-level network analysis cannot capture the relationship between network characterizations and general cognitive ability (SI Appendix, Table S1), but the hierarchical module analysis effectively revealed that general cognitive ability is robustly predicted by higher global integration. Since general cognitive ability in the present SEM is marked by reasoning tasks
+
+(ﬂuid intelligence) (Materials and Methods), our result is consistent with the NNT assumption that weak network connections between regions facilitate a difﬁcult-to-reach state, needed for ﬂuid intelligence (26). Thus, when an individual’s functional organizations are conﬁgured to integration, resting brains more strongly exhibit global cooperative activity and ﬂexibly switch to a difﬁcult-to-reach state, supporting better ﬂuid and general intelligence.
+Crystallized intelligence is presumed to be facilitated by an easy-to-reach state in NNT (26). Two studies with small sample sizes reported an association between global efﬁciency in FC networks and crystallized intelligence (22, 23). However, while using the NIH Toolbox Cognition Battery to assess crystallized intelligence, a recent replication study based on the WU-Minn HCP data found that crystallized intelligence was not associated with global efﬁciency, characteristic path length, and global clustering coefﬁcient (24). Here we used SEM to estimate crystallized intelligence as a latent variable and observed a small but robust association between it and network properties. These associations were present for traditional single-level network measures and our multiple-level measures (SI Appendix, Table S1). Our results indicate a positive association between segregation and crystallized intelligence, providing further support for NNT (26). Thus, an individual’s tendency to exhibit more independent activity in specialized subsystems allows the network to function with an easy-to-reach state which predicts better crystallized intelligence.
+Currently, NNT does not make any clear prediction for memory. Memory is itself a complex ability. The main dimensional distinction is being made between working, primary (short-term), and secondary (long-term) memory (26, 47). Indeed, speciﬁc memory task performances were shown in the literature to be facilitated by different segregated and integrated processes (48– 50), such as the vivid memory requiring higher global integration than dim memory (50), implying that general memory may be facilitated by a balance between segregation and integration. Here we showed that memory is higher in individuals tending toward balance in resting brains. In cognitive and differential psychology, an inﬂuential perspective on working memory— taken to be the cognitive mechanism underlying general cognitive ability (51)—assumes it to be a system responsible for building relational representations through temporary bindings between mental chunks (52). We here revoke to see general cognitive ability merely as a statistical summary of domain-speciﬁc cognitive abilities. The general cognitive ability in our model was modeled as a factor marked by reasoning tasks (ﬂuid intelligence), and a memory was nested under this general factor. The memory tasks in the WU-Minn HCP arguably capture the ability of building, maintaining, and updating arbitrary bindings (52, 53), which we view as the basic cognitive mechanism underlying general cognitive ability. Thus, this ability is expected to be associated with a pronounced small-world topology, tending to display a balance between segregation and integration, as predicted in NNT (26). Therefore, this study substantially validates and enriches the hitherto proposed NNT of human cognition.
+Processing speed is another domain-speciﬁc ability that is not explicitly considered in NNT (26). In terms of brain network characteristics facilitating processing speed, theoretically welljustiﬁed predictions are difﬁcult to propose (53, 54). Thus, the results and their interpretation from previous studies mainly rely on motor performance. Here we demonstrated that faster processing speed is associated with the tendency toward segregated activity in resting brains. This ﬁnding is consistent with theories aiming to understand the lifespan development of modularity (12). More modular neural architectures are associated with better performance when short response deadlines are required in cognitive tasks of low difﬁculty. Thus, processing
+
+Wang et al. Segregation, integration, and balance of large-scale resting brain networks conﬁgure different cognitive abilities
+
+PNAS | 7 of 11 https://doi.org/10.1073/pnas.2022288118
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 20, 2023 from IP address 202.155.223.2.
+
+speed is expected to relate to stronger modularity, i.e., higher segregation. Furthermore, at the level of speciﬁc cognitive tasks, higher segregation was shown to be related to successful motor execution (8). These theoretical claims and few empirical ﬁndings are consistent with our results showing that quicker processing speed is predicted by higher segregation. Our ﬁndings complement missing constituents of NNT that aim to provide a network neuroscience view on general and domain-speciﬁc cognitive abilities, to which processing speed arguably belongs.
+Outlooks. This work also has several valuable outlooks. First, we demonstrate that resting brains are close to a balanced state and that the functional balance is not simply beneﬁcial for all cognitive abilities as sometimes assumed. Since resting brains were found to function around a critical state (19, 55–57), the functional balance theoretically matches the criticality characterizing individuals on average. Thus, our results are in line with a recent ﬁnding in a local neural circuit that criticality is not optimal for easy tasks but can facilitate the processing of difﬁcult tasks (58). However, the relationship between the balance and criticality across individuals was not yet clearly understood, mainly due to lack of explicit identiﬁcation of the functional balance. Our work thus provides a powerful tool to solve this pending issue in physics and network neuroscience.
+Second, the functional balance is expected to provide potential for the brain to ﬂexibly switch to task states so as to match the variable task demands. This hypothesis is consistent with emerging evidence that individual brains characterized by more efﬁcient switching from resting to task states perform better on speciﬁc cognitive tasks (15, 16, 27). We here found that the functional balance is not beneﬁcial for all cognitive abilities, except for memory. Thus, resting brains tending toward segregation (or integration) may be more efﬁcient to switch to task states that need higher segregation (or integration). From this viewpoint, the tendency of an individual brain toward balance may not necessarily enhance the speciﬁc switching efﬁciency from resting to any particular task state but may enhance the overall switching efﬁciency among many tasks. An analysis of fMRI data during a working memory task provides a preliminary support to this assumption (SI Appendix, Fig. S8). However, task fMRI data systematically covering a broad range of tasks are needed to comprehensively test this assumption.
+Conclusion
+Altogether, we found that resting brains maintain a segregation– integration balance to support the heterogeneous demands of diverse cognitive abilities, and across individuals, segregation, integration, and their balance predict different cognitive abilities. The functional balance supports the best memory, higher segregation corresponds to better crystallized intelligence and processing speed, and higher integration is associated with better general cognitive abilities. This study not only contributes to testing current NNT claims but also reframes this theory by including additional domain-speciﬁc abilities and a general cognitive ability factor with a straightforward psychological interpretation. Furthermore, the concepts proposed here are helpful to reﬁne the methodology proposed for parameterizing the functional organization of the brain’s dynamic activity, which has potential utility in the rapidly growing ﬁeld of network neuroscience focusing on aging, cognitive training, and mental disorders.
+Materials and Methods
+Dataset. The WU-Minn HCP dataset contains structural MRI, diffusion tensor imaging (DTI), resting state fMRI, and behavioral measures on multiple cognitive tasks for 1,200 healthy young adults (36). Each participant completed a 2-d measurement involving four high-resolution scanning sessions (time of repetition [TR] = 0.72 s), with each session lasting for 864 s (1,200 frames). In this study, 991 subjects (female = 528, age range = 22 to 36 y)
+
+with the full time length of four sessions and corresponding DTI data were selected.
+
+Human Brain Connectomes. Brain was parcellated into 360 regions according to the multimodal parcellation (MMP) atlas (59). The blood oxygen level-dependent (BOLD) time series for each region was extracted with the standard procedure (SI Appendix, SI Methods) (36). The Pearson correlation coefﬁcient between BOLD series of two regions was calculated to indicate the FC. For the stable average FC matrix, the BOLD series for four sessions were concatenated in all individuals so that we obtained the stable FC across long enough time scales, as has been done previously (29). For the individual static FC matrices, the BOLD series for four sessions in each individual were concatenated. This operation greatly improved the reliability of FC (SI Appendix, Fig. S9). For the dynamic FC matrices, the BOLD series for four sessions in each individual were ﬁrst orderly concatenated, and then a sliding time window method was applied. With a window width of 59.76 s (83 points) and a sliding step of 0.72 s (1 point), the concatenated long BOLD series was divided into 4,717 small pieces to construct the temporal FC matrices. We set negative correlations to zero and applied no other operations to the FC matrices.
+The brain regions in the cortex are physically interconnected by white matter ﬁbers. DTI provides diffusion gradients of all of the voxels in the white matter. We performed probabilistic tractography on the DTI data to trace the white matter ﬁbers and thus to quantify the connection probability pij from region i to j (59–61) (SI Appendix, SI Methods). The SC between regions was computed as wij = (pij + pji)/2, and the SC matrix thus is
+
+Aij =
+
+wij for i = j .
+0 for i = j
+
+[1]
+
+Brain Functional Modes. The FC matrix C can be decomposed as C = UΛUT
+
+with eigenvectors U and eigenvalues Λ. In the spectral space, the eigen-
+
+values Λ are usually described as the contribution of functional modes to
+
+FC networks, and the total contribution
+
+N i=1
+
+Λi
+
+≡
+
+N
+
+is
+
+independent
+
+of
+
+the dynamical synchronizing process. However, as synchronization increases,
+
+cortical regions exchange more information, leading to stronger connec-
+
+tivity, accompanied by a higher degree for the regions. In this case, the
+
+contribution of functional modes to FC networks needs to grow as well. Thus, we used Λ2 to measure the contribution of functional modes to FC
+
+networks (19). Few eigenvalues had negative values and were set to zero.
+
+Hierarchical Modular Partition of FC Networks. Eigenmode-based analysis has been successfully applied to complex networks (34, 62). Here we applied the NSP method to detect the hierarchical modules in FC networks. This hierarchical modular partition at multiple levels is not equivalent with the clustering method and the modularity-maximization method (34). Rather, it is motivated by a principle of physics according to which the regions with the same eigenvector sign are assumed to be cooperatively activated and the regions with different signs oppositely activated. Thus, in the ﬁrst mode, the elements in the eigenvector for all regions have the same sign, which was referred to as the ﬁrst level with one functional module (i.e., whole-brain network). In the second mode, the regions with positive signs in the eigenvectors were assigned as a module, and the remaining regions with negative signs were assigned as the second module, which was regarded as the second level distinguishing two functional modules. Each module in the second level could be further partitioned into two submodules based on the positive or negative sign of regions in the third mode, constructing the third level. Successively, the FC network can be modularly partitioned into multiple levels with the order of functional modes increasing until a given level where each module involves a single region only. After each partitioning step, the regions were reordered, and the order within modules remained random. During this nested partitioning process, we obtained the module number Mi(i = 1, . . . , N) and the modular size mj(j = 1, . . . , Mi) in each level. Notably, because of the intrinsic differences between the NSP method and classical graph theory method, the hierarchical modules are not matched with the known functional networks [e.g., Yeo et al.’s functional subsystems (39)]. However, a functional subsystem can be reproduced by the combination of several signiﬁcant modes (62) (SI Appendix, Fig. S2).
+
+Hierarchical Segregation and Integration Components. Functional segregation and integration are intricately interrelated and hierarchically organized in a nested manner across multiple levels. This hierarchically segregated and integrated activity reﬂected by eigenmodes has the contribution Λ2 to the functional organization (Fig. 1D). The ﬁrst level in the FC network
+
+8 of 11 | PNAS https://doi.org/10.1073/pnas.2022288118
+
+Wang et al. Segregation, integration, and balance of large-scale resting brain networks conﬁgure different
+cognitive abilities
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 20, 2023 from IP address 202.155.223.2.
+NEUROSCIENCE
+
+has only a single large module (Fig. 1 B and C), reﬂecting global integra-
+
+tion to allow effective communication across the whole brain and requiring
+
+the largest contribution (Fig. 1D). The second level generates integration
+
+within the anterior or posterior module and segregation between them (Fig.
+
+1 A–C). This modular organization supports the strong communication and
+
+specialized processing within the anterior or posterior regions and weaker
+
+cooperation between them and thus requires less contribution than the ﬁrst
+
+global mode (Fig. 1D). Consequently, higher-order modes with more mod-
+
+ules and smaller modular sizes relate to deeper levels of ﬁner segregated
+
+processes that generate more localized information ﬂow and coordination, accompanied by lower contributions Λ2 of the corresponding modes (Fig.
+
+1D and SI Appendix, Fig. S10). Speciﬁcally, the levels with the highest mod-
+
+ule number (i.e., M = N), allowing independent activation of each region,
+
+indicate completely segregated activity and are associated with very small
+
+contributions (Fig. 1D and SI Appendix, Fig. S10). Thus, the functional modes
+
+with larger module numbers generate stronger segregation and smaller-
+
+scale local integration, producing weaker contributions to the functional
+
+organization.
+
+Consistent with the graph-based modularity (15, 28, 35), modules at a
+
+given level support the segregation between them and integration within
+
+them. A larger module number Mi reﬂects higher segregation at this level.
+Since this segregated and integrated activity makes the contribution of Λ2i to the functional organization, the weighted module number in each level can be deﬁned to reﬂect the hierarchical segregated and integrated
+
+interactions:
+
+Hi
+
+=
+
+Λ2i Mi N
+
+,
+
+[2]
+
+where N normalizes the module number M to the range [0, 1]. At low-order levels, the module number Mi is small and the contribution Λ2i is large, corresponding to strong integration of smaller modules at higher-order levels
+
+into large modules at low-order levels. Meanwhile, the large modules are
+
+further integrated into even larger modules at lower-order levels, allowing
+
+us to quantify hierarchically nested segregation and integration. Thus, Hi describes the nested segregation and integration across multiple levels.
+
+However, the number of modules alone may not properly describe the
+
+picture of nested segregation and integration because the size of modules
+
+may be heterogeneous (Fig. 1D). Given an extreme case at the second level,
+
+for example, having two modules with a size comprising one region and
+
+N − 1 regions, this level would produce very weak segregation and nearly
+
+global integration. The segregation becomes stronger if the modules have a
+
+more homogeneous size mj = N/Mi . Thus, the segregation and integration component in each level needs to be corrected for heterogeneous modular
+
+sizes. The correction factor was calculated as pi = j mj − N/Mi /N, which reﬂects the deviation from the optimized modular size in the ith level. Then,
+
+Hi was corrected as
+
+Hi
+
+=
+
+Λ2i Mi
+
+(1 N
+
+−
+
+pi
+
+) .
+
+[3]
+
+This correction aims to reﬂect the inﬂuence of modular size. If modules are dominant with respect to their size at a given level, the integration within this level will become stronger and the segregation weaker, corresponding to smaller Hi. Should the deviation of modular size from homogeneity be large, the correction effect is stronger (Fig. 1D).
+At the ﬁrst level, there is only a single module for the whole FC network, and this level was taken to calculate the global integration component:
+
+HIn
+
+=
+
+H1 N
+
+=
+
+Λ12M1(1 − p1) . N2
+
+[4]
+
+Further normalization by the node number of N results in a measure that is independent of the network size. Since the ﬁrst level contains only one module, p1 = 0, and the global integration component does not need to be corrected.
+The total segregation component unfolds from the multiple segregated levels (2nd to Nth levels):
+
+N
+HSe =
+
+Hi = N N
+
+Λi 2Mi N2
+
+(1
+
+−
+
+pi
+
+).
+
+[5]
+
+i=2
+
+i=2
+
+These deﬁnitions of the global integration and segregation components in the FC network are illustrated in Fig. 1D.
+
+Gaussian Linear Diffusion Model. In order to identify the theoretical balance of the brain, a Gaussian linear diffusion model was adopted. Let xi represent
+
+the neural activities of cortical regions that follow a Gaussian linear process (19, 37, 63). The time evolution of neural population activities satisﬁes (SI Appendix, SI Methods)
+
+dxi dt
+
+= −xi
+
++c
+
+N
+
+Aij
+
+xj − xi
+
+√ + 2ξi,
+
+[6]
+
+j=1
+
+where c is the coupling strength between cortex region and A is the brain SC matrix deﬁned in Eq. 1. By averaging over the states produced by an ensemble of noise and deﬁning the Q=(1+cH)−1, where H is the Laplace matrix of the SC matrix, the covariance of this model can be analytically
+estimated as (41, 64)
+
+Cov = XXT = 2 QξξT QT = 2Q ξξT QT = 2QQT .
+
+[7]
+
+The simulated FC matrix C can be calculated as
+
+Cij =
+
+Covij . Covii Covjj
+
+[8]
+
+Thus, built upon the Gaussian linear process of the ﬂuctuating resting brain state, the simulated stable FC networks over a sufﬁciently long time can theoretically be obtained. These FC networks are robust to noise associated with the SC measurement which is inevitable in DTI data processing (SI Appendix, Fig. S11). The stable FCs will be compared with FC from real fMRI data by tuning the coupling parameter c.
+
+Calibration Process. We provided theoretical and numerical evidence for the
+
+resting brain to close to the balance between segregation and integra-
+
+tion given a sufﬁciently long fMRI time series. However, a previous study
+
+found that shorter fMRI series resulted in apparently higher segregation
+
+estimates in terms of larger modularity in FC networks (29), and we also
+
+observed stronger segregation in the case of shorter fMRI series lengths (SI
+
+Appendix, Fig. S3). If this artifact was not taken into account, deviation mea-
+
+sures from the dynamical balanced state would be biased toward more but
+
+artiﬁcial segregation. To address this limitation, the segregation and inte-
+
+gration components in individual static FC networks need to be calibrated.
+
+Considering that the length of fMRI time series would mainly affect the seg-
+
+regation component in static FC networks (SI Appendix, Fig. S3), the group
+
+segregation component HSe and integration component HIn were calibrated to the integration component HISn = 0.18 of the stable average FC network.
+This is equivalent to the mean integration component of simulated FC net-
+
+works at the balanced state (i.e., c = 70) (Fig. 2 G and H). The segregation
+
+components in brains with HB < 0 are more sensitive to the fMRI length (SI Appendix, Fig. S3), and thus, a proportional calibration scheme was
+
+adopted. For individual static FC networks (obtained from four sessions), the
+
+vectors of segregation (or integration) components for 991 individuals are
+
+HIn= HI1n, HI2n, . . . , HI9n91 and HSe= HS1e, HS2e, . . . , HS9e91 , and the calibrated
+
+results for each individual are HSi e = HSi e
+
+HISn HSe
+
+and HIin = HIin
+
+HISn HIn
+
+. Here
+
+represents the group average across 991 individuals. After this calibration,
+
+the group average values of the segregation and integration components
+
+will be equal (i.e., HB = 0), and the individual ranking of segregation and integration will be ﬁxed.
+
+For dynamic FC networks, the temporal segregation and integration
+
+components for each individual were calibrated to its static segregation
+
+component HSi e and integration component HIin, respectively, to maintain the individual ranking (SI Appendix, Fig. S3). The vectors of segregation
+
+(or integration) components for the ith individual across 4,717 windows
+
+are hiSe= h1Se, h2Se, . . . , h4Se717 and hiIn= h1In, h2In, . . . , h4In717 , and the calibrated
+
+results are htSe = htSe
+
+HSi e hiSe
+
+and htIn = htIn
+
+HIin hiIn
+
+. Here
+
+represents the average
+
+across 4,717 windows. This calibration maintains the individual ranking of
+
+static segregation and integration components, and the calibrated results
+
+are independent of the length of fMRI series (SI Appendix, Fig. S3). This indi-
+
+vidual calibration does not affect the dynamic results according to which the
+
+balanced brain is characterized by a balanced dwell time and the maximum
+
+transition frequency (SI Appendix, Fig. S12).
+
+Dynamic Measures. In order to characterize the dynamic properties in detail, the dwell time in segregated and integrated states was ﬁrst deﬁned as
+
+TIn
+
+=
+
+tHB (t)≥0 tall
+
+and
+
+TSe
+
+=
+
+tHB (t)<0 tall
+
+.
+
+[9]
+
+Wang et al. Segregation, integration, and balance of large-scale resting brain networks conﬁgure different cognitive abilities
+
+PNAS | 9 of 11 https://doi.org/10.1073/pnas.2022288118
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 20, 2023 from IP address 202.155.223.2.
+
+Here tHB(t)≥0 and tHB(t)<0 measure the duration of the dynamic process at HB (t)≥ 0 and HB (t)< 0, and tall = 3,396.24 s is the total time.
+Second, the switching frequency was used to measure the transition
+speed between segregated and integrated states, which was deﬁned as
+
+fIS
+
+=
+
+nHB (t)HB (t+1)≤0 tall
+
+,
+
+[10]
+
+where n is the total number for time t satisfying HB (t)HB (t + 1)≤ 0. Third, the competition between dynamic segregated and integrated
+states across long time periods may be balanced, but the ﬂuctuations can vary much at temporal windows. The amplitude of dynamic deviation from the balanced state to the integrated state or segregated state was thus calculated as
+
+DIn =
+
+HB (t) ≥0 tHB ≥0
+
+and DSe =
+
+HB (t)|<0 . tHB <0
+
+[11]
+
+Here HB (t) ≥0 and HB (t)|<0 represent the positive and negative HB during the dynamic process. A smaller DIn (or larger DSe) indicates that the brain deviates toward a segregated state with a higher amplitude.
+
+SEM. Cognitive behavioral measures were collected from nine speciﬁc tasks (SI Appendix, Table S2): picture sequence memory (PSM), Penn word memory test (PWMT), Penn progressive matrices (PPM), variable short Penn line orientation test (VSPLOT), picture vocabulary (PV), oral reading recognition (ORR), dimensional change card sort (DCCS), ﬂanker task (FT), and pattern completion processing speed (PCPS). To obtain estimates of general and domain-speciﬁc cognitive abilities, we applied a bifactor minus-1 SEM to extract latent factors of common phenotypes that explain the variability across the above listed tasks (65, 66). According to ref. 65, we modeled crystallized intelligence by including ORR and PV as indicators; memory ability based on PWMT and PSM; and processing speed based on DCCS, FT, and PCPS. In particular, general cognitive ability (g) was modeled as the shared variance across the broad set of all task performance scores shared with PPM and VSPLOT. The covariance matrix as well as the mean and standard deviation of all task performance indicators across individuals are provided (SI Appendix, Dataset S1).
+The bifactor minus-1 SEM is only partly in line with the theoretical elaborations in NNT that build upon a higher-order structure of human intelligence (26, 67). In NNT, task-speciﬁc performance within domains is taken to reﬂect domain-speciﬁc broad mental abilities, such as crystallized and ﬂuid intelligence, to be further subsumed into a higher-order factor called general intelligence (g). This higher-order factor model diverges from the so-called hierarchical (or bifactor) model with respect to how g is estimated. Whereas g in the higher-order model exerts its inﬂuence on task performance scores indirectly through domain speciﬁc factors, g represents the shared variance across a broad set of task performance scores in the hierarchical model. However, by imposing proportionality constraints on loadings, these two models can be translated to be statistically equivalent (68). More importantly, the controversy around the higher-order model is associated with the resulting cumbersome psychological interpretation of g. Because in the higher-order model, g exerts its inﬂuence on measured variables indirectly through domain speciﬁc factors, the ratios of the variance in the measured variables comprising domain factors to the indicator variance explained by the higher-order factor are the same. This constraint makes little sense psychologically because no psychological theory stresses such proportionality. Thus, we adhered to bifactor modeling approaches of cognitive abilities including a reference ability for g, which is reasoning ability (66). Because the bifactor model has yet also been shown to have a series of statistical disadvantages (66) and because a clear interpretation of g should be warranted, omitting one of the domain-speciﬁc factors to avoid anomalous estimation results has been proposed as solution in the psychometric literature (66). In our application, PPM and VSPLOT were only loaded onto g which can then be interpreted as reasoning (ﬂuid intelligence)-related variance, required by domain-speciﬁc tasks to a different degree. This interpretation is consistent with the well-established ﬁnding that g and ﬂuid intelligence are correlated above 0.93 (51). Additionally, three domain-speciﬁc factors of crystallized intelligence, memory, and speed are nested under g (Fig. 5A). This modeling choice is different from the higher-order g in NNT but is in line with psychologically better interpretable representations of the cognitive ability structure (67).
+To empirically test potential nonlinear associations, we further applied the same SEM model of cognitive abilities in a multiple-group modeling framework with different group of individuals best characterized by seg-
+
+regation, balance, and integration. Multiple group models allow ﬁtting the SEM to describe individual differences in cognitive abilities simultaneously across groups. We ﬁrst partitioned 991 individuals into SG, BG, and IG according to a set of thresholds in sorted individuals according to their HB. In Fig. 3C, we orderly selected the individuals starting from the largest HB. The group size of IG was ﬁrst selected with NIG individuals. Then, starting with the (NIG + 1)th person, we selected the individuals for the BG. By constraining the average HB = 0 in the BG, we could ﬁx the group size of IG with NBG. Individuals at the left were assigned to the SG. After the partition, the model parameters such as the latent mean and the cognitive abilities variance across individuals were speciﬁcally estimated for each group, and thus, group differences could be identiﬁed by statistical inferences on groupspeciﬁc model parameter comparisons. Different partitions were explored by a scanning step of 10 persons in the IG to assess the robustness of results across different partitioning thresholds (SI Appendix, Figs. S6 and S7).
+SEM analysis was performed using the lavaan package in R (69). The maximum likelihood estimator has been used, and latent variables were identiﬁed by reference indicators. The comparative ﬁt index (CFI), root mean square error of approximation (RMSEA), and standardized root meansquare residual (SRMR) were used to evaluate the ﬁt of the estimated models (60, 70). Speciﬁcally, the model was considered to ﬁt well for CFI > 0.95, SRMR < 0.08, and RMSEA < 0.08 (70). In multigroup SEMs, we compared the goodness of ﬁt of the model with freely estimated average latent ability with a model introducing equality constraints on the latent means across the groups. The χ2 difference test was used for model comparison. The resulting p value of the test statistic indicates whether the unconstrained model was a signiﬁcantly better ﬁt than the constrained model. Group comparisons were based on Cohen’s d (d ≥ 0.2 reﬂects a small effect size, d ≥ 0.5 represents a medium effect size, and d ≥ 0.8 indicates a large effect size).
+
+Graph-Based Network Measures. To compare the results between graph-
+
+based network measures and hierarchical measures of functional segre-
+
+gation and integration in FC networks, the modularity and participation
+
+coefﬁcient were also computed. The modularity Q in undirected weighted
+
+networks is (35)
+
+1 Q=
+l
+i,j∈N
+
+wij
+
+−
+
+ki kj l
+
+δmi ,mj .
+
+[12]
+
+Here wij is the connectivity between nodes i and j, ki = wij is the degree of node i, and l is the sum of all weights in the network. δmi,mj =1 if nodes i and j are in the same module; otherwise, δmi,mj =0. The modularity Q quantiﬁes the degree to which a network is decomposed into densely connected
+modules, and a larger Q reﬂects higher segregation.
+The participation coefﬁcient quantiﬁes the degree to which a node is
+connected to other nodes across diverse modules. Its deﬁnition for a node is
+
+M
+PCi = 1 −
+m=1
+
+2
+ki (m) , ki
+
+[13]
+
+where M is the module number and ki (m) is the connectivity strength of node i within module m. The participation coefﬁcient PCi of a network is the average of PCi in all nodes. Here the modules were previously deﬁned according to the seven functional subsystems (39). These
+network measures were calculated with the Brain Connectivity Toolbox
+(https://www.nitrc.org/projects/bct).
+
+Data and Code Availability. fMRI, DTI, and behavioral measures have been deposited in the WU-Minn HCP (www.humanconnectome.org/study/hcpyoung-adult).
+The codes used in this study are available in GitHub at https://github.com/ TobousRong/Hierarchical-module-analysis.
+ACKNOWLEDGMENTS. This work was supported by the National Natural Science Foundation of China (Grants 11802229, 11972275, and 11772242), the Hong Kong Scholars Program (Grant XJ2020007), the Outstanding Youth Science Fund of Xi’an University of Science and Technology (Grant 2019YQ311), the Hong Kong Research Grant Council (Grant HKBU12301019), the Hong Kong Baptist University Research Committee Interdisciplinary Research Matching Scheme 2018/19 (IRMS/18 − 19/SCI01), and Germany– Hong Kong Joint Research Scheme (G HKBU201/17 awarded to C.Z. and ID 57391438 awarded to A.H.). This research was conducted using the resources of the High Performance Computing Cluster Center, Hong Kong Baptist University, which receives funding from Research Grants Council, University Grant Committee of the Hong Kong Special Administrative Region, and Hong Kong Baptist University.
+
+10 of 11 | PNAS https://doi.org/10.1073/pnas.2022288118
+
+Wang et al. Segregation, integration, and balance of large-scale resting brain networks conﬁgure different
+cognitive abilities
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 20, 2023 from IP address 202.155.223.2.
+NEUROSCIENCE
+
+1. O. Sporns., Networks of the Brain (MIT Press, 2010). 2. D. S. Bassett, E. T. Bullmore, Small-world brain networks revisited. Neuroscientist 23,
+499–516 (2017). 3. G. Deco, G. Tononi, M. Boly, M. L. Kringelbach, Rethinking segregation and inte-
+gration: Contributions of whole-brain modelling. Nat. Rev. Neurosci. 16, 430–439 (2015). 4. J. M. Shine, Neuromodulatory inﬂuences on integration and segregation in the brain. Trends Cognit. Sci. 23, 572–583 (2019). 5. O. Sporns, Network attributes for segregation and integration in the human brain. Curr. Opin. Neurobiol. 23, 162–171 (2013). 6. D. A. Fair et al., Development of distinct control networks through segregation and integration. Proc. Natl. Acad. Sci. U.S.A. 104, 13507–13512 (2007). 7. K. Finc et al., Dynamic reconﬁguration of functional brain networks during working memory training. Nat. Commun. 11, 2435 (2020). 8. J. R. Cohen, M. D’Esposito, The segregation and integration of distinct brain networks and their relationship to cognition. J. Neurosci. 36, 12083–12094 (2016). 9. U. Braun et al., Dynamic reconﬁguration of frontal brain networks during executive cognition in humans. Proc. Natl. Acad. Sci. U.S.A. 112, 11678–11683 (2015). 10. J. M. Shine et al., The dynamics of functional brain networks: Integrated network states during cognitive task performance. Neuron 92, 544–554 (2016). 11. K. K. Kolskar et al., Key brain network nodes show differential cognitive relevance and developmental trajectories during childhood and adolescence. eNeuro 5, ENEURO.0092-18.2018 (2018). 12. M. Chen, M. W. Deem, Development of modularity in the neural activity of children’s brains. Biophys. J. 106, 016009 (2014). 13. K. Hilger, M. Fukushima, O. Sporns, C. J. Fiebach, Temporal stability of functional brain modules associated with human intelligence. Hum. Brain Mapp. 41, 362–372 (2020). 14. A. H. C. Fong et al., Dynamic functional connectivity during task performance and rest predicts individual differences in attention across studies. Neuroimage 188, 14–25 (2019). 15. K. Machida, K. A. Johnson, Integration and segregation of the brain relate to stability of performance in children and adolescents with varied levels of inattention and impulsivity. Brain Connect. 9, 711–729 (2019). 16. D. H. Schultz, M. W. Cole, Higher intelligence is associated with less task-related brain network reconﬁguration. J. Neurosci. 36, 8551–8561 (2016). 17. L. D. Lord, A. B. Stevner, G. Deco, M. L. Kringelbach, Understanding principles of integration and segregation using whole-brain computational connectomics: Implications for neuropsychiatric disorders. Philos. Trans. R. Soc. A 375, 20160283 (2017). 18. P. Fransson, B. C. Schifﬂer, W. H. Thompson, Brain network segregation and integration during an epoch-related working memory fmri experiment. Neuroimage 178, 147–161 (2018). 19. R. Wang et al., Hierarchical connectome modes and critical state jointly maximize human brain functional diversity. Phys. Rev. Lett. 123, 038301 (2019). 20. J. M. Shine, M. J. Aburn, M. Breakspear, R. A. Poldrack, The modulation of neural gain facilitates a transition between functional segregation and integration in the brain. Elife 7, e31130 (2018). 21. G. E. Gignac, Higher-order models versus direct hierarchical models: g as superordinate or breadth factor? Psychol. Sci. 50, 21 (2008). 22. G. S. P. Pamplona et al., Analyzing the association between functional connectivity of the brain and intellectual performance. Front. Hum. Neurosci. 9, 61 (2015). 23. M. P. Van Den Heuvel, C. J. Stam, R. S. Kahn, H. E. Hulshoff Pol, Efﬁciency of functional brain networks and intellectual performance. J. Neurosci. 29, 7619–7624 (2009). 24. J. D. Kruschwitz, L. Waller, L. S. Daedelow, H. Walter, I. M. Veer, General, crystallized and ﬂuid intelligence are not associated with functional global network efﬁciency: A replication study with the human connectome project 1200 dataset. Neuroimage 171, 323–331 (2018). 25. F. Schmiedek, M. Lovden, U. Lindenberger, A task is a task is a task: Putting complex span, n-back, and other working memory indicators in psychometric context. Front. Psychol. 5, 1475 (2014). 26. A. K. Barbey, Network neuroscience theory of human intelligence. Trends Cognit. Sci. 22, 8–20 (2018). 27. M. Girn, C. Mills, K. Christoff, Linking brain network reconﬁguration and intelligence: Are we there yet? Trends Neurosci. Edu. 15, 62–70 (2019). 28. C. L. Gallen, M. D’Esposito, Brain modularity: A biomarker of intervention-related plasticity. Trends Cognit. Sci. 23, 293–304 (2019). 29. D. S. Bassett et al., Dynamic reconﬁguration of human brain networks during learning. Proc. Natl. Acad. Sci. U.S.A. 108, 7641–7646 (2011). 30. M. Pedersen, A. Omidvarnia, J. M. Shine, G. D. Jackson, A. Zalesky, Reducing module size bias of participation coefﬁcient. bioRxiv [Preprint] (2019). https://doi.org/10.1101/747162. Accessed 21 May 2021. 31. E. T. Bullmore, R. Lambiotte, D. Meunier, Modular and hierarchically modular organization of brain networks. Front. Neurosci. 4, 200 (2010). 32. D. Meunier, R. Lambiotte, A. Fornito, K. D. Ersche, E. T. Bullmore, Hierarchical modularity in human brain functional networks. Front. Neuroinform. 3, 37 (2009). 33. C. C. Hilgetag, A. Goulas, ‘Hierarchy’ in the organization of brain networks. Philos. Trans. R. Soc. B 375, 20190319 (2020). 34. M. E. Newman, Modularity and community structure in networks. Proc. Natl. Acad. Sci. U.S.A. 103, 8577–8582 (2006). 35. M. Rubinov, O. Sporns, Complex network measures of brain connectivity: Uses and interpretations. Neuroimage 52, 1059–1069 (2010).
+
+36. D. C. Van Essen et al., The WU-Minn human connectome project: An overview. Neuroimage 80, 62–79 (2013).
+37. G. Zamora-Lopez, Y. Chen, G. Deco, M. L. Kringelbach, C. Zhou, Functional complexity emerging from anatomical constraints in the brain: The signiﬁcance of network modularity and rich-clubs. Sci. Rep. 6, 38424 (2016).
+38. M. Xia, J. Wang, H. Yong, Brainnet viewer: A network visualization tool for human brain connectomics. PloS One 8, e68910 (2013).
+39. B. T. Yeo et al., The organization of the human cerebral cortex estimated by intrinsic functional connectivity. J. Neurophysiol. 106, 1125–1165 (2011).
+40. G. S. Wig, Segregated systems of human brain networks. Trends Cognit. Sci. 21, 981– 996 (2017).
+41. G. Tononi, O. Sporns, G. M. Edelman, A measure for brain complexity: Relating functional segregation and integration in the nervous system. Proc. Natl. Acad. Sci. U.S.A. 91, 5033–5037 (1994).
+42. H. Mohr et al., Integration and segregation of large-scale brain networks during short-term task automatization. Nat. Commun. 7, 13217 (2016).
+43. E. Fiorenzato et al., Dynamic functional connectivity changes associated with dementia in Parkinson’s disease. Brain 142, 2860–2872 (2019).
+44. J. M. Shine et al., Dopamine depletion alters macroscopic network dynamics in Parkinson’s disease. Brain 142, 1024–1034 (2019).
+45. M. Diez-Cirarda et al., Dynamic functional connectivity in Parkinson’s disease patients with mild cognitive impairment and normal cognition. Neuroimage Clin. 17, 847–855 (2018).
+46. M. Pedersen, A. Zalesky, O. Amir, G. D. Jackson, Multilayer network switching rate predicts brain performance. Proc. Natl. Acad. Sci. U.S.A. 115, 13376–13381 (2018).
+47. N. Unsworth, R. W. Engle, The nature of individual differences in working memory capacity: Active maintenance in primary memory and controlled search from secondary memory. Psychol. Rev. 114, 104 (2007).
+48. A. J. Westphal, S. Wang, J. Rissman, Episodic memory retrieval beneﬁts from a less modular brain network organization. J. Neurosci. 37, 3523–3531 (2017).
+49. S. Kim, J. L. Voss, Large-scale network interactions supporting item-context memory formation. PloS One 14, e0210167 (2019).
+50. B. R. Geib, M. L. Stanley, E. A. Wing, P. J. Laurienti, R. Cabeza, Hippocampal contributions to the large-scale episodic memory network predict vivid visual memories. Cereb. Cortex 27, 680–693 (2017).
+51. K. Kovacs, A. R. A. Conway, Process overlap theory: A uniﬁed account of the general factor of intelligence. Psychol. Inq. 27, 151–177 (2016).
+52. K. Oberauer, H.-M. Su¨ , O. Wilhelm, W. W. Wittmann, Which working memory functions predict intelligence? Intelligence 36, 641–652 (2008).
+53. O. Wilhelm, A. H. Hildebrandt, K. Oberauer, What is working memory capacity, and how can we measure it? Front. Psychol. 4, 433 (2013).
+54. F. Schmitz, O. Wilhelm, Modeling mental speed: Decomposing response time distributions in elementary cognitive tasks and correlations with working memory capacity and ﬂuid intelligence. J. Intell. 4, 13 (2016).
+55. A. Fontenele et al., Criticality between cortical states. Phys. Rev. Lett. 122, 208101 (2018).
+56. A. Haimovici, E. Tagliazucchi, P. Balenzuela, D. R. Chialvo, Brain organization into resting state networks emerges at criticality on a model of the human connectome. Phys. Rev. Lett. 110, 178101 (2013).
+57. O. Arviv, A. Goldstein, O. Shriki, Near-critical dynamics in stimulus-evoked activity of the human brain and its relation to spontaneous resting-state activity. J. Neurosci. 35, 13927–13942 (2015).
+58. B. Cramer et al., Control of criticality and computation in spiking neuromorphic networks with plasticity. Nat. Commun. 11, 2853 (2020).
+59. M. F. Glasser et al., A multi-modal parcellation of human cerebral cortex. Nature 536, 171 (2016).
+60. X. Liu, A. Hildebrandt, K. Meyer, W. Sommer, C. Zhou, Patterns of individual differences in ﬁber tract integrity of the face processing brain network support neurofunctional models. Neuroimage 204, 116229 (2020).
+61. M. Liu, X. Liu, A. Hildebrandt, C. Zhou, Individual cortical entropy proﬁle: Test-retest reliability, predictive power for cognitive ability, and neuroanatomical foundation. Cereb. Cortex Commun. 1, tgaa015 (2020).
+62. S. Atasoy, I. Donnelly, J. Pearson, Human brain networks function in connectomespeciﬁc harmonic waves. Nat. Commun. 7, 10340 (2016).
+63. C. Van Vreeswijk, H. Sompolinsky, Chaos in neuronal networks with balanced excitatory and inhibitory activity. Science 274, 1724–1726 (1996).
+64. A. Papoulis, S. U. Pillai, Probability, Random Variables, and Stochastic Processes (Tata McGraw-Hill Education, New York, ed. 4, 2002).
+65. J. Dubois, P. Galdi, L. K. Paul, R. Adolphs, A distributed brain network predicts general intelligence from resting-state human neuroimaging data. Philos. Trans. R. Soc. B 373, 20170284 (2018).
+66. M. Eid, C. Geiser, T. Koch, M. Heene, Anomalous results in g-factor models: Explanations and alternatives. Psychol. Methods 22, 541 (2017).
+67. O. Wilhelm, R. W. Engle, Handbook of Understanding and Measuring Intelligence (Sage Publications, 2004).
+68. S. A. Mulaik, D. A. Quartetti, First order or higher order general factor? Struct. Equ. Model. 4, 193–211 (1997).
+69. Y. Rosseel, Lavaan: An r package for structural equation modeling and more. Version 0.5–12 (beta). J. Stat. Software 48, 1–36 (2012).
+70. L.-T. Hu, P. M. Bentler, Cutoff criteria for ﬁt indexes in covariance structure analysis: Conventional criteria versus new alternatives. Struct. Equ. Model. 6, 1–55 (1999).
+
+Wang et al. Segregation, integration, and balance of large-scale resting brain networks conﬁgure different cognitive abilities
+
+PNAS | 11 of 11 https://doi.org/10.1073/pnas.2022288118
+

@@ -1,0 +1,732 @@
+
+Loading [MathJax]/jax/output/SVG/jax.js
+JavaScript is disabled on your browser. Please enable JavaScript to use all the features on this page. Skip to main content Skip to article
+Elsevier logo ScienceDirect
+
+    Journals & Books 
+
+    Search 
+
+Register Sign in
+You have institutional access
+
+    View  PDF
+    Download full issue 
+
+Outline
+
+    Highlights
+    Abstract
+    Graphical abstract
+    Keywords
+    1. Introduction
+    2. Method and materials
+    3. Results
+    4. Discussion and conclusion
+    Declaration of Competing Interest
+    Acknowledgements
+    Appendix. Supplementary materials
+    References 
+
+Show full outline
+Cited by (8)
+Figures (6)
+
+    Unlabelled figure
+    Fig. 1. An overview of the Multi-Head GAGNN model
+    Fig. 2. The detailed model architecture of the (a) ‘spatial part’ and (b) ‘temporal…
+    Fig. 3. Spatio-temporal pattern modeling of the ten RSNs in emotion t-fMRI data
+    Fig. 4. Spatio-temporal pattern modeling of the ten RSNs in motor t-fMRI data
+    Fig. 5. The group-averaged spatial patterns of two randomly selected RSNs (#4 and #9)…
+
+Tables (13)
+
+    Table 1
+    Table 2
+    Table 3
+    Table 4
+    Table 5
+    Table 6 
+
+Show all tables
+Extras (1)
+
+    Document 
+
+Elsevier
+Medical Image Analysis
+Volume 80 , August 2022, 102518
+Medical Image Analysis
+Modeling spatio-temporal patterns of holistic functional brain networks via multi-head guided attention graph neural networks (Multi-Head GAGNNs)
+Author links open overlay panel Jiadong Yan a , Yuzhong Chen a , Zhenxiang Xiao a , Shu Zhang c , Mingxin Jiang a , Tianqi Wang a , Tuo Zhang d , Jinglei Lv e , Benjamin Becker a , Rong Zhang f , Dajiang Zhu h , Junwei Han d , Dezhong Yao a g , Keith M. Kendrick a , Tianming Liu b , Xi Jiang a
+Show more
+Add to Mendeley
+Share
+Cite
+https://doi.org/10.1016/j.media.2022.102518 Get rights and content
+Highlights
+
+    •
+
+    Holistic functional brain networks are modeled via the multi-head mechanism.
+    •
+
+    Both spatial and temporal patterns are modeled via the guided attention mechanism .
+    •
+
+    It has superior modeling ability and generalizability on different fMRI datasets.
+    •
+
+    The modeled brain networks can better predict individual cognitive measures.
+
+Abstract
+
+Mounting evidence has demonstrated that complex brain function processes are realized by the interaction of holistic functional brain networks which are spatially distributed across specific brain regions in a temporally dynamic fashion. Therefore, modeling spatio-temporal patterns of holistic functional brain networks plays an important role in understanding brain function. Compared to traditional modeling methods such as principal component analysis, independent component analysis, and sparse coding, superior performance has been achieved by recent deep learning methodologies. However, there are still two limitations of existing deep learning approaches for functional brain network modeling. They either (1) merely modeled a single targeted network and ignored holistic ones at one time, or (2) underutilized both spatial and temporal features of fMRI during network modeling, and the spatial/temporal accuracy was thus not warranted. To address these limitations, we proposed a novel Multi-Head Guided Attention Graph Neural Network (Multi-Head GAGNN) to simultaneously model both spatial and temporal patterns of holistic functional brain networks. Specifically, a spatial Multi-Head Attention Graph U-Net was first adopted to model the spatial patterns of multiple brain networks, and a temporal Multi-Head Guided Attention Network was then introduced to model the corresponding temporal patterns under the guidance of modeled spatial patterns. Based on seven task fMRI datasets from the public Human Connectome Project and resting state fMRI datasets from the public Autism Brain Imaging Data Exchange I of 1448 subjects, the proposed Multi-Head GAGNN showed superior ability and generalizability in modeling both spatial and temporal patterns of holistic functional brain networks in individual brains compared to other state-of-the-art (SOTA) models. Furthermore, the modeled spatio-temporal patterns of functional brain networks via the proposed Multi-Head GAGNN can better predict the individual cognitive behavioral measures compared to the other SOTA models. This study provided a novel and powerful tool for brain function modeling as well as for understanding the brain-cognitive behavior associations.
+Graphical abstract
+
+Image, graphical abstract
+
+    Download : Download high-res image (291KB)
+    Download : Download full-size image 
+
+    Previous article in issue
+    Next article in issue 
+
+Keywords
+Functional brain network
+Spatio-temporal pattern
+Graph convolution
+Multi-Head Guided Attention
+1. Introduction
+
+It has been widely demonstrated that complex brain function emerges from the interaction of holistic and concurrent functional brain networks, each of which is spatially distributed across specific brain regions in a temporally dynamic fashion ( Fox et al., 2005 ; Dosenbach et al., 2006 ; Duncan, 2010 ; Fedorenko et al., 2013 ). Therefore, simultaneously modeling both spatial and temporal patterns of holistic functional brain networks based on fMRI data can help facilitate the understanding of brain functional mechanisms ( Heeger and Ress et al., 2002 ; Logothetis, 2008 ; Naselaris et al., 2011 ). With the rapid advancement of imaging techniques as well as computational methodologies, there have been increasing efforts in developing a variety of analytic approaches in order to model the complex spatial and/or temporal patterns of functional brain networks ( Andersen et al., 1999 ; McKeown et al., 2003 ; Cole et al., 2010 ; Smith et al., 2012 ; Lv et al., 2014 , 2015 a; 2015 b; Jiang et al., 2015 ; Hjelm et al., 2016 ; Lv et al., 2017 ; Jiang et al., 2018a , 2018b ; Huang et al., 2018 ; Zhang et al., 2019 b, 2019 c; Zhang et al., 2020 ; Zhao et al., 2020 ).
+
+Initially, researchers developed a series of matrix decomposition methods such as principal component analysis (PCA) ( Andersen et al., 1999 ; Hansen et al., 1999 ), temporal independent component analysis (ICA) ( McKeown et al., 2003 ; Cole et al., 2010 ; Smith et al., 2012 ), and dictionary learning (DL)/sparse representation (SR) ( Lv et al., 2014 ; Lv et al., 2015 a, 2015 b; Jiang et al., 2015 ; Lv et al., 2017 , 2018a ; Jiang et al., 2018b ; Zhang et al., 2019 b) which firstly identify the temporal patterns of holistic functional brain networks from the fMRI data, and then reconstruct the corresponding spatial patterns of functional brain networks by regression. However, these approaches do not fully utilize both spatial and temporal characteristics of fMRI data during network modeling , and the spatial/temporal pattern accuracy is not warranted. Moreover, the theoretical assumption of PCA/ICA proposing that modeled components are mutually orthogonal/independent leads to limitations with respect to modeling spatially overlapping functional brain networks and is inconsistent with recent neuroscientific framework ( Zhang et al., 2019 b). The DL/SR is also limited due to the lack of a parameter optimization procedure ( Zhang et al., 2019 b).
+
+Recently, researchers have developed deep learning based approaches to model spatial and/or temporal patterns of functional brain networks and achieved superior performance compared to the conventional matrix decomposition methods ( Hjelm et al., 2016 ; Huang et al., 2018 ; Zhang et al., 2020 ; Zhang et al., 2019 c; Zhao et al., 2020 ). The recurrent neural network (RNN) model ( Hjelm et al., 2016 ; Sherstinsky, 2020 ) uses recurrent connections to obtain the dynamic temporal patterns of functional brain networks. However, the spatial patterns are obtained by means of a correlation analysis without fully utilizing the spatio-temporal characteristics of fMRI data. The convolutional auto-encoder (CAE) ( Huang et al., 2018 ) has also been proposed to first model the temporal patterns of functional brain networks, and next to obtain corresponding spatial patterns using regression. However, this approach focuses on reconstructing the functional activity of each voxel and modeling temporal patterns of brain networks, while the spatial information of brain networks is neglected. Later on, a restricted Boltzmann machine (RBM) model ( Zhang et al., 2019 c; Zhang et al., 2020 ) is proposed to first model the temporal patterns of functional brain networks and next obtain the corresponding spatial patterns merely using LASSO without fully utilizing the fMRI characteristics. A recent spatio-temporal convolutional neural network (ST-CNN) ( Zhao et al., 2020 ) is proposed to model the spatial pattern of a targeted functional brain network using a 3D U-Net and then to model the corresponding temporal pattern using a 1D CAE. However, ST-CNN merely focuses on modeling a single targeted functional brain network at a time and ignores holistic ones. In summary, although promising modeling results have been achieved ( Hjelm et al., 2016 ; Huang et al., 2018 ; Zhang et al., 2020 , 2019 c; Zhao et al., 2020 ), existing methods are limited by either (1) merely modeling a single targeted network and ignoring holistic ones at one time, or (2) underutilizing both spatial and temporal features of fMRI during network modeling, and the spatial/temporal pattern accuracy is thus not warranted.
+
+In order to overcome the two limitations detailed above and to model holistic functional brain networks by fully utilizing both spatial and temporal characteristics of fMRI data, we propose a novel Multi-Head Guided Attention Graph Neural Network (Multi-Head GAGNN) to simultaneously model spatial and temporal patterns of multiple functional brain networks based on individual whole-brain fMRI data. Ten most representative resting state networks (RSNs) ( Damoiseaux et al., 2006 ; Smith et al., 2009 ) are adopted as the example multiple functional brain networks in this study to evaluate the proposed model. 1448 subjects with seven t-fMRI or one rs-fMRI from the public Human Connectome Project (HCP) and Autism Brain Imaging Data Exchange I (ABIDE I) datasets are utilized to evaluate the modeling performance and generalizability of the proposed Multi-Head GAGNN. Moreover, the modeled spatio-temporal patterns of functional brain networks are used to predict the individual cognitive behavioral measures.
+
+Note that this study is considerably extended from our preliminary work ( Yan et al., 2021 ) and has two major contributions. First, for conceptual contribution, we propose a novel Multi-Head GAGNN model to simultaneously model spatio-temporal patterns of holistic functional brain networks in individual brains, and further predict the individual behavioral measures based on the modeled patterns. Our work provides a useful tool for modeling individual brain function as well as its association with cognitive behavior. Second, for methodological contribution, we develop and apply new model validation methods of guided attention mechanism , and adopt more independent testing datasets , cross-validation strategy, model settings, comparisons, and interpretations on more than 1400 subjects. To the best of our knowledge, this study introduces one of the earliest supervised deep learning methods to simultaneously model both spatial and temporal patterns of multiple functional brain networks by fully utilizing both spatial and temporal characteristics of functional brain networks during the model training, and to link the individual brain-cognitive behavior in a large cohort. Our work provides a novel and powerful framework for modeling functional brain network and understanding brain-cognitive behavior associations.
+2. Method and materials
+2.1. Method overview
+
+An overview of the Multi-Head GAGNN framework is provided in Fig. 1 . We adopt the individual whole-brain fMRI data as the input, and simultaneously model both spatial and temporal patterns of n ( n  = 1… N ) targeted RSNs as the outputs. There are two core parts of the proposed model: the ‘spatial part’ (Multi-Head Attention Graph U-Net) and the ‘temporal part’ (Multi-Head Guided Attention Network). We feed the n spatial pattern outputs from the ‘spatial part’ together with the input fMRI data into the ‘temporal part’ in order to guide the modeling of corresponding temporal patterns of n functional brain networks.
+Fig 1
+
+    Download : Download high-res image (558KB)
+    Download : Download full-size image 
+
+Fig. 1 . An overview of the Multi-Head GAGNN model. The model consists of two core parts: the ‘spatial part’ (orange) and the ‘temporal part’ (green). We adopt n spatial patterns output from the ‘spatial part’ together with the fMRI data as the input of the ‘temporal part’ to guide the corresponding n temporal patterns modeling.
+2.2. Data acquisition, preprocessing and identification of training labels
+
+We utilized the t-fMRI data of healthy subjects (age range 22–35) from the public Human Connectome Project (HCP) S900 release ( Barch et al., 2013 ) in this study. 785 subjects which have the t-fMRI data of all seven tasks (emotion, gambling, language, motor, relation, social, and working memory) are adopted. The major acquisition parameters of t-fMRI are as follows: TR = 0.72 s, TE = 33.1 ms, 90×104 matrix, FOV = 220 mm, 72 slices, and 2.0 mm isotropic voxels. The preprocessing pipelines for t-fMRI included motion correction, field map preprocessing, distortion correction, spline resampling to atlas space, intensity normalization, multiple regression with autocorrelation modeling, pre-whitening, and spatial smoothing ( Elam et al., 2021 ). The preprocessed t-fMRI data were further normalized to 0–1 distribution the same as in ( Zhao et al., 2020 ). In order to fit the computational capacity, the data was down-sampled to a spatial size of 48×56×48 and a temporal size of 176 by linear interpolation before feeding into the Multi-Head GAGNN model. We up-sampled the output temporal pattern size to the original one before assessing the temporal pattern accuracy while the spatial pattern size remained the down-sampled size.
+
+In order to test the generalizability of the proposed Multi-Head GAGNN, we also utilized the emotion t-fMRI data of full sample of 195 additional new subjects in HCP S1200 ( Van Essen et al., 2013 ) compared to S900 release. The major acquisition parameters and the preprocessing pipelines of HCP S1200 data were same as the HCP S900. Furthermore, we adopted resting state fMRI (rs-fMRI) data of healthy subjects in the public Autism Brain Imaging Data Exchange I (ABIDE I) dataset ( Di Martino et al., 2014 ) as the independent testing dataset . Specifically, we adopted all 468 healthy subjects from 17 different sites who meet quality criteria for MRI and phenotypic information the same as in Abraham et al. (2017) . The rs-fMRI data of ABIDE I were preprocessed via the Configurable Pipeline for the Analysis of Connectomes (CPAC) from the Preprocessed Connectomes Project ( Craddock et al., 2013 ).
+
+Ten most representative resting state networks (RSNs) ( Smith et al., 2009 ) were utilized as the example targeted multiple functional brain networks to evaluate the Multi-Head GAGNN model ( Fig. 1 ). The training labels of both spatial and temporal patterns of the ten RSNs in each individual brain were obtained via the dictionary learning and sparse representation from individual fMRI data the same as in ( Zhao et al., 2020 ). The rationale is that due to the considerable individual variability of spatial/temporal patterns of functional brain networks, it is more reasonable to adopt the spatial and temporal patterns of functional brain networks learned from individual data to account for individual variability as well as to prevent model overfitting rather than to use the group-averaged functional brain network templates ( Smith et al., 2009 ). The individual spatio-temporal patterns modeling of training labels ( Zhao et al., 2020 ) is briefly introduced as follows. The fMRI data was firstly reorganized as a 2D matrix X with the size of t*m , where t is the number of volumes and m is the number of whole-brain voxels. Then a dictionary matrix D and a sparse coefficient matrix a were obtained by decomposing X via SR method ( Lv et al., 2015 a), w . r . t X = D * a . Each column of D was the temporal pattern of a functional brain network, and each row of a was the corresponding spatial pattern. By comparing the spatial similarities between the decomposed components and the targeted RSN templates ( Smith et al., 2009 ), the most similar component of a was determined as the spatial pattern of the targeted functional network (i.e., RSNs) and the corresponding column of D was the temporal pattern the same as in Zhao et al. (2020) .
+2.3. Related work
+
+Graph neural network (GNN) was initially proposed to model the data represented in graph structure ( Scarselli et al., 2008 ). Then two powerful methods including graph convolution network (GCN) and graph attention network (GAT) were developed based on GNN. GCN ( Thomas et al., 2017 ) directly utilizes convolutional operation on graphs, while GAT ( Velikovi et al., 2018 ) utilizes masked self-attentional layers to improve the traditional graph convolution methods. A series of computational models combining attention mechanism and GNN were also proposed afterwards and achieved satisfying learning ability. For example, the attention-based Graph Neural Network (AGNN) replaces all the fully-connected layers of traditional GNN with attention mechanisms ( Thekumparampil et al., 2018 ). The self-attention using graph convolution allows the pooling method to consider both node features and graph topology ( Lee et al., 2019 ). The Dynamic Self-Attention Network (DySAT) obtains node features through joint self-attention on structural neighborhood and temporal dynamics ( Sankar et al., 2020 ). The Residual Graph Convolutional Network (ResGCN) utilizes a residual-based attention mechanism to prevent over-smoothing ( Pei et al., 2021 ).
+
+However, for functional network modeling in this study, the functional correlation between spatial voxel i and j is measured by the attention value A i j of attention matrix via multiplying the concatenated fMRI time series of spatial voxels i and j with a trainable weight when using traditional GAT, which might not satisfyingly represent the functional correlation of two fMRI time series between two spatial voxels. Therefore, we are inspired to propose a novel attention graph convolution rather than traditional GAT in this study. In the proposed attention graph, the functional correlation between spatial voxel i and j is measured by the attention value A i j of attention matrix via directly multiplying the time series of spatial voxels i and j , which is similar with the conventional functional connectivity measurement and therefore better represents the functional correlation of two fMRI time series between two spatial voxels for functional brain network modeling.
+2.4. Architecture of multi-head GAGNN model
+2.4.1. Attention mechanism and ‘Attention graph’ block
+
+We first briefly introduced the attention mechanism Vaswani et al., 2017 ) which was utilized in both spatial and temporal parts of the Multi-Head GAGNN model ( Fig. 2 ) in order to better extract the spatio-temporal characteristics of fMRI data. Q, K , and V were denoted to represent the Query, Key, and Value matrices obtained from the extracted features of input fMRI data. We calculated the attention matrix Softmax ( Q K T M ) ( M is the feature number of K , T is the transpose operation), and obtained the attention output A by multiplying the attention matrix and V as defined in ( (1) : (1) A = Softmax ( Q K T M ) × V We then introduced the Attention Graph (AG) block in Fig. 2 (a) which was a novel operation in the ‘spatial part’ combining graph convolution with an attention mechanism as demonstrated in Section 2.3 . Considering the graph structure property of the functional brain network, we added a graph convolution operation to the attention mechanism to be more suitable for modeling spatial patterns of functional brain networks. We denoted A, X , and W to represent the graph adjacency matrix , input, and weight, respectively. The output of the basic graph convolution Thomas et al., 2017 ; Li et al., 2018 ) G was defined in ( (2) : (2) G = A X W
+Fig 2
+
+    Download : Download high-res image (591KB)
+    Download : Download full-size image 
+
+Fig. 2 . The detailed model architecture of the (a) ‘spatial part’ and (b) ‘temporal part’ of Multi-Head GAGNN.
+
+Different from (2) , the proposed AG block replaced A with Q K T in (1) , since Q K T was not only an adjacency matrix the same as A , but also contained attention information. Therefore, by integrating both graph convolution and an attention mechanism, the output of the AG block O was defined in (3) : (3) O = fold ( norm ( Q K T ) X W ) where Q = unfo ld ( con v Q ( X ) ) , K = unfo ld ( con v k ( X ) ) , con v Q ( · ) and con v k ( · ) represented two different 3D convolutions; u n f o l d ( · ) represented the operation to re-order the 4D matrix with size D*H*W*T into 2D one with size (D*H*W)*T; f o l d ( · ) represented the operation to re-order the 2D matrix with size (D*H*W)*T into the 4D one with size D*H*W*T; n o r m ( · ) represented the min-max normalization (0–1 distribution) operation.
+2.4.2. Spatial part
+
+The detailed model architecture of the ‘spatial part’ called ‘Multi-Head Attention Graph U-Net’ is illustrated in Fig. 2 (a). We adopted fMRI data as input and obtained spatial patterns of multiple targeted RSNs as outputs. The main structure of ‘spatial part’ was based on the classical 3D U-Net Ronneberger et al., 2015 ) with a down-sampling part and an up-sampling part which included two down-sampling, two up-sampling, and two concatenation operations in order to combine the features extracted from the shallow layers of U-Net with those extracted from the deep layers. The proposed U-Net structure adopted 3D convolution with stride 2 for down-sampling and 3D deconvolution for up-sampling. Until the first single AG block was involved, the same network layers were shared by the spatial pattern training models of the n RSNs. In order to branch spatial pattern modeling of the n different RSNs, there were n different AG blocks (AG 1 , AG 2 , …, AG N ) following the single AG block. We took AG 1 as an example ( Fig. 2 (a)) to introduce the modeling process. AG 1 performed the up-sampling part of the 3D U-Net first and then reduced the temporal dimension with a 3D CNN with three layers, and finally output the modeled spatial pattern of the first RSN (i.e., RSN 1). The modeling process for the other RSNs was the same. The size of all 3D filters was set as 3*3*3 and there was a batch norm layer and a rectified linear unit (ReLU) following each 3D convolution layer to avoid overfitting and speed up model training. We adopted the ‘overlap rate’ ( Zhao et al., 2016 ) to evaluate the spatial pattern similarity between the modeled pattern P m and the training label P l of the same RSN in (4) : (4) o v e r l a p r a t e = s u m ( m i n ( P m , P l ) ) ( s u m ( P m ) + s u m ( P l ) ) / 2 where m i n ( · ) was the function to find the minimum value of the corresponding voxels between P m and P l ; s u m ( · ) was the function to add the values of all voxels. The ‘overlap rate’ value ranged from 0 to 1, and a larger value indicated higher spatial pattern similarity between the modeled pattern and the training label pattern. The loss function of the ‘spatial part’ was defined as the averaged negative ‘overlap rate’ of all n RSNs in (5) . (5) S p a t i a l L o s s = − 1 n ∑ i = 1 n o v e r l a p r a t e i
+2.4.3. Temporal part
+
+The detailed model architecture of the ‘temporal part’ called ‘Multi-Head Guided Attention Network’ based on the non-local network ( Wang et al., 2020 ) is illustrated in Fig. 2 (b). We adopted all n modeled spatial patterns from the ‘spatial part’ together with fMRI data as input and obtained corresponding temporal patterns of the n targeted RSNs as outputs. In order to quickly down-sample the three spatial dimensions of the input data to prevent model overfitting as well as to fit in the GPU memory, we proposed a ‘Fast Down-sampling’ (Fast DS) block which was briefly introduced as follows. Taking the first spatial dimension D of the 4D input data with size D*H*W*T as an example, we transposed it to the last dimension as the channel and then performed a 3D convolution on the 4D data with size H*W*T*D to reduce D to a smaller size S, which was then transposed back to the original dimension again to obtain the new 4D data with size S*H*W*T. Next, for the other two spatial dimensions H and W, we performed the same down-sampling operation to obtain the final down-sampled 4D data with size S*S*S*T (S was set to 6 in this study). The size of all 3D filters in Fast DS block was set to 3*3*3 and each 3D convolution layer was followed by a batch norm layer and a ReLU.
+
+We then introduced the complete architecture of the ‘temporal part’. Different from the basic attention mechanism, in order to model the temporal patterns of the n functional brain networks under the guidance of the modeled n spatial patterns, we fixed the query part Q with fMRI data and modeled spatial patterns. Specifically, we obtained the fixed query part by multiplying the modeled spatial pattern with the 3D spatial block of each time point of the fMRI in order to extract the corresponding temporal features within the fMRI data for guidance and further performing Fast DS and u n f o l d ( · ) operations. Compared to previous studies Andersen et al., 1999 ; McKeown et al., 2003 ; Cole et al., 2010 ; Smith et al., 2012 ; Lv et al., 2014 , 2015 a; 2015 b; Jiang et al., 2015 ; Hjelm et al., 2016 ; Lv et al., 2017 ; Jiang et al., 2018a , 2018b ; Huang et al., 2018 ; Zhang et al., 2019 b, 2019 c, 2020 ; Zhao et al., 2020 ) which merely considered one single temporal or spatial characteristic , this was a significant improvement to jointly utilize both spatial and temporal characteristics of the targeted functional brain network during model training. The K and V were obtained by performing Fast DS and u n f o l d ( · ) operations on the input fMRI data. After obtaining a single V matrix, n different K matrices and Q matrices, we branched the temporal pattern modeling of the n RSNs. Note that the n branches shared the same V , but with different Q and K . We took the first branch as an example ( Fig. 2 (b)). We performed the attention mechanism on V , Q 1 , and K 1 in (1) to obtain the 2D attention output with size (S*S*S)*T, and then an average operation to output the modeled temporal pattern of the first RSN (i.e., RSN 1) with size 1*T. The modeling process for the other RSNs was the same. We adopted the Pearson correlation coefficient (PCC, Adler et al., 2010 ) to evaluate the temporal pattern similarity between the modeled pattern and the training label of the same RSN in ( (6) : (6) P C C = t ∑ i = 1 t x i y i − ∑ i = 1 t x i ∑ i = 1 t y i ( t ∑ i = 1 t x i 2 − ( ∑ i = 1 t x i ) 2 ) ( t ∑ i = 1 t y i 2 − ( ∑ i = 1 t y i ) 2 ) where x and y were temporal patterns of the modeled pattern and the training label, respectively, t was the length of the time series. The PCC value ranged from −1 to 1, and a larger value indicated higher temporal pattern similarity between the modeled pattern and the training label pattern. The loss function of the ‘temporal part’ was then defined as the averaged negative PCC of all n RSNs in (7). (7) T e m p o r a l L o s s = − 1 n ∑ i = 1 n P C C i
+2.5. Training and testing procedures of multi-head GAGNN model
+
+We randomly split all 785 subjects of the emotion t-fMRI into 160 for training and 625 for testing. We also performed a 5-fold cross-validation to evaluate the model stability. In each fold, there were 160 subjects for training and the remaining 625 ones for testing. Note that the initial seed of model training was also different in each fold. In order to evaluate the generalizability of the proposed model, we directly applied the trained model onto the same 625 testing subjects with the other six t-fMRI (gambling, language, motor, relation, social, and working memory) in HCP S900, 195 subjects with emotion t-fMRI in HCP S1200, and 468 subjects with rs-fMRI in ABIDE I as testing datasets which were not used in the training procedure. The entire model training consisted of two training stages corresponding to the ‘spatial part’ and the ‘temporal part’, respectively. At the first stage, we trained the ‘spatial part’ and obtained the spatial patterns of n targeted RSNs. At the second stage, we utilized the modeled n spatial patterns from the ‘spatial part’ to train the ‘temporal part’ and to further obtain the corresponding n temporal patterns. The learning rate was set to 0.00001 and 0.001 for the first and second stages, respectively. The model was trained for 150 and 15 epochs at the first and second stage, respectively. Adam ( Kingma and Ba, 2015 ) was adopted as the model training optimizer at both two stages.
+2.6. Evaluation and validation of multi-head GAGNN
+
+We set n  = 10 ( Figs. 1 , 2 ) to identify the ten most representative RSNs ( Smith et al., 2009 ) in this study. We compared the proposed model with the other two SOTA models including SR ( Lv et al., 2014 , 2015 a, 2015 b; Jiang et al., 2015 ; Lv et al., 2017 , 2018a ; Jiang et al., 2018b ; Zhang et al., 2019 b) and ST-CNN ( Zhao et al., 2020 ), since SR was a representative conventional matrix decomposition approach and ST-CNN was the only deep learning method to model both spatial and temporal patterns of functional brain network without regression. First, we calculated the spatial pattern similarity in (4) between the RSN spatial templates ( Smith et al., 2009 ) and the modeled spatial patterns via three different methods (Multi-Head GAGNN, ST-CNN, and SR) to compare the spatial modeling ability of the proposed model and other SOTA methods . Note that although the training labels of Multi-Head GAGNN were obtained based on SR as detailed in Section 2.2 , Multi-Head GAGNN would further fully extract the fMRI features via the proposed model structure for a better modeling of the functional brain networks compared to SR. It was therefore not a circular comparison between Multi-Head GAGNN and SR. Second, since there were no RSN temporal templates available ( Smith et al., 2009 ), we calculated the temporal pattern similarity in (6) between the training label temporal patterns (i.e., SR) and the modeled temporal patterns via Multi-Head GAGNN and ST-CNN to compare the temporal modeling ability between the proposed model and ST-CNN. Note that since ST-CNN merely modeled one targeted brain network at one time, we trained the ST-CNN model ten times with the same number of model layers as Multi-Head GAGNN, and obtained the spatial and temporal patterns of each of the ten RSNs. Third, we obtained the group-averaged spatial patterns of ten RSNs modeled via the three methods across all testing subjects and t-fMRI data in order to evaluate the general modeling performance of Multi-Head GAGNN. Fourth, we compared the modeling performance of RSNs among different model structures, and evaluated the effectiveness of the adopted guided attention mechanism. Fifth, we evaluated and compared the modeling performance among the three methods using down-sampled data and original data. Sixth, we performed a 5-fold cross-validation to evaluate the model stability. Finally, we evaluated and compared the regression performance of cognitive behavioral measures based on the modeled spatial and temporal patterns between Multi-Head GAGNN and ST-CNN to investigate the brain-cognitive behavior associations.
+3. Results
+3.1. Spatio-Temporal pattern modeling of RSNs in emotion t-fMRI
+
+The modeled spatial and temporal patterns of the ten RSNs in the 625 testing subjects of emotion t-fMRI data were evaluated. One subject was randomly selected as an example to visualize the modeled spatial and temporal patterns of the ten RSNs in Fig. 3 . We see that the modeled spatial patterns via Multi-Head GAGNN had satisfying similarities with the RSN spatial templates across all ten RSNs. Moreover, the proposed Multi-Head GAGNN had superior performance compared to SR and ST-CNN in terms of higher spatial pattern similarity between the modeled spatial patterns and RSN spatial templates with more clustered brain regions and fewer noise points. Furthermore, the modeled temporal patterns via Multi-Head GAGNN also had superior temporal pattern similarities with the training label temporal patterns (i.e., SR) than those via ST-CNN.
+Fig 3
+
+    Download : Download high-res image (2MB)
+    Download : Download full-size image 
+
+Fig. 3 . Spatio-temporal pattern modeling of the ten RSNs in emotion t-fMRI data. The RSN spatial templates are shown in the 1st and the 6th rows. Spatial patterns modeled via Multi-Head GAGNN (proposed), ST-CNN, and SR are visualized in one example subject. The temporal patterns modeled via Multi-Head GAGNN, ST-CNN, and SR are colored in red, green, and blue, respectively.
+
+We further calculated the ‘overlap rate’ in (4) and PCC in (6) to quantitatively evaluate the averaged spatial and temporal pattern similarity of all 625 testing subjects across 5 folds in the emotion t-fMRI in Tables 1 , 2 , respectively. Table 1 shows that the modeled spatial patterns via Multi-Head GAGNN had higher mean and comparable standard deviation of ‘overlap rate’ values with the RSN spatial templates across all RSNs compared to the other two SOTA methods . Table 2 shows that the modeled temporal patterns via Multi-Head GAGNN also had higher mean and comparable standard deviation of PCC values with the training label temporal patterns (i.e., SR) across all RSNs compared to those of ST-CNN. We also utilized Mean Squared Error (MSE) as another metric to measure the temporal similarity as reported in Supplemental Table 1. Moreover, we performed paired t-tests ( Bouckaert et al., 2004 ; Ruxton et al., 2006 ) on the spatial and temporal pattern similarity values between Multi-Head GAGNN and ST-CNN/SR across all subjects, and the results in Supplemental Table 2 demonstrated that the modeling ability of proposed Multi-Head GAGNN is significantly better than the other two SOTA methods. In summary, the proposed Multi-Head GAGNN achieved better similarity for both spatial and temporal patterns of RSNs compared to other SOTA methods in emotion t-fMRI.
+
+Table 1 . Comparison of averaged spatial pattern similarity (overlap rate) between the modeled patterns and RSN templates in the emotion t-fMRI across 5 folds among Multi-Head GAGNN (proposed), ST-CNN, and SR methods (data is represented as mean±std).
+RSN ID	RSN1	RSN2	RSN3	RSN4	RSN5
+Proposed 	0.19 ± 0.03 	0.15 ± 0.02 	0.25 ± 0.03 	0.18 ± 0.02 	0.13 ± 0.02
+ST-CNN	0.16 ± 0.02	0.12 ± 0.01	0.23 ± 0.02	0.14 ± 0.02	0.13 ± 0.02
+SR	0.15 ± 0.03	0.11 ± 0.02	0.19 ± 0.03	0.13 ± 0.02	0.10 ± 0.02
+RSN ID	RSN6	RSN7	RSN8	RSN9	RSN10
+Proposed 	0.21 ± 0.03 	0.23 ± 0.03 	0.21 ± 0.02 	0.21 ± 0.02 	0.23 ± 0.02
+ST-CNN	0.18 ± 0.02	0.20 ± 0.02	0.20 ± 0.02	0.20 ± 0.01	0.22 ± 0.02
+SR	0.15 ± 0.02	0.18 ± 0.04	0.16 ± 0.03	0.15 ± 0.03	0.17 ± 0.03
+Averaged Results across Ten RSNs
+Proposed 	0.20 ± 0.02 	ST-CNN	0.18 ± 0.02	SR	0.15 ± 0.03
+
+Table 2 . Comparison of averaged temporal pattern similarity (PCC) between the modeled patterns and temporal labels in the emotion t-fMRI across 5 folds among Multi-Head GAGNN (proposed) and ST-CNN (data is represented as mean ± std).
+RSN ID	RSN1	RSN2	RSN3	RSN4	RSN5
+Proposed 	0.68 ± 0.18 	0.71 ± 0.19 	0.68 ± 0.16 	0.68 ± 0.14 	0.34 ± 0.23
+ST-CNN	0.52 ± 0.18	0.52 ± 0.17	0.61 ± 0.17	0.39 ± 0.19	0.08 ± 0.16
+RSN ID	RSN6	RSN7	RSN8	RSN9	RSN10
+Proposed 	0.55 ± 0.22 	0.52 ± 0.20 	0.52 ± 0.24 	0.59 ± 0.19 	0.55 ± 0.19
+ST-CNN	0.32 ± 0.17	0.35 ± 0.19	0.36 ± 0.21	0.29 ± 0.13	0.39 ± 0.18
+Averaged Results across Ten RSNs
+Proposed 	0.58 ± 0.19 	ST-CNN	0.38 ± 0.18
+3.2. Generalizability of spatio-temporal pattern modeling of RSNs in the other six t-fMRI
+
+Besides the model training and testing on emotion t-fMRI data, we further evaluated the generalizability of the proposed method by directly applying the trained model onto the other six different t-fMRI datasets of the same 625 testing subjects. We randomly selected one subject as an example to visualize the spatial and temporal patterns modeled via Multi-Head GAGNN, ST-CNN, and SR in motor t-fMRI in Fig. 4 . Results of the other five t-fMRI datasets (gambling, language, relation, social, and working memory) are provided in Supplemental Figs. 1–5. We see that the modeled spatial patterns via Multi-Head GAGNN also had higher spatial and temporal pattern similarity than ST-CNN and SR. Quantitative results of averaged spatial pattern similarity (overlap rate, Table 3 ) and temporal pattern similarity (PCC, Table 4 ) of all 625 testing subjects and 10 RSNs across 5 folds in the six t-fMRI data further demonstrate the superior performance of the proposed Multi-Head GAGNN in modeling both spatial and temporal patterns of multiple RSNs compared to the other SOTA methods (the statistical comparisons are provided in Supplemental Table 2). The temporal similarity based on MSE metric was reported in Supplemental Table 1. Due to the limited space, the detailed averaged results of spatial and temporal pattern similarity across all 625 testing subjects within each RSN were provided in Supplemental Tables 3, 4. It should be noted that although the training labels of Multi-Head GAGNN were obtained based on SR, Multi-Head GAGNN still achieved better modeling performances than SR since Multi-Head GAGNN could further utilize and better extract spatial and temporal features of functional brain networks from fMRI data. Moreover, although the proposed Multi-Head GAGNN did not always achieve the best spatial pattern similarity in every single RSN or t-fMRI, the averaged spatial pattern similarity across all RSNs and t-fMRI datasets outperformed the other SOTA methods, indicating satisfying generalizability of the proposed model.
+Fig 4
+
+    Download : Download high-res image (2MB)
+    Download : Download full-size image 
+
+Fig. 4 . Spatio-temporal pattern modeling of the ten RSNs in motor t-fMRI data. Spatial patterns modeled via Multi-Head GAGNN (proposed), ST-CNN, and SR are visualized in one example subject. The temporal patterns modeled via Multi-Head GAGNN, ST-CNN, and SR are colored in red, green, and blue, respectively.
+
+Table 3 . Comparison of averaged spatial pattern similarity (overlap rate) of all testing subjects and ten RSNs in the other six t-fMRI across 5 folds among Multi-Head GAGNN (proposed), ST-CNN, and SR methods (data is represented as mean±std).
+Datasets	GAMBLING	LANGUAGE	MOTOR	RELATION	SOCIAL	WM
+Proposed 	0.17 ± 0.03 	0.16 ± 0.03 	0.15 ± 0.03 	0.16 ± 0.03 	0.17 ± 0.03 	0.16 ± 0.03
+ST-CNN	0.14 ± 0.02	0.14 ± 0.02	0.13 ± 0.02	0.12 ± 0.02	0.14 ± 0.02	0.13 ± 0.02
+SR	0.13 ± 0.02	0.12 ± 0.02	0.13 ± 0.03	0.14 ± 0.03	0.13 ± 0.03	0.11 ± 0.02
+Averaged Results across Six Tasks and Ten RSNs
+Proposed 	0.16 ± 0.03 	ST-CNN	0.13 ± 0.02	SR	0.13 ± 0.03
+
+Table 4 . Comparison of averaged temporal pattern similarity (PCC) of all testing subjects and ten RSNs in the other six t-fMRI across 5 folds between Multi-Head GAGNN (proposed) and ST-CNN (data is represented as mean±std).
+Datasets	GAMBLING	LANGUAGE	MOTOR	RELATION	SOCIAL	WM
+Proposed 	0.57 ± 0.21 	0.52 ± 0.20 	0.53 ± 0.19 	0.60 ± 0.19 	0.56 ± 0.19 	0.52 ± 0.18
+ST-CNN	0.32 ± 0.17	0.26 ± 0.17	0.26 ± 0.17	0.28 ± 0.19	0.31 ± 0.17	0.26 ± 0.15
+Averaged Results across Six Tasks and Ten RSNs
+Proposed 	0.55 ± 0.19 	ST-CNN	0.28 ± 0.17
+3.3. Group-Averaged spatial patterns of RSNs across all subjects
+
+We calculated the group-averaged spatial patterns of modeled RSNs across all testing subjects to further evaluate the general modeling performance of the proposed Multi-Head GAGNN compared to ST-CNN and SR. Note that due to the considerable individual variabilities of the temporal patterns of RSNs ( Zhao et al., 2020 ), we did not assess the group-averaged temporal patterns of the ten RSNs across all testing subjects which would smooth out the individual variability of temporal patterns. Fig. 5 shows the group-averaged spatial patterns of two RSNs (#4 and #9) as examples. Results of the other eight RSNs are provided in Supplemental Fig. 6, 7. We see that while all three methods (Multi-Head GAGNN, SR, and ST-CNN) had satisfying group-averaged spatial patterns of the RSNs, the proposed Multi-Head GAGNN achieved the best spatial pattern modeling ability compared to the other two SOTA methods in terms of retaining all key brain regions across all seven t-fMRI datasets as well as with more clustered brain regions and fewer noise points. The quantitative results are provided in Supplemental Table 5.
+Fig 5
+
+    Download : Download high-res image (1MB)
+    Download : Download full-size image 
+
+Fig. 5 . The group-averaged spatial patterns of two randomly selected RSNs (#4 and #9) across all testing subjects within each of the seven t-fMRI datasets using three different methods (Multi-Head GAGNN, ST-CNN, and SR).
+
+In summary, compared to SR which directly adopted the RSN spatial templates to guide the RSN identification, the proposed Multi-Head GAGNN utilized the modeled patterns via SR with more individual variability for further model training. Compared to ST-CNN which merely focused on modeling one RSN at one time, the proposed Multi-Head GAGNN was capable of simultaneously modeling multiple RSNs at one time. Nonetheless, the proposed Multi-Head GAGNN still achieved better modeling ability and generalizability compared to the two SOTA methods.
+3.4. Comparison of different model structures
+
+We compared the modeling performance of RSNs among different model structures. First, in order to demonstrate the superiority of the proposed AG (Attention Graph) block in the ‘spatial part’ ( Fig. 2 (a)), we replaced the AG block with other five methods, respectively, and trained the model to compare the modeling performance among the six model structures. Specifically, since the AG block was a combination of attention mechanism and graph convolution, we replaced the AG block with the attention block and graph convolution block, respectively. We also replaced the AG block with CNN since it was the most widely adopted method for feature extraction in deep learning models. We also compared the proposed AG block with the widely used GAT ( Velikovi et al., 2018 ; Zhang et al., 2019 a). Moreover, we compared the modeling ability between 0 and 1 normalization and graph Laplacian normalization ( Mohar, 1997 ) of the adjacency matrix Q K T in (3). We trained the model with the six different structures on the same 160 subjects, and further tested it on the remaining 625 subjects of emotion t-fMRI data. Table 5 shows that the proposed AG block achieved the best averaged spatial pattern similarity across all RSNs compared to the other five model structures, although not in every single RSN, indicating the effectiveness of integrating both GCN and attention mechanism in the proposed AG block for multiple functional brain network modeling.
+
+Table 5 . Comparison of different model structures for spatial pattern modeling.
+RSN ID	Proposed 	Attention	GCN	CNN	GAT	Laplacian
+RSN1	0.171 ± 0.027	0.171 ± 0.014 	0.084 ± 0.027	0.142 ± 0.019	0.182 ± 0.014	0.130 ± 0.004
+RSN2	0.153 ± 0.015 	0.127 ± 0.008	0.079 ± 0.029	0.121 ± 0.010	0.123 ± 0.008	0.108 ± 0.004
+RSN3	0.273 ± 0.024 	0.233 ± 0.014	0.155 ± 0.025	0.214 ± 0.011	0.231 ± 0.014	0.215 ± 0.007
+RSN4	0.178 ± 0.015 	0.168 ± 0.012	0.091 ± 0.017	0.166 ± 0.009	0.151 ± 0.015	0.125 ± 0.003
+RSN5	0.130 ± 0.018	0.128 ± 0.011	0.075 ± 0.017	0.110 ± 0.012	0.131 ± 0.010 	0.121 ± 0.003
+RSN6	0.223 ± 0.027	0.229 ± 0.015 	0.116 ± 0.024	0.194 ± 0.017	0.205 ± 0.018	0.178 ± 0.004
+RSN7	0.227 ± 0.026 	0.215 ± 0.019	0.094 ± 0.026	0.221 ± 0.020	0.208 ± 0.019	0.171 ± 0.005
+RSN8	0.211 ± 0.019	0.204 ± 0.020	0.143 ± 0.022	0.231 ± 0.013 	0.168 ± 0.021	0.207 ± 0.005
+RSN9	0.218 ± 0.018 	0.183 ± 0.013	0.146 ± 0.028	0.166 ± 0.013	0.176 ± 0.011	0.126 ± 0.006
+RSN10	0.212 ± 0.022	0.223 ± 0.019	0.129 ± 0.020	0.223 ± 0.010 	0.221 ± 0.018	0.160 ± 0.004
+Averaged 	0.200 ± 0.021 	0.188 ± 0.014	0.111 ± 0.024	0.179 ± 0.013	0.180 ± 0.015	0.154 ± 0.004
+
+Furthermore, we evaluated whether the setting of the different number of n branches for modeling n RSNs ( Section 2.4 ) would affect the modeling performance of the same RSN. Specifically, besides setting n  = 10 to model all of the ten RSNs ( Smith et al., 2009 ), we also set n  = 4 and n  = 7 as examples to model the first four and seven of the ten RSNs ( Smith et al., 2009 ), respectively, and compared the spatial and temporal pattern similarity of the first four RSNs when n  = 4, 7, and 10. Table 6 shows that the modeled four RSNs achieved comparable spatial and temporal pattern similarity among the different number of branches, indicating that the proposed Multi-Head GAGNN had stable and satisfying spatio-temporal modeling ability of multiple functional brain networks.
+
+Table 6 . Comparison of different number of model branches for functional brain network modeling.
+BranchNumber	4	7	10
+Empty Cell 	Spatial	temporal	Spatial	temporal	Spatial	temporal
+RSN1	0.19 ± 0.02	0.70 ± 0.19	0.19 ± 0.03	0.72 ± 0.16	0.17 ± 0.03	0.69 ± 0.19
+RSN2	0.16 ± 0.02	0.69 ± 0.26	0.13 ± 0.02	0.70 ± 0.122	0.15 ± 0.01	0.70 ± 0.22
+RSN3	0.25 ± 0.03	0.71 ± 0.15	0.25 ± 0.03	0.72 ± 0.14	0.27 ± 0.02	0.70 ± 0.15
+RSN4	0.18 ± 0.02	0.72 ± 0.14	0.20 ± 0.03	0.71 ± 0.13	0.18 ± 0.01	0.67 ± 0.17
+Averaged 	0.20 ± 0.02	0.70 ± 0.18	0.19 ± 0.03	0.71 ± 0.16	0.19 ± 0.02	0.69 ± 0.18
+3.5. Evaluation of guided attention mechanism
+
+Given the considerable individual variability of spatio-temporal patterns of RSNs across different subjects, the guided attention mechanism could take advantage of the modeled spatial patterns of RSNs in each individual subject to guide the temporal pattern modeling in the same subject, which was one of the major novelties and contributions in this study. To evaluate the effectiveness of the guided attention mechanism, instead of adopting the spatial patterns from the same subject, we fed the modeled spatial patterns of other subjects to guide the temporal pattern modeling, and compared the modeled temporal pattern similarity. Specifically, for each of the 625 testing subjects of emotion t-fMRI data, we adopted each of the modeled spatial patterns of the other 624 subjects to guide the temporal pattern modeling, respectively, and calculated the mean temporal pattern similarity. As reported in Table 7 , the averaged temporal pattern similarity in each subject guided by their own spatial patterns outperforms that guided by other subjects’ spatial patterns, indicating the effectiveness of the proposed guided attention mechanism to model the temporal patterns of RSNs in each individual subject.
+
+Table 7 . Evaluation of guided attention mechanism for temporal pattern modeling.
+RSN ID	Own 	Other	RSN ID	Own 	Other
+RSN1	0.69 ± 0.19 	0.67 ± 0.18	RSN6	0.54 ± 0.24 	0.50 ± 0.23
+RSN2	0.70 ± 0.22 	0.68 ± 0.20	RSN7	0.52 ± 0.21 	0.49 ± 0.22
+RSN3	0.70 ± 0.15 	0.67 ± 0.13	RSN8	0.48 ± 0.26 	0.45 ± 0.26
+RSN4	0.67 ± 0.17 	0.64 ± 0.16	RSN9	0.60 ± 0.21 	0.57 ± 0.21
+RSN5	0.34 ± 0.24 	0.35 ± 0.25	RSN10	0.57 ± 0.18 	0.54 ± 0.17
+Own Averaged 	0.58 ± 0.21 	Other Averaged	0.56 ± 0.20
+3.6. Generalizability of spatio-temporal pattern modeling of RSNs in HCP S1200 and ABIDE I datasets
+
+We further evaluated the generalizability of the proposed Multi-Head GAGNN model on HCP S1200 and independent ABIDE I data. By directly applying the trained Multi-Head GAGNN model on these two testing datasets, both spatial and temporal patterns of all RSNs in the two datasets achieved satisfying and comparable similarities ( Table 8 ) with the HCP S900 dataset ( Sections 3.1 and 3.2 ). In conclusion, the proposed Multi-Head GAGNN model had satisfying generalizability on other independent testing datasets.
+
+Table 8 . Spatial and temporal pattern similarities via the proposed Multi-Head GAGNN in HCP S1200 and independent ABIDE I testing data (data is represented as mean±std).
+Datasets	HCP S1200	ABIDE I
+Spatial	Temporal	Spatial	temporal
+RSN1	0.14 ± 0.04	0.52 ± 0.21	0.06 ± 0.03	0.50 ± 0.21
+RSN2	0.33 ± 0.07	0.49 ± 0.23	0.28 ± 0.08	0.39 ± 0.24
+RSN3	0.30 ± 0.07	0.50 ± 0.21	0.28 ± 0.07	0.42 ± 0.19
+RSN4	0.24 ± 0.05	0.55 ± 0.23	0.23 ± 0.06	0.52 ± 0.21
+RSN5	0.04 ± 0.01	0.16 ± 0.27	0.05 ± 0.02	0.25 ± 0.22
+RSN6	0.06 ± 0.01	0.22 ± 0.32	0.03 ± 0.01	0.25 ± 0.22
+RSN7	0.33 ± 0.06	0.50 ± 0.24	0.23 ± 0.05	0.37 ± 0.19
+RSN8	0.21 ± 0.05	0.31 ± 0.26	0.23 ± 0.05	0.24 ± 0.24
+RSN9	0.27 ± 0.04	0.44 ± 0.23	0.27 ± 0.05	0.25 ± 0.30
+RSN10	0.06 ± 0.02	0.20 ± 0.26	0.09 ± 0.03	0.35 ± 0.22
+Averaged 	0.20 ± 0.04	0.39 ± 0.25	0.17 ± 0.04	0.35 ± 0.22
+3.7. Comparison of down-sampled and original size fMRI data for spatio-temporal pattern modeling of RSNs
+
+As demonstrated in Section 2.2 , we applied the proposed Multi-Head GAGNN model on down-sampled fMRI data considering the computational capacity of model training. In order to evaluate the potential information loss effect of down-sampling for functional network modeling, we further compared the modeling performance among the proposed Multi-Head GAGNN model on down-sampled data, SR on original size data, and ST-CNN on original size data. Based on randomly selected 200 subjects (160 for training and 40 for testing) of emotion t-fMRI data, both of the spatial pattern similarity ( Table 9 ) and temporal pattern similarity ( Table 10 ) are much higher when adopting the proposed model on down-sampled data compared to adopting SR and ST-CNN on original size data. In conclusion, the proposed Multi-Head GAGNN model is not affected by the down-sampling operation and still has superior modeling ability than the other SOTA methods.
+
+Table 9 . Comparison of spatial pattern similarity of ten RSNs in emotion t-fMRI among Multi-Head GAGNN (proposed) on down-sampled data, ST-CNN on original size data, and SR on original size data (data is represented as mean±std).
+RSN ID	RSN1	RSN2	RSN3	RSN4	RSN5
+Proposed 	0.25 ± 0.03 	0.22 ± 0.04 	0.29 ± 0.02 	0.24 ± 0.02 	0.11 ± 0.03
+ST-CNN	0.21 ± 0.05	0.21 ± 0.05	0.22 ± 0.05	0.16 ± 0.05	0.11 ± 0.03
+SR	0.12 ± 0.03	0.11 ± 0.02	0.15 ± 0.02	0.12 ± 0.03	0.07 ± 0.02
+RSN ID	RSN6	RSN7	RSN8	RSN9	RSN10
+Proposed 	0.23 ± 0.03 	0.27 ± 0.04 	0.24 ± 0.04 	0.25 ± 0.03 	0.28 ± 0.02
+ST-CNN	0.14 ± 0.03	0.16 ± 0.04	0.18 ± 0.04	0.23 ± 0.05	0.24 ± 0.03
+SR	0.11 ± 0.02	0.12 ± 0.02	0.10 ± 0.02	0.11 ± 0.03	0.12 ± 0.03
+Averaged Results across Ten RSNs
+Proposed 	0.24 ± 0.03 	ST-CNN	0.19 ± 0.04	SR	0.11 ± 0.02
+
+Table 10 . Comparison of temporal pattern similarity of ten RSNs in emotion t-fMRI between Multi-Head GAGNN (proposed) on down-sampled data and ST-CNN on original size data (data is represented as mean±std).
+RSN ID	RSN1	RSN2	RSN3	RSN4	RSN5
+Proposed 	0.67 ± 0.18 	0.72 ± 0.20 	0.72 ± 0.13 	0.75 ± 0.13 	0.32 ± 0.24
+ST-CNN	0.59 ± 0.21	0.63 ± 0.21	0.66 ± 0.14	0.42 ± 0.22	0.04 ± 0.14
+RSN ID	RSN6	RSN7	RSN8	RSN9	RSN10
+Proposed 	0.60 ± 0.23 	0.66 ± 0.12 	0.58 ± 0.16 	0.64 ± 0.14 	0.59 ± 0.20
+ST-CNN	0.54 ± 0.16	0.43 ± 0.18	0.40 ± 0.23	0.40 ± 0.23	0.41 ± 0.21
+Averaged Results across Ten RSNs
+Proposed 	0.63 ± 0.17 	ST-CNN	0.45 ± 0.19
+3.8. Stability of spatio-temporal pattern modeling via cross-validation
+
+We performed 5-fold cross-validation as introduced in Section 2.5 in order to evaluate the stability of the proposed Multi-Head GAGNN using different initial spilt and initial seed for model training and testing. The spatial ( Table 11 ) and temporal ( Table 12 ) pattern similarity within each of the seven tasks is similar across the five folds, suggesting that the spatio-temporal pattern modeling performance of the proposed Multi-Head GAGNN is stable and insensitive using different initial spilt and initial seed for model training and testing.
+
+Table 11 . Stability of spatial pattern similarity via Multi-Head GAGNN among seven t-fMRI datasets across 5-fold cross-validation (data is represented as mean±std).
+Datasets	Fold 1	Fold 2	Fold 3	Fold 4	Fold 5
+EMOTION	0.20 ± 0.02	0.20 ± 0.02	0.20 ± 0.02	0.20 ± 0.02	0.20 ± 0.02
+GAMBLING	0.16 ± 0.03	0.17 ± 0.03	0.17 ± 0.03	0.16 ± 0.03	0.16 ± 0.03
+LANGUAGE	0.15 ± 0.03	0.17 ± 0.03	0.16 ± 0.03	0.17 ± 0.03	0.16 ± 0.03
+MOTOR	0.15 ± 0.03	0.16 ± 0.03	0.15 ± 0.03	0.16 ± 0.03	0.15 ± 0.03
+RELATION	0.17 ± 0.03	0.16 ± 0.03	0.15 ± 0.03	0.15 ± 0.03	0.15 ± 0.03
+SOCIAL	0.17 ± 0.02	0.18 ± 0.03	0.17 ± 0.03	0.17 ± 0.02	0.17 ± 0.03
+WM	0.16 ± 0.02	0.17 ± 0.03	0.16 ± 0.03	0.16 ± 0.03	0.16 ± 0.03
+Averaged 	0.16 ± 0.02	0.17 ± 0.03	0.16 ± 0.03	0.17 ± 0.03	0.16 ± 0.03
+
+Table 12 . Stability of temporal pattern similarity via Multi-Head GAGNN among seven t-fMRI datasets across 5-fold cross-validation (data is represented as mean±std).
+Datasets	Fold 1	Fold 2	Fold 3	Fold 4	Fold 5
+EMOTION	0.58 ± 0.21	0.59 ± 0.17	0.58 ± 0.19	0.58 ± 0.20	0.58 ± 0.19
+GAMBLING	0.56 ± 0.22	0.58 ± 0.19	0.57 ± 0.20	0.57 ± 0.21	0.56 ± 0.21
+LANGUAGE	0.53 ± 0.21	0.52 ± 0.19	0.51 ± 0.20	0.50 ± 0.20	0.54 ± 0.20
+MOTOR	0.53 ± 0.20	0.54 ± 0.18	0.53 ± 0.19	0.53 ± 0.20	0.53 ± 0.19
+RELATION	0.59 ± 0.21	0.61 ± 0.18	0.60 ± 0.19	0.61 ± 0.20	0.60 ± 0.19
+SOCIAL	0.57 ± 0.20	0.55 ± 0.18	0.55 ± 0.19	0.56 ± 0.19	0.57 ± 0.18
+WM	0.51 ± 0.19	0.53 ± 0.17	0.51 ± 0.18	0.52 ± 0.18	0.52 ± 0.18
+Averaged 	0.55 ± 0.20	0.56 ± 0.18	0.55 ± 0.19	0.55 ± 0.20	0.56 ± 0.19
+3.9. Association between modeled spatio-temporal patterns of holistic functional brain networks and individual cognitive behavioral measures
+
+We finally performed additional downstream validation to provide insights into the brain-cognitive behavior associations based on the modeled spatio-temporal patterns of functional brain networks. Specifically, 18 cognitive behavioral measures of each individual provided by HCP ( Nowinski et al., 2012 ; Estle et al., 2006 ) were adopted including Picture Sequence Memory Test, Dimensional Change Card Sort Test, Flanker, Picture Vocabulary Test, Pattern Comparison Processing Test, Delay Discounting (Area Under the Curve for Discounting of $200), Penn Line Orientation (Total Number Correct, Median Reaction Time Divided by Expected Number of Clicks for Correct Trials, and Total Positions Off for All Trials), Short Penn CPT Sensitivity, Short Penn CPT Specificity, Penn Word Memory (Total Number of Correct Responses and Median Reaction Time for Correct Responses), List Sorting, Reading Test, Penn Matrix Test (Number of Correct Responses, Total Skipped Items, and Median Reaction Time for Correct Responses). Considering that these cognitive behavioral measures might be highly correlated, we performed a principal component analysis of the 18 cognitive behavioral measures to obtain a single latent factor similar as previous studies ( Dubois et al., 2018 ; Barron et al., 2021 ). Then we used ten RSNs’ spatial and temporal pattern similarity values (20-dimensional feature vector) to predict the latent factor among individual testing subjects using the widely adopted Elastic Net ( Zou et al., 2005 ; Rahman et al., 2018 ) regression model. The coefficient of determination R 2 was reported in Table 13 to assess the quality of predictions between the proposed Multi-Head GAGNN and ST-CNN in each of the seven tasks. We see that the R 2 coefficient of predicted values via the proposed Multi-Head GAGNN model is significantly larger than that via ST-CNN using paired t -test ( p <0.001), suggesting better prediction ability for the cognitive behavioral measures. Moreover, we ran our prediction model using 1000 random permutations of the latent factor for permutation testing ( Dubois et al., 2018 ; Barron et al., 2021 ), and the R 2 coefficient differs significantly from chance for each of the seven datasets ( p 1000 <0.001). In general, our proposed model provided more accurate brain-cognitive behavior associations than other SOTA methods.
+
+Table 13 . Comparison of R 2 coefficient of the Elastic Net regression model between Multi-Head GAGNN (proposed) and ST-CNN in each of the seven tasks.
+Tasks	Proposed	ST-CNN
+EMOTION	0.0992 	0.0755
+GAMBLING	0.1090 	0.0437
+LANGUAGE	0.1018 	0.0287
+MOTOR	0.1017 	0.0488
+RELATION	0.0817 	0.0295
+SOCIAL	0.1012 	0.0517
+WM	0.1027 	0.0667
+Averaged	0.0996 	0.0492
+P-value 	p <0.001
+4. Discussion and conclusion
+
+In this paper, we proposed a novel Multi-Head Guided Attention Graph Neural Network (Multi-Head GAGNN) to model both spatial and temporal patterns of holistic functional brain networks. To the best of our knowledge, this is one of the first supervised deep learning methods to simultaneously model both spatial and temporal patterns of multiple functional brain networks. The proposed model had three major technical novelties and contributions:
+
+First, the ‘spatial part’ of the Multi-Head GAGNN adopted a novel Attention Graph block to better extract both spatial and temporal characteristics of fMRI, which represented a significant improvement with respect to combining the attention mechanism with graph convolution. Our experimental results have demonstrated that the proposed Attention Graph block outperformed the single attention or graph convolution operations , as well as conventional CNN operation in terms of better spatial pattern similarity of identified functional brain networks. The accuracy of functional brain network modeling was thus warranted.
+
+Second, the ‘temporal part’ of the Multi-Head GAGNN adopted the guided attention mechanism for temporal pattern modeling under the guidance of the modeled spatial patterns as well as fMRI signals, and both spatial and temporal features of fMRI data were thus fully utilized and mutually guided during network modeling. It was a considerable improvement compared to the previous approaches ( Andersen et al., 1999 ; McKeown et al., 2003 ; Cole et al., 2010 ; Smith et al., 2012 ; Lv et al., 2014 , 2015 a, 2015 b; Jiang et al., 2015 ; Hjelm et al., 2016 ; Lv et al., 2017 ; Jiang et al., 2018a , 2018b ; Huang et al., 2018 ; Zhang et al., 2019 b, 2019 c; Zhang et al., 2020 ; Zhao et al., 2020 ) which merely considered one single temporal or spatial characteristic during model training. The experimental results also demonstrated that our proposed approach outperformed other approaches in terms of better spatial and temporal pattern similarity of identified functional brain networks.
+
+Third, both the spatial and temporal parts of the Multi-Head GAGNN adopted the branch structure to simultaneously model spatial and temporal patterns of holistic functional brain networks, which represented an advancement as compared to previous supervised deep learning studies which merely modeled one network at one time. Theoretically, it agreed with the existing brain science literatures that there were multiple and concurrent functional brain networks that were interacting with each other to realize the complex brain function (e.g., Fox et al., 2005 ; Dosenbach et al., 2006 ; Duncan, 2010 ; Fedorenko et al., 2013 ; Jiang et al., 2021a ). The experimental results also demonstrated that the proposed Multi-Head GAGNN achieved better spatio-temporal pattern modeling performance compared to previous approaches (e.g., Zhao et al., 2020 ) which merely modeled one functional brain network at one time.
+
+Based on 1448 subjects with t-fMRI/rs-fMRI in the public HCP and ABIDE I datasets, extensive experimental results demonstrated that the proposed Multi-Head GAGNN model achieved both superior ability and generalizability in simultaneously modeling spatio-temporal patterns of holistic functional brain networks compared to other SOTA models. Moreover, the modeled spatio-temporal patterns of functional brain networks via the proposed Multi-Head GAGNN can better predict individual behavioral measures compared to the other SOTA models. Given the remarkable brain functional variability across different individuals, our study provided a useful and powerful tool for modeling brain function at an individual level, as well as for understanding the brain-cognitive behavior associations.
+
+In the future, we plan to improve and utilize the Attention Graph block and the guided attention mechanism to explore the intrinsic functional brain architecture using an unsupervised approach instead of pinpointing the targeted functional brain networks in this study. We also plan to apply the proposed model to further investigate the relationship between brain anatomy and function ( Jiang et al., 2021b ). Moreover, we plan to apply the proposed model on clinical datasets in order to model and identify those functional brain networks with abnormal spatial and/or temporal patterns caused by brain diseases including mental disorders (e.g., autism) compared to healthy individuals.
+Declaration of Competing Interest
+
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+Acknowledgements
+
+This study was partly supported by the National Key R&D Program of China (2020AAA0105702), National Natural Science Foundation of China (61976045, 61933003, 62027813, 62006194, 31971288 and U1801265), Sichuan Science and Technology Program (2021YJ0247), the Special Fund for Basic Scientific Research of Central Colleges (ZYGX2021J036), Key Scientific and Technological Projects of Guangdong Province Government (2018B030335001), Beijing Municipal Science & Technology Commission (Z181100001518005), the Fundamental Research Funds for the Central Universities (3102019QD005), and High-level researcher start-up projects (06100–20GH020161).
+Appendix. Supplementary materials
+
+Download : Download Word document (7MB)
+
+References
+
+    Abraham et al., 2017
+    A. Abraham, M.P. Milham, A. Di Martino, R.C. Craddock, D. Samaras, B. Thirion, G. Varoquaux
+    Deriving reproducible biomarkers from multi-site resting-state data: an autism-based example
+    Neuroimage, 147 (2017), pp. 736-745
+    View PDF View article View in Scopus Google Scholar
+    Adler and Parmryd, 2010
+    J. Adler, I. Parmryd
+    Quantifying colocalization by correlation: the Pearson correlation coefficient is superior to the Mander's overlap coefficient
+    Cytom. Part A, 77A (8) (2010), pp. 733-742
+    CrossRef View in Scopus Google Scholar
+    Andersen et al., 1999
+    A.H. Andersen, D.M. Gash, M.J. Avison
+    Principal component analysis of the dynamic response measured by fMRI: a generalized linear systems framework
+    Magn. Reson. Imaging, 17 (6) (1999), pp. 795-815
+    View PDF View article View in Scopus Google Scholar
+    Barch et al., 2013
+    D.M. Barch, G.C. Burgess, M.P. Harms, S.E. Petersen, B.L. Schlaggar, M. Corbetta, M.F. Glasser, S. Curtiss, S. Dixit, C. Feldt, D. Nolan, E. Bryant, T. Hartley, O. Footer, J.M. Bjork, R. Poldrack, S. Smith, H. Johansen Berg, A.Z. Snyder, D.C Van Essen
+    Function in the human connectome: task-fMRI and individual differences in behavior
+    Neuroimage, 80 (2013), pp. 169-189
+    View PDF View article View in Scopus Google Scholar
+    Barron et al., 2021
+    D.S. Barron, S.Y. Gao, J. Dadashkarimi, A.S. Greene, M.N. Spann, S. Noble, E.M.R. Lake, J.H. Krystal, R.T. Constable, D. Scheinost
+    Transdiagnostic, connectome-based prediction of memory constructs across psychiatric disorders
+    Cereb. Cortex, 31 (5) (2021), pp. 2523-2533
+    CrossRef View in Scopus Google Scholar
+    Bouckaert and Frank, 2004
+    R.R. Bouckaert, E. Frank
+    Evaluating the replicability of significance tests for comparing learning algorithms. Advances in knowledge discovery and data mining
+    Proceedings, 3056 (2004), pp. 3-12
+    CrossRef View in Scopus Google Scholar
+    Cole et al., 2010
+    D.M. Cole, S.M. Smith, C.F. Beckmann
+    Advances and pitfalls in the analysis and interpretation of resting-state fMRI data
+    Front. Syst. Neurosci., 4 (2010), p. 8
+    View in Scopus Google Scholar
+    Craddock et al., 2013
+    C. Craddock, Y. Benhajali, C. Chu, F. Chouinard, A. Evans, A. Jakab, B.S. Khundrakpam, J.D. Lewis, Q. Li, M. Milham, C. Yan, P. Bellec
+    The neuro bureau preprocessing initiative: open sharing of preprocessed neuroimaging data and derivatives
+    Front. Neuroinform, 7 (2013)
+    Google Scholar
+    Damoiseaux et al., 2006
+    J.S. Damoiseaux, S.A.R.B. Rombouts, F. Barkhof, P. Scheltens, C.J. Stam, S.M. Smith, C.F. Beckmann
+    Consistent resting-state networks across healthy subjects
+    Proc. Natl. Acad. Sci. U. S. A., 103 (37) (2006), pp. 13848-13853
+    CrossRef View in Scopus Google Scholar
+    Di Martino et al., 2014
+    A. Di Martino, C.G. Yan, Q. Li, E. Denio, F.X. Castellanos, et al.
+    The autism brain imaging data exchange: towards a large-scale evaluation of the intrinsic brain architecture in autism
+    Mol. Psychiatry, 19 (6) (2014), pp. 659-667
+    CrossRef View in Scopus Google Scholar
+    Dosenbach et al., 2006
+    N.U. Dosenbach, K.M. Visscher, E.D. Palmer, F.M. Miezin, K.K. Wenger, H.C. Kang, E.D. Burgund, A.L. Grimes, B.L. Schlaggar, S.E. Petersen
+    A core system for the implementation of task sets
+    Neuron, 50 (5) (2006), pp. 799-812
+    View PDF View article View in Scopus Google Scholar
+    Dubois et al., 2018
+    J. Dubois, P. Galdi, L.K. Paul, R. Adolphs
+    A distributed brain network predicts general intelligence from resting-state human neuroimaging data
+    Philos. Trans. R. Soc. B Biol. Sci., 373 (2018), p. 1756
+    Google Scholar
+    Duncan, 2010
+    J. Duncan
+    The multiple-demand (MD) system of the primate brain: mental programs for intelligent behaviour
+    Trends Cogn. Sci. Regul. Ed., 14 (4) (2010), pp. 172-179
+    View PDF View article View in Scopus Google Scholar
+    Elam et al., 2021
+    J.S. Elam, M.F. Glasser, M.P. Harms, S.N. Sotiropoulos, et al.
+    The human connectome project: a retrospective
+    Neuroimage (2021), p. 244
+    Google Scholar
+    Estle et al., 2006
+    S.J. Estle, L. Green, J. Myerson, D.D. Holt
+    Differential effects of amount on temporal and probability discounting of gains and losses
+    Mem. Cognit., 34 (4) (2006), pp. 914-928
+    View in Scopus Google Scholar
+    Fedorenko et al., 2013
+    E. Fedorenko, J. Duncan, N. Kanwisher
+    Broad domain generality in focal regions of frontal and parietal cortex
+    Proc. Natl. Acad. Sci. U. S. A., 110 (41) (2013), pp. 16616-16621
+    CrossRef View in Scopus Google Scholar
+    Fox et al., 2005
+    M.D. Fox, A.Z. Snyder, J.L. Vincent, M. Corbetta, D.C. Van Essen, M.E. Raichle
+    The human brain is intrinsically organized into dynamic anticorrelated functional networks
+    Proc. Natl. Acad. Sci. U. S. A., 102 (27) (2005), pp. 9673-9678
+    CrossRef View in Scopus Google Scholar
+    Hansen et al., 1999
+    L.K. Hansen, J. Larsen, F.A. Nielsen, S.C. Strother, E. Rostrup, R. Savoy, N. Lange, J. Sidtis, C. Svarer, O.B. Paulson
+    Generalizable patterns in neuroimaging: how many principal components?
+    Neuroimage, 9 (5) (1999), pp. 534-544
+    View PDF View article View in Scopus Google Scholar
+    Heeger and Ress, 2002
+    D.J. Heeger, D. Ress
+    What does fMRI tell us about neuronal activity?
+    Nat. Rev. Neurosci., 3 (2) (2002), pp. 142-151
+    CrossRef View in Scopus Google Scholar
+    Hjelm et al., 2016
+    R.D. Hjelm, S.M. Plis, V Calhoun
+    Recurrent neural networks for spatiotemporal dynamics of intrinsic networks from fMRI data
+    NIPS Brains Bits (2016)
+    Google Scholar
+    Huang et al., 2018
+    H. Huang, X. Hu, M. Makkie, Q. Dong, Y. Zhao, J. Han, L. Guo, T. Liu
+    Modeling task fMRI data via deep convolutional autoencoder
+    IEEE Trans. Med. Imaging, 37 (7) (2018), pp. 1551-1561
+    CrossRef View in Scopus Google Scholar
+    Jiang et al., 2015
+    X. Jiang, X. Li, J. Lv, T. Zhang, S. Zhang, L. Guo, T. Liu
+    Sparse representation of HCP gray ordinate data reveals novel functional architecture of cerebral cortex
+    Hum. Brain Mapp., 36 (12) (2015), pp. 5301-5319
+    CrossRef View in Scopus Google Scholar
+    Jiang et al., 2018a
+    X. Jiang, X. Li, J. Lv, S. Zhao, S. Zhang, W. Zhang, T. Zhang, J. Han, L. Guo, T. Liu
+    Temporal dynamics assessment of spatial overlap pattern of functional brain networks reveals novel functional architecture of cerebral cortex
+    IEEE Trans. Biomed. Eng., 65 (6) (2018), pp. 1183-1192
+    CrossRef View in Scopus Google Scholar
+    Jiang et al., 2018b
+    X. Jiang, L. Zhao, H. Liu, L. Guo, K.M. Kendrick, T. Liu
+    A cortical folding pattern-guided model of intrinsic functional brain networks in emotion processing
+    Front. Neurosci., 12 (2018), p. 575
+    View in Scopus Google Scholar
+    Jiang et al., 2021a
+    X. Jiang, X. Ma, Y. Geng, Z. Zhao, F. Zhou, W. Zhao, S. Yao, S. Yang, Z. Zhao, B. Becker, K.M. Kendrick
+    Intrinsic, dynamic and effective connectivity among large-scale brain networks modulated by oxytocin
+    Neuroimage, 227 (117668) (2021)
+    Google Scholar
+    Jiang et al., 2021b
+    X. Jiang, T. Zhang, S. Zhang, K.M. Kendrick, T. Liu
+    Fundamental functional differences between Gyri and sulci: implications for brain function
+    Cogn. Behav. Psychoradiol., 1 (1) (2021), pp. 23-31
+    Google Scholar
+    Kingma and Ba, 2015
+    D. Kingma, J. Ba
+    Adam: a Method for stochastic optimization
+    Int. Conf. Learn. Representat. (2015)
+    Google Scholar
+    Lee et al., 2019
+    J. Lee, I. Lee, J. Kang
+    Self-attention graph pooling
+    Int. Conf. Mach. Lear. (2019)
+    Google Scholar
+    Li et al., 2018
+    Q.M. Li, Z.C. Han, X.M. Wu
+    Deeper insights into graph convolutional networks for semi-supervised learning
+    Proceedings of the Thirty-Second AAAI Conference on Artificial Intelligence /Thirtieth Innovative Applications of Artificial Intelligence Conference / Eighth AAAI Symposium on Educational Advances in Artificial Intelligence (2018)
+    Google Scholar
+    Logothetis, 2008
+    N.K. Logothetis
+    What we can do and what we cannot do with fMRI
+    Nature, 453 (7197) (2008), pp. 869-878
+    CrossRef View in Scopus Google Scholar
+    Lv et al., 2015a
+    J. Lv, X. Jiang, X. Li, D. Zhu, H. Chen, T. Zhang, S. Zhang, X. Hu, J. Han, H. Huang, J. Zhang, L. Guo, T. Liu
+    Sparse representation of whole-brain fMRI signals for identification of functional networks
+    Med. Image Anal., 20 (1) (2015), pp. 112-134
+    View PDF View article View in Scopus Google Scholar
+    Lv et al., 2014
+    J. Lv, X. Jiang, X. Li, D. Zhu, S. Zhang, S. Zhao, H. Chen, T. Zhang, X. Hu, J. Han, J. Ye, L. Guo, T. Liu
+    Holistic atlases of functional networks and interactions reveal reciprocal organizational architecture of cortical function
+    IEEE Trans. Biomed. Eng., 62 (4) (2014), pp. 1120-1131
+    View in Scopus Google Scholar
+    Lv et al., 2015b
+    J. Lv, X. Jiang, X. Li, D. Zhu, S. Zhao, T. Zhang, X. Hu, J. Han, L. Guo, Z. Li, C. Coles, X. Huc, T. Liu
+    Assessing effects of prenatal alcohol exposure using group-wise sparse representation of fMRI data
+    Psychiatry Res. Neuroimaging, 233 (2) (2015), pp. 254-268
+    View PDF View article View in Scopus Google Scholar
+    Lv et al., 2017
+    J. Lv, B. Lin, Q. Li, W. Zhang, Y. Zhao, X. Jiang, L. Guo, J. Han, X. Hu, C. Guo, J. Ye, T. Liu
+    Task fMRI data analysis based on supervised stochastic coordinate coding
+    Med. Image Anal., 38 (2017), pp. 1-16
+    View PDF View article View in Scopus Google Scholar
+    McKeown et al., 2003
+    M.J. McKeown, L.K. Hansen, T.J. Sejnowski
+    Independent component analysis of functional MRI: what is signal and what is noise?
+    Curr. Opin. Neurobiol., 13 (5) (2003), pp. 620-629
+    View PDF View article View in Scopus Google Scholar
+    Mohar, 1997
+    B. Mohar
+    Some applications of Laplace eigenvalues of graphs
+    Graph Symmetry (1997), pp. 225-275
+    CrossRef View in Scopus Google Scholar
+    Naselaris et al., 2011
+    T. Naselaris, K.N. Kay, S. Nishimoto, J.L. Gallant
+    Encoding and decoding in fMRI
+    Neuroimage, 56 (2) (2011), pp. 400-410
+    View PDF View article View in Scopus Google Scholar
+    Nowinski, 2012
+    C. Nowinski
+    The NIH toolbox for assessment of neurological and behavioral function
+    Qual. Life Res., 20 (2012), pp. 2-3
+    Google Scholar
+    Pei et al., 2021
+    Y. Pei, T. Huang, W. Van Ipenburg, M. Pechenizkiy
+    ResGCN: attention-based deep residual modeling for anomaly detection on attributed networks
+    Mach. Learn. (2021)
+    Google Scholar
+    Rahman et al., 2018
+    R. Rahman, C. Perera, S. Ghosh, R. Pal
+    Adaptive multi-task elastic net based feature selection from pharmacogenomics databases
+    Proceedings of the 2018 40th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC) (2018)
+    Google Scholar
+    Ronneberger et al., 2015
+    O. Ronneberger, P. Fischer, T. Brox
+    U-Net: convolutional networks for biomedical image segmentation
+    Med. Image Comput. Comput. Assisted Interv. (2015)
+    Google Scholar
+    Ruxton, 2006
+    G.D. Ruxton
+    The unequal variance t -test is an underused alternative to student's t -test and the Mann–Whitney U test
+    Behav. Ecol., 17 (4) (2006), pp. 688-690
+    CrossRef View in Scopus Google Scholar
+    Sankar et al., 2020
+    A. Sankar, Y. Wu, L. Gou, W. Zhang, H. Yang
+    Dysat: deep neural representation learning on dynamic graphs via self-attention networks
+    Proceedings of the 13th International Conference on Web Search and Data Mining (2020)
+    Google Scholar
+    Scarselli et al., 2008
+    F. Scarselli, M. Gori, A.C. Tsoi, M. Hagenbuchner, G. Monfardini
+    The graph neural network model
+    IEEE Trans. Neural Netw., 20 (1) (2008), pp. 61-80
+    Google Scholar
+    Sherstinsky, 2020
+    A. Sherstinsky
+    Fundamentals of recurrent neural network (RNN) and long short-term memory (LSTM) network
+    Phys. d Nonlinear Phenom. (2020), p. 404
+    Google Scholar
+    Smith et al., 2009
+    S.M. Smith, P.T. Fox, K.L. Miller, D.C. Glahn, P.M. Fox, C.E. Mackay, N. Filippini, K.E. Watkins, R. Toro, A.R. Laird
+    Correspondence of the brain's functional architecture during activation and rest
+    Proce. Natl. Acad. Sci., 106 (31) (2009), pp. 13040-13045
+    CrossRef View in Scopus Google Scholar
+    Smith et al., 2012
+    S.M. Smith, K.L. Miller, S. Moeller, J. Xu, E.J. Auerbach, M.W. Woolrich, C.F. Beckmann, M. Jenkinson, J. Andersson, M.F. Glasser, D.C. Van Essen, D.A. Feinberg, E.S. Yacoub, K. Ugurbil
+    Temporally-independent functional modes of spontaneous brain activity
+    Proc. Natl. Acad. Sci. U. S. A., 109 (8) (2012), pp. 3131-3136
+    CrossRef View in Scopus Google Scholar
+    Thekumparampil et al., 2018
+    K.K. Thekumparampil, C. Wang, S. Oh, L.J. Li
+    Attention-based Graph Neural Network For Semi-Supervised Learning
+    ArXiv (2018)
+    Google Scholar
+    Thomas and Max, 2017
+    N.K. Thomas, W Max
+    Semi-supervised classification with graph convolutional networks
+    Proceedings of the International Conference on Learning Representations (2017)
+    Google Scholar
+    Van Essen et al., 2013
+    D.C. Van Essen, S.M. Smith, D.M. Barch, T.E.J. Behrens, E. Yacoub, K Ugurbil
+    The WU-minn human connectome project: an overview
+    Neuroimage, 80 (2013), pp. 62-79
+    View PDF View article View in Scopus Google Scholar
+    Vaswani et al., 2017
+    A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A.N. Gomez, L. Kaiser, I. Polosukhin
+    Attention is all you need
+    Proceedings of the 31st Annual Conference on Neural Information Processing Systems (2017)
+    Google Scholar
+    Velikovi et al., 2018
+    P. Velikovi, G. Cucurull, A. Casanova, A. Romero, P. Liò, Y Bengio
+    Graph attention networks
+    Proceedings of the International Conference on Learning Representations (2018)
+    Google Scholar
+    Wang et al., 2020
+    Z. Wang, N. Zou, D. Shen, S Ji
+    Non-Local U-nets for biomedical image segmentation
+    Proceedings of the AAAI Conference on Artificial Intelligence (2020)
+    Google Scholar
+    Yan et al., 2021
+    J. Yan, Y. Chen, S. Yang, S. Zhang, M. Jiang, Z. Zhao, T. Zhang, B. Becker, T. Liu, K. Kendrick, X. Jiang
+    Multi-Head GAGNN: a multi-head guided attention graph neural network for modeling spatio-temporal patterns of holistic brain functional networks
+    Med. Image Comput. Comput. Assisted Interv. (MICCAI) (2021), pp. 564-573
+    CrossRef View in Scopus Google Scholar
+    Zhang et al., 2019a
+    C.H. Zhang, J.J.Q. Yu, Y. Liu
+    Spatial-temporal graph attention networks: a deep learning approach for traffic forecasting
+    IEEE Access, 7 (2019), pp. 166246-166256
+    CrossRef View in Scopus Google Scholar
+    Zhang et al., 2019b
+    W. Zhang, J. Lv, X. Li, D. Zhu, X. Jiang, S. Zhang, Y. Zhao, L. Guo, J. Ye, D. Hu, T. Liu
+    Experimental comparisons of sparse dictionary learning and independent component analysis for brain network inference from fMRI data
+    IEEE Trans. Biomed. Eng., 66 (1) (2019), pp. 289-299
+    CrossRef View in Scopus Google Scholar
+    Zhang et al., 2019c
+    W. Zhang, L. Zhao, Q. Li, S. Zhao, Q. Dong, X. Jiang, T. Zhang, T. Liu
+    Identify hierarchical structures from task-based fMRI data via hybrid spatiotemporal neural architecture search net
+    Med. Image Comput. Comput. Assisted Interv. (2019)
+    Google Scholar
+    Zhang et al., 2020
+    W. Zhang, S. Zhao, X. Hu, Q. Dong, H. Huang, S. Zhang, Y. Zhao, H. Dai, F. Ge, L. Guo, T. Liu
+    Hierarchical organization of functional brain networks revealed by hybrid spatiotemporal deep learning
+    Brain Connect, 10 (2) (2020), pp. 72-82
+    CrossRef View in Scopus Google Scholar
+    Zhao et al., 2016
+    Y. Zhao, H. Chen, Y. Li, J. Lv, X. Jiang, F. Ge, T. Zhang, S. Zhang, B. Ge, C. Lyu, S. Zhao, J. Han, L. Guo, T. Liu
+    Connectome-scale group-wise consistent resting-state network analysis in autism spectrum disorder
+    NeuroImage Clin, 12 (2016), pp. 23-33
+    View PDF View article View in Scopus Google Scholar
+    Zhao et al., 2020
+    Y. Zhao, X. Li, H. Huang, W. Zhang, S. Zhao, M. Makkie, M. Zhang, Q. Li, T. Liu
+    Four-dimensional modeling of fMRI data via spatio-temporal convolutional neural networks (ST-CNNs)
+    IEEE Trans. Cogn. Dev. Syst., 12 (3) (2020), pp. 451-460
+    CrossRef Google Scholar
+    Zou and Hastie, 2005
+    H. Zou, T. Hastie
+    Regularization and variable selection via the elastic net
+    J. R. Stat. Soc. Ser. B Stat. Methodol., 67 (2005), pp. 301-320
+    CrossRef View in Scopus Google Scholar
+
+Cited by (8)
+
+    Functional brain network identification and fMRI augmentation using a VAE-GAN framework
+    2023, Computers in Biology and Medicine
+    Show abstract
+    A deep learning method for autism spectrum disorder identification based on interactions of hierarchical brain networks
+    2023, Behavioural Brain Research
+    Show abstract
+    Analysis of ultrasonographic images using a deep learning-based model as ancillary diagnostic tool for diagnosing gallbladder polyps
+    2023, Digestive and Liver Disease
+    Show abstract
+    Graph Neural Network for spatiotemporal data: methods and applications
+    2023, arXiv
+    Spatial-Temporal Data-Augmentation-Based Functional Brain Network Analysis for Brain Disorders Identification
+    2023, SSRN
+    Spatial-temporal data-augmentation-based functional brain network analysis for brain disorders identification
+    2023, Frontiers in Neuroscience
+
+View all citing articles on Scopus
+View Abstract
+© 2022 Elsevier B.V. All rights reserved.
+Recommended articles
+
+    A DICCCOL-based K-nearest landmark detection method for identifying common and consistent 3-hinge gyral folding landmarks
+    Chaos, Solitons & Fractals, Volume 158, 2022, Article 112018
+    Shu Zhang , …, Tuo Zhang
+    Metric learning with spectral graph convolutions on brain connectivity networks
+    NeuroImage, Volume 169, 2018, pp. 431-442
+    Sofia Ira Ktena , …, Daniel Rueckert
+    Sparse representation of whole-brain fMRI signals for identification of functional networks
+    Medical Image Analysis, Volume 20, Issue 1, 2015, pp. 112-134
+    Jinglei Lv , …, Tianming Liu
+    View PDF
+
+Show 3 more articles
+Article Metrics
+View article metrics
+Elsevier logo with wordmark
+
+    About ScienceDirect
+    Remote access
+    Shopping cart
+    Advertise
+    Contact and support
+    Terms and conditions
+    Privacy policy 
+
+We use cookies to help provide and enhance our service and tailor content and ads. By continuing you agree to the use of cookies .
+
+All content on this site: Copyright © 2023 Elsevier B.V., its licensors, and contributors. All rights are reserved, including those for text and data mining, AI training, and similar technologies. For all open access content, the Creative Commons licensing terms apply.
+RELX group home page

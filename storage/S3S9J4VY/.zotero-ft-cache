@@ -1,0 +1,770 @@
+Editors' Suggestion
+
+PHYSICAL REVIEW LETTERS 128, 041601 (2022)
+
+Solving Conformal Field Theories with Artificial Intelligence
+Gergely Kántor * and Constantinos Papageorgakis †
+Centre for Theoretical Physics, Department of Physics and Astronomy Queen Mary University of London, London E1 4NS, United Kingdom
+Vasilis Niarchos ‡
+CCTP and ITCP, Department of Physics, University of Crete, Heraklion 71303, Greece
+(Received 3 September 2021; revised 15 October 2021; accepted 8 November 2021; published 24 January 2022)
+In this Letter, we deploy for the first time reinforcement-learning algorithms in the context of the conformal-bootstrap program to obtain numerical solutions of conformal field theories (CFTs). As an illustration, we use a soft actor-critic algorithm and find approximate solutions to the truncated crossing equations of two-dimensional CFTs, successfully identifying well-known theories like the 2D Ising model and the 2D CFT of a compactified scalar. Our methods can perform efficient high-dimensional searches that can be used to study arbitrary (unitary or nonunitary) CFTs in any spacetime dimension.
+DOI: 10.1103/PhysRevLett.128.041601
+
+Introduction.—The generic short- and large-distance behavior of a quantum field theory is described by a conformal field theory (CFT). CFTs appear in numerous physical applications, e.g., describing the physics of continuous phase transitions, and in many modern theoretical explorations of the nonperturbative structure of quantum field theories. They even appear in studies of quantum gravity and black-hole physics in the context of the AdS/CFT correspondence.
+The nonperturbative solution of CFTs is a long-standing problem. One of the most promising avenues toward its resolution follows the conformal-bootstrap program. Developed originally in the 1970s [1,2], the conformal bootstrap aims at the nonperturbative solution of the crossing-symmetry conditions of 4-point correlation functions. These conditions provide an infinite set of equations for an infinite set of unknowns (the CFT data), which are practically impossible, in general, to solve exactly. In modern reincarnations of the conformal bootstrap, starting with the seminal work of [3], one turns the problem around: Instead of searching directly for exact or approximate solutions to the crossing equations, one makes a minimal assumption about the spectrum of a unitary CFT and asks whether the crossing equations can be satisfied; if not, the assumption can be eliminated. In recent years, this approach has been implemented with great success in a variety of contexts—see, e.g., [4–6] for reviews—yielding
+Published by the American Physical Society under the terms of the Creative Commons Attribution 4.0 International license. Further distribution of this work must maintain attribution to the author(s) and the published article’s title, journal citation, and DOI. Funded by SCOAP3.
+
+allowed and disallowed regions of CFT data. On the boundary of these regions, or in “islands” of allowed regions, one can sometimes identify the data of specific CFTs. Numerical applications are facilitated by powerful linear and semidefinite programming methods, e.g., [7], that have produced impressive results. A characteristic application is the 3D Ising model [8,9].
+However, this implementation of the numerical conformal-bootstrap program has limitations. Its basic modus operandi involves selecting ad hoc assumptions for a handful of free parameters, while the resulting constraints on the CFT data favor the study of special CFTs on the boundary of the allowed and disallowed regions, making it harder to study particular classes of generic theories (e.g., one’s favorite gauge conformal field theory). Moreover, this standard approach suffers from exponential scaling on the dimensionality of the search space, which constitutes a major obstruction.
+Recent literature has attacked some of these issues. Notably, [10] introduced the “navigator-function” method: the navigator function is a globally defined, continuous, differentiable function of the CFT data, which is positive or negative in the disallowed and allowed regions. One can flow to an allowed region by minimizing said function. Yet another approach to the conformal bootstrap (also applicable to nonunitary CFTs) was proposed earlier in [11], where the conformal-block expansion of the crossing equations is truncated and Taylor-expanded in cross-ratio space (see also [12–19]). A reformulation of [11] as an optimization problem was introduced in [18].
+In this Letter, we introduce a novel numerical approach to the conformal bootstrap with advanced performance in “high-dimensional” searches that complements and/or radically improves current techniques and promises to
+
+0031-9007=22=128(4)=041601(6)
+
+041601-1
+
+Published by the American Physical Society
+
+PHYSICAL REVIEW LETTERS 128, 041601 (2022)
+
+yield previously inaccessible results. Our starting point is the algebraic system of “truncated-reduced” crossing equations of [11], and their minimization-problem reformulation in [18]. However, unlike [11,18], instead of using direct numerical methods that are known not to scale well with the number of unknowns [5], we take advantage of recent developments in the field of artificial intelligence and machine learning, where processes dealing with large parameter spaces have been proven to be very effective. Our preferred type of algorithms are reinforcement-learning (RL) algorithms [20]; RL implementations have also recently appeared in the context of string theory [21–25]. By default, these do not require externally provided data for training—they learn on their own through exploration. In this work, we report very promising results based on a continuous action space RL process known as the soft actor-critic algorithm [26].
+A distinctive feature of our approach is that, instead of minimizing directly the quantity of interest, we optimize a neural network (NN) that predicts a probability distribution. This is then sampled to yield the actual-search predictions. Unlike the direct optimization methods that are affected by the details and complexity of the problem, the optimization algorithms of our NNs are fixed and problem independent. In addition, our algorithms have a variable resolution of the parameter space, which explores more efficiently its global structure and is affected less by the choice of the starting point for the search. The price of our approach is that it is less “exact” and more statistical or probabilistic in nature.
+We demonstrate the efficiency of the RL approach by finding approximate solutions of the truncated crossing equations that can be readily identified as CFT data for the 2D Ising model and the 2D compactified scalar. 2D CFTs were chosen as a convenient testing ground of our methods, as they include many known exactly solvable theories. We do not use, however, any of their special features (e.g., the structure of the Virasoro algebra), which makes our approach directly applicable to the more interesting context of higher-dimensional CFTs. In this Letter, we report results of specific runs in a few special cases as a good case in point without any systematic survey of the associated uncertainties and numerical errors. A more detailed discussion with additional explanations and examples and a preliminary discussion of the errors appears in the companion paper [27].
+Theoretical setup.—Unlike generic quantum field theories, in a CFT one can, in principle, determine all the local correlation functions of the theory through the complete knowledge of the spectrum of conformal primary operators and their 2- and 3-point functions. The 2-point functions hOðx1ÞOðx2Þi contain information about the scaling dimensions Δ and normalization conventions of the operators O, while the 3-point functions hOiðx1ÞOjðx2ÞOkðx3Þi are fixed in terms of a single c number, the 3-point function
+
+coefficient Cijk. The latter are closely related to the coefficients Ckij appearing in the operator product expansion (OPE):
+X Oiðx1ÞO2ðx2Þ ¼ Ckijfˆ kijðx1; x2; ∂x2 ÞOkðx2Þ: ð1Þ
+k
+fˆ kij is a differential operator that incorporates the contribution of all the conformal descendants in the conformal multiplet of the primary Ok, whose form is completely fixed by conformal symmetry. The OPE is convergent under suitable conditions and can be used to reduce higherpoint correlation functions to lower-point ones. For example, 4-point functions can be reduced to a series of squares of OPE coefficients, known as a conformal-block expansion.
+We explicitly consider the case of 2D CFT. In higher dimensions some expressions become more complicated but many of the necessary ingredients have been significantly developed over the last decade [4–6] and can still be used to implement our approach. Following common 2D CFT conventions, we call “primary” the operators that are highest weights of the Virasoro algebra and “quasiprimary” the operators that are highest weights of the soð2; 2Þ global conformal algebra. In this Letter, we will be using only the global part of the Virasoro algebra. Moreover, in 2D the scaling dimension Δ and spin s of a quasiprimary operator O can be expressed in terms of left- and right-moving conformal weights h; h¯ respectively, as Δ ¼ h þ h¯ and s ¼ h − h¯ . Unitarity requires Δ ≥ s. The correlator of four quasiprimary operators Oi (i ¼ 1, 2, 3, 4) with conformal weights ðhi; h¯ iÞ inserted at distinct spacetime points ðzi; z¯iÞ (expressed here in terms of complex coordinates in Euclidean signature) can be expanded as
+
+hO1ðz1; z¯1ÞO2ðz2; z¯2ÞO3ðz3; z¯3ÞO4ðz4; z¯4Þi
+
+¼
+
+1
+
+1
+
+ z24 h12
+
+ z¯24
+
+h¯ 12
+
+×zh121þzzh11243zh343hþ3h4 4z¯zz¯¯h1¯112143þh¯ 2h¯z¯34h3¯OX 43þ;Oh¯ 40CO12zg14OO0
+
+z¯14 CO340 g1h2;h¯34
+
+ðz;
+
+z¯Þ:
+
+ð2Þ
+
+In this expression, gOO0 are 2-point function coefficients, zij ≡ zi − zj,
+
+z ¼ z12z34 ; z13z24
+
+z¯
+
+¼
+
+z¯ 12 z¯ 34 z¯ 13 z¯ 24
+
+ð3Þ
+
+are conformally invariant combinations of the coordinates ðzi; z¯iÞ, known as cross-ratios, and
+
+g1h2;h¯34ðz; z¯Þ ¼ zhz¯h¯ 2F1ðh − h12; h þ h34; 2h; zÞ
+
+× 2F1ðh¯ − h¯ 12; h¯ þ h¯ 34; 2h¯ ; z¯Þ
+
+ð4Þ
+
+041601-2
+
+PHYSICAL REVIEW LETTERS 128, 041601 (2022)
+
+are the 2D conformal blocks for an intermediate operator with conformal weights ðh; h¯ Þ [28]. We are using the notation hij ¼ hi − hj, and 2F1ða; b; c; zÞ denotes the ordinary hypergeometric function. The expansion [Eq. (2)]
+follows from a direct application of the OPE [Eq. (1)] simultaneously at the products O1ðz1; z¯1ÞO2ðz2; z¯2Þ and O3ðz3; z¯3ÞO4ðz4; z¯4Þ. The intermediate sum runs over operators O, O0 with the same scaling dimension. It is
+convenient to define
+
+X
+
+CO12gOO0 CO340 ≡ sCh;h¯ :
+
+ð5Þ
+
+O;O0jΔO¼ΔO0 ¼hþh¯
+
+Equation (2) is known as the s-channel expansion. An alternative expansion arises from the (32)–(14) OPEs—the t-channel expansion. The equivalence of the s- and tchannel expansions yields the crossing equations
+
+X
+s h;h¯
+
+Ch;h¯
+
+gðh1;h2¯ 34Þ
+
+ðz;
+
+z¯Þ
+
+¼
+
+ð−1Þðh41
+
+þh¯ 41
+
+Þ
+
+ðz
+
+zh1þh2 − 1Þh2þh3
+
+ðz¯
+
+z¯h¯ 1þh¯ 2 − 1Þh¯ 2þh¯ 3
+
+×
+
+X
+t
+
+Ch0;h¯ 0gðh30;2h¯104Þ
+
+ð1
+
+−
+
+z;
+
+1
+
+−
+
+z¯Þ;
+
+ð6Þ
+
+h0;h¯ 0
+
+which are of main interest in this Letter. We note that these conformal-block sums are taken over both ðh; h¯ Þ and ðh¯ ; hÞ
+contributions. The corresponding OPE-squared coefficients, Ch;h¯ and Ch¯;h, are generically different but equal when the external operators are spinless. In that case, it is convenient to collect the ðh; h¯ Þ and ðh¯ ; hÞ contributions and
+define a single conformal block:
+
+g˜ðh1;h2¯ 34Þðz;
+
+z¯Þ
+
+¼
+
+1
+
+1 þ δh;h¯
+
+½zhz¯h¯ 2F1ðh
+
+−
+
+h12;
+
+h
+
+þ
+
+h34
+
+;
+
+2h;
+
+zÞ
+
+2F1ðh¯ − h¯ 12; h¯ þ h¯ 34; 2h¯ ; z¯Þ þ ðz ↔ z¯Þ: ð7Þ
+
+To obtain a numerically tractable set of equations, we “truncate,” assume a “spin partition,” and “reduce.”
+The truncation restricts the sums in Eq. (6) to a finite
+number of terms, which are assumed to involve operators with scaling dimensions below an upper cutoff Δmax. The cutoff dictates our algorithm’s search window, and its presence constitutes one of the differences between our
+work and the truncation method of [11,18]. The conver-
+gence properties of the conformal-block expansion [29] suggest that there is a sufficiently high Δmax above which the contribution of the truncated terms is numerically
+negligible. It is not a priori easy to determine this value.
+Moreover, if there are contributions from degenerate
+operators in Eq. (6), only their sum counts. We further assume a specific assignment of spin for each
+contributing operator. We call this assignment the “spin partition” of our setup. The total finite number of unknown CFT data is denoted Nunknown.
+
+Finally, we need to implement a reduction from a single
+functional equation that depends on the continuous crossratio parameters ðz; z¯Þ to a discrete set of algebraic equations. Similar reductions are performed in standard
+approaches of the numerical conformal bootstrap, usually
+by Taylor-expanding the crossing equations around the point ðz; z¯Þ ¼ ð12 ; 12Þ. In this Letter, we choose to evaluate the crossing equations [Eq. (6)] at Nz > Nunknown different points on the z plane. The sampling of these points can
+affect the numerics. We have observed that the sampling
+suggested in Ref. [30] works well in our computations. In this fashion, we obtain Nz algebraic equations for
+Nunknown unknowns (the scaling dimensions Δ ¼ h þ h¯ of the intermediate operators in Eq. (6) and their corresponding OPE-squared coefficients Ch;h¯ ), which we write as an Nz-dimensional vector of equations E⃗ ðΔ⃗ ; C⃗ Þ ¼ 0. Since we have truncated the exact crossing equations, the set E⃗ ¼ 0 is not expected to have an exact solution. Hence, our main
+task is to perform an Nunknown-dimensional search to find an approximate solution that minimizes each component of the vector E⃗ . We have chosen to perform this search by minimizing the Euclidean norm jjE⃗ jj (although this choice is not unique).
+When comparing different approximate solutions, we
+also find it convenient to define a relative measure of accuracy A that quantifies a % violation of the truncated crossing equations. We define A ≔ ðkE⃗ k=EabsÞ, where
+
+Eabs ¼ X Nz X trunc jsCh;h¯ gðh1;h2¯ 34Þðzi; z¯iÞj
+i¼1 h;h¯
+
+þ jzhi 1þh2 z¯hi¯1þh¯2 ðzi − 1Þ−h2−h3 ðz¯i − 1Þ−h¯2−h¯3 j
+
+×
+
+X trunc
+
+jtCh0;h¯ 0gðh30;2h¯104Þð1
+
+−
+
+zi;
+
+1
+
+−
+
+ z¯iÞj :
+
+ð8Þ
+
+h0;h¯ 0
+
+Soft actor-critic algorithm.—The main components of RL algorithms are the “agent” and the “environment.” The agent explores the environment and makes decisions based on the feedback it receives. In the process, it retains its experiences and learns by optimizing a NN that guides the search probabilistically. The goal of the agent is to maximize a “reward.”
+The actions of our agent are performed in a continuous space and employ a soft actor-critic algorithm [26] to perform the search. The algorithm comprises an iterative process over separate steps taken by the agent. The following processes are executed in each step: (1) Choose action. Each action refers to a prediction of the Nunknown-dimensional vector of unknowns ðΔ⃗ ; C⃗ Þ. (2) Implement action in environment. The predicted values of the previous action are fed into the environment code. (3) Observe environment. The reduced algebraic
+
+041601-3
+
+PHYSICAL REVIEW LETTERS 128, 041601 (2022)
+
+constraints E⃗ are calculated by the environment and fed back to the agent as observations. (4) Obtain reward. The environment code generates a quantitative judgment (the “reward”) on how well the agent performed in its prediction. This reward is fed back to the agent. In our implementation, the reward is R ≔ −jjE⃗ jj. The negative sign punishes large violations of the truncated crossing equations. (5) Check if final state. The environment checks if the agent succeeded in obtaining a better reward compared to the previous one. (6) Update memory buffer. The experiences of the agent are stored in an “experience replay buffer” (containing all the information obtained by the agent in previous steps). (7) Update NN. A random sample from the memory buffer is used as training data to update the weights of the NNs. We used the ADAM optimizer in this process [31]. In the next iteration, the networks will try to predict an action with improved reward.
+In all cases we continued running the algorithm until the relative accuracy A dropped to (or below) 0.1% and the predictions converged to a specific profile.
+Results: 2D Ising model.—Our first set of results pertains to the 2D Ising model with central charge c ¼ 12, in which the spin primary operator σ has conformal weights ðh; h¯ Þ ¼ ð116 ; 116Þ, and the energy-density primary operator ε has ðh; h¯ Þ ¼ ð12 ; 12Þ. Their OPEs are [32]
+σ × σ ¼ ½I þ ½ε; σ × ε ¼ ½σ; ε × ε ¼ ½I; ð9Þ
+
+where I denotes the identity operator and square brackets the family of Virasoro descendants. It is straightforward to determine the quasiprimaries in each of the conformal families appearing in Eq. (9) [27].
+The exact crossing equation for the 4-point function hσðz1; z¯1Þσðz2; z¯2Þσðz3; z¯3Þσðz4; z¯4Þi,
+
+X Ch;h¯ ½jz − 1j2Δσ g˜ðhσ;hσ¯ σσÞðz; z¯Þ − jzj2Δσ g˜ðhσ;hσ¯ σσÞð1 − z; 1 − z¯Þ h≥h¯ ðh;h¯ Þ≠ð0;0Þ
+
+þ jz − 1j2Δσ − jzj2Δσ ¼ 0;
+
+ð10Þ
+
+involves intermediate operators with even spin only.
+
+Setting
+
+Δσ
+
+¼
+
+1 8
+
+for
+
+the
+
+external
+
+spin
+
+operator
+
+σ,
+
+we
+
+deployed our RL algorithm on a 10-dimensional search
+
+with Nz ¼ 29 to obtain the results of Table I. This particular
+
+run used as input the spin partition presented in the first
+
+column of that table with Δmax ¼ 6.5. It took 12 hours on a modern laptop computer to obtain a result with relative
+
+accuracy A ¼ 3.31618 × 10−6 [33]. In Table I, we have
+
+rounded the last digit of all the results.
+
+Likewise, for hεðz1; z¯1Þεðz2; z¯2Þεðz3; z¯3Þεðz4; z¯4Þi, the exact crossing equation is
+
+TABLE I. 2D Ising CFT data for hσσσσi.
+
+Spin Analytic Δ RL Δ Analytic C
+
+0
+
+4
+
+3.93 2.44 × 10−4
+
+0
+
+1
+
+0.99
+
+0.25
+
+2
+
+2
+
+1.98
+
+0.016
+
+4
+
+4
+
+3.95
+
+2.2 × 10−4
+
+6
+
+6
+
+5.97 1.36 × 10−5
+
+RL C
+3.66 × 10−4 0.25 0.016
+2.47 × 10−4 0.54 × 10−5
+
+X Ch;h¯ ½jz − 1j2Δε g˜ðhε;hε¯εεÞðz; z¯Þ − z2Δε g˜ðhε;hε¯εεÞð1 − z; 1 − z¯Þ h≥h¯ ðh;h¯ Þ≠ð0;0Þ
+
+þ jz − 1j2Δε − jzj2Δε ¼ 0:
+
+ð11Þ
+
+Setting Δε ¼ 1 for the external energy-density operator ε, we used our RL algorithm to obtain the results of Table II.
+
+This particular run was based on the spin partition
+
+presented in the first column of that table with Δmax ¼ 6.5. We used Nz ¼ 29 and it took 2 hours to reach the relative accuracy A ¼ 8.62723 × 10−4.
+
+In both cases, the relative accuracy at which we can
+
+satisfy the truncated crossing equations is impressive.
+
+When compared with analytic expectations, the numerical
+
+results for the scaling dimensions agree at the order of 1%.
+
+For the OPE-squared coefficients, the agreement is equally
+
+impressive for the lower-lying operators but becomes worse
+
+for higher scaling-dimension operators that lie closer to Δmax. Further details about the specifics of the runs, along with several other cases, can be found in the companion
+
+paper [27]. Results: 2D S1 CFT.—Our next set of results concern the
+c ¼ 1 2D CFT of a compact boson X with radius R, defined
+
+by the action
+
+S
+
+¼
+
+1 4π
+
+Z
+
+d2z∂X∂¯ X;
+
+X ≃ X þ 2πR: ð12Þ
+
+The basic primaries of the theory are the Uð1Þ currents
+
+jðzÞ
+
+¼
+
+i 2
+
+∂XðzÞ;
+
+j¯ðz¯Þ
+
+¼
+
+i 2
+
+∂Xðz¯Þ
+
+ð13Þ
+
+and the vertex operators
+
+Vp;p¯ ðz; z¯Þ ≕ eipXðzÞþip¯ X¯ ðz¯Þ∶;
+
+ð14Þ
+
+TABLE II. 2D Ising CFT data for hεεεεi.
+
+Spin
+
+Analytic Δ
+
+RL Δ
+
+Analytic C
+
+0
+
+4
+
+4.07
+
+1
+
+2
+
+2
+
+1.95
+
+1
+
+2
+
+6
+
+5.93
+
+0.1
+
+4
+
+4
+
+3.9
+
+0.1
+
+6
+
+6
+
+5.93
+
+0.023
+
+RL C
+1.04 1.19 0.12 0.20 0.022
+
+041601-4
+
+PHYSICAL REVIEW LETTERS 128, 041601 (2022)
+
+TABLE III. 2D S1 CFT data for hVpVpV¯ pV¯ pi with Δmax ¼ 2.
+
+Channel Spin Analytic Δ RL Δ Analytic C RL C
+
+s
+
+0
+
+0.4
+
+0.39
+
+1
+
+0.99
+
+t
+
+0
+
+2
+
+2.11
+
+0.01
+
+0.01
+
+1
+
+1
+
+0.95 −0.1
+
+−0.1
+
+2
+
+2
+
+2.13
+
+0.005 0.0048
+
+where p ¼ ðn=RÞ þ ðwR=2Þ, p¯ ¼ ðn=RÞ − ðwR=2Þ with n
+and w the integer momentum and winding quantum numbers of the corresponding states. j, j¯ have respectively conformal weights ðh; h¯ Þ ¼ ð1; 0Þ; ð0; 1Þ, and Vp;p¯ has ðh; h¯ Þ ¼ ½ðp2=2Þ; ðp¯ 2=2Þ. It is again straightforward to
+determine the full spectrum of quasiprimary operators [27].
+For our first example, we study 4-point functions of
+spinless unit-normalized vertex operators Vp, which are charged under the Uð1Þ symmetry of the theory: hVpðz1; z¯1ÞVpðz2; z¯2ÞV¯ pðz3; z¯3ÞV¯ pðz4; z¯4Þi. We label their scaling dimension as Δp ≡ p2, p ∈ R. V¯ p denotes the complex-conjugate operator with opposite Uð1Þ charge.
+The relevant crossing equation is
+
+X sCh;h¯ jz
+
+−
+
+1j2Δp
+
+g˜ ðhV;h¯V V¯
+
+V¯ Þðz;
+
+z¯Þ
+
+−
+
+jzj2Δp
+
+h≥h¯
+
+− X tCh0;h¯0jzj2Δp g˜ðhV;¯h¯VVV¯ Þð1 − z; 1 − z¯Þ ¼ 0:
+
+ðh0 ;hh¯ 00 ≥Þ≠h¯ð00;0Þ
+
+ð15Þ
+
+In Tables III and IV, we have collected the expected analytic results of the S1 theory, assuming that Vp is a spinless operator with Δp ¼ 0.1, together with the best
+
+TABLE IV. 2D S1 CFT data for hVpVpV¯ pV¯ pi with Δmax ¼ 5.5.
+
+Channel Spin Analytic Δ RL Δ Analytic C
+
+RL C
+
+s
+
+0
+
+0.4 0.40
+
+1
+
+1.01
+
+0
+
+4.4
+
+4.34 1.23 × 10−5 0.43 × 10−5
+
+1
+
+5.4 5.31
+
+0
+
+−2.26 × 10−4
+
+2
+
+2.4
+
+2.41 3.57 × 10−3 5.49 × 10−3
+
+3
+
+3.4 3.45
+
+0
+
+−0.45 × 10−5
+
+4
+
+4.4
+
+4.41 1.96 × 10−3 0.28 × 10−3
+
+5
+
+5.4 5.34
+
+0
+
+−9.98 × 10−5
+
+t
+
+0
+
+2
+
+2.00 1 × 10−2 0.57 × 10−2
+
+0
+
+4
+
+4.02 2.5 × 10−5 4.88 × 10−4
+
+1
+
+1
+
+1.04
+
+−0.1
+
+−0.09
+
+1
+
+3
+
+3.05 −5 × 10−4 −2.27 × 10−2
+
+1
+
+5
+
+4.98 −0.83 × 10−6 −9.27 × 10−4
+
+2
+
+2
+
+2.01 5 × 10−3 1.81 × 10−3
+
+2
+
+4
+
+4.05 1.67 × 10−5 7.28 × 10−4
+
+3
+
+3
+
+3.03 −1.67 × 10−4 −2.89 × 10−4
+
+3
+
+5
+
+4.95 −0.42 × 10−6 −3.30 × 10−3
+
+4
+
+4
+
+3.93 0.42 × 10−5 6.67 × 10−4
+
+5
+
+5
+
+5.04 −8.33 × 10−8 −4.36 × 10−4
+
+results obtained by the agent. The numerical values have
+been truncated to the first two nonzero decimals for brevity.
+Already in the simplest case, corresponding to the spin partition of Table III with Δmax ¼ 2, a run of the RL algorithm with Nz ¼ 30 predicts the analytically expected CFT data to very good accuracy. This excellent agreement persists for Δ once we incorporate operators with higher conformal dimensions, although the C results are less
+accurate for smaller numbers, as reported in Table IV, with a spin partition of Δmax ¼ 5.5 and Nz ¼ 49. The Nunknown ¼ 8 search of Table III took 2 hours to achieve A ¼ 1.97 × 10−4, while the Nunknown ¼ 36 run of Table IV took 2 days with A ¼ 3.21 × 10−5.
+Our second correlator is the 4-point function of the holomorphic, conserved, spin-1 operator j, hjðz1Þjðz2Þjðz3Þjðz4Þi, yielding the crossing equation
+
+X Ch;h¯ ½ðz − 1Þ2Δj gðhj;jh¯jjÞðz; z¯Þ − z2Δj gðhj;jh¯jjÞð1 − z; 1 − z¯Þ h≥h¯ ðh;h¯ Þ≠ð0;0Þ
+
+þ
+
+1 16
+
+ððz
+
+−
+
+1Þ2
+
+−
+
+z2Þ
+
+¼
+
+0:
+
+ð16Þ
+
+The conserved holomorphic current jðzÞ has spin 1 and exact scaling dimension Δj ¼ 1. In the results reported in Table V, Δj was kept as one of the unknowns of the search, for which the agent determined the value Δj ¼ 0.99 Æ 0.01. In Table V, we also report statistical errors obtained by performing 10 independent runs with Nz ¼ 16 and the spin partition appearing in the first column with Δmax ¼ 8. Each run took approximately 2 hours. The resulting relative accuracy was A ¼ ð2.14 Æ 0.08Þ × 10−4. Once again, the algorithm performed very well, reproducing sensibly the analytically expected, low-lying CFT data.
+Outlook.—We presented examples demonstrating that the enormous recent progress in artificial intelligence can be harnessed to determine data in generic CFTs with very good accuracy. Further examples and more detailed discussion can be found in [27]. Some CFT features need to guide the search, e.g., some prior information about the structure of the spectrum can be used to inform the spin partition and search windows. We believe that our approach will be extremely useful in situations where a CFT can be first identified (solved) in a parametrically convenient regime. In such cases, the perturbative information can be used to set up a spin partition that informs searches with
+
+TABLE V. 2D S1 CFT data for hjjjji.
+
+Spin Analytic Δ RL Δ Analytic C
+
+RL C
+
+2
+
+2
+
+2.01 Æ 0.02 2
+
+1.94 Æ 0.04
+
+4
+
+4
+
+3.97 Æ 0.04 1.2
+
+1.16 Æ 0.04
+
+6
+
+6
+
+5.95 Æ 0.04 0.24
+
+0.22 Æ 0.01
+
+8
+
+8
+
+7.98 Æ 0.08 0.033 0.024 Æ 0.001
+
+041601-5
+
+PHYSICAL REVIEW LETTERS 128, 041601 (2022)
+
+gradually changing parameters from weak to strong coupling. We expect that in the near future the synergy of our methods with other existing analytic and numerical approaches will lead to a plethora of new nonperturbative results in CFT. Supersymmetric CFTs are an immediate target for further formal developments.
+In order to better develop our RL algorithm, it is also imperative to better understand the various sources of error: analytic errors stemming from the truncation of the conformal-block expansion, the z-point sampling, statistical errors, the choice of reward function, as well as the particular choice of the learning algorithm that we used.
+We would like to thank P. Agarwal, E. V. G. Christiansen, S. Kousvos, and B. van Rees for useful discussions and comments. We acknowledge financial support by the Royal Society Grant No. URF\R\180009 and the STFC Grant No. ST/P000754/1.
+*Corresponding author. g.kantor@qmul.ac.uk †Corresponding author. c.papageorgakis@qmul.ac.uk ‡Corresponding author. niarchos@physics.uoc.gr [1] S. Ferrara, A. F. Grillo, and R. Gatto, Tensor representations of conformal algebra and conformally covariant operator product expansion, Ann. Phys. (N.Y.) 76, 161 (1973). [2] A. M. Polyakov, Nonhamiltonian approach to conformal quantum field theory, Zh. Eksp. Teor. Fiz. 66, 23 (1974). [3] R. Rattazzi, V. S. Rychkov, E. Tonni, and A. Vichi, Bounding scalar operator dimensions in 4D CFT, J. High Energy Phys. 12 (2008) 031. [4] D. Simmons-Duffin, TASI lectures on the conformal bootstrap, arXiv:1602.07982. [5] D. Poland, S. Rychkov, and A. Vichi, The conformal bootstrap: Theory, numerical techniques, and applications, Rev. Mod. Phys. 91, 015002 (2019). [6] S. M. Chester, Weizmann lectures on the numerical conformal bootstrap, arXiv:1907.05147. [7] D. Simmons-Duffin, A semidefinite program solver for the conformal bootstrap, J. High Energy Phys. 06 (2015) 174. [8] S. El-Showk, M. F. Paulos, D. Poland, S. Rychkov, D. Simmons-Duffin, and A. Vichi, Solving the 3D Ising model with the conformal bootstrap, Phys. Rev. D 86, 025022 (2012). [9] F. Kos, D. Poland, and D. Simmons-Duffin, Bootstrapping mixed correlators in the 3D Ising model, J. High Energy Phys. 11 (2014) 109. [10] M. Reehorst, S. Rychkov, D. Simmons-Duffin, B. Sirois, N. Su, and B. van Rees, Navigator function for the conformal bootstrap, SciPost Phys. 11, 072 (2021). [11] F. Gliozzi, Constraints on Conformal Field Theories in Diverse Dimensions from the Bootstrap Mechanism, Phys. Rev. Lett. 111, 161602 (2013).
+
+[12] F. Gliozzi and A. Rago, Critical exponents of the 3d Ising and related models from conformal bootstrap, J. High Energy Phys. 10 (2014) 042.
+[13] F. Gliozzi, P. Liendo, M. Meineri, and A. Rago, Boundary and interface CFTs from the conformal bootstrap, J. High Energy Phys. 05 (2015) 036.
+[14] F. Gliozzi, Truncatable bootstrap equations in algebraic form and critical surface exponents, J. High Energy Phys. 10 (2016) 037.
+[15] I. Esterlis, A. L. Fitzpatrick, and D. Ramirez, Closure of the operator product expansion in the non-unitary bootstrap, J. High Energy Phys. 11 (2016) 030.
+[16] S. Hikami, Conformal bootstrap analysis for the Yang– Lee edge singularity, Prog. Theor. Exp. Phys. (2018), 053I01.
+[17] S. Hikami, Conformal bootstrap analysis for single and branched polymers, Prog. Theor. Exp. Phys. (2018), 123I01.
+[18] W. Li, New method for the conformal bootstrap with OPE truncations, arXiv:1711.09075.
+[19] A. Leclair and J. Squires, Conformal bootstrap for percolation and polymers, J. Stat. Mech. (2018) 123105.
+[20] R. S. Sutton and A. G. Barto, Reinforcement Learning: An Introduction (MIT Press, Cambridge, MA, 2018).
+[21] J. Halverson, B. Nelson, and F. Ruehle, Branes with brains: exploring string vacua with deep reinforcement learning, J. High Energy Phys. 06 (2019) 003.
+[22] F. Ruehle, Data science applications to string theory, Phys. Rep. 839, 1 (2020).
+[23] T. R. Harvey and A. Lukas, Quark mass models and reinforcement learning, J. High Energy Phys. 08 (2021) 161.
+[24] S. Krippendorf, R. Kroepsch, and M. Syvaeri, Revealing systematics in phenomenologically viable flux vacua with reinforcement learning, arXiv:2107.04039.
+[25] A. Constantin, T. R. Harvey, and A. Lukas, Heterotic string model building with monad bundles and reinforcement learning, arXiv:2108.07316.
+[26] T. Haarnoja, A. Zhou, P. Abbeel, and S. Levine, Soft actorcritic: Off-policy maximum entropy deep reinforcement learning with a stochastic actor, arXiv:1801.01290.
+[27] G. Kántor, V. Niarchos, and C. Papageorgakis, Companion paper, Conformal bootstrap with reinforcement learning, Phys. Rev. D 105, 025018 (2022).
+[28] H. Osborn, Conformal blocks for arbitrary spins in two dimensions, Phys. Lett. B 718, 169 (2012).
+[29] D. Pappadopulo, S. Rychkov, J. Espin, and R. Rattazzi, Operator product expansion convergence in conformal field theory, Phys. Rev. D 86, 105043 (2012).
+[30] A. Castedo Echeverri, B. von Harling, and M. Serone, The effective bootstrap, J. High Energy Phys. 09 (2016) 097.
+[31] D. P. Kingma and J. Ba, Adam: A method for stochastic optimization, arXiv:1412.6980.
+[32] P. Di Francesco, P. Mathieu, and D. Senechal, Conformal Field Theory, Graduate Texts in Contemporary Physics (Springer-Verlag, New York, 1997), ISBN 978-0-38794785-3, 978-1-4612-7475-9.
+[33] After submission to PRL, we found that replacing the MPMATH numerical PYTHON library with SciPy reduces the running time to just 30 minutes with similar results to those of Table I.
+
+041601-6
+

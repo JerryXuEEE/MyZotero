@@ -1,0 +1,159 @@
+Skip to Main Content
+
+    APS Logo
+
+    Journals
+        Physical Review Letters
+        Physical Review X
+        PRX Energy
+        PRX Life
+        PRX Quantum
+        Reviews of Modern Physics
+        Physical Review A
+        Physical Review B
+        Physical Review C
+        Physical Review D
+        Physical Review E
+        Physical Review Research
+        Physical Review Accelerators and Beams
+        Physical Review Applied
+        Physical Review Fluids
+        Physical Review Materials
+        Physical Review Physics Education Research
+        Physical Review
+        Physical Review (Series I)
+        Physics Physique Fizika 
+    Physics Magazine
+    Help/Feedback
+
+    Search/Article Lookup
+    Log in 
+
+Physical Review E
+covering statistical, nonlinear, biological, and soft matter physics
+
+    Highlights
+    Recent
+    Accepted
+    Collections
+    Authors
+    Referees
+    Search
+    Press
+    About
+    Editorial Team
+
+    Go Mobile »
+    Access by Hong Kong Baptist University
+
+Ising-like dynamics in large-scale functional brain networks
+Daniel Fraiman, Pablo Balenzuela, Jennifer Foss, and Dante R. Chialvo
+Phys. Rev. E 79 , 061922 – Published 23 June 2009
+Article has an altmetric score of 14
+More
+
+    Article
+    References
+    Citing Articles (136) 
+
+PDF HTML Export Citation
+Abstract
+
+Brain “rest” is defined—more or less unsuccessfully—as the state in which there is no explicit brain input or output. This work focuses on the question of whether such state can be comparable to any known dynamical state. For that purpose, correlation networks from human brain functional magnetic resonance imaging are contrasted with correlation networks extracted from numerical simulations of the Ising model in two dimensions at different temperatures. For the critical temperature T c , striking similarities appear in the most relevant statistical properties, making the two networks indistinguishable from each other. These results are interpreted here as lending support to the conjecture that the dynamics of the functioning brain is near a critical point.
+
+    Figure
+    Figure
+    Figure
+    Figure
+    Figure
+    Figure
+    Figure 
+
+1 More
+
+    Received 10 December 2008
+
+DOI: https://doi.org/10.1103/PhysRevE.79.061922
+
+©2009 American Physical Society
+Authors & Affiliations
+
+Daniel Fraiman 1 , Pablo Balenzuela 2 , Jennifer Foss 3 , and Dante R. Chialvo 3
+
+    1 Departamento de Matemática y Ciencias, Universidad de San Andrés and CONICET, Buenos Aires 1644, Argentina
+    2 Departmento de Física, Facultad de Ciencias Exactas y Naturales, Universidad de Buenos Aires and CONICET, Buenos Aires 1428, Argentina
+    3 Department of Physiology, Northwestern University, Chicago, Illinois 60611, USA
+
+Click to Expand
+Article Text
+Click to Expand
+References
+Click to Expand
+Issue
+
+Vol. 79, Iss. 6 — June 2009
+Reuse & Permissions
+
+    (Color online) Panel (a): brain’s FMRI correlation density distribution for each of the five control subjects recorded under resting conditions. Panel (b): Ising model correlation density distribution for (green, dashed line), (red, continuous line), and (black, dot dashed line). Insets in both panels show the logarithmic-linear plot of the same density distributions.
+    (Color online) Average degree, , as a function of threshold for (a) positive and (c) negative correlation networks. Variance of degree, , as a function of for (b) positively and (d) negatively correlated networks. The dashed black line [in panels (b) and (d)] corresponds to the expected behavior of a Poisson distribution. In all graphs the Ising model data at three temperatures, , , and , are presented, as well as the data from the five subject’s FMRI brain networks.
+    (Color online) Normalized network clustering [panel (a)] and path length [panel (b)] as a function of average degree. Solid lines denote results for the Ising model at and dashed lines denote the results for the brain.
+    (Color) Degree distribution for positively correlated networks. Top three panels depict the degree distribution for the Ising networks at , , and for three representative values of , 127, and 713. Bottom panel: degree distribution for positively correlated brain network for the same three values of .
+    (Color) Degree distribution for negatively correlated networks. Top three panels depict the degree distribution for the Ising networks at , , and , respectively, for three representative values of , 127, and 277. Bottom panel: degree distribution for negatively correlated brain network for the same three values of .
+    (Color online) Brain network’s average degree distribution computed from five volunteers for .
+    (Color online) Top four panels: neighbor degrees correlation. Plot of the nearest-neighbor degree, , as a function of own degree for the two type of networks extracted from the brain (left) and from the Ising model at (right). Bottom panels: clustering, , as a function of the degree for positively correlated networks extracted from the brain (left) and from the Ising model at : in all plots dots represent individual nodes and empty circles joined by lines represent averages. Positively correlated networks correspond to and negatively correlated networks correspond to .
+
+Sign up to receive regular email alerts from Physical Review E
+Sign up
+More Links
+
+    APS
+    Current Issue
+    Earlier Issues
+    News & Announcements
+    About this Journal
+    Editorial Team
+    About the Journals
+    Join APS
+
+    Authors
+        General Information
+        Submit a Manuscript
+        Publication Rights
+        Open Access
+        Policies & Practices
+        Tips for Authors
+        Professional Conduct 
+    Referees
+        General Information
+        Submit a Report
+        Update Your Information
+        Policies & Practices
+        Referee FAQ
+        Guidelines for Referees
+        Outstanding Referees 
+    Librarians
+        General Information
+        Subscriptions
+        Online License Agreement
+        Usage Statistics
+        Your Account 
+    Students
+        Physics
+        PhysicsCentral
+        Student Membership 
+    APS Members
+        Subscriptions
+        Article Packs
+        Membership
+        FAQ
+        APS News
+        Meetings & Events 
+
+    Privacy
+    Policies
+    Contact Information
+    Feedback 
+
+ISSN 2470-0053 (online), 2470-0045 (print). ©2023 American Physical Society. All rights reserved. Physical Review E™ is a trademark of the American Physical Society, registered in the United States, Canada, European Union, and Japan. The APS Physics logo and Physics logo are trademarks of the American Physical Society. Information about registration may be found here . Use of the American Physical Society websites and journals implies that the user has read and agrees to our Terms and Conditions and any applicable Subscription Agreement .
+This site uses cookies. To find out more, read our Privacy Policy . I Agree
+PDF Help

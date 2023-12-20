@@ -1,0 +1,491 @@
+
+JavaScript is disabled on your browser. Please enable JavaScript to use all the features on this page. Skip to main content Skip to article
+Elsevier logo ScienceDirect
+
+    Journals & Books 
+
+    Search 
+
+My Account Sign in
+
+    View  PDF
+    Download full issue 
+
+Outline
+
+    Highlights
+    Abstract
+    Keywords
+    Introduction
+    Materials and methods
+    Results
+    Discussion
+    Conflicts of interest
+    Acknowledgments
+    References 
+
+Show full outline
+Cited by (70)
+Figures (5)
+
+    Fig.1. Kernel density estimates of outcome distributions (% improvement from pre- to…
+    Fig.2. Change in symptom severity over the course of treatment for patients receiving…
+    Fig.3. Change in symptom severity over the course of treatment for patients receiving…
+    Fig.4. Change in symptom severity over the course of treatment for patients receiving…
+    Fig.5. Change in symptom severity over the course of treatment for patients receiving…
+
+Tables (1)
+
+    Table 1 
+
+Elsevier
+Brain Stimulation
+Volume 11, Issue 2 , March–April 2018, Pages 327-336
+Brain Stimulation
+Number of pulses or number of sessions? An open-label study of trajectories of improvement for once-vs. twice-daily dorsomedial prefrontal rTMS in major depression
+Author links open overlay panel Laura Schulze a b 1 , Kfir Feffer a c d 1 , Christopher Lozano e , Peter Giacobbe a b d , Zafiris J. Daskalakis b d g , Daniel M. Blumberger b d g , Jonathan Downar a b d f
+Show more
+Add to Mendeley
+Share
+Cite
+https://doi.org/10.1016/j.brs.2017.11.002 Get rights and content
+Under a Creative Commons license
+open access
+Highlights
+
+    •
+
+    Case series: 130 MDD patients once-daily 10 Hz vs. twice-daily 20 Hz DMPFC-rTMS.
+    •
+
+    Same number of pulses per day (6000) in each group, divided into 1 vs 2 fractions.
+    •
+
+    Safety, tolerability, and degree of final improvement did not differ between groups.
+    •
+
+    Response trajectories tracked number of sessions, and not number of pulses.
+
+Abstract
+Background
+
+Repetitive transcranial magnetic stimulation (rTMS) shows efficacy in the treatment of major depressive episodes (MDEs), but can require ≥4–6 weeks for maximal effect. Recent studies suggest that multiple daily sessions of rTMS can accelerate response without reducing therapeutic efficacy. However, it is unresolved whether therapeutic effects track cumulative number of pulses, or cumulative number of sessions.
+Objective
+
+This open-label study reviewed clinical outcomes over a 20–30 session course of high-frequency bilateral dorsomedial prefrontal cortex (DMPFC)-rTMS among patients receiving 6000 pulses/day delivered either in twice-daily sessions 80 min apart (at 20 Hz) or single, longer, once-daily sessions (at 10 Hz).
+Methods
+
+A retrospective chart review identified 130 MDD patients who underwent 20–30 daily sessions of bilateral DMPFC-rTMS (Once-daily, n  = 65; Twice-daily, n  = 65) at a single Canadian clinic.
+Results
+
+Mixed-effects modeling revealed significantly faster improvement (group-by-time interaction) for twice-daily versus once-daily DMPFC-rTMS. Across both groups, the pace of improvement showed a consistent relationship with number of cumulative sessions, but not with cumulative number of pulses. Although the twice-daily group completed treatment in half as many days, final clinical outcomes did not differ significantly between groups on dichotomous measures (response/remission rates: once-daily, 35.4%/33.8%; twice-daily, 41.5%/35.4%), or continuous measures, or on overall response distribution.
+Conclusions
+
+Twice-daily rTMS appears feasible, tolerable, and capable of achieving comparable results to once-daily rTMS, while also reducing course length approximately twofold. Therapeutic gains tracked the cumulative number of sessions, not pulses. Future randomized studies comparing once-daily to multiple-daily rTMS sessions, while controlling for number of pulses, may be warranted.
+
+    Previous article in issue
+    Next article in issue 
+
+Keywords
+rTMS
+Depression
+Accelerated
+Interval
+Dose-response
+Dorsomedial
+Case series
+Introduction
+
+Repetitive transcranial magnetic stimulation (rTMS) is a non-invasive form of neuromodulation currently entering increasingly wide use in the treatment of medication-resistant major depressive disorder (MDD) and other medication-refractory psychiatric illnesses. Efficacy for MDD has been demonstrated across multiple large randomized clinical trials and meta-analyses [1] , [2] and recognized in treatment guidelines in many jurisdictions [3] , [4] , [5] , [6] . Current research efforts seek to optimize the parameters of stimulation.
+
+One parameter that is a priority for optimization concerns the length of the treatment course. Although early rTMS studies used as few as 5–10 sessions of treatment [7] , [8] , more recent studies indicate that at least 20–30 sessions are required for optimal effect [5] , [9] , with some individuals possibly requiring even longer courses [10] . Since conventionally, rTMS is delivered once-daily, such lengthy courses impose a substantial logistical burden on patients, in addition to prolonging the course of recovery.
+
+Some recent studies have begun to deliver multiple rTMS sessions per day in an effort to accelerate the trajectory of response. An initial case series reported response and remission rates of 43% and 21% with an intensive regimen of 15 sessions over 2 days in N  = 14 patients (10 Hz, 15 000 pulses total) [11] . A subsequent case series applying rTMS 1–2x daily (10 Hz, 6800 pulses/session) reported 33% remission at 2 weeks in N  = 21 patients [12] . Another series delivering twice-daily 10 Hz rTMS (10 days, 6000 pulses/day) reported 56% response and 37% remission in N  = 27 patients [13] . A subsequent trial with a crossover design using accelerated 20 Hz rTMS (5× daily, 7800 pulses/day, 4 days) achieved 35% response and 15% remission in N  = 20 patients [14] , and a follow-up crossover study by the same authors using intermittent theta-burst stimulation (iTBS) (5× daily, 8100 pulses/day, 4 days) achieved 38% response and 30% remission in N  = 50 patients. These reports suggest that it may be possible to accelerate the trajectory of rTMS response while preserving the overall efficacy.
+
+One unresolved question, however, concerns the key parameter for accelerating rTMS outcomes: cumulative number of sessions, or number of pulses? Some preclinical studies have supported the latter, showing stronger physiological effects on motor evoked potentials (MEPs) or measures of cortical inhibition with longer rTMS sessions using a higher number of pulses [15] , [16] , [17] . Accordingly, a postulate in the earlier rTMS literature was that the key to better therapeutic outcomes was more pulses [12] , [18] , [19] ; on this view, the accelerated effects of multiple daily sessions could be attributed to the higher cumulative number of pulses/day rather than the additional sessions per se . However, other reviews have failed to identify a consistent relationship between rTMS efficacy and total number of pulses or pulses/session [1] , [20] , [21] , and at least one review found greater efficacy with fewer pulses/session [22] . Thus, available evidence suggests it may be difficult to consistently accelerate response simply by using longer once-daily sessions with higher numbers of pulses.
+
+An alternative option is that clinical response can be accelerated by adding more sessions per day, as long as there is an interval between the sessions. In the preclinical literature, Nettekoven et al. [23] , [24] , explored this issue directly by delivering 3 sessions of iTBS to motor cortex at 15 min intervals. While the first iTBS session increased MEPs, the second session 15 min later failed to exert any additional effect; however, the third session 30 min later did indeed achieve further increases in MEP amplitude similar to those from the first session. Such findings suggest that the cumulative number of sessions may be a more critical parameter than the cumulative number of pulses, so long as a certain minimum interval is interposed between sessions. However, to date, no study in either the preclinical or the clinical literature has directly assessed the effect of the total number of sessions while controlling for the total number of pulses.
+
+Although a formal randomized controlled study, ideally targeting the most common evidence-based stimulation target in the dorsolateral prefrontal cortex (DLPFC), would be required to definitively settle the question of cumulative pulses vs. cumulative sessions, in the interim, evidence from large case series may help to inform the rationale and design of such studies, as previously done for parameters such as course length [9] and stimulation pattern [25] . Here we have identified a serendipitous opportunity to compare outcome trajectories in a retrospective chart review of 130 patients with a medication-resistant depressive episode, all of whom received 6000 pulses/day of rTMS targeting the dorsomedial prefrontal cortex (DMPFC), but with some having received this total in a single session and others in two sessions separated by an interval. Based on previous reports, we formulated three hypotheses: i) twice-daily rTMS would achieve a similar distribution of final outcomes to once-daily rTMS, after a course of the same cumulative number of sessions; ii) twice-daily DMPFC-rTMS would achieve significantly faster day-by-day trajectories of improvement vs. once-daily rTMS with the same daily number of pulses; iii) across both groups, the trajectory of improvement over time would track the number of sessions, not the number of pulses.
+Materials and methods
+Chart review and patient population
+
+This chart review identified 130 patients who received once-daily (n = 65) or twice-daily (n = 65) bilateral rTMS at the University Health Network MRI-Guided rTMS Clinic for unipolar (MDD) or bipolar (BD) illness, and a current major depressive episode (MDE), with both groups showing a match on key demographic and clinical variables as detailed below. At intake, all patients completed the Mini International Neuropsychiatric Interview (MINI 6.0) followed by full clinical psychiatric assessment by a Canadian Royal College-certified psychiatrist (authors JD, KF or PG) to establish primary diagnoses and comorbidities by DSM-V criteria. In line with earlier reports from our group and others on DMPFC-rTMS [25] , [26] , [27] , [28] , patients with secondary comorbidities other than psychotic illness or active substance use were not excluded in order to better reflect routine clinical practice and patient heterogeneity. Patients with rTMS contraindications (e.g., history of seizures , unexplained syncopal episodes, foreign ferromagnetic bodies/implanted devices near stimulation site, central neurological illness, or pregnancy) were not offered treatment . All patients had resistance to at least two adequate medication trials in the current episode, as determined by semi-structured clinical interview. All patients maintained a stable regimen of medications for ≥4 weeks prior to treatment, with no changes throughout course of treatment. Note that patients were not randomized to treatment, but instead received either a course of once-daily or twice-daily rTMS depending on the schedule permitted by the availability of the patient and of the treatment suites in the clinic at the time of the treatment course; thus, this report constitutes a retrospective, naturalistic case series rather than a prospective, randomized trial, as in a previously published comparative report on two protocols of DMPFC-rTMS from our group [25] . All subjects gave informed consent for rTMS, and the chart review was approved by the Research Ethics Board of the University Health Network.
+rTMS treatment parameters
+
+As described in detail elsewhere [25] , [26] , [27] , DMPFC-rTMS was delivered using a MagPro R30 rTMS device (MagVenture, Farum, Denmark) via a Cool-DB80 stimulation coil at 120% of resting motor threshold for extensor hallucis longus. The coil vertex was positioned over the DMPFC at a position 25% of the distance posteriorly along the midline from nasion to inion, following a published heuristic we previously validated against MRI-guidance in 232 patients [29] . Preferential stimulation of the left then right hemisphere was accomplished by orienting the coil perpendicular to midline, with current flow directed toward the hemisphere to be stimulated. Patients undergoing once-daily rTMS underwent a session each weekday (Mon-Fri) of DMPFC-rTMS at 10  Hz, 5 s on and 10 s off, 60 trains (total 3000 pulses/hemisphere, 6000 pulses/day), as previously described [25] . The twice-daily protocol was adopted by the clinical care team in an effort to improve outcomes, following a more intensive 5-times-daily, 20 Hz accelerated protocol reported by Baeken et al., [14] . For twice-daily rTMS, patients underwent two DMPFC-rTMS sessions each weekday with an interval of 80 min, with each session at 20 Hz, 2.5 s on and 10 s off, 30 trains (total 1500 pulses/hemisphere per session x 2 sessions, 6000 pulses/day). As a result, both groups received the same number of pulses per day, but the twice-daily group received these pulses in two fractions with an 80-min interval rather than in a single long fraction. In both groups, patients received an initial course of 20 sessions; those who did not achieve remission by 20 sessions were offered extension to 30 sessions. Thus, once-daily patients underwent a course of 120 000–180 000 pulses over 20–30 sessions in 4–6 weeks, while twice-daily patients underwent a course of 60 000–90 000 pulses over 20–30 sessions in 2–3 weeks.
+Clinical assessments and outcomes
+
+Patients were assessed for MDE symptomatology at a baseline session in the week prior to treatment, after each 5 days of treatment, and at a post-treatment follow-up assessment using the Beck Depression Inventory-II (BDI-II). Response was defined as a ≥50% improvement from baseline to final score, and remission was defined at BDI-II≤12. The BDI-II was used as the primary outcome measure here in recognition that previous DMPFC-rTMS case series [25] did not detect differences in the distribution of outcomes using the BDI-II versus clinician-rated outcomes (e.g., the 17-item Hamilton Depression Rating Scale); moreover, in this series we had previously noted the wider dynamic range of the BDI-II (0–63) to offer a more fine-grained metric of the trajectories of clinical improvement over time.
+Statistical analyses
+
+Analyses were performed in the Stata14 (StataCorp, College Station, Texas, USA) and MATLAB (Mathworks, Natick, Massachusetts, USA) environments as detailed below. All data are presented as mean ± standard deviation (SD). Baseline demographic, clinical characteristics, and treatment parameters among patients undergoing once-daily rTMS or twice-daily rTMS were compared using Fisher's Exact Test and independent two-sample t-tests for dichotomous and continuous variable comparisons, respectively. False-discovery-rate (FDR) correction was applied for these comparisons ( Table 1 ). To test our first hypothesis regarding the distribution of final outcomes for once-daily versus twice-daily DMPFC-rTMS, we used kernel density estimates with an Epanechnikov kernel to model the distribution of final outcomes, followed by Kolmogorov-Smirnov testing (via the ksstat and ksstat2 MATLAB functions) to compare the distributions to each other and to the normal distribution. To test our second hypothesis regarding speed of treatment response for once-daily rTMS versus twice-daily rTMS, we used mixed-effects modeling (implemented in Stata14) incorporating group (once-daily or twice-daily), time (days), and group × time interaction terms, and modeling patient as a random effect. To evaluate the third hypothesis that trajectory-of-improvement should follow a consistent relationship to number of sessions rather than pulses (days), we re-ran this model with the ‘time’ variable defined as to the cumulative number of sessions rather than pulses (days). Statistical significance on the group × sessions interaction term would refute the third hypothesis.
+
+Table 1 . Demographic, clinical characteristics, and treatment parameters for MDD patients (N = 130) undergoing open-label once-daily ( n  = 65) and twice-daily ( n  = 65) DMPFC-rTMS.
+Empty Cell 	Overall	SD	1x-Daily rTMS	SD	2x-Daily rTMS	SD	t	P	P(FDR)
+# of patients	130	–	65	–	65	–	–	–	–
+Sex (Female)	102	–	53	–	49	–	–	0.523	0.604
+Bipolar	17	–	10	–	7	–	–	0.604	0.604
+Age	37.6	12.8	35.5	12.1	39.7	13.3	1.895	0.060	0.287
+Baseline BDI-II	36.3	12.2	37.4	10.7	35.2	13.5	1.002	0.318	0.604
+# of sessions	22.2	4.5	21.5	4.4	22.9	4.6	1.755	0.082	0.287
+Stim. intensity (Left)	62.7	10.1	63.4	11.2	62.0	9.0	0.758	0.450	0.604
+Stim. Intensity (Right)	63.3	9.7	64.0	10.9	62.6	8.5	0.765	0.446	0.604
+
+FDR , false discovery rate; rTMS, repetitive transcranial magnetic stimulation; BDI-II, Beck Depression Inventory.
+
+Values indicate mean ± standard deviation. P-values are for two-sample t-statistics for continuous variable comparisons and for Fisher's exact test for categorical comparisons.
+
+Results
+Demographic and clinical characteristics and treatment parameters
+
+Full demographic and clinical characteristics of once-daily rTMS and twice-daily rTMS patients, along with corresponding statistical comparisons, are presented in Table 1 . 130 patients (once-daily rTMS: 12 male, 53 female, age 35.52 ± SD 12.05 years; twice-daily rTMS: 16 male, 49 female, age 39.74 ± SD 13.27 years, range 19–67) with treatment-resistant unipolar depression (once-daily rTMS: N  = 55; twice-daily rTMS: N  = 58) or bipolar depression (once-daily rTMS: N  = 10; twice-daily rTMS: N  = 7) underwent DMPFC-rTMS. Mean baseline BDI-II scores for once-daily rTMS and twice-daily rTMS were 37.4 ± SD 10.7 and 35.2 ± SD 13.5, respectively. There were no significant differences between groups in age, sex, baseline illness severity on BDI-II, number of previous episodes of depression, number of previous failed medication trials, or proportions of unipolar versus bipolar illness .
+
+rTMS treatment parameters are also summarized in Table 1 . Overall, the mean course length of treatment was 22.2 ± SD 4.5 sessions, with no significant difference between groups (Once-daily rTMS, 21.5 ± SD 4.4 sessions; Twice-daily rTMS, 22.9 ± SD 4.6 sessions; t 128  = 1.755, p  = 0.082). Treatment extension occurred for 12/65 once-daily patients and 19/65 twice-daily patients (p = 0.267, Fisher's Exact Test). The mean stimulation intensity (expressed as a percentage of maximum stimulator output) did not differ significantly between groups for either the left DMPFC (Once-daily rTMS, 63.4% ± SD 11.2%; Twice-daily rTMS, 62.0% ± SD 9.0%; t 128  = 0.758, p  = 0.450) or the right DMPFC (Once-daily rTMS, 64.0% ± SD 10.9%; Twice-daily rTMS, 62.6% ± SD 8.5%; t 128  = 0.765, p  = 0.446).
+Safety and tolerability
+
+No seizures or other serious, treatment-limiting adverse events occurred in any of the 130 patients who underwent DMPFC-rTMS in either group. All patients reported painful but tolerable static-like sensations in the scalp and face area during DMPFC-rTMS. None of the 130 patients discontinued treatment prematurely due to intolerable stimulation pain or other adverse effects such as headache, vertigo , or fatigue.
+Treatment outcomes for once-daily vs. twice-daily DMPFC-rTMS
+
+The first hypothesis of this study proposed that overall post-treatment clinical outcomes would not differ for once-daily versus twice-daily rTMS. Response and remission rates of the once-daily and twice-daily groups were 23/65 (35.4%) versus 27/65 (41.5%) for response, and 23/65 (35.4%) versus 22/65 (33.8%) for remission, respectively. Fisher's Exact Test revealed no significant difference in rates of response (p = 0.589) or remission (p = 1.00) between groups. Continuous measures likewise revealed no significant between-groups differences: BDI-II scores in the once-daily versus twice-daily groups improved from pre-treatment scores of 37.4 ± SD 10.7 vs. 35.2 ± SD 13.5 to final scores of 24.6 ± SD 15.8 vs. 23.3 ± SD 16.4 (t 128  = 0.067, p = 0.947); percentage improvement, 36.4% ± SD 36.5% vs. 36.0% ± SD 36.1% (t 128  = 0.457, p = 0.649).
+
+Considering responders alone, in the once-daily rTMS group (n = 23), BDI-II scores improved 73.4%, from 33.7 ± SD to 9.0 ± SD 11.4; in the twice-daily group (n = 27), responders' BDI-II scores improved by 68.4%, from 31.7 ± SD 12.2 to 10.0 ± SD 7.5, ( t 48  = 1.55, P  = 0.128), again indicating no overall difference in outcomes. Among non-responders in the once-daily rTMS group ( n  = 42), BDI-II scores decreased 15.8%, from a 39.4 to 33.1 ± SD 12.6; in the twice-daily group, non-responders’ BDI-II scores improved by 28.9%, from a 37.7 ± SD 13.9 to 26.8 ± SD 19.6, ( t 78  = 0.62, P  = 0.535).
+
+In addition, we calculated kernel density estimates (KDE) of the distribution functions for the percentage improvement from baseline for each group ( Fig. 1 a and b). These plots revealed a trimodal distribution of outcomes in each group, consistent with our previous observations for DMPFC-rTMS [25] . A Kolmogorov-Smirnov test of normality indicated a significantly non-normal distribution of outcomes for both once-daily rTMS ( D  = 0.88, p  < 0.001) and twice-daily rTMS ( D  = 0.83, p  < 0.001). In light of these non-normal distributions, we performed a non-parametric test (two-sample Kolmogorov-Smirnov) to compare the cumulative distribution functions for the percent improvement from baseline across the two groups. Again, no significant difference between once-daily and twice-daily rTMS treatment outcomes was found ( D  = 0.06, p  = 0.782) ( Fig. 1 c).
+Fig. 1
+
+    Download : Download high-res image (493KB)
+    Download : Download full-size image 
+
+Fig. 1 . Kernel density estimates of outcome distributions (% improvement from pre- to post-treatment) in MDD patients (N = 130) who received either A) once-daily rTMS ( n = 65) or B) twice-daily rTMS ( n = 65). C) The cumulative response distributions of the percentage improvement from baseline BDI-II score for once- and twice-daily rTMS. Kolmogorov-Smirnov testing revealed no significant difference in outcome distributions between the once- and twice-daily rTMS groups (D = 0.06, p = 0.782). BDI-II, Beck Depression Inventory-II.
+Pace of improvement for once-daily vs. twice-daily DMPFC-rTMS
+
+The second hypothesis of the study proposed that twice-daily rTMS would achieve more rapid improvement over time vs. once-daily rTMS given the same daily number of pulses. The raw trajectories of improvement over time in the once-daily and twice-daily treatment groups are plotted in Fig. 2 . Inspection of these plots revealed a markedly more rapid trajectory of improvement in the twice-daily treatment group ( Fig. 2 a). Formal statistical testing via mixed-effects modeling detected a significant difference in the pace of improvement between groups over time (group × time interaction, Z  = 3.57, p  < 0.001). This model also confirmed, as expected, a significant overall main effect for time (Z = -9.49, p  < 0.001) but not for group (Z = 1.53, p  = 0.127). The same findings emerged when the analysis was repeated for treatment responders only (group × time interaction, Z = 4.70, p  < 0.001; main effect of time Z = -10.66, p  < 0.001; main effect of group, Z = 1.16, p  = 0.248) ( Fig. 2 b).
+Fig. 2
+
+    Download : Download high-res image (318KB)
+    Download : Download full-size image 
+
+Fig. 2 . Change in symptom severity over the course of treatment for patients receiving 6000 pulses/day of DMPFC-rTMS either as once-daily (single-session, 6000 pulses) or as twice-daily (two sessions, 80 min apart, 3000 pulses each) stimulation, considering A) all patients together (responders and non-responders), and B) responders alone. Responders were defined by convention at ≥50% improvement from baseline by treatment end. Both for all patients in aggregate and for responders only, mixed-effects modeling revealed a significantly faster pace of improvement (i.e., group-by-time interaction) in the twice-daily stimulation group compared to the once-daily stimulation group, even though the number of pulses per day was the same in both groups. Error bars represent the standard error of the mean for the sample. BDI-II, Beck Depression Inventory-II.
+
+One potential issue for the latter analysis is that the 50% improvement criterion for responders was not well-fitted to the outcome distribution, which was trimodal with the middle mode centered near 50% ( Fig. 1 ). Accordingly, we also repeated the analysis considering the three modes separately using the notches in the distribution as empirically-derived improvement criteria: nonresponders (<33.4% improvement; once-daily N = 32, twice-daily N = 30), intermediate responders (33.4–66.2% improvement, once-daily N = 17, twice-daily N = 18), and strong responders (>66.2% improvement, once-daily N = 16, twice-daily N = 17). Trajectories of improvement over time for these groups are plotted in Fig. 3 . Among intermediate responders, mixed-effects modeling once again found a significant difference in the pace of improvement between groups over time (group × time interaction, Z = 3.42, p  = 0.001; main effect of time Z = −8.37, p < 0.001; main effect of group, Z = 0.72, p = 0.470). The same findings emerged when the analysis was repeated among strong responders (group × time interaction, Z = 3.74, p < 0.001; main effect of time, Z = −9.04, p < 0.001; main effect of group, Z = 1.77, p = 0.077).
+Fig. 3
+
+    Download : Download high-res image (361KB)
+    Download : Download full-size image 
+
+Fig. 3 . Change in symptom severity over the course of treatment for patients receiving 6000 pulses/day of DMPFC-rTMS either as once-daily (single-session, 6000 pulses) or as twice-daily (two sessions, 80 min apart, 3000 pulses each) stimulation, considering A) intermediate responders for once-daily (black, dashed) and twice-daily (gray, dashed) rTMS, and B) strong responders alone. Intermediate and strong responders were defined by 33.4-66.2% and >66.2% improvement from baseline by treatment end, respectively. Error bars represent the standard error of the mean for the sample. BDI-II, Beck Depression Inventory-II.
+Relationship between pace of improvement and number of sessions
+
+The third hypothesis of the study was that the pace of improvement would show a consistent relationship to number of sessions in both groups, notwithstanding the inconsistent relationship to number of pulses (i.e., days) for once-daily vs. twice-daily rTMS as demonstrated in the previous section. Accordingly, we repeated each of the mixed-effects model analyses in the previous section using number of sessions rather than number of days as the time variable. Trajectories of improvement for once-daily and twice-daily rTMS, overall and in conventional responders (≥50% improvement from baseline by treatment) ( Fig. 4 a and b) and in the intermediate and fast responder subgroups ( Fig. 5 a and b), are re-plotted over sessions in Fig. 4 , Fig. 5 .
+Fig. 4
+
+    Download : Download high-res image (361KB)
+    Download : Download full-size image 
+
+Fig. 4 . Change in symptom severity over the course of treatment for patients receiving DMPFC-rTMS either as once-daily (single-session, 6000 pulses) or as twice-daily (two sessions, 80 min apart, 3000 pulses each) stimulation, considering A) all patients across both groups (twice-daily rTMS, gray; once-daily rTMS, black), and B) conventional responders (twice-daily rTMS, gray; once-daily rTMS, black). Conventional responders were defined by ≥50% improvement from baseline by treatment. Error bars represent the standard error of the mean for the sample. BDI-II, Beck Depression Inventory-II.
+Fig. 5
+
+    Download : Download high-res image (347KB)
+    Download : Download full-size image 
+
+Fig. 5 . Change in symptom severity over the course of treatment for patients receiving DMPFC-rTMS either as once-daily (single-session, 6000 pulses) or as twice-daily (two sessions, 80 min apart, 3000 pulses each) stimulation, considering A) intermediate responders (once-daily rTMS, black dashed; twice-daily, gray dashed) and B) strong responders (once-daily rTMS, black solid; twice-daily rTMS, gray solid). Intermediate and strong responders were defined by 33.4–66.2% and >66.2% improvement from baseline by treatment end, respectively. Error bars represent the standard error of the mean for the sample. BDI-II, Beck Depression Inventory-II.
+
+Considering all patients (N = 130), mixed-effects modeling found no significant difference in the pace of improvement between the once-daily and twice-daily groups over sessions (group × sessions interaction, Z = -1.17, p  = 0.242; main effect of time, Z = -9.49, p < 0.001; main effect of group, Z = 1.53, p = 0.127). Considering responders only (>50% improvement), the same finding was obtained (group × sessions interaction, Z = -0.18, p  = 0.858; main effect of time, Z = -10.66, p < 0.001; main effect of group, Z = 1.16, p = 0.248). Considering intermediate responders (33.4–66.2% improvement), again no difference was detected (group × sessions interaction, Z = -0.62, p  = 0.538; main effect of time, Z = -8.37, p < 0.001; main effect of group, Z = 0.72, p = 0.470). Considering strong responders, once again no difference in pace of improvement was detected (group × sessions interaction, Z = -0.59, p  = 0.558; main effect of time, Z = -9.04, p < 0.001; main effect of group, Z = 1.77, p = 0.077). Thus, a consistent relationship between the pace of improvement and number of sessions was demonstrated in each of these subgroups as well as in the overall sample.
+Discussion
+
+This retrospective case series offers a comparison of outcomes for once-daily versus twice-daily rTMS sessions, in a cohort of patients who all received the same overall number of pulses per day (and thus per course), under naturalistic conditions. In keeping with our first hypothesis, twice-daily rTMS achieved the same overall distribution of clinical outcomes at treatment end vs. once-daily rTMS, despite requiring only 2–3 weeks rather than 4–6 weeks for delivery of the treatment course ( Fig. 1 ). Likewise, as per our second hypothesis, twice-daily rTMS achieved significantly faster day-by-day improvement in clinical symptoms vs. once-daily rTMS, even though the total number of pulses per day was the same in both groups ( Fig. 2 , Fig. 3 ). Finally, in agreement with our third hypothesis, the trajectory of improvement showed a consistent relationship to number of cumulative sessions (i.e., no significant group × sessions interaction) rather than to number of cumulative pulses (days) ( Fig. 4 , Fig. 5 ).
+
+This is the first report to compare outcomes for once-versus twice-daily rTMS in the clinical setting, in a cohort where the daily number of pulses was the same for all patients. The groups had no significant pre-existing differences across a number of key demographic variables and treatment parameters (number of sessions, stimulus intensity) ( Table 1 ), and safety and tolerability were favorable for both twice-daily and once-daily stimulation. The fairly large, naturalistic, inclusive nature of the sample also helps to support the potential generalizability of the findings to community practice. The findings of the present study thus add to the growing body of evidence that multiple daily sessions of rTMS could accelerate response [11] , [13] , [14] , with the important caveat that the two groups also differed in stimulation frequency (10 Hz vs. 20 Hz).
+
+The present findings also support a growing body of evidence that simply concatenating the pulses of multiple treatment sessions together, with no inter-session interval, may be inadequate to accelerate response. Instead, an interval of time (in this case, 80 min) may be required between sessions of treatment delivered on the same day. This observation is consistent with the preclinical rTMS literature [23] , [24] suggesting that sessions delivered too closely together (i.e., ∼15min) may fail to exert additional effects on neuroplasticity . Indeed, a longstanding and well-established finding in the cellular neurophysiology literature on long-term potentiation and depression (LTP/LTD) is that stronger effects on synaptic plasticity ensue from repeated sessions of stimulation applied at intervals [30] , [31] . A recent, comprehensive review of this literature suggested that the optimal interval for inducing LTP/LTD may be in the range of 60–90 min [32] . Clinical studies with multiple daily sessions have employed intervals ranging from ∼10 min to over 60 min [11] , [12] , [13] , [14] . Since the optimal inter-session interval for therapeutic rTMS has not yet been systematically studied, it is so far unknown how much further the 80 min interval of the present study may be further shortened without reducing the potency of the sessions.
+
+A related point is that the optimal number of pulses is still unclear. Although some reviews suggest better efficacy for fewer pulses [22] , the opposite has also been reported for both preclinical [33] and clinical [34] studies. For theta-burst stimulation, there may also be an optimal range of pulses, above which neutral or detrimental effects may ensue [35] ; short courses of 2 weeks of theta-burst stimulation have also achieved large mood improvements [36] .
+
+Another parameter in need of further systematic study is the optimal number of sessions per day. The present study found a consistent rate of session-by-session improvement held across the twice-daily and once-daily treatment groups ( Fig. 4 , Fig. 5 ). However, it remains unclear whether this steady relationship still holds for more intensive schedules such as 5-times-daily [14] or 10-times-daily [11] . If so, then the potential exists to further accelerate courses of rTMS down to fewer than 5 days, without loss of therapeutic efficiency for the individual sessions. If such acceleration can be consistently achieved for all (or most) patients, rTMS would be repositioned as one of the fastest-acting treatments in our armamentarium, and could lend itself well to inpatient or emergency settings. Thus, optimizing the intersession interval and the daily number of sessions should be considered priorities for future empirical study.
+
+Although the use of retrospective, naturalistic data has some advantages for real-world generalizability, it also carries important limitations that require acknowledgement. First, the patients were not randomly allocated to treatment, leaving open the possibility of systematic between-group differences that were not captured in the demographic/treatment characteristics in Table 1 . Second, patients were not blind to treatment allocation, leaving open the possibility of expectancy effects driving faster response in the twice-daily group. It should also be noted that although both groups underwent high-frequency stimulation, the twice-daily group received 20 Hz rather than 10 Hz stimulation. Meta-analyses and clinical guideline reviews on therapeutic rTMS in MDD have found no evidence for significantly stronger/faster effects of 20 Hz vs. 10 Hz stimulation [1] , [2] , [3] , [4] , [5] ; certainly none have documented a twofold faster onset of action for 20 Hz over 10 Hz stimulation, given once-daily. However, given preclinical findings that more pulses of 10 Hz stimulation may be required to achieve similar cortical excitation to 20 Hz stimulation [37] , [38] , effects of the frequency variable on the outcomes cannot be ruled out in this series. Future randomized studies should ideally hold constant the stimulation pattern , in addition to the daily number of pulses, and the number of daily sittings, and the total daily time in clinic, across comparison groups.
+
+In summary, this case series provides support for the proposal that twice-daily rTMS may achieve similar outcomes to once-daily rTMS in approximately half as many days, even if the total number of pulses per day is not increased. Dividing the total daily dose of pulses into two fractions, delivered at an interval, may be a useful strategy to accelerate outcomes. However, at present, both the optimal inter-session interval and the optimal number of daily sessions remain to be clarified. Both preclinical studies on neuroplasticity and empirical studies on clinical outcomes may help to optimize these key parameters, and thereby determine whether rTMS is capable of consistently achieving remission in a matter of days rather than weeks.
+Conflicts of interest
+
+LS has received support from the Ontario Brain Institute via the Canadian Biomarker Initiative in Depression (CanBIND). She is also a recipient of the Ontario Mental Health Foundation (OMHF) studentship.
+
+KF and CL report no conflicts of interest.
+
+PG has received speaker and consultant honoraria or research funds from Brain & Behavior Research Foundation , Bristol-Myers Squibb , Canadian Institutes of Health Research , Lundbeck , National Institutes of Health , and St. Jude Medical . SHK has received research funding and honoraria from the following companies: Allergan , AstraZeneca , BMS , Brain Cells Inc. , Brain Canada , Clera , Eli Lilly , Janssen , Lundbeck , Lundbeck Institute , OMHF , Ontario Brain Institute , Pfizer , Servier , St. Jude Medical , Sunovion and Xian-Janssen .
+
+ZJD has received research and equipment in-kind support for an investigator-initiated study through Brainsway Inc and Magventure Inc . ZJD has also served on the advisory board for Sunovion, Hoffmann-La Roche Limited and Merck and received speaker support from Eli Lilly. He also owns >10 000 in stock of Biogen Inc. This work was supported by the Ontario Mental Health Foundation ( OMHF ), the Canadian Institutes of Health Research ( CIHR ), the Brain and Behavior Research Foundation and the Temerty Family and Grant Family and through the Centre for Addiction and Mental Health (CAMH) Foundation and the Campbell Institute .
+
+DMB has received research support from the Canadian Institutes of Health Research (CIHR), National Institutes of Health (NIH), Brain Canada and the Temerty Family through the Centre for Addiction and Mental Health (CAMH) Foundation and the Campbell Research Institute. He receives research support and in-kind equipment support for an investigator-initiated study from Brainsway Ltd. and he is the site principal investigator for three sponsor-initiated studies for Brainsway Ltd. He also receives in-kind equipment support from Magventure for an investigator-initiated study. He receives medication supplies for an investigator-initiated trial from Invidior.
+
+JD has received research support from the Canadian Institutes of Health Research , Brain Canada , the National Institutes of Health , the Klarman Family Foundation , the Edgestone Foundation , and the Toronto General and Western Hospital Foundation , as well as travel stipends from Lundbeck and ANT Neuro , and in-kind equipment support for an investigator-initiated study from MagVenture.
+Acknowledgments
+
+The authors wish to thank Aisha Dar, Vanathy Niranjan, Mike Aiello, Sheila Verhage-Brown, and Dr. Umar Dar for technical assistance with rTMS delivery and data collection.
+References
+
+    [1]
+    M.T. Berlim, F. van den Eynde, S. Tovar-Perdomo, Z.J. Daskalakis
+    Response, remission and drop-out rates following high-frequency repetitive transcranial magnetic stimulation (rTMS) for treating major depression: a systematic review and meta-analysis of randomized, double-blind and sham-controlled trials
+    Psychol Med, 44 (2014), pp. 225-239, 10.1017/S0033291713000512
+    View in Scopus Google Scholar
+    [2]
+    B.N. Gaynes, S.W. Lloyd, L. Lux, G. Gartlehner, R.A. Hansen, S. Brode, et al.
+    Repetitive transcranial magnetic stimulation for treatment-resistant depression: a systematic review and meta-analysis
+    J Clin Psychiatry, 75 (2014), pp. 477-489, 10.4088/JCP.13r08815
+    quiz 489
+    View in Scopus Google Scholar
+    [3]
+    J.P. Lefaucheur, N. Andre-Obadia, A. Antal, S.S. Ayache, C. Baeken, D.H. Benninger, et al.
+    Evidence-based guidelines on the therapeutic use of repetitive transcranial magnetic stimulation (rTMS)
+    Clin Neurophysiol, 125 (2014), pp. 2150-2206
+    doi:S1388-2457(14)00296-X [pii]/r10.1016/j.clinph.2014.05.021 [doi]
+    View PDF View article View in Scopus Google Scholar
+    [4]
+    T. Perera, M.S. George, G. Grammer, P.G. Janicak, A. Pascual-Leone, T.S. Wirecki
+    The clinical TMS society consensus review and treatment recommendations for TMS therapy for major depressive disorder
+    Brain Stimul, 9 (2016), pp. 336-346, 10.1016/j.brs.2016.03.010
+    View PDF View article View in Scopus Google Scholar
+    [5]
+    S.M. McClintock, I.M. Reti, L.L. Carpenter, W.M. McDonald, M. Dubin, S.F. Taylor, et al.
+    Consensus recommendations for the clinical application of repetitive transcranial magnetic stimulation (rTMS) in the treatment of depression
+    J Clin Psychiatry (2017), 10.4088/JCP.16cs10905
+    Google Scholar
+    [6]
+    S.V. Parikh, L.C. Quilty, P. Ravitz, M. Rosenbluth, B. Pavlova, S. Grigoriadis, et al.
+    Canadian Network for Mood and Anxiety Treatments (CANMAT) 2016 clinical guidelines for the management of adults with major depressive disorder: section 2. Psychological treatments
+    Can J Psychiatry, 61 (2016), pp. 524-539, 10.1177/0706743716659418
+    View in Scopus Google Scholar
+    [7]
+    A. Pascual-Leone, B. Rubio, F. Pallardó, M.D. Catalá
+    Rapid-rate transcranial magnetic stimulation of left dorsolateral prefrontal cortex in drug-resistant depression
+    Lancet, 348 (1996), pp. 233-237, 10.1016/S0140-6736(96)01219-6
+    View PDF View article View in Scopus Google Scholar
+    [8]
+    M.S. George, E.M. Wassermann, W a Williams, A. Callahan, T a Ketter, P. Basser, et al.
+    Daily repetitive transcranial magnetic stimulation (rTMS) improves mood in depression
+    Neuroreport, 6 (1995), pp. 1853-1856, 10.1097/00001756-199510020-00008
+    View in Scopus Google Scholar
+    [9]
+    L.L. Carpenter, P.G. Janicak, S.T. Aaronson, T. Boyadjis, D.G. Brock, I. a. Cook, et al.
+    Transcranial magnetic stimulation (TMS) for major depression: a multisite, naturalistic, observational study of acute treatment outcomes in clinical practice
+    Depress Anxiety, 29 (2012), pp. 587-596, 10.1002/da.21969
+    View in Scopus Google Scholar
+    [10]
+    A.G. Yip, M.S. George, A. Tendler, Y. Roth, A. Zangen, L.L. Carpenter
+    61% of unmedicated treatment resistant depression patients who did not respond to acute TMS treatment responded after four weeks of twice weekly deep TMS in the Brainsway pivotal trial
+    Brain Stimul, 10 (2017), pp. 847-849, 10.1016/j.brs.2017.02.013
+    View PDF View article View in Scopus Google Scholar
+    [11]
+    P.E. Holtzheimer, W.M. McDonald, M. Mufti, M.E. Kelley, S. Quinn, G. Corso, et al.
+    Accelerated repetitive transcranial magnetic stimulation for treatment-resistant depression
+    Depress Anxiety, 27 (2010), pp. 960-963, 10.1002/da.20731
+    View in Scopus Google Scholar
+    [12]
+    D. Hadley, B.S. Anderson, J.J. Borckardt, A. Arana, X. Li, Z. Nahas, et al.
+    Safety, tolerability, and effectiveness of high doses of adjunctive daily left prefrontal repetitive transcranial magnetic stimulation for treatment-resistant depression in a clinical setting
+    27 (2011), 10.1097/YCT.0b013e3181ce1a8c
+    Google Scholar
+    [13]
+    A. McGirr, F. Van den Eynde, S. Tovar-Perdomo, MP. a. Fleck, M.T. Berlim
+    Effectiveness and acceptability of accelerated repetitive transcranial magnetic stimulation (rTMS) for treatment-resistant major depressive disorder: an open label trial
+    J Affect Disord, 173 (2015), pp. 216-220, 10.1016/j.jad.2014.10.068
+    View PDF View article View in Scopus Google Scholar
+    [14]
+    C. Baeken, D. Marinazzo, G.-R. Wu, P. Van Schuerbeek, J. De Mey, I. Marchetti, et al.
+    Accelerated HF-rTMS in treatment-resistant unipolar depression: insights from subgenual anterior cingulate functional connectivity
+    World J Biol Psychiatry (2014), pp. 1-12, 10.3109/15622975.2013.872295
+    Google Scholar
+    [15]
+    F. Maeda, J.P. Keenan, J.M. Tormos, H. Topka, A. Pascual-Leone
+    Interindividual variability of the modulatory effects of repetitive transcranial magnetic stimulation on cortical excitability
+    Exp Brain Res, 133 (2000), pp. 425-430, 10.1007/s002210000432
+    View in Scopus Google Scholar
+    [16]
+    D.R. de Jesus, GP. de S. Favalli, S.S. Hoppenbrouwers, M.S. Barr, R. Chen, P.B. Fitzgerald, et al.
+    Determining optimal rTMS parameters through changes in cortical inhibition
+    Clin Neurophysiol, 125 (2014), pp. 755-762, 10.1016/j.clinph.2013.09.011
+    View PDF View article View in Scopus Google Scholar
+    [17]
+    P.B. Fitzgerald, T.L. Brown, N.A.U. Marston, T.J. Oxley, A. De Castella, Z.J. Daskalakis, et al.
+    A transcranial magnetic stimulation study of abnormal cortical inhibition in schizophrenia
+    Psychiatry Res, 118 (2003), pp. 197-207, 10.1016/S0165-1781(03)00094-5
+    View PDF View article View in Scopus Google Scholar
+    [18]
+    J.P. O'Reardon, H.B. Solvason, P.G. Janicak, S. Sampson, K.E. Isenberg, Z. Nahas, et al.
+    Efficacy and safety of transcranial magnetic stimulation in the acute treatment of major depression: a multisite randomized controlled trial
+    Biol Psychiatry, 62 (2007), pp. 1208-1216, 10.1016/j.biopsych.2007.01.018
+    View PDF View article View in Scopus Google Scholar
+    [19]
+    M.S. George, S.H. Lisanby, D. Avery, W.M. McDonald, V. Durkalski, M. Pavlicova, et al.
+    Daily left prefrontal transcranial magnetic stimulation therapy for major depressive disorder: a sham-controlled randomized trial
+    Arch Gen Psychiatry, 67 (2010), pp. 507-516, 10.1001/archgenpsychiatry.2010.46
+    View in Scopus Google Scholar
+    [20]
+    L.L. Herrmann, K.P. Ebmeier
+    Factors modifying the efficacy of transcranial magnetic stimulation in the treatment of depression: a review
+    J Clin Psychiatry, 67 (2006), pp. 1870-1876
+    CrossRef View in Scopus Google Scholar
+    [21]
+    C.W. Slotema, J.D. Blom, H.W. Hoek, I.E.C. Sommer
+    Should we expand the toolbox of psychiatric treatment methods to include repetitive transcranial magnetic stimulation (rTMS)?
+    J Clin Psychiatry, 71 (2010), pp. 873-884, 10.4088/JCP.08m04872gre
+    View in Scopus Google Scholar
+    [22]
+    K.K. De Santis, V. Azorina, S.K. Reitz
+    More female patients and fewer stimuli per session are associated with the short-term antidepressant properties of repetitive transcranial magnetic stimulation (rTMS): a meta-analysis of 54 sham-controlled studies published between 1997-2013
+    Neuropsychiatr Dis Treat, 10 (2014), pp. 727-756, 10.2147/NDT.S58405
+    View in Scopus Google Scholar
+    [23]
+    C. Nettekoven, L.J. Volz, M. Kutscha, E.M. Pool, A.K. Rehme, S.B. Eickhoff, et al.
+    Dose-dependent effects of theta burst rTMS on cortical excitability and resting-state connectivity of the human motor system
+    J Neurosci, 34 (2014), pp. 6849-6859, 10.1523/jneurosci.4993-13.2014
+    View in Scopus Google Scholar
+    [24]
+    C. Nettekoven, L.J. Volz, M. Leimbach, E.M. Pool, A.K. Rehme, S.B. Eickhoff, et al.
+    Inter-individual variability in cortical excitability and motor network connectivity following multiple blocks of rTMS
+    Neuroimage, 118 (2015), pp. 209-218, 10.1016/j.neuroimage.2015.06.004
+    View PDF View article View in Scopus Google Scholar
+    [25]
+    N. Bakker, S. Shahab, P. Giacobbe, D.M. Blumberger, Z.J. Daskalakis, S.H. Kennedy, et al.
+    rTMS of the dorsomedial prefrontal cortex for major depression: safety, tolerability, effectiveness, and outcome predictors for 10 Hz versus intermittent theta-burst stimulation
+    Brain Stimul, 8 (2015), pp. 208-215, 10.1016/j.brs.2014.11.002
+    View PDF View article View in Scopus Google Scholar
+    [26]
+    T.V. Salomons, K. Dunlop, S.H. Kennedy, A. Flint, J. Geraci, P. Giacobbe, et al.
+    Resting-state cortico-thalamic-striatal connectivity predicts response to dorsomedial prefrontal rTMS in major depressive disorder
+    Neuropsychopharmacology, 39 (2014), pp. 488-498, 10.1038/npp.2013.222
+    View in Scopus Google Scholar
+    [27]
+    J. Downar, J. Geraci, T.V. Salomons, K. Dunlop, S. Wheeler, M.P. McAndrews, et al.
+    Anhedonia and reward-circuit connectivity distinguish nonresponders from responders to dorsomedial prefrontal repetitive transcranial magnetic stimulation in major depression
+    Biol Psychiatry, 76 (2014), pp. 176-185, 10.1016/j.biopsych.2013.10.026
+    View PDF View article View in Scopus Google Scholar
+    [28]
+    K.K. Kedzior, V. Rajput, G. Price, J. Lee, M. Martin-Iverson
+    Cognitive correlates of repetitive transcranial magnetic stimulation (rTMS) in treatment-resistant depression–a pilot study
+    BMC Psychiatry, 12 (2012), p. 163, 10.1186/1471-244X-12-163
+    View in Scopus Google Scholar
+    [29]
+    A. Mir-Moghtadaei, P. Giacobbe, Z.J. Daskalakis, D.M. Blumberger, J. Downar
+    Validation of a 25% Nasion???Inion heuristic for locating the dorsomedial prefrontal cortex for repetitive transcranial magnetic stimulation
+    Brain Stimul, 9 (2016), pp. 793-795, 10.1016/j.brs.2016.05.010
+    View PDF View article View in Scopus Google Scholar
+    [30]
+    Y.Y. Huang, E.R. Kandel
+    Recruitment of long-lasting and protein kinase A-dependent long-term potentiation in the CA1 region of hippocampus requires repeated tetanization
+    Learn Mem (Cold Spring Harb NY), 1 (1994), pp. 74-82, 10.1101/lm.1.1.74
+    Google Scholar
+    [31]
+    W.C. Abraham, T. Bliss, T. Lømo, T. Gardner
+    How long will long-term potentiation last?
+    Philos Trans R Soc Lond B Biol Sci, 358 (2003), pp. 735-744, 10.1098/rstb.2002.1222
+    View in Scopus Google Scholar
+    [32]
+    P. Smolen, Y. Zhang, J.H. Byrne
+    The right time to learn: mechanisms and optimization of spaced learning
+    Nat Rev Neurosci, 17 (2016), pp. 77-88, 10.1038/nrn.2015.18
+    View in Scopus Google Scholar
+    [33]
+    D.R. de Jesus, G.P. Favalli, S.S. Hoppenbrouwers, M.S. Barr, R. Chen, P.B. Fitzgerald, et al.
+    Determining optimal rTMS parameters through changes in cortical inhibition
+    Clin Neurophysiol, 125 (4) (2014 Apr), pp. 755-762, 10.1016/j.clinph.2013.09.011
+    View PDF View article View in Scopus
+    [34]
+    D.N.Y. Blumberger, Y. Knyahnytska, J. Downar, T. Rajji, B. Mulsant, Z. Daskalakis
+    Efficacy of deep transcranial magnetic stimulation for treatment resistant late-life depression
+    Biol Psychiatry, 81 (10) (2017), p. S347, 10.1016/j.biopsych.2017.02.583
+    View PDF View article Google Scholar
+    [35]
+    O.L. Gamboa, A. Antal, V. Moliadze, W. Paulus
+    Simply longer is not better: reversal of theta burst after-effect with prolonged stimulation
+    Exp Brain Res, 204 (2) (2010), pp. 181-187, 10.1007/s00221-010-2293-4
+    View in Scopus Google Scholar
+    [36]
+    C.T. Li, M.H. Chen, C.H. Juan, H.H. Huang, L.F. Chen, J.C. Hsieh, et al.
+    Efficacy of prefrontal theta-burst stimulation in refractory depression: a randomized sham-controlled study
+    Brain, 137 (2014), pp. 2088-2098, 10.1093/brain/awu109
+    View in Scopus Google Scholar
+    [37]
+    F. Maeda, J.P. Keenan, J.M. Tormos, H. Topka, A. Pascual-Leone
+    Interindividual variability of the modulatory effects of repetitive transcranial magnetic stimulation on cortical excitability
+    Exp Brain Res, 133 (4) (2000), pp. 425-430
+    View in Scopus Google Scholar
+    [38]
+    F. Maeda, J.P. Keenan, J.M. Tormos, H. Topka, A. Pascual-Leone
+    Modulation of corticospinal excitability by repetitive transcranial magnetic stimulation
+    Clin Neurophysiol, 111 (5) (2000), pp. 800-805
+    View PDF View article View in Scopus Google Scholar
+
+Cited by (70)
+
+    Comparative efficacy of rTMS add-on treatment for bipolar depression versus unipolar depression
+    2023, Brain Stimulation
+    Real world transcranial magnetic stimulation for major depression: A multisite, naturalistic, retrospective study
+    2023, Journal of Affective Disorders
+    Show abstract
+    Sleep predicts the response to rTMS and CBT in patients with OCD: an open label effectiveness study
+    2023, International Journal of Clinical and Health Psychology
+    Show abstract
+    Twice daily low frequency rTMS for treatment-resistant auditory hallucinations
+    2023, International Journal of Clinical and Health Psychology
+    Show abstract
+    Boosting psychological change: Combining non-invasive brain stimulation with psychotherapy
+    2022, Neuroscience and Biobehavioral Reviews
+    Show abstract
+    A transdiagnostic review of safety, efficacy, and parameter space in accelerated transcranial magnetic stimulation
+    2022, Journal of Psychiatric Research
+    Citation Excerpt :
+
+    Using our search criteria, we identified 85 aTMS studies published between July 2001 to June 2022 (Supplementary Table 1 and Supplementary Table 2) (Baeken et al., 2013; 2014; 2015; 2017a; 2017b; 2019; 2020a; 2020b; 2021; Bais et al., 2014; Blumberger et al., 2021; Bodén et al., 2021; Bröcker et al., 2019; Brunelin et al., 2006; Bruno et al., 2021; Bulteau et al., 2019; Caeyenberghs et al., 2018; Cantù et al., 2021; Chauhan et al., 2021; Chen et al., 2021; Cole et al., 2020; 2021; Dardenne et al., 2018; Desmyter et al., 2014; 2016; Duprat et al., 2016; 2018; Dutta et al., 2021; Engelhardt et al., 2022; Filipčić et al., 2021; Fitzgerald et al., 2018; 2020; Frey et al., 2020; Geerts et al., 2015; George et al., 2014; 2020; Herremans et al., 2015; 2016; Hines et al., 2022; Holtzheimer III et al., 2010; Ji et al., 2021; Jiang et al., 2022; Jodoin et al., 2019; Kallel and Brunelin, 2020; Kar et al., 2019; Kaster et al., 2020; Kim et al., 2021; Klooster et al., 2019; 2020; Konstantinou et al., 2020a; 2020b; Loo et al., 2007; Martinotti et al., 2022; McGirr et al., 2015; Meek et al., 2021a; 2021b; Miron et al., 2021a; 2021b; Modirrousta et al., 2018; Persson et al., 2020; Pettorruso et al., 2019; 2020; Rafique and Steeves, 2020; Schulze et al., 2018; Sciortino et al., 2021; Struckmann et al., 2022; 2021; Szuba et al., 2001; Tandt et al., 2021; Tor et al., 2016; Tovar-Perdomo et al., 2017; Trung et al., 2019; Vercammen et al., 2009; Watt et al., 2022; Williams et al., 2018; 2021; Wu and Baeken, 2022; Wu et al., 2021; 2022a; 2022b; Yu et al., 2020; Zeeuws et al., 2011; Zhang et al., 2022a; 2022b; Zhao et al., 2020). Of these 85 studies, there were 63 with independent samples (Baeken et al., 2013; 2020a; Bais et al., 2014; Blumberger et al., 2021; Bröcker et al., 2019; Brunelin et al., 2006; Bruno et al., 2021; Bulteau et al., 2019; Cantù et al., 2021; Chauhan et al., 2021; Chen et al., 2021; Cole et al., 2020; 2021; Dardenne et al., 2018; Duprat et al., 2016; 2021; Engelhardt et al., 2022; Filipčić et al., 2021; Fitzgerald et al., 2018; 2020; Frey et al., 2020; Geerts et al., 2015; George et al., 2014; 2020; Herremans et al., 2015; Hines et al., 2022; Holtzheimer III et al., 2010; Ji et al., 2021; Jiang et al., 2022; Jodoin et al., 2019; Kallel and Brunelin, 2020; Kar et al., 2019; Kim et al., 2021; Konstantinou et al., 2020a; 2020b; Loo et al., 2007; Martinotti et al., 2022; McGirr et al., 2015; Meek et al., 2021a; 2021b; Miron et al., 2021a; 2021b; Modirrousta et al., 2018; Pettorruso et al., 2019; 2020; Rafique and Steeves, 2020; Schulze et al., 2018; Struckmann et al., 2021; Szuba et al., 2001; Tandt et al., 2021; Tor et al., 2016; Tovar-Perdomo et al., 2017; Trung et al., 2019; Watt et al., 2022; Williams et al., 2018; 2021; Wu et al., 2021; 2022; Yu et al., 2020; Zeeuws et al., 2011; Zhang et al., 2022a; 2022b; Zhao et al., 2020), comprised of 1543 participants and 43,873 aTMS sessions. Participants had 18 diagnoses in psychiatric (treatment resistant depression/medication resistant depression/major depressive disorder, bipolar depression, postpartum depression, post-stroke depression, suicidal with or without posttraumatic stress disorder, existential distress, schizophrenia, and OCD), addiction (alcohol dependence, cocaine use disorder, abstinent methamphetamine dependence, alcohol dependence, and gambling disorder), neurodegenerative conditions (Alzheimer's Disease, Parkinson's Disease, mild traumatic brain injury post-concussion, and post-stroke hemiparesis), or healthy control groups (Supplementary Table 1 and Supplementary Table 2).
+    Show abstract
+
+View all citing articles on Scopus
+
+1
+
+    equal contributors and shared first authors.
+
+© 2017 The Authors. Published by Elsevier Inc.
+Recommended articles
+
+    Clinical and demographic predictors of response to rTMS treatment in unipolar and bipolar depressive disorders
+    Clinical Neurophysiology, Volume 128, Issue 10, 2017, pp. 1961-1970
+    Reza Rostami , …, Salehinejad M.A.
+    5 Hz Repetitive transcranial magnetic stimulation to left prefrontal cortex for major depression
+    Journal of Affective Disorders, Volume 186, 2015, pp. 13-17
+    Noah S. Philip , …, Linda L. Carpenter
+    Effectiveness of theta burst versus high-frequency repetitive transcranial magnetic stimulation in patients with depression (THREE-D): a randomised non-inferiority trial
+    The Lancet, Volume 391, Issue 10131, 2018, pp. 1683-1692
+    Daniel M Blumberger , …, Jonathan Downar
+
+Show 3 more articles
+Article Metrics
+Citations
+
+    Citation Indexes: 70
+    Policy Citations: 1 
+
+Captures
+
+    Exports-Saves: 4
+    Readers: 134 
+
+plumX logo
+View details
+Elsevier logo with wordmark
+
+    About ScienceDirect
+    Remote access
+    Shopping cart
+    Advertise
+    Contact and support
+    Terms and conditions
+    Privacy policy 
+
+We use cookies to help provide and enhance our service and tailor content and ads. By continuing you agree to the use of cookies .
+
+All content on this site: Copyright © 2023 Elsevier B.V., its licensors, and contributors. All rights are reserved, including those for text and data mining, AI training, and similar technologies. For all open access content, the Creative Commons licensing terms apply.
+RELX group home page
+Feedback 

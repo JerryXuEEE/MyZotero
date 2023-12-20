@@ -1,0 +1,163 @@
+Skip to Main Content
+
+    APS Logo
+
+    Journals
+        Physical Review Letters
+        Physical Review X
+        PRX Energy
+        PRX Life
+        PRX Quantum
+        Reviews of Modern Physics
+        Physical Review A
+        Physical Review B
+        Physical Review C
+        Physical Review D
+        Physical Review E
+        Physical Review Research
+        Physical Review Accelerators and Beams
+        Physical Review Applied
+        Physical Review Fluids
+        Physical Review Materials
+        Physical Review Physics Education Research
+        Physical Review
+        Physical Review (Series I)
+        Physics Physique Fizika 
+    Physics Magazine
+    Help/Feedback
+
+    Search/Article Lookup
+    Log in 
+
+Physical Review Letters
+
+    Highlights
+    Recent
+    Accepted
+    Collections
+    Authors
+    Referees
+    Search
+    Press
+    About
+    Editorial Team
+
+    Go Mobile »
+    Access by Hong Kong Baptist University
+
+Local Dynamics in Trained Recurrent Neural Networks
+Alexander Rivkind and Omri Barak
+Phys. Rev. Lett. 118 , 258101 – Published 23 June 2017
+Article has an altmetric score of 5
+More
+
+    Article
+    References
+    Citing Articles (38)
+    Supplemental Material 
+
+PDF HTML Export Citation
+Abstract
+
+Learning a task induces connectivity changes in neural circuits, thereby changing their dynamics. To elucidate task-related neural dynamics, we study trained recurrent neural networks. We develop a mean field theory for reservoir computing networks trained to have multiple fixed point attractors. Our main result is that the dynamics of the network’s output in the vicinity of attractors is governed by a low-order linear ordinary differential equation. The stability of the resulting equation can be assessed, predicting training success or failure. As a consequence, networks of rectified linear units and of sigmoidal nonlinearities are shown to have diametrically different properties when it comes to learning attractors. Furthermore, a characteristic time constant, which remains finite at the edge of chaos, offers an explanation of the network’s output robustness in the presence of variability of the internal neural dynamics. Finally, the proposed theory predicts state-dependent frequency selectivity in the network response.
+
+    Figure
+    Figure 
+
+    Received 18 December 2015
+
+DOI: https://doi.org/10.1103/PhysRevLett.118.258101
+
+© 2017 American Physical Society
+Physics Subject Headings (PhySH)
+
+    Physical Systems 
+
+Artificial neural networks
+
+    Techniques 
+
+Machine learning Mean field theory
+Networks
+Authors & Affiliations
+
+Alexander Rivkind 1,2,* and Omri Barak 1,2,†
+
+    1 Faculty of Medicine, Technion–Israel Institute of Technology, Haifa 32000, Israel
+    2 Network Biology Research Laboratories, Technion–Israel Institute of Technology, Haifa 32000, Israel
+
+    * arivkind@tx.technion.ac.il
+    † omri.barak@gmail.com
+
+Click to Expand
+Article Text
+Click to Expand
+Supplemental Material
+Click to Expand
+References
+Click to Expand
+Issue
+
+Vol. 118, Iss. 25 — 23 June 2017
+Reuse & Permissions
+
+    The analysis of a trained RNN is shown for representative cases compliant with the fading memory property (). (a) Internal dynamics are slow compared to network output (). (b) The opposite case (), where the internal state is dominated by output feedback. (c) Unstable case (). (d) Unstable oscillatory solution around one of the targets for . Left: Mean field estimate (red) of the closed loop spectrum compared with a finite size realization (blue dots, ). Middle: A transient response for a -like perturbation is shown for both output (thick line) and for ten random neurons (thin lines). Right: A MFT estimation (red) of open loop gain is compared with a finite size realization (blue). The black cross at helps visualize the Nyquist criterion. (a) inset: Finite size effects (for other cases, where is significantly smaller than unity, finite size effects are small and not shown). Parameters: The output value was set to for all the cases except (d), where (inset) and is analyzed. Nonlinearity was used except (c), for which . The connectivity strength scale was set to 1.5, 0.5, 1.1, and 1.0 for the cases (a), (b), (c), and (d), respectively.
+
+    Network with stable fixed points at (blue) and (orange) exhibits frequency selectivity around the lower fixed point , while at the higher fixed point no such selectivity exists. for both cases is shown along with the spectrum (top inset) and transient response for the same white noise input (green) delivered through to both fixed points. The settings of Fig.  were used, except that here .
+
+Sign up to receive regular email alerts from Physical Review Letters
+Sign up
+More Links
+
+    APS
+    Current Issue
+    Earlier Issues
+    News & Announcements
+    About this Journal
+    Editorial Team
+    About the Journals
+    Join APS
+
+    Authors
+        General Information
+        Submit a Manuscript
+        Publication Rights
+        Open Access
+        SCOAP 3
+        Policies & Practices
+        Tips for Authors
+        Professional Conduct 
+    Referees
+        General Information
+        Submit a Report
+        Update Your Information
+        Policies & Practices
+        Referee FAQ
+        Guidelines for Referees
+        Outstanding Referees 
+    Librarians
+        General Information
+        Subscriptions
+        Online License Agreement
+        Usage Statistics
+        Your Account 
+    Students
+        Physics
+        PhysicsCentral
+        Student Membership 
+    APS Members
+        Subscriptions
+        Article Packs
+        Membership
+        FAQ
+        APS News
+        Meetings & Events 
+
+    Privacy
+    Policies
+    Contact Information
+    Feedback 
+
+ISSN 1079-7114 (online), 0031-9007 (print). ©2023 American Physical Society. All rights reserved. Physical Review Letters™ is a trademark of the American Physical Society, registered in the United States, Canada, European Union, and Japan. The APS Physics logo and Physics logo are trademarks of the American Physical Society. Information about registration may be found here . Use of the American Physical Society websites and journals implies that the user has read and agrees to our Terms and Conditions and any applicable Subscription Agreement .
+This site uses cookies. To find out more, read our Privacy Policy . I Agree
+PDF Help

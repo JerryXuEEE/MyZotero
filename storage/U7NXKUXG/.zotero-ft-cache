@@ -1,0 +1,436 @@
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+Fu r t h e r ANNUAL
+REVIEWS
+Click here for quick links to Annual Reviews content online, including:
+• Other articles in this volume • Top cited articles • Top downloaded articles • Our comprehensive search
+
+Neuronal Gamma-Band Synchronization as a Fundamental Process in Cortical Computation
+Pascal Fries
+Donders Institute for Brain, Cognition and Behaviour, Radboud University Nijmegen, Nijmegen, The Netherlands; email: pascal.fries@donders.ru.nl
+
+Annu. Rev. Neurosci. 2009. 32:209–24
+First published online as a Review in Advance on March 20, 2009
+The Annual Review of Neuroscience is online at neuro.annualreviews.org
+This article’s doi: 10.1146/annurev.neuro.051508.135603
+Copyright c 2009 by Annual Reviews. All rights reserved
+0147-006X/09/0721-0209$20.00
+
+Key Words
+rhythm, oscillation, theta, alpha, attention, communication
+Abstract
+Neuronal gamma-band synchronization is found in many cortical areas, is induced by different stimuli or tasks, and is related to several cognitive capacities. Thus, it appears as if many different gamma-band synchronization phenomena subserve many different functions. I argue that gamma-band synchronization is a fundamental process that subserves an elemental operation of cortical computation. Cortical computation unfolds in the interplay between neuronal dynamics and structural neuronal connectivity. A core motif of neuronal connectivity is convergence, which brings about both selectivity and invariance of neuronal responses. However, those core functions can be achieved simultaneously only if converging neuronal inputs are functionally segmented and if only one segment is selected at a time. This segmentation and selection can be elegantly achieved if structural connectivity interacts with neuronal synchronization. I propose that this process is at least one of the fundamental functions of gamma-band synchronization, which then subserves numerous higher cognitive functions.
+209
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+Contents
+INTRODUCTION . . . . . . . . . . . . . . . . . . 210 THE SCOPE OF NEURONAL
+GAMMA-BAND SYNCHRONIZATION . . . . . . . . . . . 211 THE MECHANISMS BEHIND GAMMA-BAND SYNCHRONIZATION . . . . . . . . . . . 212 IMMEDIATE CONSEQUENCES OF GAMMA-BAND SYNCHRONIZATION . . . . . . . . . . . 212 Feedforward Coincidence
+Detection . . . . . . . . . . . . . . . . . . . . . . 213 Rhythmic Input Gain Modulation . . 213 NETWORK CONSEQUENCES . . . . 215 BIASED COMPETITION . . . . . . . . . . . 216 SELECTIVITY AND INVARIANCE, SEGMENTATION, AND SELECTION . . . . . . . . . . . . . . . . . . . . . 217 EXPLORATION THROUGH RHYTHMIC BREAKING OF GAMMA . . . . . . . . . . . . . . . . . . . . . . 217 CONCLUSION . . . . . . . . . . . . . . . . . . . . . 220
+INTRODUCTION
+Gamma-band synchronization took center stage in systems neuroscience in the late 1980s and early 1990s, primarily through the work of Singer and colleagues (Eckhorn et al. 1988, Gray et al. 1989, Engel et al. 1991b, Singer & Gray 1995). These pioneering studies focused on testing the proposal that gamma-band synchronization subserves perceptual binding, often referred to in short as the binding by synchronization hypothesis. The numerous studies supporting this proposal as well as the few studies that presented apparently contradicting evidence have been reviewed extensively over the years (Singer 1999). I therefore focus on ideas about gamma-band synchronization that are in accordance with the binding-bysynchronization hypothesis but take a different perspective.
+The binding-by-synchronization hypothesis is a psychophysiological hypothesis,
+
+proposing a physiological observable as the material substrate of a psychological experience. In a conventional psychophysiological hypothesis, enhanced activity of visual cortical neurons might be proposed as the substrate of the perception of the inducing visual stimulus. The binding-by-synchronization hypothesis applies an ingenious modiﬁcation of the conventional approach by proposing that relations between physiological observables are the substrate of the experience of relations among stimuli. Speciﬁcally, the synchronization among neuronal activities was proposed as a correlate of perceptual binding between the stimuli inducing the synchronized activities.
+The approach that I present here might be called physiophysiological, because it primarily considers the relation between two physiological phenomena, namely neuronal synchronization and neuronal interactions. I begin by considering the widespread, yet speciﬁc, occurrence of the phenomenon of neuronal gammaband synchronization. This widespread nature begs the question of whether gamma-band synchronization affects neuronal processing. This question is of central importance: If gammaband synchronization has no consequences for neuronal processing, then it is an epiphenomenon, but if it has consequences, then it has some function whatever the precise function may be. To decide between the latter two alternatives, I quickly review the mechanisms that underlie gamma-band synchronization because they suggest potential immediate consequences for neuronal processing. I then review the actual evidence for such immediate consequences and proceed to consider potential network consequences, which will lead to obvious parallels between those network consequences and fundamental operations of cortical computation.
+In short, I try to conceptualize gamma-band synchronization as a fundamental mechanistic process, hence the title of this review. Although the one fundamental process highlighted here might contribute to several higher cognitive functions, it is most likely not the only fundamental process of cortical computation that
+
+210 Fries
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+entails gamma-band synchronization. Gammaband synchronization might, for example, play a fundamental role in synaptic plasticity; this is not considered here.
+THE SCOPE OF NEURONAL GAMMA-BAND SYNCHRONIZATION
+In the late 1980s and the 1990s, a series of studies demonstrated gamma-band synchronization in the visual cortex of anesthetized cats and monkeys when the cortex was activated by moving bars or gratings (Eckhorn et al. 1988; Gray et al. 1989; Gray & Singer 1989; Engel et al. 1991a,b,c). Although these stimuli induce visual gamma-band synchronization particularly reliably, it has also been described, for instance, with stationary squares (Rols et al. 2001) and smoothly deforming shapes (Taylor et al. 2005) and during the free-viewing exploration of a static visual search array (Bichot et al. 2005). Neuronal synchronization in the gamma-frequency range has also been observed in the retina and lateral geniculate nucleus of anesthetized cats (Neuenschwander & Singer 1996), but this high-frequency synchronization appears to be distinct from visual cortical gamma-band synchronization (Castelo-Branco et al. 1998). Furthermore, several studies demonstrated that gamma-band synchronization is also present in the visual cortex of cat and monkey when the animals are awake and alert (Frien et al. 1994; Kreiter & Singer 1996; Fries et al. 1997; Gray & Di Prisco 1997; FriedmanHill et al. 2000; Maldonado et al. 2000; Fries et al. 2001, 2002, 2008b; Bichot et al. 2005; Taylor et al. 2005; Womelsdorf et al. 2006, 2007). Gamma-band synchronization has also been found across a range of species. The ﬁrst reports in cats and monkeys were followed by reports in rats and mice (Bragin et al. 1995, Buhl et al. 2003, Csicsvari et al. 2003, Buzsa´ki 2006, Montgomery & Buzsa´ki 2007, Montgomery et al. 2008) and in different invertebrates (Wehr & Laurent 1996, Stopfer et al. 1997, Laurent 2002). Recently, gamma-band synchronization of a time-frequency characteristic similar to
+
+that in animals has been described in the visual cortex of human subjects (Adjamian et al. 2004, Hoogenboom et al. 2006, Hadjipapas et al. 2007, Fries et al. 2008a, Wyart & TallonBaudry 2008). Gamma-band synchronization with the same characteristics as in visual cortex has also been found in other neocortical areas. For instance, it has been described in human somatosensory cortex (Bauer et al. 2006, Gross et al. 2007) and in awake monkey auditory cortex (Brosch et al. 2002) upon appropriate sensory stimulation. Particularly interesting is the ﬁnding of sustained gamma-band synchronization in the monkey lateral intraparietal area during the delay of a delayed saccade task (Pesaran et al. 2002), which has been replicated in corresponding human ﬁndings (Medendorp et al. 2007, Van Der Werf et al. 2008). This ﬁnding demonstrates that gamma-band synchronization is not restricted to cortical areas driven by sensory stimuli but can occur in other areas as long as they are functionally activated. Furthermore, gamma-band synchronization has been found outside the neocortex. It is clearly present in the hippocampus of awake behaving rats (Bragin et al. 1995, Csicsvari et al. 2003, Montgomery & Buzsa´ki 2007, Montgomery et al. 2008) and at different stages of the olfactory system of invertebrates (Wehr & Laurent 1996, Stopfer et al. 1997, Laurent 2002). Very long-range gamma-band synchronization can be observed between motor cortex and muscle and therefore also involves the spinal cord (Brown et al. 1998, Schoffelen et al. 2005). Finally, clear gamma-band synchronization has been observed in some subcortical nuclei, e.g., the subthalamic nucleus (Cassidy et al. 2002, Trottenberg et al. 2006).
+Despite this generality, gamma-band synchronization also exhibits great speciﬁcity. Already the ﬁrst reports of stimulus-induced gamma-band synchronization in visual cortex emphasized, for example, its selectivity for stimulus orientation (Gray & Singer 1989). Later reports followed in the same vein, demonstrating for example that the gamma-band synchronization in the lateral intraparietal area during a delayed saccade task was selective for the
+
+www.annualreviews.org • Neuronal Gamma-band Synchronization 211
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+direction of the upcoming saccade (Pesaran et al. 2002, Van Der Werf et al. 2008).
+Considering gamma-band synchronization’s generality and speciﬁcity, it appears at ﬁrst glance as if it emerged whenever neurons ﬁre action potentials at elevated ﬁring rates. However, several studies indicate that gamma-band synchronization requires additional, modulatory network activation. This modulatory network activation is probably best indexed by the spectral composition of the electroencephalogram (EEG) or its local version, the local ﬁeld potential (LFP). When the EEG or LFP contains low levels of deltaand high levels of gamma-band power, the respective network is in an activated state. Such activated states are required, in addition to neuronal ﬁring rate increases, to see neuronal gamma-band synchronization (HerculanoHouzel et al. 1999). They can be produced by electrically stimulating the mesencephalic reticular formation, also known as part of the ascending reticular activating system (Munk et al. 1996, Herculano-Houzel et al. 1999). The mechanisms underlying this modulatory activation are not yet fully understood but most likely involve acetylcholine (Rodriguez et al. 2004). Similarly activated network states, with ﬁne spatial resolution, are created by attentional top-down control (Fries et al. 2001, 2008b; Bichot et al. 2005; Taylor et al. 2005; Womelsdorf et al. 2006). These attentional inﬂuences on gamma-band synchronization are discussed in detail below.
+
+neurons that fulﬁlls basic prerequisites (Tiesinga et al. 2001, Bo¨ rgers et al. 2005). Quantitative simulations have provided detailed models of gamma-band synchronization, but for this review, a strongly reduced heuristic will be helpful and is given here.
+Excitatory neurons drive the entire local network, including the basket cells, a frequent type of interneuron that provides shunting inhibition onto each other and onto excitatory neurons (Vida et al. 2006, Bartos et al. 2007). The most strongly driven basket cell will ﬁre ﬁrst, thereby providing shunting inhibition to numerous other basket cells. This shunting inhibition will wear off synchronously across the basket cells. They will then ﬁre roughly synchronously, providing synchronous shunting inhibition to all their synaptic targets. After just a few of these cycles, large numbers of basket cells can be entrained to a rhythm. The rhythm’s frequency is chieﬂy determined by the time constant of the shunting inhibition among basket cells (Vida et al. 2006). The basket cells also impose their rhythmically synchronized inhibition onto the local network’s excitatory neurons. This synaptic input from the basket cells to the excitatory neurons is typically perisomatic, fast, and strong (Papp et al. 2001). Consequently, it leaves only a short window of opportunity for the excitatory neurons to ﬁre when one bout of inhibition wears off and the next one has not yet arrived (Hasenstaub et al. 2005).
+
+THE MECHANISMS BEHIND GAMMA-BAND SYNCHRONIZATION
+The above reviewed conditions for gammaband synchronization provide initial clues to the mechanisms behind gamma-band synchronization. These mechanisms are obviously present across very large parts of the neocortex and hippocampus and at least in some subcortical nuclei. Indeed, the current view is that gamma-band synchronization can emerge in any network of excitatory and inhibitory
+
+IMMEDIATE CONSEQUENCES OF GAMMA-BAND SYNCHRONIZATION
+After this short review of the mechanisms underlying local gamma-band synchronization, it is hard to imagine that gamma-band synchronization would not affect neuronal processing. Our views on the consequences of gamma-band synchronization have evolved over the past 15 years. I give a short overview on two main concepts before describing them in detail.
+The initial concept emphasized that gamma-band synchronization comodulates
+
+212 Fries
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+the ﬁring rates of the involved neurons at a frequency of 40–80 Hz, resulting in precise spike synchronization among local excitatory neurons. Thus, packages of synchronized spikes propagate to other neuronal groups, and there, the precise synchronization of incoming spikes should enhance their impact, i.e., feedforward coincidence detection should occur.
+This feedforward coincidence detection concept has recently been supplemented with another concept that emphasizes that gammaband synchronization entails the rhythmic inhibition of the local network. Therefore, gammaband synchronization within a neuronal group should entail gamma-rhythmic modulations in the group’s susceptibility to input, i.e., a rhythmic input gain modulation should take place.
+Feedforward Coincidence Detection
+Initially, the most prominent concept pertaining to the consequences of precise neuronal synchronization was feedforward coincidence detection (Ko¨ nig et al. 1996; Salinas & Sejnowski 2000, 2001). Coincidence detection is primarily concerned with excitatory inputs onto single postsynaptic target neurons. The number of those synaptic inputs per postsynaptic neuron is often very large, in the range of 5000 to 10,000. Because postsynaptic potentials in vivo are short, they summate in the postsynaptic neuron effectively only when they arrive within a few milliseconds of each other. Such temporal focusing of synaptic inputs could be achieved by gamma-band synchronization among the presynaptic neurons. Gamma-band synchronization typically occurs at frequencies between 40 and 80 Hz, corresponding to cycle lengths of 25 ms down to 12 ms. The gammasynchronized spikes are therefore concentrated in roughly less than half of the gamma cycle and therefore leave the gamma-synchronized neurons within ∼12 ms down to 6 ms. If this precision of timing is maintained between the output from the gamma-synchronized presynaptic neurons and the corresponding synaptic input onto postsynaptic target neurons, then
+
+the synchronized spikes make a greater impact on their targets (but see Morita et al. 2008). This greater impact is due on the one hand to the effective summation of synchronous postsynaptic potentials and on the other hand to active mechanisms triggered by those synchronous postsynaptic potentials (Azouz & Gray 2000, 2003).
+Rhythmic Input Gain Modulation
+While rhythmic synchronization within a group of neurons affects the efﬁcacy of those neurons’ spike output, it also affects the efﬁcacy of the synaptic input to that neuronal target group. When the neurons in a target group are synchronized in the gammafrequency band, they are under the dominant inﬂuence of gamma-rhythmic inhibitory inputs (Hasenstaub et al. 2005). These gammarhythmic inhibitory inputs emerge primarily from local basket cells, which produce strong, perisomatic inputs onto pyramidal cells (Papp et al. 2001). Those strong, perisomatic inputs powerfully modulate the efﬁcacy of other synaptic inputs, particularly of excitatory inputs impinging on the more distal dendrites of pyramidal cells. As a consequence, excitatory input is most efﬁcient when it arrives out of phase with the inhibitory barrages, and vice versa.
+The crucial consequence is that rhythmic local inhibitory synchronization entails the rhythmic modulation of excitatory input gain. The input gain is modulated cyclically, and for a 40–80-Hz gamma-band, the input gain cycle is 12–25 ms short. Such a rapid input gain rhythm will affect the average gain of rhythmic excitatory input across multiple cycles, e.g., across a behaviorally relevant period of 250 ms. The average gain across multiple cycles will depend on the precision and phase of the synchronization between rhythmic input and rhythmic input gain. The absence of any synchronization between the rhythms of inputs and gain changes will lead to an average sampling of input gains and thereby result in a moderate gain. The presence of synchronization is equivalent to a consistent phase relation between the rhythms of inputs and gain changes. Such a
+
+www.annualreviews.org • Neuronal Gamma-band Synchronization 213
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only. Power correlation
+
+a
+
+Lower (visual) area
+
+Higher (visual) area
+
+b
+
+A
+
+Good (mean)
+
+c
+0.4
+
+C
+
+0.2
+
+B
+
+Bad
+
+0
+
+–π
+
+0
+
+π
+
+Phase relation
+
+relative to mean
+
+Figure 1
+The communication-through-coherence concept and direct physiological evidence for it. a: Three neuronal groups (A, B, and C). The neurons inside group A are rhythmically synchronized as indicated by the undulating lines with spikes around the peaks. The same holds for the neurons inside groups B and C. However, C is in-phase synchronized exclusively to A and not to B. b: Each vector corresponds to the relative gamma-band phase in a 250-ms-long epoch between gamma-band rhythms in two separate neuronal groups recorded in awake cat visual cortex (Womelsdorf et al. 2007). The thick red arrow indicates the mean relative phase across all epochs. The outer ring segments illustrate the sorting of epochs according to their relative phases. c: After epochs have been sorted into six bins, each bin contains many epochs of a deﬁned relative phase among gamma rhythms. For each relative gamma-phase bin, the interaction strength between neuronal groups was then estimated by calculating the correlation of gamma-band power between groups and across epochs in the respective bin.
+
+consistent phase relation can maximize or minimize average gain, dependent on the phase relation. Synaptic input that arrives consistently at the moments of maximal input gain will beneﬁt maximally, and vice versa. In general, interactions among rhythmically active neuronal groups should depend on neuronal synchronization; therefore, this concept has been addressed as the communication through coherence hypothesis (Figure 1a) (Fries 2005).
+Theoretical studies ﬁrst pointed to the importance of rhythmic inhibition for input gain modulation (Tiesinga et al. 2004, 2005; Bo¨ rgers & Kopell 2008), and recently, the communication through coherence hypothesis was supported by direct physiological evidence (Womelsdorf et al. 2007). Womelsdorf et al. recorded simultaneously from separate groups of neurons within or across visual areas that were coactivated with appropriate visual stimuli and engaged in gamma-band synchronization. The presence of signiﬁcant rhythmic synchronization corresponds to a consistent phase
+
+relation among the rhythms in the synchronized groups. However, under physiological circumstances, and for neuronal groups separated by more than a few hundred micron, phase relations among local rhythms were not perfectly consistent. Rather, across a sufﬁciently long observation period, all phase relations were observed, with merely a predominance around the mean phase relation (Figure 1b). This situation allowed the investigators to sort observation epochs according to the phase relation among the local rhythms and to test for the hypothesized inﬂuence of phase relation on the strength of interactions. For this test, interaction strength needs to be deﬁned between frequency-speciﬁc rhythms because phase relations are also frequency speciﬁc and should correspondingly affect only the interactions at the respective frequency. Thus, interaction strength was estimated by the correlation among rhythm strengths across all epochs with a certain phase relation. This analysis conﬁrmed the hypothesis that the phase relation
+
+214 Fries
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+between two local rhythms determined the interaction strength between those rhythmic activities (Figure 1c) (Womelsdorf et al. 2007).
+NETWORK CONSEQUENCES
+In consideration of gamma-band synchronization’s immediate consequences, interesting network consequences emerge when two groups (A and B) of neurons provide converging synaptic input to a common target group (C) and compete for inﬂuence on this target group (Figure 1a). If there is rhythmic synchronization among the neurons in group A and among the neurons in group B, but not between those in A and B, then group C will most likely synchronize to either A or B but not to both at the same time (Bo¨ rgers & Kopell 2008). This is due to the inhibitory interneurons in group C. When the interneurons in C have ﬁred a synchronous barrage of spikes, then C’s neurons are collectively inhibited and collectively return from inhibition. When C is synchronized with A, then input from A will arrive around the time that C is again ready to receive this input. But input from B (which is not synchronized with A) will arrive mostly when C is not receptive. Thus, in short, the locking of C to either A or B implements a winner-takes-all mechanism between the competing inputs of A and B into C.
+The reason behind the winner-takes-all mechanism is the inhibition-mediated rhythmic input gain modulation in C, which lends high gain to the input that is coherent with C but low gain to the input that is not coherent with C. Which input actually achieves coherence with C is likely determined by the coincidence detection mechanism. The coincidence detection mechanism renders C sensitive to the synchronization among the neurons in group A, for example. If those neurons in group A are precisely gamma-band synchronized to each other, then they will trigger many spikes in C and thereby entrain the interneuron network of C to the phase of the rhythm in A. Once this entrainment is achieved, the input gain effect will exert the winner-takes-all mechanism: It will reduce the impact of B and further
+
+amplify the impact of A in their competition for control over C. Together, the two mechanisms of coincidence detection and of rhythmic gain modulation thereby provide an exclusive communication link between the target C and the more strongly synchronized input A (with the term exclusive used in its literal sense of excluding the input that is not synchronized to C) (Fries 2005, Fries et al. 2008b).
+The described constellation of two neuronal groups converging onto one target group is a fundamental motif in neocortex. It is well described, for example, in the visual system among visual areas at adjacent levels of the hierarchy. Neurons in V1 provide convergent input into neurons in V2, neurons in V2 provide convergent input into neurons in V4, and so on (Salin et al. 1992, Lund et al. 2003). The speciﬁc pattern of synaptic connections converging on a given neuron is the product of genetic speciﬁcation and learning (Erickson & Desimone 1999, Baker et al. 2002). During learning, synaptic inputs that are often active together are strengthened such that (statistical) regularities in synaptic input lead to selectivities of the respective postsynaptic target neurons. While this mechanism renders the postsynaptic neurons selective to diagnostic features of the learned input pattern, it also renders them nonselective or invariant to nondiagnostic accidental features (Ito et al. 1995). This invariance is an advantage because it may provide the basis for object recognition even when there are changes to irrelevant stimulus aspects. But this invariance is also a curse because a given stimulus will never cover the complete input space of a given neuron, leaving room for competing stimuli. This problem is obvious in the spatial dimension: The size of receptive ﬁelds increases across hierarchy levels (Gattass et al. 2005). As a consequence, a stimulus that drives a particular high-level neuron will under natural viewing conditions almost always be part of a scene together with other stimuli (Sheinberg & Logothetis 2001). For example, the big receptive ﬁeld of a “banana-selective” inferotemporal neuron will rarely contain an isolated banana, and the other stimuli in the receptive
+
+www.annualreviews.org • Neuronal Gamma-band Synchronization 215
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+ﬁeld, when presented in isolation, may produce widely varying activity levels in the respective neuron.
+This problem could be called the curse of confusion through convergence, and it needs to be addressed to realize the fundamental beneﬁts of neuronal selectivity that are brought about through cell-speciﬁc synaptic convergence patterns. To this end, it would be beneﬁcial if the effective input of a given neuron at a given moment in time were limited to functional subsets corresponding to one actual object. For example, if a banana-selective neuron has a banana and an apple in its receptive ﬁeld, then ideally either the banana-driven or the apple-driven inputs should be effective at a given moment but not both simultaneously. This selective efﬁcacy of subsets of a neuron’s input may be implemented through the abovementioned exclusive communication link, which is in turn brought about by gamma-band synchronization. But for this solution to work, two conditions must be met simultaneously: First, inputs driven by a given stimulus need to be rhythmically synchronized to each other, but not to inputs driven by other stimuli. This requirement corresponds to the binding-bysynchronization hypothesis reviewed quickly in the introduction. As mentioned above, abundant experimental evidence exists in support of this hypothesis (Singer & Gray 1995). Second, one of the input segments must be given a competitive advantage over the other by enhancing its gamma-band synchronization. This requirement corresponds to the hypothesis of biased competition through enhanced synchronization (Fries 2005). I quickly review the concept of biased competition as a mechanism behind selective attention and the role of gamma-band synchronization for biased competition. I then return to our considerations of neuronal selectivity and invariance.
+BIASED COMPETITION
+When we are faced with two visual stimuli, these stimuli activate two groups of neurons in early visual areas. As mentioned above, these
+
+groups of neurons have anatomical projections that converge onto neurons in higher visual areas. When only one of the two visual stimuli is behaviorally relevant, then these neurons in higher visual areas respond as if only the behaviorally relevant stimulus was present (Chelazzi et al. 1993, Reynolds et al. 1999, Reynolds & Chelazzi 2004). Thus, they respond as if they interacted effectively only with those neurons in earlier visual areas that forward the information about the behaviorally relevant, or attended, stimulus. The interaction with other neurons, which forward information about distracter stimuli, appears to have stopped despite the fact that the anatomical connections are still present. Selective attention thus renders from all anatomically possible interactions a selected subset to be effective, leaving other input ineffective or blocked. This concept is captured in the biased competition model of selective attention (Desimone & Duncan 1995, Reynolds et al. 1999).
+The biased competition model contains the two lower-level groups of neurons that are driven by the two stimuli and that provide converging and competing input into a higher-level target group of neurons. The model assumes that attention inﬂuences visual processing by enhancing the input gain for the lower-level neuronal group that is driven by the behaviorally relevant stimulus (Reynolds et al. 1999). The mechanism behind the input gain modulation is not speciﬁed in the model. Yet, it may well be implemented through an enhanced gamma-band synchronization among the lower-level neurons driven by the attended stimulus and by an ensuing exclusive communication link between them and higher-level target neurons (Fries et al. 2001, 2008b; Fries 2005).
+This proposal is supported by direct physiological evidence. Selective attention to a visual stimulus speciﬁcally enhances the gamma-band synchronization among neurons in monkey extrastriate visual cortex driven by that stimulus (Fries et al. 2001, 2008b; Bichot et al. 2005; Taylor et al. 2005; Womelsdorf et al. 2006). This attentional enhancement of gamma-band
+
+216 Fries
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+synchronization is in turn predictive of the behavioral beneﬁts of attention. One key behavioral beneﬁt of attention is a shortened reaction time to behaviorally relevant events. Shortened behavioral response times have been found when the behaviorally relevant information is processed by neurons that are already particularly precisely gamma-band synchronized (Womelsdorf et al. 2006). Because the gammaband synchronization in visual cortex cannot affect motor output directly, the most likely interpretation is that it triggers an exclusive communication link with target neurons in other areas, ultimately motor cortex.
+SELECTIVITY AND INVARIANCE, SEGMENTATION, AND SELECTION
+As discussed above, a core motif of cortical connectivity is convergence: It brings about neuronal selectivity and invariance but also a curse of confusion, which may be resolved if the total input to a neuron is functionally segmented and if one of the segments is given a competitive advantage through selection. I have reviewed evidence suggesting that both conditions are met and subserved by gamma-band synchronization. The solution seems to lie in the interplay between structural neuronal connectivity and dynamic neuronal synchronization. In this interplay, the core contributions of neuronal connectivity are neuronal selectivity and neuronal invariance. The core contributions of neuronal synchronization are segmentation and selection. Just as selectivity and invariance are associated, segmentation and selection also appear to be intimately related and probably mutually depend on each other.
+Under natural viewing conditions, selection requires at least some rough segmentation, and accurate segmentation would be greatly aided by selection. If a new input is presented at a given moment, then segmentation through synchronization at early processing levels is initially likely preliminary and shaped primarily by the intrinsic microconnectivity at that level (Ko¨ nig et al. 1993). But such a coarse
+
+segmentation would be sufﬁcient for an initial selection of one input segment and would enable the subsequent expression of selective responses at the next processing level. Neurons at higher processing levels have obtained their selectivities through learning, which strengthened the synapses of frequently co-occurring input patterns. The outputs of those neurons feed back roughly to the neurons that provide the learned input patterns (Lund et al. 2003). Thus, feedback from them will contain the learned input structure. This feedback will provide a sort of prediction on the basis of prior experiences and will thereby reﬁne the segmentation of an actual given input pattern. Thus, segmentation and selection may evolve together whenever an input is processed. This coevolution could be likened to a ﬁtting procedure in which a model that is distributed over several levels of the cortical hierarchy is ﬁtted to the input. I propose that this ﬁtting process is a fundamental cortical computation and is mechanistically subserved by gamma-band synchronization.
+So far, we have considered the selection part of this concept only in the context of a typical selective attention experiment in which attention is predirected to part of the input by means of a cue. I suggest that such a selection occurs continuously when we are awake and generally attentive and that the input space is explored by moving the selection around rhythmically.
+EXPLORATION THROUGH RHYTHMIC BREAKING OF GAMMA
+The strength of gamma-band synchronization is modulated with the phase of lower-frequency rhythms, particularly the theta rhythm (Figure 2a) (Bragin et al. 1995, Lakatos et al. 2005, Canolty et al. 2006) and the alpha rhythm (O. Jensen, personal communication). I primarily address the theta rhythm because gamma modulation by theta is best established, but both phenomena might be related as discussed further below. I propose that each cycle of the theta rhythm constitutes a cycle of
+
+www.annualreviews.org • Neuronal Gamma-band Synchronization 217
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+selection and interpretation of parts of the sensory input, and I base this on two pieces of evidence: First, in each theta cycle, gamma-band synchronization is built up and then broken
+
+again (Figure 2a) (Bragin et al. 1995, Lakatos et al. 2005, Canolty et al. 2006). Second, as reviewed above, gamma-band synchronization is involved in the selection of behaviorally
+
+Frequency (Hz)
+
+a
+200
+150
+100
+
+a.u. 0.2 0
+
+Spikes s–1
+
+50 –0.2
+
+60 b
+
+0
+
+– 400
+
+–200
+
+0
+
+200
+
+Time (ms)
+
+50 0 µV 400 –50
+
+40
+
+20
+
+Preferred stimulus alone
+
+Addition of nonpreferred stimulus
+
+0
+
+60
+
+40
+
+20
+
+0 –800
+
+Nonpreferred stimulus alone
+
+Addition of preferred stimulus
+
+–600 –400 –200
+
+0
+
+200
+
+400
+
+600
+
+800
+
+Time (ms)
+
+c
+
+50
+
+Spikes s–1
+
+0
+
+–200
+
+0
+
+218 Fries
+
+200
+
+400
+
+600
+
+800
+
+1000 1200 1400
+
+Time (ms)
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+relevant sensory information (Fries et al. 2001). Thus, if each theta cycle ﬁrst makes and then breaks a gamma-synchronized network, then this theta rhythm probably makes and breaks selections of the input segments.
+Crucial support for this suggestion comes from recordings in inferotemporal (IT) cortex of monkeys. IT cortex is high up in the hierarchy of visual cortex and, as reviewed above, neurons at this level respond exclusively to the selected stimulus even if it is presented together with other stimuli (Chelazzi et al. 1993, Chelazzi 1995, Reynolds & Chelazzi 2004). Rollenhagen & Olson (2005) recorded from single, isolated IT neurons in awake, ﬁxating macaque monkeys while they were presented with two visual stimuli. One of the stimuli activated the recorded neuron stronger, i.e., was preferred, whereas the other was nonpreferred. One stimulus was presented ﬁrst in isolation, and after 600 ms, the second stimulus was added (while the ﬁrst remained unchanged). When the ﬁrst stimulus was preferred, it induced a strong response as shown in the upper panel of Figure 2b. When the nonpreferred stimulus followed 600 ms later, it induced a reduction in ﬁring rate. The observation relevant for our considerations is that this initial reduction in ﬁring rate was followed by a sequence of ﬁring rate enhancements and reductions. This sequence was periodic with a period length of roughly 0.2 s, i.e., a frequency of roughly 5 Hz, which is in the theta-frequency range. A similar periodic ﬁring rate modulation was found when the nonpreferred stimulus was presented ﬁrst
+
+and followed by the preferred one, but in this case, the onset of the preferred stimulus induced an initial increase in ﬁring rate (lower panel of Figure 2b).
+As mentioned above, IT neurons respond only to the selected stimulus out of a multistimulus display (Chelazzi et al. 1993). This effect is so strong and well documented that we can turn the reasoning around: With the preferred and nonpreferred stimulus used in this experiment, a high ﬁring rate indicates the selection of the preferred stimulus and vice versa. Thus, the theta-rhythmic alternation in ﬁring rate suggests a theta-rhythmic oscillation of selection between the two stimuli. The initial phase of the theta oscillation is determined by the stimulus onset. The onset of a new, salient stimulus always leads to the automatic selection of that stimulus (Remington et al. 1992, Sheinberg & Logothetis 1997); the experimental data do indeed show that onsets of preferred stimuli caused initial upstrokes in ﬁring rate, but onsets of nonpreferred stimuli caused initial downstrokes in ﬁring rate. Also consistent with this interpretation are two other ﬁndings: (a) The theta rhythm resets after the onset of a salient stimulus (Buzsa´ki et al. 1979, Rizzuto et al. 2003, Williams & Givens 2003); and (b) apart from the hippocampus, the theta rhythm is particularly strong in frontal cortex (Iramina et al. 1996, Jensen & Tesche 2002), which is involved in the shifting of attention (Rossi et al. 2007).
+In Figure 2b, the initial up- or downstrokes after onset of the second stimulus are
+
+←−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+Figure 2
+Input exploration through theta-rhythmic breaking of gamma. a (upper panel ): Normalized power of a human subdural ECoG signal as a function of frequency (y-axis) and time relative to troughs of the theta rhythm observed in the same signal (x-axis). (Lower panel ) The raw ECoG signal averaged around theta troughs. Modiﬁed from Canolty et al. (2006). b: Firing rates of inferotemporal cortex neurons when presented with preferred and nonpreferred stimuli in the temporal sequences as indicated inside the ﬁgure panels. Modiﬁed from Rollenhagen & Olson (2005). c: Spike rasters of an inferotemporal neuron for individual stimulus presentations. The time of stimulus presentation is indicated in a blue background shade. For each stimulus presentation, a 5-Hz rhythm is present and stable across the time shown. Across stimulus presentations, this rhythm appears to reset when the stimulus present, but it then drifts slightly in frequency/phase (highlighted for two trials shown in red ). As a consequence of this drift, the average ﬁring rate (shown in gray behind the spike rasters) suggests a dampening of the 5-Hz rhythm. Modiﬁed from Sheinberg & Logothetis (1997).
+
+www.annualreviews.org • Neuronal Gamma-band Synchronization 219
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+particularly strong, and the oscillation amplitude diminishes with time after the onset of the second stimulus. These results could be explained by various processes, but a particularly parsimonious explanation is also particularly intriguing: There may be an ongoing 5-Hz exploration of input, and the onset of a new stimulus merely resets the exploration toward the salient new stimulus. This reset renders the oscillation clearly visible shortly after onset. But with increasing time after the onset, the oscillation disappears in the average across trials owing to small variations in oscillation frequency across trials. This suggestion is supported by the investigation of IT neuronal ﬁring in individual trials. Even when only the preferred stimulus is presented in isolation, IT neurons can show responses that keep a ∼5-Hz rhythmicity in individual trials, but with slightly drifting frequencies/phases across trials (Figure 2c).
+The precise interrelation between gamma and lower frequencies will need further clariﬁcation. As discussed above, IT neurons presented with a preferred and nonpreferred stimulus undulate in response according to a 5-Hz rhythmicity. This rhythmic response requires that a given stimulus is selected every 0.2 s; however, this means that with two stimuli, a selection is required every 0.1 s. The latter period corresponds to the 10-Hz alpha-band rhythm. The alpha rhythm also modulates the strength of gamma-band synchronization (O. Jensen, personal communication), and the alpha rhythm is strong particularly over
+
+posterior parietal cortex, a region involved in stimulus selection. Direct investigations of the interrelations between those rhythms in the discussed context will be an important topic for future research.
+CONCLUSION
+Gamma-band synchronization is a fundamental operation mode of activated cortical networks. Synchronized networks have a higher impact on their target networks, and the entrainment of a target network establishes an exclusive neuronal communication link. Such exclusive links are essential for cortical computation. Cortical computation unfolds when inputs converge in speciﬁc patterns onto targets, creating neuronal selectivity and invariance. But invariance entails a curse of confusion, which precludes the beneﬁts of selectivity to be harvested. This curse is overcome by segmenting the input and selecting one segment at a time. Both segmentation and selection are achieved through gammaband synchronization as part of one process. This process selects at a given moment necessarily only one segment of the input. The remaining input is explored by sampling segments at a low-frequency rhythm. The low-frequency rhythm therefore makes and breaks gammasynchronized networks. I have discussed these considerations with evidence primarily from the visual system, but I suggest that in similar ways, neuronal gamma-band synchronization constitutes a fundamental process for all of cortical computation.
+
+DISCLOSURE STATEMENT The author is not aware of any afﬁliations, memberships, funding, or ﬁnancial holdings that might be perceived as affecting the objectivity of this review.
+LITERATURE CITED Adjamian P, Holliday IE, Barnes GR, Hillebrand A, Hadjipapas A, Singh KD. 2004. Induced visual illusions
+and gamma oscillations in human primary visual cortex. Eur. J. Neurosci. 20(2):587–92 Azouz R, Gray CM. 2000. Dynamic spike threshold reveals a mechanism for synaptic coincidence detection
+in cortical neurons in vivo. Proc. Natl. Acad. Sci. USA 97(14):8110–15
+220 Fries
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+Azouz R, Gray CM. 2003. Adaptive coincidence detection and dynamic gain control in visual cortical neurons in vivo. Neuron 37(3):513–23
+Baker CI, Behrmann M, Olson CR. 2002. Impact of learning on representation of parts and wholes in monkey inferotemporal cortex. Nat. Neurosci. 5(11):1210–16
+Bartos M, Vida I, Jonas P. 2007. Synaptic mechanisms of synchronized gamma oscillations in inhibitory interneuron networks. Nat. Rev. Neurosci. 8(1):45–56
+Bauer M, Oostenveld R, Peeters M, Fries P. 2006. Tactile spatial attention enhances gamma-band activity in somatosensory cortex and reduces low-frequency activity in parieto-occipital areas. J. Neurosci. 26(2):490– 501
+Bichot NP, Rossi AF, Desimone R. 2005. Parallel and serial neural mechanisms for visual search in macaque area V4. Science 308(5721):529–34
+Bo¨ rgers C, Epstein S, Kopell NJ. 2005. Background gamma rhythmicity and attention in cortical local circuits: a computational study. Proc. Natl. Acad. Sci. USA 102(19):7002–7
+Bo¨ rgers C, Kopell NJ. 2008. Gamma oscillations and stimulus selection. Neural Comput. 20(2):383–414 Bragin A, Jando G, Nadasdy Z, Hetke J, Wise K, Buzsa´ki G. 1995. Gamma (40–100 Hz) oscillation in the
+hippocampus of the behaving rat. J. Neurosci. 15(1 Pt. 1):47–60 Brosch M, Budinger E, Scheich H. 2002. Stimulus-related gamma oscillations in primate auditory cortex.
+J. Neurophysiol. 87(6):2715–25 Brown P, Salenius S, Rothwell JC, Hari R. 1998. Cortical correlate of the Piper rhythm in humans.
+J. Neurophysiol. 80(6):2911–17 Buhl DL, Harris KD, Hormuzdi SG, Monyer H, Buzsa´ki G. 2003. Selective impairment of hippocampal
+gamma oscillations in connexin-36 knock-out mouse in vivo. J. Neurosci. 23(3):1013–18 Buzsa´ki G. 2006. Rhythms of the Brain. Oxford, UK: Oxford Univ. Press Buzsa´ki G, Grastya´n E, Tveritskaya IN, Czopf J. 1979. Hippocampal evoked potentials and EEG changes
+during classical conditioning in the rat. Electroencephalogr. Clin. Neurophysiol. 47(1):64–74 Canolty RT, Edwards E, Dalal SS, Soltani M, Nagarajan SS, et al. 2006. High gamma power is phase-locked
+to theta oscillations in human neocortex. Science 313(5793):1626–28 Cassidy M, Mazzone P, Oliviero A, Insola A, Tonali P, et al. 2002. Movement-related changes in synchro-
+nization in the human basal ganglia. Brain 125(Pt. 6):1235–46 Castelo-Branco M, Neuenschwander S, Singer W. 1998. Synchronization of visual responses between the
+cortex, lateral geniculate nucleus, and retina in the anesthetized cat. J. Neurosci. 18(16):6395–410 Chelazzi L. 1995. Neural mechanisms for stimulus selection in cortical areas of the macaque subserving object
+vision. Behav. Brain Res. 71(1–2):125–34 Chelazzi L, Miller EK, Duncan J, Desimone R. 1993. A neural basis for visual search in inferior temporal
+cortex. Nature 363(6427):345–47 Csicsvari J, Jamieson B, Wise KD, Buzsa´ki G. 2003. Mechanisms of gamma oscillations in the hippocampus
+of the behaving rat. Neuron 37(2):311–22 Desimone R, Duncan J. 1995. Neural mechanisms of selective visual attention. Annu. Rev. Neurosci. 18:193–222 Eckhorn R, Bauer R, Jordan W, Brosch M, Kruse W, et al. 1988. Coherent oscillations: a mechanism of
+feature linking in the visual cortex? Multiple electrode and correlation analyses in the cat. Biol. Cybern. 60(2):121–30 Engel AK, Ko¨ nig P, Kreiter AK, Singer W. 1991a. Interhemispheric synchronization of oscillatory neuronal responses in cat visual cortex. Science 252(5010):1177–79 Engel AK, Ko¨ nig P, Singer W. 1991b. Direct physiological evidence for scene segmentation by temporal coding. Proc. Natl. Acad. Sci. USA 88(20):9136–40 Engel AK, Kreiter AK, Ko¨ nig P, Singer W. 1991c. Synchronization of oscillatory neuronal responses between striate and extrastriate visual cortical areas of the cat. Proc. Natl. Acad. Sci. USA 88(14):6048–52 Erickson CA, Desimone R. 1999. Responses of macaque perirhinal neurons during and after visual stimulus association learning. J. Neurosci. 19(23):10404–16 Friedman-Hill S, Maldonado PE, Gray CM. 2000. Dynamics of striate cortical activity in the alert macaque: I. Incidence and stimulus-dependence of gamma-band neuronal oscillations. Cereb. Cortex 10(11):1105–16 Frien A, Eckhorn R, Bauer R, Woelbern T, Kehr H. 1994. Stimulus-speciﬁc fast oscillations at zero phase between visual areas V1 and V2 of awake monkey. Neuroreport 5(17):2273–77
+www.annualreviews.org • Neuronal Gamma-band Synchronization 221
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+Fries P. 2005. A mechanism for cognitive dynamics: neuronal communication through neuronal coherence. Trends Cogn. Sci. 9(10):474–80
+Fries P, Reynolds JH, Rorie AE, Desimone R. 2001. Modulation of oscillatory neuronal synchronization by selective visual attention. Science 291(5508):1560–63
+Fries P, Roelfsema PR, Engel AK, Ko¨ nig P, Singer W. 1997. Synchronization of oscillatory responses in visual cortex correlates with perception in interocular rivalry. Proc. Natl. Acad. Sci. USA 94(23):12699–704
+Fries P, Scheeringa R, Oostenveld R. 2008a. Finding gamma. Neuron 58(3):303–5 Fries P, Schro¨ der JH, Roelfsema PR, Singer W, Engel AK. 2002. Oscillatory neuronal synchronization in
+primary visual cortex as a correlate of stimulus selection. J. Neurosci. 22(9):3739–54 Fries P, Womelsdorf T, Oostenveld R, Desimone R. 2008b. The effects of visual stimulation and selective
+visual attention on rhythmic neuronal synchronization in macaque area V4. J. Neurosci. 28(18):4823–35 Gattass R, Nascimento-Silva S, Soares JG, Lima B, Jansen AK, et al. 2005. Cortical visual areas in monkeys:
+location, topography, connections, columns, plasticity and cortical dynamics. Philos. Trans. R. Soc. Lond B Biol. Sci. 360(1456):709–31 Gray CM, Di Prisco GV. 1997. Stimulus-dependent neuronal oscillations and local synchronization in striate cortex of the alert cat. J. Neurosci. 17(9):3239–53 Gray CM, Ko¨ nig P, Engel AK, Singer W. 1989. Oscillatory responses in cat visual cortex exhibit inter-columnar synchronization which reﬂects global stimulus properties. Nature 338(6213):334–37 Gray CM, Singer W. 1989. Stimulus-speciﬁc neuronal oscillations in orientation columns of cat visual cortex. Proc. Natl. Acad. Sci. USA 86(5):1698–702 Gross J, Schnitzler A, Timmermann L, Ploner M. 2007. Gamma oscillations in human primary somatosensory cortex reﬂect pain perception. PLoS. Biol. 5(5):e133 Hadjipapas A, Adjamian P, Swettenham JB, Holliday IE, Barnes GR. 2007. Stimuli of varying spatial scale induce gamma activity with distinct temporal characteristics in human visual cortex. Neuroimage 35(2):518– 30 Hasenstaub A, Shu Y, Haider B, Kraushaar U, Duque A, McCormick DA. 2005. Inhibitory postsynaptic potentials carry synchronized frequency information in active cortical networks. Neuron 47(3):423–35 Herculano-Houzel S, Munk MH, Neuenschwander S, Singer W. 1999. Precisely synchronized oscillatory ﬁring patterns require electroencephalographic activation. J. Neurosci. 19(10):3992–4010 Hoogenboom N, Schoffelen JM, Oostenveld R, Parkes LM, Fries P. 2006. Localizing human visual gammaband activity in frequency, time and space. Neuroimage 29(3):764–73 Iramina K, Ueno S, Matsuoka S. 1996. MEG and EEG topography of frontal midline theta rhythm and source localization. Brain Topogr. 8(3):329–31 Ito M, Tamura H, Fujita I, Tanaka K. 1995. Size and position invariance of neuronal responses in monkey inferotemporal cortex. J. Neurophysiol. 73(1):218–26 Jensen O, Tesche CD. 2002. Frontal theta activity in humans increases with memory load in a working memory task. Eur. J. Neurosci. 15(8):1395–99 Ko¨ nig P, Engel AK, Lo¨ wel S, Singer W. 1993. Squint affects synchronization of oscillatory responses in cat visual cortex. Eur. J. Neurosci. 5(5):501–8 Ko¨ nig P, Engel AK, Singer W. 1996. Integrator or coincidence detector? The role of the cortical neuron revisited. Trends Neurosci. 19(4):130–37 Kreiter AK, Singer W. 1996. Stimulus-dependent synchronization of neuronal responses in the visual cortex of the awake macaque monkey. J. Neurosci. 16(7):2381–96 Lakatos P, Shah AS, Knuth KH, Ulbert I, Karmos G, Schroeder CE. 2005. An oscillatory hierarchy controlling neuronal excitability and stimulus processing in the auditory cortex. J. Neurophysiol. 94(3):1904–11 Laurent G. 2002. Olfactory network dynamics and the coding of multidimensional signals. Nat. Rev. Neurosci. 3(11):884–95 Lund JS, Angelucci A, Bressloff PC. 2003. Anatomical substrates for functional columns in macaque monkey primary visual cortex. Cereb. Cortex 13(1):15–24 Maldonado PE, Friedman-Hill S, Gray CM. 2000. Dynamics of striate cortical activity in the alert macaque: II. Fast time scale synchronization. Cereb. Cortex 10(11):1117–31
+222 Fries
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+Medendorp WP, Kramer GF, Jensen O, Oostenveld R, Schoffelen JM, Fries P. 2007. Oscillatory activity in human parietal and occipital cortex shows hemispheric lateralization and memory effects in a delayed double-step saccade task. Cereb. Cortex 17(10):2364–74
+Montgomery SM, Buzsa´ki G. 2007. Gamma oscillations dynamically couple hippocampal CA3 and CA1 regions during memory task performance. Proc. Natl. Acad. Sci. USA 104(36):14495–500
+Montgomery SM, Sirota A, Buzsa´ki G. 2008. Theta and gamma coordination of hippocampal networks during waking and rapid eye movement sleep. J. Neurosci. 28(26):6731–41
+Morita K, Kalra R, Aihara K, Robinson HP. 2008. Recurrent synaptic input and the timing of gamma-frequency-modulated ﬁring of pyramidal cells during neocortical “UP” states. J. Neurosci. 28(8):1871–81
+Munk MH, Roelfsema PR, Ko¨ nig P, Engel AK, Singer W. 1996. Role of reticular activation in the modulation of intracortical synchronization. Science 272(5259):271–74
+Neuenschwander S, Singer W. 1996. Long-range synchronization of oscillatory light responses in the cat retina and lateral geniculate nucleus. Nature 379(6567):728–32
+Papp E, Leinekugel X, Henze DA, Lee J, Buzsa´ki G. 2001. The apical shaft of CA1 pyramidal cells is under GABAergic interneuronal control. Neuroscience 102(4):715–21
+Pesaran B, Pezaris JS, Sahani M, Mitra PP, Andersen RA. 2002. Temporal structure in neuronal activity during working memory in macaque parietal cortex. Nat. Neurosci. 5(8):805–11
+Remington RW, Johnston JC, Yantis S. 1992. Involuntary attentional capture by abrupt onsets. Percept. Psychophys. 51(3):279–90
+Reynolds JH, Chelazzi L. 2004. Attentional modulation of visual processing. Annu. Rev. Neurosci. 27:611–47 Reynolds JH, Chelazzi L, Desimone R. 1999. Competitive mechanisms subserve attention in macaque areas
+V2 and V4. J. Neurosci. 19(5):1736–53 Rizzuto DS, Madsen JR, Bromﬁeld EB, Schulze-Bonhage A, Seelig D, et al. 2003. Reset of human neocortical
+oscillations during a working memory task. Proc. Natl. Acad. Sci. USA 100(13):7931–36 Rodriguez R, Kallenbach U, Singer W, Munk MH. 2004. Short- and long-term effects of cholinergic modula-
+tion on gamma oscillations and response synchronization in the visual cortex. J. Neurosci. 24(46):10369–78 Rollenhagen JE, Olson CR. 2005. Low-frequency oscillations arising from competitive interactions between
+visual stimuli in macaque inferotemporal cortex. J. Neurophysiol. 94(5):3368–87 Rols G, Tallon-Baudry C, Girard P, Bertrand O, Bullier J. 2001. Cortical mapping of gamma oscillations in
+areas V1 and V4 of the macaque monkey. Vis. Neurosci. 18(4):527–40 Rossi AF, Bichot NP, Desimone R, Ungerleider LG. 2007. Top down attentional deﬁcits in macaques with
+lesions of lateral prefrontal cortex. J. Neurosci. 27(42):11306–14 Salin PA, Girard P, Kennedy H, Bullier J. 1992. Visuotopic organization of corticocortical connections in the
+visual system of the cat. J. Comp Neurol. 320(4):415–34 Salinas E, Sejnowski TJ. 2000. Impact of correlated synaptic input on output ﬁring rate and variability in
+simple neuronal models. J. Neurosci. 20(16):6193–209 Salinas E, Sejnowski TJ. 2001. Correlated neuronal activity and the ﬂow of neural information. Nat. Rev.
+Neurosci. 2(8):539–50 Schoffelen JM, Oostenveld R, Fries P. 2005. Neuronal coherence as a mechanism of effective corticospinal
+interaction. Science 308(5718):111–13 Sheinberg DL, Logothetis NK. 1997. The role of temporal cortical areas in perceptual organization.
+Proc. Natl. Acad. Sci. USA 94(7):3408–13 Sheinberg DL, Logothetis NK. 2001. Noticing familiar objects in real world scenes: the role of temporal
+cortical neurons in natural vision. J. Neurosci. 21(4):1340–50 Singer W. 1999. Neuronal synchrony: a versatile code for the deﬁnition of relations? Neuron 24(1):49–25 Singer W, Gray CM. 1995. Visual feature integration and the temporal correlation hypothesis. Annu. Rev.
+Neurosci. 18:555–86 Stopfer M, Bhagavan S, Smith BH, Laurent G. 1997. Impaired odour discrimination on desynchronization
+of odour-encoding neural assemblies. Nature 390(6655):70–74 Taylor K, Mandon S, Freiwald WA, Kreiter AK. 2005. Coherent oscillatory activity in monkey area v4 predicts
+successful allocation of attention. Cereb. Cortex 15(9):1424–37
+www.annualreviews.org • Neuronal Gamma-band Synchronization 223
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+ANRV379-NE32-09 ARI 10 May 2009 8:58
+Tiesinga PH. 2005. Stimulus competition by inhibitory interference. Neural Comput. 17(11):2421–53 Tiesinga PH, Fellous JM, Jose´ JV, Sejnowski TJ. 2001. Computational model of carbachol-induced delta,
+theta, and gamma oscillations in the hippocampus. Hippocampus 11(3):251–74 Tiesinga PH, Fellous JM, Salinas E, Jose´ JV, Sejnowski TJ. 2004. Inhibitory synchrony as a mechanism for
+attentional gain modulation. J. Physiol. Paris 98(4–6):296–314 Trottenberg T, Fogelson N, Ku¨ hn AA, Kivi A, Kupsch A, et al. 2006. Subthalamic gamma activity in patients
+with Parkinson’s disease. Exp. Neurol. 200(1):56–65 Van Der Werf J, Jensen O, Fries P, Medendorp WP. 2008. Gamma-band activity in human posterior parietal
+cortex encodes the motor goal during delayed prosaccades and antisaccades. J. Neurosci. 28(34):8397–405 Vida I, Bartos M, Jonas P. 2006. Shunting inhibition improves robustness of gamma oscillations in hippocampal
+interneuron networks by homogenizing ﬁring rates. Neuron 49(1):107–17 Wehr M, Laurent G. 1996. Odour encoding by temporal sequences of ﬁring in oscillating neural assemblies.
+Nature 384(6605):162–66 Williams JM, Givens B. 2003. Stimulation-induced reset of hippocampal theta in the freely performing rat.
+Hippocampus 13(1):109–16 Womelsdorf T, Fries P, Mitra PP, Desimone R. 2006. Gamma-band synchronization in visual cortex predicts
+speed of change detection. Nature 439(7077):733–36 Womelsdorf T, Schoffelen JM, Oostenveld R, Singer W, Desimone R, et al. 2007. Modulation of neuronal
+interactions through neuronal synchronization. Science 316(5831):1609–12 Wyart V, Tallon-Baudry C. 2008. Neural dissociation between visual awareness and spatial attention.
+J. Neurosci. 28(10):2667–79
+224 Fries
+
+AR379-FM ARI 20 May 2009 14:8
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+Contents
+
+Annual Review of Neuroscience
+Volume 32, 2009
+
+Neuropathic Pain: A Maladaptive Response of the Nervous System to Damage Michael Costigan, Joachim Scholz, and Clifford J. Woolf p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 1
+Synaptic Mechanisms for Plasticity in Neocortex Daniel E. Feldman p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p33
+Neurocognitive Mechanisms in Depression: Implications for Treatment Luke Clark, Samuel R. Chamberlain, and Barbara J. Sahakian p p p p p p p p p p p p p p p p p p p p p p p p p p57
+Using Diffusion Imaging to Study Human Connectional Anatomy Heidi Johansen-Berg and Matthew F.S. Rushworth p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p75
+Serotonin in Affective Control Peter Dayan and Quentin J.M. Huys p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p95
+Physiology and Pharmacology of Striatal Neurons Anatol C. Kreitzer p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 127
+The Glial Nature of Embryonic and Adult Neural Stem Cells Arnold Kriegstein and Arturo Alvarez-Buylla p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 149
+Representation of Number in the Brain Andreas Nieder and Stanislas Dehaene p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 185
+Neuronal Gamma-Band Synchronization as a Fundamental Process in Cortical Computation Pascal Fries p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 209
+The Neurobiology of Individual Differences in Complex Behavioral Traits Ahmad R. Hariri p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 225
+The Science of Neural Interface Systems Nicholas G. Hatsopoulos and John P. Donoghue p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 249
+The Neuropsychopharmacology of Fronto-Executive Function: Monoaminergic Modulation T.W. Robbins and A.F.T. Arnsten p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 267
+v
+
+Annu. Rev. Neurosci. 2009.32:209-224. Downloaded from www.annualreviews.org by University of Sussex on 03/18/13. For personal use only.
+
+AR379-FM ARI 20 May 2009 14:8
+The Inﬂuence of Stress Hormones on Fear Circuitry Sarina M. Rodrigues, Joseph E. LeDoux, and Robert M. Sapolsky p p p p p p p p p p p p p p p p p p p p p p p 289
+The Primate Cortical Auditory System and Neural Representation of Conspeciﬁc Vocalizations Lizabeth M. Romanski and Bruno B. Averbeck p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 315
+Establishment of Axon-Dendrite Polarity in Developing Neurons Anthony P. Barnes and Franck Polleux p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 347
+Axon Growth and Guidance: Receptor Regulation and Signal Transduction Michael O’Donnell, Rebecca K. Chance, and Greg J. Bashaw p p p p p p p p p p p p p p p p p p p p p p p p p p p p 383
+Cerebellum and Nonmotor Function Peter L. Strick, Richard P. Dum, and Julie A. Fiez p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 413
+Advances in Light Microscopy for Neuroscience Brian A. Wilt, Laurie D. Burns, Eric Tatt Wei Ho, Kunal K. Ghosh, Eran A. Mukamel, and Mark J. Schnitzer p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 435
+Indexes Cumulative Index of Contributing Authors, Volumes 23–32 p p p p p p p p p p p p p p p p p p p p p p p p p p p 507 Cumulative Index of Chapter Titles, Volumes 23–32 p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 511 Errata An online log of corrections to Annual Review of Neuroscience articles may be found at http://neuro.annualreviews.org/
+vi Contents
+

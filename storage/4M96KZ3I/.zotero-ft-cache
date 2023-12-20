@@ -1,0 +1,1166 @@
+ARTICLE
+
+Received 15 May 2012 | Accepted 14 Dec 2012 | Published 22 Jan 2013
+
+DOI: 10.1038/ncomms2388
+
+OPEN
+
+A pairwise maximum entropy model accurately
+
+describes resting-state human brain networks
+
+Takamitsu Watanabe1, Satoshi Hirose1, Hiroyuki Wada2, Yoshio Imai2, Toru Machida2, Ichiro Shirouzu2, Seiki Konishi1, Yasushi Miyashita1 & Naoki Masuda3
+
+The resting-state human brain networks underlie fundamental cognitive functions and consist of complex interactions among brain regions. However, the level of complexity of the restingstate networks has not been quantiﬁed, which has prevented comprehensive descriptions of the brain activity as an integrative system. Here, we address this issue by demonstrating that a pairwise maximum entropy model, which takes into account region-speciﬁc activity rates and pairwise interactions, can be robustly and accurately ﬁtted to resting-state human brain activities obtained by functional magnetic resonance imaging. Furthermore, to validate the approximation of the resting-state networks by the pairwise maximum entropy model, we show that the functional interactions estimated by the pairwise maximum entropy model reﬂect anatomical connexions more accurately than the conventional functional connectivity method. These ﬁndings indicate that a relatively simple statistical model not only captures the structure of the resting-state networks but also provides a possible method to derive physiological information about various large-scale brain networks.
+
+1 Department of Physiology, The University of Tokyo School of Medicine, Tokyo 113-0033, Japan. 2 Department of Radiology, NTT Medical Center Tokyo, Tokyo 141-8625, Japan. 3 Department of Mathematical Informatics, The University of Tokyo, Tokyo 113-8656, Japan. Correspondence and requests for
+materials should be addressed to N.M. (email: masuda@mist.i.u-tokyo.ac.jp).
+
+NATURE COMMUNICATIONS | 4:1370 | DOI: 10.1038/ncomms2388 | www.nature.com/naturecommunications
+
+1
+
+& 2013 Macmillan Publishers Limited. All rights reserved.
+
+ARTICLE
+
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms2388
+
+During rest, the human brain is not idle but shows a large amount of spontaneously ﬂuctuating activity that is highly correlated between multiple brain regions1,2. Previous studies used positron emission tomography or functional magnetic resonance imaging (fMRI) to reveal that brain regions interact with each other during rest and constitute several resting-state networks (RSNs)3–6. The RSNs, including the default mode network (DMN)5,6 and the fronto-parietal network (FPN)7,8, are highly reproducible across different healthy individuals9 and are considered to underlie fundamental and intrinsic functions such as self-referential cognitive processes10,11, maintenance of memory12 and attentional cognitive processes8. These functions are considered to originate from complex functional interactions among the brain regions belonging to the RSNs13. However, the level of complexity that is observed in the activities of an ensemble of brain regions and in the structure of these functional interactions has not been quantiﬁed for the RSNs. As a result, it remains challenging to comprehensively understand this ensemble brain activity as an integrative largescale neural system14,15.
+For microscopic neural tissues, maximum entropy models (MEMs) have been successful in estimating the complexity of neural activity patterns. For example, the pairwise MEM method (that is, a second-order model) seeks to ﬁt a relatively simple binary-state model containing up to second-order interaction terms (that is, ﬁring rates and pairwise interaction) to empirical data of spatiotemporal spike trains. If the pairwise MEM is accurately ﬁtted to the data, activity patterns of neurons can be described with a combination of averaged activity at each recording site and pairwise correlation. If it does not, we cannot ignore higher-order interactions such as triplet interactions originating from an external common input, and accurate descriptions of the activity patterns of neurons would require more complicated (that is, higher-order) MEM models. In fact, the pairwise MEM accurately describes ﬁring patterns in the retinal tissues of primates recorded electrophysiologically in vitro16–21, ﬁring patterns and local ﬁeld potentials (LFPs) in human cortical tissues in vitro22 and large-scale ﬁring patterns in the visual cortex of monkeys and cats in vivo23,24. These ﬁndings suggest the possibility that the human brain activity patterns during rest are not so complex and can be accurately described by pairwise MEMs.
+If the pairwise MEM accurately explains large-scale brain activity patterns during rest, the MEM method will give us much richer information about functional interactions in the RSNs than the widely used functional connectivity (FC) analysis, which is based on Pearson’s correlation coefﬁcient between a pair of brain regions. Although FC often implies broader classes of methods for inferring connectivity in the brain, we use this term to refer to the methods on the basis of Pearson’s correlation coefﬁcient in this paper. The FC-based analysis (based on Pearson’s correlation coefﬁcient) has successfully revealed that speciﬁc functional connexions are enhanced during speciﬁc cognitive processes25,26, and the FC map serves as a promising indicator of several diseases27,28, stages of development29,30 and levels of intelligence31. However, because FC is calculated as Pearson’s correlation coefﬁcient between activities of pairs of regions3,4, the FC-based method is founded on the implicit assumption that the pairwise interactions are independent of each other32. If different pairwise interactions inﬂuence each other, the observed correlation between regions A and B may be a natural consequence of, for example, the correlation between regions A and C and that between regions B and C. In fact, a study employing monkeys shows that, even when a pair of brain regions does not have a direct anatomical connexion, the FC between them is often large if the regions receive common input from a
+
+third region33. Other studies also show that a signiﬁcant FC value between a pair of regions does not distinguish a direct (that is, monosynaptic) connexion from an indirect (that is, polysynaptic) connexion34,35. The FC-based methods may discard possibly rich information that would be revealed if we take into account that functional interactions inﬂuence each other8.
+Unlike the functional interactions estimated by the FC-based method, functional interactions estimated by the pairwise MEM method are not a simple collection of pairwise interactions that are determined independently of each other. The method infers organization of functional interactions based on global activity patterns (that is, activities of more than two sites that are considered simultaneously), not on the assumption that activity patterns of region pairs are independent of those of other pairs. Therefore, if the pairwise MEM can accurately describe the RSNs, the MEM method is expected to provide a better method for assessing integrative network structure than the FC-based method.
+In the present study, we ﬁrst quantify the complexity inherent in activities of an ensemble of brain regions during rest by ﬁtting the MEM to resting-state fMRI data in the RSNs. Then, to validate the approximation of the RSNs by the pairwise MEM, we demonstrate that the interactions estimated by the pairwise MEM are more physiologically informative than those estimated by FC in the sense that anatomical connexions are more accurately predicted. The pairwise MEM even outperforms other methods that take into account global activity patterns beyond a collection of independently estimated pairwise interactions, including the partial correlation method36,37 and the mutual information (MI) method37–39.
+Results Acquisition and processing of data. We applied the pairwise MEM to fMRI signals obtained from the brain regions belonging to the DMN5,6 and FPN7,8, two representative RSNs. We separately applied the pairwise MEM to the DMN and FPN, which are relatively independent of each other in the sense that they are thought to have different functions15,40. The coordinates of the brain regions were anatomically deﬁned based on a metaanalysis of resting-state fMRI data obtained from 183 healthy participants41,42. The DMN and FPN consisted of 12 and 11 regions, respectively (Table 1). We obtained B45 h of restingstate fMRI data from six healthy young adult participants (B7.5 h per participant). Using the data, we extracted the low-frequency signals (0.01–0.1 Hz) from all the brain regions included in the DMN or FPN (Fig. 1a), binarized the signals (Fig. 1b) and ﬁtted the MEM to the binarized signals (Fig. 1c).
+Accurate ﬁtting of the pairwise MEM to resting-state fMRI signals. In Fig. 2a,b, each data point represents the estimated and empirical probabilities that a binarized activity pattern (that is, state vector in Fig. 1c) occurs. If the points are on the diagonal (lines in Fig. 2a,b), the model would perfectly explain the empirical activity patterns. For comparison, the results for the MEM estimated under the restriction that different regions do not interact (that is, independent MEM) are also presented in the ﬁgures. Figure 2a,b suggests that, in both the DMN and FPN, the pairwise MEM explains the empirical frequency of the activity patterns much more accurately than the independent MEM. In both the DMN and FPN, the probability of the pattern estimated by the pairwise MEM was generally closer to the empirical probability than that estimated by the independent MEM for both rare and frequent patterns (Fig. 2c,d). The pairwise MEM results in a high accuracy (85% for the DMN and 94% for the FPN). An accuracy of 85%, for example, indicates that the application of the
+
+2
+
+NATURE COMMUNICATIONS | 4:1370 | DOI: 10.1038/ncomms2388 | www.nature.com/naturecommunications
+
+& 2013 Macmillan Publishers Limited. All rights reserved.
+
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms2388
+
+ARTICLE
+
+Table 1 | Coordinates of brain regions in the RSNs.
+
+Network Region
+
+DMN FPN
+
+Anterior medial PFC Ventro-medial PFC Left SFG Right SFG Left ITG Right ITG Left parahippocampal gyrus Right parahippocampal gyrus PCC Left lateral parietal Right lateral parietal Posterior cingulate Left DLPFC Right DLPFC Left MFG Right MFG Middle CC Left IPL Right IPL Left IPS Right IPS Left precuneus Right precuneus
+
+MNI Coordinates
+
+X
+
+Y
+
+Z
+
+1 À3 À 14
+17 À 62
+66 À 22
+25 À2 À 47 54
+3 À 48
+43 À 41
+41 0 À 52 52 À 31 30 À9 10
+
+55 40 36 35 À 33 À 17 À 26 À 26 À 29 À 71 À 61 À 53 21 21
+1 1 À 31 À 54 À 51 À 63 À 65 À 76 À 73
+
+26 0 59 58 À 20 À 19 À 21 À 18 39 35 36 6 38 38 39 39 31 36 43 42 39 36 39
+
+CC, cingulate cortex; DLPFC, dorso-lateral prefrontal cortex; DMN, default mode network; FPN, fronto-parietal network; IPL, inferior parietal lobe; IPS, inferior parietal sulcus; ITG, inferior temporal gyrus; MFG, middle frontal gyrus; MNI, Montreal Neurologic Institute; PCC, posterior cingulate cortex; PFC, prefrontal cortex; RSN, resting-state network; SFG, superior frontal gyrus.
+
+Merge data obtained from all the subjects and ﬁt the pairwise MEM
+
+Probability of network state
+P (Vi)
+
+Region 1 Region 2
+
+Resting-state BOLD signal
+
+Region N
+
+Time
+
+Binarization
+
+Model
+
+Empirical
+
+011
+
+1
+
+001
+
+1
+
+000
+
+1
+
+Network state Vi
+
+Region 1 Region 2 Region N
+
+Region 1 1 1 0 Region 2 0 1 0
+1 01
+
+1
+
+Region 1
+
+1
+
+Region 2
+
+0
+
+Region N 1 0 1 12 3
+
+Time
+
+1 T
+
+Region N
+
+Interaction matrix Jij
+
+Figure 1 | Fitting the pairwise MEM to fMRI data. (a,b) Resting-state BOLD signals are extracted from anatomically deﬁned regions (a) and binarized (b). (c) If the pairwise MEM is accurately ﬁtted to the binarized data, the estimated probability distribution of the network state will resemble the empirical distribution (top). The pairwise MEM also provides an interaction matrix (bottom).
+
+pairwise MEM reduces the distance between the estimated and empirical distributions of patterns by 85% as compared with the independent MEM (see equation (2) in the Methods). These results show that the pairwise MEM accurately describes the fMRI signals in the RSNs.
+Robustness of accurate ﬁtting of the pairwise MEM. We then examined the robustness of the accurate ﬁtting of the pairwise MEM from three perspectives. First, we evaluated the accuracy of ﬁt for various values of the threshold for binarization, because the pairwise MEM requires binarization of the originally continuous fMRI signals (Fig. 1b). The distributions of the original continuous signals for the two RSNs are shown in Figure 3a. We then set various threshold values for binarization within the range of the fMRI signal, and tested the dependence of the so-called estimation reliability on the threshold. The estimation reliability represents the precision with which the parameters in the pairwise MEM are estimated (see equation (3) in the Methods). The pairwise MEM estimated the parameter values with high reliability (499%) when the threshold lay approximately between À 0.15 and 0.15 (Fig. 3b). Consistent with this result, the ﬁtting of the pairwise MEM to the data was accurate for threshold values in this range (480% for the DMN and 490% for the FPN; Fig. 3c). The threshold of À 0.15, for example, implies that the accuracy of ﬁt remains high even if the probabilities of the two binarized states of a brain region are quite uneven (that is, activated with probability 0.78 and not activated with probability 0.22). These results suggest that the accuracy of ﬁt is robust as long as the threshold is located between À 0.15 to 0.15. In the following, we set the threshold to 0.1 because this value maximized the accuracy of ﬁt of the pairwise MEM (Fig. 3c).
+Second, we conﬁrmed that the high accuracy of our results was not due to a fallacy of the pairwise MEM when it is applied to too
+
+small populations. When the accuracy of the ﬁtting linearly decreases with the number of regions N, one theory suggests that the accurate ﬁtting may be an artifact of a small N43. In this case, the validity of the pairwise MEM cannot be directly extrapolated to populations with a large N43. For our data, the accuracy decreases sub-linearly with N at least for the DMN (Fig. 3d). Furthermore, the theory indicates that the pairwise MEM can be informative about empirical data only when it is accurately ﬁtted to data with N signiﬁcantly larger than Nc ¼ 1/vdt, where v and dt are the averaged activation rate and the length of the time bin, respectively43. In the present analysis, v ¼ 0.045 s À 1 and v ¼ 0.041 s À 1 for the DMN and FPN, respectively, and dt ¼ 9.045 s. Therefore, NcE2.5 and 2.7 for the DMN and FPN, respectively. Figure 3d suggests that the pairwise MEM was accurate for the two networks up to N ¼ 12 and 11, which are much larger than Nc. Therefore, the high accuracy of the pairwise MEM for our data is not an artifact of a small N value.
+Third, we examined the dependence of the results on the participants. We split the fMRI data into two groups, that is, the data obtained from participants no. 1–3 and those obtained from participants no. 4–6. The interaction weights (that is, elements of the estimated interaction matrix, denoted by Jij in equation (1); also see Fig. 1c) obtained from the pairwise MEM were similar between the two groups (Pearson’s correlation coefﬁcient r ¼ 0.96, Po10 À 3 in Fig. 3e; r ¼ 0.93, Po10 À 3 in Fig. 3f). Therefore, our results are robust with respect to the participants.
+In summary, the pairwise MEM accurately and robustly explains the collective activities of the brain regions in the RSNs.
+Interaction matrices derived by the pairwise MEM and alternative methods. If the functional interactions estimated by the pairwise MEM are closely relevant to some physiological
+
+NATURE COMMUNICATIONS | 4:1370 | DOI: 10.1038/ncomms2388 | www.nature.com/naturecommunications
+
+3
+
+& 2013 Macmillan Publishers Limited. All rights reserved.
+
+ARTICLE
+
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms2388
+
+1 10–2
+
+DMN Pairwise MEM
+
+FPN 1
+Pairwise MEM
+10–2
+
+Pmodel
+
+Pmodel
+
+10–4
+
+10–4
+
+10–6 10–8
+1
+
+Independent MEM
+
+10–4
+
+10–2
+
+1
+
+Pempirical
+
+DMN
+
+10–6 10–8
+1
+
+Independent MEM
+
+10–4
+
+10–2
+
+1
+
+Pempirical
+
+FPN
+
+10–2
+
+10–2
+
+P(Vi)
+
+P(Vi)
+
+10–4
+
+10–4
+
+10–6
+
+10–6
+
+10–8
+
+Vi Empirical data
+
+10–8 Pairwise MEM
+
+Vi Independent MEM
+
+Figure 2 | Accurate ﬁtting of the pairwise MEM. (a,b) Comparison between the probabilities of network states for empirical data and those estimated for the pairwise and independent MEMs. The red and grey dots indicate the results for the pairwise and independent MEMs, respectively. (c,d) The probability of a network state for the MEMs, P(Vi), is plotted against the network state, (Vi). The network states are shown in descending order of empirical probability. The red and grey lines represent the results for the pairwise and independent MEMs, respectively. The green lines represent the empirical data.
+
+basis, the relationship would provide further validation of the approximation of the RSNs by the pairwise MEM. Therefore, we next examined the possible physiological bases of the interaction weights between pairs of regions inferred by the pairwise MEM. For comparison, we referred to large-scale anatomical connectivity determined from previous diffusion tensor imaging (DTI) of the brains of 80 healthy young human adults44. To assess the performance of the pairwise MEM, we also generated four types of interaction matrices as controls, that is, those based on the FC method, those based on the inverse Gaussian model, those based on the partial correlation method36,37 and those based on the MI method37,39 (see Methods). It should be noted that the four methods do not require binarization of the fMRI signals.
+The anatomical connectivity maps and the interaction matrices estimated by the ﬁve methods are shown in Fig. 4. For both the DMN (Fig. 4a) and FPN (Fig. 4b), the |Jij| values estimated by the pairwise MEM are mainly large for pairs of brain regions with direct anatomical connexion, whereas, in the other methods, |Jij| is large both for pairs with direct anatomical connexion and those without such connexion. Therefore, the pairwise MEM seems to outperform the other four methods in estimating the anatomical connexions if we regard both positive and negative large values of Jij as predicting the presence of anatomical connexion. The use of both positive and negative values is consistent with the anatomical evidence, because anatomical results derived from DTI are thought to reﬂect either excitatory or inhibitory connectivity between pairs of regions.
+
+Prediction of anatomical connexions by the pairwise MEM and the other methods. To analyse the results more quantitatively, we
+
+Probability
+
+0.04
+
+DMN
+
+0.03
+
+FPN
+
+0.02
+
+0.01
+
+0 –0.8 –0.4 0 0.4 0.8
+fMRI Signal
+
+Estimation reliability
+
+1
+
+0.9
+
+0.8
+
+0.7
+
+0.6
+
+DMN
+
+0.5
+
+FPN
+
+–0.2 –0.1 0 0.1 0.2 Threshold for binarization
+
+Accuracy of fit
+
+1
+
+0.9
+
+0.8 0.7
+
+0.6
+
+DMN
+
+0.5
+
+FPN
+
+–0.2 –0.1 0 0.1 0.2
+
+Threshold for binarization
+
+Accuracy of fit
+
+1
+
+0.9
+
+DMN
+
+0.8
+
+FPN
+
+3
+
+6
+
+9 12
+
+N
+
+Jij for participants no. 4– 6
+
+Jij for participants no. 4– 6
+
+0.4 DMN
+
+0.4 FPN
+
+0.2
+
+0.2
+
+0
+
+0
+
+–0.2 –0.2 0
+
+0.2 0.4
+
+Jij for participants no. 1–3
+
+–0.2 –0.2 0
+
+0.2 0.4
+
+Jij for participants no. 1– 3
+
+Figure 3 | Robustness of ﬁtting. In panels (a–d) solid and dashed lines represent the results for the DMN and FPN, respectively. (a) Distributions of the preprocessed resting-state fMRI signals. (b) Relationships between the estimation reliability for the pairwise MEM (equation (3)) and the threshold for binarization. (c) Relationships between the accuracy of ﬁtting for the pairwise MEM (equation (2)) and the threshold for binarization. (d) Dependence of the accuracy of the ﬁtting for the pairwise MEM on the number of regions. Symbols:average, Error bar: s.d. For example, there are 220 different sub-networks (combinations) of N ¼ 3 regions for the DMN. (e,f) Scattergrams of the interaction weights obtained from the pairwise MEM ﬁtted to the data for participants no. 1–3 and those obtained from participants no. 4–6 show that the results do not vary by subject.
+
+compared the accuracy of the ﬁve methods in estimating the presence or absence of the anatomical connexions between pairs of regions. Figure 5a,b shows histograms of the values of interaction weights (that is, values of the entries of the matrices shown in Fig. 4) estimated by the ﬁve methods. As the absolute value of the functional interaction weight seems to predict the anatomical connexions better than the raw values of them, at least for all the methods except FC, we show the histograms of the absolute values of the interaction weights. However, for the FC, we also show the histograms of the raw values of the interaction weights (that is, correlation coefﬁcient) because they are conventionally used34,41,45.
+Under the pairwise MEM, anatomically connected pairs of regions in both the DMN and FPN tended to have larger absolute values of interaction weights than pairs that were not directly connected in anatomy. The interaction weights for the anatomically connected pairs were signiﬁcantly larger than those for the anatomically unconnected pairs on average
+
+4
+
+NATURE COMMUNICATIONS | 4:1370 | DOI: 10.1038/ncomms2388 | www.nature.com/naturecommunications
+
+& 2013 Macmillan Publishers Limited. All rights reserved.
+
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms2388
+
+ant. mPFC vmPFC Lt. SFG Rt. SFG Lt. ITG Rt. ITG
+Lt. parahippo Rt. parahippo
+PCC Lt lateral parietal Rt. lateral parietal
+Rost. cingulate
+
+Anatomical connexion
+
+DMN
+
+Pairwise MEM
+
+FC
+
+Jij
+
+Zij
+
+–3
+
+3
+
+–0.5
+
+0.5
+
+ant. mPFC vmPFC Lt. SFG Rt. SFG Lt. ITG Rt. ITG
+Lt. parahippo Rt. parahippo
+PCC Lt lateral parietal Rt. lateral parietal
+Rost. cingulate
+
+Inverse gaussian model
+
+Partial correlation
+
+Mutual information
+
+ARTICLE
+
+Lt. DLPFC Rt. DLPFC
+Lt. MFG Rt. MFG Mid. CC
+Lt. IPL Rt. IPL Lt. IPS Rt. IPS Lt. precuneus Rt. precuneus
+
+Γ
+
+–1 ij
+
+–50
+
+50
+
+Lt. DLPFC Rt. DLPFC
+Lt. MFG Rt. MFG Mid. CC
+Lt. IPL Rt. IPL Lt. IPS Rt. IPS Lt. precuneus Rt. precuneus
+
+Anatomical connexion
+
+Inverse gaussian model
+
+rij
+
+–0.6
+
+0.6
+
+0
+
+FPN Pairwise MEM
+
+MIij 0.3
+FC
+
+Jij
+
+–3
+
+3
+
+Partial correlation
+
+Zij
+
+–0.5
+
+0.5
+
+Mutual information
+
+Γ
+
+–1 ij
+
+rij
+
+MIij
+
+–50
+
+50
+
+–0.6
+
+0.6
+
+0
+
+0.3
+
+Figure 4 | Anatomical connexions and interaction matrices. (a,b) Upper left panels show anatomical connexion maps. The other panels show the interaction matrices based on the pairwise MEM, FC, inverse Gaussian model, partial correlation method and MI method. The abbreviations of the regions are explained in Table 1.
+
+(Po0.001, two-sample t-tests in both the DMN and FPN; Fig. 5c,d).
+The partial correlation and MI methods yielded similar signiﬁcant differences between the anatomically connected pairs and unconnected pairs (for both models, Po0.001 in DMN, Po0.05 in FPN, two-sample t-tests; Fig. 5c,d. Also see Fig. 5a,b). In contrast, the FC and inverse Gaussian models did not predict anatomical connexions as accurately as the pairwise MEM
+
+(Fig. 5a,b). In the DMN, the interaction weights estimated by these two methods had larger values when region pairs were anatomically connected than unconnected (FC: Po0.05, absolute value of FC: Po0.01, inverse Gaussian model: Po0.01, twosample t-tests). However, in the FPN, the difference was insigniﬁcant for both of the two methods (P40.3).
+For further comparison the ﬁve methods, we carried out a receiver-operating characteristic (ROC) analysis, which is
+
+NATURE COMMUNICATIONS | 4:1370 | DOI: 10.1038/ncomms2388 | www.nature.com/naturecommunications
+
+5
+
+& 2013 Macmillan Publishers Limited. All rights reserved.
+
+ARTICLE
+
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms2388
+
+No. of connexions
+
+DMN
+
+12
+
+12
+
+8
+
+8
+
+8
+
+4
+
+4
+
+4
+
+0
+
+0
+
+0 1 2 3 4 –0.3 0 0.3 0.6
+
+⏐Jij⏐
+
+Zij
+
+0 0 0.3 0.6
+⏐Zij⏐
+
+Pairwise MEM
+
+16
+
+20
+
+FC 10
+
+12
+
+15
+
+8
+
+6
+
+8
+
+10
+
+4
+
+4
+
+5
+
+2
+
+0
+
+0
+
+0 40 80 120 160 0
+
+⏐Γ –ij1⏐
+
+Inverse gaussian model
+
+0 0.2 0.4 0.6 0.8 0
+⏐rij⏐ Partial correlation
+
+0.2 0.4
+MIij Mutual information
+
+⏐Γ ij–1⏐ ⏐rij⏐ MIij
+
+⏐Jij⏐
+
+DMN
+
+3 ***
+
+* **
+
+0.6
+
+Zij
+
+⏐Zij⏐
+
+2
+
+0.4
+
+1
+
+0.2
+
+0
+
+Pairwise
+
+FC
+
+MEM
+
+30 **
+
+0.6 ***
+
+0.4 20
+
+10
+
+0.2
+
+0.4 ***
+0.2
+
+0 Inverse
+
+0 Partial
+
+gaussian model correlation
+
+0 Mutual
+information
+
+No. of connexions
+
+FPN
+
+12
+
+12
+
+8
+
+8
+
+8
+
+4
+
+4
+
+4
+
+0 01 234 ⏐Jij⏐
+Pairwise MEM
+
+0
+
+0
+
+–0.3 0 0.3 0.6 0
+
+Zij
+
+FC
+
+0.3 0.6 ⏐Zij⏐
+
+12
+
+15
+
+16
+
+8
+
+10
+
+12
+
+8
+
+4
+
+5
+
+4
+
+0
+
+0
+
+0 20 40 60 80 0
+
+⏐Γ –ij1⏐
+
+Inverse gaussian model
+
+0 0.2 0.4 0.6 0.8 0
+⏐rij⏐ Partial correlation
+
+0.2 0.4 0.6
+MIij Mutual information
+
+⏐Γ ij–1⏐ ⏐rij⏐ MIij
+
+⏐Jij⏐
+
+FPN
+
+3
+
+0.6
+
+Zij
+
+***
+
+2
+
+0.4
+
+⏐Zij⏐
+
+1
+
+0.2
+
+0
+
+0
+
+Pairwise
+
+FC
+
+MEM
+
+40
+
+0.4
+
+**
+
+*
+
+30
+
+0.4
+
+20
+
+0.2
+
+0.2
+
+10
+
+0 Inverse
+gaussian model
+
+0 Partial
+correlation
+
+0 Mutual
+information
+
+Anatomically connected pairs Anatomically unconnected pairs
+
+Figure 5 | Statistical comparison of interaction matrices with anatomical connexions. In all the panels, the black and grey bars indicate the results for the anatomically connected pairs and anatomically unconnected pairs, respectively. (a,b) Histograms of the interaction weights for anatomically connected and unconnected pairs. (c,d) Comparison of the average interaction weight between anatomically connected and unconnected pairs. Error bars: s.d., ***Po0.005, **Po0.01, *Po0.05, in two-sample t-tests.
+
+sensitive to the difference in the distribution of the functional interactions between the anatomically connected and unconnected pairs (Fig. 6a,b). In short, the curves show the relationship between the false positive (that is, anatomically unconnected pairs whose interaction weights exceed a threshold) and true positive (that is, anatomically connected pairs whose interaction weights exceed the same threshold; also called the sensitivity) when we vary the threshold for classifying the region pairs into anatomically connected and unconnected groups. When the false positive is small and the true positive is large for a threshold value, the classiﬁcation is accurate such that the interaction weights determined by an estimation method are relatively consistent with the anatomy. In both the DMN and FPN, the area under the curve (AUC) for the pairwise MEM was signiﬁcantly larger than those for the other four methods (DMN: Z47.3, Po1.0 Â 10 À 11, Bonferroni-corrected; FPN: Z49.4, Po1.0 Â 10 À 16, Bonferroni-corrected; Fig. 6c). There was no signiﬁcant difference between any other pair of the methods.
+
+Validity of binarizing fMRI signals. We binarized the fMRI signals to implement the pairwise MEM. However, fMRI signals originally represent continuous blood ﬂows to brain regions, and the validity of the binarization is unclear. Therefore, we calculated the accuracy of ﬁt of pairwise MEMs in which the signals were classiﬁed to three discrete levels, which we call the trinary MEM, by using a standard procedure described in Methods46. When the signals recorded at the different brain regions and time points were evenly divided into three groups (Supplementary Fig. S1), the accuracy of ﬁt was the highest. However, the accuracy of ﬁt in this case was approximately equal to 0.55 (Supplementary Fig. S2) and signiﬁcantly lower than those obtained for the binary pairwise MEM for both the DMN and FPN (Po10 À 3 in twosample t-tests).
+Despite the lower accuracy of the trinary MEM, the trinary MEM might be better at accurately predicting anatomical connectivity than the binary MEM. Therefore, we examined the relationship between the functional interactions estimated by the
+
+6
+
+NATURE COMMUNICATIONS | 4:1370 | DOI: 10.1038/ncomms2388 | www.nature.com/naturecommunications
+
+& 2013 Macmillan Publishers Limited. All rights reserved.
+
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms2388
+
+ARTICLE
+
+True positive
+
+DMN 1 0.8 0.6 0.4 0.2 0
+0 0.2 0.4 0.6 0.8 1 False positive
+
+1
+
+FPN
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0 0 0.2 0.4 0.6 0.8 1 False positive
+
+Pairwise MEM
+
+⏐Jij⏐
+
+FC
+
+Zij
+
+Absolute value of FC ⏐Zij⏐
+
+Inverse gaussian model ⏐Γ–ij1⏐
+
+Partial correlation
+
+⏐rij⏐
+
+Mutual information
+
+MIij
+
+1
+
+***
+
+0.9
+
+0.8
+
+0.7
+
+0.6
+
+***
+Pairwise MEM FC Absolute value of FC Inverse gaussian model Parital correlation Mutual information
+
+AUC
+
+0.5 ⏐Jij⏐ Zij ⏐Zij⏐⏐Γ –ij1⏐⏐rij⏐ MIij DMN
+
+⏐Jij⏐ Zij ⏐Zij⏐⏐Γ –ij1⏐⏐rij⏐ MIij FPN
+
+Figure 6 | ROC analysis. The colour code is as follows: red, pairwise MEM; green, raw values of FC; light green, absolute values of FC; blue, inverse
+Gaussian model; yellow, partial correlation method; purple, MI method. (a,b) ROC curves for the classiﬁcation into anatomically connected and unconnected region pairs based on the interaction weights. (c) AUCs of the ROC curves shown in panels (a,b). Error bars: s.d., ***Po0.005, in two-sample t-tests with the Bonferroni correction.
+
+trinary MEM and the anatomical connectivity. For the trinary MEM, the functional interactions between anatomically connected pairs were larger than those between anatomically unconnected pairs (Po0.05 in two-sample t-tests, Supplementary Fig. S3). However, ROC analysis revealed that the AUC for the trinary MEM was signiﬁcantly smaller than that for the binary MEM (Po10 À 3 in two-sample t-tests, Supplementary Fig. S4).
+These results suggest that the binary pairwise MEM provides more information about anatomical connectivity than the trinary pairwise MEM. Such a difference usually arises because the trinary MEM requires a larger amount of data than the binary MEM (that is, 3N versus 2N data points). However, even the trinary MEM with N ¼ 4 and N ¼ 5, for which there are relatively few activity patterns (that is, 34 ¼ 81 and 35 ¼ 243 patterns), yields the accuracy of ﬁt values o0.6. These accuracy of ﬁt values are much smaller than those for the binary MEM with comparable numbers of activity patterns: the accuracy of ﬁt was 40.9 for the binary MEM with N ¼ 8, with which there are 28 ¼ 256 activity patterns (Fig. 3d). Therefore, we conclude that the binary MEM better captures fMRI signals than the trinary MEM and presumably MEMs that allow more discrete levels.
+Discussion We have demonstrated that the pairwise MEM accurately describes activity in the human RSNs. The model was ﬁtted to both the DMN and the FPN with high accuracy and robustness. Furthermore, functional interaction matrices derived from the pairwise MEM were similar to the anatomical connexion maps. The agreement between the estimated matrices of functional interactions and the anatomical maps is better with the pairwise MEM than with the four other methods: the FC based on Pearson’s correlation coefﬁcients, inverse Gaussian model, partial correlation method and MI method. These ﬁndings suggest that the large-scale human brain networks during rest can be captured by a relatively simple second-order model.
+
+Our results extend the previous ﬁndings that the pairwise MEM accurately describes activity patterns observed in a slice or small parts of the brain16–19,22–24. In particular, Tang and colleagues22 showed that the pairwise MEM approximates the statistics of multiunit LFPs recorded from cultured slices of the human brain cortex. As LFPs are considered to be predictive of blood-oxygenation-level-dependent signals (that is, fMRI signals)47, it is reasonable that the present study has successfully ﬁtted the pairwise MEM to fMRI signals. Although ﬁne-scale neural networks (o300 mm) seem to require more complex models, such as higher-order MEMs19,24, in terms of the spatial scale, we have extended the applicability of the pairwise MEM method from microscopic neural populations (B500 mm) to macroscopic populations at the level of the entire brain (B10 cm).
+In previous studies, large FC values have been suggested to imply the presence of direct anatomical connexion between regions2,34,45. In particular, a study using high-resolution fMRI conducted an ROC analysis similar to ours, and reported that the FC classiﬁes the anatomical connexions with high accuracy (AUC ¼ 0.79)34. Our present study produced similar accuracy values for the FC (AUCs in the DMN and FPN of 0.73 and 0.67, respectively; Fig. 6c) but also showed that the pairwise MEM gives higher accuracy (AUC in the DMN and FPN of 0.89 and 0.85, respectively; Fig. 6c). These results suggest that the pairwise MEM captures the anatomical properties of large-scale brain networks to a better extent than the FC-based method does, although the pairwise MEM is a statistical model and not based on the physiology of the brain.
+As second-order interaction implies networks consisting of nodes and links, the pairwise MEM may serve as a tool for investigating large-scale human brain networks. As previous studies did for networks generated by the resting-state FC (see a review14), we can in principle calculate various graph-theoretical quantities for the RSNs deﬁned by the pairwise MEM. This approach calls for a sufﬁcient amount of resting-state fMRI data
+
+NATURE COMMUNICATIONS | 4:1370 | DOI: 10.1038/ncomms2388 | www.nature.com/naturecommunications
+
+7
+
+& 2013 Macmillan Publishers Limited. All rights reserved.
+
+ARTICLE
+
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms2388
+
+to estimate an interaction matrix among a relatively large number of brain regions and efﬁcient algorithms to estimate the MEM for large N, such as those developed in previous studies19,48,49. We can also apply the pairwise MEM to fMRI data measured during psychological tasks, though several modiﬁcations of the method may be in order. In previous fMRI studies, such task-speciﬁc functional interactions were estimated by psychophysiological interaction analysis50, Granger causality analysis51 and dynamic causal modelling52. Among these methods, psychophysiological interaction analysis, like FC-based methods, is a seed-based analysis and does not allow us to collectively estimate functional interactions among the entire set of recorded sites. The use of dynamic causal modelling and Granger causality modelling still seems to be limited8,53. Therefore, the pairwise MEM may serve as an alternative method for inferring taskspeciﬁc brain networks. In particular, recent theoretical developments of the MEM incorporate causality (signal ﬂow from one region to another)54,55, which will be an indispensable component for modelling task-related data.
+
+Methods
+Participants and fMRI data acquisition. Six healthy right-handed subjects (aged 20–23 years; three males) participated in the experiments after written informed consent was obtained. The MRI scanning was conducted using a 3T MRI scanner (Philips Achieva X 3T Rel. 2.6, Best, The Netherland). T1-weighted structural images were obtained for anatomical reference (resolution ¼ 0.81 Â 0.81 Â 1.20 mm3). Functional imaging used gradient-echo echo-planar sequences (TR ¼ 9.045 s, TE ¼ 35 ms, ﬂip angle ¼ 901, resolution ¼ 2 Â 2 Â 2 mm3, 75 slices). The entire procedure for the MRI scanning was approved by the institutional review board of The University of Tokyo School of Medicine.
+During the functional imaging, the participants were instructed to passively view a ﬁxation point on the screen. One passive ﬁxation session took B5 min, and each participant underwent 90 sessions (B7.5 h) on 6–8 separate days. In each session, we discarded the ﬁrst ﬁve images (9.045 s/volume Â 5 volumes ¼ 45.225 s) to exclude the inﬂuence of transient processes before the equilibrium of longitudinal magnetization. In total, 17,820 volumes (2,970 volumes per participant) of restingstate functional images were obtained.
+
+Preprocessing of fMRI data. In line with previous studies of resting-state fMRI25,26,30, we preprocessed the fMRI data as follows. First, for each session and each participant, the functional images were realigned, their slice-timing was corrected and they were normalized to the standard template image (ICBM 152) by SPM8 (www.ﬁl.ion.ucl.ac.uk/spm/). Second, for each session, after temporal bandpass ﬁltering (0.01–0.1 Hz) with Matlab scripts written in-house, the data underwent spatial smoothing (FWHM ¼ 8 mm) in SPM8. Third, the smoothed data originating from all the sessions were combined for each participant. Finally, for each participant, the combined data were corrected for their head motion, whole-brain signals, ventricular signals, white matter signals and run effect. Therefore, the fMRI signals used in our analysis have the same unit as that of the so-called ‘beta-value’56–58 except for a normalization factor.
+We determined the coordinates of the brain regions belonging to the DMN and FPN based on a previous meta-analysis of resting-state fMRI studies30,42 (the DMN: 12 regions, the FPN: 11 regions, Table 1). We subjected the preprocessed data corresponding to these brain regions to the following analysis.
+
+Pairwise MEM. We ﬁt the pairwise MEM to the resting-state fMRI data in
+
+essentially the same manner as did the previous studies of microscopic neural activities16,17,22–24. We added a constant to the preprocessed signal at each region
+
+such that the average of the preprocessed signals over T ¼ 17,820 snapshots (that is,
+
+functional images) is equal to zero at each region. Then the signals were binarized,
+
+because the pairwise MEM deals with snapshots of binarized signals recorded
+
+simultaneously at multiple sites.
+
+We set the bin width to 9.045 s, that is, one whole-brain image was taken in one
+
+repetition time (TR) of 9.045 s, because a long bin width is effective at decorrelating
+
+data that were recorded in adjacent time points. With a small bin width, the fMRI
+
+signals (that is, network states) in close time points would be highly correlated with
+
+each other. Therefore, the use of such a small bin width would not increase the
+
+effective number of samples.
+
+We experimented with various threshold values for binarization, and chose a
+
+value of 0.1, because it maximized the accuracy of ﬁt (Fig. 3b,c). The binarized activity of brain region i at discrete time t, denoted by sit, is either on ( þ 1) or off
+
+(0). The network state (that is, pattern) at time t is given in vector form by
+
+Vt is,
+
+¼ ½st1; N ¼ 12
+
+st2 in
+
+; .. the
+
+. ; stN ; DMN
+
+where N is and N ¼ 11
+
+the number of in the FPN). It
+
+the brain regions of interest (that should be noted that there are 2N
+
+possible network states. The empirical activation rate of region i, denoted by /siS,
+
+is given by hsii regions i and j,
+
+¼ ð1/TÞ denoted
+
+PT
+t¼1
+
+sti .
+
+The
+
+by /sisjS, is
+
+geimvepnirbicyalhspiasijriw¼iseð1j/oTinÞtPacTtt¼iv1astitiosntj .
+
+rate
+
+of
+
+The pairwise MEM maximizes the entropy of the distribution of activity patterns
+
+under the restriction that /siS that such a distribution has the
+
+and /sisjS form PðViÞ
+
+(¼1re ÀirEðVjirÞ/ NP)2ia¼Nr1e
+
+preserved. It is known e À EðViÞ, where P(Vi) is
+
+the probability of network state Vi, and
+
+XN
+
+XN XN
+
+EðViÞ ¼ À hisi À ð1/2Þ
+
+Jijsi sj
+
+ð1Þ
+
+i¼1
+
+i ¼ 1 j ¼ 1; j6¼i
+
+hi represents the tendency of activation at region i, and Jij, called the interaction
+
+weight, represents functional interaction between regions i and j. Positive and
+
+negative values of Jij are interpreted as excitatory and inhibitory interactions,
+
+respectively. For an estimated probability distribution, the expected activation rate,
+
+/siSm, hsiim ¼
+
+aPnd2j ¼Nth1esieðxVpjeÞcPtðeVdj
+
+pairwise joint Þ and hsisjim
+
+¼actPiva2ktN¼io1nsirðaVtek,Þs/jsðiVskjÞSPmðV, kaÞr,e
+
+given by respectively,
+
+where si(Vj) indicates the activity (either þ 1 or 0) of si under network state Vj. We calculated hi and Jij by iteratively adjusting /siSm and /sisjSm toward /siS
+and /sisjS, respectively, by using a gradient ascent algorithm. The iteration scheme is given by hni ew ¼ hoi ld þ a Á logðhsii/hsiimÞ and Jinjew ¼ Jiojld þ a Á logðhsisji/hsisjimÞ,
+
+where a is the learning rate. We set a ¼ 0.75 to reduce computation time. We
+
+conﬁrmed that the results were robust with respect to the choice of a ranging from
+
+0.1 to 1.0. As in previous studies16,17,22–24, we evaluated the effectiveness of the pairwise
+
+MEM by using two information theoretic quantities. To deﬁne them, we also
+
+obtained the MEM without pairwise interaction between regions (that is, independent MEM) by determining hi (1rirN) under the condition that Jij ¼ 0 (1ri, jrN). For the independent MEM, /sisjSm is equal to /siSm/sjSm.
+
+Using the resultant goodness of ﬁt obtained for the two types of the MEMs, we
+
+deﬁne the accuracy index for the pairwise MEM by
+
+rD ¼ ðD1 À D2Þ/D1
+
+ð2Þ
+
+where
+
+Dk
+
+¼
+
+P2N
+i¼1
+
+PN ðViÞ
+
+Á
+
+log2ðPN ðViÞ/PkðViÞÞ
+
+is
+
+the
+
+Kullback–Leibler
+
+divergence
+
+between the probability distribution of the network state in the k th order model
+
+(k ¼ 1 and 2 for the independent and pairwise MEMs, respectively) and the empirical
+
+distribution we calculate
+
+of rS
+
+the network state, denoted by PN. ¼ (S1 À S2)/(S1 À SN), where Sk ¼
+
+ÀToPev2ia¼Nlu1 aPtkeðrVeilÞiaÁblioligtyðPokfðVthieÞÞﬁitstitnhge,
+
+entropy of the distribution of the network state in the k th order model. Note that SN
+
+is the entropy of the empirical data. Using rS, we deﬁne the estimation reliability by
+
+rS / rD
+
+ð3Þ
+
+The estimation reliability is equal to 1 if the values of hi and Jij are estimated without error59.
+Cross validation. As a large sample size is desirable for statistical ﬁtting, we trained the pairwise MEM using the entire data and tested it against the same data. To exclude the possibility of over ﬁtting, we carried out cross validation as follows: (i) We divided the T observed snapshots (that is, network states) into the two subsets of equal size, that is, T/2, such that each snapshot independently belongs to either subset with probability 1/2. It should be noted that we are not concerned with the temporal structure of the data. (ii) We calculated the accuracy of ﬁt by training the MEM using one subset and testing the estimated model against the other subset. (iii) We calculated the accuracy of ﬁt by using one of the two subsets for both training and testing. (iv) We repeated procedures (i), (ii) and (iii) ten times and compared the accuracy of ﬁt between the cross validation case (that is, (ii)) and the dependent training-testing case (that is, (iii)). We did not ﬁnd signiﬁcant differences between the two cases (cross validation versus dependent training-test cases: 0.67±0.0068 versus 0.68±0.0058 for the DMN, P40.41; 0.76±0.0071 versus 0.76±0.0051 for the FPN, P40.35, mean±s.d. in paired t-tests). Therefore, we concluded that the use of the same data in both training and testing did not give rise to serious problems in the present study.
+
+Trinary pairwise MEM. To examine the validity of binarizing fMRI signals, we estimated the accuracy of ﬁt of the trinary pairwise MEM as follows: First, we discretized the fMRI signal at each brain region i and each time t into one of the three different levels by thresholding. The discretized activity sit is set to 1, 0 and À 1 if the fMRI signal was larger than e, between À e and e and smaller than À e, respectively. Then, we ﬁtted the trinary pairwise MEM in the almost same manner as that for ﬁtting the binary pairwise MEM46.
+
+Conventional FC. As a control of the functional interaction, we calculated the FC based on the Pearson’s correlation coefﬁcient between the activity of every pair of regions included in the DMN or FPN. The calculation procedures were the same as those used in previous studies of the resting-state FC25,26. After calculating the FC for each scanning session and each participant, we carried out Fisher’s transformation28 and averaged the Z-value-based FC across sessions and participants. As is consistent with a previous study60, the FC matrices for the DMN
+
+8
+
+NATURE COMMUNICATIONS | 4:1370 | DOI: 10.1038/ncomms2388 | www.nature.com/naturecommunications
+
+& 2013 Macmillan Publishers Limited. All rights reserved.
+
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms2388
+
+ARTICLE
+
+and FPN were similar across participants as well as sessions for our data: Pearson’s correlation coefﬁcient between an arbitrary pair of the FC matrices of possibly different participants and sections was 40.81. The large correlation values suggest that the averaged FC is a good representation of the FC for a single participant and session.
+
+Inverse Gaussian model. As another control, we estimated functional interaction
+
+using the inverse Gaussian model. In this model, the probability density function of
+
+the brain activity is assumed to obey the multivariate Gaussian distribution given
+
+by PIGMðXt Þ / eð À 1/2ÞðXt À XÞG À 1ðXt À XÞT , where Xt ¼ [X1(t), X2(t),yXN(t)] is the
+
+N-dimensional row vector representing the continuous-valued activity at the N
+
+regions at time t, X is the sessions and participants,
+
+row and
+
+vector of G ¼ ð1/T
+
+ÞthPe aTt ¼ct1ivðXityt ÀatXthÞðeXNt ÀreXgiÞoTnsisatvheeraNgeÂd
+
+over N
+
+covariance matrix. In this model, we deﬁne the interaction weight between regions
+
+i and j as the (i, j) element of matrix G À 1.
+
+Partial correlation method. As another control, we estimated functional interactions using the partial correlation method36,37. Using the inverse of the covariance matrix, we deﬁned thqe ﬃpﬃﬃﬃaﬃﬃrﬃtﬃﬃiﬃaﬃﬃlﬃﬃﬃcﬃﬃoﬃ rrelation between brain regions i and j, denoted by rij, by rij ¼ À GiÀj 1/ GiÀi 1GjÀj 1.
+MI method. As another control, we estimated functional interactions using the MI method. In accordance with the previous studies37–39, we ﬁrst estimated the MI between regions i and j at frequency ok by MIijðokÞ ¼ À 1/2 lnð1 À mCohijðokÞÞ, where mCohij (ok) represents the multiple coherence between fMRI signals at regions i and j at frequency ok37. We then obtained the MI between i and j, MIij, by averaging MIij(ok) over ok (0.01 Hzrokr0.1 Hz).
+
+Comparison with anatomical connexions. We used the anatomical connexions among the regions in the DMN and FPN that are determined by a previous DTI study employing 80 healthy young adults42. In the study44, the authors obtained the DTI data in a Siemens Sonata 1.5T MRI scanner (Siemens Medical Systems, Germany) by using a twice-refocused single-shot Echo-Planar Imaging-based sequence (3 mm slice thickness with no inter-slice gap, 40 axial slices, TR ¼ 6,400 ms, TE ¼ 88 ms, 6 diffusion directions). The DTI data were preprocessed in SPM5 and mapped to a template of ICBM 152 in the Montreal Neurological Institution space. The anatomical connexions were determined with the use of DTI deterministic tractography.
+We classiﬁed the estimated values of the interaction weights between region pairs into a group of anatomically connected pairs and a group of anatomically unconnected pairs. We compared the two groups by using the two-sample t-test. As the anatomical connexions observed in DTI do not distinguish excitatory and inhibitory interactions, we submitted absolute values of the estimated interaction weights to the t-test. However, for the FC, we also submitted the raw FC values to the t-test, as was done in previous reports34.
+By conducting the ROC analysis, we obtained the accuracy with which the magnitude of the interaction weight predicts the presence and absence of the anatomical connexions. We drew ROC curves by plotting the true positive (that is, anatomically connected pairs whose interaction weights exceed a threshold) against the false positive (that is, anatomically unconnected pairs whose interaction weights exceed the same threshold) for various values of the classiﬁcation threshold. For an ROC curve, the AUC is equal to the area below the ROC curve and represents the classiﬁcation accuracy of the estimation method34. The deviation of the AUC was estimated based on a bootstrap method.
+
+References
+1. Fox, M. D. & Raichle, M. E. Spontaneous ﬂuctuations in brain activity observed with functional magnetic resonance imaging. Nat. Rev. Neurosci. 8, 700–711 (2007).
+2. Sporns, O. The human connectome: a complex network. Ann. N Y Acad. Sci. 1224, 109–125 (2011).
+3. Friston, K. J., Frith, C. D., Liddle, P. F. & Frackowiak, R. S. Functional connectivity: the principal-component analysis of large (PET) data sets. J. Cereb. Blood Flow Metab. 13, 5–14 (1993).
+4. Biswal, B., Yetkin, F. Z., Haughton, V. M. & Hyde, J. S. Functional connectivity in the motor cortex of resting human brain using echo-planar MRI. Magn. Reson. Med. 34, 537–541 (1995).
+5. Raichle, M. E. et al. A default mode of brain function. Proc. Natl Acad. Sci. USA 98, 676–682 (2001).
+6. Greicius, M. D., Krasnow, B., Reiss, A. L. & Menon, V. Functional connectivity in the resting brain: a network analysis of the default mode hypothesis. Proc. Natl Acad. Sci. USA 100, 253–258 (2003).
+7. Beckmann, C. F., DeLuca, M., Devlin, J. T. & Smith, S. M. Investigations into resting-state connectivity using independent component analysis. Philos. Trans. R Soc. Lond. B Biol. Sci. 360, 1001–1013 (2005).
+8. Cole, D. M., Smith, S. M. & Beckmann, C. F. Advances and pitfalls in the analysis and interpretation of resting-state FMRI data. Front. Syst. Neurosci. 4, 8 (2010).
+
+9. Damoiseaux, J. S. et al. Consistent resting-state networks across healthy subjects. Proc. Natl Acad. Sci. USA 103, 13848–13853 (2006).
+10. Fair, D. A. et al. The maturing architecture of the brain’s default network. Proc. Natl Acad. Sci. USA 105, 4028–4032 (2008).
+11. Christoff, K., Gordon, A. M., Smallwood, J., Smith, R. & Schooler, J. W. Experience sampling during fMRI reveals default network and executive system contributions to mind wandering. Proc. Natl Acad. Sci. USA 106, 8719–8724 (2009).
+12. Sestieri, C., Corbetta, M., Romani, G. L. & Shulman, G. L. Episodic memory retrieval, parietal cortex, and the default mode network: functional and topographic analyses. J. Neurosci. 31, 4407–4420 (2011).
+13. Buckner, R. L., Andrews-Hanna, J. R. & Schacter, D. L. The brain’s default network: anatomy, function, and relevance to disease. Ann. N Y Acad. Sci. 1124, 1–38 (2008).
+14. Bullmore, E. & Sporns, O. Complex brain networks: graph theoretical analysis of structural and functional systems. Nat. Rev. Neurosci. 10, 186–198 (2009).
+15. Deco, G., Jirsa, V. K. & Mcintosh, A. R. Emerging concepts for the dynamical organization of resting-state activity in the brain. Nat. Rev. Neurosci. 12, 43–56 (2011).
+16. Shlens, J. et al. The structure of multi-neuron ﬁring patterns in primate retina. J. Neurosci. 26, 8254–8266 (2006).
+17. Schneidman, E., Berry, M. J., Segev, R. & Bialek, W. Weak pairwise correlations imply strongly correlated network states in a neural population. Nature 440, 1007–1012 (2006).
+18. Ganmor, E., Segev, R. & Schneidman, E. The architecture of functional interaction networks in the retina. J. Neurosci. 31, 3044–3054 (2011).
+19. Ganmor, E., Segev, R. & Schneidman, E. Sparse low-order interaction network underlies a highly correlated and learnable neural population code. Proc. Natl Acad. Sci. USA 108, 9679–9684 (2011).
+20. Schwartz, G., Macke, J., Amodei, D., Tang, H. & Berry, M. J. Low error discrimination using a correlated population code. J. Neurophysiol. 108, 1069–1088 (2012).
+21. Tkacik, G., Prentice, J. S., Balasubramanian, V. & Schneidman, E. Optimal population coding by noisy spiking neurons. Proc. Natl Acad. Sci. USA 107, 14419–14424 (2010).
+22. Tang, A. et al. A maximum entropy model applied to spatial and temporal correlations from cortical networks in vitro. J. Neurosci. 28, 505–518 (2008).
+23. Yu, S., Huang, D., Singer, W. & Nikolic, D. A small world of neuronal synchrony. Cerebral Cortex 18, 2891–2901 (2008).
+24. Ohiorhenuan, I. E. et al. Sparse coding and high-order correlations in ﬁne-scale cortical networks. Nature 466, 617–621 (2010).
+25. Tambini, A., Ketz, N. & Davachi, L. Enhanced brain correlations during rest are related to memory for recent experiences. Neuron 65, 280–290 (2010).
+26. Chadick, J. Z. & Gazzaley, A. Differential coupling of visual cortex with default or frontal-parietal network based on goals. Nat. Neurosci. 14, 830–832 (2011).
+27. Stam, C. J., Jones, B. F., Nolte, G., Breakspear, M. & Scheltens, P. Small-world networks and functional connectivity in Alzheimer’s disease. Cereb. Cortex 17, 92–99 (2007).
+28. Dinstein, I. et al. Disrupted neural synchronization in toddlers with autism. Neuron 70, 1218–1225 (2011).
+29. Supekar, K., Musen, M. & Menon, V. Development of large-scale functional brain networks in children. PLoS Biol. 7, e1000157 (2009).
+30. Dosenbach, N. U. F. et al. Prediction of individual brain maturity using fMRI. Science 329, 1358–1361 (2010).
+31. van den Heuvel, M. P., Stam, C. J., Kahn, R. S. & Hulshoff Pol, H. E. Efﬁciency of functional brain networks and intellectual performance. J. Neurosci. 29, 7619–7624 (2009).
+32. Zuo, X. N. et al. Network centrality in the human functional connectome. Cereb. Cortex 22, 1862–1875 (2012).
+33. Adachi, Y. et al. Functional connectivity between anatomically unconnected areas is shaped by collective network-level effects in the macaque cortex. Cereb. Cortex 22, 1586–1592 (2012).
+34. Honey, C. J. et al. Predicting human resting-state functional connectivity from structural connectivity. Proc. Natl Acad. Sci. USA 106, 2035–2040 (2009).
+35. Lu, J. et al. Focal pontine lesions provide evidence that intrinsic functional connectivity reﬂects polysynaptic anatomical pathways. J. Neurosci. 31, 15065–15071 (2011).
+36. Salvador, R. et al. Neurophysiological architecture of functional magnetic resonance images of human brain. Cereb. Cortex 15, 1332–1342 (2005).
+37. Salvador, R. et al. A simple view of the brain through a frequency-speciﬁc functional connectivity measure. NeuroImage 39, 279–289 (2008).
+38. Salvador, R., Anguera, M., Gomar, J. J., Bullmore, E. T. & Pomarol-Clotet, E. Conditional mutual information maps as descriptors of net connectivity levels in the brain. Front. Neuroinform. 4, 115 (2010).
+39. Lynall, M.-E. et al. Functional connectivity and brain networks in schizophrenia. J. Neurosci. 30, 9477–9487 (2010).
+
+NATURE COMMUNICATIONS | 4:1370 | DOI: 10.1038/ncomms2388 | www.nature.com/naturecommunications
+
+9
+
+& 2013 Macmillan Publishers Limited. All rights reserved.
+
+ARTICLE
+
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms2388
+
+40. Bullmore, E. et al. Generic aspects of complexity in brain imaging data and other biological systems. NeuroImage 47, 1125–1134 (2009).
+41. Dosenbach, N. U. F. et al. A core system for the implementation of task sets. Neuron 50, 799–812 (2006).
+42. Fair, D. A. et al. Functional brain networks develop from a ‘local to distributed’ organization. Plos Comput. Biol. 5, e1000381 (2009).
+43. Roudi, Y., Nirenberg, S. & Latham, P. E. Pairwise maximum entropy models for studying large biological systems: when they can work and when they can’t. Plos Comput. Biol. 5, e1000380 (2009).
+44. Gong, G. et al. Mapping anatomical connectivity patterns of human cerebral cortex using in vivo diffusion tensor imaging tractography. Cereb. Cortex 19, 524–536 (2009).
+45. Vincent, J. L. et al. Intrinsic functional architecture in the anaesthetized monkey brain. Nature 447, 83–86 (2007).
+46. Mora, T., Walczak, A. M., Bialek, W. & Callan, C. G. Maximum entropy models for antibody diversity. Proc. Natl Acad. Sci. USA 107, 5405–5410 (2010).
+47. Logothetis, N. K., Pauls, J., Augath, M., Trinath, T. & Oeltermann, A. Neurophysiological investigation of the basis of the fMRI signal. Nature 412, 150–157 (2001).
+48. Tanaka, T. Mean-ﬁeld theory of Boltzmann machine learning. Phys. Rev. E 58, 2302–2310 (1998).
+49. Hinton, G. E. Training products of experts by minimizing contrastive divergence. Neural. Comput. 14, 1771–1800 (2002).
+50. Friston, K. J. et al. Psychophysiological and modulatory interactions in neuroimaging. NeuroImage 6, 218–229 (1997).
+51. Goebel, R., Roebroeck, A., Kim, D.-S. & Formisano, E. Investigating directed cortical interactions in time-resolved fMRI data using vector autoregressive modeling and Granger causality mapping. Magn. Reson. Imaging 21, 1251–1261 (2003).
+52. Friston, K. Dynamic causal modelling. NeuroImage 19, 1273–1302 (2003). 53. Stephan, K. E. et al. Ten simple rules for dynamic causal modeling. NeuroImage
+49, 3099–3109 (2010). 54. Marre, O., Boustani, El, S., Fre´gnac, Y. & Destexhe, A. Prediction of
+spatiotemporal patterns of neural activity from pairwise correlations. Phys. Rev. Lett. 102, 138101 (2009). 55. Roudi, Y. & Hertz, J. Mean ﬁeld theory for nonequilibrium network reconstruction. Phys. Rev. Lett. 106, 048702 (2011). 56. de Pasquale, F. et al. A cortical core for dynamic integration of functional networks in the resting human brain. Neuron 74, 753–764 (2012). 57. Zhou, H. & Desimone, R. Feature-based attention in the frontal eye ﬁeld and area V4 during visual search. Neuron 70, 1205–1217 (2011).
+
+58. Badre, D., Doll, B. B., Long, N. M. & Frank, M. J. Rostrolateral prefrontal cortex and individual differences in uncertainty-driven exploration. Neuron 73, 595–607 (2012).
+59. Yeh, F. C. et al. Maximum entropy approaches to living neural networks. Entropy 12, 89–106 (2010).
+60. van Dijk, K. R. A. et al. Intrinsic functional connectivity as a tool for human connectomics: theory, properties, and optimization. J. Neurophysiol. 103, 297–321 (2010).
+Acknowledgements
+We thank Hideaki Shimazaki and Taro Toyoizumi for valuable discussions. We also thank Ms Suzuki for technical assistance of the MRI acquisition. This work was supported by Grants-in-Aid for Scientiﬁc Research (23681033, and Innovative Areas ‘Systems Molecular Ethology’ (No. 20115009)) from MEXT Japan to N.M., a grant from the Japan Society for the Promotion of Science Research Foundation for Young Scientists (222882) to T.W., a Grant-in-Aid for Specially Promoted Research (19002010) to Y.M., a Grant-in-Aid for Scientiﬁc Research B (22300134) to S.K. and a research grant from Takeda Science Foundation to Y.M.
+Author contributions
+T.W. and N.M. designed the research. S.H., H.W., Y.I., T.M., I.S. and S.K. conducted imaging experiments. T.W. and N.M. analysed the data and wrote the manuscript. Y.M. discussed the results and commented on the manuscripts.
+Additional information
+Supplementary Information accompanies this paper at http://www.nature.com/ naturecommunications
+Competing ﬁnancial interests: The authors declare no competing ﬁnancial interests.
+Reprints and permission information is available online at http://npg.nature.com/ reprintsandpermissions/
+How to cite this article: Watanabe, T. et al. A pairwise maximum entropy model accurately describes resting-state human brain networks. Nat. Commun. 4:1370 doi: 10.1038/ncomms2388 (2013).
+This work is licensed under a Creative Commons AttributionNonCommercial-NoDerivs 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/
+
+10
+
+NATURE COMMUNICATIONS | 4:1370 | DOI: 10.1038/ncomms2388 | www.nature.com/naturecommunications
+
+& 2013 Macmillan Publishers Limited. All rights reserved.
+

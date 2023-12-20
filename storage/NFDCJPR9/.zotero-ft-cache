@@ -1,0 +1,1113 @@
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH Public Access
+Author Manuscript
+Neuroimage. Author manuscript; available in PMC 2015 January 01. Published in final edited form as:
+Neuroimage. 2014 January 1; 84: 585–604. doi:10.1016/j.neuroimage.2013.09.022.
+MEG Source Imaging Method using Fast L1 Minimum-norm and its Applications to Signals with Brain Noise and Human Restingstate Source Amplitude Images
+Ming-Xiong Huanga,b,c,*, Charles W. Huangd, Ashley Robbb,c, AnneMarie Angelesb,c, Sharon L. Nicholse, Dewleen G. Bakerf, Tao Songc, Deborah L. Harringtonb,c, Rebecca J. Theilmannc, Ramesh Srinivasang, David Heisterc, Mithun Diwakarc, Jose M. Caniveh,i, J. Christopher Edgarj, Yu-Han Chenh,i, Zhengwei Jic, Max Shenc, Fady El-Gabalawyc, Michael Levyk, Robert McLayl, Jennifer Webb-Murphyl, Thomas T. Liuc, Angela Drakem, and Roland R. Leea,b,c aRadiology Services, VA San Diego Healthcare System, San Diego, CA, USA bResearch Services, VA San Diego Healthcare System, San Diego, CA, USA cDepartment of Radiology, University of California, San Diego, San Diego, CA, USA dWestview High School, San Diego, CA, USA eDepartment of Neuroscience, University of California, San Diego, San Diego, CA, USA fVA Center of Excellence for Stress and Mental Health and Department of Psychiatry, University of California, San Diego, CA, USA gDepartment of Cognitive Sciences, University California, Irvine, Irvine, California, USA hPsychiatry Research, New Mexico VA Healthcare System, Albuquerque, NM, USA iDepartments of Psychiatry and Neurosciences, University of New Mexico, Albuquerque, NM, USA jThe Children’s Hospital of Philadelphia and University of Pennsylvania, Philadelphia, PA, USA. kRady Children’s Hospital San Diego, San Diego, CA, USA lNaval Medical Center San Diego, San Diego, CA, USA mNational University, San Diego, CA, USA
+Abstract
+The present study developed a fast MEG source imaging technique based on Fast Vector-based Spatio-Temporal Analysis using a L1-minimum-norm (Fast-VESTAL) and then used the method
+*Correspondence: Ming-Xiong Huang, Ph.D., Radiology Imaging Laboratory, University of California, San Diego, 3510 Dunhill Street, San Diego, CA 92121, USA, Tel: +1-858-534-1254, Fax: +1-858-552-7404, mxhuang@ucsd.edu. Publisher's Disclaimer: This is a PDF file of an unedited manuscript that has been accepted for publication. As a service to our customers we are providing this early version of the manuscript. The manuscript will undergo copyediting, typesetting, and review of the resulting proof before it is published in its final citable form. Please note that during the production process errors may be discovered which could affect the content, and all legal disclaimers that apply to the journal pertain.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 2
+
+to obtain the source amplitude images of resting-state magnetoencephalography (MEG) signals for different frequency bands. The Fast-VESTAL technique consists of two steps. First, L1-minimumnorm MEG source images were obtained for the dominant spatial modes of sensor-waveform covariance matrix. Next, accurate source time-courses with millisecond temporal resolution were obtained using an inverse operator constructed from the spatial source images of Step 1. Using simulations, Fast-VESTAL’s performance of was assessed for its 1) ability to localize multiple correlated sources; 2) ability to faithfully recover source time-courses; 3) robustness to different SNR conditions including SNR with negative dB levels; 4) capability to handle correlated brain noise; and 5) statistical maps of MEG source images. An objective pre-whitening method was also developed and integrated with Fast-VESTAL to remove correlated brain noise. Fast-VESTAL’s performance was then examined in the analysis of human mediannerve MEG responses. The results demonstrated that this method easily distinguished sources in the entire somatosensory network. Next, Fast-VESTAL was applied to obtain the first whole-head MEG source-amplitude images from resting-state signals in 41 healthy control subjects, for all standard frequency bands. Comparisons between resting-state MEG sources images and known neurophysiology were provided. Additionally, in simulations and cases with MEG human responses, the results obtained from using conventional beamformer technique were compared with those from Fast-VESTAL, which highlighted the beamformer’s problems of signal leaking and distorted source time-courses.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Keywords minimum norm; L1-norm; resting-state; median-nerve; brain noise; beamformer
+Introduction
+MEG is a functional imaging technique that directly measures neuronal activity with millisecond temporal resolution. The key outcomes of MEG source imaging are the source locations and the source time-courses of neuronal activities responsible for the observed MEG field distribution. However, if no constraint is imposed, there are many sets of source configurations that can generate essentially the same MEG field distribution. To deal with this non-uniqueness, constraints must be imposed on sources by stipulating a “source model”. A conventional source model for MEG is a set of equivalent current dipoles (ECDs), a model that assumes focal neuronal current that can be modeled by one or more point-like dipoles. Automated multiple-dipole model algorithms such as multiple signal classification (MUSIC) (Mosher et al., 1992; Mosher and Leahy, 1998; Mosher et al., 1999a) and multi-start spatiotemporal (MSST) multiple-dipole modeling (Huang et al., 1998; Aine et al., 2000; Huang et al., 2000; Shih et al., 2000; Stephen et al., 2002; Hanlon et al., 2003; Stephen et al., 2003; Huang et al., 2004) have been studied and applied to the analysis of human MEG data. Yet, the ability of dipole models to adequately characterize neuronal responses is limited, due to 1) difficulties in modeling extended sources with ECDs and 2) problems in accurately estimating the number of dipoles in advance (Huang et al., 1998). Another type of source-modeling technique involves minimum L2-norm solutions (e.g., dSPM (Dale et al., 2000), MNE (Hamalainen, 2005), sLORETA (Pascual-Marqui, 2002)). In these approaches, source space (brain volume or cortex) is divided into a grid containing a large number of dipoles (typically several thousands). The inverse procedure
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 3
+obtains the dipole moment distribution across different grid nodes by minimizing the total power (L2 norm). This solution is obtained using a direct linear inverse operator (pseudoinverse with regularization) of the lead-fields. However, the spatial resolution of the minimum L2-norm solution is low and often provides distributed reconstructions even if true generators are focal. Cross-talk between source time-courses of nearby grid points can also be high. The third type of source modeling is spatial filtering, which makes assumptions about the temporal properties of source time-courses. Conventional single-core beamformer approaches fall into this framework, and assume that different source time-courses are uncorrelated (Van Veen et al., 1997; Gross and Ioannides, 1999; Robinson and Vrba, 1999; Gross et al., 2001; Sekihara et al., 2001; Hillebrand and Barnes, 2003; Barnes and Hillebrand, 2003). The extent to which this “uncorrelated assumption” limits the application of the conventional beamformer remains debated (Dalal et al., 2006; Brookes et al., 2007; Diwakar et al., 2011a; Diwakar et al., 2011b), as most beamformer publications have not directly addressed the signal leaking and distortion problems of reconstructed source timecourses when neuronal sources are correlated. In evoked responses, electro-neurophysiology studies show that sources can be highly correlated because brain regions work together to achieve a task goal (Kandel et al., 2000).
+Recent developments of dual-core Beamformer techniques from our lab and others sought to address the problem for highly-correlated sources and partially overcame this problem (Brookes et al., 2007; Diwakar et al., 2011a; Diwakar et al., 2011b). In addition, a recentlydeveloped source reconstruction algorithm, Champagne (Owen et al., 2012), which uses an iterative approach to optimize a cost function related to the logarithm of the trace in data model covariance, performed better than several conventional approaches and was robust to noise, although its ability to accurately obtain the source time-courses was not evaluated (Owen et al., 2012).
+A high-resolution MEG time-domain inverse imaging method was developed earlier in our lab, namely the VEctor-based Spatial-Temporal Analysis, which was based on a L1minimum-norm solution (VESTAL or Standard-VESTAL), in which temporal information in the data is used to enhance the stability of the reconstructed L1-minimum norm solution (Huang et al., 2006). Advantages are that Standard-VESTAL: 1) can model many dipolar and non-dipolar sources; 2) requires no pre-determination of the number of sources (model order); 3) can resolve 100% temporally correlated sources; and 4) has substantially higher spatial resolution than many lead-field-based MEG source modeling techniques (Huang et al., 2006; Brang et al., 2010; Huang et al., 2010). Recently, Standard-VESTAL was expanded from the time-domain to the frequency-domain to effectively image oscillatory MEG signals, including complicated MEG slow-waves in patients with traumatic brain injury (Huang et al., 2009; Huang et al., 2012). The computational costs of StandardVESTAL in the time- and frequency-domains are manageable, but they increase linearly with the number of time samples or frequency bins.
+The present study presents an MEG source imaging technique based on L1-minimum-norm solution, called “Fast-VESTAL,” that immensely improves computational speed and other aspects of the source images. Using simulations, the performance of Fast-VESTAL is assessed for its: 1) ability to localize multiple correlated sources; 2) ability to faithfully
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 4
+recover source time-courses; 3) robustness to different SNR conditions (including SNR with negative dB levels); 4) capability to handle correlated brain noise; and 5) statistical maps of MEG source images. To handle signal with correlated brain noise, a new objective prewhitening method was developed to separate noise and signal subspaces, and successfully remove correlated brain noise from the data. Then the results are presented from the application of Fast-VESTAL to the analysis of human MEG responses evoked by mediannerve stimulation. In addition, for the first time, the whole-brain Fast-VESTAL sourceamplitude images are reported in different frequency bands for resting-state MEG data in 41 healthy subjects. Resting-state electromagnetic signals are one of the most widely examined human brain responses, dating back to the EEG alpha recording. Building on the work of Wienbruch and colleagues for low-frequency bands (Wienbruch, 2007), the present study produces a comprehensive set of source-based neuronal amplitude/power images that cover the whole brain for all frequency bands for the resting-state MEG/EEG recording. Comparisons between resting-state MEG sources-amplitude images and known neurophysiology are also provided. Lastly, performances of Fast-VESTAL, StandardVESTAL, and conventional beamformer technique were compared for simulations and human MEG data.
+
+Material and Methods
+Theory of MEG Source Imaging using Fast-VESTAL
+Source Imaging of the Dominant Spatial Modes—First, we take an imaging (leadfield) approach and divide the source space (gray-matter brain volume) into a grid of thousands of potential source locations. MEG time-domain signal in sensor-space can then be expressed in a data matrix: B = [b(t1),b(t2),…,b(tT)], where t1, t2,…, tT are time samples and T is the total number of time samples and b(ti) is a M×1 vector containing the magnetic fields at M sensor sites at time sample ti. This M×T data matrix can be expressed as:
+Eq. (1)
+where G is an M×2P gain (lead-field) matrix calculated from MEG forward modeling for the pre-defined source grid with P dipole locations, with each dipole location having two orthogonal orientations (i.e., θand ϕ). N is an M×T noise matrix. Q is a 2P×T source timecourse matrix. In the spherical MEG forward head model, θand ϕ represent the two tangential orientations for each dipole location, whereas in a realistic MEG forward model using the boundary element method (BEM), the θand ϕ-orientations are obtained as the two dominant orientations from the singular-value decomposition (SVD) of the M×3 lead-field matrix for each dipole, as previously documented (Huang et al., 2006). The noise term in Eq. (1) is assumed to be Gaussian white noise. If correlated noise exists, pre-whitening procedures can be applied (Sekihara et al., 1997; Sekihara et al., 1999; Huang et al., 2006). In the present study, a new objective pre-whitening method was developed to effectively remove correlated brain and environmental noise from the data (see below). The inverse solution in Eq. (1) obtains the source time-courses Q for given MEG sensor wave-forms B. In general, for each time-sample, since the number of unknown parameters is far greater than the number of sensor measurements (i.e. 2P>>M), MEG source imaging is dealing with
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 5
+a highly under-determined problem, and there are a large number of solutions that fit the data. To reduce the ambiguity, additional constraints (source models) are needed.
+In the present Fast-VESTAL approach, we first remove the time-dependent features from Eq. (1) and only focus on the spatial profiles. This is done by performing a SVD for the M×T MEG sensor waveform data matrix:
+Eq. (2)
+In the typical case of M<T, the dimensions for UB, SB, and VB are M×M, M×T, and T×T, respectively. All temporal information in the MEG sensor waveform can be represented as a linear combination of the singular vectors in the matrix VB. In addition, SVD is performed for the gain matrix G:
+Eq. (3)
+The dimensions for UG, SG, and VG are M×M, M×2P, and 2P×2P, respectively. Substituting Eqs. (2)(3) into Eq. (1) and multiplying the result with VB from the right side, we have:
+Eq. (4)
+The 2P×M matrix H = QVB is called the source spatial map matrix for the given time window, and is independent of individual time samples. In the above deviation, we also use the fact that the white noise is uncorrelated with the MEG neuronal signals NVB = 0.
+Each column of UB SB is defined as a spatial mode of MEG sensor-waveforms. The significance of Eq. (4) is that each spatial mode in the sensor-waveforms be expressed as a linear combination of the corresponding source imaging maps (i.e., the columns of H). It is clear that the number of signal (i.e., dominant) spatial modes in a given MEG data set (usually ranges from a few to a tens of seconds) is substantially less than the number of time samples in the data (~100s to ~100,000s). Thus, by solving Eq. (4), the computational cost can be substantially reduced. This step of using temporal projection is similar to the temporal dimension reduction component of the Multiple Sparse Priors (MSP) method of Friston and colleagues (Friston et al., 2008).
+Spatial-profile and Covariance Matrices of Sensor Waveforms—In practice, if the number of time samples is large, calculating the SVD of the sensor waveform matrix as in Eq. (2) can be time- and memory-consuming. However, what is really needed in the left hand side of Eq. (4) is UB SB, and this can be easily obtained as the SVD of the M×M, sensor-waveform-based, spatial-profile matrix R = BBT:
+Eq. (5)
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 6
+where the diagonal elements in SB are simply the square root (SQRT) of the corresponding eigenvalues of R which are the diagonal elements in ΣB. If the sensor waveforms B are zeromean across time for each MEG channel, R is the same as the sensor covariance matrix multiplied by the number of time samples T.
+Fast-VESTAL Solution—Eq. (4) is under-determined, just like Eq. (1), with the number of unknown variables in each column of H = [h1,h2,…, hk,…, hM] (i.e., 2P) much larger than the number of measurements in each column of UBSB = [s1u1, s2u2,…,skuk,…, sMuM,] (i.e., M), so additional constraint(s) are needed to obtain a unique solution for Eq. (4). Here, the number of signal (dominant) spatial modes k is usually much smaller than the number of MEG sensor measurementsM. After multiplying from the left side with , for individual dominant spatial modes of Eq. (4), Eq. (4) can be written as:
+Eq. (6)
+where i =1,2,…, k are the indices of spatial modes in sensor space. The Fast-VESTAL solution to Eq. (6) is:
+
+Eq. (7)
+
+where the 2P×1vector hi is the source imaging map associated with the dominant spatial mode vector ui (dimension M×1) of the sensor-domain. In Eq. (7), w is a 2P×1 weighting vector chosen to remove potential bias towards grid nodes at the superficial layer and it is usually taken to be the column norm of the G matrix (Matsuura and Okabe, 1997; Uutela et al., 1999; Huang et al., 2006) or a Gaussian function (Ioannides et al., 1993). In the present
+
+study,
+
+was chosen to remove some small bias for the reconstructed
+
+source locations in the above choices of w.
+
+In general, the solution to Eq. (7) is a non-linear minimization procedure since the source imaging maps hi (associated with dominance spatial mode ui) can be either positive or negative. However, in practice, one can always replace the absolute values in |hi| with the following two sets of non-negative values related to hi, and solve the set of equations through linear programming (LP). Specifically, with the introduction of two new non-
+negative variables and (Eiselt et al., 1987), Eq. (7) can be re-written as:
+Eq. (8)
+
+Eq. (8) can be solved readily by several LP packages. In the present study, SeDuMi (http:// sedumi.ie.lehigh.edu/) is used to solve the above equation-set to get source imaging hi for each dominant spatial mode ui of sensor-domain signal. This step is repeated for all dominant spatial modes to obtain the final Fast-VESTAL source image matrix H. The computational cost of Fast-VESTAL is proportional to the number of dominant (signalrelated) spatial modes k which is usually much fewer than the number of time samples.
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+The Fast-VESTAL source imaging result can be plotted on the source grid as:
+
+Page 7
+
+Eq. (9)
+
+which is the 2P×1 root-mean-square (RMS) source amplitude value, mean across time at each grid node. The main feature of A is that it is highly sparse, with many of its elements being either zero or close to zero, as a direct consequence of L1-norm minimization.
+One problem that must be addressed by the minimum L1-norm approach is that the solution has a small tendency (bias) towards the coordinate axes. For example, in spherical MEG head model, for a dipole at the ith node of the grid, the vector-based L1-minimum norm
+
+solution can also be expressed as minimizing
+
+where ψi is the
+
+angle between total dipole moment and the orientation of the elevation in a tangential plane
+
+containing the dipole node, and
+
+is the non-negative dipole strength.
+
+This will introduce a bias towards the coordinate axes (Fig. 1 in (Huang et al., 2006)). To
+
+handle this small bias, an additional correction factor
+
+was included
+
+in the weighting vector w in Eq. (8) for one more iteration, where is the angle associated
+
+with the estimated orientation based on L1-minimum norm solution without the correction
+
+factor (Huang et al., 2006; Huang et al., 2012).
+
+Obtain the Source Time-courses in Fast-VESTAL
+A main advantage of MEG over other functional imaging techniques (e.g., fMRI and PET) is its excellent temporal resolution. To capitalize on this, it is essential that a source imaging approach not only accurately localizes the neuronal activities, but also faithfully recovers the source time-courses with high temporal resolution.
+
+In the present study, the spatial images obtained by Fast-VESTAL in Eq. (9) were used to obtain the source time-courses. Here, an inverse operator matrix was adopted and directly applied to the sensor waveform matrix B(t). First, the Fast-VESTAL spatial image in Eq. (9) is assigned as a weighting variable to the gain (lead-field) matrix:
+
+Eq. (10)
+
+where J = [1,1,…, 1]T is a M×1 vector of ones, and • indicates the element-wise matrix product. G̃ is the M×2P weighted gain (lead-field) matrix with each of the 2P columns
+weighted by the 2P elements from A in Eq. (9). Since the source maps from the Fast-
+VESTAL are highly sparse with most of its elements being zero or near zero, the M×2P weighted gain matrix G̃ is also sparse. Using the SVD of this weighted gain matrix,
+
+Eq. (11)
+Then the 2P×M linear inverse matrix G̃+ for G̃ can be constructed as:
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 8
+
+Eq. (12)
+in which I is an identity matrix and α is the regularization parameter. The reconstructed, best-fitting, source time-courses of Fast-VESTAL solution are then obtained using such a linear inverse operator G̃+
+Eq. (13)
+
+Here, the 2P×M inverse operator matrix is called the Fast-VESTAL source time-course operator. The millisecond-by-millisecond source time-course matrix Q̂ (dimension 2P×T) is simply obtained by applying to the sensor waveform matrix B as shown in Eq. (13). In short, the estimated Fast-VESTAL source time-course Q̂ is related to the A in Eq. (13), and A is related to Fast-VESTAL spatial source map matrix H in Eq. (9).
+The goodness-of-fit to the MEG Sensor Signals The goodness-of-fit to the MEG sensor waveform may be obtained by comparing the predicted sensor waveform using the best-fitting source time-courses from Eq. (13) to the measured MEG sensor waveforms. In fact, the goodness-of-fit can be calculated directly from Eq. (13) without needing to calculate the predicted MEG sensor waveforms. In this approach, the best-fitting source spatial-profile matrix or the source covariance matrix can also be obtained as:
+Eq. (14)
+Then, the best-fitting sensor spatial-profile matrix or the sensor covariance matrix can be expressed as:
+Eq. (15)
+The goodness-of-fit measure of the MEG sensor signals is then calculated using the diagonal elements of both the measured and the predicted sensor spatial-profile matrix or the sensor covariance matrix:
+
+Eq. (16)
+
+NIH-PA Author Manuscript
+
+Setup for Computer Simulations using White Noise In the present study, computer simulations were used to assess three key issues related to the performance of Fast-VESTAL: 1) the algorithm’s ability to localize multiple correlated
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 9
+sources, 2) the algorithm’s performance for different SNR conditions with white as well as real brain noise, and 3) the algorithm’s accuracy of reconstruction of source time-courses.
+The source grid used by Fast-VESTAL was obtained by sampling the gray-matter areas from the T1-weighted MRI of each subject (Huang et al., 2012). The processing pipeline includes the following steps: 1) The T1-weighted MR images from a subject are registered to a standard atlas (e.g., MNI-152) using registration programs in FSL (www.fmrib.ox.ac.uk/fsl/). 2) The cortical, subcortical, and cerebellum gray-matter masks with pre-defined brain regions from the standard atlas in FSL are transferred to the individual subject’s coordinates, using the inverse of the transformation in the first step. In this step, the Harvard-Oxford Atlas (part of the FSL software) is used to parcellate gray matter into 96 cortical gray-matter regions (48 in each hemisphere), 15 subcortical regions, and the cerebellum. 3) The regional masks in the subject are re-sampled to a cubic source grid with 5mm size for Fast-VESTAL analysis, which leads to a grid with ~7,000 nodes. A realistic BEM head model was used for MEG forward calculation, with the BEM mesh obtained from tessellating the inner skull surface from the MRI into ~6000 triangular elements with ~5mm size.
+The performance of Fast-VESTAL was first examined using six simulated dipolar sources (Fig. 1, left panel). Correlated source time-courses (ground-truth) were assigned to these sources to mimic evoked responses with 300 ms pre-stimulus and 700 post-stimulus intervals (Fig. 1, right panel). MEG sensor waveforms were calculated using the BEM model (Mosher et al., 1999b; Huang et al., 2007) for the sensor configuration of Elekta/ Neuromag VectorView™ whole-head MEG system (Elekta-Neuromag, Helsinki, Finland) with 306 MEG channels that contains 204 planar gradiometers and 102 magnetometers. These 6 sources were placed as follows: two at L-R middle frontal gyri, two in L-R postcentral gyri and superior parietal lobules, and two in L-R lateral occipital cortex (Fig. 1). The ground-truth orientations of these 6 sources were [−0.14, −0.75, 0.64], [−0.52, 0.40, 0.76], [−0.78, 0.17, −0.60], [0.01, 0.99, 0.11], [−0.16, 0.14, 0.98], and [0.47, 0.80, −0.37], respectively. Three different levels of random white noise were added to the sensor wave forms to examine Fast-VESTAL’s performance in reconstructing the source locations and source time-courses. After adding the three levels of white noise, the SNRs of the noisy MEG sensor waveforms were at 3.74 (White-noise Level-1), 1.24 (White-noise Level-2), and 0.53 (White-noise Level-3) respectively for the entire interval, and were at 4.46, 1.48, and 0.64 respectively for the post-stimulus interval, as measured by Frobenius norms (see Results). Since statistical analyses (see below) depend on some noise in the pre-stimulus interval, a negligible amount of white noise (“Level-0”) to the noiseless was added to MEG sensor waveform with the SNR > 106. Since the SNR was quite high for Level-0, this condition is referred to as “Noiseless” throughout this paper.
+The selection of the number of dominant signal modes k in SB in Eq. (4) is straightforward for data with white noise. The selection of k was based on the “L-shaped” nature of the singular value curve of the MEG sensor signal in Eq. (2) or equivalently the SQRT of eigenvalues of the sensor covariance matrix in Eq. (5), allowing us to effectively separate the signal subspace from the noise subspace (see Results)-- a procedure widely used in
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 10
+
+processing MEG data (Mosher et al., 1992; Mosher and Leahy, 1998; Huang et al., 2006; Sekihara et al., 2008).
+
+New Objective Pre-whitening Method to Handle Correlated Brain Noise with Pre-whitening, Eigenvalue Plots, and Objective Threshold
+When studying human MEG responses, correlated environment noise and especially brain noise are common; this is different from white noise. In situations with correlated noise, the determination of signal (i.e., dominant) spatial modes k becomes challenging. The prewhitening method has been introduced to handle correlated noise (e.g., (Sekihara et al., 1997; Sekihara et al., 1999)). In these studies using simulated correlated noise, if one has complete knowledge of the correlated noise, the pre-whitening step effectively determines the signal subspace and removes the correlated noise. However, it remains a topic of research as to how correlated brain noise should be handled in realistic situations when only incomplete or non-simultaneously collected information about the correlated noise is available. A typical example is evoked MEG responses, wherein brain (correlated) noise can be estimated during the pre-stimulus interval, but not during the post-stimulus interval when the evoked signal mixes with the brain noise. Another example is when brain noise used for pre-whitening is collected before or after the actual task session. So in practice, one must find: 1) an objective way to measure the efficacy of the prewhitening step, 2) an additional procedure to further remove residual correlated noise when prewhitening step is not completely successful, and 3) an objective way to identify noise subspace in the prewhitened signal covariance matrix.
+
+In the present study, a new Objective Pre-whitening Method (OPWM) was developed to address the above challenges for effectively removing correlated brain noise. Our OPWM contained four steps as shown in Fig. 2: 1) Estimating a “mother” correlated brain noise covariance matrix based on incomplete information and constructing a pre-whitening operator (see below), which was then applied to a series of “daughter” brain noise data sets, thereby forming a series of daughter pre-whitened brain noise covariance matrices (DPWBNCM); 2) plotting the SQRT of eigenvalues of these DPWBNCM, and plotting the second-order derivatives of the SQRT of eigenvalues of DPWBNCM. If the pre-whitening step does not completely remove the correlated brain noise (it is often the case), the leading second-order derivatives will be substantially different from zero. 3) Identifying the noisesubspace from the plots of the second-order derivatives of eigenvalues of DPWBNCM and finding the associated threshold values from the SQRT of the eigenvalue plots of the DPWBNCM; and 4) Applying the pre-whitening operator to the signal covariance matrix to obtain the pre-whitened signal covariance matrix (PWSCM), and then applying the thresholds from the DPWBNCM in Step 3 to the PWSCM eigenvalue plots and selecting the signal subspace in the PWSCM.
+
+Pre-whitening Step—In the pre-whitening step, eigenvalue decomposition (EVD) is first performed on an estimated M×M mother noise covariance matrix (see later for how to obtain
+
+such a matrix)
+
+, and then an M×M pre-whitening operator is constructed:
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 11
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Eq. (17)
+
+Next, the pre-whitening operators are applied to the gain matrices in Eqs. (1)(2)(11), MEG sensor waveforms in Eqs. (1)(2)(13), or sensor covariance matrices in Eqs. (5)(14):
+Eq. (18)
+
+The rest of the formulation of Fast-VESTAL takes the same format when replacing these matrices with their corresponding pre-whitening ones. Note that after the pre-whitening step, the MEG sensor waveforms and sensor covariance matrices will become dimensionless (i.e.,
+
+ratio scores). In our implementation of Eq. (17), the calculation of
+
+was based on the
+
+top 60 largest singular values in ΩC, due to the fact that the later matrix becomes rank 64 after applying MaxFilter to any data set in the Elekta MEG system (Taulu et al., 2004a;
+
+Taulu et al., 2004b; Song et al., 2008).
+
+Brain-noise data—To examine the robustness of Fast-VESTAL in realistic situations of correlated brain noise, MEG brain-noise was collected from a healthy subject when he was watching a fixation point for over 2 hours, in multiple sessions of 5-minute recordings from different days. After co-registering these data sessions and removing epochs containing eyeblinks, eye-movements, and other artifacts using MaxFilter (see below), the fixation brain signals were divided into a pool of over 6,100 epochs that were free of artifacts, each of 1000 ms duration. Using these data, three levels of brain noise were constructed to match the noise levels of the three white-noise conditions based on Frobenius norms. The numbers of randomly selected epochs for signal averaging in each of the three brain-noise conditions were: 125, 14, and 3, respectively. These conditions were referred as brain-noise Levels-1, 2, and 3.
+
+Assessing the efficacy of pre-whitening using only brain-noise data—Before the realistic brain noise was added to the simulated signal to challenge the performance of the Fast-VESTAL algorithm, the robustness of the estimated mother noise-covariance matrix in removing correlated brain noise was first examined. In practice, the estimation of the mother noise covariance is always based on partial information. Thus, the estimated mother covariance matrix of correlated brain noise was constructed using the pre-stimulus interval partial data (not the entire interval), assuming that the pre-whitening step removes the correlated noise for the entire interval, including the post-stimulus section.
+
+A Monte-Carlo approach was used to evaluate the efficacy of the pre-whitening approach. For each brain-noise condition, 40 sets of epochs, each epoch lasting 1000 ms, were randomly selected from our pool of over 6,100 epochs of human brain-noise recordings. Specifically, for the brain-noise Level-1 condition, each of the 40 sets of epochs contained 125 trials that were then averaged (i.e., 5,000 total epochs). In each set, the mother brainnoise covariance matrix was estimated from the first 300 ms interval of the averaged data, and the pre-whitening step was run through the entire 1000 ms interval (i.e., daughter brain-
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 12
+
+noise condition) using Eqs. (17) and (18). Next, the SQRT of the eigenvalues of the daughter pre-whitened brain-noise covariance matrix (DPWBNCM) was plotted for the entire interval. As shown in the Results section, these plots and their second-order derivatives objectively assessed the quality of the pre-whitening step and provided an objective way to separate signal subspace from the noise subspace. This procedure was repeated for the conditions with brain-noise Level-2 (14 trials averaging) and Level-3 (3 trials averaging). It is important to emphasize that no simulated signal was added during this procedure – only brain-noise data were involved in the analyses.
+
+Analyzing Human Median-nerve MEG response
+The performance of Fast-VESTAL was further examined using human MEG responses evoked by unilateral median-nerve stimulation. This task is particularly relevant, owing to our excellent understanding of the underlying neuronal activity, which allows us to predict with a high degree of confidence where sources should be found, and hence to confirm or refute the correctness of the calculated source localizations. MEG recordings were conducted from a healthy subject as he underwent right median-nerve stimulation using a bipolar Grass™ constant current stimulator. The stimuli were square-wave electric pulses (0.2 ms duration) delivered at about 1 Hz (ISI: 800 ms to 1200 ms). The intensity of the stimulation was adjusted until robust thumb twitches were observed. Magnetic fields evoked by median-nerve stimulation were measured using our Elekta/Neuromag™ whole-head Vectorview™ MEG system in a 6-layer magnetically shielded room (IMEDCO-AG, Switzerland) (Cohen et al., 2002). EOG electrodes were used to detect eye blinks and eye movements. An interval of 500 ms post-stimulus was recorded, using 300 ms pre-stimulus data for constructing the noise covariance matrix for pre-whitening. Data were sampled at 1000 Hz and run through a high-pass filter with 0.1 Hz cut-off and through a notch filter (58–62 Hz) to remove 60Hz power-line noise. Two hundred artifact-free responses were averaged with respect to the stimulus trigger to increase the SNR. Maxfilter, also known as signal space separation (Taulu et al., 2004a; Taulu et al., 2004b; Song et al., 2008), was used to remove external interferences. A five-minute session of resting-state brain noise (eyesopen), collected from the same subject on a different day, was used to examine the efficacy of the pre-whitening step and to identify the noise subspace.
+
+MEG Resting-state Recording in Healthy Subjects
+To examine the performance of Fast-VESTAL technique for spontaneous data, FastVESTAL was applied to obtain whole-brain source imaging for resting-state MEG data in standard frequency bands. Study participants included 41 healthy control subjects with no history of neurological or psychiatric disorders (age 26.7 ± 8.4 years, 34 males). Three blocks of resting-state MEG data with eyes-closed for 5 minutes were collected for each block using the same Elekta/Neuromag VectorView™ whole-head MEG system. During the recording, subjects were instructed to keep their eyes closed and empty their mind. Data were sampled at 1000 Hz and were run through a high-pass filter with 0.1 Hz cut-off and a low-pass filter with 330 Hz cut-off. Eye blinks, eye movements, and heart signals were monitored. Precautions were taken to ensure head stability: foam wedges were inserted between the subject’s head and the inside of the unit, and a Velcro strap was placed under the subject’s chin and anchored in superior and posterior axes. The head positions were
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 13
+measured to ensure that head movement across different sessions was less than 5 mm (usually 2–3 mm).
+MEG eyes-closed data were first run through MaxFilter to remove external interferences (e.g., magnetic artifacts due to metal objects, strong cardiac signals, environment noise, etc.) and to co-register the MEG data by removing the small head movements across the three 5min eyesclosed sessions. Next, residual artifacts near the sensor array due to eye movements and residual cardiac signals were removed using Independent Component Analysis. The software is our customized version of ICALAB (bsp.brain.riken.jp/ICALAB/). The EKG artifacts in the MEG data were also removed when the MEG data were passed through MaxFilter. This feature of MaxFilter has been described previously (Taulu et al., 2004a; Taulu et al., 2004b; Song et al., 2008). Removal of EKG artifacts using MaxFilter is quite straightforward since EKG signals clearly represent magnetic fields in the Vector Spherical Harmonic Expansion (in signal space separation), external to the MEG sensor array.
+Structural MRIs of the subject’s head were collected using a General Electric 1.5T Excite MRI scanner (ver. 14 software release). The acquisition contains a standard high-resolution anatomical volume with a resolution of 0.94×0.94×1.2 mm3 using a T1-weighted 3D-IRFSPGR pulse sequence. To co-register the MEG with MRI coordinate systems, three anatomical landmarks (i.e., left and right pre-auricular points, and nasion) were measured for each subject using the Probe Position Identification system (Polhemus, USA). By identifying the same three points on the subject's MR images using MRILAB software developed by Elekta/Neuromag, a transformation matrix involving both rotation and translation between the MEG and MR coordinate systems was generated. To increase the reliability of the MEG-MR co-registration, approximately 80 points on the scalp were digitized with the Polhemus system, in addition to the three landmarks, and those points were co-registered onto the scalp surface of the MR images. Based on our experience with the MEG median-nerve task, which reliably produces primary somatosensory cortex responses for hand representations that are associated with unique anatomical landmarks (Huang et al., 2000; Huang et al., 2006), the MEG-MR co-registration error is expected to be less than 3 mm. The T1-weighted images were also used to extract the innermost skull surface (SEGLAB software developed by Elekta/Neuromag). The innermost skull surface was used to construct a realistic head model for MEG forward calculation based on the BEM model (Mosher et al., 1999b; Huang et al., 2007).
+To analyze the human resting-state data and assess statistical significance (see below), 41 sets of “empty-room” data sets were acquired when no human subjects were inside the MEG scanner. An extra set of empty-room data was used to estimate the mother noise covariance matrix in the OPWM step. These empty-room data sets (each lasting about 2 minutes) were collected over a 3-year period that coincided with the human resting-state recordings. The new OPWM developed for simulated signal with brain noise and the human median-nerve response was applied in the resting-state data analyses. Here, to remove the correlated noise from the environment, an estimated mother noise covariance matrix was first constructed using the extra empty-room data set, and the pre-whitening operator Eq. (17) was then built from the mother noise covariance matrix. Next, the pre-whitening operator was applied to each of the 41daughter empty-room data sets to create the daughter pre-whitened empty-
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 14
+
+room covariance matrices (DPWERCM). The SQRT of the eigenvalues from the DPWERCM provided the objective threshold for distinguishing noise subspace from the signal subspace. This threshold was used in the Fast-VESTAL analysis of the pre-whitened data covariance matrices for the 41 empty-room data sets and the resting-state data from 41 human subjects (see Results). For comparison, a beamformer analysis was applied to the same 82 pre-whitened data sets.
+
+Assessing the Statistical Significance of the Fast-VESTAL Results
+An approach was developed to assess the statistical significance of the Fast-VESTAL results and then was used to construct statistical maps of the neuronal activities. For the simulation data with different noise levels, F-tests assessed the variances between the post-stimulus 700 ms interval over the pre-stimulus 300 ms interval for each grid node. The F-value maps for the Fast-VESTAL solution were constructed for the ~7000 grid nodes. False discovery rate (FDR) corrected for multiple comparisons (corrected p=0.01) was employed. Additional thresholding based on the post-stimulus RMS value of 0.3 nA-m was applied. Grid nodes with activities below the threshold were considered not detectable and excluded from the statistical analysis.
+To assess statistical significance in the analyses of resting-state MEG data, Fast-VESTAL was used to analyze 41 data sets from human resting-state recordings and 41 empty-room data after pre-whitening and objective selection of the signal subspace (see above). After a square-root transformation, all source images were registered to the MNI-152 brain-atlas coordinates using FLIRT software in FSL, and spatially smoothed using 5-mm Gaussian kernel to reduce inter-subject anatomical difference. The Fast-VESTAL results from the empty-room data sets served as the control group to evaluate the statistical significance of source amplitudes from the human resting-state data in two-tailed t-tests. T-test values were plotted as statistical maps across the grid nodes, using FDR correction (corrected p=0.01). The same statistical procedures were applied to the source images obtained from the beamformer analysis.
+
+Other Parameter Settings in Fast-VESTAL
+As with any MEG source imaging technique, optimal performance of Fast-VESTAL depends on the settings of certain parameters. In Fast-VESTAL, three parameters need to be set: 1) the number of dominant singular values in SG from the SVG of the MEG gain (leadfield) matrix G in Eq. (4); 2) the regularization parameter α in the inverse operator G̃+ in Eq. (12) to obtain the Fast-VESTAL source time-courses; and 3) the number of dominant signal modes k in SB from the SVD of the MEG sensor waveform in Eq. (2), or equivalently in the sensor covariance matrix in Eq. (5) for white-noise conditions, and the corresponding ones in Eq. (18) for signal with correlated brain-noise after the pre-whitening step. In previous sections, detailed descriptions of the new approach were provided, and the results demonstrated that this approach can differentiate the noise subspace from the signal subspace and objectively estimates dominant signal modes k, for the conditions with real correlated brain-noise.
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 15
+The setting of the other two parameters was straightforward without any iterations and/or updating procedures. In all simulations and processing of empirical MEG data using FastVESTAL, the parameter α was set at 5% of the largest singular values in SG̃ in Eq. (12), the number of dominant singular values in SG was set to 80 in Eq. (4), and all other smaller singular values in SG were set to be zero. These settings were independent of the MEG signals or the noise levels (see Results).
+
+Results
+Computer Simulation Result with White Noise, Correlated Sources, and Different SNRs
+Different levels of white noise were added to the MEG sensor waveforms calculated from the 6 sources, which are shown in Figs. 3(A)(E)(I)(M) where 204 planar gradiometers were superimposed. SNR was defined as the ratio of the Frobenius norms of the noiseless MEG sensor waveform matrix over the random white sensor noise waveform matrix. For the whole 1000 ms time interval, the SNRs for the simulated noisy data sets were at 1.86×106 (125.4 dB); 3.74 (11.45 dB); 1.24 (1.90 dB); and 0.53 (−5.49 dB), corresponding to noise Levels 0 (“noiseless”), 1, 2, and 3 respectively. For just the post-stimulus interval, the SNRS were at 2.23×106 (126.9 dB) for the “noiseless” Level-0; at 4.46 (12.90 dB) for Level-1; at 1.48 (3.45 dB) for Level-2; and at 0.64 (−3.95 dB) for Level-3. Fast-VESTAL was used to reconstruct the source locations and source time-courses. In all cases, the number of dominant signal modes in SB (i.e., size of the signal subspace) was selected to be 6, based on the “L-shape” singular value curve (see below). Standard-VESTAL and beamformer methods were also used to reconstruct the location and source time-courses. The noise features in the sensor waveforms from 102 magnetometers was similar (not shown) to that of the gradiometers.
+Source Time-course Reconstruction—The 6 source time-courses reconstructed by Fast-VESTAL (Eq. (13)) for the noise levels 0–3 are shown in Figs. 3(B)(F)(J)(N). Good reconstructions, in terms of shape, onset, and amplitude, were obtained for all 6 source timecourses, including the high-noise-level condition. In calculating each of the reconstructed source time-courses, the activities were summed up via SVD from all voxels within 10 mm from the center voxel with the strongest activities in each of the 6 clusters.
+The reconstructed source time-courses from the Standard-VESTAL (Figs. 3(C)(G)(K)(O)) were highly similar to those from the Fast-VESTAL, although more noise was seen in the standard VESTL results for the high noise levels (Fig. 3(K)(O)). For noise Level-0 (noiseless), the reconstructed source time-courses from both Fast-VESTAL (Fig. 3(B)) and Standard-VESTAL (Fig. 3(C)) were virtually identical to the ground-truth source timecourses with strong correlations (Fig. 1). In addition, a beamformer was used to analyze the same simulated data with the reconstructed source time-courses shown in Figs. 3(D)(H)(L) (P). In the beamformer solution, the nodes with maximum F-values (see below) within 10 cm from the true source locations were selected. All constructed source time-courses using the beamformer exhibited substantial distortions, even for the noiseless condition.
+Table 1 lists the percent variance explained (PVE) in the reconstructed source time-courses relative to the ground-truth source time-courses by Fast-VESTAL, Standard-VESTAL, and
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 16
+the beamformer solutions. For each source, the PVE of source time-courses was defined as:
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+, where the q(t) and q̂(t) are the ground-truth and reconstructed source time-courses, respectively. The upper-left panel of the table lists the range of PVE for the 6 sources at different white-noise levels. The PVE values from FastVESTAL solutions were in the upper 90s% to 100% range for white-noise Levels 0–2, and between 83.9% to 94.5% for the Level-3 condition where the SNR was substantially less than one. The PVE values from the Standard-VESTAL solution were quite high as well, but less than those from the Fast-VESTAL. In contrast, the PVE from the beamformerreconstructed sources were markedly lower, even at the noiseless (Level-0) condition, indicating substantial distortions in the reconstructed source time-courses.
+Inter-source Cross Correlation Exam—Another important measure of reconstructed source time-courses is the inter-source cross correlation (ICC). The ICC assessed if the reconstructed source time-courses preserved the inter-relationship of the time-courses among different sources. Figure 4(A) plots the cross-correlation matrix of the 6 ground-truth source time-courses. The diagonal elements are all one since each source 100% correlated with itself. The rest of the ICC values (highlighted by the white triangle in the lower-left corner) vary from 0.01 to 0.40. The ICC from both Fast-VESTAL in Fig. 4(B) and StandardVESTAL in 4(C) for the white-noise Level-1 condition closely matched the ground truth. In contrast, the ICC from the beamformer reconstructed source time-courses showed markedly reduced correlations over the ground truth.
+The PVE values (relative to the ground-truth) were also calculated for the ICC measures under the white triangles in the cross-correlation matrices in Fig. 4 from the three source modeling techniques, which are shown in the middle-left panel of Table 1. As highlighted in bold, the PVE values for the ICC from Fast-VESTAL are above 98%, markedly higher than those from the beamformer, which are 13.2% or lower. The performance of StandardVESTAL was also good with PVE for ICC all above 92%, yet slightly inferior to the values obtained by Fast-VESTAL.
+Statistical Maps and Source Location Reconstruction for Signals with White Noise—An approach was developed to assess the statistical significance of the FastVESTAL results and to construct statistical maps of the neuronal activities. For the simulation data with different white-noise levels, F-test assessed the statistical significance of variances between post-stimulus 700 ms interval over the pre-stimulus 300 ms interval for each grid node. The F-value maps from the Fast-VESTAL, Standard-VESTAL, and the beamformer solutions are shown in the 4-upper panels of Fig. 5 for white-noise Levels 0–3. The range of the F-values across different noise levels were orders of magnitudes different, due to different SNRs. To display the F-values in a comparable fashion, the threshold of the color scale was set to the F-value corresponding to corrected p-value of 0.01 (FDR), whereas the saturation value of the color scale was set to be Fsatuation = Fthreshold + (Fmax − Fthreshold)×0.3. Here, Fmax was the maximum F-value in the brain volume for a specific noise level condition.
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 17
+
+For noise Level-0, the maps from Fast-VESTAL and Standard-VESTAL were virtually identical to the ground-truth locations of the 6 simulated sources (Fig. 1). The statistical maps from the beamformer solution revealed the 6 local maxima that matched the groundtruth locations. However, the spatial extent of the beamformer local maxima was markedly larger than those obtained from the two VESTAL techniques, with above threshold F-values in widespread areas throughout the brain, suggesting potential signal leakage from the beamformer solution. Good source location reconstructions were also obtained from both Fast-VESTAL and Standard- VESTAL for white-noise Levels 1–3 as shown in Figs. 5(B) (C)(D), although some activities spread to the neighboring voxels for the highly noisy condition (i.e., Level-3). In contrast, substantial signal leakage was observed in the beamformer solution for all three noise-level conditions.
+
+Monte-Carlo Brain Noise Analysis of Pre-whitening Efficacy and the Objective Threshold of Noise Subspace
+The robustness of Fast-VESTAL was examined using correlated MEG brain noise collected from a healthy subject when he was watching a fixation point for over 2 hours in multiple 5minute sessions. The brain-noise data were divided into a pool of over 6,100 artifact-free epochs (1000 ms duration). Then Monte-Carlo analyses were performed, in which three conditions of brain noise were constructed that approximately matched the noise levels of the white-noise conditions based on Frobenius norms. The number of randomly selected epochs for trialaveraging in the brain-noise Level-1, 2, and 3 conditions was 125, 14, and 3, respectively.
+One key issue for the signal with correlated brain noise is that the boundary between signal subspace and noise subspace is blurred, which makes determining the number of signal (dominant) spatial modes k in Eqs. (6)–(8) more challenging than for cases with white noise. In Fig. 6(A)(B)(C), the SQRT plots of the eigenvalues in the sensor covariance matrices from simulated signal (white-noise Levels 1–3) clearly showed different characteristics between the signal subspace (i.e., Spatial Modes 1–6) and the flat noise subspace. The vertical dotted lines mark the beginning of the noise subspace (i.e., number 7). However, there is no clear boundary between signal subspace and noise subspace for the conditions of simulated signal with different levels of real brain noise added as shown in Fig. 6(D)(E)(F). This is a common and difficult problem for analyzing MEG signals with real correlated brain-noise.
+
+To solve this problem, the efficacy of removing brain noise from the data for the entire 1000 ms epoch was first examined when the estimated (mother) brain-noise covariance matrix was constructed using only a portion of the interval. Here, we were only analyzing epochs with brain noise: no simulated signal was added in this test. First, 40 Monte-Carlo analyses was performed to examine epochs for each brain-noise level condition. For example, for the brain-noise Level-1, 40 sets of 1000 ms epochs were examined, and within each set, 125 trials (i.e., 5,000 random epochs were involved) were averaged. In each set, pre-whitening to the whole 1000 ms epoch was performed following Eqs. (17) and (18), by using only the first 300 ms to construct the mother noise covariance matrix. For brain-noise Level-1 condition with 125 trials, asterisks connected by a solid line in Fig. 6(G) show the SQRT of
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 18
+
+the eigenvalues of the daughter pre-whitened brain-noise covariance matrices (DPWBNCM) from the entire 1000 ms interval. The two dashed lines indicate the range of one standard deviation across the 40 sets of Monte-Carlo analysis. Very similar results were seen for brain-noise condition Level-2 with 14 trials (Fig. 6(H)) and for Level-3 with 3 trials (Fig. 6(I)).
+The important characteristic of the SQRT plots of the eigenvalues from the DPWBNCM for the entire 1000 interval was their second-order derivatives, plotted in Fig. 6(J). The leading eigenvalues were different from zero suggesting the pre-whitening step did not completely remove the correlated brain noise as one would expect. However, a clear boundary was visible between the signal subspace (i.e, eigenmodes 1–3) indicating residual brain signal after prewhitening, and noise subspace as marked by the vertical dotted line for the condition of brainnoise Level-1. Obvious distinctions between residual signal subspace and noise subspace were also observed for brain-noise Level-2 (Fig. 6(K)) and Level-3 (Fig. 6(L)), using the second-order derivative approach. Now, knowing the cutoff of the noise subspace (i.e.,4th eigenmode), one can go back to Fig. 6(G)(H)(I) and identify the objective threshold of noise subspace in the actual SQRT of the eigenvalue plots, which is the value associated with the fourth eigenmode as indicated by the horizontal lines. The objective thresholds (horizontal lines) were virtually identical across all three brain-noise conditions. All of the eigenmodes with their associated eigenvalue SQRTs above the lines belong to the signal subspace.
+Finally, objective thresholds were applied to the simulated data that contained signals from the 6 simulated sources with different levels of brain noise added. For signal with brainnoise Level-1, Fig. 6(M) showed the same SQRT of the eigenvalues as in Fig. 6(D), but at a zoom-in scale. The horizontal line exhibited the same objective threshold obtained from the brain-noise Monte-Carlo analysis in Fig. 6(G). Eigenvalues below the threshold belong to the noise subspace, the beginning of which is designated by the dotted vertical line in Fig. 6(M) (i.e., 9th eigenmode). The same threshold approach was applied to simulated signal with real brain-noise Levels 2 and 3. As indicated by the dotted lines in Fig. 6 (N) and 6(O), the noise subspace starts at the ninth and eighth eigenmodes for brain-noise Level-2 and 3, respectively.
+
+Computer Simulation Results with Real Brain Noise, Correlated Sources, and Different SNRs
+The realistic brain noise was added to the simulated signal to challenge the performance of Fast-VESTAL. Following the pre-whitening step and the objective threshold method described in the previous section, the source time-courses and location maps were reconstructed using Fast-VESTAL, Standard-VESTAL, and the beamformer solution. Figures 7(A) displays the MEG sensor waveforms containing simulated signals from 6 sources plus the real brain noise after 125 trial averages (Level 1 brain noise). The reconstructed source time-courses from Fast-VESTAL (Fig. 7(B)) matched the ground truth source time-courses well. Reconstructed source timecourses from Standard-VESTAL were reasonably good (Fig. 7(C)), but inferior to Fast-VESTAL. Obvious distortions were seen in the reconstructed source time-courses from the beamformer solution (Fig. 7(D)). For
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 19
+
+Level-2 brain noise with 14 trials of averaging (sensor waveforms shown in Fig. 7(E)), reconstructed source time-courses from Fast-VESTAL (Fig. 7(F)) and Standard-VESTAL (Fig. 7(G)) again outperformed those from the beamformer solution (Fig. 7(H)). For the simulated signal with high (i.e., Level-3) brain noise with only 3 trials of averaging, the signal in the post-stimulus interval is barely visible in the MEG sensor waveforms in Fig. 7(I), yet the reconstructed source time-courses from Fast-VESTAL (Fig. 7(J)) and StandardVESTAL (Fig. 7(K)) still appeared to capture the main signature of the true source timecourses, although they were noisier than the other noise conditions. Distortion in the source time-courses was particularly marked from the beamformer solution (Fig. 7(L)).
+For all three conditions with real brain noise, the upper-right panel in Table 1 lists the PVE relative to the ground-truth source time-courses using the source time-courses that were reconstructed from Fast-VESTAL, Standard-VESTAL, and the beamformer solution. All values are lower than the corresponding white-noise conditions, especially for the brainnoise Level-3. Fast-VESTAL showed the highest PVE, followed by Standard-VESTAL and the beamformer solution. The middle-right panel in Table 1 lists the inter-source correlation PVE values for the signal with three levels of real brain noise. FAST-VESTAL showed the highest ICC PVE, with values above 95% for Levels 1 and 3, but only 60.2% for Level-3. This contrasted with the moderate ICC PVE values from Standard-VESTAL and the notably low values from the beamformer solution.
+
+Source Orientation Reconstruction
+The bottom panel of Table 1 lists the errors in source orientation for each solution. Orientation errors were calculated for the center voxel with the strongest activities within 10 mm from the true source locations. The source-orientation parameters were obtained accurately by Fast-VESTAL for the simulated data. For white and brain-noise Levels 0–2, the orientation errors were less than 10 degrees. The largest error in source orientation was 18.5 degrees for brain-noise Level-3 condition. Orientation errors from Standard-VESTAL and beamformer solutions were also reasonably small, but somewhat larger than those from Fast-VESTAL.
+
+Cutoff of the Singular Values in the Gain Matrix in Fast-VESTAL
+The number of dominant singular values in SG was set to 80 in Eq. (4) and all other smaller singular values in SG were set to be zero. Figure 8 plots the normalized error of the FastVESTAL-predicted MEG sensor waveforms over the ground truth, as a function of the singular value cut-off in SG. In all three conditions with different white-noise levels, the errors of prediction reached the saturation level ~80.
+
+Human Median-nerve Results for Fast-VESTAL and Beamformer
+Fast-VESTAL was applied to a data set containing MEG responses evoked by right mediannerve stimulation in a healthy subject. Figure 9(A)(D) shows the measured sensorwaveforms of MEG responses for the −300 ms – 500 ms duration evoked by the right median-nerve stimulation, with 204 gradiometers and 102 magnetometers superimposed, respectively. The −10 ms to 15 ms gap was removed from the analysis due to the large artifact from the electrical stimuli. The remaining −300 ms to −10 ms pre-stimulus interval
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 20
+was used to construct the estimated noise covariance matrix and to pre-whiten the response for the entire interval. To examine the efficacy of the pre-whitening step and identify the noise subspace, a five-minute session of brain-noise recording collected from the same subject, but on a different day, was divided into ~310 artifact-free epochs, each lasting 800 ms, with the first 300 ms used to estimate the mother brain-noise covariance matrix. The number of dominant spatial modes was selected using the same OPWM that was developed for the simulated signal with correlated brain noise.
+The predicted MEG sensor waveforms in Figures 9(B)(E) from the Fast-VESTAL solution matched the measurement very well. Figures 9(C)(F) show that mainly noise remained in the residual waveforms (i.e., measured minus predicted). The upper panel of Figure 9 shows the spatial maps of significance sources, based on the F-tests of source time-courses in the post-stimulus interval versus the pre-stimulus baseline. Six sources were obtained by FastVESTAL for the responses evoked by right median nerve stimulation: one in contralateral (left) primary somatosensory cortex (cSI), two in contralateral secondary somatosensory areas (cSII-a and cSII-b), one in contralateral supplementary motor area (cSMA), one in ipsilateral (right) secondary somatosensory area (iSII), and one in ipsilateral supplementary motor area (iSMA). The color scale in Figure 9 was set in the same manner as for the F-test spatial maps in simulations (Fig. 5).
+The plots in Figure 9(G)–(L) show the time-courses of the 6 sources from Fast-VESTAL. The cSI time-course showed sharp early-components that peaked at ~20ms and ~30 ms with opposite polarities (Fig. 9(G)). These sharp transient components were not observed in the time-courses of the other sources. Two slow components at ~60 ms and ~150 ms were also seen in the cSI time-courses. The time-courses of the two cSII sources (i.e., cSII-a and cSIIb) were very similar with peak latencies of the first and second components at ~75 ms and ~140 ms, respectively (Figs. 9(H)(I)). The time-course of cSMA shows two slow components with peak latencies at ~125 ms and ~180 ms, respectively (Fig. 9(J)). The amplitude of the iSII source was weaker than for cSII, with peak latencies at ~90 ms and ~150 ms (Fig. 9(K)). The iSMA time-course showed similar peak latencies as those of cSMA, but with weaker amplitude (Fig. 9(L)). Table 2 lists the cross-correlation coefficients among these 6 sources, which varied between 12% and 98%.
+For comparison, we also performed the beamformer analysis on the same median-nerve data with 200 trials. There is controversy surrounding whether the signal covariance matrix should be reconstructed using the averaged signal or the un-averaged trials. Analysis was performed using both approaches and virtually the same results were obtained. Figure 9 presents the beamformer results using the approach with un-averaged trials. The upper panel of Figure 9 (second row) displays the statistically significant sources, based on F-tests of source time-courses in the post-stimulus interval versus the pre-stimulus baseline. The sole local maximum in this statistical map was in the cSI area. No clearly distinguishable local maxima were observed in other brain regions such as cSII or iSII. As for the simulated cases, the beamformer solution exhibited widespread signal leakage to other regions.
+Out of curiosity, the beamformer source time-courses were plotted in Figure 9(M)–(R) of the same six areas for which the Fast-VESTAL solution showed strong activities. Since
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 21
+
+many of these areas did not show visible local maxima, the same locations obtained from the Fast-VESTAL solution had to be used as seeds for obtaining the beamformer source timecourses. The early and sharp components of the cSI time-course (Fig. 9(M)) were similar to that obtained by Fast-VESTAL (Fig. 9(G)), but the late slow components were missing in the beamformer solution. The remaining source time-courses from beamformer appear substantially different from those obtained from Fast-VESTAL. Many beamformer-derived source time-courses showed the strong early and sharp components that were absent in FastVESTAL, except for cSI source.
+
+Whole-brain Source Amplitude Imaging for Resting-state MEG Signals using Fast-VESTAL
+Fast-VESTAL was used to obtain the source amplitude (RMS) images of human restingstate (eyes-closed) MEG signals from 41 healthy control subjects and from 41 sets of emptyroom data. In each human and empty-room data set, the MEG sensor covariance matrix for the restingstate recording was calculated for four different frequency bands, namely in alpha (8–10 Hz), beta (15–30 Hz), gamma (30–100 Hz), and low frequency (1–7 Hz) bands, after artifact removal and noise reduction pre-processing steps (see the Methods Section). FastVESTAL source images were obtained using the sensor covariance matrix and then transformed from the subject’s native coordinates to the MNI-152 atlas coordinates.
+Figure 10 shows the process of using OPWM to separate the noise subspace from the signal subspace in the empty room data. After the pre-whitening step using the pre-whitening operator built from the mother noise covariance matrix of an extra empty-room data set (see Methods), the SQRTs of the eigenvalues for the daughter pre-whitened empty room covariance matrix or DPWERCM were calculated from each of the 41 empty-room data sets. Figures 10(A)–10(D) display the mean (solid lines) and standard deviations (dashed lines) for such SQRT of the eigenvalues of DPWERCM, across 41 empty-room sets, for alpha, beta, gamma, and delta plus theta bands, respectively. As for the simulated case in Figure 6, the second-order derivatives of the SQRTs of the eigenvalues from PWERCM show the clear cut of the noise-subspace at the eigenmode 3 for all bands. The thresholds for the SQRT of the eigenvalues for DPWERCM for the starts of the noise subspace were obtained from the horizontal dash-dotted lines in Figure 10(A)–10(D) for all frequency bands. Such thresholds were used to determine the cutoffs of the signal subspaces (spatial modes) in the pre-whitened covariance matrices for 41 the empty-room data and the 41 human resting-state data in the Fast-VESTAL data analyses. For each of the 41 empty-room datasets, a minimum of 2 spatial modes were used in the Fast-VESTAL analysis.
+The t-value maps for the Fast-VESTAL solutions from human subjects versus the emptyroom were shown in the 4 upper panels in the upper panel (top 4 rows) of Figure 11 for different frequency bands in MNI-152 brain atlas coordinates, using the registration and smoothing steps described previously. The ranges of the t-values across bands were markedly different due to the different SNR levels from human rhythms (e.g., the SNRs in the alpha band were much larger than those in the gamma band). To effectively plot these tvalues in a comparable fashion, the color scales in Figure 11 were chosen in the following way: the threshold of the color scale was set to the t-value corresponding to a corrected pvalue of 0.01 (FDR), and the saturation value of the color scale was set as tsatuation =
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 22
+tthreshold + (tmax − tthreshold)×0.5. Here, tmax was the maximum t-value in the brain volume for that specific noise-level condition.
+Alpha-band Source Amplitude Images—For the alpha band (first row in Fig. 11), the source amplitude images show strong cortical activity from the bilateral intracalcarine cortices, supracalcarine cortices, cuneus and precuneus, postcentral gyri, superior parietal lobules, and midline subcallosal cortices. Considerable alpha-band activity is also evident in the bilateral lateral-occipital cortices, angular gyri, and parietal operculum, and posterior aspects of superior and middle temporal gyri. Cerebella and brain-stem also show strong alpha activity. An interesting phenomenon is that frontal cortices do not show as strong alpha activity as the posterior portions of the brain.
+Beta-band Source Amplitude Images—A different picture was seen for the MEG source images in the beta band (second row in Fig. 11). The bilateral postcentral gyri and midline subcallosal cortices show strong beta-band activity. However, beta-band activity is not as pronounced as alpha-band activity in bilateral intracalcarine and lateral-occipital cortices, supracalcarine cortices cuneus and precuneus, parietal operculum, and temporal lobes. Beta-band activity is significant in frontal areas (bilateral precentral gyri, frontal operculum, and anterior aspect of midline paracingulate and cingulate gyri). Strong betaband activity is still seen in the brain-stem, but is not as pronounced in the cerebella.
+Gamma-band Source Amplitude Images—Many interesting patterns of activity were seen in the gamma band (third row of Fig. 11). Strong activity was notable from midline paracingulate and cingulate gyri, bilateral superior and middle frontal sulci, frontal operculum and midline subcallosal cortices. In addition, bilateral precentral gyri, supramarginal gyri, parietal operculum, angular gyri, superior parietal lobules, middle temporal gyri, and midline precuneus also show substantial activity. Furthermore, bilateral anterior hippocampi, amygdala, and the temporal poles show strong gamma-band activity, which is markedly more prominent than the activity from the same regions in alpha or beta bands. Bilateral cerebella and brain-stem show strongest gamma-band activities among all bands, in the relative scale. Interestingly, the occipital lobe and posterior temporal lobe do not exhibit strong gamma-band activity.
+Low Frequency-band Source Amplitude Images—The bottom row of Fig. 11 shows strong low-frequency activity (1–7 Hz) from bilateral intracalcarine cortices, supracalcarine cortices, midline paracingulate, frontal medial cortices, subcallosal cortices, and midline posterior cingulate. Considerable low-frequency activity is also seen in the bilateral Heschl’s gyri, frontal operculum, precentral and poscentral gyri, angular gyri, parietal operculum, and middle temporal gyri. Bilateral anterior hippocampi, amygdala, temporal poles, and brain stem also show strong low-frequency activity.
+Beamformer Source Amplitude Images—The source images obtained by the beamformer solution for the human resting-state data were substantially different from those obtained by Fast-VESTAL. The bottom four rows in Fig. 11 show the beamformer sourceamplitude images as t-value maps between 41 healthy subjects versus 41 empty-room data sets. The different frequency bands were largely undifferentiated by the beamformer maps.
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 23
+
+In all bands, almost all brain areas showed activity, except in subcortical regions and in superior portions of the cortex for gamma band activity. The regions that the exhibited the highest activity were the midline structures and the cerebellum.
+
+Fast-VESTAL‘s Low Computational Costs
+The computational cost of the conventional VESTAL is already relatively low (Huang et al., 2006) compared with many non-linear optimization approaches such as non-linear multipledipole modeling (see review in (Huang et al., 1998)), and is substantially lower than that of Standard-VESTAL. In the above examples, the total number of time-samples was 1000, 777, and ~900,000 for the simulated data, human median-nerve, and human restingstate signals, respectively. Despite the high variability in the number of time-samples in these datasets, the total analysis time was typically in the range of tens of seconds to obtain source images on a source grid with ~7,000 nodes using Fast-VESTAL for each dataset. The computational cost of Fast-VESTAL is approximately proportional to the number dominance (signal-related) spatial modes k when solving Eq. (8), and is not directly related to the number of time samples as for the Standard-VESTAL. It takes about 10 seconds to solve the L1-minimum solution and obtain a volume of source images for each dominance (signal-related) spatial mode in Eq. (8). The time ΔL1 for solving one L1-minimum norm problem is almost the same for one spatial mode in Fast-VESTAL, for one time-sample in Standard time-domain VESTAL, and for one frequency-bin in Standard frequency-domain VESTAL. The total computational cost is ~ k × ΔL1 for Fast-VESTAL and T × ΔL1 for Standard time-domain VESTAL. For the simulation cases with 6 spatial modes and 1000 time samples, the Fast-VESTAL solution was approximately 1000/6 = 166.7 times faster than Standard-VESTAL. All programs were developed in MATLAB and all analyses done on a Dell Precision 7500 Workstation with Dual Intel Xeon X5550 Processors (each with 8M Cache, 2.67 GHz, and 6.40 GT/s QPI) and with 24 GB system RAM. Although FastVESTAL is inherently a good candidate for parallel processing, no parallel processing was performed in the present study.
+
+Discussion
+Performances of Fast-VESTAL and Standard-VESTAL versus Beamformer for Simulated Data
+In extensive evaluations using simulated and real data, the performance of Fast-VESTAL for whole-brain source localization was equal or superior to that of the Standard-VESTAL and beamformer methods, in several respects. First, Fast-VESTAL and Standard-VESTAL showed superior performances over beamformer in the robustness for accurately obtaining correlated source time-courses, even at poor SNR levels and with real brain noise (Figs. 3 and 7). Quantitative assessments (Fig. 4 and middle panels of Table 1) supported this feature with Fastand Standard-VESTAL demonstrating PVE values for the ICC over 90% in most cases, whereas values from the beamformer solution were extremely low. We believe that the reason for the very good performance of Fast- and Standard-VESTAL in obtaining source time-courses and maintaining high ICC is that no temporal constraints are imposed on the solutions. This is not the case in beamformer techniques, which assume that source time-courses are uncorrelated (Van Veen et al., 1997; Gross and Ioannides, 1999; Robinson
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 24
+
+and Vrba, 1999; Gross et al., 2001; Sekihara et al., 2001; Hillebrand and Barnes, 2003; Barnes and Hillebrand, 2003), and independent component analysis, which assumes that the source time-courses are statistically independent (Makeig et al., 1997; Vigario and Oja, 2000; Vigario et al., 2000; Barros et al., 2000; Jung et al., 2001).
+Second, Fast-VESTAL showed its substantial improvement on computational speed over the Standard-VESTAL technique (Huang et al., 2006). In fact, the computational cost of FastVESTAL is basically independent of the time samples in the data, but instead proportional to the number of spatial modes in the sensor-spatial-profile matrix or sensor-covariance matrix, which usually takes tens of seconds or less. In contrast, the analysis time of Standard-VESTAL is proportional to either the number of time-samples in time-domain MEG data or frequency bins in frequency domain MEG data. The time for solving one L1minimum norm problem is almost the same for one spatial mode in Fast-VESTAL, for one time-sample in time-domain Standard-VESTAL, and for one frequency-bin in frequencydomain Standard-VESTAL. Consequently, it took tens of seconds for Fast-VESTAL to obtain high-resolution MEG source images when processing datasets containing ~100–1000 (evoked MEG response) to ~100,000 (spontaneous MEG data) time samples. The processing time using Standard-VESTAL can be orders of magnitude longer.
+The step of using temporal projection Eq. (4) in Fast-VESTAL is similar to the temporal dimension reduction in the Multiple Sparse Priors (MSP) method of Friston and colleagues (Friston et al., 2008). Both approaches adopted the temporal projection and used sensor covariance matrix for dimension reduction. One difference is that Fast-VESTAL explicitly obtains the minimum L1-norm solution for dominate spatial modes in the sensor waveforms after the temporal projection using Eq. (4), whereas MSP performs both temporal and spatial projections and seeks the hyperparameters using the iterative expected maximization (EM) approach. A unique feature of Fast-VESTAL is that the process of obtaining the minimum L1-norm solution for dominate spatial modes is 1) guaranteed to converge and 2) noniterative, without the need for controlling the converging process / criteria. Another unique feature of Fast-VESTAL is that an inverse operator Eq. (12) was explicitly provided to faithfully recover the source time-courses with the same temporal resolution as the original sampling rate (e.g., in millisecond) even under extremely poor SNR conditions. It is also important to note that dimension reduction using Eq. (4) is not limited to the minimum L1 norm solution. In fact, the minimum L2-norm solution can also be used to solve Eq. (4) if a widely distributed non-sparse solution is desired.
+
+Objective Pre-whitening Method for Removing Correlated Brain Noise
+The present study also developed an objective approach (i.e., OPWM) to effectively remove correlated brain noise (Fig. 2). OPWM provided 1) an objective way to measure the efficacy of the pre-whitening step, when the estimated correlated noise matrix was constructed using incomplete or non-real time information; 2) an additional procedure to further remove residual correlated noise when pre-whitening step is not completely successful, which was based on the plots of SQRT of eigenvalues of the daughter pre-whitening correlated noise covariance matrices; and 3) an objective way to identify noise subspace in the pre-whitened signal covariance matrix. A unique feature of OPWM is that it uses the second-order
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 25
+
+derivatives of the SQRT of the eigenvalues from the daughter pre-whitened noise covariance matrices. This feature was discovered based on the fact that in cases of pure white noise, the SQRT of the eigenvalues from noise subspace should be exactly zero. In correlated brainnoise cases, the second-order derivatives of the SQRT of the eigenvalues from the daughter pre-whitened noise covariance matrices was shown to be an effective way to differentiate noise subspace from residual signal subspace after pre-whitening. OPWM was applied extensively in the present study to remove correlated brain noise before the MEG signals were processed by Fast-VESTAL, Standard-VESTAL, and the beamformer methods. The high similarity of the results from these three inverse source imaging methods for whitenoise and brain-noise conditions underscores the good performance of OPWN (Fig. 3 versus Fig. 7; upper panels versus lower panels in Fig. 5; and left versus right panels in Table). We believe that the OPWM approach for removing correlated noise from the data is not inherently limited to Fast-VESTAL or MEG signal processing, but rather could be applied to any time-series analysis.
+
+Median-nerve Responses
+The application of Fast-VESTAL to the median-nerve MEG response of a single subject demonstrated the strength of this method in localizing multiple sources in human brain responses that are highly correlated. The cSI source from primary somatosensory cortex and its time-course, which exhibited initial sharp transient components at 20 and 30 ms followed by slow later components, are consistent with the known neurophysiology of the somatosensory system and previous studies (Wood et al., 1985; Davidoff, 1990; Hari et al., 1993; Forss et al., 1994; Baldissera and Leocani, 1995; Kawamura et al., 1996; Mauguiere et al., 1997a; Mauguiere et al., 1997b; Jousmaki and Forss, 1998; Forss and Jousmaki, 1998; Hari and Forss, 1999; Spiegel et al., 1999; Boakye et al., 2000; Huang et al., 2000; McGlone et al., 2002; Waberski et al., 2002; Huang et al., 2004a; Huang et al., 2005; Huang et al., 2006). Since a relatively large time-window of 15 to 500 ms post-stimulus interval was used in this analysis, the cluster of cSI sources from Fast-VESTAL covered Brodmann areas (BA) 1, 2, and 3b (Fig. 9), which are all part of the hand representation of the primary somatosensory cortex and are highly contiguous in space. The cluster did not further differentiate the sub-regions of the cSI cortex (e.g., BA 3b from BA 1 and 2) as they do in conventional VESTAL analysis using individual time samples from a much shorter poststimulus interval (Huang et al., 2006). Likewise the cSI time course shown in Figure 9(A) actually represented the combined activities from BA 3b, 1, and 2, namely, the early transient 20 ms and 30 ms activities from BA 3b plus the later ~60 ms and ~150 ms activities from BA 1 and 2. Responses from these sub-regions within SI were originally revealed using the Standard-VESTAL algorithm when analyzing individual time samples in a much shorter poststimulus interval (Huang et al., 2006). In fact, Fast-VESTAL was applied to the analysis of a shorter period (i.e., 15 – 150 ms) and indeed, two sub-clusters within cSI cortex were identified, one in BA 3b and another in BA 1 and 2. The time course of the BA 3b sub-cluster showed strong transient 20 ms and 30 ms activity, and the time course of the BA 1 and 2 sub-clusters showed later ~60 ms and ~150 ms activities (figure not shown).
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 26
+
+The contralateral and ipsilateral SII and SMA responses obtained from Fast-VESTAL (Fig. 9) also agreed well with previous findings (Hari et al., 1993; Forss and Jousmaki, 1998; Hari and Forss, 1999; Fujiwara et al., 2002; Simoes et al., 2003; Huang et al., 2005; Huang et al., 2006). It was notable that there were two sources in the cSII region, one slightly more posterior (cSII-b, green arrow) than the other (cSII-a, blue arrow). The cSII-b source is also designated ventral parietal cortex by others (Disbrow et al., 2001). The source time-courses obtained from Fast-VESTAL further revealed that the 6 sources were inter-correlated with correlation coefficients ranging from 10% to 98%. Altogether, these findings demonstrate Fast-VESTAL’s ability to localize highly-correlated sources and resolve source timecourses, which is vital for a more complete understanding of the neurophysiology of the somatosensory system. In addition, the cSI source preceded the other sources in contralateral and ipsilateral hemispheres (Fig. 9). Activity in cSIIs and cSMA of the contralateral hemisphere was earlier than those from corresponding areas in the ipsilateral hemisphere (i.e., iSII and iSMA). These findings are highly consistent with the known neurophysiology of the somatosensory system (Kandel et al., 2000).
+In contrast, the beamformer solution was only able to find one obvious local maximum in the cSI (Fig. 9, second row). The absence of the other sources that are known to exist was striking, and underscores the beamformer’s difficulty in source detection under the conditions examined in present study. To our knowledge, in all published studies that used beamformer for analyzing median nerve responses, cSII, iSII, and other non-primary somatosensory sources were not reported (Hashimoto et al., 2001; Hirata et al., 2002; Gaetz and Cheyne, 2003; McCubbin et al., 2004; Gaetz et al., 2009; Hillebrand et al., 2013). We believe this was due to the high intersource cross correlations, which substantially violate the basic beamformer assumption that the sources must be uncorrelated. Our explanation was supported by a close analysis of the cross correlations in Table 2 in which 8 out of the 15 cross-correlation coefficients from Fast-VESTAL were above 50%. Furthermore, the early transient activity at 20–30 ms post-stimulus from the beamformer source time-courses (location seeded by Fast-VESTAL solutions) in cSII-a (Fig. 9(M), cSII-b (Fig. 9(N)), cSMA (Fig. 9(P)), and iSMA (Fig. 9(R)) was inconsistent with known neurophysiology of the somatosensory system, owing to a lack of direct thalamo-cortical projections to these nonprimary somatosensory areas (Kandel et al., 2000).
+
+A previous study (Hymers et al., 2010) suggested that the use of un-averaged individual trials rather than trial-averaged responses to construct the signal covariance matrix may improve the localization of correlated sources, assuming that inter-regional source correlations are attenuated in the un-averaged trials. However, no difference was found between these two approaches in our beamformer analyses of median nerve data. This result suggests that the neuronal sources evoked by median-nerve stimuli are actually highly timelocked to the electric stimuli, such that the beamformer solution will have problems localizing the correlated time-locked sources.
+
+Source Amplitude Images of Human Resting-state Activity
+The present study also assessed the performance of Fast-VESTAL relative to the beamformer method in reconstructing resting-state MEG source amplitude images for each
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 27
+standard frequency band. To our knowledge, this is one of the first comprehensive MEG/EEG source amplitude (power) imaging studies for resting-state signal that covers the entire brain for multiple frequency bands. The MEG source-amplitude imaging method (or the square-root of the source power images) in the present study for the human resting-state rhythms is different from the MEG source covariance / functional connectivity source analysis. Here, the strength of the neuronal sources was assessed for different frequency bands, whereas the MEG source covariance/ functional connectivity source analysis examines the similarity of the shapes of the source time-courses (Brookes et al., 2011a; Brookes et al., 2011b; Hipp et al., 2012; Soto and Jerbi, 2012; Hall et al., 2013). Therefore, it should not be surprising that the resting-state source amplitude images from FastVESTAL look significantly different from the functional connectivity source images.
+On the other hand, a high degree of similarity was apparent between Fast-VESTAL sourceamplitude images and the most recent source amplitude images from Hall and colleagues (Hall et al., 2013). In their study, the use of variance information (i.e. data that have not been variance normalized) in source-space projected Hilbert envelope time series yields important spatial information. They showed that employing the variance information improves the spatial delineation of network nodes. Additional analyses are needed to explore the similar findings across the two different approaches (i.e., Fast-VESTAL versus the use of variance information in source-space projected Hilbert envelope time series).
+Resting-state alpha-band activity detected by EEG (Berger, 1929) and MEG (Cohen, 1968; Cohen, 1970) is known to be strong in the posterior half of the head (occipital, parietal, and posterior temporal regions), but may extend into the central areas in regions that generate the rolandic mu rhythm, see reviews in (Hari et al., 1997; Niedermeyer and Lopes da Silva, 2005). Our results obtained from Fast-VESTAL for the alpha-band were highly consistent with this neurophysiology. The present study builds upon this knowledge by providing a more refined analysis of the generators of human alpha-band activity. For example within the occipital lobe, activity from intracalcarine, supracalcarine, and lateral-occipital cortices was clearly distinguishable in the Fast-VESTAL source images (Fig. 11). Likewise, it has not been clear whether the alpha-band activities in the central sulcus area (i.e., the rolandic mu rhythm) are mainly from the postcentral gyrus (primary somatosensory cortex), the precentral gyrus (primary motor cortex), or both. The Fast-VESTAL source images in the alpha band showed that although alpha activity extended to the precentral gyrus, the dominant activity was clearly from the postcentral gyrus, more specifically from the hand representation area of the somatosensory cortex.
+The Fast-VESTAL source-amplitude images for the generation of the beta-band MEG signals were also highly consistent with previous EEG and MEG findings. Beta-band activity from the pre- and postcentral gyri are part of the rolandic mu rhythm (Niedermeyer and Lopes da Silva, 2005). The Fast-VESTAL source images further showed that the postcentral gyri beta-band (mu) activity is mainly from the hand representation area of the somatosensory cortex, consistent with previous MEG research (Manshanden et al., 2002).
+Our gamma-band source amplitude images from Fast-VESTAL also clearly showed larger involvement of frontal generators, different from those previously observed in alpha or beta
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 28
+bands (Fig. 11). Interestingly, gamma-band activity was also found in the anterior hippocampi, the amygdala, and the temporal pole. These results suggest that MEG restingstate gamma-band signal may be useful for studying memory and emotion processing. FastVESTAL-based MEG source amplitude images were also derived for low-frequency bands: delta (1–4 Hz) and theta (4–7 Hz) bands. The locations of midline frontal activity in paracingulate gyrus, medial frontal cortices, and subcallosal cortices appear to be consistent with theta activity seen in EEG, even though most of EEG studies were task-activated (e.g., problem solving) and provided no specific information on source locations (Mizuki et al., 1980; Mizuki et al., 1984; Mizuki et al., 1992; Takahashi et al., 1997; Niedermeyer and Lopes da Silva, 2005). Another interesting finding from the Fast-VESTAL result is the high degree of similarity between gamma band and delta-theta band for the inferior frontal and anterior temporal regions (Fig. 11). We are in the process of analyzing the functional connectivity of these regions across these frequency bands.
+The results of source amplitude resting-state images from the beamformer solution were markedly different from those that employed Fast-VESTAL. The beamformer method showed little spatial differentiation among the different frequency bands. Although the neurophysiology of the human somatosensory system has been well studied, an understanding of the source amplitude images for different frequency bands is limited. As such, the quality of the beamformer source amplitude images for resting-state data cannot be assessed with certainty, which is a limitation of the present study. Additional information from techniques such as electrocorticography will be needed to address this issue.
+In summary, the Fast-VESTAL MEG source imaging algorithm obtains L1-minimum-norm solutions for the sensor-waveform covariance matrix. Computer simulations demonstrated that Fast-VESTAL localizes correlated sources and accurately reconstructs their source time-courses even at poor signal-SNR conditions. A new objective pre-whitening method, OPWM, was also developed and used in Fast-VESTAL to objectively remove correlated brain noise. The application of Fast-VESTAL to human MEG median-nerve responses further demonstrated its power in reconstructing source time-courses that were highly consistent with known electrophysiology of the human somatosensory system. Furthermore, Fast-VESTAL provided the first set of comprehensive MEG source-amplitude images that covered the entire brain in standard atlas coordinates for different frequency bands of resting-state signals. Lastly, the Fast-VESTAL solution also has a low computational cost.
+
+Acknowledgments
+This work was supported in part by Merit Review Grants from the Department of Veterans Affairs to M.X. Huang (I01-CX000499, I01-CX000180), R.R. Lee, D.L. Harrington (I01-CX000146) and J, Canive (CSR&D-IIR042123), by National Institute of Health Grants to R. Srinivasan (R01-MH068004) and J. Canive (R01-MH65304), by National Football League Grant to M.X. Huang and R.R. Lee, and by McDonnell Foundation Grant via the Brain Trauma Foundation to R.R. Lee and M.X. Huang. We also thank the anonymous reviewers’ constructive suggestions that substantially strengthen this study.
+Reference List
+Aine C, Huang M, Stephen J, Christner R. Multistart algorithms for MEG empirical data analysis reliably characterize locations and time courses of multiple sources. Neuroimage. 2000; 12:159– 172. [PubMed: 10913322]
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 29
+Barnes GR, Hillebrand A. Statistical flattening of MEG beamformer images. Hum.Brain Mapp. 2003; 18:1–12. [PubMed: 12454907]
+Barros AK, Vigario R, Jousmaki V, Ohnishi N. Extraction of event-related signals from multichannel bioelectrical measurements. IEEE Trans.Biomed.Eng. 2000; 47:583–588. [PubMed: 10851801]
+Berger H. Uber das Elektrenkephalogramm des Menschen. Arch.Psychiatr.Nervenkr.Z.Gesamte Neurol.Psychiatr. 1929; 87:527–570.
+Brang D, Hubbard EM, Coulson S, Huang M, Ramachandran VS. Magnetoencephalography reveals early activation of V4 in grapheme-color synesthesia. Neuroimage. 2010; 53:268–274. [PubMed: 20547226]
+Brookes MJ, Hale JR, Zumer JM, Stevenson CM, Francis ST, Barnes GR, Owen JP, Morris PG, Nagarajan SS. Measuring functional connectivity using MEG: methodology and comparison with fcMRI. Neuroimage. 2011a; 56:1082–1104. [PubMed: 21352925]
+Brookes MJ, Stevenson CM, Barnes GR, Hillebrand A, Simpson MI, Francis ST, Morris PG. Beamformer reconstruction of correlated sources using a modified source model. Neuroimage. 2007; 34:1454–1465. [PubMed: 17196835]
+Brookes MJ, Woolrich M, Luckhoo H, Price D, Hale JR, Stephenson MC, Barnes GR, Smith SM, Morris PG. Investigating the electrophysiological basis of resting state networks using magnetoencephalography. Proc.Natl.Acad.Sci.U.S.A. 2011b; 108:16783–16788. [PubMed: 21930901]
+Cohen D. Magnetoencephalography: evidence of magnetic fields produced by alpha-rhythm currents. Science. 1968; 161:784–786. [PubMed: 5663803]
+Cohen D. Detection of magnetic fields outside the human head produced by alpha rhythm currents. Electroencephalogr.Clin.Neurophysiol. 1970; 28:102. [PubMed: 4188459]
+Cohen, D.; Schläpfer, U.; Ahlfors, S.; Hämäläinen, M.; Halgren, E. New Six-Layer MagneticallyShielded Room for MEG. In: Nowak, HHJ.; Gieβler, F., editors. Proceedings of the 13th International Conference on Biomagnetism; VDE Verlag; Jena, Germany. 2002. p. 919-921.
+Dalal SS, Sekihara K, Nagarajan SS. Modified beamformers for coherent source region suppression. IEEE Trans.Biomed.Eng. 2006; 53:1357–1363. [PubMed: 16830939]
+Dale AM, Liu AK, Fischl BR, Buckner RL, Belliveau JW, Lewine JD, Halgren E. Dynamic statistical parametric mapping: combining fMRI and MEG for high-resolution imaging of cortical activity. Neuron. 2000; 26:55–67. [PubMed: 10798392]
+Disbrow E, Roberts T, Poeppel D, Krubitzer L. Evidence for interhemispheric processing of inputs from the hands in human S2 and PV. J.Neurophysiol. 2001; 85:2236–2244. [PubMed: 11353038]
+Diwakar M, Huang MX, Srinivasan R, Harrington DL, Robb A, Angeles A, Muzzatti L, Pakdaman R, Song T, Theilmann RJ, Lee RR. Dual-Core Beamformer for obtaining highly correlated neuronal networks in MEG. Neuroimage. 2011a; 54:253–263. [PubMed: 20643211]
+Diwakar M, Tal O, Liu TT, Harrington DL, Srinivasan R, Muzzatti L, Song T, Theilmann RJ, Lee RR, Huang MX. Accurate reconstruction of temporal correlation for neuronal sources using the enhanced dual-core MEG beamformer. Neuroimage. 2011b
+Eiselt, HA.; Pederzoli, G.; Sandblom, C-L., et al. Continuous Optimization Models. New York: Walter de Gruyter, Berlin; 1987.
+Forss N, Jousmaki V. Sensorimotor integration in human primary and secondary somatosensory cortices. Brain Res. 1998; 781:259–267. [PubMed: 9507157]
+Friston K, Harrison L, Daunizeau J, Kiebel S, Phillips C, Trujillo-Barreto N, Henson R, Flandin G, Mattout J. Multiple sparse priors for the M/EEG inverse problem. Neuroimage. 2008; 39:1104– 1120. [PubMed: 17997111]
+Fujiwara N, Imai M, Nagamine T, Mima T, Oga T, Takeshita K, Toma K, Shibasaki H. Second somatosensory area (SII) plays a significant role in selective somatosensory attention. Brain Res.Cogn Brain Res. 2002; 14:389–397. [PubMed: 12421662]
+Gaetz W, Cheyne D, Rutka JT, Drake J, Benifla M, Strantzas S, Widjaja E, Holowka S, Tovar-Spinoza Z, Otsubo H, Pang EW. Presurgical localization of primary motor cortex in pediatric patients with brain lesions by the use of spatially filtered magnetoencephalography. Neurosurgery. 2009; 64:ons177–ons185. [PubMed: 19240567]
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 30
+Gaetz WC, Cheyne DO. Localization of human somatosensory cortex using spatially filtered magnetoencephalography. Neurosci.Lett. 2003; 340:161–164. [PubMed: 12672531]
+Gross J, Ioannides AA. Linear transformations of data space in MEG. Phys.Med.Biol. 1999; 44:2081– 2097. [PubMed: 10473216]
+Gross J, Kujala J, Hamalainen M, Timmermann L, Schnitzler A, Salmelin R. Dynamic imaging of coherent sources: Studying neural interactions in the human brain. Proc.Natl.Acad.Sci.U.S.A. 2001; 98:694–699. [PubMed: 11209067]
+Hall EL, Woolrich MW, Thomaz CE, Morris PG, Brookes MJ. Using variance information in magnetoencephalography measures of functional connectivity. Neuroimage. 2013; 67:203–212. [PubMed: 23165323]
+Hamalainen, MS. MNE Software User's Guide. NMR Center, Mass General Hospital, Harvard University; 2005.
+Hanlon FM, Weisend MP, Huang M, Lee RR, Moses SN, Paulson KM, Thoma RJ, Miller GA, Canive JM. A non-invasive method for observing hippocampal function. Neuroreport. 2003; 14:1957– 1960. [PubMed: 14561928]
+Hari R, Forss N. Magnetoencephalography in the study of human somatosensory cortical processing. Philos.Trans.R.Soc.Lond B Biol.Sci. 1999; 354:1145–1154. [PubMed: 10466142]
+Hari R, Karhu J, Hamalainen M, Knuutila J, Salonen O, Sams M, Vilkman V. Functional organization of the human first and second somatosensory cortices: a neuromagnetic study. Eur.J.Neurosci. 1993; 5:724–734. [PubMed: 8261143]
+Hari R, Salmelin R, Makela JP, Salenius S, Helle M. Magnetoencephalographic cortical rhythms. Int.J Psychophysiol. 1997; 26:51–62. [PubMed: 9202994]
+Hashimoto I, Kimura T, Iguchi Y, Takino R, Sekihara K. Dynamic activation of distinct cytoarchitectonic areas of the human SI cortex after median nerve stimulation. Neuroreport. 2001; 12:1891–1897. [PubMed: 11435918]
+Hillebrand A, Barnes GR. The use of anatomical constraints with MEG beamformers. Neuroimage. 2003; 20:2302–2313. [PubMed: 14683731]
+Hillebrand A, Fazio P, De Munck JC, Van Dijk BW. Feasibility of clinical magnetoencephalography (MEG) functional mapping in the presence of dental artefacts. Clin.Neurophysiol. 2013; 124:107– 113. [PubMed: 22832101]
+Hipp JF, Hawellek DJ, Corbetta M, Siegel M, Engel AK. Large-scale cortical correlation structure of spontaneous oscillatory activity. Nat.Neurosci. 2012; 15:884–890. [PubMed: 22561454]
+Hirata M, Kato A, Taniguchi M, Ninomiya H, Cheyne D, Robinson SE, Maruno M, Kumura E, Ishii R, Hirabuki N, Nakamura H, Yoshimine T. Frequency-dependent spatial distribution of human somatosensory evoked neuromagnetic fields. Neurosci.Lett. 2002; 318:73–76. [PubMed: 11796189]
+Huang M, Aine CJ, Supek S, Best E, Ranken D, Flynn ER. Multi-start downhill simplex method for spatio-temporal source localization in magnetoencephalography. Electroencephalogr.Clin.Neurophysiol. 1998; 108:32–44. [PubMed: 9474060]
+Huang MX, Aine C, Davis L, Butman J, Christner R, Weisend M, Stephen J, Meyer J, Silveri J, Herman M, Lee RR. Sources on the anterior and posterior banks of the central sulcus identified from magnetic somatosensory evoked responses using multistart spatio-temporal localization. Hum.Brain Mapp. 2000; 11:59–76. [PubMed: 11061334]
+Huang MX, Dale AM, Song T, Halgren E, Harrington DL, Podgorny I, Canive JM, Lewis S, Lee RR. Vector-based spatial-temporal minimum L1-norm solution for MEG. Neuroimage. 2006; 31:1025– 1037. [PubMed: 16542857]
+Huang MX, Harrington DL, Paulson KM, Weisend MP, Lee RR. Temporal dynamics of ipsilateral and contralateral motor activity during voluntary finger movement. Hum.Brain Mapp. 2004; 23:26–39. [PubMed: 15281139]
+Huang MX, Lee RR, Gaa KM, Song T, Harrington DL, Loh C, Theilmann RJ, Edgar JC, Miller GA, Canive JM, Granholm E. Somatosensory system deficits in schizophrenia revealed by MEG during a median-nerve oddball task. Brain Topogr. 2010; 23:82–104. [PubMed: 19943100]
+Huang MX, Lee RR, Miller GA, Thoma RJ, Hanlon FM, Paulson KM, Martin K, Harrington DL, Weisend MP, Edgar JC, Canive JM. A parietal-frontal network studied by somatosensory oddball
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 31
+MEG responses, and its cross-modal consistency. Neuroimage. 2005; 28:99–114. [PubMed: 15979344]
+Huang MX, Nichols S, Robb A, Angeles A, Drake A, Holland M, Asmussen S, D'Andrea J, Chun W, Levy M, Cui L, Song T, Baker DG, Hammer P, McLay R, Theilmann RJ, Coimbra R, Diwakar M, Boyd C, Neff J, Liu TT, Webb-Murphy J, Farinpour R, Cheung C, Harrington DL, Heister D, Lee RR. An automatic MEG low-frequency source imaging approach for detecting injuries in mild and moderate TBI patients with blast and non-blast causes. Neuroimage. 2012; 61:1067–1082. [PubMed: 22542638]
+Huang MX, Song T, Hagler DJ Jr, Podgorny I, Jousmaki V, Cui L, Gaa K, Harrington DL, Dale AM, Lee RR, Elman J, Halgren E. A novel integrated MEG and EEG analysis method for dipolar sources. Neuroimage. 2007; 37:731–748. [PubMed: 17658272]
+Huang MX, Theilmann RJ, Robb A, Angeles A, Nichols S, Drake A, D'Andrea J, Levy M, Holland M, Song T, Ge S, Hwang E, Yoo K, Cui L, Baker DG, Trauner D, Coimbra R, Lee RR. Integrated imaging approach with MEG and DTI to detect mild traumatic brain injury in military and civilian patients. J.Neurotrauma. 2009; 26:1213–1226. [PubMed: 19385722]
+Hymers M, Prendergast G, Johnson SR, Green GG. Source stability index: a novel beamforming based localisation metric. Neuroimage. 2010; 49:1385–1397. [PubMed: 19800010]
+Ioannides AA, Singh KD, Hasson R, Baumann SB, Rogers RL, Guinto FC Jr, Papanicolaou AC. Comparison of single current dipole and magnetic field tomography analyses of the cortical response to auditory stimuli. Brain Topogr. 1993; 6:27–34. [PubMed: 8260323]
+Jung TP, Makeig S, Westerfield M, Townsend J, Courchesne E, Sejnowski TJ. Analysis and visualization of single-trial event-related potentials. Hum.Brain Mapp. 2001; 14:166–185. [PubMed: 11559961]
+Kandel, ER.; Schwartz, JH.; Jessell, TM. Principles of Neural Science. 4 ed.. New York: McGrawHill; 2000.
+Makeig S, Jung TP, Bell AJ, Ghahremani D, Sejnowski TJ. Blind separation of auditory event-related brain responses into independent components. Proc.Natl.Acad.Sci.U.S.A. 1997; 94:10979–10984. [PubMed: 9380745]
+Manshanden I, De Munck JC, Simon NR, Lopes da Silva FH. Source localization of MEG sleep spindles and the relation to sources of alpha band rhythms. Clin.Neurophysiol. 2002; 113:1937– 1947. [PubMed: 12464331]
+Matsuura K, Okabe Y. A robust reconstruction of sparse biomagnetic sources. Ieee Transactions on Biomedical Engineering. 1997; 44:720–726. [PubMed: 9254985]
+McCubbin J, Vrba J, Spear P, McKenzie D, Willis R, Loewen R, Robinson SE, Fife AA. Advanced electronics for the CTF MEG system. Neurol.Clin.Neurophysiol. 2004; 2004:69. [PubMed: 16012695]
+Mizuki Y, Kajimura N, Kai S, Suetsugi M, Ushijima I, Yamada M. Differential responses to mental stress in high and low anxious normal humans assessed by frontal midline theta activity. Int.J Psychophysiol. 1992; 12:169–178. [PubMed: 1592670]
+Mizuki Y, Kajimura N, Nishikori S, Imaizumi J, Yamada M. Appearance of frontal midline theta rhythm and personality traits. Folia Psychiatr.Neurol.Jpn. 1984; 38:451–458. [PubMed: 6535746]
+Mizuki Y, Tanaka M, Isozaki H, Nishijima H, Inanaga K. Periodic appearance of theta rhythm in the frontal midline area during performance of a mental task. Electroencephalogr.Clin.Neurophysiol. 1980; 49:345–351. [PubMed: 6158411]
+Mosher JC, Baillet S, Leahy RM. EEG source localization and imaging using multiple signal classification approaches. J.Clin.Neurophysiol. 1999a; 16:225–238. [PubMed: 10426406]
+Mosher JC, Leahy RM. Recursive MUSIC: a framework for EEG and MEG source localization. IEEE Trans.Biomed.Eng. 1998; 45:1342–1354. [PubMed: 9805833]
+Mosher JC, Leahy RM, Lewis PS. EEG and MEG: forward solutions for inverse methods. IEEE Trans.Biomed.Eng. 1999b; 46:245–259. [PubMed: 10097460]
+Mosher JC, Lewis PS, Leahy RM. Multiple dipole modeling and localization from spatio-temporal MEG data. IEEE Trans.Biomed.Eng. 1992; 39:541–557. [PubMed: 1601435]
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 32
+Niedermeyer, E.; Lopes da Silva, FH. Electroencephalography: Basic Principles, Clinical Applications, and Related Fields. 5th ed.. Philadelphia, Baltimore, New York, London, Buenos Aires, Hong Kong, Sydney, Tokyo: Lippincott Williams & Wilkins; 2005.
+Owen JP, Wipf DP, Attias HT, Sekihara K, Nagarajan SS. Performance evaluation of the Champagne source reconstruction algorithm on simulated and real M/EEG data. Neuroimage. 2012; 60:305– 323. [PubMed: 22209808]
+Pascual-Marqui RD. Standardized low-resolution brain electromagnetic tomography (sLORETA): technical details. Methods Find.Exp.Clin.Pharmacol. 2002; 24(Suppl D):5–12. [PubMed: 12575463]
+Robinson, SE.; Vrba, J. Functional neuroimaging by syntheticaperture magnetometry (SAM). In: Yoshimoto, T.; Kotani, M.; Kuriki, S.; Karibe, H.; Nakasato, N., editors. Recent Advances in Biomagnetism. Sendai, Japan: Tohoku University Press; 1999. p. 302-305.
+Sekihara K, Hild KE, Dalal SS, Nagarajan SS. Performance of prewhitening beamforming in MEG dual experimental conditions. IEEE Trans.Biomed.Eng. 2008; 55:1112–1121. [PubMed: 18334403]
+Sekihara K, Nagarajan SS, Poeppel D, Marantz A, Miyashita Y. Reconstructing spatio-temporal activities of neural sources using an MEG vector beamformer technique. IEEE Trans.Biomed.Eng. 2001; 48:760–771. [PubMed: 11442288]
+Sekihara K, Poeppel D, Marantz A, Koizumi H, Miyashita Y. MEG spatio-temporal analysis using a covariance matrix calculated from nonaveraged multiple-epoch data. IEEE Trans.Biomed.Eng. 1999; 46:515–521. [PubMed: 10230130]
+Sekihara K, Poeppel D, Marantz A, Koizumi H, Miyashita Y. Noise covariance incorporated MEGMUSIC algorithm: a method for multiple-dipole estimation tolerant of the influence of background brain activity. IEEE Trans.Biomed.Eng. 1997; 44:839–847. [PubMed: 9282476]
+Shih JJ, Weisend MP, Davis JT, Huang M. Magnetoencephalographic characterization of sleep spindles in humans. J.Clin.Neurophysiol. 2000; 17:224–231. [PubMed: 10831113]
+Simoes C, Jensen O, Parkkonen L, Hari R. Phase locking between human primary and secondary somatosensory cortices. Proc.Natl.Acad.Sci.U.S.A. 2003; 100:2691–2694. [PubMed: 12598650]
+Song T, Gaa K, Cui L, Feffer L, Lee RR, Huang M. Evaluation of signal space separation via simulation. Med.Biol.Eng Comput. 2008; 46:923–932. [PubMed: 18196307]
+Soto JL, Jerbi K. Investigation of cross-frequency phase-amplitude coupling in visuomotor networks using magnetoencephalography. Conf.Proc.IEEE Eng Med.Biol.Soc. 2012; 2012:1550–1553. [PubMed: 23366199]
+Stephen JM, Aine CJ, Christner RF, Ranken D, Huang M, Best E. Central versus peripheral visual field stimulation results in timing differences in dorsal stream sources as measured with MEG. Vision Res. 2002; 42:3059–3074. [PubMed: 12480075]
+Stephen JM, Davis LE, Aine CJ, Ranken D, Herman M, Hudson D, Huang M, Poole J. Investigation of the normal proximal somatomotor system using magnetoencephalography. Clin.Neurophysiol. 2003; 114:1781–1792. [PubMed: 14499739]
+Takahashi N, Shinomiya S, Mori D, Tachibana S. Frontal midline theta rhythm in young healthy adults. Clin.Electroencephalogr. 1997; 28:49–54. [PubMed: 9013051]
+Taulu S, Kajola M, Simola J. Suppression of interference and artifacts by the Signal Space Separation Method. Brain Topogr. 2004a; 16:269–275. [PubMed: 15379226]
+Taulu S, Simola J, Kajola M. MEG recordings of DC fields using the signal space separation method (SSS). Neurol.Clin.Neurophysiol. 2004b; 2004:35. [PubMed: 16012635]
+Uutela K, Hamalainen M, Somersalo E. Visualization of magnetoencephalographic data using minimum current estimates. Neuroimage. 1999; 10:173–180. [PubMed: 10417249]
+Van Veen BD, van DW, Yuchtman M, Suzuki A. Localization of brain electrical activity via linearly constrained minimum variance spatial filtering. IEEE Trans.Biomed.Eng. 1997; 44:867–880. [PubMed: 9282479]
+Vigario R, Oja E. Independence: a new criterion for the analysis of the electromagnetic fields in the global brain? Neural Netw. 2000; 13:891–907. [PubMed: 11156200]
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 33
+Vigario R, Sarela J, Jousmaki V, Hamalainen M, Oja E. Independent component approach to the analysis of EEG and MEG recordings. IEEE Trans.Biomed.Eng. 2000; 47:589–593. [PubMed: 10851802]
+Wienbruch C. Abnormal slow wave mapping (ASWAM)--A tool for the investigation of abnormal slow wave activity in the human brain. J Neurosci.Methods. 2007; 163:119–127. [PubMed: 17395269]
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 34
+Highlights • A new MEG imaging method for obtaining accurate source locations and time-
+courses • This new MEG imaging method, Fast-VESTAL, is highly robust to white and
+brain noise • We develop a new objective pre-whitening method to remove correlated brain
+noise • We examine the performance of Fast-VESTAL using median-nerve responses • We obtain the first source amplitude image for all frequency bands in resting-
+state
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 35
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Figure 1. Left panel: ground-truth locations of six simulated sources. Right panel: six correlated source time-courses used in computer simulations to mimic evoked response, with 300 ms for pre-stimulus and 700 ms for post-stimulus intervals.
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Page 36
+
+Figure 2. A flow-chart of the Objective Pre-whitening Method (OPWM) for removing correlated brain noise from the data. The same process was applied to remove correlated environmental noise when replacing the DPWBNCM in the chart with the daughter pre-whitened emptyroom covariance matrix (DPWERCM).
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 37
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Figure 3. Simulated MEG sensor waveforms added white noise (first column) and source time-courses reconstructed from Fast-VESTAL (second column), Standard-VESTAL (third column), and beamformer (fourth column). Each row displays the data for different white-noise levels. Row 1: white-noise Level-0 (post-stimulus SNR=2.23×106 or 126.9dB); Row 2: white-noise Level-1 with post-stimulus SNR=4.46 or 12.90 dB; Row 3: white-noise Level-2 with poststimulus SNR=1.48 or 3.45 dB; and Row 4: white-noise Level-3 with post-stimulus SNR=0.64 or −3.95 dB.
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 38
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Figure 4. Cross correlation coefficient matrix for the 6 simulated source. (A): using ground-truth source time-courses; (B): using time-courses reconstructed by Fast-VESTAL at white-noise Level-1; (C): by Standard-VESTAL; (D): by beamformer. The coefficients under the lowerleft white triangles were used to calculate the inter-source cross correlation (ICC) and their percent variance explained to the ground-truth values, as listed in Table 1.
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 39
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Figure 5. F-value maps (post-stimulus over pre-stimulus) of source activity for the 6 simulated sources reconstructed from FV: Fast-VESTAL; SV: Standard-VESTAL; BF: beamformer. The upper four panels were for white-noise Level-0 (A); white-noise Level-1 (B); whitenoise Level-2 (C); and white-noise Level-3 (D). The three lower panels were for brain-noise Level-1 (E) with 125 trial-averaging; brain-noise Level-2 (F) with 14 trial-averaging; and brain-noise Level-3 (G) with 3 trial-averaging.
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 40
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Figure 6. Objective thresholding in OPWM to separate noise subspace from signal subspace. Row 1: the SQRT plots of the eigenvalues in the sensor covariance matrices from simulated signal with white-noise Levels 1–3. Vertical dotted lines indicated the beginning of the noise subspace. Row 2: SQRT plots of the eigenvalues in pre-whitened sensor covariance matrices from simulated signal with brain-noise Levels 1–3. No clear distinctions were seen between noise and signal subspaces. Row 3: SQRT plots of eigenvalues in pre-whitened sensor covariance matrices for daughter brain-noise conditions from the Monte-Carlo analysis. The
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 41
+dash-dotted lines were the thresholds associated with the beginning eigenmode from noise subspace determined in Row 4. Row 4: second-order derivatives of the SQRT plots of eigenvalues in Row 3. Clear cutoffs of the noise and signal subspaces are seen as indicated by vertical dotted lines. Row 5: Application of the objective threshold to curves from Row 2.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 42
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Figure 7. Simulated MEG sensor waveforms with different levels of real brain noise and the reconstructed source time-courses. Colum 1: MEG sensor waveforms with brain-noise Levels 1–3. The associated number of trials for averaging was 125 (Level-1), 14 (Level-2), and 3 (Level-3), respectively. Column 2: reconstructed source time-courses from FastVESTAL. Column 3: from Standard-VESTAL. Column 4: from beamformer.
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 43
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Figure 8. Normalized error of the Fast-VESTAL predicted MEG sensor waveforms over the ground truth, as a function of the singular value cut-off in the gain matrix. In all three conditions with different white-noise levels, the errors of prediction reach the saturation level ~80.
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 44
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Figure 9. Upper Panels, Top row: F-value maps of axial MRI view for the locations of 6 sources obtained by Fast-VESTAL for right median nerve stimulation. The color scale for the Fvalue was the same as in Fig. 5. Red arrow for cSI; Blue arrow for cSII-a; Green arrow for cSII-b; Cyan arrow for cSMA; Magenta arrowfor iSII; Yellow arrow for iSMA. Row two: F-value maps of the beamformer solution. Low panels, Left column: measured and predicted MEG sensor waveforms from Fast-VESTAL; Middle column: Fast-VETSLA source timecourses for the above sources; Right column: source time-courses from beamformer.
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 45
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Figure 10. OPWM separate noise and signal subspaces in empty room data. Top row: SQRT of eigenvalues from the daughter pre-whitened empty room covariance matrix (DPWERCM) for alpha (A), beta (B), gamma (C), and delta + theta (D) frequency bands. Bottom row: second-order derivatives of the SQRT of the eigenvalues. The vertical dotted lines show the beginning of the noise subspace, which are then used in the top row to determine the threshold of noise subspace (dash-dotted lines in top row).
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Huang et al.
+
+Page 46
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Figure 11. Upper panels (Rows 1–4): Whole brain t-value maps of the Fast-VESTAL source amplitude images that cover cortex, sub-cortical areas, and cerebellum for resting-state (eyes-closed) in alpha, beta, gamma, and delta + theta frequency bands. Lower panels (Rows 5–8): t-value maps of beamformer source amplitudes images for different frequency bands.
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Table 1
+1) The percent variance explained (PVE) in the reconstructed source time-courses; 2) PVE of inter-source cross correlation (ICC) among reconstructed source time-courses (lower-left triangle in Fig. 4). The comparisons are made for the solutions from Fast-VESTAL, Standard-VESTAL, and Beamformer; and arranged separately for white noise (left half) from the real brain noise (right half). Orientations errors were also listed.
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Source Time-course PVE (%), White Noise
+
+Noise Levels Fast VESTAL Std VESTAL Beamformer
+
+Level-0
+
+100.0 – 100.0 100.0 – 100.0 77.5 – 89.9
+
+Level-1
+
+99.6 – 99.9
+
+99.0 – 99.8 77.2 – 89.5
+
+Level-2
+
+96.9 – 98.9
+
+86.8 – 95.7 74.2 – 87.3
+
+Level-3
+
+83.9 – 94.5
+
+78.1 – 93.3 60.7 – 77.9
+
+ICC PVE (%), White Noise
+
+Level-0
+
+100.0
+
+100.0
+
+8.7
+
+Level-1
+
+99.7
+
+99.5
+
+8.7
+
+Level-2
+
+99.7
+
+93.5
+
+8.9
+
+Level-3
+
+98.4
+
+92.4
+
+13.2
+
+Orientation error (deg), White Noise
+
+Level-0
+
+0.0 – 0.0
+
+0.0 – 0.0
+
+0.2 – 8.0
+
+Level-1
+
+0.1 – 0.5
+
+0.2 – 0.7
+
+0.3 – 8.1
+
+Level-2
+
+0.2 – 2.0
+
+0.3 – 3.1
+
+0.6 – 8.2
+
+Level-3
+
+0.7 – 13.1
+
+1.2 – 12.5
+
+0.9 – 16.8
+
+Source Time-courses PVE (%), Brain Noise
+
+Fast VESTAL Std VESTAL Beamformer
+
+---
+
+---
+
+---
+
+97.7 – 99.2
+
+95.7 – 99.4 60.0 – 91.6
+
+87.4 – 96.2
+
+70.5 – 90.5 58.7 – 78.3
+
+43.6 – 87.3
+
+33.5 – 85.7
+
+9.3 – 59.0
+
+ICC PVE (%), Brain Noise
+
+---
+
+---
+
+---
+
+99.5
+
+92.4
+
+18.4
+
+96.9
+
+71.1
+
+18.2
+
+60.2
+
+45.1
+
+15.5
+
+Orientation error (deg), Brain Noise
+
+---
+
+---
+
+---
+
+0.1 – 1.5
+
+0.4 – 2.1
+
+0.7 – 13.6
+
+0.6 – 6.5
+
+0.6 – 8.5
+
+0.9 – 20.4
+
+0.7 – 18.5
+
+1.0 – 21.5
+
+1.4 – 24.4
+
+Page 47
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Huang et al.
+
+Table 2 Fast-VESTAL cross correlation coefficients among the time-courses from 6 sources evoked by median-nerve stimuli in post-stimulus interval.
+cSI cSII-a cSII-b cSMA iSII iSMA cSI cSII-a 0.71 cSII-b 0.77 0.98 cSMA 0.25 0.32 0.18 iSII 0.12 0.65 0.61 0.60 iSMA 0.22 0.31 0.16 0.95 0.51
+
+Neuroimage. Author manuscript; available in PMC 2015 January 01.
+
+Page 48
+

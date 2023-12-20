@@ -1,0 +1,193 @@
+Neuron, Volume 99
+Supplemental Information
+Linking Connectivity, Dynamics, and Computations in Low-Rank Recurrent Neural Networks
+Francesca Mastrogiuseppe and Srdjan Ostojic
+
+A
+
+B
+
+C
+
+D
+
+E
+
+F
+
+G MmMn > 1
+
+g<1
+
+MmMn < 1
+
+g>1
+
+1
+
+Figure S1 (previous page): Dynamical Mean-Field description of rank-one networks whose right- and leftconnectivity vectors overlap solely on the unitary direction (ρ = 0, see Methods). Related to Figure 1.
+(A-B-C) Eigenspectrum of the partially structured connectivity matrix Jij, related to the stability matrix Sij of the homogeneous ﬁxed points through: Sij = φ (x¯)Jij. A. Eigenspectrum of Jij in the complex plane. Red dots: eigenspectrum of a single realization Jij of size N = 1000. In black: theoretical prediction. Every matrix Jij consists of a sum of a random and of a ﬁxed unit-rank structure. In the large N limit, the spectrum of the full matrix is given by the sum of the eigenspectra of the two parts. The black circle has radius equal to the total random strength g, and the black star indicates the position of the non-zero eigenvalue of the rank-one structure Pij. B. Mismatch between the statistics measured in ﬁnite-size networks (xsim) and the theoretical prediction (xth) as the network size N is increased. The error is normalized: |xsim − xth|/xth. Averages over 100 realizations. The error bars (as in every other ﬁgure, if not diﬀerently speciﬁed) correspond to the standard deviation of the mean. Dashed lines: power-law best ﬁt (y ∝ N γ). The values of γ are indicated in the legend. C. Pearson correlation coeﬃcient between the connectivity eigenvector m and the eigenvector eˆ which corresponds to the outlier eigenvalue. Choice of the parameters: ρ = 0, MmMn = 1.43, Σm = 0.33, Σn = 1. In A and B, g = 0.7.
+(D-E-F) Analysis of the eigenspectrum of the linear stability matrix Sij = φ (x¯)Jij for heterogeneous stationary solutions. D. Eigenspectrum of Sij in the complex plane. Red dots: eigenspectrum of a single, ﬁnite-size realization of Sij, N = 2500. The radius of the black circle corresponds to the theoretical prediction r = g [φi2] . The black star indicates the position of the non-zero eigenvalue of the rank-one structure miφ (x0j )nj/N , which deviates signiﬁcantly from the position of the outlier eigenvalue. We thus address the problem of evaluating the position of the outlier eigenvalue through a mean-ﬁeld stability analysis (Eq. 71), the prediction of which is indicated by the blue star. E. Mismatch between the results from simulations and mean-ﬁeld predictions for the radius and the outlier position. The error is measured as an average over Ntr = 30 ﬁnite size matrices, and decays as the system size is increased. Details as in B. F. Radius and outlier of the stability eigenspectrum for increasing random strength values. The dots indicate the results of numerical simulations of networks with N = 2500 units, averaged over Ntr = 30 realizations of the random and structured connectivities. In grey: radius of the compact bulk (continuous line: mean-ﬁeld prediction r). In blue: position of the outlier eigenvalue (continuous dark and light lines: ﬁrst and second eigenvalue of matrix M given in Eq. 71). In black: position of the outlier when χij is shuﬄed (continuous line: mean-ﬁeld prediction for the outlier of the structured part miφ (x0j )nj/N ). Choice of the parameters: ρ = 0, MmMn = 2.2, Σm = 0.4, Σn = 1. In D and E, g = 0.5.
+(G) Graphical analysis of stationary solutions. Large ﬁgures: nullcline plots for the population-averaged DMF equations in Eq. 83. Black dots indicate the solutions that are stable with respect to the outlier eigenvalue. Four set of parameters (two values for MmMn, two for g) have been selected. Note that the shapes of the µ and the ∆0 nullcline depend only on the structure strength MmMn and the disorder strength g. For the ﬁgures in the ﬁrst (resp. second) row, the structure strength MmMn = 0.55 (resp. MmMn = 2.0) is weak (resp. strong). For the ﬁgures in the ﬁrst (resp. second) column: the random strength g = 0.7 (resp g = 2.0) is weak (resp. strong). Note that the stationary states at large g values (right column) are always unstable with respect to the continuous component of their stability eigenspectra (Fig. 1 C-D). The small side ﬁgures associated to every row and column show how the µ (for the rows) and ∆0 (for the columns) nullclines have been built. We solve µ = F (µ) (resp. ∆0 = G(∆0)) for diﬀerent initial values of ∆0 (resp. µ). Diﬀerent initial conditions are displayed in gray scale. Dark grey refers to ∆0 = 0 (resp. µ = 0). The dots indicate the solutions for diﬀerent initial values, which together generate the nullcline curves. Choice of the parameters: Σm = 1.
+2
+
+A ρΣmΣn > 1 ρΣmΣn < 1
+
+g<1
+
+g>1
+
+B
+
+C
+
+D
+
+Stationary Chaotic
+3
+
+Figure S2 (previous page): Dynamical Mean-Field description of rank-one networks whose right- and leftconnectivity vectors overlap onto an arbitrary direction y (Mm = Mn = 0, ρ = 0, see Methods). Related to Figure 1. (A) Graphical analysis of stationary solutions. Large ﬁgures: nullcline plots for the population-averaged DMF equations in Eq. 89. Black dots indicate the solutions that are stable with respect to the outlier eigenvalue. Four set of parameters (two values for ρΣmΣn, two for g) have been selected. Note that the shapes of the κ and the ∆0 nullcline depend only on the structure strength ρΣmΣn and the disorder strength g. For the ﬁgures in the ﬁrst (resp. second) row, the structure strength ρΣmΣn (resp. ρΣmΣn) is weak (resp. strong). For the ﬁgures in the ﬁrst (resp. second) column: the random strength g = 0.5 (resp. g = 1.7) is weak (resp. strong). Note that the stationary states at large g values (right column) are always unstable with respect to the continuous circular component of their stability eigenspectra (see B-C-D). The small ﬁgures associated to every row and column show how the κ (for the rows) and ∆0 (for the columns) nullclines have been built. We solve κ = F (κ) (resp. ∆0 = G(∆0)) for diﬀerent initial values of ∆0 (resp. κ). Diﬀerent initial conditions are displayed in gray scale. Dark grey refers to ∆0 = 0 (resp. κ = 0). The dots indicate the solutions for diﬀerent initial values, which together generate the nullcline curves. (B-C-D) Bifurcation diagram of the activity statistics as the random strength g is increased. Details as in Fig. 1 C-D. B. Stability eigenspectrum of stationary solutions, mean-ﬁeld prediction for the radius of the compact part and the outlier position. C. Overlap κ = ni[φi] . D. Individual second order statistics. The DMF solutions are displayed as continuous (resp. dashed) lines if they correspond to a stable (resp. unstable) state. In C-D, top panels display statistics for stationary solutions and bottom panels display statistics for chaotic solutions. Dots: we measured activity statistics in ﬁnite-size networks, starting from globally positive and negative initial conditions. Activity is integrated up to T = 400. N = 3500, average over 8 diﬀerent network realizations. Choice of the parameters: Σm = Σn = 1.5, ρ = 2.0/ΣmΣn.
+4
+
+A
+
+B
+
+C
+
+5
+
+Figure S3: Two-dimensional dynamics in networks with unit-rank structure and external inputs. Related to Figure 2. We consider a unit-rank network as in Fig. 2 B-C. The connectivity vectors m and n are orthogonal, but the external input vector contains a component along n, whose strength (quantiﬁed by ΣnI , see Methods) undergoes a step increase from 0.2 to 2.0. We simulate data from networks of size N = 3500. We analyze the dimensionality of the dynamics by comparing the relevant low-dimensional trajectory predicted by the mean-ﬁeld theory with the strongest modes extracted through dimensionality reduction (Principal Component analysis, see Methods). A. Analysis for a purely structured network (g = 0). Left top: the mean-ﬁeld theory predicts that the lowdimensional network dynamics x = {xi} lies in the plane deﬁned by the right-connectivity vector m and the external input I. We thus projected the high-dimensional population activity (dark grey trajectory) on this plane. Left bottom: we projected the network dynamics (continuous), along with the two vectors m and I (dashed), on the plane deﬁned by the ﬁrst two PC axis e1 and e2. Right top: Pearson correlation coeﬃcient between vectors m and I and the ﬁrst eight PC. Right bottom: strength of the ﬁrst eight PC, measured as the fraction of the standard deviation of activity that they explain (see Methods). Note that when the network connectivity is fully structured (g = 0) as in this case, activity is exactly two-dimensional. The ﬁrst two PC axis span the m − I plane, but they deﬁne a rotated set of basis vectors. B. Analysis for a network which includes a random term in the connectivity matrix (g = 0.8). While in Fig. 2 we performed the PC decomposition on trial-averaged data (Ntr = 20), here we considered a single trial, deﬁned as a single realization of the random connectivity matrix. Details as in A. Note that the random component of the connectivity adds noisy contributions in a continuum of PC directions, whose strength depends on the value of g with respect to the amplitude of input and connectivity vectors, and becomes weaker and weaker when averaging with respect to diﬀerent realizations of χij. When g > 0, vectors m and I are not fully contained in the e1 − e2 plane, so their projections on the PC plane are not orthogonal. C. Analysis for a network which includes a strong random term in the connectivity matrix (g = 1.8), such that spontaneous activity is chaotic. In the left-most column, similarly to Fig. 2, we plot the time trajectories of four randomly selected units. The center and the right columns are as in A and B, with PCA performed on trial-averaged activity (Ntr = 20). The scale of the projections panels is here set arbitrarily.
+6
+
+A S C
+D
+
+B
+
+C
+
+SS
+
+SC
+
+CC
+
+S
+
+C
+
+SS
+
+S
+
+Low g
+
+High g
+
+High MmMn
+
+Low MmMn
+
+7
+
+Figure S4 (previous page): Dynamical Mean-Field description of input-driven dynamics for rank-one networks whose right- and left-connectivity vectors overlap solely on the unitary direction (ρ = 0, see Methods). Related to Figure 2.
+(A-B-C) Dynamical regimes of the network activity as function of the structure connectivity strength mT n/N , the random strength g and the input strength. Grey shaded areas indicate the parameter regions where the network activity is bistable. Red shaded areas indicate the phase space regions where network dynamics are chaotic. When two stable solutions exist, the yellow and the red letter indicate whether each of them is stationary (S) or chaotic (C). Note that stationary and chaotic dynamics can coexist (SC region). In A, as in Fig. 2 D center, the two connectivity vectors m and n are orthogonal. We varied the external input strength by increasing the amplitude of the component along n (quantiﬁed by ΣnI , see Methods) and of the orthogonal one (quantiﬁed by Σ⊥). Note that inputs along both directions contribute to suppressing the amplitude of chaotic ﬂuctuations. In B, as in Fig. 2 D right, the two connectivity vectors m and n are not orthogonal, but they share an overlap component along the unitary direction. We varied the structure strength (quantiﬁed by MmMn) and the strength of the input along the direction of n that is perpendicular to the structure overlap, n⊥ (again quantiﬁed by ΣnI ). Similarly to Fig. 1, strong structure overlaps can lead to the appearance of two bistable solutions. In presence of non trivial external inputs, however, such solutions are not symmetric, and can loose stability on diﬀerent parameter boundaries. In particular, we observe that external inputs tend to suppress bistable regimes, by favouring one solution over the other. In C, ﬁnally, the network conﬁguration is similar to B, but we consider external inputs which include a second component along the direction of n that is shared with m, n (quantiﬁed by MI ). We observe that both input directions play similar roles in reducing the extent of the bistable regime. Choice of parameters: g = 2.2, Σm = Σn = 1.0, ΣmI = 0.
+(D) Graphical analysis of stationary solutions. In this example, the external input vector overlaps with n on the unitary overlap direction n (MI = 0.13), and includes orthogonal components quantiﬁed by ΣI = 0.3. Large ﬁgures: nullcline plots for the stationary form of the population-averaged DMF equations in Eq. 98. Black dots indicate the solutions that are stable with respect to the outlier eigenvalue. Four set of parameters (two values for MmMn, two for g) have been selected. Note that the shape of the µ and the ∆0 nullcline depends only, respectively, on the structure strength MmMn and the disorder g together with the input statistics. For the ﬁgures in the ﬁrst (resp. second) row, the structure strength MmMn = 0.55 (resp. MmMn = 2.0) is weak (resp. strong). For the ﬁgures in the ﬁrst (resp. second) column: the random strength g = 0.7 (resp. g = 2.0) is weak (resp. strong). The small ﬁgures associated to every row and column show how the µ (for the rows) and ∆0 (for the columns) nullclines have been built. We solve µ = F (µ) (resp. ∆0 = G(∆0)) for diﬀerent initial values of ∆0 (resp. µ). Diﬀerent initial conditions are displayed in gray scale. Dark grey refers to ∆0 = 0 (resp. µ = 0). The dots indicate the solutions for diﬀerent initial values, which together generate the nullcline curves. Choice of the parameters: Σm = 1.
+8
+
+A
+
+B
+
+C
+
+D
+
+E
+
+F
+
+G
+
+Stationary Chaotic
+
+H
+
+I
+
+L
+
+M
+
+N
+
+9
+
+Figure S5 (previous page): Dynamical Mean-Field description of low-rank networks designed for solving computational tasks. Related to Figures 3, 5 and 6.
+(A-B-C) Rank-one networks can robustly perform computations also when their dynamics is chaotic due to large random connectivities. Here, we show an example from the Go-Nogo task (Fig. 3). We focus on large random strength values (g = 2.5), so that spontaneous network dynamics is chaotic. A. Left: response of three randomly selected units to the Go pattern IA (top, blue) and to the Nogo pattern IB (bottom, green). Right: time trace of the readout z(t) for the Go (blue) and the Nogo (green) stimulus. B. Absolute, normalized distance between the theoretical prediction and the value of the readout z obtained from ﬁnite-size r√ealizations. As expected, the magnitude of the average normalized error decays with the network size as ∼ 1/ N . In grey: g = 0.8, in black: g = 2.5. Averages over 200 network realizations. Details as in Fig. S1 B. C. As in Fig. 3 F, we consider pairs of units and we compute the correlation coeﬃcient between their weights onto the ﬁrst PC axis and their average reciprocal connectivity strength. The PC axis is computed separately for data corresponding to Go (blue) or the Nogo (green) trials. The correlation coeﬃcient for the Go trials decreases with the amplitude of the random connectivity, although the error in the readout is only weakly aﬀected (panel B.). For every entry of the connectivity matrix Jij, indeed, the random part gχij has larger amplitude then the structured one Pij. As a consequence, the random noise can hide a fraction of the strong correlations existing between the PC weights and the rank-one connectivity Pij. Note that the absolute value of the correlation coeﬃcient depends on the variance of the rank-one connectivity. Finally, the correlation coeﬃcient increases as the connectivity gets averaged on more and more realizations of the random part. Choice of the parameters as in Fig. 3.
+(D-E-F-G-H-I) Ring attractor from rank-two connectivity structures with connectivity vectors characterized by strong internal overlaps (see Methods). D. Sample of activity from a ﬁnite-size realization (N = 4000) of the rank-two network. Activity is initialized in two diﬀerent initial conditions (light and dark blue), indicated by the small arrows. Left: time traces of the activation variables for three randomly selected network units. Note the long time range on the x axis. Right: population activation x = {xi} projected on the plane spanned by the right vectors m(1) and m(2). The ring attractor predicted by the mean-ﬁeld theory is displayed in light gray. The strength of the disorder is g = 0.5, so that the network is in a stationary regime. In the small inset, we reproduce the theoretical prediction together with the ﬁnal state of additional Ntr = 20 networks realizations, that are displayed as grey dots. E. Sample of activity for two ﬁnite-size realizations (N = 4000) of the structured connectivity matrix (dark and light red). Details as in D. The strength of random connections is g = 2.1, so that the network is in a chaotic regime. Chaotic ﬂuctuations can occur together with a slow exploration of the ring (dark red). If two speciﬁc states on the ring appear to be more stable, chaotic ﬂuctuations can induce jumps between the two of them (light red). F-G. Mean-ﬁeld characterization of the ring structure: radius of the ring attractor and stability eigenvalues. Details as in Fig. 1. Dots: numerical results from ﬁnite-size (N = 4000) networks, averaged over 6 realizations of the connectivity matrix. H-I. Input patterns which correlate with the left vector n(1) reduce the ring attractor to a single stable state. Activity is thus projected in the direction spanned by the right vector m(1). In H, we show the input response for two ﬁnite-size networks. The grey ring displays the mean-ﬁeld solution in absence of external inputs (g = 0.5, as in D). In the top panel, the input is weak (ΣI = 0.2, see Methods). The transient dynamics as well as the equilibrium state lie close to the ring structure. In the bottom panel, the input is strong (ΣI = 0.6), and the ring structure is not anymore clearly apparent. In I, we plot the values of the overlaps κ1 (blue) and κ2 (azure) as a function of the structure strength parameter ρ, for ﬁxed input strength. Stable solutions are plotted as continuous lines, unstable ones as dashed. Solid (resp. transparent) lines refer to weak (resp. strong) external inputs: ΣI = 0.2 (resp. 0.6). The vertical gray line indicate the value of ρ that has been used in H. Dots: numerical results as in F-G. Choice of the parameters (see Methods): Σ = 2.0, ρ1 = ρ2 = 1.6.
+(L-M-N) Rank-two structures for implementing non-linear stimuli detection in a context-dependent fashion (Fig. 6): theoretical mean-ﬁeld predictions. L. Values of the ﬁrst-order statistics κ1 (continuous) and κ2 (dashed) as a function of the overlap strength along the stimulus IA. Results are shown for four increasing values of the overlap strength along the second stimulus IB. Top (resp. bottom): the contextual gating inputs are such that a response to IA (resp. IB) is selected. M. Readout value, built by summing the values of κ1 and κ2 (Eq. 158). Note that although κ1 and κ2 vary with input strength, on each branch their sum is approximately constant. Details as in L. N. Average normalized error between the DMF predictions and the simulated readout, in the two gating conditions as a function of the network size N . Average over 60 network realizations, details as in Fig. S1 B. Parameters as in Fig. 6.
+10
+
+A B
+
+C
+
+D
+
+E
+
+F
+
+11
+
+Figure S6 (previous page): Dynamics of unit-rank networks of ﬁnite-size are characterized by two distinct time-scales. Related to Figure 1.
+In Fig. 1 we have shown that, when the structure strength is large, the DMF theory predicts the existence of two bistable states, which can display chaotic activity. For those states, the population-averaged statistics of the activation variable xi are stationary. In the chaotic regime, indeed, irregular temporal ﬂuctuations are decorrelated from one unit to the other, so that the central limit theorem applies at every time step, and the network statistics are constant in time. In ﬁnite-size networks, however, the network statistics are not stationary: their dynamics display instead two diﬀere√nt time-scales. The instantaneous population-averaged activity undergoes small ﬂuctuations of amplitude O(1/ N ), whose time-scale is given by the relaxation decay of chaotic activity. Because of bistability, furthermore, the ﬁrst-order statistics displays also sharp transitions from positive to negative values and viceversa, which are made possible by the self-sustained temporal ﬂuctuations. In the following, we focus on rank-one structures where the overlap direction is deﬁned along the unitary vector. As a consequence, the relevant ﬁrst-order statistics is simply the population-average of the activation vector µ (see Methods). A. Sample from a ﬁnite-size network: activation time traces for randomly chosen units displaying attractors jumps. Dashed blue line: time-dependent population average. B. Time-dependent population average in a longer trial. C-D. We consider transition events as point processes, and we measure the average transition rate. We arbitrarily deﬁne a transition point as the time step at which the populationaveraged activation crosses zero (grey points in B). In C, we show that the transition rate decays to zero as the network size N is increased. Details as in Fig. S1 B. Note that the transition rate depends on the amplitude of ﬁnite-size ﬂuctuations measured with respect to the average phase space distance between the two attractors. As a consequence, the transition rate depends on the architecture parameters and on the network size, but also varies strongly from one realization of the connectivity matrix to the other. D. Fano factor of the point process for diﬀerent values of the network size N , which noisily oscillates around 1. For every realization of the network, the jumps count is measured in diﬀerent windows of the total integration time T = 15.000. The Fano factor is measured for every realization and then averaged over Ntr = 30 diﬀerent networks. E-F. Analysis of the two time-scales displayed by the network dynamics. The ﬁrst time-scale is measured as the relaxation time constant τr, which can be derived within the DMF framework by computing the time decay of the full autocorrelation function ∆(τ ). The persistence time scale, indicated by τp, coincides instead with the average time interval which separates two attractors transitions. In E, we show that both time scales depend on the network architecture parameters. Here, we ﬁx the random strength g = 3 and we increase the structure strength. When the structure is weak (left), the network is in the classical homogeneous chaotic state. The persistence time scale coincides here with the relaxation time constant of chaotic ﬂuctuations. When the structured and the random components have comparable strengths, instead, two heterogeneous chaotic phases co-exist (center). In this regime, the average persistence time increases monotonically with the structure strength, and reaches arbitrarily large values. Note that the relaxation time undergoes a very slow increase before sharply diverging at the boundary with stationary states, but the increase takes place on a much smaller scale. Finally, if the structure is too strong (right), the two bistable states become stationary. In this region, τr is formally inﬁnite, while τp coincides with the total duration of our simulations. Pink continuous line: DMF prediction, measured as the full width half maximum of the auto-correlation function ∆(τ ). Pink dots: a rough estimate of τr from ﬁnite size networks is obtained by rectifying the population average signal and we computing the full width half maximum of its auto-correlation function. F. We compare the average transition rate with the average overlap between the two attractors in the phase spac√e. For ev√ery unit, the typical overlap between its positive and its negative tra√jectories is given by πi = 2(−µ − ∆∞z + ∆0 − ∆∞). We average across the population, yielding: π = 2(−µ+ ∆0 − ∆∞). We then normalize π through dividing by its value in the unstructured chaotic regimes (2∆0). When positive, π returns an overlap; when negative, it measures a distance between the two orbits. For every set of the architecture parameters, the theoretical expected value of the overlap can be computed within the DMF framework. We show that, in ﬁnite-size networks, the transition probability between the two chaotic attractors monotonically increases with the attractors overlap in the phase space. In the ﬁgure, the points returned by simulations are ﬁtted with an error function of which we evaluate numerically the amplitude, the oﬀsets and the gain: f (x) = p0 + p1 erf(p2(x − p3)). Choice of the parameters: ρ = 0, g = 3.0, Σm = 0.
+12
+
+A
+
+B
+
+C
+
+D
+
+E
+
+F
+
+LH
+
+H
+
+H
+
+L LL
+
+L
+
+LL
+
+L
+
+13
+
+Figure S7 (previous page): Dynamics of unit-rank networks with positively-deﬁned activation functions. Related to Figure 1.
+In the main text, we performed our analysis of low-rank networks by adopting a completely symmetric network model, whose input-free solutions are invariant under the sign transformation xi(t) → −xi(t). Such symmetry is broken when a more biologically-plausible, positively-deﬁned activation function φ(x) is adopted. Here, we investigate the eﬀect of changing the transfer function to: φ(x) = 1 + tanh(c(x − γ)). Note that adding a shift γ is equivalent to including an external and constant negative input. The parameter c, instead, rescales the slope of φ(x) at the inﬂection point. For simplicity, we ﬁx γ = 1 and c = 1.5. We furthermore restrict the analysis to the case of unit-rank structures whose right- and left-connectivity vectors solely overlap on the unitary direction (ρ = 0, see Methods). The Dynamical Mean Field (DMF) sets of equations were derived for an arbitrary activation function, so they can directly be adapted to the present scenario. A. We start by graphically analysing the stationary solutions (Eq. 83), and we plot the two nullclines of the system for diﬀerent values of the architecture parameters. The top panel displays the µ nullclines for diﬀerent MmMn values. At MmMn = 1, the unstable branch coincides with µ = 1, and the stable ones are symmetric. Around MmMn = 1, the perfect pitchfork is broken in one or the other direction, generating a ﬁrst stable continuous branch and a second one, where one unstable and one stable solution merge at low or high ﬁring rate. For extremely low (resp. high) MmMn values, ﬁnally, there’s just one nullcline at low (resp. high) µ values. The ∆0 nullcline (bottom panel) displays a more complex behaviour compared to the symmetric φ(x) = tanh(x) case. When g is suﬃciently large, indeed, it can become a non-monotonic function of the mean input µ, transforming into a S -shaped nullcline. As it is shown in the following, this more complex shape is able to induce bistable activity even when the µ nullcline is reduced to a single continuous branch. This situation is reminiscent of the ﬂuctuations driven bistable regime in [Renart et al, 2007]. B. Stationary stable solutions plotted as color maps on the parameter space deﬁned by the random and the structure strengths. The mean-ﬁeld system admits two classes of stable solutions. The ﬁrst one, illustrated in the top row, takes large mean and variance values. It suddenly disappears on the leftmost grey boundary of the plot, in a parameter region which co-exists with the second solution. The second solution, plotted in the bottom row, takes typically small values of µ and ∆0, and disappears on the right-most boundary with a ﬁrst-order transition as well. C-D-E. In order to dissect more systematically the nature of those solutions, we ﬁx the value of the structure strength (dashed lines in in B), and we gradually increase the random strength g. In C, we ﬁx the structure strength to high values: MmMn = 1.2. The bifurcation pattern occurring in this case resembles what we observed in the original case with φ(x) = tanh(x). At low values of g, two stable ﬁxed points are built, respectively, on the high and on the low branches of the µ nullcline. For that reason, we call this state LH (cfr with F). When the random connectivity is too strong, the low ﬁring rate ﬁxed point annihilates, and only one high ﬁring solution survives (H state). In D, MmMn is exactly equal to unity. At small g values, similarly to the previous case, network activity is bistable and admits one L and one H stationary state. As g increases, the ∆0 intersect the high ﬁring rate branch at smaller and smaller values of µ. Finally, the H state is lost, and the second stable ﬁxed point is realized on the intermediate branch at µ = 1. This bistable state is thus formally a LI state. Finally, at large g values, the two intersections on the low rate branch collapse together and disappear. Bistability is lost and only one intermediate (I) state exists. In E, we consider slightly smaller values of MmMn. A classical LH state exists at small g values, the bistable state at large random strengths involves two stable solutions which originate both a low ﬁring rates (LL state). The two states strongly diﬀer in the value of their variance. When g is suﬃciently large, one unique low ﬁring rate, high variance state (L) survives. F. The diﬀerent activity states are ﬁnally sketched in the phase diagram. Note that I states separate the phase diagram in F in two macro areas: below the dashed line, every stationary and chaotic solution is built on the same low ﬁring rate branch of the µ nullcline, and is thus formally a L state. Finally, the exact shape of the phase diagram depends on the value of the parameters c and γ. Choice of the parameters: ρ = 0, Σm = 0.
+14
+
+A 0
+
+B Struct. stationary Oscillations
+C
+
+D F
+E
+
+15
+
+Figure S8 (previous page): Oscillatory activity from rank-two structures that include a cross overlap between left- and right-connectivity vectors. A. Top: phase diagram for the rank-two structure with negative cross-overlap (see Methods). For diﬀerent values of the internal and the cross overlaps, the trivial ﬁxed point can lose stability and give rise to oscillatory or stationary structured activity. The Hopf bifurcation is indicated in blue, the instability to stationary activity in grey. The light-blue parameter region corresponds to sustained non-linear oscillations. Bottom: frequency of oscillations along the Hopf bifurcation boundary, in units deﬁned by the implicit time scale of the network dynamics. B-C-D-E. Samples of activity for diﬀerent connectivity parameters. From left to right: stability eigenspectrum of the trivial ﬁxed point (theory and simulations), sample of activation trajectories (the population average is indicated in dashed black), and population dynamics obtained by projecting the population activation x on the right-connectivity vectors m(1) and m(2). The parameters that have been used for every sample are indicated in A. B: Oscillatory transients in the ﬁxed point regime. C: Stable oscillations above the Hopf instability. The elongated shape of the closed trajectory on the m(1) − m(2) plane is inherited by the phase distribution across the population, and can be tuned by slightly modifying the parameters of the rank-two structure (see Methods). D: Highly non-linear oscillations close to the boundary with bistable activity. E: Oscillatory activity at high g values (g = 1.35), where dynamics include a chaotic component. F. When oscillations are strongly non-linear, their spectrum includes a large variety of frequencies that can be used to reproduce highly non-linear periodic patterns. We designed three random readout vectors and we linearly decoded activity from the dynamical regime in D to generate periodic non-linear outputs, which are displayed in grey.
+16
+

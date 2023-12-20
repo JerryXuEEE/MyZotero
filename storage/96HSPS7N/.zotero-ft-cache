@@ -1,0 +1,247 @@
+PHYSICAL REVIEW E 82, 011903 ͑2010͒
+
+Stimulus-dependent suppression of chaos in recurrent neural networks
+
+Kanaka Rajan*
+Lewis-Sigler Institute for Integrative Genomics, Icahn 262, Princeton University, Princeton, New Jersey 08544, USA
+
+L. F. Abbott Department of Neuroscience and Department of Physiology and Cellular Biophysics, College of Physicians and Surgeons,
+Columbia University, New York, New York 10032-2695, USA
+
+Haim Sompolinsky Racah Institute of Physics, Interdisciplinary Center for Neural Computation, Hebrew University, Jerusalem, Israel
+͑Received 31 July 2009; revised manuscript received 22 April 2010; published 7 July 2010͒
+
+Neuronal activity arises from an interaction between ongoing ﬁring generated spontaneously by neural circuits and responses driven by external stimuli. Using mean-ﬁeld analysis, we ask how a neural network that intrinsically generates chaotic patterns of activity can remain sensitive to extrinsic input. We ﬁnd that inputs not only drive network responses, but they also actively suppress ongoing activity, ultimately leading to a phase transition in which chaos is completely eliminated. The critical input intensity at the phase transition is a nonmonotonic function of stimulus frequency, revealing a “resonant” frequency at which the input is most effective at suppressing chaos even though the power spectrum of the spontaneous activity peaks at zero and falls exponentially. A prediction of our analysis is that the variance of neural responses should be most strongly suppressed at frequencies matching the range over which many sensory systems operate.
+
+DOI: 10.1103/PhysRevE.82.011903
+
+PACS number͑s͒: 87.19.lj, 64.60.aq, 84.35.ϩi, 87.19.ll
+
+Circuits of the central nervous system exhibit temporally irregular ongoing activity that is not directly related to sensory or behavioral events. The fact that this spontaneous activity is not suppressed by averaging over the large number of synaptic inputs to each neuron ͓1͔ suggests that chaotic network dynamics may represent a substantial local source of ﬂuctuating activity in cortical and subcortical circuits. Previous modeling studies have shown that nonlinear random network models with strong recurrent excitatory and inhibitory connections generically exhibit chaotic dynamics ͓2–4͔. In this work, we ask how intrinsically generated ﬂuctuating activity affects neuronal responses to external stimuli. The nonlinear effects of oscillatory drive, including frequency dependence and phase locking, have been well explored in low-dimensional chaotic dynamical systems ͑see, e.g., ͓5–9͔͒. However, relatively few studies have explored entrainment of extended high-dimensional spatiotemporal chaotic systems by external forcing ͑see, e.g., ͓10–14͔͒. Here, we explore the locking of large chaotic neuronal networks to external stimuli and study how it depends on stimulus amplitude and frequency.
+We study phenomenological ﬁring-rate network models representing neurons in a localized circuit that are coupled by relatively strong excitatory and inhibitory connections randomly distributed in the network. Speciﬁcally, we consider a network of N interconnected neurons, each described by an activation variable xi for i = 1 , 2 , . . . , N, satisfying
+
+N
+
+͚ dxi
+dt
+
+=
+
+−
+
+xi
+
++
+
+j=1
+
+Jij␾͑xj͒
+
++
+
+Hi,
+
+͑1͒
+
+*krajan@princeton.edu
+
+with ␾͑xi͒, which is a saturating monotonic function of the
+
+total synaptic input xi, representing a normalized ﬁring rate
+
+ͭ ͮ relative to a ﬁxed background rate r0. Here, we choose
+
+␾͑x͒ =
+
+r0 tanh͑x/r0͒ ͑2 − r0͒tanh͓x/͑2 − r0͔͒
+
+for x Յ 0 for x Ͼ 0,
+
+͑2͒
+
+so that the normalized ﬁring rate varies from 0 to 2. For r0 = 1, we recover the often-used tanh function, but we use a
+smaller value of r0 = 0.1, which is more biologically reasonable ͓15͔. The time variable in Eq. ͑1͒ is deﬁned in units of the single-neuron time constant, ␶r = 10 ms. Each element of the network connectivity matrix J is chosen randomly and independently ͓16͔ from a Gaussian distribution with zero mean and variance g2 / N, where the gain g acts as the control parameter of the network. The external input term is set to Hi = I cos͑␻t + ␪i͒, with the phase ␪i chosen randomly and independently for each neuron from a uniform distribution between 0 and 2␲. This corresponds to situations in which the oscillatory input does not introduce global temporal
+phase coherence, which occurs, for example, for a population
+of neurons with a broad range of preferred spatiotemporal
+phases.
+To characterize the activity of the network, we make ex-
+tensive use of the autocorrelation function of each neuronal
+rate averaged across all the units of the network,
+
+N
+
+͚ 1
+C͑␶͒ = N i=1 ͗␾„xi͑t͒…␾„xi͑t + ␶͒…͘,
+
+͑3͒
+
+where the angular brackets denote a time average. C͑0͒ is related to the total variance in the ﬂuctuations of the ﬁring rates of the network units, whereas C͑␶͒ for nonzero ␶ provides information about the temporal structure of network activity.
+
+1539-3755/2010/82͑1͒/011903͑5͒
+
+011903-1
+
+©2010 The American Physical Society
+
+RAJAN, ABBOTT, AND SOMPOLINSKY
+
+PHYSICAL REVIEW E 82, 011903 ͑2010͒
+
+FIG. 1. Activity of typical network units ͑left column͒, average autocorrelation function ͑middle column͒, and logarithmic-power spectrum ͑right column͒ for a network with N = 1000 and g = 1.5. ͑a͒ With no input ͑I = 0͒, network activity is chaotic. ͑b͒ In the presence of a weak input ͑I = 0.04, f = ␻ / 2␲ = 4 Hz͒, an oscillatory response is superposed on chaotic ﬂuctuations. ͑c͒ For a stronger input ͑I = 0.2, f = 4 Hz͒, the network response is periodic. ͑d͒–͑f͒ Average autocorrelation function and ͑g͒–͑i͒ logarithm of the power versus frequency for the network states corresponding to ͑a͒–͑c͒.
+Previous work ͓2͔ has shown that, in the limit N → ϱ with no input ͑I = 0͒, this model displays only two types of activity: a trivial ﬁxed point with all x = 0 when g Ͻ 1 and chaos when g Ͼ 1. The spontaneously chaotic state is characterized by highly irregular ﬁring rates ͓Fig. 1͑a͔͒, a decaying average autocorrelation function ͓Fig. 1͑d͔͒, and a continuous power spectrum ͓Fig. 1͑g͔͒. Note that the ﬂuctuations in Fig. 1͑a͒ are considerably slower than the 10 ms time constant of the model. The associated average autocorrelation function decays to zero as ␶ increases ͓Fig. 1͑d͔͒, implying that the temporal ﬂuctuations of the spontaneous activity are uncorrelated over large time intervals, a characteristic of the chaotic state. The power spectrum decays from a peak at zero ͓Fig. 1͑g͔͒ and, although it is broad, the power at high frequency is exponentially suppressed. Strong suppression of high-frequency ﬂuctuations is another characteristic of the chaotic state in these networks. By comparison, the power spectrum of a nonchaotic network responding to a whitenoise input falls off only as a power law at high frequencies.
+When this network is driven with a relatively weak sinusoidal input ͓Figs. 1͑b͒, 1͑e͒, and 1͑h͔͒, the single-neuron response consists of periodic activity induced by the input superposed on a chaotic background ͓Fig. 1͑b͔͒. The average autocorrelation function for the network driven by weak periodic input consequently reveals a mixture of periodic and chaotic activities ͓Fig. 1͑e͔͒. Periodic oscillations at the input frequency appear at large values of ␶, but the variance given by C͑0͒ is larger than the height of the peaks in these oscillations. This indicates that the total ﬁring-rate variance is not completely accounted for by the oscillatory response of the network to the external drive, with the additional variance arising from residual chaotic ﬂuctuations. Similarly, the power spectrum shows a continuous component generated by the residual chaos, a prominent peak at the frequency of the input, and peaks at harmonics of the input frequency arising from network nonlinearities ͓Fig. 1͑h͔͒.
+When the amplitude of the input is increased sufﬁciently, the single-neuron ﬁring rates oscillate at the input frequency in a perfectly periodic manner ͓Fig. 1͑c͔͒, yielding a periodic autocorrelation function ͓Fig. 1͑f͔͒. C͑0͒ now matches the
+
+height of the peaks in each of its subsequent oscillations,
+meaning that the periodic component in C accounts for the entire response variance quantiﬁed by C͑0͒. All of the network power is focused at the frequency of the input and its
+harmonics, also indicating a periodic response free of chaotic interference ͓Fig. 1͑i͔͒.
+To explore these results analytically and more systemati-
+cally, we developed dynamic mean-ﬁeld equations appro-
+priate for large N. The mean-ﬁeld theory is based on the
+observation that the total recurrent synaptic input onto each network neuron can be approximated as Gaussian noise ͓2͔. The temporal correlation of this noise is calculated self-
+consistently from the average autocorrelation function of the network. We begin by writing xi = xi0 + xi1, where x0 is the steady-state solution to dxi0 / dt = −xi0 + I cos͑␻t + ␪i͒ and xi1 satisﬁes dxi1 / dt = −xi1 + ͚jJij␾͑x1j + x0j ͒. This implies
+that xI0͑t͒ = h cos͑␻t +˜␪i͒, where h = I / ͱ1 + ␻2 and
+we have incorporated a frequency-dependent phase shift into the factor ˜␪i. Mean-ﬁeld theory replaces the network interaction term in the equation for xi1 with a Gaussian random variable ␩, so that dxi1 / dt = −xi1 + ␩i. Averages over time and network units as in Eq. ͑3͒, are implemented by averaging over J, ␪, and ␩ ͑denoted by square brackets͒, an approximation valid for large N.
+Self-consistence is obtained in the mean-ﬁeld theory by requiring that the ﬁrst two moments of ␩ match the moments of the network interaction that it represents. Thus, we set ͓␩i͑t͔͒ = ͓͚jJij␾(xj͑t͒)͔ = 0, because ͓Jij͔ = 0. Similarly, using the identity ͓JilJjk͔ = g2␦ij␦kl / N, we ﬁnd that
+ͫ ͬ N N
+͚ ͚ ͓␩i͑t͒␩j͑t + ␶͔͒ = Jil Jjk␾„xl͑t͒…␾„xk͑t + ␶͒… l=1 k=1
+
+͚ =
+
+␦i
+
+j
+
+g2 N
+
+N k=1
+
+͓␾„xk͑t͒…␾„xk͑t
+
++
+
+␶͒…͔
+
+= ␦ijg2C͑␶͒.
+
+͑4͒
+
+Next, deﬁning ⌬͑␶͒ = ͓xi1͑t͒xi1͑t + ␶͔͒ and recalling that dxi1 / dt = −xi1 + ␩i, it follows that
+
+d2⌬͑␶͒ d␶2
+
+=
+
+⌬͑␶͒
+
+−
+
+g2C͑␶͒.
+
+͑5͒
+
+The ﬁnal step in the derivation of the mean-ﬁeld equations is to note that because x1͑t͒ and x1͑t + ␶͒ are driven by Gaussian noise, they are Gaussian random variables with moments ͓x1͑t͔͒=͓x1͑t+␶͔͒=0, ͓x1͑t͒x1͑t͔͒=͓x1͑t+␶͒x1͑t+␶͔͒=⌬͑0͒, and ͓x1͑t + ␶͒x1͑t͔͒ = ⌬͑␶͒. To realize these constraints, we introduce three Gaussian random variables with zero mean and unit variance, zi for i = 1 , 2 , 3, and write
+x1͑t͒ = ͱ⌬͑0͒ − ͉⌬͑␶͉͒z1 + sgn„⌬͑␶͒…ͱ͉⌬͑␶͉͒z3,
+
+x1͑t + ␶͒ = ͱ⌬͑0͒ − ͉⌬͑␶͉͒z2 + ⌬͑␶͒ͱ͉⌬͑␶͉͒z3.
+C can then be computed by writing x = x0 + x1 and integrating over these Gaussian variables,
+
+011903-2
+
+STIMULUS-DEPENDENT SUPPRESSION OF CHAOS IN…
+
+PHYSICAL REVIEW E 82, 011903 ͑2010͒
+
+͵ ͵ ͵ C͑␶͒ =
+
+2␲ d␪ 0 2␲
+
+ϱ
+Dz3
+
+ϱ Dz1␾„ͱ⌬͑0͒ − ͉⌬͑␶͉͒z1
+
+−ϱ
+
+−ϱ
+
++ sgn„⌬͑␶͒…ͱ͉⌬͑␶͉͒z3
+
+͵ + h cos͑␪͒… ϱ Dz2␾„ͱ⌬͑0͒ − ͉⌬͑␶͉͒z2 −ϱ
+
++ ͱ͉⌬͑␶͉͒z3 + h cos͑␻␶ + ␪͒…,
+
+͑6͒
+
+where Dzi = dzi exp͑−zi2 / 2͒ / ͱ2␲, for i = 1 , 2 , 3, and ␪ =˜␪ + ␻t.
+Equation ͑6͒ determines C͑␶͒ as a nonlinear function of ⌬͑␶͒. Substituting this expression into Eq. ͑5͒ provides a nonlinear differential equation for ⌬͑␶͒, with g, h, ␻, and ⌬͑0͒ as parameters.
+Equation ͑5͒ has the form of the equation of motion for a classical particle of unit mass and position ⌬͑␶͒ moving under the inﬂuence of a force that depends on C. This force is a function of the current position of the particle, ⌬͑␶͒ ͓as well as on its initial position ⌬͑0͔͒, and it contains terms representing external forcing that are periodic in ␶ with period 2␲ / ␻. For weak inputs and g greater than but close to 1, Eq. ͑5͒ reduces to an undamped forced Dufﬁng oscillator, although we do not restrict our analysis to this limit.
+The analogous mechanics problem has to be solved with the initial condition ⌬˙ ͑0͒ = 0, which imposes a smoothness constraint on the correlation function. The initial value ⌬͑0͒ is ﬁxed by requiring that ⌬͑0͒ Ն ⌬͑␶͒. We solved Eq. ͑5͒ numerically using iterative methods to determine ⌬͑0͒ and found two types of solutions. The ﬁrst is a solution in which ⌬͑␶͒ is a periodic function of ␶ with frequency ␻, as in Fig. 1͑f͒. This solution, which represents a network state that is fully entrained by the oscillatory input, exists for all values of I, ␻, and g. The second solution is characterized by ⌬͑␶͒ that decays for small ␶ and oscillates for large ␶, so that ⌬͑0͒ is larger than the peaks in the large-␶ oscillations, as in Fig. 1͑e͒. This solution, which corresponds to a nonperiodic state only partially locked to the oscillatory drive, only exists for I smaller than a critical value that depends on ␻ and g. A linear perturbation analysis of the mean-ﬁeld theory shows
+that this nonperiodic solution is stable throughout the regime
+where it exists. The periodic solution is unstable in this re-
+gime and is stable outside it. The mean-ﬁeld analysis also
+shows that the nonperiodic solution corresponds to a state with “exponential” sensitivity to initial conditions ͑a positive Lyapunov exponent͒ ͓2͔, i.e., a chaotic state.
+The resulting phase diagram marks the transition between the periodic and nonperiodic states ͑Fig. 2͒. Surprisingly, the transition curves are nonmonotonic functions of frequency
+and reveal a resonant frequency at which it is easiest to entrain the chaotic network with a periodic input ͑even though there is no peak in the power spectrum of the chaotic activity at this frequency͒. This frequency is roughly twice the inverse time constant of the chaotic ﬂuctuations in the sponta-
+neous state and for g not too much greater than 1; the corre-
+sponding period can be an order of magnitude longer than the single-neuron time constant. Figures 2 and 3͑b͒ indicate that internally generated ﬂuctuations are most easily sup-
+pressed by stimuli oscillating in the few Hz range.
+
+FIG. 2. Phase-transition curves showing the critical input ampli-
+tude that divides regions of periodic and chaotic activity as a function of input frequency. ͑a͒ Transition curves for g = 1.5 ͑dashed curve͒ or g = 1.8 ͑solid curve͒. The stars indicate parameter values used in Figs. 1͑b͒, 1͑e͒, and 1͑h͒ and Figs. 1͑c͒, 1͑f͒, and 1͑i͒. The inset traces show representative single-unit ﬁring rates for the regions indicated. ͑b͒ A comparison of the transition curve computed by mean-ﬁeld theory ͑open circles and line͒ and by simulating a network ͑ﬁlled circles͒ for r0 = 1, g = 2 and, for the simulation, N = 10 000.
+The phase-transition curve shifts upward and to the right as g increases ͓Figs. 2͑a͒ and 2͑b͔͒, indicating a higher resonant frequency as well as a larger critical input amplitude. This occurs because the chaotic activity for larger g has a higher amplitude, making it more difﬁcult to suppress, and a smaller inverse correlation time, leading to a higher resonance frequency. The location of the phase transition computed by mean-ﬁeld theory is in good agreement with simulation results for large networks ͓Fig. 2͑b͔͒.
+To study the implications of the phase transition further, we divide network responses into signal and noise components by separating the full response variance into two terms: ␴o2sc and ␴c2haos. For this purpose, we subtract the square of the average value of ␾ from C͑␶͒ and consider the meansubtracted correlation function C͑␶͒ − ͓␾͔2. The signal amplitude ␴osc is the square root of the amplitude of the oscillatory part of this correlation function for large ␶ ͓Fig. 3͑a͔͒. The noise amplitude ␴chaos is the square root of the difference between the values of the mean-subtracted correlation function at ␶ = 0 and the peak of its oscillations ͓Fig. 3͑a͔͒. In the frequency domain, ␴o2sc measures the total power in the network activity at the input frequency and its harmonics, whereas ␴c2haos measures the residual power.
+The signal amplitude increases linearly with the strength of the input ͑I͒ over the range considered in Fig. 3͑b͒. The noise amplitude has a more complex nonlinear dependence, reﬂecting the presence of the phase transition in Fig. 2 and duplicating the effect seen in Fig. 1, in which a sufﬁciently strong input completely suppresses the chaotic component of the response. An interesting feature to note is that there is no clear signature of this chaotic-to-periodic transition in the signal amplitude. When plotted as a function of input frequency for ﬁxed I, the signal amplitude shows relatively weak frequency dependence below about 4 Hz and then rolls off at higher frequencies ͓Fig. 3͑c͔͒. This is a result of the low-pass ﬁltering property of the network. The noise amplitude has a more interesting dependence. Between 0 and 3 Hz, the noise amplitude drops steeply and vanishes for fre-
+
+011903-3
+
+RAJAN, ABBOTT, AND SOMPOLINSKY
+
+PHYSICAL REVIEW E 82, 011903 ͑2010͒
+
+FIG. 3. Signal and noise amplitudes as a function of input amplitude and frequency. ͑a͒ Deﬁnition of the signal and noise amplitudes, ␴o2sc and ␴chaos, respectively, in terms of the mean-subtracted correlation function. ͑b͒ Signal and noise amplitudes for f = 20 Hz and g = 1.5 as a function of input amplitude. The transition from chaotic to nonchaotic regimes occurs at I = 0.44. ͑c͒ Same as ͑b͒, but with ﬁxed input
+amplitude ͑I = 0.2͒ and varying input frequency. In the region between 3 and 7 Hz, responses of the network are free from chaotic noise. In
+͑b͒ and ͑c͒, open circles denote the signal amplitude and ﬁlled circles denote the noise amplitude.
+
+quencies between 3 and 7 Hz, rising again above 7 Hz. This double transition is a consequence of the nonmonotonicity of the phase-transition curves in Fig. 2. As in Fig. 3͑b͒, there is no apparent indication of these transitions in the signal amplitude.
+It has previously been noted that chaotic activity in neuronal networks can be suppressed by either white-noise ͓13͔ or constant ͓14͔ input in discrete-time models. However, discrete-time versions fail to capture the rich dynamics of the chaotic ﬂuctuations and their effect on responses to timedependent inputs. Suppression of spatiotemporal chaos by periodic forcing has also been reported ͓10–12͔, mostly through numerical simulations. In some of these simulations, an optimal frequency for complete locking similar to Fig. 2 has been observed ͓10͔. Our results show that such a resonance effect occurs even when the power spectrum of the unforced chaotic ﬂuctuations falls monotonically from zero frequency ͑Fig. 1͒. The networks we considered only describe the effects of ﬂuctuations induced by local interactions, whereas additional sources of variability carried by long-range connections or by local sources of stochasticity are present in real neurons. Therefore, we predict that an experimental plot of response variability versus stimulus frequency will follow a nonzero U-shaped curve with a minimum in the several Hz range, rather than falling to zero as in Fig. 3͑c͒.
+Variability in cortical responses is sometimes described by adding stochastic noise linearly to a deterministic response ͓17,18͔. Our results indicate that the interaction between intrinsically generated “noise” and responses to external drive is highly nonlinear. Near the onset of chaos, complete noise suppression can be achieved with relatively low amplitude inputs, weaker—for example—than the strength of the internal feedback. Thus, suppression of spontaneously generated noise in neural networks does not require stimuli so strong that they simply overwhelm ﬂuctuations through saturation. A number of experiments indicate that stimuli as well as attention can suppress ﬁring-rate variability ͓19–23͔ ͑but see ͓24͔͒. Although other mechanisms for nonlinear suppression of neuronal variability have been proposed ͓25–30͔, our analysis indicates that such sup-
+
+pression is a general property of the interaction between internally generated dynamics and external drive in a nonlinear network.
+Spontaneous ﬂuctuations in neural activity occur across a wide range of time scales, with increasing variability over long time intervals ͓31͔ and increasing power at low frequencies, although resonances may appear ͓24,32͔. In this work we have focused on ﬁring-rate ﬂuctuations using smooth rate-based dynamics, not spiking dynamics. Spiking neuron models with strong “balanced” interactions can exhibit chaotic ﬁring patterns ͓2,3͔, but the ﬂuctuations they produce have relatively ﬂat power spectra associated with variability in short interspike intervals. It will be interesting to study stimulus effects in spiking network models that exhibit slow irregular modulations of ﬁring rates.
+In our model, weak correlations ͑on the order of 1 / ͱN͒ in
+activity ﬂuctuations exist between all pairs of neurons. These correlations are distributed evenly between negative and positive values across the population. Slow spontaneous rate ﬂuctuations in the cortex are often associated with longrange spatial correlations, especially in anesthetized animals ͓33,34͔. As in our model, the observed spatial correlations are weaker than the ﬁring-rate autocorrelations. In some cases, both negative and positive rate ﬂuctuations are also observed, such that the mean value of the pairwise correlations across a populations is much smaller than the width of the distribution of correlations ͓35–37͔. However, the extent of the contribution of local network dynamics to the observed low-frequency correlations is unclear ͓22,34͔.
+Neuronal selectivity to stimulus features is typically studied by determining how the mean response across experimental trials depends on various stimulus parameters. The presence of nonlinear interactions between stimulus-evoked and spontaneous ﬂuctuating activities indicates that response components that are not locked to the temporal modulation of the stimulus may also be sensitive to stimulus parameters. In general, our results suggest that experiments studying the stimulus dependence of the noise component of neural responses could provide important insights into the nature and origin of activity ﬂuctuations in neuronal circuits, as well as their role in neuronal information processing.
+
+011903-4
+
+STIMULUS-DEPENDENT SUPPRESSION OF CHAOS IN…
+
+PHYSICAL REVIEW E 82, 011903 ͑2010͒
+
+K.R. and L.F.A. were supported by the National Science Foundation Grant No. IBN-0235463 and the NIH Director’s Pioneer Award Program ͑5-DP1-OD114-02͒, part of the NIH Roadmap for Medical Research. H.S. was supported by
+
+grants from the Israel Science Foundation and the Israeli Ministry of Defence. This research was also supported by the Swartz Foundation through the Swartz Centers at Columbia and Harvard.
+
+͓1͔ W. R. Softky and C. Koch, Neural Comput. 4, 643 ͑1992͒. ͓2͔ H. Sompolinsky, A. Crisanti, and H. J. Sommers, Phys. Rev.
+Lett. 61, 259 ͑1988͒. ͓3͔ C. van Vreeswijk and H. Sompolinsky, Science 274, 1724
+͑1996͒. ͓4͔ N. Brunel, J. Physiol. Paris 94, 445 ͑2000͒. ͓5͔ M. Franz and M. Zhang, Phys. Rev. E 52, 3558 ͑1995͒. ͓6͔ I. Z. Kiss and J. L. Hudson, Phys. Rev. E 64, 046215 ͑2001͒. ͓7͔ A. S. Pikovsky, M. G. Rosenblum, G. V. Osipov, and J.
+Kurths, Physica D 104, 219 ͑1997͒. ͓8͔ R. Brown and L. Kocarev, Chaos 10, 344 ͑2000͒. ͓9͔ Handbook of Chaos Control, edited by E. Schöll and H. G.
+Schuster ͑Wiley-VCH, New York, 2007͒. ͓10͔ H. Sakaguchi and T. Fujimoto, Phys. Rev. E 67, 067202
+͑2003͒. ͓11͔ A. T. Stamp, G. V. Osipov, and J. J. Collins, Chaos 12, 931
+͑2002͒. ͓12͔ S. Wu, K. He, and Z. Huang, Phys. Lett. A 260, 345 ͑1999͒. ͓13͔ L. Molgedey, J. Schuchhardt, and H. G. Schuster, Phys. Rev.
+Lett. 69, 3717 ͑1992͒. ͓14͔ N. Bertschinger and T. Natschläger, Neural Comput. 16, 1413
+͑2004͒. ͓15͔ The tanh function has the disadvantage of having the “resting”
+rate ␾͑0͒ halfway between the minimum and maximum rates. This generalization allows us to adjust the value of ␾͑0͒ to be
+closer to the minimum of this range, while retaining the desirable feature that the maximum of the derivative of ␾ is at
+x = 0. ͓16͔ The connectivity pattern in our model does not obey the re-
+striction of cortical neurons to excitatory and inhibitory subtypes ͓see K. Rajan and L. F. Abbott, Phys. Rev. Lett. 97, 188104 ͑2006͒ for a theoretical treatment of this problem in the linear regime͔. More theoretical work is needed to establish
+a detailed account of the nonlinear interactions between stimu-
+lus features and ongoing ﬂuctuations in such networks. ͓17͔ A. Arieli, A. Sterkin, A. Grinvald, and A. Aertsen, Science
+273, 1868 ͑1996͒. ͓18͔ J. S. Anderson, I. Lampl, D. C. Gillespie, and D. Ferster, J.
+
+Neurosci. 21, 2104 ͑2001͒ ͓http://www.jneurosci.org/cgi/ content/full/21/6/2104͔. ͓19͔ G. Werner and V. B. Mountcastle, J. Neurophysiol. 26, 958 ͑1963͒ ͓http://jn.physiology.org/cgi/reprint/26/6/958͔. ͓20͔ M. M. Churchland, B. M. Yu, S. I. Ryu, G. Santhanam, and K. V. Shenoy, J. Neurosci. 26, 3697 ͑2006͒. ͓21͔ I. M. Finn, N. J. Priebe, and D. Ferster, Neuron 54, 137 ͑2007͒. ͓22͔ J. F. Mitchell, K. A. Sundberg, and J. J. Reynolds, Neuron 55, 131 ͑2007͒. ͓23͔ M. M. Churchland et al., Nat. Neurosci. 13, 369 ͑2010͒. ͓24͔ J. A. Henrie and R. Shapley, J. Neurophysiol. 94, 479 ͑2005͒. ͓25͔ P. Kara, P. Reinagel, and R. C. Reid, Neuron 27, 635 ͑2000͒. ͓26͔ M. Carandini, PLoS Biol. 2, e264 ͑2004͒. ͓27͔ P. E. Latham, B. J. Richmond, P. G. Nelson, and S. Nirenberg, J. Neurophysiol. 83, 808 ͑2000͒ ͓http://jn.physiology.org/cgi/ reprint/83/2/808͔. ͓28͔ J. Anderson, I. Lampl, I. Reichova, M. Carandini, and D. Ferster, Nat. Neurosci. 3, 617 ͑2000͒. ͓29͔ C. C. H. Petersen, T. T. G. Hahn, M. Mehta, A. Grinvald, and B. Sakmann, Proc. Natl. Acad. Sci. U.S.A. 100, 13638 ͑2003͒. ͓30͔ B. Haider, A. Duque, A. R. Hasenstaub, Y. Yu, and D. A. McCormick, J. Neurophysiol. 97, 4186 ͑2007͒. ͓31͔ M. V. Teich, IEEE Trans. Biomed. Eng. 36, 150 ͑1989͒. ͓32͔ W. Sun and Y. Dan, Proc. Natl. Acad. Sci. U.S.A. 106, 17986 ͑2009͒. ͓33͔ M. A. Smith and A. Kohn, J. Neurosci. 28, 12591 ͑2008͒. ͓34͔ I. Nauhaus, L. Busse, M. Carandini, and D. L. Ringach, Nat. Neurosci. 12, 70 ͑2009͒. ͓35͔ E. M. Maynard, N. G. Hatsopoulos, C. L. Ojakangas, B. D.
+Acuna, J. N. Sanes, R. A. Normann, and J. P. Donoghue, J. Neurosci. 19, 8083 ͑1999͒ ͓http://www.jneurosci.org/cgi/ content/full/19/18/8083͔. ͓36͔ A. S. Ecker, P. Berens, G. A. Keliris, M. Bethge, N. K. Logothetis, and A. S. Tolias, Science 327, 584 ͑2010͒. ͓37͔ A. Renart, J. de la Rocha, P. Bartho, L. Hollender, N. Parga, A. Reyes, and K. D. Harris, Science 327, 587 ͑2010͒.
+
+011903-5
+

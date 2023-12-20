@@ -1,0 +1,10267 @@
+Haiping Huang
+Statistical Mechanics of Neural Networks
+
+Statistical Mechanics of Neural Networks
+
+Haiping Huang
+Statistical Mechanics of Neural Networks
+
+Haiping Huang Sun Yat-sen University Guangzhou, China
+
+ISBN 978-981-16-7569-0
+
+ISBN 978-981-16-7570-6 (eBook)
+
+https://doi.org/10.1007/978-981-16-7570-6
+
+Jointly published with Higher Education Press The print edition is not for sale in China (Mainland). Customers from China (Mainland) please order the print book from: Higher Education Press.
+
+© Higher Education Press 2021 This work is subject to copyright. All rights are solely and exclusively licensed by the Publisher, whether the whole or part of the material is concerned, speciﬁcally the rights of reprinting, reuse of illustrations, recitation, broadcasting, reproduction on microﬁlms or in any other physical way, and transmission or information storage and retrieval, electronic adaptation, computer software, or by similar or dissimilar methodology now known or hereafter developed. The use of general descriptive names, registered names, trademarks, service marks, etc. in this publication does not imply, even in the absence of a speciﬁc statement, that such names are exempt from the relevant protective laws and regulations and therefore free for general use. The publishers, the authors, and the editors are safe to assume that the advice and information in this book are believed to be true and accurate at the date of publication. Neither the publishers nor the authors or the editors give a warranty, express or implied, with respect to the material contained herein or for any errors or omissions that may have been made. The publishers remain neutral with regard to jurisdictional claims in published maps and institutional afﬁliations.
+
+This Springer imprint is published by the registered company Springer Nature Singapore Pte Ltd. The registered company address is: 152 Beach Road, #21-01/04 Gateway East, Singapore 189721, Singapore
+
+To my wife, Huihong Pan, and to my children, Qing Huang and Yun Huang
+
+Preface
+Neural networks have become a powerful tool in various domains of scientiﬁc research and industrial applications. However, the inner workings of this tool remain unknown, which prohibits us from a deep understanding and further principled design of more powerful network architectures and optimization algorithms. To crack the black box, different disciplines including physics, statistics, information theory, nonconvex optimization and so on must be integrated, which may also bridge the gap between the artiﬁcial neural networks and the brain. However, in this highly interdisciplinary ﬁeld, there are few monographs providing a systematic introduction of theoretical physics basics for understanding neural networks, especially covering recent cutting-edge topics of neural networks.
+In this book, we provide a physics perspective on the theory of neural networks, and even neural computation in models of the brain. The book covers the basics of statistical mechanics, statistical inference, neural networks, and especially classic and recent mean-ﬁeld analysis of neural networks of different nature. These mathematically beautiful examples of statistical mechanics analysis of neural networks are expected to inspire further techniques to provide an analytic theory for more complex networks. Future important directions along the line of scientiﬁc machine learning and theoretical models of brain computation are also reviewed.
+We remark that this book is not a complete review of both ﬁelds of artiﬁcial neural networks and mean-ﬁeld theory of neural networks, instead, a biased-viewpoint of statistical physics methods toward understanding the black box of deep learning, especially for beginner-level students and researchers who get interested in the meanﬁeld theory of learning in neural networks.
+This book stemmed from a series of lectures about the interplay between statistical mechanics and neural networks. These lectures were given by the author in his PMI (physics, machine and intelligence) group during the years from 2018 to 2020. The book is organized into two parts—basics of statistical mechanics related to the theory of neural networks, and theoretical studies of neural networks including cortical models.
+The ﬁrst part is further divided into nine chapters. Chapter 1 gives a brief history of neural network studies. Chapter 2 introduces multi-spin interaction models and
+vii
+
+viii
+
+Preface
+
+the cavity method to compute the partition function of disordered systems. Chapter 3 introduces the variational mean-ﬁeld methods including the Bethe approximation and belief propagation algorithms. Chapter 4 introduces the Monte Carlo simulation methods that are used to acquire low-energy conﬁgurations of a statistical mechanical system. Chapter 5 introduces high-temperature expansion techniques. Chapter 6 introduces the spin glass model where the Nishimori line was discovered. Chapter 7 introduces the random energy model which is an inﬁnite-body interaction limit of multi-spin disordered systems. Chapter 8 introduces a statistical mechanical theory of the Hopﬁeld model that was designed for associative memory of random patterns based on the Hebbian local learning rule. Chapter 9 introduces the concepts of replica symmetry and replica symmetry breaking in the spin glass theory of disordered systems.
+The second part is divided into nine chapters. Chapter 10 introduces the Boltzmann machine learning (also called the inverse Ising problem in physics or maximum entropy method in statistics) and the statistical mechanics of the restricted Boltzmann machine learning. In this chapter, a variational mean-ﬁeld theory for learning a generic RBM of discrete synapses is also introduced in depth. Chapter 11 introduces the simplest model of unsupervised learning. Chapter 12 introduces the nature of unsupervised learning with RBM (only two hidden neurons are considered), i.e., the unsupervised learning process can be understood in terms of a series of continuous phase transitions, including both weight-reversal symmetry breaking and hidden-neuron-permutation symmetry breaking. Chapter 13 introduces a single-layer discrete perceptron and its mean-ﬁeld theory. Chapter 14 introduces the mean-ﬁeld model of multi-layered perceptron and its analysis via the cavity method. In this chapter, a mean-ﬁeld training algorithm of multi-layered perceptron with discrete synapses is introduced, together with mean-ﬁeld training from an ensemble perspective. Chapter 15 introduces the mean-ﬁeld theory of dimension reduction in deep random neural networks. Chapter 16 introduces the chaos theory of random recurrent neural networks. In this chapter, the excitatory-inhibitory balance theory of cortical circuits is also introduced, together with the backpropagation through time for training a generic RNN. Chapter 17 introduces how the statistical mechanics technique can be applied to compute the asymptotic behavior of the spectral density for the Hermitian and the non-Hermitian random matrices. Finally, perspectives on a statistical mechanical theory toward deep learning and even other interesting aspects of intelligence are provided, hopefully inspiring future developments of the interdisciplinary ﬁelds across physics, machine learning and theoretical neuroscience and other involved disciplines.
+I am grateful for the students’ efforts in drafting the lecture notes, including preparing ﬁgures. Here, I list their contributions to associated chapters. These students in my PMI group are Zhenye Huang (Chaps. 4 and 10), Zijian Jiang (Chaps. 2, 13 and 16), Chan Li (Chaps. 11, 15 and 16), Jianwen Zhou (Chaps. 5, 8 and 17), Wenxuan Zou (Chaps. 3, 6 and 14) and Tianqi Hou (Chap. 12). I also thank the other PMI members, Ziming Chen, Yiming Jiao, Junbin Qiu, Mingshan Xie, Xianbo Xu and Yang Zhao for their reading feedbacks on the draft. I also would like to thank Haijun Zhou, K. Y. Michael Wong, Yoshiyuki Kabashima and Taro Toyoizumi
+
+Preface
+
+ix
+
+for their encouragements and supports during my Ph.D. and Post-doctoral research career. I ﬁnally acknowledge the ﬁnancial support from the National Natural Science Foundation of China (Grant No. 11805284 Grant No. 12122515).
+
+Guangzhou, China December 2021
+
+Haiping Huang
+
+Contents
+1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+2 Spin Glass Models and Cavity Method . . . . . . . . . . . . . . . . . . . . . . . . . . 5 2.1 Multi-spin Interaction Models . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5 2.2 Cavity Method . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8 2.3 From Cavity Method to Message Passing Algorithms . . . . . . . . . . 12 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+3 Variational Mean-Field Theory and Belief Propagation . . . . . . . . . . . 17 3.1 Variational Method . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17 3.2 Variational Free Energy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18 3.2.1 Mean-Field Approximation . . . . . . . . . . . . . . . . . . . . . . . . 20 3.2.2 Bethe Approximation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22 3.2.3 From the Bethe to Naive Mean-Field Approximation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27 3.3 Mean-Field Inverse Ising Problem . . . . . . . . . . . . . . . . . . . . . . . . . . 29 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+4 Monte Carlo Simulation Methods . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33 4.1 Monte Carlo Method . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33 4.2 Importance Sampling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34 4.3 Markov Chain Sampling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35 4.4 Monte Carlo Simulations in Statistical Physics . . . . . . . . . . . . . . . 36 4.4.1 Metropolis Algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37 4.4.2 Parallel Tempering Monte Carlo . . . . . . . . . . . . . . . . . . . . 39 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+5 High-Temperature Expansion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43 5.1 Statistical Physics Setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43 5.2 High-Temperature Expansion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46 5.3 Properties of the TAP Equation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
+xi
+
+xii
+
+Contents
+
+6 Nishimori Line . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55 6.1 Model Setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55 6.2 Exact Result for Internal Energy . . . . . . . . . . . . . . . . . . . . . . . . . . . . 56 6.3 Proof of No RSB Effects on the Nishimori Line . . . . . . . . . . . . . . . 57 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+7 Random Energy Model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59 7.1 Model Setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59 7.2 Phase Diagram . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 61 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 62
+8 Statistical Mechanical Theory of Hopﬁeld Model . . . . . . . . . . . . . . . . . 63 8.1 Hopﬁeld Model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 63 8.2 Replica Method . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 66 8.2.1 Replica-Symmetric Ansätz . . . . . . . . . . . . . . . . . . . . . . . . . 73 8.2.2 Zero-Temperature Limit . . . . . . . . . . . . . . . . . . . . . . . . . . . 78 8.3 Phase Diagram . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 79 8.4 Hopﬁeld Model with Arbitrary Hebbian Length . . . . . . . . . . . . . . . 81 8.4.1 Computation of the Disorder-Averaged Free Energy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 81 8.4.2 Derivation of Saddle-Point Equations . . . . . . . . . . . . . . . . 91 8.4.3 Computation Transformation to Solve the SDE . . . . . . . . 92 8.4.4 Zero-Temperature Limit . . . . . . . . . . . . . . . . . . . . . . . . . . . 94 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 98
+9 Replica Symmetry and Replica Symmetry Breaking . . . . . . . . . . . . . 99 9.1 Generalized Free Energy and Complexity of States . . . . . . . . . . . . 99 9.2 Applications to Constraint Satisfaction Problems . . . . . . . . . . . . . . 102 9.3 More Steps of Replica Symmetry Breaking . . . . . . . . . . . . . . . . . . 106 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 108
+10 Statistical Mechanics of Restricted Boltzmann Machine . . . . . . . . . . 111 10.1 Boltzmann Machine . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 111 10.2 Restricted Boltzmann Machine . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 113 10.3 Free Energy Calculation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 115 10.4 Thermodynamic Quantities Related to Learning . . . . . . . . . . . . . . 117 10.5 Stability Analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 121 10.6 Variational Mean-Field Theory for Training Binary RBMs . . . . . 123 10.6.1 RBMs with Binary Weights . . . . . . . . . . . . . . . . . . . . . . . . 124 10.6.2 Variational Principle . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 125 10.6.3 Experiments . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 130 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 132
+
+Contents
+
+xiii
+
+11 Simplest Model of Unsupervised Learning with Binary Synapses . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 133 11.1 Model Setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 133 11.2 Derivation of sMP and AMP Equations . . . . . . . . . . . . . . . . . . . . . . 135 11.3 Replica Computation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 138 11.3.1 Explicit form of Z n . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 139 11.3.2 Estimation of Z n Under Replica Symmetry Ansätz . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 140 11.3.3 Derivation of Free Energy and Saddle-Point Equations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 142 11.4 Phase Transitions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 145 11.5 Measuring the Temperature of Dataset . . . . . . . . . . . . . . . . . . . . . . . 148 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 151
+12 Inherent-Symmetry Breaking in Unsupervised Learning . . . . . . . . . . 153 12.1 Model Setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 153 12.1.1 Cavity Approximation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 156 12.1.2 Replica Computation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 161 12.1.3 Stability Analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 182 12.2 Phase Diagram . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 186 12.3 Hyper-Parameters Inference . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 190 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 193
+13 Mean-Field Theory of Ising Perceptron . . . . . . . . . . . . . . . . . . . . . . . . . 195 13.1 Ising Perceptron model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 195 13.2 Message-Passing-Based Learning . . . . . . . . . . . . . . . . . . . . . . . . . . . 197 13.3 Replica Analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 199 13.3.1 Replica Symmetry . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 201 13.3.2 Replica Symmetry Breaking . . . . . . . . . . . . . . . . . . . . . . . . 205 13.4 Further Theory Development . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 210 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 211
+14 Mean-Field Model of Multi-layered Perceptron . . . . . . . . . . . . . . . . . . 213 14.1 Random Active Path Model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 213 14.1.1 Results from Cavity Method . . . . . . . . . . . . . . . . . . . . . . . . 215 14.1.2 An Inﬁnite Depth Analysis . . . . . . . . . . . . . . . . . . . . . . . . . 216 14.2 Mean-Field Training Algorithms . . . . . . . . . . . . . . . . . . . . . . . . . . . 220 14.3 Spike and Slab Model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 221 14.3.1 Ensemble Perspective . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 221 14.3.2 Training Equations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 222 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 225
+15 Mean-Field Theory of Dimension Reduction . . . . . . . . . . . . . . . . . . . . . 227 15.1 Mean-Field Model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 227 15.2 Linear Dimensionality and Correlation Strength . . . . . . . . . . . . . . 231 15.2.1 Iteration Equations for Correlation Strength . . . . . . . . . . 232 15.2.2 Mechanism of Dimension Reduction . . . . . . . . . . . . . . . . 234
+
+xiv
+
+Contents
+
+15.3 Dimension Reduction with Correlated Synapses . . . . . . . . . . . . . . 237 15.3.1 Model Setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 238 15.3.2 Mean-Field Calculation . . . . . . . . . . . . . . . . . . . . . . . . . . . . 239 15.3.3 Numerical Results Compared with Theory . . . . . . . . . . . 247
+References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 250
+16 Chaos Theory of Random Recurrent Neural Networks . . . . . . . . . . . 253 16.1 Spiking and Rate Models . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 253 16.2 Dynamical Mean-Field Theory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 255 16.2.1 Dynamical Mean-Field Equation . . . . . . . . . . . . . . . . . . . . 255 16.2.2 Regimes of Network Dynamics . . . . . . . . . . . . . . . . . . . . . 259 16.3 Lyapunov Exponent and Chaos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 262 16.4 Excitation-Inhibition Balance Theory . . . . . . . . . . . . . . . . . . . . . . . 264 16.5 Training Recurrent Neural Networks . . . . . . . . . . . . . . . . . . . . . . . . 268 16.5.1 Force-Training . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 268 16.5.2 Backpropagation Through Time . . . . . . . . . . . . . . . . . . . . 268 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 272
+17 Statistical Mechanics of Random Matrices . . . . . . . . . . . . . . . . . . . . . . 275 17.1 Spectral Density . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 275 17.2 Replica Method and Semi-circle Law . . . . . . . . . . . . . . . . . . . . . . . 277 17.3 Cavity Approach and Marchenko–Pastur Law . . . . . . . . . . . . . . . . 281 17.4 Spectral Densities of Random Asymmetric Matrices . . . . . . . . . . . 285 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 289
+18 Perspectives . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 291 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 294
+
+About the Author
+Dr. Haiping Huang received his Ph.D. degree in theoretical physics from the institute of Theoretical Physics, the Chinese Academy of Sciences. He works as an associate professor at the School of Physics, Sun Yat-sen University,China. His research interests include the origin of the computational hardness of the binary perceptron model, the theory of dimension reduction in deep neural networks, and inherent symmetry breaking in unsupervised learning.In 2021, he was awarded Excellent Young Scientists Fund by National Natural Science Foundation of China.
+xv
+
+Acronyms
+
+AMP AT BA BM BP BPTT CD CLT CNN DG EA EM gBP KL LIF LSTM MCMC MCS MFA MPM PS PSB RAP RBM RF RG RNN RS RSB SaS SDE
+
+Approximate message passing De Almeida-Thouless Bethe approximation Boltzmann machine Belief propagation Backpropagation through time Contrastive-divergence Central limit theorem Convolution neural network Dichotomized Gaussian Edwards–Anderson Expectation-maximization Generalized backpropagation Kullback–Leibler Leaky-integrated ﬁring Long short-term memory Markov chain Monte Carlo Monte Carlo sweep Mean-ﬁeld approximation Maximizer of the posterior marginal Permutation symmetry Permutation symmetry breaking Random active path Restricted Boltzmann machine Receptive ﬁeld Random guess Recurrent neural network Replica symmetry Replica symmetry breaking Spike and slab Saddle-point equation
+
+xvii
+
+xviii
+
+SG
+
+Spin glass
+
+SK
+
+Sherrington-Kirkpatrick
+
+sMP Simpliﬁed message passing
+
+SSB Spontaneous symmetry breaking
+
+TAP Thouless–Anderson–Palmer
+
+Acronyms
+
+Chapter 1
+Introduction
+
+Neural network studies stemmed from the curiosity about how the brain works and even biological mechanisms of high-level intelligence [1]. This original curiosity has a very long history that is also a history of humans’ endeavors to understand the brain. A modern artiﬁcial neural model was proposed by McCulloch and Pitts in 1943 [2], and the neuron of complex biological processes was abstractly modeled as a non-linear transfer function of simply weighted sum of inputs. A few years later, Donald Hebb proposed the Hebbian learning rule [3], i.e., “cells that ﬁre together, wire together”. This rule forms the basics of a later development, i.e., the abstract model of associative memory, the so-called Hopﬁeld model [4, 5], where the Hebbian rule was used to construct the effective coupling between neurons in the model that can realize the retrieval of a memory item (e.g., a random pattern the Hebbian rule uses), under a less noisy neural dynamics from an initial state where the memory item is corrupted by a few bits. The Hebbian rule, despite its simplicity, plays a signiﬁcant important role in the current status of both experimental and theoretical neuroscience studies [6].
+Based on the McCulloch–Pitts model of artiﬁcial neurons, Frank Rosenblatt introduced the ﬁrst perceptron model of supervised classiﬁcation tasks [7]. At that time, this model can only be used to classify linearly separable patterns [8]. However, this abstract model plays an important role in neuroscience studies, as the perceptron model was popular in modeling the learning behavior of the cerebellar Purkinje cells [9, 10]. The perceptron model can also be easily generalized to multilayer feedforward neural networks, which are able to separate non-linearly separable patterns, due to the highly nested non-linear layer-wise computations. This nested non-linearity makes an analytic understanding of inner workings challenging in the academic community [11, 12]. However, the backpropagation of the error from top layers was shown to work in practical training of multi-layer neural networks [13], which establishes the algorithmic foundation of deep learning.
+Fukushima introduced neocognitron in 1980, using the biological concept of simple and complex cells observed in visual pathways of a cat’s visual cortex [14]. When
+
+© Higher Education Press 2021
+
+1
+
+H. Huang, Statistical Mechanics of Neural Networks,
+
+https://doi.org/10.1007/978-981-16-7570-6_1
+
+2
+
+1 Introduction
+
+these neural computations are organized in a hierarchical way, the position-shift invariance can be achieved. This neocognitron model inspired the further development of multi-layer neural computation, for example, the powerful architecture— convolution neural network (CNN) proposed in 1990s [15], where the computation of simple cells corresponds to convolution while computation of complex cells corresponds to pooling, showing the power of multi-layer neural networks in practice, e.g., in solving computer vision tasks [16].
+In 1985, Hinton and Sejnowski introduced the Boltzmann machine [17], where the model parameters, e.g., coupling and ﬁelds of an Ising model, can be learned directly from the data samples, matching only the ﬁrst two moments of the data statistics [18]. This framework has a recently renewed interest in system neuroscience [19], being known as an inverse Ising problem in physics [20] with a wide application in different interdisciplinary ﬁelds ranging from neural activity modeling and protein structure prediction to ﬁnancial data analysis [21]. Paul Smolensky later introduced the original two-layer neural network with stochastic activations [22], the so-called restricted-Boltzmann machine (RBM) [22, 23], where neurons in a traditional Boltzmann machine are divided into visible and hidden groups. In 2006, Hinton and Salakhutdinov proposed efﬁcient methods to train a deep belief network composed of layer-wise stacking of RBMs [24], initializing the deep learning revolutionary in both academic and industrial neural network studies.
+Another type of neural network architecture has salient features in its recurrent computation, incorporating temporal information. There appeared extensive research interests in algorithmic issues around 1990 [25–28]. However, training the recurrent neural network (RNN) is typically challenging, due to vanishing/exploding gradients of the objective function [29]. In the current deep learning era, many smart techniques are being proposed to tackle this challenge. In particular, Hochreiter and Schmidhuber introduced the long short-term memory (LSTM), using various kinds of informationgating mechanisms [30], to avoid the training difﬁculty of RNNs. The RNN structure is also considered as a canonical model of perception, learning, memory, action and other high-level cognition [31–33].
+In the history of artiﬁcial neural networks, still a lot of important topics are not covered in the above retrospect. For complete reviews, we refer interested readers to several recent reviews of neural networks [34–36]. On the other side, the statistical mechanics plays a key role in understanding the emergent behavior of artiﬁcial neural networks, even real neuronal networks [37].
+The ﬁrst statistical mechanical theory of neural networks was published in 1985; providing a complete phase diagram of the Hopﬁeld network [38, 39] and explaining low temperature and low memory load are necessary to guarantee a successful retrieval of one of the embedded random patterns (akin to memory items). The analytic techniques are rooted in studies of disordered systems, such as spin glass systems [40, 41]. One powerful technique is the replica trick, which introduces many copies of the original model, and the original complex spin-to-spin interactions are decoupled into overlaps between replicas, while the overlaps are exactly the order parameters of the statistical mechanical model. This technique was later generalized to the perceptron model, inventing the concept of the Gardner volume to determine
+
+1 Introduction
+
+3
+
+the capacity of a perceptron system [42, 43]. The Gardner method is still popular as a powerful physics tool in the theoretical neuroscience community [10].
+In 1988, Sompolinsky et al. developed another powerful physics method for analyzing the recurrent dynamics of RNNs with random weights [44]. This method treats the behavior of a real RNN as an effective mean-ﬁeld limit of a homogeneous system, whose ﬁrst two moments of neural dynamics statistics are recursively established, resulting in a mean-ﬁeld calculation of the Lyapunov exponent determining whether a transition-to-chaos is possible. This framework can be derived under the path-integral representation of the dynamics [45, 46] and is still popular in analyzing more complex RNNs with structured connectivity. The mean-ﬁeld study of a random RNN was later generalized to neuronal networks of excitatory and inhibitory cells [47, 48], satisfying biological Dale’s rule (a biological neuron cannot produce both excitatory and inhibitory synapses). In this study, the excitatory–inhibitory balance condition [49, 50], i.e., feedback inhibition cancels with strong excitatory recurrent inputs, can be identiﬁed in the mean-ﬁeld limit, leading to a mechanistic explanation of the irregular asynchronous neural activity observed in cortical circuits. Brunel further studied the emergent behavior of spiking activity of a sparsely connected excitatory–inhibitory neural network [51]. These theoretical paradigms still beneﬁt the computational and theoretical community even now. Therefore, the statistical physics methods, including equilibrium phase diagram analysis and non-equilibrium mean-ﬁeld theory, are very promising in exploring the black box of deep neural networks, which may further connect to other branches, e.g., random matrix theory [52], etc.
+In this book, we will provide our personal selections of statistical mechanical techniques applied to neural networks studies, and an in-depth introduction of these statistical physics methods, especially applications in simple toy models where learning mechanisms can be revealed in a mathematically concise way, even with theoretical predictions of new emergent behavior.
+
+References
+1. R. Yuste, Nat. Rev. Neurosci. 16(8), 487 (2015) 2. W.S. McCulloch, W. Pitts, Bull. Math. Biophys. 5, 115 (1943) 3. D.O. Hebb, The Organization of Behavior (Wiley, New York, 1949) 4. J.J. Hopﬁeld, Proc. Natl. Acad. Sci. USA 79, 2554 (1982) 5. S.I. Amari, Biological Cybern. 26, 175 (1977) 6. W. Gerstner, M. Lehmann, V. Liakoni, D. Corneil, J. Brea, Front. Neural Circ. 12, 53 (2018) 7. F. Rosenblatt, Psychol. Rev. 65, 386 (1958) 8. S. Papert, M.L. Minsky, Perceptrons: An Introduction to Computational Geometry (MIT Press,
+Cambridge, 1988) 9. C. Clopath, J.P. Nadal, N. Brunel, PLOS Comput. Biol. 8(4), e1002448 (2012) 10. N. Brunel, Nat. Neurosci. 19, 749 (2016) 11. A. Saxe, S. Nelli, C. Summerﬁeld, Nat. Rev. Neurosci. 22, 55 (2020) 12. D. Hassabis, D. Kumaran, C. Summerﬁeld, M. Botvinick, Neuron 95(2), 245 (2017) 13. D.E. Rumelhart, G.E. Hinton, R.J. Williams, Nature 323, 533 (1986) 14. K. Fukushima, Biolog. Cybern. 36(4), 193 (1980) 15. Y. Lecun, L. Bottou, Y. Bengio, P. Haffner, Proc. IEEE 86, 2278 (1998)
+
+4
+
+1 Introduction
+
+16. A. Krizhevsky, I. Sutskever, G.E. Hinton, in Advances in Neural Information Processing Systems 25, ed. by P. Bartlett, F. Pereira, C. Burges, L. Bottou, K. Weinberger (2012), pp. 1097– 1105
+17. D.H. Ackley, G.E. Hinton, T.J. Sejnowski, Cognit. Sci. 9(1), 147 (1985) 18. E.T. Jaynes, Phys. Rev. 106, 620 (1957) 19. E. Schneidman, M.J. Berry, R. Segev, W. Bialek, Nature 440, 1007 (2006) 20. Y. Roudi, E. Aurell, J. Hertz, Front. Comput. Neurosci 3, 1 (2009) 21. H.C. Nguyen, R. Zecchina, J. Berg, Adv. Phys. 66(3), 197 (2017) 22. P. Smolensky, Information processing in dynamical systems: foundations of harmony theory
+(MIT Press, Cambridge, 1986), pp. 194–281 23. Y. Freund, D. Haussler, Unsupervised learning of distributions on binary vectors using two
+layer networks. Technical Report, Santa Cruz, CA, USA (1994) 24. G. Hinton, R. Salakhutdinov, Science (New York, N.Y.) 313, 504 (2006) 25. J.L. Elman, Cognit. Sci. 14(2), 179 (1990) 26. P.J. Werbos, Neural Netw. 1(4), 339 (1988) 27. F.J. Pineda, Phys. Rev. Lett. 59(19), 2229 (1987) 28. R.J. Williams, J. Peng, Neural Comput. 2(4), 490 (1990) 29. R. Pascanu, T. Mikolov, Y. Bengio, in Proceedings of the 30th International Conference on
+Machine Learning (2013), pp. 1310–1318 30. S. Hochreiter, J. Schmidhuber, Neural Comput. 9(8), 1735 (1997) 31. D. Sussillo, L. Abbott, Neuron 63(4), 544 (2009) 32. D.V. Buonomano, W. Maass, Nat. Rev. Neurosci. 10(2), 113 (2009) 33. S. Vyas, M.D. Golub, D. Sussillo, K.V. Shenoy, Ann. Rev. Neurosci. 43(1), 249 (2020) 34. J. Schmidhuber, Neural Netw. 61, 85 (2015) 35. Y. LeCun, Y. Bengio, G. Hinton, Nature 521(7553), 436 (2015) 36. P. Mehta, M. Bukov, C.H. Wang, A.G. Day, C. Richardson, C.K. Fisher, D.J. Schwab, Phys.
+Rep. 810, 1 (2019) 37. D.J. Amit, Modeling Brain Function: The World of Attractor Neural Networks (Cambridge
+University Press, Cambridge, 1989) 38. D.J. Amit, H. Gutfreund, H. Sompolinsky, Phys. Rev. A 32, 1007 (1985) 39. D.J. Amit, H. Gutfreund, H. Sompolinsky, Physical Review Letters 55(14), 1530 (1985) 40. M. Mézard, G. Parisi, M.A. Virasoro, Spin Glass Theory and Beyond (World Scientiﬁc, Sin-
+gapore, 1987) 41. P. Peretto, Biolog. Cybern. 50(1), 51 (1984) 42. E. Gardner, Europhys. Lett. (epl) 4, 481 (1987) 43. E. Gardner, J. Phys. A: Math. Gen. 21, 257 (1988) 44. H. Sompolinsky, A. Crisanti, H.J. Sommers, Physical Review Letters 61(3), 259 (1988) 45. A. Crisanti, H. Sompolinksy, Phys. Rev. E 98(6), 62120 (2018) 46. M. Helias, D. Dahmen (2019). arXiv:1901.10416 47. C. van Vreeswijk, H. Sompolinsky, Science 274(5293), 1724 (1996) 48. C. van Vreeswijk, H. Sompolinsky, Neural Comput. 10(6), 1321 (1998) 49. M.N. Shadlen, W.T. Newsome, J. Neurosci. 18(10), 3870 (1998) 50. M. Okun, I. Lampl, Nat. Neurosci. 11(5), 535 (2008) 51. N. Brunel, J. Comput. Neurosci. 8(3), 183 (2000) 52. M.L. Mehta, Random Matrices (Academic, San Diego, 2004)
+
+Chapter 2
+Spin Glass Models and Cavity Method
+
+Spin glasses are magnets with two-spin interactions of random signs (Mézard et al., in Spin Glass Theory and Beyond. World Scientiﬁc, Singapore, 1987 [1]), e.g., an alloy with randomly localized magnetic moments. In spin glass models, the randomness emerges in spin interactions. For example, in the Sherrington–Kirkpatrick model (Sherrington and Kirkpatrick in Phys. Rev. Lett. 35(26):1792, 1975 [2]), all two-spin interactions follow independently a Gaussian distribution with variance N −1/2 (N is the system size); in the Edwards–Anderson model (Edwards and Anderson in J. Phys. F: Metal Phys. 5(5):965, 1975 [3]), the spins sit on a ﬁnite-dimensional lattice, and in the Bethe lattice model (Viana and Bray in J. Phys. C: Solid State Phys. 18(15):3037, 1985 [4]; Mézard and Parisi in Eur. Phys. J. B 20:217, 2001 [5]), the spins locate at a random lattice of ﬁnite connectivity for each spin. All these models belong to the category of multi-spin interaction models, originally studied in physics, later widely explored in the context of optimization problems in computer science, machine learning and computational neuroscience.
+
+2.1 Multi-spin Interaction Models
+
+Before going into details of the underlying physics, we would like to give a few seminal applications of the spin glass models. The ﬁrst one is the random K -SAT problem. The random K -SAT problem is ﬁnding a solution, say an assignment of N Boolean variables, to satisfy a random formula composed of logical AND of M clauses. Each clause is expressed as a logical OR function of K randomly selected distinct variables (either directed or negated with equal probability) from the variable set. For example, one short formula is given by
+
+F = (x3 ∨ x7 ∨ x2) ∧ (x1 ∨ x5 ∨ x6) ∧ (x4 ∨ x7 ∨ x5).
+
+(2.1)
+
+© Higher Education Press 2021
+
+5
+
+H. Huang, Statistical Mechanics of Neural Networks,
+
+https://doi.org/10.1007/978-981-16-7570-6_2
+
+6
+
+2 Spin Glass Models and Cavity Method
+
+From a physics viewpoint, the random K -SAT can be treated as a spin glass problem with a focus on the typical case analysis.1 If xi is TRUE, then we transform it to an Ising spin with value 1 (spin up); otherwise, it is transformed to −1 (spin down). Given a conﬁguration of spins, the number of violated clauses can be deﬁned
+as an energy function in statistical physics [6],
+
+M
+E(σ ) =
+
+K
+
+1
+
++
+
+J
+
+m j
+
+σi
+
+m j
+
+,
+
+2
+
+m=1 j=1
+
+(2.2)
+
+where
+
+i
+
+m j
+
+is
+
+the
+
+j th
+
+variable
+
+appearing
+
+in
+
+the
+
+mth
+
+clause.
+
+The
+
+quenched
+
+disorder
+
+J
+
+m j
+
+is 1 if the Boolean variable in the formula appears negated and −1 otherwise. Hence,
+
+the constraint satisfaction problem reduces to a physics problem of ﬁnding minima
+
+of the energy function.
+
+Analogously, the random K -XOR SAT formula can be written as
+
+⎡⎛
+
+⎞⎤
+
+M
+
+K
+
+F=
+
+⎣⎝
+
+xi
+
+m j
+
+⎠
+
+⊕
+
+ym ⎦
+
+,
+
+m=1
+
+j =1
+
+(2.3)
+
+where the symbol ⊕ denotes the logical XOR operation, and ym is quenched random Boolean value. This formula corresponds to a linear system, with an efﬁcient solver of the Gaussian elimination procedure. In physics, the diluted Ising p-spin model with coupling ±1 belongs to the class of random K -XOR problem. Similar to the random K -SAT Problem, one can easily write down the associated energy function [7]
+
+E(σ ) = M 1 − Jm
+
+K j =1
+
+σi
+
+m j
+
+,
+
+2
+
+m=1
+
+(2.4)
+
+where Jm is an Ising-mapping of the Boolean variable ym. The above two constraint satisfaction problems belong to multi-spin interaction
+models in physics. Physicists are interested in studying the mean-ﬁeld limit N → ∞ and M → ∞ but keeping the ratio M/N constant. One expects that rich phase transitions emerge due to complex interactions among spin variables. Next, we will illustrate how the cavity method can be used to compute the free energy function of this class of models. Cavity method was ﬁrst proposed to reproduce the replica results of the Sherrington–Kirkpatrick model [8], and further reformulated in the study of neural networks [9], and was ﬁnally proposed at the concise physics level and systematic mathematical level on the Bethe lattice, a broad class of glass models of ﬁnite connectivities [5]. We will also explore the core physics assumption behind the cavity method in detail in a multi-spin interaction model. The multi-spin interaction models like the above two cases can be analogously treated.
+
+1 The computational complexity is deﬁned in the worst-case setting.
+
+2.1 Multi-spin Interaction Models
+
+7
+
+The multi-spin interaction model can be also deﬁned in the context of information transmission, for which we shall give a concrete example. Let us consider the case that we want to send a message to a receiver, and the message may be perturbed during transmission because of the noise in the channel. It is a highly non-trivial task for the receiver to retrieve the original message from the perturbed one. One solution is to introduce redundancy to the original message at the sender site. Then the receiver can correct some transmission errors according to the redundancy. In 1948, Claude Shannon proved that error-free transmission is possible when the code rate is below the channel capacity, which establishes a fundamental bound for designing engineering practical codes [10]. Numerous efforts have been devoted to design the codes approaching Shannon’s bound (channel capacity). Among them, the Sourlas code is the ﬁrst one in physics [11], which relates error-correcting codes to a spin glass model.
+It is easy to ﬁgure out how to construct a Sourlas code. Supposed that we have an N -bit binary original message ξ ∈ {±1}N , and then encode them into an M-bit transmitted message J 0 = {J10, J20, . . . , JM0 }. The ath bit of J 0 is the product of a subset ∂a of randomly selected original message bits,
+
+Ja0 = ξi .
+i ∈∂ a
+
+(2.5)
+
+We then denote Ja as the ath bit of the received message, which may not be equal to the transmitted message due to the channel noise ﬂipping message bits. We further assume that each bit of transmitted messages can be independently ﬂipped with the same probability p. Hence, the conditional probability of a received message given a transmitted one reads
+
+P( Ja| Ja0) = pδ( Ja + Ja0) + (1 − p)δ( Ja − Ja0).
+
+(2.6)
+
+To decode the sent message, we write the computational task as a statistical mechanics problem with the following Hamiltonian [12]:
+
+M
+H (σ ) = − Ja σi ,
+a=1 i∈∂a
+
+(2.7)
+
+where σi is the dynamical binary spin variable for decoding the original message
+
+{ξi }. What we need to do is computing the posterior probability P(σ | J) which is
+
+given by
+
+P(σ | J) = exp(−β H (σ )) ,
+
+(2.8)
+
+Z
+
+where β is the inverse temperature, and Z is the partition function. This decoding process amounts now to searching for the ground state of the statistical mechanics problem. The energy of the model takes a minimal value if i∈∂a σi = Ja. According
+
+8
+
+2 Spin Glass Models and Cavity Method
+
+to the canonical ensemble theory, all emergent properties of the decoding process are included in the partition function that is mathematically formulated as follows:
+
+Z = exp(−β H (σ )).
+{σi }
+
+(2.9)
+
+2.2 Cavity Method
+
+In this section, we apply the cavity approximation to compute the partition function. Notice that a direct calculation of Eq. (2.9) involves in summing up 2N terms, which is computationally impossible once N > 30. The cavity method can reduce the computational cost down to the order of O(N ) for a sparsely connected factor graph model. Let us explain this in detail as follows.
+The model can be represented by a factor graph [13], illustrating how spins interact with each other (see Fig. 2.1). Because we aim at analyzing the Boltzmann distribution, i.e., the posterior [Eq. (2.8)], we use the probabilistic language, for the goal of computing the marginal probability as well. To achieve this, we should modify the original graph that allows strong correlations among variables. If we add one function node a to the original system (see Fig. 2.2), the Hamiltonian of the new system can be written as the sum of the Hamiltonian of the original system and the change caused by the newly added function node. More precisely,
+
+It then proceeds that
+
+H new = H old − Ja σi .
+i ∈∂ a
+
+(2.10)
+
+i ... j ... k N
+
+a b c d e f ... M
+Fig. 2.1 Factor graph representation of a random construction of the Sourlas codes. Circles are spin variables (variable nodes) {σi }, and squares are received message (function nodes) {Ja}. In the ﬁgure, we only show three message bits, and each square is connected to them. In fact, the square can be connected to other different message bits (not shown), thereby forming a sparse random graph, where the degree of variable nodes follows a Poisson distribution
+
+2.2 Cavity Method
+
+j
+
+k
+
+a
+
+l
+
+9
+m n
+b i
+c
+
+Fig. 2.2 Addition of the function node a to original system (outside the shadow part). We call the shadow part a cavity, and the nodes {i, j, k, l} serve as the boundary of the cavity
+
+Z new =
+
+exp −β H old + β Ja σi
+
+{σi }iN=1
+
+i ∈∂ a
+
+= Z old
+
+exp(−β H old)
+
+Z old
+
+exp
+
+β Ja
+
+σi .
+
+{σi }iN=1
+
+i ∈∂ a
+
+(2.11)
+
+It
+
+is
+
+easy
+
+to
+
+see
+
+that
+
+exp(−β H old) Z old
+
+is
+
+exactly
+
+the
+
+joint
+
+probability
+
+distribution
+
+of
+
+{σi }iN=1
+
+in the old system. One can ﬁnd that exp(β Ja i∈∂a σi ) only relates to {σi |i ∈ ∂a},
+
+and then we can divide the conﬁguration sum into two parts: one involves in only
+
+variable nodes with direct connections to the newly added functional node a, and the
+
+other involves in the rest. We then have
+
+Z new = Z old
+
+exp(−β H old) Z old
+
+exp(β
+
+Ja
+
+σi )
+
+{σi |i∈∂a} {σi |i∈/∂a}
+
+i ∈∂ a
+
+= Z old
+
+exp(β Ja σi )
+
+exp(−β H Z old
+
+old
+
+)
+
+.
+
+{σi |i∈∂a}
+
+i∈∂a {σi |i∈/∂a}
+
+(2.12)
+
+The last summation in Eq. (2.12) is exactly the marginal probability distribution of {σi |i ∈ ∂a} in the old system. Compared with the new system, the old system has a cavity in the position where the function node a is added to the new system. Therefore, we denote the marginal probability as a cavity distribution Pcavity({σi |i ∈ ∂a}) and
+
+10
+
+2 Spin Glass Models and Cavity Method
+
+call {σi |i ∈ ∂a} as the boundary of the cavity. It is reasonable to assume that variable nodes on the boundary of the cavity are weakly correlated, because of the weak couplings in a fully connected system or the sparsely connected topology of a sparse model. This assumption is exact if the underlying factor graph is a tree. Thus, the Pcavity({σi |i ∈ ∂a}) can be factorized as
+
+Pcavity({σi |i ∈ ∂a}) ≈ qi→a(σi ),
+i ∈∂ a
+
+(2.13)
+
+where qi→a denotes the distribution of σi without the presence of the function node a.
+
+Let us then deﬁne a cavity magnetization mi→a ≡ qi→a(σi = +1) − qi→a(σi = −1),
+
+and
+
+thus,
+
+qi→a(σi )
+
+=
+
+. 1+σi mi→a
+2
+
+Then
+
+Z new
+
+can
+
+be
+
+rewritten
+
+as
+
+Z new = Z old
+
+exp(β Ja
+
+σi )
+
+1 + σi mi→a 2
+
+{σi |i∈∂a}
+
+i∈∂a i∈∂a
+
+= Z old cosh(β Ja) 1 + tanh(β Ja) mi→a .
+i ∈∂ a
+
+(2.14)
+
+According to the free energy deﬁnition F = −1/β ln Z , the free energy shift due to adding the function node a is given by
+
+−β
+
+Fa
+
+= ln
+
+Z new Z old
+
+= ln
+
+cosh(β Ja) 1 + tanh(β Ja)
+
+mi→a .
+
+i ∈∂ a
+
+(2.15)
+
+Similarly, if we add one variable node i and its neighboring function nodes {b|b ∈ ∂i} to the system (see Fig. 2.3),2 the partition function of the new system reads
+
+⎛
+
+⎞
+
+Z new =
+
+exp ⎝−β H old + β Jb σ j ⎠
+
+σ old σi
+⎛
+
+b∈∂i j∈∂b
+⎞
+
+=
+
+exp ⎝−β H old + β Jbσi
+
+σj⎠
+
+σ old σi
+
+b∈∂ i
+
+j ∈∂ b\i
+
+⎛
+
+⎞
+
+= Z old
+σ old
+
+σi
+
+exp(−β H old) exp ⎝β Z old
+
+Jb σi
+
+σj⎠,
+
+b∈∂ i
+
+j ∈∂ b\i
+
+(2.16)
+
+where j ∈ ∂b\i denotes the set of variable nodes with connections to the function node b, yet the node i is excluded. The subset of nodes {σ j | j ∈ ∂b\i, b ∈ ∂i} is the boundary of the cavity (see Fig. 2.3). We can ﬁrst sum over the conﬁguration of all
+
+2 This operation will make the deﬁnition of cavity probabilities reasonable.
+
+2.2 Cavity Method
+
+j
+
+k
+
+a
+
+l
+
+11
+m n
+b i
+c
+
+Fig. 2.3 Adding a variable node i together with its neighboring function nodes {a, b, c} to the original system (outside the cavity). The subset { j, k, l, m, n . . .} denotes the boundary of the cavity
+
+variable nodes that are not at the boundary of the cavity (except i), akin to what we have done in Eq. (2.12). Using Eq. (2.13), we then arrive at the following result:
+
+Z new = Z old
+
+Pcavity({σ j | j ∈ ∂b\i ; b ∈ ∂i }) exp
+
+β Jbσi
+
+σj
+
+{σ j | j∈∂b\i;b∈∂i} σi
+
+b∈∂ i
+
+j ∈∂ b\i
+
+≈ Z old
+
+q j→b(σ j ) exp
+
+β Jbσi
+
+σj
+
+{σ j | j∈∂b\i;b∈∂i} σi b∈∂i j∈∂b\i
+
+b∈∂ i
+
+j ∈∂ b\i
+
+= Z old
+
+q j→b(σ j ) exp
+
+β Jbσi
+
+σj
+
+σi {σ j | j∈∂b\i;b∈∂i} b∈∂i j∈∂b\i
+
+b∈∂ i
+
+j ∈∂ b\i
+
+= Z old
+
+q j→b(σ j ) exp β Jbσi
+
+σj
+
+σi b∈∂i {σ j | j∈∂b\i} j∈∂b\i
+
+j ∈∂ b\i
+
+= Z old
+
+σi
+
+1 + σ j m j→b exp 2
+b∈∂i {σ j | j∈∂b\i} j∈∂b\i
+
+β Jbσi
+
+σj
+
+j ∈∂ b\i
+
+= Z old
+
++ b→i
+
++
+
+− b→i
+
+,
+
+b∈∂ i
+
+b∈∂ i
+
+where
+
+(2.17)
+
+12
+
+2 Spin Glass Models and Cavity Method
+
+⎛
+
+⎞
+
++ b→i
+
+=
+
+1
+
++
+
+σjm 2
+
+j →b
+
+exp ⎝β
+
+Jb
+
+×
+
+(+1)
+
+×
+
+σj⎠
+
+{σ j | j ∈∂b\i}
+
+j ∈∂ b\i
+⎛
+
+j ∈∂ b\i
+⎞
+
+(2.18)
+
+= cosh(β Jb) ⎝1 + tanh(β Jb)
+
+m j→b⎠ ,
+
+j ∈∂ b\i
+
+⎛
+
+⎞
+
+− b→i
+
+=
+
+1
+
++
+
+σjm 2
+
+j →b
+
+exp ⎝β
+
+Jb
+
+×
+
+(−1)
+
+×
+
+σj⎠
+
+{σ j | j ∈∂b\i}
+
+j ∈∂ b\i
+⎛
+
+j ∈∂ b\i
+⎞
+
+= cosh(β Jb) ⎝1 − tanh(β Jb)
+
+m j→b⎠ .
+
+j ∈∂ b\i
+
+(2.19)
+
+Hence, the free energy shift due to adding the variable node i together with its neighboring function nodes {b ∈ ∂i} is given by
+
+−β
+
+Fi
+
+= ln
+
+Z new Z old
+
+= ln
+
++ b→i
+
++
+
+− b→i
+
+.
+
+b∈∂ i
+
+b∈∂ i
+
+Finally, the total free energy is given by
+
+(2.20)
+
+F=
+i
+
+Fi +
+a
+
+Fa − |∂a| Fa,
+a
+
+(2.21)
+
+where |∂a| is the number of variable nodes connecting to the function node a. The last
+term of Eq. (2.21) is to ensure that each node’s contribution to the total free energy has been counted only once. Once we have access to {m j→b}, we can calculate the free energy function. In the next section, we explain how to calculate {mi→a}.
+
+2.3 From Cavity Method to Message Passing Algorithms
+
+According to the cavity assumption, the cavity magnetization {mi→a} can be iteratively constructed, because the local structure of a random factor graph is statistically homogeneous. Note that mi→a is the expectation value of σi without the contribution from the function node a, which is expected from the deﬁnition of the cavity
+operation. Hence, mi→a can be rewritten as follows:
+
+mi→a =
+
+σ σi exp(−β Hi→a(σ )) , σ exp(−β Hi→a(σ ))
+
+(2.22)
+
+2.3 From Cavity Method to Message Passing Algorithms
+
+13
+
+where Hi→a denotes the Hamiltonian without the interaction a, which reads
+
+Hi→a = Hcavity −
+
+Jb σi
+
+σj,
+
+b∈∂ i \a
+
+j ∈∂ b\i
+
+(2.23)
+
+where Hcavity is the Hamiltonian of the cavity system where the variable node i together with its neighboring function nodes b ∈ ∂i (except a) are all removed from the original system.
+Similar to what we have done in Sect. 2.2, we can sum over all possible conﬁgurations of variable nodes not on the boundary of the cavity at ﬁrst, and we, thus, get the marginal distribution of the boundary nodes in the cavity system. We then have
+
+mi→a = =
+
+σ σi exp(−β Hi→a (σ )) Z cavity
+σ exp(−β Hi→a (σ )) Z cavity
+σi B σi Pcavity(B) exp( σi B Pcavity(B) exp(
+
+b∈∂i\a β Jbσi b∈∂i\a β Jbσi
+
+j∈∂b\i σ j ) , j∈∂b\i σ j )
+
+(2.24)
+
+where Zcavity denotes the partition function related to Hcavity, and B ≡ {σ j | j ∈ ∂b\i; b ∈ ∂i\a}, which denotes the boundary of the cavity. Then we factorize the
+cavity probability according to the cavity approximation:
+
+Pcavity(B) ≈
+
+q j→b(σ j ).
+
+b∈∂i\a j∈∂b\i
+
+Using the same techniques as in Eq. (2.17), we ﬁnally arrive at
+
+mi→a =
+
+b∈∂ i \a b∈∂ i \a
+
++ b→i
+
+−
+
++ b→i
+
++
+
+b∈∂ i \a b∈∂ i \a
+
+−
+
+b→i −
+
+.
+
+b→i
+
+If we deﬁne the conjugate cavity magnetization as
+
+(2.25) (2.26)
+
+mˆ b→ j ≡ tanh(β Jb)
+
+m j→b,
+
+j ∈∂ b\i
+
+(2.27)
+
+we can then write Eq. (2.26) into the following form:
+
+mi→a =
+
+b∈∂i\a (1 + mˆ b→i ) − b∈∂i\a (1 + mˆ b→i ) +
+
+b∈∂i\a (1 b∈∂i\a (1
+
+− −
+
+mˆ b→i mˆ b→i
+
+) )
+
+.
+
+(2.28)
+
+The above expression can be transformed into the language of cavity ﬁelds, e.g., a cavity local ﬁeld hi→a and cavity bias ua→i as also deﬁned in the seminal work [5]. We can then use these ﬁelds or biases to parameterize the cavity probability:
+
+14
+
+2 Spin Glass Models and Cavity Method
+
+qi→a(σi )
+
+≡
+
+exp(βhi→aσi ) , 2 cosh βhi→a
+
+pa→i (σi )
+
+≡
+
+exp(βua→i σi ) , 2 cosh βua→i
+
+where
+
+pa→i (σi )
+
+=
+
+1+σi mˆ a→i 2
+
+.
+
+It
+
+then
+
+proceeds
+
+that
+
+(2.29)
+
+mi→a = tanh βhi→a, mˆ a→i = tanh βua→i .
+
+(2.30)
+
+Therefore, Eqs. (2.27) and (2.28) turn out to be
+
+⎛
+
+⎞
+
+h i →a
+
+=
+
+1 β
+
+⎝
+
+βub→i ⎠ ,
+
+b∈∂ i \a
+
+ua→i =
+
+1 tanh−1 β
+
+tanh(β Ja)
+
+tanh(βh j→a) .
+
+j ∈∂ a\i
+
+(2.31)
+
+Equation (2.31) is the very message passing equation in the Sourlas-code scenario.
+In essence, the cavity method is a probabilistic iterative method. One can iteratively solve these equations, until a ﬁxed point of messages ({mi→a}) is reached. These messages are then used to evaluate the full magnetization mi as follows:
+
+mi = tanh
+
+βub→i ,
+
+b∈∂ i
+
+(2.32)
+
+and the sent message can be decoded by the maximizer of the posterior marginal
+
+(MPM),
+
+i.e.,
+
+σi
+
+= arg maxσi
+
+Pi (σi ),
+
+where
+
+Pi (σi ) =
+
+1+σi 2
+
+mi
+
+.
+
+In
+
+addition,
+
+the
+
+free
+
+energy and other thermodynamic quantities of interest can be evaluated according to
+
+the derived formulas. The computational complexity is clearly of the order of O(N )
+
+for a sparsely connected factor graph and the order O(N 2) in the case that all variable
+
+nodes connect to each function node. We remark that this procedure is quite general
+
+and can be adapted to learning problems of a variety of neural networks, which we
+
+shall introduce in the remaining chapters.
+
+References
+1. M. Mézard, G. Parisi, M.A. Virasoro, Spin Glass Theory and Beyond (World Scientiﬁc, Singapore, 1987)
+2. D. Sherrington, S. Kirkpatrick, Phys. Rev. Lett. 35(26), 1792 (1975) 3. S.F. Edwards, P.W. Anderson, J. Phys. F: Metal Phys. 5(5), 965 (1975) 4. L. Viana, A.J. Bray, J. Phys. C: Solid State Phys. 18(15), 3037 (1985)
+
+References
+
+15
+
+5. M. Mézard, G. Parisi, Eur. Phys. J. B 20, 217 (2001) 6. M. Mézard, R. Zecchina, Phys. Rev. E 66(5), 056126 (2002) 7. S. Franz, M. Leone, F. Ricci-Tersenghi, R. Zecchina, Phys. Rev. Lett. 87(12), 127209 (2001) 8. M. Mézard, G. Parisi, M.A. Virasoro, Europhys. Lett. (EPL) 1(2), 77 (1986) 9. M. Mezard, J. Phys. A 22(12), 2181 (1989) 10. C.E. Shannon, Bell Syst. Tech. J. 27(3), 379 (1948) 11. N. Sourlas, Nature 339(6227), 693 (1989) 12. H. Huang, H. Zhou, Phys. Rev. E 80, 056113 (2009) 13. F. Kschischang, B. Frey, H.A. Loeliger, IEEE Trans. Inf. Theory 47(2), 498 (2001)
+
+Chapter 3
+Variational Mean-Field Theory and Belief Propagation
+
+In the previous chapter, we have introduced the cavity method and its application to computing the approximate free energy of a multi-spin interaction model, and the approximation is equivalent to the Bethe approximation, which we shall provide an in-depth introduction in this chapter. In this chapter, we apply the variational method together with the mean-ﬁeld approximation (MFA) and Bethe approximation (BA) to construct the free energy of the multi-spin interaction model. We show that the belief propagation (BP) algorithm in computer science can be derived under the variational framework, which is in fact equivalent to the cavity method in physics. Furthermore, we emphasize that BA is a more accurate approximation, which reduces to MFA when the coupling is relatively weak or when a high-temperature limit is performed. Finally, we give a brief introduction of the inverse Ising model, where model parameters (couplings and ﬁelds) can be learned by using the mean-ﬁeld methods. Besides being a useful tool in statistical physics, the BP algorithm is also an efﬁcient way to solve many important inference problems in areas of computer science, modern coding and learning in neural networks—one focus of this book.
+
+3.1 Variational Method
+
+The variational method is an important technique for statistical inference problems. With the target function we want to optimize and some constraints the problem should satisfy, we can apply the variation of model parameters on the target function. We take a simple example of the derivation of the Boltzmann distribution in statistical physics. The entropy of a system in statistical physics can be deﬁned by
+
+S = −k Pr ln Pr ,
+r
+
+(3.1)
+
+where k indicates the Boltzmann constant, r is the index of a thermodynamic state and Pr is the to-be-determined distribution of the state r . According to the theory of
+
+© Higher Education Press 2021
+
+17
+
+H. Huang, Statistical Mechanics of Neural Networks,
+
+https://doi.org/10.1007/978-981-16-7570-6_3
+
+18
+
+3 Variational Mean-Field Theory and Belief Propagation
+
+thermodynamics, the system is in equilibrium when the entropy reaches its maximum, and the distribution must meet the following two constraints:
+
+Pr = 1,
+r
+Er Pr = μ,
+r
+
+(3.2) (3.3)
+
+which correspond to the normalization of a probability measure and a target mean
+
+energy level μ of the system, respectively. Hence, we can use the Lagrange multiplier
+
+method:
+
+L = S + λ1 Pr − 1 + λ2 Er Pr − μ ,
+
+(3.4)
+
+r
+
+r
+
+where λ1 and λ2 are the Lagrange multipliers for the two constraints, respectively.
+
+Then, the equilibrium requires that
+
+∂L ∂ Pr
+
+= 0, and we ﬁnally arrive at
+
+e−β Er
+
+Pr =
+
+, Z
+
+Z = e−β Er ,
+
+r
+
+(3.5)
+
+where the inverse temperature β
+
+=
+
+1 kT
+
+can be deduced from the second law of ther-
+
+modynamics, and Z is the partition function, namely the normalization constant
+
+to enforce the ﬁrst constraint. In the following, we assume k = 1 for optimization
+
+problems in a high-dimensional parameter space.
+
+In sum, from the Lagrange multiplier method with a little knowledge from the
+
+equilibrium thermodynamics, we derive the well-known Boltzmann distribution,
+
+where the inverse temperature clearly tunes the energy level of the system [1].
+
+3.2 Variational Free Energy
+
+The behavior of the free energy contributes to the emergent behavior of a thermodynamic system. However, calculating the free energy in a brute-force way is intractable due to the O(2N ) computational complexity. To overcome the barrier, the variational method provides an effective way to construct an approximate free energy. We take an example of the above-mentioned multi-spin interaction model which is captured by the following Boltzmann distribution:
+
+P(x) = e−β E(x) , Z
+Z = e−β E(x),
+x
+
+(3.6)
+
+3.2 Variational Free Energy
+
+19
+
+where x = {x1, x2, . . . , xN } represents the state of N spins in the system. The energy E(x) is given by
+
+E(x) = − Ja xi ,
+
+(3.7)
+
+a
+
+i ∈∂ a
+
+where a is the index of the interaction, and i ∈ ∂a speciﬁes the set of spins that participate in the ath interaction where we use xa to represent these spins. Ja is the coupling strength of the ath interaction. The inverse temperature here can be set to
+an arbitrary value, and in an equivalent way, the temperature can be absorbed into the coupling Ja. We, thus, set β = 1 without loss of generality. We further deﬁne fa(xa) = eJa i∈∂a xi , which denotes the contribution of the ath interaction to the Boltzmann measure. Thus, we can rewrite the distribution P(x) and energy E(x)
+into the following forms:
+
+P(x) = 1 Z
+
+fa ( x a ),
+
+a
+
+E(x) = − ln fa(xa).
+a
+
+(3.8) (3.9)
+
+These expressions facilitate the following derivation of BP algorithm. The Helmholtz free energy reads
+
+FH = − ln Z .
+
+(3.10)
+
+As we mentioned above, an exact computation of the Helmholtz free energy is impossible for a large-size system. Instead, we introduce a trial probability distribution b(x) and write the free energy, which is called the Gibbs free energy with some parameters (e.g., magnetizations) to be optimized:
+
+F(b) = U (b) − H (b),
+
+(3.11)
+
+where we deﬁne U (b) as the variational internal energy:
+
+U (b) = b(x)E(x),
+x
+and H (b) as the variational entropy:
+
+(3.12)
+
+H (b) = − b(x) ln b(x).
+x
+
+(3.13)
+
+It is then necessary to compute the difference between the Gibbs free energy and the Helmholtz free energy, as given by
+
+20
+
+3 Variational Mean-Field Theory and Belief Propagation
+
+F(b) − FH = b(x)E(x) + b(x) ln b(x) + ln Z
+
+x
+
+x
+
+= b(x)(− ln Z − ln P(x)) + b(x) ln b(x) + ln Z
+
+x
+
+x
+
+=
+
+b(x)
+
+ln
+
+b(x) P(x)
+
+=
+
+D(b|| P ),
+
+x
+
+(3.14)
+
+where D(b||P) is the Kullback–Leibler divergence between two probability distributions b(x) and P(x), which is always non-negative and is zero only if b(x) = P(x), ∀x. Therefore, F(b) ≥ FH and F(b) = FH only if b(x) = P(x), ∀x.
+The above analysis shows that the trial probability distribution b(x) yielding a lower Gibbs free energy will have a smaller distance from the true distribution P(x). That is to say, we transform the original free energy estimation problem to a (Gibbs)
+free energy minimization problem. To obtain a more accurate free energy, we must ﬁnd a b(x) to minimize the Gibbs free energy F(b), which is exactly what the variational method wants to do. To proceed, we have to specify the trial probability b(x) by introducing the so-called variational parameters, which can be physicsrelevant quantities. In the next sections, we introduce two kinds of approximations for b(x), which are mean-ﬁeld and the Bethe approximations.
+
+3.2.1 Mean-Field Approximation
+
+The mean-ﬁeld approximation for b(x) is written in a factorized form:
+
+bMF(x) =
+
+bi (xi ) =
+
+1 + mi xi , 2
+
+i
+
+i
+
+(3.15)
+
+where m is the magnetization vector of spins x. This approximation is the naive one
+that assumes each spin behaves independently of each other. Note that xi can only take two values ±1 (e.g., spin up and down, respectively). Given the form of bM F (x), we can compute the mean-ﬁeld internal energy and mean-ﬁeld entropy as follows:
+
+UMF = bMF(x)E(x)
+
+x
+
+⎛
+
+⎞
+
+=
+
+bi (xi ) ⎝− Ja
+
+xi ⎠
+
+xi
+
+a i∈∂a
+
+= − Ja
+
+xi
+
+a
+
+i ∈∂ a
+
+= − Ja mi ,
+a i∈∂a
+
+(3.16)
+
+and
+
+3.2 Variational Free Energy
+
+21
+
+HM F = − bM F (x) ln bM F (x)
+x
+
+=−
+
+1 + mi xi ln 1 + mi xi
+
+xi
+
+2
+
+2
+i
+
+=−
+
+1 + m j x j ln 1 + mi xi
+
+i xj
+
+2
+
+2
+
+=−
+
+1 + m j x j 1 + mi xi ln 1 + mi xi
+
+i xi x\xi j (=i)
+
+2
+
+2
+
+2
+
+=−
+
+1 + mi xi ln 1 + mi xi
+
+i xi
+
+2
+
+2
+
+= Si ,
+i
+
+(3.17)
+
+where Si is deﬁned as the entropy of spin xi , and the symbol \ indicates the operation of exclusion. Thus, the mean-ﬁeld free energy can be derived as follows:
+
+FM F = UM F − HM F
+
+= − Ja mi +
+
+a
+
+i ∈∂ a
+
+i
+
+1 + mi xi ln 1 + mi xi .
+
+2
+
+2
+
+xi
+
+(3.18)
+
+The normalization constraint is automatically satisﬁed by the factorized form of
+
+the naive mean-ﬁeld distribution [Eq. (3.15)]. The magnetization now becomes the
+
+variational parameter for the trial probability bM F (x). To minimize the upper bound
+
+of the Helmholtz free energy, we have to compute
+
+∂ FM F ∂mi
+
+and set the gradient to zero:
+
+∂ FM F ∂mi
+
+=−
+
+a
+
+Ja
+
+mj +
+
+j ∈∂ a\i
+
+xi
+
+xi ln 1 + mi xi + xi
+
+2
+
+2
+
+2
+
+=−
+
+a
+
+Ja
+
+mj
+j ∈∂ a\i
+
++
+
+1 2
+
+ln
+
+1 + mi 1 − mi
+
+= 0,
+
+(3.19)
+
+and ﬁnally, we derive the recursive-form of mi :
+
+mi = tanh
+
+Ja
+
+mj .
+
+a∈∂i j∈∂a\i
+
+(3.20)
+
+To obtain the ﬁxed-point (equilibrium) values of m, we can run these equations until a stationary point is reached. Using these equilibrium magnetizations, we can obtain the value of the Gibbs free energy [2].
+However, the spin-independence assumption of the naive mean-ﬁeld method may not be accurate, especially when a low-temperature thermodynamic phase is of interest. We need to consider the correlations among the spins in a short-range region of
+
+22
+
+3 Variational Mean-Field Theory and Belief Propagation
+
+1
+
+2
+
+3
+
+4
+
+A
+
+B
+
+C
+
+Variable node Function node
+
+Fig. 3.1 Regions in a factor graph. Solid circles are deﬁned as regions, while the dashed circle is not a valid region
+the factor graph, which is precisely the concept of the Bethe approximation, which we shall explore in the next section.
+
+3.2.2 Bethe Approximation
+
+The Bethe approximation [3] is an extension of the classic mean-ﬁeld method, taking into account correlations between nearest neighboring sites. To introduce the Bethe approximation, we ﬁrst deﬁne the concept of region in the factor graph. As Fig. 3.1 shows, the region is deﬁned by a set of function nodes and all the variable nodes connected to these functional nodes. Note that the function node set can be empty. Variable nodes and functional nodes represent spins and interactions in the multispin interaction model. In this setting, we can introduce the region energy ER(x R), the region internal energy UR(bR), the region entropy HR(bR) and the region free energy FR(bR) as follows:
+
+E R(x R) = − ln fa(xa),
+a∈R
+UR(bR) = bR(x R)E R(x R),
+xR
+HR(bR) = − bR(x R) ln bR(x R),
+xR
+FR(bR) = UR(bR) − HR(bR),
+
+(3.21) (3.22) (3.23) (3.24)
+
+where x R are the variable nodes in the region R, and bR(x R) is the joint distribution of x R. The basic idea of a region-based free energy approximation is to break up the
+
+3.2 Variational Free Energy
+
+23
+
+factor graph into regions and then sum up their contributions to approximate the true free energy, where all the variable nodes and function nodes should be summed up only once. Because overlaps between different regions cannot be avoided in a nonnaive approximation, counting numbers CR (an integer that may be zero or negative) must be introduced to avoid double calculation. Given a region set R, the total internal energy UR and entropy HR can be written as
+
+UR = CRUR(bR),
+R∈R
+HR = CR HR(bR),
+R∈R
+with the following two constraints for counting numbers:
+
+(3.25) (3.26)
+
+I[a ∈ R]CR = 1,
+R∈R
+I[i ∈ R]CR = 1,
+R∈R
+
+(3.27) (3.28)
+
+where I[a ∈ R] = 1 when the function node a is in the region R, and takes zero otherwise. I[i ∈ R] has a similar meaning for variable nodes.
+In the Bethe approximation, the factor graph is broken into two kinds of regions
+(see Fig. 3.2), which are a large region RL with one functional node and the variable nodes connected to it, and a small region RS with only one variable node. Under this division, counting numbers can be derived as CRL = 1 and CRS = 1 − di , where di is the number of the function nodes connected to the variable node i in the small region. These counting numbers can also be derived from the identity CR = 1 − S∈S(R) CS, where S(R) denotes the region set that is the set of super-regions of R. If the set of variable and function nodes in R1 are a subset of nodes in R2, then R2 is the super-region of R1 [4]. Thus, we can compute the Bethe internal energy UBethe and the Bethe entropy HBethe as follows:
+
+Large Region Small Region
+
+Variable node Function node
+
+Fig. 3.2 Region division in the Bethe approximation
+
+24
+
+3 Variational Mean-Field Theory and Belief Propagation
+
+UBethe = −
+a
+HBethe = −
+a
+
+ba(xa) ln fa(xa),
+xa
+
+ba(xa) ln ba(xa) + (di − 1) bi (xi ) ln bi (xi ),
+
+xa
+
+i
+
+xi
+
+(3.29) (3.30)
+
+where we replace bRL (x RL ) and bRS (x RS ) with ba(xa) and bi (xi ), respectively. The Bethe free energy is then given by
+
+FBethe = −
+
+ba(xa) ln fa(xa) +
+
+ba(xa) ln ba(xa)
+
+a xa
+
+a xa
+
+− (di − 1) bi (xi ) ln bi (xi ),
+
+i
+
+xi
+
+(3.31)
+
+which is the target function to minimize later. By taking into account the nearest-
+
+neighbor correlations, the trial probability distribution can also be written in a com-
+
+pact form [4, 5]:
+
+bBA(x) =
+
+i
+
+a ba(xa) bi (xi )di −1
+
+,
+
+(3.32)
+
+which is automatically normalized and exact when the factor graph is a tree, but still a good approximation when the factor graph is not tree-like. A rigorous proof is hard, but the approximation should be compared with simulations in practice. Inserting the form of bB A(x) into the Gibbs free energy, one can derive the same form as that in Eq. (3.31).
+Before using the Lagrange multiplier method, we ﬁrst formulate the probability constraints as follows:
+
+bi (xi ) = 1, ∀i ;
+xi
+ba(xa) = 1, ∀a;
+xa
+ba(xa) = bi (xi ), ∀(i, a).
+xa \xi
+Finally, the Lagrange objective function reads
+
+(3.33) (3.34) (3.35)
+
+L =−
+
+ba(xa) ln fa(xa) +
+
+ba(xa) ln ba(xa)
+
+a xa
+
+a xa
+
+− (di − 1) bi (xi ) ln bi (xi ) + λi bi (xi ) − 1
+
+i
+
+xi
+
+i
+
+xi
+
+(3.36)
+
++ λa ba(xa) − 1 +
+
+ρi,a(xi )
+
+ba(xa) − bi (xi ) .
+
+a
+
+xa
+
+i,a xi
+
+xa \xi
+
+3.2 Variational Free Energy
+
+25
+
+Paoi (xi )
+ai
+
+bi (xi )
+
+ba (xa )
+ai
+
+Pioa (xi )
+
+Variable node Function node
+
+Fig. 3.3 Message passing process in the BP algorithm. (Left Panel) cavity probabilities converge to a variable node; (Right panel) cavity probabilities converge to a function node
+
+After performing the variation on L, we can obtain the form of the spin distribution bi (xi ) and joint distribution ba(xa) [4]:
+
+bi (xi ) =
+
+1 Zi
+
+a ∈∂ i
+
+Pa→i (xi ),
+
+ba(xa) =
+
+1 Za
+
+fa(xa)
+
+Pb→i (xi ),
+
+i∈∂a b∈∂i\a
+
+(3.37a) (3.37b)
+
+where we deﬁne Pa→i (xi ) and Pi→a(xi ) as the messages passing between the functional nodes and variable nodes in two directions as illustrated in Fig. 3.3. These two messages obey the following iterative equations:
+
+Pa→i (xi ) =
+
+fa(xa)
+
+Pj→a(x j ),
+
+x j : j ∈∂a\i
+
+j ∈∂ a\i
+
+Pi→a(xi ) =
+
+1 Z i →a
+
+Pb→i (xi ).
+b∈∂ i \a
+
+(3.38a) (3.38b)
+
+Note that Eq. (3.38a) is compatible with the marginal probability constraint used to
+write the constrained Bethe free energy, while Eq. (3.38b) follows directly from the result of bi (xi ) by just excluding the function node a. Finally, the (joint) marginal probabilities bi (xi ), ba(xa) can be interpreted as beliefs and written in an explicit form as
+
+bi (xi ) ∝ Pa→i (xi ),
+a ∈∂ i
+ba(xa) ∝ fa(xa) Pi→a(xi ),
+i ∈∂ a
+
+(3.39a) (3.39b)
+
+26
+
+3 Variational Mean-Field Theory and Belief Propagation
+
+which is consistent with Eq. (3.37). Equation (3.38) is also called the belief propagation (BP) algorithm in computer
+science, where we can perform the iteration of the messages {Pa→i (xi ), Pi→a(xi )} to their ﬁxed point and calculate the beliefs bi (xi ) and ba(xa). The ﬁxed points of the BP algorithm correspond to stationary points of the constrained Bethe free energy [6]. Depending on speciﬁc settings, the number of stationary points may be different, being ﬁnite or exponentially large. For example, if the factor graph is loopy, or the model has a complex low-temperature phase, the BP iteration may not converge, or oscillate among several solutions. Note that the cavity method allows an extension to handling the case of exponentially many states (in physics, corresponding to onestep replica symmetry breaking, see Chap. 9). The probability distributions of cavity ﬁelds over the states are then required to be introduced. We will provide an in-depth discussion about this point in Chap. 9.
+The messages Pi→a(xi ) here can be interpreted as the probability distribution of the variable node i with the removal of function node a, which is similar to the deﬁnition in the cavity method. Actually, we can prove that the BP equations are equivalent to the cavity equations as follows. First, we substitute the expression of Pb→i (xi ) into Pi→a(xi ) in the BP equation, and we obtain
+
+1
+
+Pi→a(xi ) =
+
+Z i →a
+
+b∈∂i\a x j : j∈∂b\i
+
+fb(xb)
+j ∈∂ b\i
+
+Pj→b(x j )
+
+=1
+
+e Jb
+
+Zi→a b∈∂i\a x j : j∈∂b\i
+
+j∈∂b x j
+
+1 + m j→b x j .
+
+2
+
+j ∈∂ b\i
+
+(3.40)
+
+We then deﬁne A+b =
+
+e x j : j ∈∂b\i Jb j∈∂b\i x j
+
+j ∈∂ b\i
+
+, 1+m j→b x j
+2
+
+where
+
+we
+
+take
+
+xi
+
+=
+
++1. A−b follows the similar deﬁnition with xi = −1. Thus, Zi→a = b∈∂i\a A+b +
+
+b∈∂i\a A−b . After a few algebra operations, A+b and A−b can be written, respectively,
+
+as
+
+⎛
+
+⎞
+
+A+b = cosh Jb ⎝1 + tanh Jb
+
+m j→b⎠ ,
+
+j ∈∂ b\i
+
+⎛
+
+⎞
+
+(3.41)
+
+A−b = cosh Jb ⎝1 − tanh Jb
+
+m j→b⎠ ,
+
+j ∈∂ b\i
+
+(3.42)
+
+which is exactly the same as that derived by the cavity method in the previous chapter. According to the deﬁnition, we can then derive mi→a:
+
+3.2 Variational Free Energy
+
+27
+
+mi→a = Pi→a (xi )
+
+xi
+
+=
+
+b∈∂i\a A+b − b∈∂i\a A+b +
+
+b∈∂i\a A−b b∈∂i\a A−b
+
+= b∈∂i\a (1 + tanh Jb j∈∂b\i m j→b) − b∈∂i\a (1 + tanh Jb j∈∂b\i m j→b) +
+
+b∈∂i\a (1 − tanh Jb b∈∂i\a (1 − tanh Jb
+
+j∈∂b\i m j→b) . j∈∂b\i m j→b)
+(3.43)
+
+After introducing an auxiliary variable tanh Jb j∈∂b\i m j→b, we ﬁnally obtain
+⎛
+
+ub→i through ⎞
+
+mi→a = tanh ⎝
+
+ub→i ⎠ ,
+
+b∈∂ i \a
+
+tanh ub→i = tanh Jb
+
+m j→b,
+
+j ∈∂ b\i
+
+tanh ub→i =
+(3.44a) (3.44b)
+
+which is the standard cavity equation when β = 1. The Bethe approximation is merely a pair approximation of a more general
+method—cluster variational method [5]. The cluster variational method is able to treat arbitrary large clusters of correlated sites, and yet, the computational complexity increases. Recent developments also include loop corrections for probabilistic inference on factor graphs [7, 8].
+
+3.2.3 From the Bethe to Naive Mean-Field Approximation
+
+In the naive mean-ﬁeld approximation, we use a factorized form of the trial probability distribution that neglects the correlation among spins. In contrast, the Bethe
+
+approximation considers a short-range correlation among spins, where it is expected
+
+that in a high temperature, even these short-range correlations become unimportant,
+
+and thus, the naive mean-ﬁeld approximation will be recovered. More precisely, we
+
+take an example of a two-body interaction model. Suppose our model is a two-body interaction model with inverse temperature β. In this setting, the mean-ﬁeld iteration
+
+equations are given by
+
+mi = tanh β Ji j m j .
+j ∈∂ i
+
+(3.45)
+
+Next, we derive this equation from the Bethe approximation. In the Bethe approximation, the cavity iteration equations are given by
+
+28
+
+3 Variational Mean-Field Theory and Belief Propagation
+
+mi→a = tanh
+
+ub→i ,
+
+b∈∂ i \a
+
+tanh ub→i = tanh β Jb
+
+m j→b,
+
+j ∈∂ b\i
+
+where mi→a can be derived as
+
+⎛
+
+⎞
+
+mi→a = tanh ⎝
+
+ub→i ⎠
+
+b∈∂ i \a
+
+(3.46a) (3.46b)
+
+= tanh
+
+ub→i − ua→i
+
+b∈∂ i
+= tanh(tanh−1(mi ) − ua→i )
+
+= mi − tanh β Ja j∈∂a\i m j→a , 1 − mi tanh β Ja j∈∂a\i m j→a
+
+(3.47)
+
+where
+
+we
+
+have
+
+used
+
+the
+
+identity
+
+tanh(x
+
++
+
+y)
+
+=
+
+tanh x+tanh y 1+tanh x tanh y
+
+.
+
+Considering
+
+the
+
+two-
+
+body interaction, we have
+
+mi→ j
+
+=
+
+mi − tanh β Ji j m j→i 1 − mi tanh β Ji j m j→i
+
+,
+
+m j→i
+
+=
+
+mj 1−
+
+− tanh β Ji j mi→ j m j tanh β Ji j mi→ j
+
+.
+
+(3.48a) (3.48b)
+
+We can then eliminate mi→ j and m j→i in the cavity equation, by obtaining the noncavity functions of m j→i and mi→ j as a function of single magnetizations. We ﬁrst have the following expressions based on Eq. (3.48) [9]:
+
+mi→ j = f (mi , m j , tanh β Ji j ),
+
+m j→i = f (m j , mi , tanh β Ji j ),
+
+f (a, b, t) = 1 − t2 −
+
+(1
+
+− t 2)2 2t (b
+
+− −
+
+4t (a at)
+
+−
+
+bt
+
+)(b
+
+−
+
+at)
+
+.
+
+Thus, we can write a non-cavity version of mi as follows:
+
+(3.49) (3.50)
+(3.51)
+
+mi = tanh
+
+tanh−1( f (m j , mi , tanh β Ji j ) tanh β Ji j ) .
+
+j ∈∂ i
+
+(3.52)
+
+Since we assume β Ji j is weak (e.g., in a high-temperature phase), we can perform
+
+the
+
+Taylor
+
+expansions
+
+like
+
+tanh−1
+
+x
+
+≈
+
+x,
+
+tanh
+
+x
+
+≈
+
+x,
+
+(1
+
++
+
+x )a
+
+≈
+
+1
+
++
+
+ax
+
++
+
+1 2
+
+a(a
+
+−
+
+1)x2, when x is a small quantity, and we ﬁnally get
+
+3.2 Variational Free Energy
+
+29
+
+mi = tanh
+
+(β Ji j m j
+
+−
+
+β
+
+2
+
+Ji2j
+
+(1
+
+−
+
+m
+
+2 j
+
+)mi
+
+)
+
+,
+
+j ∈∂ i
+
+(3.53)
+
+where the second term in the summation is called the Onsager reaction term, a characteristic of a high-temperature expansion solution of a spin glass model [10, 11], which we shall introduce in more details later. Neglecting the second-order term of couplings, one recovers the naive mean-ﬁeld equation.
+
+3.3 Mean-Field Inverse Ising Problem
+
+In the previous sections, we describe how to ﬁnd the statistical physics solutions of an equilibrium thermodynamic problem under some approximations, which is exactly a direct problem. However, if we acquire data samples from an unknown model, we can predict the model parameters, e.g., couplings and ﬁelds, from these raw data samples, which is called the inverse problem. The direct problem can provide insights into the inverse problem. Let us explain this in more details.
+An Ising model considering only up to pairwise interactions is described by
+
+H (σ ) = − Ji j σi σ j − hi σi ,
+
+i<j
+
+i
+
+P(σ ) =
+
+1 e
+
+i< j Ji j σi σ j +
+
+. i hi σi
+
+Z
+
+(3.54a) (3.54b)
+
+Note that β has been absorbed into the model parameters in the current setting. Given measured magnetizations mi = σi data and correlation functions Ci j = σi σ j data − mi m j , what we want to estimate is the coupling constants and external ﬁelds {Ji j , hi }, which is a typical unsupervised learning problem. This is exactly the Boltzmann machine learning [12]. It starts from a set of initial parameters {Ji j , hi } and then updates the parameters by an increment:
+
+Ji j =η( σi σ j data − σi σ j Ising), hi =η( σi data − σi Ising),
+
+(3.55a) (3.55b)
+
+where η is a predeﬁned learning rate. The iteration runs until the model average and data average match with each other within a certain accuracy. The model average can be estimated by the Monte Carlo algorithms, which we shall introduce in the following chapter. However, when the system size is large, the mean-ﬁeld method is relatively fast.
+To carry out the inference, we ﬁrst compute the magnetization:
+
+mi
+
+=
+
+∂ log Z ( Ji∗j , hi∗) ∂hi
+
+=
+
+{σ }
+
+σi e
+
+i< j Ji∗j σi σ j +
+Z
+
+i hi∗σi
+,
+
+(3.56)
+
+30
+
+3 Variational Mean-Field Theory and Belief Propagation
+
+and then we apply the ﬂuctuation-response theorem [13]:
+
+∂mi ∂h j
+
+=
+
+{σ }
+
+σi σ j e
+
+e − σi
+{σ }
+
+i< j Ji∗j σi σ j +
+Z
+i< j Ji∗j σi σ j +
+Z
+
+i hi∗σi i hi∗σi
+
+e σj
+{σ }
+
+i< j Ji∗j σi σ j +
+Z
+
+i hi∗σi
+
+=Ci j = σi σ j data − mi m j .
+
+(3.57)
+
+The symbol with the superscript ∗ indicates the current estimates of the model
+
+parameters. These steps amount to the expectation step of a standard Expectation-
+
+Maximization procedure [14]. The updating procedure in Eq. (3.55) corresponds to
+
+the M step.
+
+Using the above relationship Ci j
+
+=
+
+∂mi ∂h j
+
+and the naive mean-ﬁeld equation mi
+
+=
+
+tanh(hi + k=i Jik mk ), we get
+
+Ci j = (1 − mi2) δi j + Jik Ck j ,
+k =i
+C = P + PJC,
+
+(3.58)
+
+where
+
+P
+
+is
+
+a
+
+diagonal
+
+matrix
+
+with
+
+Pi j
+
+=
+
+(1 −
+
+m
+
+2 i
+
+)δi
+
+j
+
+.
+
+Finally,
+
+we
+
+obtain
+
+the
+
+naive
+
+mean-ﬁeld (nMF) solution of the inverse Ising problem:
+
+JinjMF = (P)i−j1 − (C)i−j1.
+
+(3.59)
+
+The external ﬁelds can then be reconstructed based on the predicted couplings. The naive mean-ﬁeld solution is the simplest one among other mean-ﬁeld methods, including high-temperature expansion, small-correlation expansion and the Bethe approximation [2, 15].
+
+References
+1. J.M. Yeomans, Statistical Mechanics of Phase Transitions (Oxford University Press, Oxford, 1992)
+2. H. Huang, Y. Kabashima, Phys. Rev. E 87, 062129 (2013) 3. H.A. Bethe, Proc. R. Soc. Lon. Ser. A-Math. Phys. Sci. 150(871), 552 (1935) 4. J. Yedidia, W. Freeman, Y. Weiss, IEEE Trans. Inf. Theory 51(7), 2282 (2005) 5. A. Pelizzola, J. Phys. A 38(33), R309 (2005) 6. T. Heskes, Neural Comput. 16(11), 2379 (2004) 7. J.M. Mooij, H.J. Kappen, J. Mach. Learn. Res. 8(40), 1113 (2007) 8. J.Q. Xiao, H. Zhou, J. Phys. A: Math. Theor. 44(42), 425001 (2011) 9. F. Ricci-Tersenghi, J. Stat. Mech.: Theory Exper. 2012(8), 8015 (2012) 10. D.J. Thouless, P.W. Anderson, R.G. Palmer, Philos. Mag. 35(3), 593 (1977)
+
+References
+
+31
+
+11. T. Plefka, J. Phys. A 15(6), 1971 (1982) 12. D.H. Ackley, G.E. Hinton, T.J. Sejnowski, Cognit. Sci. 9(1), 147 (1985) 13. H.J. Kappen, F.B. Rodríguez, in Advances in Neural Information Processing Systems (1998),
+pp. 280–286 14. A.P. Dempster, N.M. Laird, D.B. Rubin, J. R. Stat. Soc. Ser. B 39, 1 (1977) 15. H.C. Nguyen, R. Zecchina, J. Berg, Adv. Phys. 66(3), 197 (2017)
+
+Chapter 4
+Monte Carlo Simulation Methods
+
+A few systems in equilibrium physics can be analytically solved. It is, therefore, necessary to develop numerical techniques to estimate the equilibrium properties of a physics system. For example, given the Hamiltonian of the Ising model, it still requires O(2N ) time complexity to directly compute expected energy, where N is the number of spins. To either check how accurate a crude approximation is, e.g., meanﬁeld approximation or the Bethe approximation, or estimate the typical energy level of a statistical mechanics model that cannot be analytically solved, we rely on the Monte Carlo simulation techniques, including their variants, which are widely used not only in the physics ﬁeld itself but also in the machine learning community. For example, the Gibbs sampling is performed with the classical Monte Carlo methods or its variants with the help of importance sampling. In this chapter, we will introduce the basic knowledge about the sampling method and its applications to standard physics models.
+
+4.1 Monte Carlo Method
+The main idea of the Monte Carlo method is simple. For example, calculating a multi-dimensional integral can be carried out by drawing a set of samples according to a predeﬁned distribution. We ﬁrst introduce the standard steps to implement the Monte Carlo method:
+• Transforming the original problem of interest to a statistical problem, like calculating the expectation of some random variables under a speciﬁc distribution.
+• Sampling random variables from the speciﬁc distribution. • Using the samples from the second step to compute any quantity of interest and
+obtaining the result of the problem.
+We give here a representative example of estimating an integral or a sum:
+
+© Higher Education Press 2021
+
+33
+
+H. Huang, Statistical Mechanics of Neural Networks,
+
+https://doi.org/10.1007/978-981-16-7570-6_4
+
+34
+
+4 Monte Carlo Simulation Methods
+
+A = A(x) f (x)dx, (4.1)
+A = A(x) p(x).
+x
+To calculate the above expectations, one can sample random variables from the distribution f (x) or p(x) and then obtain a sample collection {x1, x2, x3, . . . , xM } of the size M. Finally, { A(x1), A(x2), A(x3), . . . , A(xM )} can be obtained. As A(xi ) is independently estimated, the law of large number implies that
+
+lim P
+M →∞
+
+1 M
+
+M
+A(xi ) −
+i =1
+
+A
+
+<
+
+Thus, the expectation can be estimated as
+
+= 1, ∀ > 0.
+
+(4.2)
+
+1 A M A(xi ).
+xi
+
+(4.3)
+
+As the collected samples {x1, x2, x3, . . . , xM } are independent and identically dis-
+
+tributed, the statistical error due to the sampling is related to the variance of A and
+
+can
+
+be
+
+estimated
+
+to
+
+be
+
+of
+
+the
+
+order
+
+of
+
+O(
+
+M
+
+−
+
+1 2
+
+)
+
+[1].
+
+Moreover,
+
+the
+
+Monte
+
+Carlo
+
+estimator is unbiased. Given a large number of the Monte Carlo samples, the empir-
+
+ical estimation converges to the true expectation we want to compute [2]. Interested
+
+readers can ﬁgure out the procedure as the above description to estimate the integral
+
+∞ −∞
+
+x
+
+2
+
+Dx,
+
+where
+
+Dx
+
+indicates
+
+the
+
+random
+
+variable
+
+x
+
+is
+
+a
+
+standard
+
+Gaussian
+
+variable.
+
+The Monte Carlo estimation can be compared with the analytic result of 1. As the
+
+number of random samples increases, the estimation will approach the exact result.
+
+In the remaining chapters, we will also show this kind of method is also very effec-
+
+tive and popular to solve the saddle-point equations of the replica method applied to
+
+solve a variety of neural network models.
+
+4.2 Importance Sampling
+In the Monte Carlo simulation, sampling a distribution is usually required, e.g., the Gaussian distribution as mentioned in the previous section. Unfortunately, most distributions are very challenging to sample, e.g., the Boltzmann distribution in statistical physics. Here, we shall introduce some basic strategies to generate random samples from distributions that are more complicated than the commonly used ones, such as uniform, Poisson and Gaussian distributions.
+By introducing a simple trial distribution, say q(x) that is easy to sample, we can recast Eq. (4.1) as
+
+4.2 Importance Sampling
+
+35
+
+A(x) f (x)
+
+A=
+
+q (x)d x,
+
+q (x)
+
+A(x) p(x)
+
+(4.4)
+
+A=
+
+q (x).
+
+q (x)
+
+x
+
+The expectations
+
+A f and
+
+A p are then transformed to
+
+A(x) f (x) q (x)
+
+q , and
+
+A(x) p(x) q (x)
+
+q.
+
+Therefore, we can ﬁrst sample the distribution q(x) to get samples {x1, x2, x3, . . . ,
+
+xM } and then calculate the expectations:
+
+A
+
+M i =1
+
+A(xi ) p(xi
+
+)/q(xi ) ,
+
+M
+
+(4.5)
+
+where
+
+the
+
+factor
+
+p(xi ) q(xi )
+
+can
+
+be
+
+thought
+
+of
+
+as
+
+an
+
+importance
+
+weight
+
+of
+
+the
+
+sample
+
+xi in computing the expectation. This estimation is, thus, called the importance
+
+sampling [2]. When q(xi ) = p(xi ), the importance sampling turns out to be Eq. (4.3).
+
+Choosing a trial distribution is important; otherwise, the Monte Carlo estimation
+
+will become noisy with a large variance, being very slow to converge to a quantity
+
+of satisﬁed accuracy. An annealed importance sampling is introduced to build a
+
+suitable q(x) starting from a trivial one [ p0(x)]. A common scheme specifying the intermediate distribution is given by
+
+p j (x) = p0(x)1−βj pn(x)βj ,
+
+(4.6)
+
+where 0 = β0 < β1 < · · · < βn = 1. In other words, p j (x) interpolates between p0(x) and pn(x) = p(x). The samples can then be sequentially generated by designing an appropriate transition probability of two states. Interested readers can ﬁnd the
+original paper [3] for implementation details.
+
+4.3 Markov Chain Sampling
+
+To realize a sampling where a sequence of samples are generated, one can construct
+
+a Markov chain during sampling. The Markov property implies that the next state of
+
+a dynamics is only related to the current state, and the conditional probability can be
+
+written as
+
+P St+1|S1, . . . , St = P St+1|St ,
+
+(4.7)
+
+where St is the state at time t. A Markov chain obeys the Markov property for its dynamics. One can construct a time-homogeneous Markov chain by setting up an initial distribution π(S0) together with the transition probability W (S → S ). A stationary distribution π(S ) can, thus, be identiﬁed by satisfying the following
+condition:
+
+36
+
+4 Monte Carlo Simulation Methods
+
+π(S ) = W (S → S )π(S).
+
+(4.8)
+
+S
+
+The task of designing a Markov chain becomes simple if the detailed balance criterion
+
+is obeyed [1], i.e.,
+
+W (S → S )π(S) = W (S → S)π(S ).
+
+(4.9)
+
+The detailed balance criterion guarantees that the designed Markov chain converges to the target distribution [Eq. (4.8)] [1].
+
+4.4 Monte Carlo Simulations in Statistical Physics
+
+In statistical physics, an equilibrium system is described by the Boltzmann distribu-
+
+tion:
+
+Peq(s) =
+
+1 e−βH(s), Z
+
+(4.10)
+
+where the partition function Z = s e−βH(s), and H(s) is the system’s Hamiltonian. Then the expectation or thermal average of an observable O(s) is given by
+
+O =1
+
+O( s)e−β H (s) .
+
+Zs
+
+(4.11)
+
+The partition function is usually intractable, making an analytic estimation of thermodynamic quantities impossible. The Markov Chain Monte Carlo (MCMC) is then useful for estimating the quantities of interest. To illustrate the MCMC method, we simulate the SK model as an example. The SK model is a fully connected mean-ﬁeld glass model, and the statistical mechanics properties were ﬁrst studied analytically in the seminal work [4]. The Hamiltonian is given by
+
+1
+
+H
+
+=
+
+− 2
+
+i=j
+
+Ji j σi σ j ,
+
+(4.12)
+
+where the spin σi = ±1, and the couplings follow independently a Gaussian distribution of zero mean and variance 1/N . The model has a paramagnetic-to-spin glass transition at the critical temperature T = 1. By using the MCMC method, we can acquire the equilibrium properties of the SK model, which can be compared with the theoretical analysis.
+Next, we introduce two Monte Carlo techniques to numerically evaluate the model. But we emphasize that both methods are generally applicable to other similar models, for which an exact computation of relevant thermodynamic quantities may be impossible.
+
+4.4 Monte Carlo Simulations in Statistical Physics
+
+37
+
+4.4.1 Metropolis Algorithm
+
+The detailed balance condition of the Boltzmann distribution can be written as fol-
+
+lows:
+
+Peq(si )W (si → s j ) = Peq(s j )W (s j → si ),
+
+(4.13)
+
+where W (si → s j ) is the transition probability from state si to state s j . The ratio between two transition probabilities can be rewritten as
+
+W (si → s j ) = e−β H(si ,s j ), W (s j → si )
+
+(4.14)
+
+where H(si , s j ) = H(s j ) − H(si ), and the Boltzmann distribution is used. Our purpose is to ﬁnd a transition probability matrix satisfying the detailed balance condition. In fact, choosing the transition probability form is not unique, and there are two frequently used forms. One is the Metropolis algorithm:
+
+W (si → s j ) =
+
+1, e−β H(si ,s j ),
+
+H(si , s j ) < 0; H(si , s j ) ≥ 0,
+
+(4.15)
+
+which can be also recast into the form W (si → s j ) = min(e−β H(si ,sj ), 1). A pseudocode is given in Algorithm 4.1. Another popular choice is the heat-bath algorithm:
+
+e−β H(si ,s j ) W (si → s j ) = 1 + e−β H(si ,sj ) .
+
+(4.16)
+
+It can be veriﬁed that the Metropolis dynamics is always more likely to accept an
+
+attempt of spin changes that leads to a small change of energy. In addition, if we
+
+deﬁne the transition probability as a function F(e−β H ), it can be also veriﬁed that
+
+the
+
+above
+
+two
+
+choices
+
+satisfy
+
+F(x) F (1/x )
+
+=x
+
+for
+
+all
+
+x,
+
+compatible
+
+with
+
+the
+
+detailed
+
+balance criterion.
+
+For a fast sampling, we can ﬂip just one single spin (rather than a small group of
+
+spins) at each step of the Metropolis dynamics, and then, we can obtain the following
+
+transition rule:
+
+1
+
+W (σi
+
+→
+
+−σi )
+
+=
+
+[1 2
+
+−
+
+σi
+
+tanh βhi ],
+
+(4.17)
+
+where hi = j=i Ji j σ j is the local ﬁeld acting on the spin σi . This rule is derived from the heat-bath choice.
+A random initial state is far from equilibrium with a high probability, and thus, a Markov chain dynamics requires a relaxation time for the system to reach the equilibrium state. This time scale is called the equilibration time τeq . In practice, τeq is measured in the unit of the Monte Carlo sweep (MCS), in which one MCS equals to N proposed single-spin-updates. To verify whether the system arrives at equilibrium, it is necessary in practice to check the evolution of some observables, e.g., energy.
+
+38
+
+4 Monte Carlo Simulation Methods
+
+Fig. 4.1 Evolutions of the energy density of the SK model with N = 500 and Ji j ∼ N(0, 1/N ). a Metropolis Monte Carlo simulation. b Parallel Tempering Monte Carlo. The dashed lines are the corresponding predictions of replica theory. The time step is a measure in the unit of the Monte Carlo step (MCS). Each step means a sweep of all spins for the proposed update. β deﬁnes the inverse temperature
+
+Algorithm 4.1 Metropolis Algorithm
+
+Input: The number of samples M, temperature T , τeq , δt Output: A collection of samples
+
+1: Initialize conﬁguration S randomly;
+
+2: Initialize i = 0;
+
+3: Initialize counter = 0; 4: while (i< M) do
+
+5: generate a trial state S ;
+
+6: compute W (S → S|T );
+
+7: if W > rand(0, 1) then
+
+8:
+
+S=S
+
+9: if [(counter > τeq ) and (counter % δt==0))] then
+
+10:
+
+Append S to the sample collection.
+
+11:
+
+i = i+1
+
+12: counter = counter + 1 13: return the sample collection.
+
+As shown in Fig. 4.1a, the energy of the SK model arrives at equilibrium at about τeq MCSs, which depends on the temperature. After the relaxation, the energy ﬂuctuates around a typical value, which could be predicted by theory. Therefore, samples can be collected after τeq MCSs to estimate equilibrium values of thermodynamic quantities of interest.
+Even if the dynamics reaches a steady state, an independent sampling of the equilibrium state requires a certain number of MCSs separating two consecutive samplings. Therefore, we need to compute a time-dependent autocorrelation function of any observable O:
+
+CO(t) =
+
+O (t0) O (t0 + t) O2(t0)
+
+− −
+
+O(t0) O(t0)
+
+O(t0 + t)
+2
+
+,
+
+(4.18)
+
+4.4 Monte Carlo Simulations in Statistical Physics
+
+39
+
+Fig. 4.2 The relaxation dynamics of the autocorrelation function for the same SK model deﬁned in Fig. 4.1
+
+where · indicates a thermal average, and t0 denotes the starting time. In general, CO(t) ∼ exp (−t/τauto), and τauto is the corresponding time scale. The correlation
+
+length diverges at a continuous phase transition, while the autocorrelation time also
+
+diverges at the transition, which is also called the critical slowing down phenomenon.
+
+In
+
+glass
+
+physics,
+
+the
+
+Edwards–Anderson
+
+order
+
+parameter
+
+qEA
+
+=
+
+1 N
+
+i σi 2 [5],
+
+which can be treated as the long-time limit of the time-dependent autocorrela-
+
+tion function
+
+qEA
+
+=
+
+limt→∞ C(t), where C(t)
+
+=
+
+1 N
+
+i σi (0)σi (t) . The Edwards–
+
+Anderson order parameter can also be used to detect ergodicity breaking. A typical
+
+example of the autocorrelation proﬁle is shown in Fig. 4.2 for the SK model at
+
+different temperatures.
+
+4.4.2 Parallel Tempering Monte Carlo
+When we are interested in a low-temperature phase for a spin glass model (e.g., the Sherrington–Kirkpatrick model, the Hopﬁeld model, etc.), the Metropolis algorithm is easy to get trapped in a local minimum, once the Gibbs measure is decomposed into an exponential (in the number of degrees of freedom) number of metastable states. In general, there does not exist one efﬁcient local dynamics method overcoming this challenging fair-sampling problem. However, there do exist a variety of sampling heuristics. One well-known example is the simulated annealing [6], where the starting temperature for the Metropolis sampling is much higher than the target low temperature, and the dynamics is run at each intermediate decreasing temper-
+
+40
+
+4 Monte Carlo Simulation Methods
+
+ature for a certain number of MCSs, and ﬁnally, a ground state of lower energy is
+expected to be reached by the annealing process.
+The other more efﬁcient one is the parallel tempering method [7], focusing on
+overcoming energy barriers by simulating several copies of the original system at
+different temperatures. In this method, M replicas without interaction, which means replicas are independent, are used to construct an ensemble. The mth replica has the original Hamiltonian H(Xm) and obeys the Boltzmann distribution with an inverse temperature βm. The corresponding inverse temperatures satisfy βm < βm+1 for convenience. Then the state of the ensemble can be described by an extended state {X } = {X1, X2, . . . , X M }, and the partition function of the ensemble is given by
+
+M
+
+M
+
+Z = exp − βmH (Xm) = Z (βm) ,
+
+{X}
+
+m=1
+
+m=1
+
+(4.19)
+
+where Z (βm) is the partition function of the original system with βm. The probability of the extended state with a temperature set can be written as
+
+P({X, β}) =
+
+M
+
+Peq
+
+(Xm , βm )
+
+=
+
+1 Z
+
+exp
+
+M
+− βmH (Xm)
+
+.
+
+m=1
+
+m=1
+
+(4.20)
+
+To construct the detailed balance condition, we only consider exchanging conﬁgurations between two replicas. For example, the extended state {. . . ; X, βm; . . . ; X , βn; . . .} changes to {. . . ; X , βm; . . . ; X, βn; . . .} with a transition probability W (X , βm; X, βn|X, βm; X , βn). The detailed balance condition can, thus, be written as
+
+P({. . . ; X, βm; . . . ; X , βn; . . .})W (X , βm; X, βn|X, βm; X , βn)
+
+(4.21)
+
+= P({. . . ; X , βm; . . . ; X, βn; . . .})W (X, βm; X , βn|X , βm; X, βn).
+
+It is then easy to derive the ratio between the two transition probabilities:
+
+where
+
+W (X , βm; X, βn|X, βm; X , βn) = exp(− ), W (X, βm; X , βn|X , βm; X, βn)
+= (βn − βm) H(X ) − H X .
+
+(4.22) (4.23)
+
+A reasonable choice of the transition probability can then be expressed as follows:
+
+W (X , βm; X, βn|X, βm; X , βn) =
+
+1,
+
+for
+
+exp(− ), for
+
+< 0, > 0.
+
+(4.24)
+
+In sum, the parallel tempering Monte Carlo can be implemented by the following procedure. First, using the conventional MCMC method to simulate each replica in the
+
+4.4 Monte Carlo Simulations in Statistical Physics
+
+41
+
+ensemble for a certain number of MCSs. Then conﬁgurations of two neighboring temperatures are exchanged with the transition probability W (X , βm; X, βm+1|X, βm; X , βm+1). In general, arbitrary pairs of replicas (say, at two different temperatures Tn and Tm) with associated microscopic conﬁgurations can undergo temperature switching [8]. We remark that the probability for the temperature exchange between
+nonadjacent replicas decreases exponentially, yet essential to speed up crossing the
+high energy barriers [8]. Finally, an expectation of any observable O can be obtained:
+
+1M O βm = M O (Xm(t)) .
+t =1
+
+(4.25)
+
+A pseudo-code for the parallel tempering method is shown in Algorithm 4.2.
+
+Algorithm 4.2 Parallel tempering Monte Carlo
+
+Input: The number of samples L, βmax , βmin, and the number of temperatures M.
+
+Output: Sample collection.
+
+1: Initialize β1 = βmin, βM = βmax ;
+
+2:
+
+Linear
+
+initialization
+
+of
+
+β:
+
+βm
+
+=
+
+β1
+
++
+
+(βM
+
+−
+
+β1)
+
+m−1 M −1
+
+;
+
+3: Initialize the extended state randomly: {X } = {X1, X2, . . . , X M };
+
+4: Initialize i = 0;
+
+5: Initialize counter = 0; 6: while (i< L) do
+
+7: Applying the MCMC (e.g., the Metropolis method) for each replica for a few MCSs
+
+8: for βm in {β1, β2, . . . , βM−1} do
+
+9:
+
+compute = (βm+1 − βm ) (H(Xm ) − H (Xm+1)).
+
+10:
+
+if exp(− ) > rand(0, 1) then
+
+11:
+
+Swap Xm and Xm+1.
+
+12: Append {X } to the sample collection.
+
+13: i = i+1
+
+14: return the sample collection.
+
+A high-temperature phase has a fast dynamics, while a low-temperature phase
+has a very slow dynamics, due to the potential rugged energy landscape. To ensure a proper acceptance ratio, the acceptance probability e− should be of order of one.
+According to Eq. (4.23), one has
+
+−
+
+=
+
+δ
+
+(H
+
+( X n+1 )
+
+−
+
+H
+
+( X n ))
+
+∼
+
+δ2
+
+d dβ
+
+E,
+
+(4.26)
+
+where δ indicates the small inverse-temperature difference, and E = H is the mean thermal energy and is an extensive quantity. To ensure the acceptance probability is of order one, the difference between √neighboring temperatures δ should be of order √1 , implying that a number of order N of replicas are required [7]. In essence, the
+N
+
+42
+
+4 Monte Carlo Simulation Methods
+
+new conﬁguration from the fast mixing chain allows the chains at a low temperature to sample the state space more efﬁciently, compared with a pure Metropolis local dynamics.
+
+References
+1. U. von Toussaint, Rev. Mod. Phys. 83(3), 943 (2011) 2. H.G. Katzgraber (2009). arXiv:0905.1629 3. R.M. Neal, Stat. Comput. 11(2), 125 (2001) 4. D. Sherrington, S. Kirkpatrick, Phys. Rev. Lett. 35(26), 1792 (1975) 5. S.F. Edwards, P.W. Anderson, J. Phys. F: Met. Phys. 5(5), 965 (1975) 6. S. Kirkpatrick, C.D. Gelatt, M.P. Vecchi, Science 220(4598), 671 (1983) 7. K. Hukushima, K. Nemoto, J. Phys. Soc. Jpn. 65(6), 1604 (1996) 8. C.E. Fiore, M.G.E. da Luz, Phys. Rev. E 82, 031104 (2010)
+
+Chapter 5
+High-Temperature Expansion
+
+In this chapter, we introduce one important theoretical technique—high-temperature expansion, to derive the Thouless–Anderson–Palmer (TAP) equation, a seminal equation in standard spin glass theory (Thouless et al. in Phil. Mag. 35(3):593, 1977 [1]; Plefka in J. Phys. A 15(6):1971, 1982 [2]; Georges and Yedidia in J. Phys. A: Math. Gen. 24:2173, 1991 [3]). This technique is quite popular and useful even in machine learning community, acting as a perturbation analysis to derive efﬁcient algorithms for inference and learning (Maillard et al. in J. Stat. Mech.: Theory Exper. 2019(11):113301, 2019 [4]).
+
+5.1 Statistical Physics Setting
+
+In statistical physics, given a Hamiltonian H , the corresponding partition function
+
+is deﬁned as
+
+Z = e−β H(σ ),
+
+(5.1)
+
+σ
+
+which is the normalization constant of the Boltzmann distribution. The inverse temperature β = 1/T , and σ denotes the conﬁguration vector. The average of any thermodynamic quantity A(σ ) with respect to the Boltzmann distribution is given by
+
+A = A(σ )P(σ ),
+
+(5.2)
+
+σ
+
+where
+
+the Boltzmann
+
+distribution
+
+P(σ )
+
+=
+
+. e−β H(σ )
+Z
+
+The internal
+
+energy
+
+E(β) is, thus,
+
+deﬁned as
+
+E(β) = H = H (σ )P(σ ).
+
+(5.3)
+
+σ
+
+According to the probabilistic interpretation, the entropy is deﬁned as
+
+© Higher Education Press 2021
+
+43
+
+H. Huang, Statistical Mechanics of Neural Networks,
+
+https://doi.org/10.1007/978-981-16-7570-6_5
+
+44
+
+5 High-Temperature Expansion
+
+S(β) = − P(σ ) ln P(σ ).
+
+(5.4)
+
+σ
+
+The Helmholtz free energy is, thus, deﬁned by
+
+F (β )
+
+=
+
+E (β )
+
+−
+
+T
+
+S(β)
+
+=
+
+−
+
+1 β
+
+ln
+
+Z (β).
+
+(5.5)
+
+In a complex system, like a neural network, the Boltzmann distribution is com-
+
+monly hard to compute (including uniform sampling). However, the variational
+
+method approximates the intractable distribution P(σ ) by Q(σ ) which belongs to
+
+a family M of tractable distributions. The distribution Q is chosen such that it
+
+minimizes a certain distance measure D(Q, P) within the family M. For example,
+
+D(Q, P) can be chosen as the Kullback–Leibler (KL) divergence between Q and
+
+P:
+
+Q(σ )
+
+Q
+
+KL(Q||P) = Q(σ ) ln
+
+= ln ,
+
+(5.6)
+
+σ
+
+P(σ )
+
+PQ
+
+where
+
+···
+
+Q
+
+denotes
+
+an
+
+expectation
+
+with
+
+respect
+
+to
+
+Q.
+
+Inserting
+
+P(σ )
+
+=
+
+e−β H (σ ) Z
+
+into Eq. (5.6), we get
+
+KL(Q||P) = ln Z + β E[Q] − S[Q] = ln Z + β F[Q],
+
+(5.7)
+
+where the variational energy is then deﬁned by
+
+E[Q] = Q(σ )H (σ ),
+
+(5.8)
+
+σ
+
+and the entropy of the trial distribution Q is given by
+
+S[Q] = − Q(σ ) ln Q(σ ).
+
+(5.9)
+
+σ
+
+The variational free energy is, thus, given by
+
+F[Q] = E[Q] − T S[Q].
+
+(5.10)
+
+We remark that F[Q] constructs an upper bound to the Helmholtz free energy, due
+
+to the non-negativity of the KL divergence. The bound is tight once Q = P.
+
+To proceed, we introduce the Gibbs free energy Gβ(m) under the distribution Q
+
+as follows:
+
+Gβ (m) = min{F[Q]| σ Q = m}.
+Q
+
+(5.11)
+
+5.1 Statistical Physics Setting
+
+45
+
+The Helmholtz free energy is just a thermodynamic value equal to E − T S at equilibrium, but the Gibbs free energy is a function that gives the value of E − T S when some constraints (e.g., magnetizations) are applied. The advantage of working with a Gibbs free energy instead of a direct computation of the Helmholtz free energy is that it is much easier to apply intuitive approximations, as we explain below.
+We then minimize the Gibbs free energy in the following steps. First, we constrain the minimization in the family of distributions satisfying σ Q = m for ﬁxed m. By adding a Lagrange multiplier λ, we obtain
+
+Gβ (m,
+
+λ)
+
+=
+
+E[Q]
+
+−
+
+T
+
+S[Q]
+
+−
+
+1 β
+
+λi ( σi Q − mi )
+
+i
+
+=
+
+σ
+
+Q(σ )H (σ )
+
+−
+
+T
+
+S[Q]
+
+−
+
+1 β
+
+σ
+
+λi σi
+
+Q(σ )
+
++
+
+1 β
+
+λi mi
+
+i
+
+i
+
+=
+
+σ
+
+Q(σ )[H (σ ) − 1 β
+
+i
+
+λi σi ]
+
+−
+
+T
+
+S[Q]
+
++
+
+1 β
+
+i
+
+λi mi .
+
+(5.12)
+
+Equation (5.12) is of the form of the variational free energy [Eq. (5.10)], where H (σ )
+
+is replaced by H (σ ) −
+
+i
+
+λi β
+
+σi
+
+.
+
+Hence,
+
+the
+
+valid
+
+distribution
+
+is
+
+given
+
+by
+
+e−β H (σ )+ i λi σi
+
+Qλ(σ ) =
+
+, Zλ
+
+(5.13)
+
+where Zλ = σ e−β H(σ)+ i λi σi . This equation comes from the fact that the variational free energy takes a minimum when Q is the Boltzmann distribution P(σ ). Inserting this distribution back into Eq. (5.12) yields
+
+Gβ (m, λ)
+
+=
+
+−
+
+1 β
+
+ln
+
+σ
+
+e−β H (σ )+
+
+i λi σi + 1 β
+
+i
+
+λi mi
+
+= − 1 ln
+
+e−β H (σ )+ i λi σi − . i λi mi
+
+βσ
+
+(5.14)
+
+The constraint σ Q = m has been enforced by the Lagrange multiplier λ that is determined by
+
+β
+
+Gβ
+
+(m)
+
+=
+
+max
+λ
+
+− ln
+
+e−β H (σ )+ + i λi σi
+
+λi mi .
+
+σ
+
+i
+
+(5.15)
+
+The max operation is related to the property of the Hessian matrix. By using the Lagrangian multiplier method, we carry out the derivatives:
+
+∂
+
+−βGβ (m, λ) ∂ λi
+
+=
+
+σi Q − mi = 0
+
+⇒ mi = σi Q,
+
+(5.16)
+
+46
+
+5 High-Temperature Expansion
+
+∂ −βGβ (m, λ) ∂mi
+
+=
+
+j
+
+∂ ∂λj
+
+−β Fβ (λ)
+
+∂λj ∂mi
+
+− λi
+
+−
+
+j
+
+∂λj ∂mi
+
+m
+
+j
+
+=
+
+j
+
+∂λj ∂mi
+
+(
+
+σj
+
+λ − m j ) − λi
+
+= −λi
+
+= 0,
+
+(5.17)
+
+where −β Fβ (λ) d=ef ln Zλ. Finally, we obtain
+
+minmGβ (m)
+
+=
+
+F[P]
+
+=
+
+−
+
+1 β
+
+ln
+
+Z.
+
+(5.18)
+
+Note that Gβ(m) is a convex function with a unique minimum at meq. In sum, the approximate computation of Gβ(m) can be used to get an approximation for the true free energy F[P] as well.
+
+5.2 High-Temperature Expansion
+
+In this section, we apply the high-temperature expansion to approximate the true Helmholtz free energy. We ﬁrst introduce the seminal Sherrington–Kirkpatrick (SK) model. This model was introduced in 1975 as a simple model of spin glass [5]. It is actually an Ising model with disordered couplings. For simplicity, we ignore external ﬁelds here. The Hamiltonian of the model is given by
+
+N
+H (σ ) = − Ji j σi σ j ,
+i<j
+
+(5.19)
+
+where couplings Ji j are independent and are Gaussian random variables for i < j with mean J0 (here we just assume J0 to be 0) and variance J 2/N . Ji j acts as quenched disorder for the model.
+The Gibbs free energy is unfortunately intractable, making an optimization in the magnetization space challenging as well. Therefore, we need to consider a perturbation analysis of the free energy, e.g., in terms of high temperatures. The approximation accuracy can be controlled by including higher orders of expansion.
+We deﬁne a new partition function associated with the Hamiltonian as follows:
+
+Z˜ β =
+
+e−β H˜ (σ ),
+
+σ
+
+(5.20)
+
+where the modiﬁed Hamiltonian is given by
+
+5.2 High-Temperature Expansion
+
+47
+
+H˜ (σ ) = H (σ ) −
+
+i
+
+λi (β) β
+
+(σi
+
+− mi)
+
+=
+
+−1 2
+
+i=j
+
+Ji j σi σ j
+
+−
+
+i
+
+λi (β) β
+
+(σi
+
+−
+
+mi)
+
+,
+
+(5.21)
+
+where we write λi (β) as an explicit function of the temperature, because λi is used
+
+to enforce the magnetization that depends on the temperature. The relation between
+
+the Gibbs free energy and the new partition function is
+
+− βGβ (m, λ) = ln Z˜ β .
+
+(5.22)
+
+We then carry out the Taylor expansion at β = 0:
+
+− βGβ (m)
+
+=
+
+ln Z˜ β
+
+β=0
+
++
+
+∂ ∂β
+
+ln Z˜ β
+
+β
+β=0
+
++
+
+∂2 ∂β2
+
+ln Z˜ β
+
+β=0
+
+β2 2
+
++···
+
+.
+
+(5.23)
+
+At β = 0, we obtain
+
+Z˜ β
+
+=
+
+e i λi (σi −mi )
+
+β=0
+
+σ
+
+=
+
+eλi (σi −mi )
+
+i σi
+
+= e−λi mi (2 cosh λi ) .
+
+i
+
+i
+
+(5.24)
+
+Because
+
+∂ ln Z˜ β=0 ∂ λi
+
+= −mi
+
++ tanh (λi ) = 0
+
+⇒
+
+mi = tanh (λi ) λi = atanh (mi )
+
+,
+
+(5.25)
+
+then we can calculate the ﬁrst term:
+
+ln Z˜ β |β=0 = − atanh (mi ) mi + ln (2 cosh (atanh mi ))
+
+i
+
+i
+
+=−
+i
+
+1 2 mi
+
+ln
+
+1 + mi 1 − mi
+
++
+
+i
+
+ln e + e −
+
+1 2
+
+ln
+
+1+mi 1−mi
+
+1 2
+
+ln
+
+1+mi 1−mi
+
+=−
+i
+
+1 2 mi
+
+ln
+
+1 + mi 1 − mi
+
++
+
+i
+
+ln
+
+1 + mi 1 − mi
+
++1
+
+1 − mi 1 + mi
+
+=
+
+− mi ln 1 + mi + mi ln 1 − mi + ln √
+
+2
+
+2
+
+2
+
+2
+
+2
+
+i
+
+i
+
+(1 − mi ) (1 + mi )
+
+=−
+i
+
+1 + mi ln 1 + mi + 1 − mi ln 1 − mi .
+
+2
+
+2
+
+2
+
+2
+
+(5.26)
+
+48
+
+5 High-Temperature Expansion
+
+Here,
+
+we
+
+have
+
+used
+
+the
+
+mathematical
+
+identity:
+
+atanh mi
+
+=
+
+1 2
+
+ln
+
+1+mi 1−mi
+
+.
+
+The
+
+second
+
+term is given by
+
+∂ ln Z˜ β ∂β
+
+β=0
+
+=
+
+1 Z˜ β
+
+σ
+
+(−H )e−β H˜ +
+
+∂ λi ∂β
+
+(σi
+
+−
+
+mi ) e−β H˜
+
+i
+
+= − H |β=0
+
+=1 2
+
+Ji j mi m j .
+
+i=j
+
+(5.27)
+
+Note that the thermal average is carried out under the Boltzmann measure of H˜ (σ ), and the correlation between two spins is negligible in the high-temperature limit. The third term is given by
+
+∂2 ∂β2
+
+ln
+
+Z˜ β
+
+=
+
+−
+
+∂H ∂β
+
+=
+
+−
+
+∂ ∂β
+
+H e−β H˜ σ Z˜ β
+
+=−
+
+σ
+
+e−β H˜ Z˜ β H
+
+−H +
+
+i
+
+∂ λi ∂β
+
+(σi
+
+− mi)
+
+−
+σ
+
+H e−β H˜ Z˜ β
+
+·
+
+∂ ln Z˜ β ∂β
+
+= − H −H +
+
+∂ λi ∂β
+
+(σi
+
+− mi)
+
+− H (− H )
+
+i
+
+= H H− H −
+
+∂ λi ∂β
+
+(σi
+
+− mi)
+
+i
+
+:= u H .
+
+Here, we have introduced a very useful operator u as follows [3]:
+
+(5.28)
+
+u := H − H −
+
+∂ λi ∂β
+
+(σi
+
+−
+
+mi)
+
+=
+
+H
+
+−
+
+H
+
+−k
+
+i
+
+where k :=
+
+i
+
+∂ λi ∂β
+
+(σi
+
+−
+
+mi ).
+
+Because
+
+∂ ln Z˜ β ∂mi
+
+= −λi
+
+Z˜ β Z˜ β
+
+= −λi ,
+
+we have the following result:
+
+(5.29) (5.30)
+
+5.2 High-Temperature Expansion
+
+49
+
+∂ λi
+
+= − ∂ ∂ ln Z˜ β = − ∂ ∂ ln Z˜ β
+
+∂β β=0
+
+∂β ∂mi
+
+∂mi ∂β
+
+= −1 ∂ 2 ∂mi
+
+i=j
+
+Ji j mi m j
+
+= − Ji j m j .
+j (=i)
+
+(5.31)
+
+We, thus, conclude that
+
+u|β=0
+
+=
+
+−1 2
+
+Ji j σi σ j
+
++
+
+1 2
+
+Ji j mi m j +
+
+Ji j m j (σi − mi )
+
+i=j
+
+i=j
+
+i j ( j =i)
+
+=
+
+−1 2
+
+i=j
+
+Ji j
+
+(σi
+
+− mi)
+
+σj − mj
+
+.
+
+(5.32)
+
+To proceed, we should ﬁrst calculate the mean and variance of u:
+
+u = 0,
+
+(5.33)
+
+and u2 = u (H − H − k) = uH − u H − ku = uH .
+
+(5.34)
+
+We can prove above Eqs. (5.33) and (5.34) by using the following identity:
+
+d
+
+1
+
+dβ O = Z˜ β
+
+σ
+
+Oe−β H˜
+
+−H +
+
+i
+
+∂
+
+λi (β ∂β
+
+)
+
+(σi
+
+−
+
+mi)
+
++
+
+σ Oe−β H˜ Z˜ β
+
+− ∂ ln Z˜ β ∂β
+
++
+
+σ
+
+∂O ∂β
+
+e−β
+
+H˜
+
+Z˜ β
+
+= ∂O − Ou , ∂β
+
+(5.35)
+
+where O is any observable, and
+
+d dβ
+
+σi
+
+=0=
+
+∂ σi ∂β
+
+(σi − mi ) u = 0,
+
+ku = 0.
+
+− σi u = − σi u ,
+
+(5.36)
+
+Note that the full derivative vanishes due to the constrained magnetization [i.e., as a
+
+constant, see also Eq. (5.11)]. Therefore, we can obtain
+
+∂2 ∂β2
+
+ln Z˜ β
+
+β=0
+
+by calculating
+
+u2 |β=0:
+
+50
+
+5 High-Temperature Expansion
+
+∂2 ∂β2
+
+ln
+
+Z˜ β
+
+=
+β=0
+
+u2
+
+|β=0
+
+=1 4
+
+Ji j Jkl (σi − mi ) σ j − m j (σk − mk ) (σl − ml )
+
+i = j,k=l
+
+1 2
+
+Ji2j (σi − mi )2 σ j − m j 2
+
+i=j
+
+=
+
+1 2
+
+i=j
+
+Ji2j
+
+1 − mi2
+
+1 − m2j ,
+
+(5.37)
+
+where we have used the formula:
+
+(σi − mi )2
+
+=
+
+1
+
+−
+
+2m
+
+2 i
+
++
+
+m
+
+2 i
+
+=
+
+1
+
+−
+
+mi2.
+
+Finally,
+
+we obtain
+
+−βGβ (m) = −
+i
+
+1 + mi ln 1 + mi + 1 − mi ln 1 − mi
+
+2
+
+2
+
+2
+
+2
+
++
+
+1β 2
+
+i=j
+
+Ji j mi m j
+
++
+
+β2 4
+
+i=j
+
+Ji2j
+
+1
+
+−
+
+m
+
+2 i
+
+1
+
+−
+
+m
+
+2 j
+
++ O(β3).
+
+(5.38)
+
+The ﬁrst term on the right side of the above equation is called the mean-ﬁeld varia-
+
+tional entropy. The second term is the mean-ﬁeld variational energy. The third term
+
+corresponds to the Onsager reaction correction. All three terms construct the TAP
+
+free energy for the SK model.
+
+To minimize the free energy, we carry out the differentiation with respect to {mi },
+
+∂
+
+−βGβ (m) ∂mi
+
+= − atanh(mi ) + β
+
+Ji j m j
+
++
+
+β2 2
+
+Ji2j
+
+j (=i)
+
+j (=i)
+
+1
+
+−
+
+m
+
+2 j
+
+(−2mi ) = 0,
+
+(5.39)
+
+and ﬁnally obtain the self-consistent equation (the so-called TAP equation):
+
+⎛
+
+⎞
+
+mi = tanh ⎝β
+
+Ji j m j − β2
+
+Ji2j
+
+1
+
+−
+
+m
+
+2 j
+
+mi⎠ .
+
+j (=i)
+
+j (=i)
+
+(5.40)
+
+The ﬁrst term on the right-hand side represents the standard mean-ﬁeld approximation of local ﬁelds. The second term is called the Onsager reaction ﬁeld added to remove the effects of self-response [6]. If we consider the external ﬁelds {hi }, the TAP equation becomes
+
+⎛
+
+⎞
+
+m
+
+t i
+
++1
+
+=
+
+tanh
+
+⎝β h i
+
++
+
+β
+
+Ji j mtj − β2
+
+Ji2j
+
+1
+
+−
+
+(m
+
+t j
+
+)2
+
+m
+
+t i
+
+−1⎠
+
+,
+
+j (=i)
+
+j (=i)
+
+(5.41)
+
+5.2 High-Temperature Expansion
+
+51
+
+where we have put the correct time indexes for iteration [7]. In the thermodynamic limit, the TAP approximation becomes exact for the SK model, as the terms O(β3) vanish. The ﬁxed points of TAP are the stationary points of the TAP free energy. At low temperatures, the TAP equation have many solutions with mi = 0, which can be interpreted as stable or metastable thermodynamic states [8, 9].
+
+5.3 Properties of the TAP Equation
+
+In this section, we study the behavior of the solution of the TAP equation [Eq. (5.40)
+where external ﬁelds are added] around the spin glass transition point [6]. Because Ji j are assumed to be independent random variables (for i < j) with zero mean and the variance J 2/N . The Onsager term of the TAP equation becomes
+
+N
+
+N
+
+β2
+
+Ji2j 1 − m2j mi = β2 J 2mi − β2
+
+Ji2j
+
+m
+
+2 j
+
+mi
+
+,
+
+j (=i)
+
+j (=i)
+
+(5.42)
+
+when N → ∞ (the law of large numbers applies). Around the spin glass transition point, we assume that the magnetizations {mi } are small, expand the right-hand side of the TAP equation to the ﬁrst order in m and ﬁnally arrive at
+
+mi = β Ji j m j + βhi − β2 J 2mi .
+j
+
+(5.43)
+
+We also assume that hi is not dominant. For the symmetric matrix J, we have J = Q QT, where Q is the orthogonal matrix, and = diag(λ1, λ2, . . . , λN ) in which
+{λi } are eigenvalues of the interaction matrix J. Let us write Ji j in the following
+
+form:
+
+Ji j = Qin Q jnλn.
+
+(5.44)
+
+n
+
+To proceed, we deﬁne the λ-magnetization and λ-ﬁeld by [6]
+
+mλn = Qinmi , hλn = Qin hi .
+
+i
+
+i
+
+Then we have the following result:
+
+(5.45)
+
+52
+
+5 High-Temperature Expansion
+
+β Qin Ji j m j = β Qin
+
+Qim Q jm λm m j
+
+i
+
+j
+
+i
+
+jm
+
+= β λm Qin Qim Q jm m j
+
+m
+
+i
+
+j
+
+= βλn Q jnm j
+j
+= βλnmλn ,
+
+(5.46)
+
+where we have used the orthogonal condition: i Qin Qim = δnm. Then we can
+
+rewrite Eq. (5.43) as
+
+mλ = βmλλ + βhλ − β2 J2mλ.
+
+(5.47)
+
+We can, thus, conclude that the λ-susceptibility can be expressed as [10]
+
+χλ
+
+=
+
+∂mλ ∂hλ
+
+=
+
+1
+
+−
+
+β
+
+λ
+
+β +
+
+(β
+
+J
+
+)2
+
+.
+
+(5.48)
+
+In addition, the eigenvalues of the random matrix J follow the well-known semi-circle
+
+law1 [11]:
+
+√ ρ (λ) = 4 J 2 − λ2 .
+2π J 2
+
+(5.49)
+
+It is easy to derive from Eq. (5.48) that the susceptibility corresponding to the largest eigenvalue λ = 2J diverges at Tg = J , suggesting a continuous phase transition. The location of this transition agrees exactly with that obtained from the replica result [5].
+An alternative way to see the stability condition of the paramagnetic phase is to compute the Hessian matrix:
+
+Hi j
+
+=
+
+∂2(βGβ (m)) ∂mi∂m j
+
+m=0
+
+= −β Ji j
+
++ (β2 J 2 + 1)δi j .
+
+(5.50)
+
+The stability condition is that all the eigenvalues of the Hessian matrix should be
+
+positive,
+
+leading
+
+to
+
+the
+
+same
+
+result
+
+as
+
+above.
+
+The
+
+susceptibility
+
+matrix
+
+χi j
+
+=
+
+∂mi ∂h j
+
+is related to the Hessian matrix as (H−1)i j = β−1χi j = σi σ j c followed from the
+
+linear response theory. The subscript c denotes the connected two-point correlation.
+
+References
+1. D.J. Thouless, P.W. Anderson, R.G. Palmer, Phil. Mag. 35(3), 593 (1977) 2. T. Plefka, J. Phys. A 15(6), 1971 (1982)
+1 We will derive this law in Chap. 17.
+
+References
+
+53
+
+3. A. Georges, J. Yedidia, J. Phys. A: Math. Gen. 24, 2173 (1991) 4. A. Maillard, L. Foini, A.L. Castellanos, F. Krzakala, M. Mézard, L. Zdeborova, J. Stat. Mech.:
+Theory Exper. 2019(11), 113301 (2019) 5. D. Sherrington, S. Kirkpatrick, Phys. Rev. Lett. 35(26), 1792 (1975) 6. H. Nishimori, Statistical Physics of Spin Glasses and Information Processing: An Introduction
+(Oxford University Press, Oxford, 2001) 7. E. Bolthausen, Commun. Math. Phys. 325(1), 333 (2014) 8. A. Crisanti, L. Leuzzi, G. Parisi, T. Rizzo, Phys. Rev. Lett. 92(12), 127203 (2004) 9. T. Aspelmeier, A.J. Bray, M.A. Moore, Phys. Rev. Lett. 92(8), 87203 (2004) 10. A.J. Bray, M.A. Moore, J. Phys. C: Solid State Phys. 12(11), L441 (1979) 11. M.L. Mehta, Random Matrices (Academic, San Diego, 2004)
+
+Chapter 6
+Nishimori Line
+
+In this chapter, we introduce the Nishimori line as an important concept, i.e., Nishimori temperature or constraint, on spin glass models of broad contexts. This concept was ﬁrst discovered in the traditional two-body interaction spin glass model [1, 2], which demonstrated that on a special temperature, the model energy of a complex glass model is analytic, and the replica symmetry breaking (RSB) phase (introduced in Chap. 9) is not dominant for ground states, and thus, the underlying physics is greatly simpliﬁed. The concept was later connected to the Bayes optimal setting of statistical inference problems [3–6]. Thus, this concept is an important theoretical perspective to understand the Bayesian learning process, one of the most popular paradigms in the deep learning era. Here, we introduce the basic knowledge about this concept ﬁrst, and we leave more applications to later chapters of learning theory.
+
+6.1 Model Setting
+
+The original model Hidetoshi Nishimori used to derive the special temperature is
+
+deﬁned as follows:
+
+H = − Ji j σi σ j ,
+
+(6.1)
+
+i<j
+
+where Ji j acts as a quenched disorder. The coupling distribution function is speciﬁed
+
+as follows:
+
+P(Ji j ) = pδ(Ji j − J ) + (1 − p)δ(Ji j + J ),
+
+(6.2)
+
+where p denotes a ferromagnetic bias for the coupling, and J is a positive constant.
+Each coupling is generated independently from this binomial distribution. Let Ji j = J τi j , where τi j = ±1. For the sake of convenience, we then introduce
+an auxiliary temperature βp to parameterize the original distribution P(Ji j ):
+
+© Higher Education Press 2021
+
+55
+
+H. Huang, Statistical Mechanics of Neural Networks,
+
+https://doi.org/10.1007/978-981-16-7570-6_6
+
+56
+
+6 Nishimori Line
+
+eβp τi j
+
+P( Ji j )
+
+=
+
+P(τi j )
+
+=
+
+, 2 cosh βp
+
+1 1− p
+
+βp = 2 ln
+
+. p
+
+(6.3a) (6.3b)
+
+The form of βp ensures that the two forms of the coupling distribution are equivalent. Readers can easily verify this point by considering both possible values of the coupling.
+
+6.2 Exact Result for Internal Energy
+
+According to the model deﬁnition, the internal energy can be written as follows:
+
+⎛
+
+⎞
+
+H τ,σ = P(τ ) P(σ ) ⎝− J τi j σi σ j ⎠
+
+τ
+
+σ
+
+i<j
+
+⎛
+
+⎞
+
+eβp i< j τi j =
+τ (2 cosh βp)NB σ
+
+eβ J i< j τi j σi σ j
+
+eβ J
+σ
+
+i< j τi j σi σ j
+
+⎝− J
+
+i<j
+
+τi j σi σ j ⎠ ,
+
+(6.4)
+
+where NB is the number of interactions (also called bonds in a lattice model). Note that P(τ ) is factorized, as the {τi j } are independent. We further remark that the Hamiltonian of the model is invariant under the following gauge transformation:
+
+τi j → τi j si s j , σi → σi si .
+
+(6.5) (6.6)
+
+Note that {si } is also an Ising-valued conﬁguration. Therefore, we apply this transformation to the model internal energy as follows:
+
+H τ,σ = −
+τ
+=− 1 2N
+=− 1 2N
+
+eβp i< j τi j si s j
+
+e J β J
+σ
+
+i< j τi j σi σ j
+
+i< j τi j σi σ j
+
+(2 cosh βp)NB
+
+eβ J
+σ
+
+i< j τi j σi σ j
+
+eβp i< j τi j si s j
+s
+
+e J β J
+σ
+
+i< j τi j σi σ j
+
+i< j τi j σi σ j
+
+τ (2 cosh βp)NB
+
+eβ J
+σ
+
+i< j τi j σi σ j
+
+Zs τ (2 cosh βp)NB
+
+σ eβ J
+
+J i< j τi j σi σ j Zσ
+
+i< j τi j σi σ j ,
+
+(6.7)
+
+where 2N is introduced to cancel the sum operation s •. Clearly, when β J = βp, the partition functions Zs and Zσ cancel with each other. Then, we have
+
+6.2 Exact Result for Internal Energy
+
+57
+
+1
+
+1
+
+H
+
+τ ,σ
+
+=− 2N
+
+(2 cosh βp)NB
+
+τ
+
+1
+
+1
+
+∂
+
+=−
+
+2N (2 cosh βp)NB ∂β
+
+=− 1
+
+1
+
+∂
+
+2N (2 cosh βp)NB ∂β
+
+1
+
+1
+
+∂
+
+=−
+
+2N (2 cosh βp)NB ∂β
+
+= −NB J tanh βp.
+
+e J β J i< j τi j σi σ j
+
+τi j σi σ j
+
+σ
+
+i<j
+
+eβ J i< j τi j σi σ j
+τσ
+
+eβ J τi j σi σ j
+σ i < j τi j
+
+(2 cosh βp)NB
+σ
+
+(6.8)
+
+Therefore, under the Nishimori temperature β J = βp, the internal energy for the model has an analytical expression. In general, the internal energy does not have a closed-form expression.
+
+6.3 Proof of No RSB Effects on the Nishimori Line
+
+In this section, we will prove that, using the gauge transformation, the distribution of spin glass order parameters does not have a complex structure on the Nishimori line (βp) and coincides exactly with the distribution of magnetizations.
+The magnetization distribution is deﬁned as follows:
+
+ek p i< j τi j Pm (x; k) = τ (2 cosh k p)NB σ
+
+ek i< j τi j σi σ j e δ σ k i< j τi j σi σ j
+
+x− 1 N
+
+σi
+i
+
+,
+
+(6.9)
+
+where we have deﬁned k = β J and k p = βp. Double averages are performed in the deﬁnition of the magnetization distribution: the one over σ is the thermal average, and the other over τ is the disorder average. Both averages are standard thermodynamic operations in the spin glass theory. The disorder average is usually challenging.
+Next, we apply the following gauge transformation:
+
+τi j → τi j si s j , σi → σi si .
+
+(6.10) (6.11)
+
+Then, Pm(x; k) changes to
+
+1 Pm(x; k) = 2N τ
+
+ek p i< j τi j si s j s (2 cosh k p)NB σ
+
+ek i< j τi j σi σ j
+
+δ k e σ
+
+i< j τi j σi σ j
+
+x− 1 N
+
+σi si .
+i
+(6.12)
+
+58
+
+6 Nishimori Line
+
+This form of Pm(x; k) can be further simpliﬁed to make the underlying physics more transparent. A simple algebraic manipulation leads to
+
+Pm
+
+(x;
+
+k)
+
+=
+
+1 2N
+
+τ
+
+ek p i< j τi j si s j s (2 cosh k p)NB σ
+
+×
+
+s ekp s ekp
+
+i< j τi j si s j
+. i< j τi j si s j
+
+ek i< j τi j σi σ j
+
+δ k e σ
+
+i< j τi j σi σ j
+
+x− 1 N
+
+σi si
+i
+
+We then perform the second gauge transformation: τi j → τi j si s j , σi → σi si , and si → si si , resulting in
+
+ek p i< j τi j
+
+Pm(x; k) =
+τ
+
+(2 cosh k p)NB
+
+s
+
+ek p i< j τi j si s j ek p i< j τi j si s j
+s
+
+×
+σ
+
+ek i< j τi j σi σ j e δ σ k i< j τi j σi σ j
+
+x− 1 N
+
+σi si
+i
+
+(6.13)
+
+1
+
+=
+τ
+
+P(τ )
+σ
+
+P(σ )
+s
+
+P (s)δ
+
+x− N
+
+i
+
+σi si
+
+=Pq (x; k, k p),
+
+where P(σ ) and P(s) are the Boltzmann measures with (rescaled) inverse tempera-
+
+ture k and k p, respectively.
+
+Under the Nishimori temperature, Pm(x; k p) = Pq (x; k p, k p) = Pq (x; k p). We,
+
+thus, conclude that the distribution of spin glass order parameter (overlap q =
+
+1 N
+
+i σi si ) shares the same form as the magnetization distribution. It is well known
+
+that the magnetization distribution in statistical physics is simple, while the over-
+
+lap distribution can be very complex (e.g., when replica symmetry breaking effects
+
+dominate the phase space, like in the SK model). The two equivalent distributions
+
+on the Nishimori line suggest an absence of spin glass phase for the ground states.
+
+However, RSB may be needed to describe the metastable (out of equilibrium) states
+
+of the system (e.g., in the study [7]). Altogether, on the Nishimori line, the system
+
+never enters the glassy phase and the dominant thermodynamic phase is always a RS
+
+type.
+
+References
+1. H. Nishimori, J. Phys. C: Solid State Phys. 13(21), 4071 (1980) 2. H. Nishimori, Prog. Theor. Phys. 66(4), 1169 (1981) 3. Y. Iba, J. Phys. A: Math. Gen. 32, 3875 (1999) 4. L. Zdeborova, F. Krzakala, Adv. Phys. 65(5), 453 (2016) 5. H. Huang, J. Stat. Mech.: Theory Exper. 2017(5), 053302 (2017) 6. T. Hou, H. Huang, Phys. Rev. Lett. 124, 248302 (2020) 7. M. Yoshida, T. Uezu, T. Tanaka, M. Okada, J. Phys. Soc. Jpn. 76(5), 54003 (2007)
+
+Chapter 7
+Random Energy Model
+
+In this chapter, we brieﬂy introduce the well-known random energy model (Derrida in Phys. Rev. Lett. 45:79, 1980 [1]; Derrida in Phys. Rev. B 24(5):2613, 1981 [2]), which is the inﬁnite-body interaction limit of p-spin interaction models, but still captures characteristics of spin glasses (Gross and Mezard in Nuclear Phys. 240(4):431, 1984 [3]). Here, we focus on basic concepts and their connections to frozen phases commonly observed in other constraint satisfaction problems, e.g., binary Perceptron (introduced in Chap. 13).
+
+7.1 Model Setting
+
+We consider Ising-type spins, whose interaction follows the Hamiltonian:
+
+H(σ ) = −
+
+Ji1...i p σi1 · · · σi p ,
+
+1≤i1...i p≤N
+
+where the coupling follows the Gaussian distribution deﬁned by
+
+P ( Ji1...i p ) =
+
+N p−1 exp
+
+− Ji21...i p N p−1
+
+,
+
+π J2 p!
+
+J2 p!
+
+(7.1) (7.2)
+
+where J is positive, and the scaling of variance ensures that extensive energy is well-deﬁned. A generalized Hopﬁed model with multi-body interactions can also be included in this class of models [4]. In this scaling, it is easy to verify that p = 2 corresponds to the standard Sherrington–Kirkpatrick model.
+We are interested in the distribution of the energy level E, to see if this distribution becomes simple in the limit p → ∞. In general, the distribution can be very complex. According to the deﬁnition, we have
+
+© Higher Education Press 2021
+
+59
+
+H. Huang, Statistical Mechanics of Neural Networks,
+
+https://doi.org/10.1007/978-981-16-7570-6_7
+
+60
+
+7 Random Energy Model
+
+P(E) = δ(E − H(σ ))
+
+⎡
+
+⎤
+
+=
+
+d Eˆ 2π
+
+exp
+
+⎣i
+
+Eˆ
+
+E
+
++
+
+i
+
+Eˆ
+
+Ji1...i p σi1 · · · σi p ⎦
+
+1≤i1...i p≤N
+
+= d Eˆ ei Eˆ E
+
+e , i Eˆ Ji1...i p σi1 ···σi p
+
+2π
+
+1≤i1...i p≤N
+
+(7.3)
+
+where the quenched-disorder average (indicated by the over-bar) can be explicitly calculated out as follows:
+
+e = i Eˆ Ji1...i p σi1 ···σi p
+
+P ( Ji1...i p )d Ji1...i p ei Eˆ Ji1...i p σi1 ···σi p
+
+= exp
+
+(i Eˆ σi1 · · · σip )2 J 2 p! 4N p−1
+
+.
+
+(7.4)
+
+Note
+
+that
+
+the
+
+total
+
+number
+
+of
+
+the
+
+products
+
+in
+
+Eq.
+
+(7.3)
+
+can
+
+be
+
+approximated
+
+by
+
+Np p!
+
+when N → ∞. Therefore, we ﬁnally arrive at
+
+P(E) =
+
+d Eˆ ei
+
+Eˆ
+
+E
+
++
+
+(i
+
+Eˆ
+
+)2 N 4
+
+J
+
+2
+
+2π
+
+=√ 1
+
+e , −
+
+E2 N J2
+
+Nπ J2
+
+(7.5)
+
+wh√ich is exactly a Gaussian distribution with zero mean and a ﬂuctuation of the order O( N ).
+The Gaussian distribution of energy levels in p-spin interaction models does not imply any information about whether the energy levels are correlated or not. To address this question, we derive the joint distribution of two energy levels, say E1 and E2, as follows:
+
+P(E1, E2, q) = δ(E1 − H(σ 1))δ(E2 − H(σ 2))
+
+⎡⎛
+
+⎞⎤
+
+=
+
+d Eˆ1 Eˆ2 4π 2
+
+ei(Eˆ1 E1+Eˆ2 E2)exp ⎣i ⎝Eˆ1
+
+i1<···<i p
+
+Ji1...i p σi11
+
+· · · σi1p
+
++
+
+Eˆ 2
+
+i1<···<i p
+
+Ji1...i p σi21
+
+· · · σi2p ⎠⎦
+
+=
+
+d
+
+Eˆ 1 4π
+
+Eˆ 2 2
+
+ei( Eˆ 1
+
+E1
+
++
+
+Eˆ 2
+
+E2
+
+)
+
+i1 <···<i
+
+p
+
+exp
+
+i Eˆ1 Ji1...i p σi11 · · · σi1p + i Eˆ2 Ji1...i p σi21 · · · σi2p
+
+,
+
+(7.6)
+
+where we
+
+have
+
+deﬁned the overlap between two conﬁgurations as q
+
+=
+
+1 N
+
+i σi1σi2.
+
+To proceed, we must calculate the disorder average in the above expression of
+
+P(E1, E2, q). The disorder average is carried out as follows:
+
+7.1 Model Setting
+
+61
+
+exp i Eˆ1 Ji1...i p σi11 · · · σi1p + i Eˆ2 Ji1...i p σi21 · · · σi2p
+
+= d Ji1...i p P ( Ji1...i p ) exp i Eˆ 1 Ji1...i p σi11 · · · σi1p + i Eˆ 2 Ji1...i p σi21 · · · σi2p
+
+= exp
+
+(i
+
+Eˆ 1 )2
+
++
+
+(i
+
+Eˆ 2 )2
+
++
+
+2J2
+
+p!(i Eˆ1)(i 4N p−1
+
+Eˆ2) (σi11
+
+·
+
+·
+
+·
+
+σi1p σi21
+
+·
+
+·
+
+· σi2p )
+
+,
+
+(7.7)
+
+where we have used the fact that spin takes a binary value ±1. Inserting the disorder average into Eq. (7.6), we obtain
+
+P(E1, E2, q) =
+
+d
+
+Eˆ 1 4π
+
+Eˆ 2
+2
+
+ei( Eˆ 1
+
+E1
+
++
+
+Eˆ 2
+
+E2
+
+)
+
+×
+
+exp
+
+i1<···<i p
+
+(i
+
+Eˆ 1 )2
+
++
+
+(i
+
+Eˆ 2 )2
+
++
+
+2J2
+
+p!(i Eˆ1)(i 4N p−1
+
+Eˆ2) (σi11
+
+· · · σi1p σi21
+
+· · · σi2p )
+
+=
+
+d
+
+Eˆ 1 4π
+
+Eˆ 2
+2
+
+ei( Eˆ 1
+
+E1
+
++
+
+Eˆ 2
+
+E2
+
+)
+
+exp
+
+J2N 4
+
+(i Eˆ1)2 + (i Eˆ2)2 + 2q p(i Eˆ1)(i Eˆ2)
+
+.
+
+(7.8)
+
+To arrive at the last equality, we have used the relationship p!
+
+N i1<i2<···<i p
+
+•
+
+i1,i2,...,ip • for large N , together with the deﬁnition of the overlap q. Finally, calcu-
+
+lating the Gaussian integral out in Eq. (7.8), we conclude that the joint distribution
+
+parameterized by q and J is given by
+
+P(E1, E2, q) =
+
+π J2N
+
+1 exp
+1 − q2p
+
+2E1 E2q p − E12 − E22 J 2 N (1 − q2 p)
+
+=
+
+N π J 2(1 + q p)N π J 2(1 − q p)
+
+−1/2
+exp
+
+−
+
+2
+
+(E1 + J 2 N (1
+
+E 2 )2 +qp
+
+)
+
+−
+
+(E1 − E2)2 2 J 2 N (1 − q p)
+
+.
+
+(7.9)
+
+Supposed that |q| < 1, we immediately have P(E1, E2, q) −p−→−→ ∞ P(E1)P(E2), where P(E1) and P(E2) are the Gaussian distributions derived before. This implies that the energy levels are uncorrelated, and each of them follows exactly the Gaussian
+distribution.
+
+7.2 Phase Diagram
+
+The above mathematical results draw concise physics pictures of the inﬁnite-body interaction model. We can then easily compute the typical number of conﬁgurations with predeﬁned energy level E,
+
+2
+
+n(E) = 2N P(E) = √ 1
+
+N ln 2−
+
+E NJ
+
+e
+
+.
+
+π N J2
+
+(7.10)
+
+62
+
+7 Random Energy Model
+
+√ One can then derive a critical energy level E0 = N J ln 2, above which (in the absolute value) no conﬁgurations exist. However, for |E| < E0, there are expo-
+
+nentially many conﬁgurations at the corresponding energy level. In the thermo-
+
+dynamic limit, the entropy density (per spin) below the critical energy level is
+
+given
+
+by
+
+s(E)
+
+=
+
+lim N →∞
+
+ln
+
+n(E) N
+
+= ln 2 −
+
+2
+J , where
+
+denotes the energy den-
+
+sity. According
+
+to the thermodynamic
+
+relationship
+
+dS dE
+
+=
+
+1 T
+
+,
+
+one
+
+can
+
+also obtain the
+
+expression for the energy level
+
+=
+
+−
+
+J2 2T
+
+,
+
+which
+
+also
+
+determines
+
+the
+
+critical
+
+temper-
+
+ature
+
+Tc
+
+=
+
+√J 2 ln 2
+
+where
+
+the
+
+entropy
+
+vanishes.
+
+Finally, the equilibrium property of the random energy model is summarized by
+
+the free energy proﬁle (F = E − T S):
+
+F/N =
+
+−T√ln 2
+
+−
+
+J2 4T
+
+T > Tc .
+
+−J ln 2
+
+T < Tc
+
+(7.11)
+
+This implies that below the critical temperature, the free energy of the system does not depend on the temperature, due to the vanishing entropy for a system of discrete degrees of freedom. The vanishing entropy suggests that the system enter a frozen glassy phase—the transition is continuous in the thermodynamic sense (no latent heat). This frozen glassy phase is also discovered in the Gallager codes [5, 6] and binary Perceptron [7–9]. We ﬁnally remark that the one-step replica symmetry breaking (see Chap. 9) was conﬁrmed to be exact for the random energy model [3].
+
+References
+1. B. Derrida, Phys. Rev. Lett. 45, 79 (1980) 2. B. Derrida, Phys. Rev. B 24(5), 2613 (1981) 3. D. Gross, M. Mezard, Nuclear Phys. 240(4), 431 (1984) 4. E. Gardner, J. Phys. A 20(11), 3453 (1987) 5. A. Montanari, Eur. Phys. J. B 23(1), 121 (2001) 6. H. Huang, Commun. Theor. Phys. 63(1), 115 (2015) 7. W. Krauth, M. Mezard, J. De Phys. 50(20), 3057 (1989) 8. H. Huang, Y. Kabashima, Phys. Rev. E 90, 052813 (2014) 9. H. Huang, K.Y.M. Wong, Y. Kabashima, J. Phys. A: Math. Theor. 46, 375002 (2013)
+
+Chapter 8
+Statistical Mechanical Theory of Hopﬁeld Model
+
+Hopﬁeld model is a well-known abstract model of associative memory in the brain (Amari in Biolog. cybern. 26:175, 1977 [1]; Hopﬁeld in Proc. Natl. Acad. Sci. USA 79:2554, 1982 [2]). Its equilibrium properties were ﬁrst analyzed in the seminal paper (Amit et al. in Phys. Rev. Lett. 55(14):1530, 1985 [3]) by Amit, Gutfreund and Sompolinsky. To obtain the phase diagram, the replica method developed originally in spin glass theory was used and then became popular in neural network research. This work also opened a new discipline—computational/theoretical neuroscience, being an important branch of worldwide brain projects in this new century. In this chapter, we will introduce in detail physics of this model, including phase transitions in associative memory, by an in-depth application of the replica trick (Mézard et al. in Spin Glass Theory and Beyond. World Scientiﬁc, Singapore, 1987 [4]).
+
+8.1 Hopﬁeld Model
+
+In the Hopﬁeld network, all neurons are connected with each other by real-valued weights (see Fig. 8.1). Randomly generated patterns can be stored in this network by assigning the weights wi j in a Hebbian way (i.e., cells that ﬁre together, wire together). After assigning all the weights, if one feeds a distorted pattern to the network, the network dynamics can converge to the correct undistorted pattern by locally updating the neural state.
+In the Hopﬁeld model, the state of neuron i at time step t takes binary values (±1)
+
+Si (t) =
+
+−1 inactive . 1 active
+
+(8.1)
+
+The update rule takes the form
+
+© Higher Education Press 2021
+
+63
+
+H. Huang, Statistical Mechanics of Neural Networks,
+
+https://doi.org/10.1007/978-981-16-7570-6_8
+
+64
+Fig. 8.1 Typical structure of a Hopﬁeld network. The circles represent neurons, and the lines with arrows represent symmetric weights between two neurons (wi j = w ji ). Every neuron is connected to all other neurons
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+⎛
+
+⎞
+
+Si (t + 1) ← sgn ⎝ wi j S j (t) − θi ⎠ ,
+j
+
+(8.2)
+
+⎧ ⎪⎨1 x > 0
+
+where sgn(x) = ⎪⎩0−1
+
+x = 0 , and θi is the ﬁring bias of the neuron Si . In fact, this x <0
+
+rule is a zero-temperature Monte Carlo dynamics of the model.
+
+Now we need to choose the right weights {wi j } to ensure that the binary patterns {ξ (μ)} are attractors. If one feeds an input S(t = 0) close to one of stored patterns (say ξ (ν)) to the network, the network is expected to converge to ξ (ν).
+
+We consider a simple setting for the network, namely storing just one pattern, say ξ 1. We can choose the weights according to the following Hebbian rule:
+
+wi j
+
+=
+
+1 N
+
+ξi(1)ξ
+
+(1) j
+
+,
+
+(8.3)
+
+for i = j, and θi = 0. Usually we set wii = 0 for all i. To check this rule, we feed the pattern ξ (1) to the network
+
+N
+
+wi
+
+j
+
+ξ
+
+(1) j
+
+=
+
+1 N
+
+N
+
+ξi(1)ξ
+
+(j 1) ξ
+
+(1) j
+
+=
+
+1 N
+
+N
+ξi(1) = ξi(1).
+
+j =1
+
+j =1
+
+j =1
+
+(8.4)
+
+Therefore
+
+8.1 Hopﬁeld Model
+
+65
+
+Fig. 8.2 The energy landscape of the Hopﬁeld network. Minima in the energy function are attractors in the state space. But not every attractor corresponds to a stored pattern. These metastable states are referred to as spurious memories (e.g., a linear combination of several stored patterns [5])
+
+⎛
+
+⎞
+
+N
+
+sgn ⎝
+
+wi j
+
+ξ
+
+(1)⎠
+j
+
+=
+
+ξi(1)
+
+⇒
+
+S(t > 0) = ξ (1).
+
+j =1
+
+(8.5)
+
+If we feed the reversed pattern −ξ (1) to the network
+
+⎛
+
+⎞
+
+N
+
+sgn ⎝−
+
+wi
+
+j
+
+ξ
+
+(1)⎠
+j
+
+=
+
+−ξi(1)
+
+⇒
+
+S(t > 0) = −ξ (1) .
+
+j =1
+
+(8.6)
+
+Therefore, if ξ (1) is an attractor, then −ξ (1) is an attractor as well. This is a general
+
+property of the Hopﬁeld model, as we shall show by writing down the Hamiltonian.
+
+In equilibrium statistical physics, the Hamiltonian (the energy function) is deﬁned
+
+as
+
+1N
+
+H =− 2
+
+i, j
+
+wi j Si S j ,
+
+(8.7)
+
+where wi j = 1/N
+
+P μ=1
+
+ξiμξ
+
+μ j
+
+,
+
+which
+
+is
+
+symmetric,
+
+ensuring
+
+that
+
+an
+
+equilibrium
+
+state exists. Note that the pattern entries are independently selected as P(ξiμ = ±1) =
+
+1/2. Under the zero-temperature dynamics of the model, the Hamiltonian H remains
+
+unchanged or decrease. To show this, neglecting the ﬁring bias, we consider the
+
+66
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+update
+
+⎛
+
+⎞
+
+Sk = sgn ⎝ wkj S j ⎠ ,
+j
+
+(8.8)
+
+and thus either Sk = Sk or Sk = −Sk. In the ﬁrst case, H remains unchanged. In the other case,
+
+H −H=
+
+wk j Sk S j +
+
+wik Si Sk = 2
+
+wk j Sk S j .
+
+j (=k)
+
+i (=k )
+
+j (=k)
+
+(8.9)
+
+Because the sign of j wkj S j is the same as Sk and Sk = −Sk, it then follows that
+
+H − H < 0.
+
+(8.10)
+
+Hence, either H remains unchanged or its value decreases in one update step. After a sufﬁcient number of updates, the energy function falls into a certain minimum, which is expected to correspond to a stored pattern (Fig. 8.2). This derivation can be cross-checked by implementing a zero-temperature Monte Carlo sampling on the Hamiltonian of Hopﬁeld model.
+
+8.2 Replica Method
+
+In the thermodynamic limit, the free energy has the self-averaging property, i.e., −β f = ln Z , where Z is the partition function. As the number of degrees of freedom grows, the single-sample value of the free energy will converge sharply to the quenched average value. However, the expression ln Z , namely the quenched average, is difﬁcult to calculate in a direct way, whereas Z , namely the annealed average, is much easier to calculate. However, in most contexts of interest, ln Z = ln Z . In fact, the annealed average provides an upper bound to the quenched average, due to the Jensen’s inequality. The replica trick can be used to make a transformation of this calculation by introducing many copies of the original systems. Then the original interaction system can be decoupled to an equivalent system where correlations among replicas are considered, which greatly simpliﬁes the original challenging computation.
+In mathematics, we have
+
+ln Z = lim Z n − 1 . n→0 n
+
+(8.11)
+
+Then we calculate the expectation
+
+8.2 Replica Method
+
+67
+
+ln Z = lim Z n − 1 = lim ln Z n ,
+
+n→0 n
+
+n→0 n
+
+(8.12)
+
+where · is the disorder average over ξ . Since Z n 1 + n ln Z + · · · , we have Z n 1 + n ln Z · · · . Therefore
+
+ln Z n lim
+
+= lim ln(1 + n ln Z ) = lim n ln Z
+
+= ln Z
+
+,
+
+n→0 n
+
+n→0
+
+n
+
+n→0 n
+
+(8.13)
+
+where when n is small enough, we can take the expansion like Z n = en ln Z = 1 + n ln Z + · · · . The averaged free energy per spin can thus be calculated by
+
+f
+
+=
+
+lim
+n→0
+
+lim
+N →∞
+
+− ln βn
+
+Z N
+
+n
+
+.
+
+(8.14)
+
+We ﬁrst assume that n is an integer (for the power), and after the calculation of Z n , we carry out the limit of ln Z as n approaches 0. This seems hard to understand
+
+in physics; whereas the results must be compared with physics simulations of the
+
+model. In this sense, the cavity approximation is more physically transparent than
+
+the replica trick, although in most (we are not sure if all is suitable) cases, both methods yields the same result. We remark that the order of the two limits (n → 0
+
+and N → ∞) has been exchanged for the purpose of applying the Laplace method in
+
+the thermodynamic limit. This operation is also not mathematically rigorous. But the
+
+ﬁnal result is usually in consistent with physics intuition and numerical simulations.
+
+Next, we suppose that the network is able to store P random patterns (P =
+
+αN,
+
+and
+
+α
+
+denotes
+
+the
+
+memory
+
+load).
+
+Note
+
+that
+
+H
+
+=
+
+−
+
+1 2
+
+N i, j
+
+wi j Si S j
+
+and
+
+wi j
+
+=
+
+1 N
+
+P μ=1
+
+ξiμ
+
+ξ
+
+μj .
+
+Therefore
+
+⎡
+
+⎤
+
+Zn =
+
+Tr exp ⎣ β 2N
+
+NPn
+
+ξiμξ
+
+μ j
+
+Siρ
+
+Sρj
+
+⎦
+
+i, j μ=1 ρ=1
+
+⎡
+
+⎛
+
+⎞⎤
+
+= Tr exp ⎣ β 2N ρ,μ
+
+ξiμ Siρ ⎝
+
+ξ
+
+μ j
+
+S
+
+ρ j
+
+⎠⎦
+
+i
+
+j
+
+⎡
+
+⎤
+
+2
+
+= Tr exp ⎣ β N 2 ρ,μ
+
+1 N
+
+ξiμ Siρ
+
+i
+
+⎦
+
+⎡
+
+⎤
+
+2
+
+= Tr exp ⎣ β N
+
+ρ ,μ
+
+2
+
+1 N
+
+ξiμ Siρ
+
+i
+
+⎦,
+
+(8.15)
+
+where Tr means the summation over all conﬁgurations {S}, and · means the quenched disorder average over the random patterns.
+
+68
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+To linearize the quadratic term, we apply the following Gaussian integral:
+
+eab2 = a π
+
+e−ax2+2abx d x ,
+
+by carrying out the following substitutions:
+
+⎧
+
+⎪⎨b
+
+→
+
+1 N
+
+i ξiμ Siρ
+
+⎪⎩ax
+
+→ →
+
+m μρ
+βN
+2
+
+.
+
+It
+
+is
+
+then
+
+natural
+
+to
+
+introduce
+
+integrals
+
+over
+
+m
+
+μ ρ
+
+(8.16) (8.17)
+
+Z n = Tr
+
+ρ ,μ
+
+βN 2π
+
+d
+
+m
+
+μ ρ
+
+exp
+
+−βN 2
+
+m μρ
+
+2
+
++
+
+β
+
+m
+
+μ ρ
+
+ξiμ Siρ
+
+i
+
+= Tr = Tr
+
+ρ ,μ
+
+βN 2π
+
+d
+
+m
+
+μ ρ
+
+exp
+
+−βN 2
+
+⎡
+
+ρ ,μ
+
+m
+
+μ ρ
+
+2+β
+
+m
+
+μ ρ
+
+ρ ,μ
+
+i
+
+ξiμ Siρ
+
+ρ ,μ
+
+βN 2π
+
+d
+
+m
+
+μ ρ
+
+exp
+
+⎣−
+
+βN 2
+
+μ≥2
+
+ρ
+
+m
+
+μ ρ
+
+2+
+
+β
+
+m μρ
+
+μ≥2 ρ
+
+i
+
+ξiμ Siρ
+
+−βN 2
+
+ρ
+
+m
+
+1 ρ
+
+2+β
+
+m
+
+1 ρ
+
+ξi1 Siρ
+
+ρ
+
+i
+
+. (8.18)
+
+In the above equation, we have separated the ﬁrst pattern from other patterns. We
+
+further assume that only the ﬁrst pattern (μ = 1) is retrieved, and thus the overlap
+
+mμρ ∼ O(1) (the deﬁnition of the overlap will become clear in the following analysis). We next consider those non-retrieved patterns (μ ≥ 2). Because i ξiμ Siρ ξ = 0 and
+
+i ξiμ Siρ 2 ξ = N +
+
+i=j
+
+ξiμ
+
+ξ
+
+μ j
+
+Siρ
+
+S
+
+ρ j
+
+ξ
+
+=
+
+N,
+
+the
+
+order
+
+of
+
+m
+
+μ ρ
+
+(μ
+
+≥
+
+2)
+
+is
+
+given
+
+by
+
+m μρ
+
+=
+
+1 N
+
+ξiμ Siρ ≈ O
+i
+
+√1 N
+
+.
+
+(8.19)
+
+To
+
+use
+
+an
+
+m μρ
+
+of
+
+O(1),
+
+we
+
+rescale
+
+the
+
+original
+
+m
+
+μ ρ
+
+→
+
+√m
+
+μ ρ
+
+βN
+
+.
+
+Then
+
+we
+
+get
+
+8.2 Replica Method
+
+Z n = √1
+
+n ( P −1)
+Tr
+
+2π
+
+d
+
+m
+
+μ ρ
+
+ρ ,μ>1
+
+ρ
+
+⎡
+
+β
+
+N
+
+d m 1ρ
+
+exp
+
+⎣−
+
+1 2
+
+μ≥2
+
+ρ
+
+69
+
+m
+
+μ ρ
+
+2+
+
+β N
+μ≥2
+
+ρ
+
+m μρ
+
+i
+
+ξiμ Siρ
+
+−
+
+βN 2
+
+ρ
+
+m1ρ 2 + β
+
+m
+
+1 ρ
+
+ξi1 Siρ
+
+ρ
+
+i
+
+For the part of μ ≥ 2 involving in non-condensed patterns, we have
+
+⎡
+
+⎤
+
+exp ⎣ β N
+μ≥2
+⎡
+
+ρ
+
+m μρ
+
+i
+
+ξiμ Siρ ⎦ ξiμ :μ⎤>1
+
+∝ exp ⎣ ln cosh
+
+μ≥2,i
+⎡
+
+∼= exp ⎣
+
+β
+
+μ≥2 i 2N
+
+β N
+
+m
+
+μ ρ
+
+Siρ
+
+ρ
+
+⎦
+
+⎤
+
+2
+
+m
+
+μ ρ
+
+Siρ
+
+⎦,
+
+ρ
+
+. (8.20)
+(8.21)
+
+where we have used the formula exp( Aξ ) {ξ=±1} = exp(− A) + exp( A) =
+
+2 cosh(A)
+
+∝
+
+exp(ln cosh(A)),
+
+and
+
+taken
+
+the
+
+approximation
+
+ln cosh x
+
+=
+
+x2 2
+
++
+
+···
+
+as
+
+x → 0.
+
+We can then write down the following expressions:
+
+m
+
+μ ρ
+
+2
+
+=
+
+mμρ δρσ
+
+m
+
+μ σ
+
+,
+
+ρ
+
+ρ ,σ
+
+(8.22)
+
+and
+
+2
+
+1 N
+i
+
+m
+
+μ ρ
+
+Siρ
+
+ρ
+
+=1 N
+i
+
+m
+
+μ ρ
+
+Siρ
+
+m
+
+μ σ
+
+Siσ
+
+ρ
+
+σ
+
+=
+
+ρ ,σ
+
+m
+
+μ ρ
+
+1 N
+
+i
+
+Siρ
+
+Siσ
+
+m
+
+μ σ
+
+(8.23)
+
+:=
+
+m
+
+μ ρ
+
+qρσ
+
+m
+
+μ σ
+
+.
+
+ρ ,σ
+
+To further simplify the formulas, we deﬁne
+
+β κρσ = δρσ − N
+
+Siρ Siσ := δρσ − βqρσ ,
+
+i
+
+and in the matrix form
+
+(8.24)
+
+70
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+K = I − βQ,
+
+(8.25)
+
+where
+
+1
+
+qρσ =
+
+N
+1
+
+i Siρ Siσ ρ = σ , ρ=σ
+
+(8.26)
+
+and K, Q are symmetric n × n matrices with elements κρσ and qρσ , respectively. I is an identity matrix.
+Thus, we need to introduce qρσ by an integral of a Dirac delta function, and obtain
+
+Z n ∝ Tr
+
+dqρσ δ
+
+ρ ,σ
+
+⎡
+
+qρσ
+
+−
+
+1 N
+
+i
+
+Siρ Siσ ⎤
+
+×
+
+μ≥2,ρ
+
+d
+
+m
+
+μ ρ
+
+exp
+
+⎣−
+
+1 2
+
+μ≥2
+
+ρ ,σ
+
+mμρ κρσ mμσ ⎦
+
+×
+
+d
+
+m
+
+1 ρ
+
+exp
+
+ρ
+
+−βN 2
+
+ρ
+
+m
+
+1 ρ
+
+2+
+
+βN N
+
+m
+
+1 ρ
+
+ρ
+
+i
+
+ξi1 Siρ
+
+(8.27)
+,
+ξ1
+
+where we have neglected irrelevant prefactors. By using the multivariate Gaussian
+
+integral
+
+dme−MTKM =
+
+πn ,
+
+Rn
+
+det(K)
+
+(8.28)
+
+we get
+
+⎡
+
+⎤
+
+μ≥2,ρ
+
+d
+
+m
+
+μ ρ
+
+exp ⎣− 1 2
+
+μ≥2
+
+ρ ,σ
+
+mμρ κρσ mμσ ⎦ =
+
+C
+
+(det
+
+K)
+
+P
+
+−1 2
+
+,
+
+(8.29)
+
+where C is a constant. Because det(eK) = eTr K, and det K = eTr ln K, we have
+
+(det
+
+K)−
+
+P −1 2
+
+=
+
+e−
+
+P −1 2
+
+Tr ln K
+
+=
+
+e−
+
+P −1 2
+
+Tr ln[I−βQ]
+
+.
+
+(8.30)
+
+By using the Fourier representation of the Dirac delta function
+
+δ(x)
+
+=
+
+1 2π
+
++∞
+e−ikx dk ,
+−∞
+
+we obtain
+
+(8.31)
+
+8.2 Replica Method
+
+71
+
+Tr
+
+dm1ρ dqρσ δ
+
+ρ
+
+ρ ,σ
+
+qρσ
+
+−
+
+1 N
+
+Siρ Siσ
+
+⎡i
+
+·I
+
+⎤ (8.32)
+
+∝ Tr
+
+ρ
+
+d m 1ρ
+
+dqρσ drρσ
+ρ ,σ
+
+exp ⎣− N αβ2 2
+
+ρ ,σ
+
+rρσ qρσ
+
++
+
+αβ 2 2
+
+rρσ Siρ Siσ ⎦ · I ,
+i,ρ ,σ
+
+where the symbol I represents the other non-shown parts in Eq. (8.27), and we
+
+have
+
+rescaled
+
+rρσ
+
+→
+
+−
+
+iN αβ2 2
+
+rρσ
+
+(after
+
+the
+
+transformation,
+
+rρσ
+
+∼ O(1)),
+
+and
+
+used
+
+α = P/N.
+
+Then we deﬁne the Si -dependent part as
+
+⎡
+
+⎤
+
+Tr exp ⎣β
+
+ρ
+
+m
+
+1 ρ
+
+i
+
+ξi1 Siρ
+
++
+
+αβ 2 2
+
+rρσ Siρ Siσ ⎦
+
+i,ρ ,σ
+
+ξ1
+
+= exp
+
+i
+
+ln Tr exp
+
+β
+
+ρ
+
+m
+
+1 ρ
+
+ξi1
+
+Sρ
+
++
+
+αβ 2 2
+
+ρ ,σ
+
+rρσ Sρ Sσ
+
+⎧
+
+⎨ = exp ⎩N
+
+ln Tr exp
+
+β
+
+ρ
+
+m
+
+1 ρ
+
+ξ
+
+1
+
+Sρ
+
++
+
+αβ 2 2
+
+ρ ,σ
+
+rρσ Sρ Sσ
+
+⎫ξ 1 ⎬ ⎭
+ξ1
+
+(8.33)
+
+:= exp N ln Tr exp(β Hξ1 ) ξ1 ,
+
+where we have used the fact that the sum over i is equivalent to taking the average over the pattern conﬁguration because of i.i.d properties of the random pattern, and we have deﬁned
+
+β Hξ1
+
+=
+
+1 αβ2 2
+
+ρ ,σ
+
+rρσ Sρ Sσ
+
++β
+
+ρ
+
+m
+
+1 ρ
+
+ξ
+
+1
+
+Sρ
+
+,
+
+(8.34)
+
+where ξ 1 is just a typical entry of the random pattern vector. Finally, we obtain
+
+Zn ∝
+
+dm1ρ dqρσ drρσ exp
+
+ρ
+
+ρ ,σ
+
+−N 2
+
+αβ 2
+
+ρ ,σ
+
+rρσ qρσ
+
+P −1
+
+βN
+
+× exp −
+
+Tr ln[I − βQ] exp −
+
+2
+
+2ρ
+
+m
+
+1 ρ
+
+2+N
+
+ln Tr eβ Hξ1
+
+ξ1
+
+.
+
+(8.35)
+
+Because we assume that N is large enough, we can use the Laplace’s method, which
+
+is
+
+b
+eN f (z)dz ≈
+
+2π
+
+eN f (z0).
+
+a
+
+−N f (z0)
+
+(8.36)
+
+72
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+where z0 is the maximum point. Thus, we can perform the approximation Z n ∼ eN F(θ∗), where F(θ ∗) = maxθ F(θ ). Here, we use θ to indicate the order parameter set of the model.
+Then the quenched disorder averaged free energy becomes
+
+ln Z = lim ln Z n = lim ln eN F(θ∗) = N lim F(θ ∗) ,
+
+n→0 n
+
+n→0 n
+
+n→0 n
+
+(8.37)
+
+where
+
+F
+
+rρσ
+
+,
+
+qρ
+
+σ
+
+,
+
+m
+
+1 ρ
+
+= − αβ2 2
+
+ρ ,σ
+
+rρσ qρσ
+
+−
+
+α 2
+
+Tr ln[I − βQ]
+
+β −
+2ρ
+
+m
+
+1 ρ
+
+2+
+
+ln Tr eβ Hξ1
+
+ξ1
+
+.
+
+(8.38)
+
+We have taken the approximation P − 1 P = α N as N is large enough. Note that
+
+(rρσ
+
+,
+
+qρσ
+
+,
+
+m
+
+1 ρ
+
+)
+
+is
+
+the
+
+order
+
+parameter
+
+set
+
+of
+
+the
+
+model.
+
+Their
+
+physical
+
+meanings
+
+will
+
+be clear in the following analysis.
+
+To calculate the maximum of F
+
+rρ
+
+σ
+
+,
+
+qρσ
+
+,
+
+m
+
+1 ρ
+
+, we ﬁrst calculate the derivatives
+
+of F
+
+rρ
+
+σ
+
+,
+
+qρσ
+
+,
+
+m
+
+1 ρ
+
+with respect to the order parameters.
+
+First, we take a derivative with respect to qρσ ,
+
+⎡
+
+∂F ∂ qρ σ
+
+=0⇒
+
+∂ ∂ qρ σ
+
+⎣− N αβ2 2
+
+ρ ,σ
+
+rρσ qρσ
+
++
+
+β 2
+
+(
+
+⎤
+
+β N )2
+
+mμρ qρσ
+
+m
+
+μ σ
+
+⎦
+
+=
+
+0
+
+,
+
+μ≥2 ρ,σ
+
+(8.39)
+
+where the second term inside the bracket comes from the original formula [Eq. (8.27)] in which the integral over {mμρ } is kept. Note that the magnetization is rescaled back. We then obtain the conjugated order parameter
+
+rρσ
+
+=
+
+1 α
+
+m μρ
+
+m
+
+μ σ
+
+,
+
+μ≥2
+
+(8.40)
+
+where
+
+we
+
+need
+
+to
+
+use
+
+the
+
+rescaling
+
+m
+
+μ ρ
+
+→
+
+√m
+
+μ ρ
+
+βN
+
+that is done before. rρσ
+
+is thus
+
+understood as the sum of effects of non-condensed patterns (only one retrieved pattern
+
+here).
+
+Second,
+
+we
+
+take
+
+a
+
+derivative
+
+with
+
+respect
+
+to
+
+m
+
+μ ρ
+
+[see
+
+the
+
+original
+
+formula
+
+Eq. (8.20)]
+
+8.2 Replica Method
+
+73
+
+∂F
+
+∂
+
+m
+
+μ ρ
+
+=
+
+0
+
+⇒
+
+∂
+
+∂
+
+m
+
+μ ρ
+
+−βN 2
+
+m
+
+μ ρ
+
+2
+
++
+
+β
+
+m
+
+μ ρ
+
+i
+
+ξiμ Siρ
+
+=0,
+
+(8.41)
+
+and obtain
+
+m
+
+μ ρ
+
+=
+
+1 N
+
+ξiμ Siρ .
+
+i
+
+(8.42)
+
+The
+
+parameter
+
+m
+
+μ ρ
+
+is
+
+exactly
+
+the
+
+overlap
+
+between
+
+the
+
+state
+
+of
+
+the
+
+system
+
+and
+
+the
+
+μth
+
+pattern, characterizing the quality of memory retrieval.
+
+Finally, from the requirement of a stationary free energy [see Eq. (8.32)]
+
+⎡
+
+⎤
+
+∂F ∂rρσ
+
+=0⇒
+
+∂ ∂rρσ
+
+⎣− N αβ2 2
+
+ρ ,σ
+
+rρσ qρσ
+
++
+
+αβ 2 2
+
+i,ρ ,σ
+
+rρσ Siρ Siσ ⎦
+
+=
+
+0
+
+,
+
+(8.43)
+
+we obtain the Edwards–Anderson order parameter
+
+1 qρσ = N
+
+Siρ Siσ .
+
+i
+
+(8.44)
+
+qρσ is understood as the mutual overlap of two pure states in general. If a single state dominates the phase space, the Edwards–Anderson order parameter characterizes the size of that state.
+
+8.2.1 Replica-Symmetric Ansätz
+
+To proceed, we need to make an approximation about the overlap matrix, i.e., considering the simplest form—the overlap is invariant under permutation of replica indexes. This is called the replica symmetry (RS) ansätz
+
+⎧
+
+⎨ rρσ = r, ∀ρ, σ
+
+⎩
+
+m 1ρ qρσ
+
+= m, = q,
+
+∀ρ ∀ρ
+
+=
+
+σ
+
+.
+
+(8.45)
+
+Then we have
+
+F(r, q, m) = − αβ2 rq n2 − n − αβ2 nr − α Tr ln[I − βQ]
+
+2
+
+2
+
+2
+
+− β nm2 + ln Tr eβ Hξ1 , 2
+
+(8.46)
+
+and
+
+74
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+N αβ2rq N αβ2r α N Tr ln[I − βQ] β N m2
+
+ln Z =
+
+−
+
+− lim
+
+−
+
+2
+
+2
+
+2 n→0
+
+n
+
+2
+
+ln Tr eβ Hξ1
+
++ N lim
+
+,
+
+n→0
+
+n
+
+(8.47)
+
+where
+
+β Hξ1 = βmξ 1
+
+ρ
+
+Sρ + 1 αβ2r Sρ Sσ .
+
+2
+
+ρ ,σ
+
+(8.48)
+
+First, we calculate the last term of ln Z .
+
+Tr eβ Hξ1 = Tr eβmξ1
+
+( ρ
+
+Sρ
+
++
+
+1 2
+
+αβ
+
+2
+
+r
+
+) ρ Sρ 2
+
+:= Tr e A( ) ρ Sρ 2+B ρ Sρ
+
+= Tr
+
+A π
+
+d z e−Az2+2 Az ρ Sρ +B ρ Sρ
+
+=
+
+A π
+
+d z e−Az2 Tr e(2Az+B)Sρ
+ρ
+
+= αβ2r 2π
+
+dz
+
+e−
+
+1 2
+
+αβ2r z2
+
+2 cosh
+
+αβ2r z + βmξ 1
+
+n
+
+= αβ2r 2π
+
+dz
+
+e−
+
+1 2
+
+αβ2r z2+n
+
+ln[2
+
+cosh(αβ2r z+βmξ 1)]
+
+=1 2π
+
+dz
+
+e−
+
+1 2
+
+z
+
+2
+
++n
+
+ln[2
+
+cosh(β
+
+√αr
+
+z+β
+
+m
+
+ξ
+
+1
+
+)]
+
+.
+
+(8.49)
+
+Note that A and B are auxiliary variables in intermediate computations. The limit of the above term is clearly given by
+
+lim Tr eβ Hξ1 = 1
+
+n→0
+
+2π
+
+dz
+
+e−
+
+1 2
+
+z2
+
+=
+
+1
+
+.
+
+Thus, we can obtain the limit by the derivative with respect to n
+
+(8.50)
+
+8.2 Replica Method
+
+ln Tr eβ Hξ1
+
+lim
+
+n→0
+
+n
+
+=
+
+lim
+n→0
+
+d dn
+
+Tr
+
+eβ Hξ1
+
+Tr eβ Hξ1
+
+=
+
+1
+
+d
+
+lim
+
+d
+
+z
+
+e−
+
+1 2
+
+z 2 +n
+
+ln[2
+
+cosh(β
+
+√ ar
+
+z+βmξ
+
+1)]
+
+2π n→0 dn
+
+=
+
+1 lim
+
+d
+
+z
+
+e−
+
+1 2
+
+z2
+
+d
+
+2 cosh
+
+β
+
+√ αr
+
+z
+
++
+
+β
+
+mξ
+
+1
+
+n
+
+2π n→0
+
+dn
+
+=
+
+1 lim
+
+d
+
+z
+
+e−
+
+1 2
+
+z2
+
+2 cosh
+
+√ β αr
+
+z
+
++
+
+βmξ
+
+1
+
+n
+
+2π n→0
+
+ln
+
+2 cosh
+
+√ β αr
+
+z
+
++
+
+βmξ
+
+1
+
+=
+
+1
+
+dz
+
+e−
+
+1 2
+
+z2
+
+lim
+
+2 cosh
+
+√ β αr
+
+z
+
++
+
+βmξ
+
+1
+
+n
+
+2π
+
+n→0
+
+ln
+
+2 cosh
+
+√ β αr
+
+z
+
++
+
+βmξ
+
+1
+
+=
+
+1
+
+dz
+
+e−
+
+1 2
+
+z2
+
+ln
+
+2 cosh
+
+√ β αr
+
+z
+
++
+
+βmξ
+
+1
+
+2π
+
+=
+
+Dz
+
+ln
+
+2 cosh
+
+√ β αr
+
+z
+
++
+
+βmξ
+
+1
+
+.
+
+75
+(8.51)
+
+Then we calculate the third term of ln Z . Since Q is a symmetric matrix, we can diagonalize this matrix and get
+
+AQA−1 = = diag(λ1, λ2, . . . , λn) .
+
+(8.52)
+
+We can thus expand ln[I − βQ] to a power series with respect to Q (here we take
+
+the formula ln(1 − x) = −
+
+∞ n=1
+
+xn n
+
+)
+
+and
+
+obtain
+
+Tr ln[I − βQ] = Tr A · ln[I − βQ] · A−1
+
+∞ βl AQA−1 l = − Tr
+l
+l =1
+
+= − Tr ∞ βl ( )l l
+l =1
+
+= − ∞ βl l
+
+n
+
+λli =
+
+n
+
+ln [1 − βλi ] .
+
+l=1 i=1
+
+i =1
+
+(8.53)
+
+76
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+This result is equivalent to the matrix identity: Tr ln K = ln det K for a positive deﬁnite matrix.
+Then we calculate the eigenvalues of Q by
+
+1−λ q ··· q
+
+q 1−λ ··· q
+
+...
+
+...
+
+...
+
+q q ··· 1−λ
+
+1 − λ + (n − 1)q 1 − λ + (n − 1)q · · · 1 − λ + (n − 1)q
+
+q
+
+=
+
+...
+
+1−λ
+
+···
+
+q
+
+...
+
+...
+
+q
+
+q
+
+···
+
+1−λ
+
+1 1 ··· 1
+
+q 1−λ ··· q
+
+= [1 − λ + (n − 1)q] ... ...
+
+...
+
+q q ··· 1−λ
+
+1 1 ··· 1
+
+0 1−λ−q ··· 0
+
+= [1 − λ + (n − 1)q] ...
+
+...
+
+...
+
+0 0 ··· 1−λ−q
+
+= [1 − λ + (n − 1)q](1 − q − λ)n−1 = 0 .
+
+(8.54)
+
+Thus, Q have one eigenvalue with the value (1 + (n − 1)q) and (n − 1) eigenvalues with values (1 − q). Then the trace turns out to be
+
+Tr ln[I − βQ] = ln(1 − β + βq − nβq) + (n − 1) ln(1 − β + βq) , (8.55)
+
+and
+
+lim Tr ln[I − βQ] = lim
+
+ln(
+
+1−β +β q −nβ q 1−β+βq
+
+)
+
++
+
+ln(1
+
+−
+
+β
+
++
+
+βq)
+
+n→0
+
+n
+
+n→0
+
+n
+
+=
+
+− 1
+
+−
+
+βq β+
+
+βq
+
++
+
+ln(1
+
+−
+
+β
+
++
+
+βq)
+
+,
+
+(8.56)
+
+where we calculate the limit by the L Hospital’s rule. Taken all together, the free energy of the Hopﬁeld model can be written as
+
+8.2 Replica Method
+
+77
+
+−β f = 1 ln Z N
+
+αβ 2
+
+α
+
+βq
+
+=
+
+r (q − 1) −
+
+2
+
+2
+
+ln(1 − β + βq) − 1 − β + βq
+
++
+
+Dz
+
+ln
+
+2 cosh
+
+β
+
+√ αr
+
+z
+
++
+
+β
+
+m
+
+ξ
+
+1
+
+.
+
+− β m2 2
+
+(8.57)
+
+To complete the Laplace method, we ﬁnally derive the saddle-point equations for all order parameters in the RS ansätz. More precisely, we take derivatives of the free energy with respect to all the order parameters
+
+⎧
+
+⎪⎨ ⎪⎩
+
+∂(−β f ) ∂(−∂rβ f ) ∂(−∂mβ f )
+∂q
+
+= = =
+
+0 0 0
+
+,
+
+(8.58)
+
+and get
+
+q = − √1 β 2παr
+
+d
+
+z
+
+e−
+
+1 2
+
+z2
+
+z
+
+tanh
+
+√ β αr
+
+z
+
++
+
+βmξ
+
+1
+
++1
+
+= √1 β 2παr
+
+d
+
+e−
+
+1 2
+
+z2
+
+dz
+
+tanh
+
+√ β αr
+
+z
+
++
+
+βmξ
+
+1
+
++1
+
+dz
+
+= √1
+
+e−
+
+1 2
+
+z2
+
+tanh
+
+√ β αr
+
+z
+
++
+
+βmξ
+
+1
+
++∞
+
+β 2παr
+
+−∞
+
+−
+
+Dz
+
+1 − tanh2
+
+√ β αr
+
+z
+
++
+
+βmξ
+
+1
+
++1
+
+=
+
+Dz
+
+tanh2
+
+√ β αr
+
+z
+
++
+
+βmξ
+
+1
+
+=
+
+D
+
+z
+
+tanh2
+
+β
+
+√ ( αr
+
+z
+
++
+
+m)
+
+.
+
+(8.59)
+
+Moreover, r and m can be analogously computed, which leads to the following saddle-point equations for the associative memory model.
+
+q=
+
+Dz
+
+tanh2
+
+√ β( αr
+
+z
+
++
+
+m)
+
+,
+
+√ m = Dz ξ tanh β( αr z + mξ ) =
+
+r=
+
+q
+
+.
+
+(1 − β + βq)2
+
+√ Dz tanh β( αr z + m) ,
+
+(8.60) (8.61) (8.62)
+
+Phase transitions can be deduced from an analysis of the behavior of these equations and the corresponding free energy function.
+
+78
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+8.2.2 Zero-Temperature Limit
+
+Under the replica-symmetric assumption, as T → 0 (β → ∞), we have
+
+⎧ ⎪⎨1 x > 0
+
+tanh(βx) → sign(x) = ⎪⎩0−1
+
+x=0 , x <0
+
+(8.63)
+
+Equation (8.61) becomes
+
+√ m = Dz sign( αr z + m) + O(T )
+
+= erf √m + O(T ) . 2αr
+
+On the other hand, as β → ∞
+
+1−q =
+
+√d z
+
+e−
+
+z2 2
+
+1
+
+−
+
+tanh2
+
+√ β( αr
+
+z
+
++
+
+m)
+
+2π
+
+√1
+
+e−
+
+z2 2
+
+2π
+
+tanh2
+
+β
+
+√ ( αr
+
+z+m
+
+)=0
+
+dz
+
+1
+
+−
+
+tanh2
+
+√ β( αr
+
+z
+
++
+
+m)
+
+= √1
+
+e−
+
+m2 2αr
+
+√1
+
+2π β αr
+
+d
+
+z
+
+∂ ∂z
+
+tanh
+
+√ β( αr
+
+z
+
++
+
+m)
+
+= √2
+
+√1
+
+e . −
+
+m2 2αr
+
+2π β αr
+
+Equation (8.60) thus yields q = 1 − C T , where
+
+(8.64) (8.65)
+
+C d=ef
+
+2
+
+e . −
+
+m2 2αr
+
+πrα
+
+(8.66)
+
+Using these intermediate results, Eq. (8.62) becomes r = (1 − C)−2. The equations√of m and r can be reduced to one equation, by deﬁning an auxiliary
+variable y = m/ 2αr . We then have
+
+erf(y) = y
+
+√ 2α
+
++
+
+√2
+
+e−y2
+
+.
+
+π
+
+(8.67)
+
+One solution is given by y = m = 0, which is a spin glass (SG) solution. For α ≥ αc = 0.138, this is the unique solution. For a < αc, Ferromagnetic solutions m = 0 appear (2P such solutions, due to the model symmetry). At α = αc, the overlap m takes the value m = 0.967 [6].
+
+8.2 Replica Method
+
+79
+
+Fig. 8.3 The error probability as a function of α at T = 0
+Equation (8.67) can be solved numerically. By using the relation m = erf(y), we can obtain the values of m. The error probability is given by Perror = (1 − m)/2, which is shown in Fig. 8.3. From the plot, we can see that there is a critical value αc = 0.138 where the error probability jumps to 1/2, indicating a discontinuous transition to a spin glass phase. When α < αc, the error probability is quite low, which means that the network can reliably retrieve one of the stored patterns. When α > αc, the error probability is 1/2, suggesting the network could not have a signiﬁcant memory.
+8.3 Phase Diagram
+By solving Eqs. (8.61), (8.60) and (8.62) numerically, we can obtain the phase diagram of the Hopﬁeld network (Fig. 8.4) [3, 6]. At a very high temperature, the thermal noise impairs the retrieval process, therefore m = 0, q = 0 and r = 0. Interesting, from an inverse Ising perspective, given the conﬁgurations from this phase, the couplings of the model can be easily inferred by a reverse engineering process [7, 8]. As the temperature is lowered down, the paramagnetic phase becomes unsta-
+
+80
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+ble at a critical temperature-load line (Tg(α)), which can be ob√tained analytically through a linear stability analysis of Eq. (8.60), i.e., Tg = 1 + α, where α is the
+
+memory load.
+
+On the other hand, with decreasing memory load, the spin glass phase becomes
+
+metastable at a critical line TM (α), where the retrieval phase becomes locally stable. This transition is thus a ﬁrst-order phase transition. In this phase, spurious states (i.e.,
+
+a linear combination of several stored patterns) also emerge as metastable states. Once
+
+α < 0.051, the retrieval phase becomes globally stable when a critical temperature
+
+line Tc is crossed. The discontinuous transition point can be obtained by analyzing
+
+the saddle-poin√t equation, and equalin√g the free energies of two competing phases. TM 1 − 1.95 α, and Tc 1 − 2.6 α [6].
+
+At T
+
+= 0, the entropy per spin S = −
+
+∂f ∂T
+
+T →0
+
+=
+
+−
+
+1 2
+
+α[ln(1
+
+−
+
+C)
+
++
+
+C /(1
+
+−
+
+C )]
+
+with C = β(1 − q) is negative for all replica-symmetric solutions, which is unphys-
+
+ical. Below the dashed line (so-called AT line in spin glass theory; see Chap. 9) in
+
+Fig. 8.4, the retrieval states become unstable, the replica symmetry breaking (RSB)
+
+effects should be considered (a general introduction of RSB will be presented in
+
+P
+
+1
+
+SG
+
+Retrieval
+
+stable
+
+metastable
+
+0
+
+0.05
+
+0.138
+
+Fig. 8.4 The phase diagram of Hopﬁeld model (adapted from Ref. [3]). Three phases (paramagnetic, spin glass and retrieval) exist. The paramagnetic phase is separated by a continuous transition to the spin glass phase (Tg line). The phase transition from retrieval phase to spin glass phase on the TM is discontinuous. Below Tc line, the retrieval phase becomes globally stable. Below the dash line (TR), the replica-symmetric solution becomes unstable
+
+8.3 Phase Diagram
+
+81
+
+Chap. 9). In physics, this implies that the permutation symmetry of replica indexes in the overlap matrix does not hold, requiring that a higher level of approximation should be taken. However, as shown in the Fig. 8.4, the RSB effect in the retrieval phase is very weak. As α → ∞, the Hopﬁeld model reduces to the well-known SK model.
+
+8.4 Hopﬁeld Model with Arbitrary Hebbian Length
+
+In this section, we generalize the standard Hopﬁeld model to the case of arbitrary Hebbian length. This is inspired by the Monkey experiments where the monkey is trained to recognize and match visual stimuli, the temporal order of the stimulus presentations is maintained during training. The experiments revealed that the monkey’s temporal cortex is able to convert the temporal association of stimuli into a spatial correlation in the patterns of sustained activities [9, 10]. This experimental result was ﬁrst modeled by Griniasty et.al. [11], who takes one Hebbian length into the construction of the coupling matrix, i.e., the neighboring patterns in the sequence of presentation contribute to Hebbian learning. In this model, a novel phase of correlated- attractors emerges due to this revised Hebbian rule. The correlated attractor triggered by one stimulus pattern becomes correlated with neighboring patterns around the stimulus, although the patterns themselves are all independent.
+Motivated by the observation that Hebbian learning can occur in a wider learning window [12, 13], we propose to extend the Hebbian length to an arbitrary value [14], and thus deﬁne the following coupling matrix of neurons:
+
+Ji j
+
+=
+
+1 N
+
+P
+
+d
+
+cξiμξ
+
+μ j
+
++
+
+γ
+
+ξiμξ
+
+μ+r j
+
++
+
+ξiμ+r
+
+ξ
+
+μ j
+
+,
+
+μ=1
+
+r =1
+
+(8.68)
+
+where c speciﬁes the standard Hebbian strength, γ speciﬁes the coupling strength
+
+between r -separated patterns, and d is thus the Hebbian length of our model. The
+
+case of d = 1 has been studied by previous works [11, 15], while d = 0 recovers the
+
+standard Hopﬁeld model [1–3].
+
+i.e.,
+
+p(ξiμ
+
+=
+
+±1)
+
+=
+
+1 2
+
+δ(ξiμ
+
++ 1)
+
+ξiμ
+
++
+
+1 2
+
+follows δ(ξiμ −
+
+independently a binomial 1). We are interested in the
+
+distribution, limit of large
+
+values of
+
+P
+
+and
+
+N , thereby deﬁning α
+
+=
+
+P N
+
+.
+
+α
+
+is also called the memory load of the
+
+associative memory model.
+
+8.4.1 Computation of the Disorder-Averaged Free Energy
+The matrix J can be recast into the form
+
+82
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+J = 1 ξ TXξ , N
+
+(8.69)
+
+where X is a P × P circulant matrix, a special form of Toeplitz matrix with elements
+
+d
+
+Xμη = cδμη + γ
+
+δμ,(η+r) mod P + δμ,(η−r) mod P
+
+r =1
+
+d
+
+= (c − γ )δμη + γ
+
+δμ,(η+r) mod P .
+
+r =−d
+
+(8.70)
+
+The mth eigenvalue of X is given by [16]
+
+P −1
+
+λm =
+
+X 1(k +1) e−2π im k / P
+
+k=0
+
+P −1
+= X1(k+1) cos
+
+2π mk P
+
+k=0
+
+P −1
+=
+
+cδ0k + γ
+
+d
+(δ0,(k+r) mod P + δ0,(k−r) mod P )
+
+cos
+
+2π mk P
+
+k=0
+
+r =1
+
+d
+=c+γ
+
+cos −2π mr + cos 2π mr
+
+r =1
+
+P
+
+P
+
+= c + 2γ d cos 2π mr , P
+r =1
+
+for m = 0, 1, . . . , P − 1. The Hamiltonian of the model is deﬁned by
+
+(8.71)
+
+H(s) = − 1 2
+
+Ji j si s j .
+
+i=j
+
+(8.72)
+
+The partition function is thus given by
+
+Z = Tr exp β sTξ TXξ s , 2N
+
+(8.73)
+
+where Tr indicates the summation over all discrete states s. In general, to compute a disorder averaged free energy ( −T ln Z ) is a computationally hard task. However, the well-known replica trick developed in spin glass theory [4] can be used to get around the difﬁculty, but assumptions on the replica matrix are required (detailed below). The replica method uses the mathematical identity
+
+8.4 Hopﬁeld Model with Arbitrary Hebbian Length
+
+83
+
+ln Z = lim ln Z n , n→0 n
+
+(8.74)
+
+where · denotes the expectation over the distribution of ξ . To proceed, we have to compute an integer-power of the partition function
+
+Z n = Tr exp β n sa T ξ TXξ sa . 2N
+a=1
+
+(8.75)
+
+We consider the situation where there are S condensed (or foreground) patterns
+
+and P − S non-condensed (or background) patterns, which is reasonable in our
+
+current setting. The choice of S can be justiﬁed a posterior, e.g., through solving the
+
+mean-ﬁeld dynamics or saddle-point equations. Thus, we can reorganize the matrix
+
+X as a block matrix, i.e.
+
+X=
+
+XFF XFB XBF XBB
+
+,
+
+(8.76)
+
+where XF F ∈ RS×S , XTB F = XF B ∈ RS×(P−S) and XB B ∈ R(P−S)×(P−S). It then follows that
+
+⎡
+
+Zn
+
+=
+
+Tr exp ⎣ β 2N
+
+sia
+
+ξiμ
+
+X
+
+μν
+
+ξ
+
+ν j
+
+s aj
+
+a,i, j,μ∈B,ν∈B
+
++
+
+β N
+
+sia
+
+ξiμ
+
+X
+
+μν
+
+ξ
+
+ν j
+
+s
+
+a j
+
+a,i, j,μ∈B,ν∈F
+
+⎤
+
++β 2N
+
+sia
+
+ξiμ
+
+X
+
+μν
+
+ξ
+
+ν j
+
+s aj
+
+⎦
+
+.
+
+a,i, j,μ∈F,ν∈F
+
+(8.77) We then diagonalize the submatrix XB B as XμBνB = σ λσ ημσ ηνσ , where λσ and ημσ are denoted as its eigenvalues and eigenvectors, respectively. We thus obtain
+
+⎡
+
+⎛
+
+⎞2
+
+⎤
+
+Z n = Tr exp ⎢⎣ β 2N
+
+λσ ⎝
+
+sia ξiμημσ ⎠
+
+a,σ
+
+i ,μ∈ B
+
++
+
+β N
+
+a,i, j,μ∈B,ν∈F
+
+sia
+
+ξiμ
+
+X
+
+μν
+
+ξ
+
+ν j
+
+saj
+
+⎥⎦
+
+⎤
+
+= Tr
+a,σ
+
++β 2N
+
+sia
+
+ξiμ
+
+X
+
+μν
+
+ξ
+
+ν j
+
+saj
+
+⎦
+
+a,i, j,μ∈F,ν∈F
+
+⎡
+
+⎛
+
+⎞
+
+D xσa
+
+exp ⎣
+i ,μ∈ B
+
+√ξiμ N
+
+⎝
+a,σ
+
+sia ημσ
+
+βλσ xσa
+
++
+
+√β N
+
+sia
+
+X
+
+μν
+
+ξ
+
+ν j
+
+saj
+
+⎠
+
+a, j,ν∈F
+
+⎤
+
++β 2N
+
+sia
+
+ξiμ
+
+X μν
+
+ξ
+
+ν j
+
+saj
+
+⎦
+
+a,i, j,μ∈F,ν∈F
+
+,
+
+(8.78)
+
+84
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+where we have used the Hubbard–Stratonovich transformation, i.e., exp
+
+1 2
+
+b2
+
+=
+
+Dx
+
+exp [±bx],
+
+where
+
+Dx
+
+=
+
+√1 2π
+
+exp
+
+−
+
+x2 2
+
+dx.
+
+We then deﬁne
+
+⎡
+
+⎛
+
+B
+
+=
+
+exp ⎣
+i ,μ∈ B
+
+√ξiμ N
+
+⎝
+a,σ
+
+sia ημσ
+
+⎞⎤
+
+β λσ
+
+xσa
+
++
+
+√β N
+
+sia
+
+X
+
+μν
+
+ξ
+
+ν j
+
+s
+
+a j
+
+⎠⎦
+
+a, j,ν∈F
+
+,
+
+(8.79)
+
+and
+
+⎡
+
+⎤
+
+F
+
+=
+
+exp ⎣ β 2N
+
+sia
+
+ξiμ
+
+X
+
+μν
+
+ξ
+
+ν j
+
+s
+
+a j
+
+⎦
+
+.
+
+a,i, j,μ∈F,ν∈F
+
+Taking the disorder average over {ξiμ}, we write the result as
+
+(8.80)
+
+Z n = Tr
+a,σ
+
+Dxσa B F .
+
+(8.81)
+
+We ﬁrst carry out the average over the distribution of background patterns, which yields
+
+B
+
+⎧
+
+⎡
+
+⎛
+
+=
+
+exp
+
+⎨ ⎩
+
+1 2N
+
+⎣
+
+i,μ∈B a
+
+sia ⎝
+σ
+
+ημσ
+
+β λσ
+
+xσa
+
++
+
+√β N
+
+⎞⎤2⎫⎬
+
+X
+
+μν
+
+ξ
+
+ν j
+
+s
+
+a j
+
+⎠⎦
+
+⎭
+
+j,ν∈F
+
+.
+
+(8.82)
+
+Introducing the state overlap as one order parameter:
+
+and
+
+m
+
+a μ
+
+=
+
+1 N
+
+i ξiμsia as another order parameter, we
+
+qab = have
+
+1 N
+
+N i
+
+sia sib
+
+for
+
+a
+
+=
+
+b,
+
+B=
+
+d qab d qˆab
+
+d
+
+m
+
+a μ
+
+d
+
+mˆ
+
+a μ
+
+a=b 2π/N a,μ∈F 2π/N
+
+⎡
+
+⎤
+
+×
+
+exp ⎣− 1 N 2
+
+qˆa b qa b
+a =b
+
++
+
+1 2
+
+qˆab
+a =b
+
+i
+
+sia sib − N
+
+maμmˆ aμ +
+
+mˆ
+
+a μ
+
+a,μ∈F
+
+a,μ∈F
+
+i
+
+ξiμsia ⎦
+
+⎡
+
+⎤
+
+× exp ⎣ 1 2 μ∈B a
+
+ημσ
+
+√ βλσ xσa + β N
+
+2
+
+X
+
+μν
+
+m
+
+a ν
+
+⎦
+
+σ
+
+ν∈F
+
+⎡
+
+×
+
+exp
+
+⎣
+
+1 2
+
+μ∈ B
+
+a =b
+
+qab
+
+ημσ
+
+√ βλσ xσa + β N
+
+Xμν maν
+
+σ
+
+ν∈F
+
+×
+
+ημσ
+
+√ βλσ xσb + β N
+
+Xμν mbν .
+
+σ
+
+ν∈F
+
+(8.83)
+
+8.4 Hopﬁeld Model with Arbitrary Hebbian Length
+
+85
+
+In the above derivations, we have inserted Dirac delta functions for deﬁning those
+
+order parameters, and then applied the integral representations of these delta func-
+
+tions. The hatted order parameters are the byproducts of conjugated counterparts.
+
+Under
+
+the
+
+replica
+
+symmetric
+
+ansätz
+
+with
+
+qab
+
+=
+
+q
+
+and
+
+qˆab
+
+=
+
+qˆ
+
+for
+
+a
+
+=
+
+b,
+
+m
+
+a μ
+
+=
+
+mμ and mˆ aμ = mˆ μ, we arrive at
+
+B=
+
+d q d qˆ
+
+d m d mˆ
+
+(2π/N )n(n−1)
+
+(2π/N )nS
+
+−
+
+N n mμmˆ μ exp
+μ∈F
+
+− 1 N n(n − 1)qˆq 2
+
+⎤
+
+⎡
+
++ 1 qˆ 2 a=b
+
+i
+
+sia sib +
+
+mˆ μ
+
+a,μ∈F
+
+i
+
+ξiμ sia
+
+⎦
+
+×
+
+exp
+
+⎣
+
+1 2
+
+μ∈ B
+
+a
+
+ημσ βλσ xσa
+σ
+
+⎤
+
+⎡
+
+√ +β N
+
+2
+
+Xμν mν
+
+⎦ × exp ⎣ q 2
+
+ν∈F
+
+μ∈B a=b
+
+ημσ
+
+√ βλσ xσa + β N
+
+Xμν mν
+
+σ
+
+ν∈F
+
+×
+
+ημσ
+
+√ βλσ xσb + β N
+
+Xμν mν
+
+σ
+
+ν∈F ⎡
+
+=
+
+d q d qˆ (2π/N )n(n−1)
+
+d m d mˆ (2π/N )nS
+
+exp ⎣− 1 2
+
+N n(n
+
+−
+
+1)qˆ q
+
++
+
+1 qˆ 2
+
+a =b
+
+i
+
+sia sib − N n mμmˆ μ
+μ∈F
+
+⎤
+
+⎡
+
+⎤
+
++
+
+mˆ μ
+
+a,μ∈F
+
+i
+
+ξiμsia ⎦
+
+×
+
+exp ⎣ 1
+
+−q 2
+
+μ∈ B
+
+a
+
+ημσ
+
+√ βλσ xσa + β N
+
+2
+Xμν mν ⎦
+
+σ
+
+ν∈F
+
+⎡
+
+⎤
+
+× exp ⎣ q 2 μ∈B
+
+ημσ
+a,σ
+
+√ βλσ xσa + βn N
+
+2
+Xμν mν ⎦ .
+
+ν∈F
+
+(8.84)
+
+We apply the Hubbard–Stratonovich transformation once again, and obtain
+
+B=
+
+d q d qˆ
+
+d m d mˆ
+
+(2π/N )n(n−1) (2π/N )nS
+
+D yμa
+μ,a
+
+μ
+
+Dzμ
+
+⎡
+
+⎤
+
+× exp ⎣− 1 N n(n − 1)qˆq + 1 qˆ
+
+2
+
+2 a=b
+
+i
+
+sia sib − N n mμmˆ μ +
+
+mˆ μ
+
+μ∈F
+
+a,μ∈F
+
+i
+
+ξiμsia ⎦
+
+⎡
+
+⎤
+
+× exp ⎣ 1 − q
+
+ημσ
+
+√ βλσ xσa + β N
+
+Xμν mν yμa ⎦
+
+μ∈B a σ
+⎡
+
+ν∈F
+⎤
+
+× exp ⎣√q
+
+ημσ
+
+√ βλσ xσa + βn N
+
+Xμν mν zμ⎦ .
+
+μ∈B a,σ
+
+ν∈F
+
+By collecting terms containing xσa , we have
+
+(8.85)
+
+86
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+B=
+
+d q d qˆ
+
+d m d mˆ
+
+(2π/N )n(n−1) (2π/N )nS
+
+D yμa
+μ,a
+
+μ
+
+Dzμ
+
+⎡
+
+⎤
+
+× exp ⎣− 1 N n(n − 1)qˆq + 1 qˆ
+
+2
+
+2 a=b
+
+i
+
+sia sib − N n mμmˆ μ +
+
+mˆ μ
+
+μ∈F
+
+a,μ∈F
+
+i
+
+ξiμsia ⎦
+
+⎡
+
+⎤
+
+× exp ⎣ xσa βλσ
+
+ημσ
+
+1
+
+−
+
+q
+
+yμa
+
++
+
+√ qzμ
+
+⎦
+
+a,σ
+
+μ∈ B
+
+⎡
+
+⎤
+
+× exp ⎣β√N
+
+Xμν mν
+
+1
+
+−
+
+q
+
+yμa
+
++
+
+√ qzμ
+
+⎦.
+
+a,μ∈B ν∈F
+
+(8.86)
+
+According to the deﬁnition of the overlap, F can be written as
+
+⎡
+
+⎤
+
+F
+
+=
+
+exp ⎣ βn N 2
+
+mμ Xμν mν ⎦ .
+
+μ∈F,ν∈F
+
+(8.87)
+
+Collecting all the results derived above, we have
+
+Z n = Tr
+
+a,σ
+
+D xσa
+
+d q d qˆ (2π/N )n(n−1)
+
+d m d mˆ (2π/N )nS
+
+D yμa
+μ,a
+
+μ
+
+Dzμ
+
+⎡
+
+⎤
+
+× exp ⎣− 1 N n(n − 1)qˆq + 1 qˆ
+
+2
+
+2
+
+sia sib − N n mμmˆ μ⎦
+
+a=b i
+
+μ∈F
+
+⎡
+
+⎤
+
+⎡
+
+⎤
+
+× exp ⎣
+
+mˆ μ ξiμsia ⎦ × exp ⎣ xσa βλσ
+
+ημσ
+
+a,μ∈F
+
+i
+
+a,σ
+
+μ∈ B
+
+⎡
+
+⎤
+
+× exp ⎣β√N
+
+Xμν mν
+
+1
+
+−
+
+q
+
+yμa
+
++
+
+√ qzμ
+
+⎦
+
+a,μ∈B ν∈F
+
+⎡
+
+⎤
+
+1
+
+−
+
+q
+
+yμa
+
++
+
+√ qzμ
+
+⎦
+
+× exp ⎣ βn N 2
+
+mμ Xμν mν ⎦
+μ∈F,ν∈F
+
+.
+
+We deﬁne the term summing over {sia} as
+
+(8.88)
+
+8.4 Hopﬁeld Model with Arbitrary Hebbian Length
+
+87
+
+⎡
+
+⎤
+
+S
+
+=
+
+Tr exp ⎣ 1 qˆ 2 a=b
+
+i
+
+sia sib +
+
+mˆ μ
+
+a,μ∈F
+
+i
+
+ξiμsia ⎦
+
+⎡
+
+⎤
+
+2
+
+= exp − n N qˆ Tr exp ⎣ 1 qˆ
+
+2
+
+2
+
+i
+
+sia
+a
+
++
+
+mˆ μξiμsia⎦
+
+a,μ∈F
+
+⎧
+
+⎡
+
+= exp
+
+− n N qˆ 2
+
+⎨ ⎩
+
+Tr exp ⎣ 1 qˆ 2
+
+2
+
+⎤ ⎫⎬N
+
+sa
+a
+
++
+
+mˆ μξ μsa⎦ ⎭ .
+
+a,μ∈F
+
+(8.89)
+
+Applying the Hubbard–Stratonovich transformation, we obtain
+
+nN S = exp − 2 qˆ
+= exp − n N qˆ 2
+= exp − n N qˆ 2
+In the limit n → 0,
+
+⎧
+
+⎡
+
+⎨
+
+⎤ ⎫⎬N
+
+⎩ Dz Tr exp ⎣ qˆsa z + mˆ μξ μsa⎦ ⎭
+
+a
+
+μ∈F
+
+⎧ ⎨
+
+⎡
+
+⎤
+
+⎫ ⎬
+
+N
+
+⎩ Dz 2 cosh ⎣ qˆ z + mˆ μξ μ⎦ ⎭
+
+a
+
+μ∈F
+
+⎧⎡
+
+⎛
+
+⎞ ⎤⎫
+
+⎨
+
+⎬
+
+exp ⎩N ln ⎣
+
+Dz 2n coshn ⎝ qˆ z +
+
+mˆ μξ μ⎠
+
+⎦ ⎭
+
+.
+
+μ∈F
+
+(8.90)
+
+⎧
+
+S
+
+= exp
+
+− n N qˆ 2
+
+⎨ exp ⎩n N
+
+Taken together, we have
+
+⎡
+
+⎛
+
+Dz ln ⎣2 cosh ⎝
+
+⎞⎤ ⎫ ⎬
+qˆ z + mˆ μξ μ⎠⎦ ⎭ .
+μ∈F
+(8.91)
+
+88
+
+8 Statistical Mechanical Theory of Hopﬁeld Model
+
+Zn =
+
+a,σ
+
+D xσa
+
+d q d qˆ (2π/N )n(n−1)
+
+d m d mˆ (2π/N )nS
+
+μ,a
+
+D yμa
+
+μ
+
+Dzμ
+
+⎡
+
+⎤
+
+× exp ⎣− 1 N n(n 2
+
+− 1)qˆq
+
+−
+
+n N qˆ 2
+
+−
+
+N n mμmˆ μ
+μ∈F
+
++
+
+βnN 2
+
+mμ Xμν mν ⎦
+μ∈F,ν∈F
+
+⎡
+
+⎤
+
+× exp ⎣ xσa βλσ
+
+ημσ
+
+1
+
+−
+
+q
+
+yμa
+
++
+
+√ qzμ
+
+⎦
+
+a,σ
+
+μ∈ B
+
+⎡
+
+⎤
+
+× exp ⎣β√N
+
+Xμν mν
+
+1
+
+−
+
+q
+
+yμa
+
++
+
+√ q
+
+zμ
+
+⎦
+
+⎧ ⎨ × exp ⎩n N
+
+a,μ∈B ν∈F
+
+⎡
+
+⎛
+
+Dz ln ⎣2 cosh ⎝
+
+⎞⎤ ⎫ ⎬
+qˆ z + mˆ μξ μ⎠⎦ ⎭ .
+μ∈F
+
+(8.92)
+
+To proceed, we ﬁrst denote the vectors ya = [yμa ; μ ∈ B]T, z = [zμ; μ ∈ B]T,
+
+m = [mμ; μ ∈ F]T, mˆ = [mˆ μ; μ ∈ F]T and ξ F = [ξ μ; μ ∈ F]T. Integrating out
+
+{xσa }, we get
+
+⎡
+
+⎤
+
+Dxσa exp ⎣ xσa βλσ
+
+ημσ
+
+1
+
+−
+
+q
+
+yμa
+
++
+
+√ qzμ
+
+⎦
+
+a,σ
+
+a,σ
+
+μ∈ B
+
+⎡
+
+⎤
+
+=
+
+exp
+
+⎣
+
+1 2
+
+β
+
+a ,σ,μ∈ B ,ν ∈ B
+
+λσ
+
+ημσ ηνσ
+
+(
+
+1
+
+−
+
+q
+
+yμa
+
++
+
+√ q
+
+z
+
+μ
+
+)(
+
+1
+
+−
+
+q yνa
+
++
+
+√ q
+
+zν
+
+)⎦
+
+⎡
+
+⎤
+
+=
+
+exp
+
+⎣
+
+1 2
+
+β
+
+a ,μ∈ B ,ν ∈ B
+
+Xμν (
+
+1
+
+−
+
+q
+
+yμa
+
++
+
+√ q
+
+zμ
+
+)(
+
+1
+
+−
+
+q yνa
+
++
+
+√ q
+
+zν
+
+)⎦
+
+⎡
+
+(8.93)
+
+=
+
+exp
+
+⎣
+
+1 2
+
+β (1
+
+−
+
+q)
+
+a ,μ∈ B ,ν ∈ B
+
+yμa Xμν
+
+yνa
+
++
+
+β
+
+(1 − q)q
+
+⎤
+
+×
+a ,μ∈ B ,ν ∈ B
+
+zμ Xμν yνa
+
++
+
+1 nβq 2
+
+μ∈ B ,ν ∈ B
+
+zμ Xμν zν ⎦
+
+= exp
+
+1 β(1 − q) 2
+
+a
+
+(ya )TXB B ya + β
+
+(1 − q)q
+
+a
+
+zTXB B ya
+
++
+
+1 2
+
+nβq
+
+zTX
+
+B
+
+B
+
+z
+
+.
+
+Collecting all terms containing {yμa }, we get
+

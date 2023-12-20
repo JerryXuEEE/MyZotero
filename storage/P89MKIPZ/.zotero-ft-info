@@ -1,0 +1,16 @@
+Title:          A Review of Issues Related to Data Acquisition and Analysis in EEG/MEG Studies
+Subject:        Electroencephalography (EEG) and magnetoencephalography (MEG) are non-invasive electrophysiological methods, which record electric potentials and magnetic fields due to electric currents in synchronously-active neurons. With MEG being more sensitive to neural activity from tangential currents and EEG being able to detect both radial and tangential sources, the two methods are complementary. Over the years, neurophysiological studies have changed considerably: high-density recordings are becoming de rigueur; there is interest in both spontaneous and evoked activity; and sophisticated artifact detection and removal methods are available. Improved head models for source estimation have also increased the precision of the current estimates, particularly for EEG and combined EEG/MEG. Because of their complementarity, more investigators are beginning to perform simultaneous EEG/MEG studies to gain more complete information about neural activity. Given the increase in methodological complexity in EEG/MEG, it is important to gather data that are of high quality and that are as artifact free as possible. Here, we discuss some issues in data acquisition and analysis of EEG and MEG data. Practical considerations for different types of EEG and MEG studies are also discussed.
+Keywords:       EEG; MEG; artifacts; data acquisition; reference electrode; data analysis; sensor space; source space
+Author:         Aina Puce and Matti S. Hämäläinen
+Creator:        LaTeX with hyperref package
+Producer:       pdfTeX-1.40.15
+CreationDate:   05/31/17 17:04:03
+ModDate:        05/31/17 17:04:03
+Tagged:         no
+Form:           none
+Pages:          30
+Encrypted:      no
+Page size:      595.276 x 841.89 pts (A4) (rotated 0 degrees)
+File size:      6761417 bytes
+Optimized:      no
+PDF version:    1.5

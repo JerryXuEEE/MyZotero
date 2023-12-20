@@ -1,0 +1,702 @@
+www.nature.com/scientificreports
+
+OPEN Measurement of excitation-
+inhibition ratio in autism spectrum
+disorder using critical brain
+dynamics
+Hilgo Bruining1,2,8, Richard Hardstone3,4,8, Erika L. Juarez-Martinez2,3,8, Jan Sprengers2,8, Arthur-Ervin Avramiea3, Sonja Simpraga3,5, Simon J. Houtman3, Simon-Shlomo Poil5, Eva Dallares3, Satu Palva6, Bob Oranje2, J. Matias Palva6,7, Huibert D. Mansvelder3 & Klaus Linkenkaer-Hansen3 ✉
+Balance between excitation (E) and inhibition (I) is a key principle for neuronal network organization and information processing. Consistent with this notion, excitation-inhibition imbalances are considered a pathophysiological mechanism in many brain disorders including autism spectrum disorder (ASD). However, methods to measure E/I ratios in human brain networks are lacking. Here, we present a method to quantify a functional E/I ratio (fE/I) from neuronal oscillations, and validate it in healthy subjects and children with ASD. We define structural E/I ratio in an in silico neuronal network, investigate how it relates to power and long-range temporal correlations (LRTC) of the network’s activity, and use these relationships to design the fE/I algorithm. Application of this algorithm to the EEGs of healthy adults showed that fE/I is balanced at the population level and is decreased through GABAergic enforcement. In children with ASD, we observed larger fE/I variability and stronger LRTC compared to typically developing children (TDC). Interestingly, visual grading for EEG abnormalities that are thought to reflect E/I imbalances revealed elevated fE/I and LRTC in ASD children with normal EEG compared to TDC or ASD with abnormal EEG. We speculate that our approach will help understand physiological heterogeneity also in other brain disorders.
+
+Excitatory (E) and inhibitory (I) systems are critical for regulating the flow of information in the brain. Without narrow control over the E/I ratio, runaway excitation or quiescence would occur, impeding adequate information processing1,2. In clinical terms, disruption of E/I balance has become a dominant theory on the pathogenesis of various neurodevelopmental disorders, and perhaps most explicitly in autism spectrum disorder (ASD)3–6. The nature, however, of implicated E/I imbalances on ASD is diverse, ranging from molecular changes to altered neuronal circuits3,7,8 and has been hypothesized to explain some of the variability in treatment responses7. E/I ratio may be regulated at the level of synaptic currents and network connectivity2,4,9,10 and both levels affect the dynamics of ongoing network activity11–16. Thus, it may be possible to derive a quantitative measure of E/I ratio from ongoing brain activity, e.g., as measured with electroencephalography (EEG). Such a measure would allow testing hypotheses about the functional role of E/I ratio8, could enable physiological stratification within neurodevelopmental disorders and facilitate personalized application of E/I-modulating therapies3,7,17.
+
+1Department of Child and Adolescent Psychiatry, Amsterdam UMC, University of Amsterdam, Meibergdreef 5, 1105 AZ, Amsterdam, The Netherlands. 2Department of Psychiatry, UMC Utrecht Brain Center, University Medical Centre Utrecht, Heidelberglaan 100, 3584CG, Utrecht, The Netherlands. 3Department of Integrative Neurophysiology,
+Center for Neurogenomics and Cognitive Research (CNCR), Amsterdam Neuroscience, VU University Amsterdam, 1081 HV, Amsterdam, The Netherlands. 4Neuroscience Institute, New York University School of Medicine, 435 East 30th Street, New York, NY, 10016, USA. 5NBT Analytics BV, Amsterdam, The Netherlands. 6Neuroscience Center, Helsinki Institute for Life Sciences, University of Helsinki, FIN-00014, Helsinki, Finland. 7BioMag Laboratory, HUS Medical Imaging Center, Helsinki University Central Hospital, FIN-00029, Hus, Finland. 8These authors contributed equally: Hilgo Bruining, Richard Hardstone, Erika L. Juarez-Martinez and Jan Sprengers. ✉e-mail: klaus.linkenkaer@
+cncr.vu.nl
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+1
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+The theory of critical brain dynamics links E/I balance to the scale-free statistical character of network activity18–25. Specifically, neuronal networks exhibit scale-free spatial and long-range temporal correlations of activity patterns when they operate near the critical point, poised between a low-activity sub-critical phase—which occurs when there is excessive net inhibition—and a relentlessly active super-critical phase associated with excessive net excitation18,26. Of note, even though the spectral power of activity increases with increasing excitation it is not possible to infer the transition point where excitation and inhibition in the network are in balance from power analysis alone25. Hence, it is plausible that combining two properties of neuronal network activity—the spectral power and long-range temporal correlations—can lead to an estimate of E/I ratio. Here, we develop this idea using a computational model of neuronal network oscillations and test the algorithm using EEG datasets from healthy controls and children with ASD.
+Results Development of an algorithm to estimate E/I ratio from neuronal oscillations.  To develop an
+algorithm for estimating E/I ratio, we used an extended version of the Critical Oscillations (CROS) in silico model of ongoing neuronal activity25 (Methods). It has been shown previously that the activity generated by the model reproduces the statistics of amplitude fluctuations of neuronal oscillations in humans27,28 and the spatial spreading of activity in cortical slices23 when there is a certain balance between the number of excitatory and inhibitory connections in neuronal networks25. Therefore, we introduce here a definition of a network-level structural E/I ratio and use this parameter to control the activity in the model with the aim to develop a functional measure of excitation/inhibition ratio.
+We define the network’s structural E/I ratio (sE/I) as the number of excitatory-to-excitatory synapses divided by the number of inhibitory-to-excitatory synapses. The assemblies in the CROS model produce activity across a wide range of frequencies and prominent oscillations in the 8–13 Hz range for most combinations of excitatory and inhibitory connectivity (Fig. 1d)25. Examining the spectral amplitude of these oscillations, we found a clear increase in amplitude with increasing sE/I (Fig. 1a,b,d,e). The temporal structure of the network oscillations also varied with changes in sE/I with notably larger temporal heterogeneity at an intermediate value of sE/I (Fig. 1b,c). To quantify this effect, we applied detrended fluctuation analysis (DFA) to the amplitude envelope of the alpha oscillations to obtain the DFA exponent, β, which is a measure of long-range temporal correlations (LRTC) and widely used as an index of critical oscillation dynamics21,27. DFA exponents significantly above 0.5 and below 1.0 indicate LRTC of a power-law form. DFA of network signals from the CROS model indeed revealed significant LRTC (Fig. 1c,f). Importantly, these LRTC showed an inverse U-shaped relation with sE/I so that their scaling exponents peaked when excitation and inhibition were in a certain balance to one another (Fig. 1g).
+The observed strong coupling in the CROS model between sE/I, oscillation amplitude, and LRTC suggests that it could be possible to derive a measure of network-level E/I from oscillatory activity. However, the sE/I modelling also showed that neither the amplitude nor LRTC alone are sufficient to determine whether a network operates in the inhibition- or excitation-dominated regime (Fig. 2a). Firstly, oscillation amplitude (i.e., the square root of the power) exhibited an approximately linear relationship with sE/I (Fig. 1e) and, thus, cannot define a reference point for when the E/I structure is balanced. Secondly, the inverse U-shaped relationship between sE/I and LRTC (Fig. 1g) implies that different sE/I ratios can lead to the same LRTC. To overcome these limitations, we hypothesize that in spite of a fixed structural connectivity in a network there will be fluctuations in oscillation amplitude and LRTC that relate to the sE/I. This is plausible because networks exhibiting LRTC, show periods of high and low amplitude (Fig. 1c). Importantly, if these fluctuations in oscillation amplitude and LRTC follow the relationships seen in Fig. 1e,g, then it also follows that a functional form of E/I ratio (fE/I) can be estimated from the covariance of amplitude and LRTC within a signal and that this fE/I should be related to sE/I. This would predict a positive relationship between amplitude and LRTC for sub-critical networks, and a negative relationship for super-critical networks (Fig. 2a). Importantly, while fE/I is expected to correlate with sE/I, the structural and functional expressions of E/I balance are not necessarily identical. In analogy, functional connectivity derived from BOLD-signal fluctuations measured with fMRI merely shows moderate correlation with structural connectivity in large-scale brain networks as measured with diffusion tension imaging29. In other words, structure affects function but they are not the same.
+One method to calculate the covariance of amplitude and LRTC would be to split the signal into segments, calculate these measures for each segment, and then correlate them. However, due to the length of data required for each segment to get a reliable estimate of the DFA exponent this would require recordings longer than 10 minutes21. Moreover, it may be that E/I ratio as expressed in activity is changing on time scales of seconds rather than tens of seconds. Thus, to develop a sensitive functional E/I measure, we seek a method that estimates LRTC on short time-scales. To this end, we use the fluctuation function from the detrended fluctuation analysis, F(t), which is a candidate estimator for the DFA exponent on short-time scales. For scale-free signals, an increase in LRTC will lead to a corresponding increase in the fluctuation function on all time-scales. However, correlating the DFA exponent with the mean fluctuation, <F(t)>, in a certain window size (Fig. 2b), shows it to be a poor estimator of DFA exponents. Here, both measures are obtained using the entire signal. This is because the fluctuation function is influenced by both the auto-correlations and the amplitude of the signal. This is illustrated in Fig. 2c, where doubling the magnitude of a signal, does not alter the LRTC within the signal, but does double the mean fluctuation for each window size. Therefore, for the fluctuation function to be a good estimator of the DFA exponent, it is necessary to remove the influence of amplitude on the fluctuation function by calculating the normalized fluctuation function nF(t). The mean normalized fluctuation function (<nF(t)>) is a reliable estimator of the DFA exponent of that signal (Fig. 2d) and can be calculated on time-scales as short as a few seconds. nF(t) does not require calculation on many different time scales in order to estimate DFA exponent as by assuming a linear (scale-free) relationship there is a one-to-one mapping between nF(t) and DFA exponent (Fig. 2d).
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+2
+
+# Connections
+
+www.nature.com/scientificreports/
+a Structural E/I = 1.38 6 x104 4 2 0
+b
+
+EE EI IE II
+
+EE EI IE II
+
+Structural E/I = 1.70
+
+EE EI IE II
+
+EE EI IE II EE EI IE II
+
+www.nature.com/scientificreports
+
+Structural E/I = 2.04
+
+Structural E/I = 2.31
+
+Structural E/I = 2.75
+
+Absolute (8-13 Hz)
+
+5 a.u
+
+c
+
+10 s
+
+Normalized (8-13 Hz)
+
+DFA exponent 2 σ
+
+d
+0 -1
+
+e
+0
+-0.5
+
+10 s
+
+f
+
+g
+
+β
+0.53
+
+1
+
+0.72
+3 0.92
+
+0.65
+
+0.54
+
+0.75 2
+
+log10<F(t)>
+
+Power (dB) Amplitude
+
+-2
+
+1
+
+10
+
+20
+
+30
+
+Frequency (Hz)
+
+-1 1 1.5 2 2.5 3 Structural E/I
+
+1
+
+0
+
+1
+
+2
+
+log10(time) [seconds]
+
+0.5 1 1.5 2 2.5 3 Structural E/I
+
+Figure 1.  Amplitude and long-range temporal correlations of oscillations strongly depend on structural E/I. (a) Number of connections between neuron types for five different networks with increasing structural E/I. (b) Network activity filtered in the 8–13 Hz band shows increasing oscillation amplitude with increasing structural E/I. (c) Z-scored activity of (b) shows differing temporal structure of oscillation amplitude for balanced and unbalanced networks. (d) Power spectrum for networks in (b). (e) Spectral amplitude in the 8–13 Hz band increases with structural E/I. Running mean amplitude values of 300 networks (thick line) +/− 1 standard deviation (thin lines). (f) Detrended fluctuation analysis (DFA) applied to the amplitude envelope of 8–13 Hz filtered signals in b shows increasing scaling exponents for balanced (green) compared to unbalanced networks (blue, red). (g) DFA exponents show an inverse u-shaped relationship with structural E/I.
+
+Each analytical step from oscillations to the detrended amplitude-normalized signal profile that is necessary for calculating the nF(t) is illustrated for one example network in Fig. 2e: The signal is band-pass filtered (i), the amplitude envelope extracted (ii), the signal profile, S, of the amplitude envelope, A, is calculated as the cumulative sum of the demeaned amplitude envelope (iii):
+t
+S(t) = ∑(A(k) − A )
+k=1
+and split into windows of a certain size (e.g., 5 seconds) as in the DFA calculation21,30. Importantly, as an additional step (iv), each of these signal-profile windows is divided by the mean of the amplitude envelope for that window calculated during step (ii). These amplitude-normalized windows are then detrended (v) and, subsequently, we calculate the normalized fluctuation function nF(t) for each window as the standard deviation of the amplitude-normalized signal profile (vi). By calculating nF(t) as a proxy of LRTC on short time scales and amplitude on overlapping windows of 5 seconds, it is possible to test whether the hypothesized relationship between LRTC and amplitude holds for networks with different sE/I (Fig. 2a). These associations were indeed observed in networks that were representative of inhibition-dominated, balanced or excitation-dominated regimes (Fig. 2f). Thus, we can define a functional excitation-inhibition ratio as:
+fE/I = 1 − rWamp,WnF(t)
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+3
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+Figure 2.  Joint fluctuations in the amplitude and scaling of oscillations enable estimation of the excitation-
+inhibition ratio of a neuronal network. (a) Similar LRTC (quantified by DFA) can be produced by two networks
+with different sE/I. In the blue area, increasing LRTC correspond to increasing amplitude of oscillations, in the
+orange area decreasing LRTC correspond to increasing amplitude of oscillations. (b) The mean fluctuation (log10 < F(t)>) for a window size of 5 seconds is a poor predictor of the DFA exponent. Each dot represents one network realization simulated for 1000 seconds, and the mean fluctuation and the DFA exponent are derived from the entire signal. (c) Mean fluctuation values (log10 < F(t)>) for a window-size scale proportionally with signal magnitude and with LRTC. Therefore, if we normalize the amplitude of the signal for a certain window
+size then the fluctuation in that window size would be an estimate of the DFA exponent. (d) After normalizing the signal profile windows, the DFA exponents can be estimated by their mean fluctuation, log10 < nF(t)> (shown for a window size of 5 seconds). Each value represents the average of 20 networks for each combination
+of excitatory and inhibitory connectivity parameters. (e) Method to calculate fE/I. (i) The model signal filtered
+in the alpha range (dark thin green), and the same signal with double the magnitude (thick light green). (ii)
+Amplitude envelope of the two signals. (iii) Signal-profile deviations are greater for the larger-magnitude signal
+(light green). (iv) Dividing each window by its original mean amplitude, removes any effect of original
+magnitude on the signal profile. (v) Subtract the linear trend. (vi) Calculate the standard deviation for each
+window to get the normalized fluctuation function, nF(t). (vii) fE/I is calculated by correlating the mean
+windowed amplitudes calculated from ii and the windowed nF(t) calculated in (vi). (f) Correlation between
+windowed values for nF(t) and amplitude is used to create the estimate of fE/I, shown for three example
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+4
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+networks with low (1.82, left), medium (2.05, middle), and high (2.25, right) sE/I, respectively. (g) The sE/I index is shown in color scale for the phase space of inhibitory and excitatory connectivities with E-I combinations producing oscillations with DFA > 0.6 indicated with black squares. (h) For networks close to the critical state, fE/I correctly assigns their activity to be either inhibition dominated (blue), excitation dominated (red) or in balance (white squares). For strongly inhibition- or excitation-dominated networks, DFA is not significant and
+the presented method is not applicable (gray regions, where DFA ≤ 0.6). (i) fE/I is associated strongly with sE/I (calculated for networks between sE/I = 1–3 that pass the inclusion criterion of DFA > 0.6). (j) fE/I exhibits stronger correlation with κ than with sE/I.
+
+Where rWamp,WnF(t) is the Pearson correlation between the set of windowed detrended amplitude-normalized signal profiles, wnF(t), and the set of windowed amplitude values, wamp. Inhibition-dominated networks will hence be assigned fE/I below 1, excitation-dominated networks fE/I greater than 1, and critical networks will have fE/I = 1. We use a DFA > 0.6 inclusion criterion for signals before computing the fE/I because networks without LRTC will not show a co-variation of amplitude and the fluctuation function (see the gray zones in Fig. 2a); however, this should not be a strongly limiting factor of the method given the robustness of LRTC in human resting-state oscillations31. Corroborating this observation with the simulated data, we found that the fE/I correctly assigned networks to be excitation or inhibition dominated (Fig. 2g,h), and that sE/I and fE/I were strongly correlated (r(60) = 0.83, p < 10−16, Fig. 2i).
+Structural E/I could be defined also in other ways; however, the method and subsequent results reported here are not dependent on the exact definition, e.g., the correlation between sE/I and fE/I does not change notably with the exact definition of sE/I (if sE/I = (E→E)/(E→I + I→ E + I→I): r(60) = 0.82, p < 10−15. sE/I = (E→E + I→I)/ (E→I + I→E): r(60) = 0.82, p < 10−15). What matters is that for a certain structural level of excitation and inhibition—as indicated by the highlighted squares on the diagonal in Fig. 2g—neuronal network activity exhibits a specific covariance between the level of activity and its temporal dynamics (Fig. 2h), which makes it possible to calculate a functional form of E/I directly from ongoing oscillations in the network activity. Importantly, while our model produces activity with spectra that are similar to eyes-closed rest EEG recordings with a dominant peak in the alpha-frequency band (Fig. 1d), we found that applying the analysis to other classical frequency bands, we obtained similar results (Pearson (sE/I, fE/I) Delta: r(84) = 0.81, p < 10−19; Theta: r(55) = 0.80, p < 10−13; Beta: r(53) = 0.81, p < 10−13; Gamma: r(45) = 0.81, p < 10−11). These results suggest that the method does not require prominent peaks in the power spectrum but merely that the neuronal activity emerges from a network that is near the critical point (as defined by DFA > 0.6).
+Equating sE/I to the ratio of synapses of a certain type provides a straightforward manner for controlling E/I balance in the CROS networks. However, when defined in this way, sE/I neglects other properties of a neuronal network that can affect activity propagation and which, in turn, could influence fE/I. For example, networks with similar structural E/I ratio could have topologies that differ in how they facilitate activity propagation and, thus, the functional expression of E/I balance. To investigate this, we related fE/I directly to a measure of activity propagation that is known to reflect E/I balance, namely neuronal avalanches23. Networks with balanced E/I and critical dynamics exhibit a power-law distribution of avalanche sizes (Supplementary Fig. S1a). In sub-critical networks, the strong inhibition prevents large avalanches from occurring and, thus, the avalanche-size distribution is below that of a critical network. In super-critical networks, the excess excitation often prolongs the avalanches, leading to an avalanche-size distribution with values above that of a critical network (Supplementary Fig. S1a). To quantify the proximity of the measured avalanche-size distribution to a power law, we used the κ index (Supplementary Fig. S1b, Supplementary Methods)32. Critical dynamics of avalanches (κ = 1.0) were indeed found for an intermediate value of sE/I (Supplementary Fig. S1c). However, we found that networks with similar sE/I exhibit a wide range of κ values (Supplementary Fig. S1c), confirming that there are factors not captured in our measure of sE/I that affect activity propagation in the form of neuronal avalanches. Importantly, when we correlated fE/I to κ we found a much stronger relationship than that of fE/I with sE/I (Pearson (κ, fE/I) r(60) = 0.96, p < 10−33, Fig. 2j) showing that fE/I accurately distinguishes between the inhibition-dominated subcritical regime and the excitation-dominated supercritical regime. Thus, fE/I is better seen as an index of the balance between excitatory and inhibitory activity that emerges out of the network structure, rather than a direct measure of the E/I ratio of the network structure itself. This suggests that fE/I could be used to infer the functional E/I ratio from the network dynamics regardless of the mechanisms affecting these dynamics.
+Functional E/I ratio in humans is balanced in the eyes-closed rest state and sensitive to synaptic modulation.  Our model results suggest that if mass-neuronal activity in the human brain is poised close to the critical state during rest18,24,33,34, then fE/I should be close to one. To corroborate this prediction, we recorded EEG during eyes-closed rest in 176 healthy adults and calculated the fE/I values in the alpha band. At the group level, the method proved applicable with the DFA-threshold criterion of >0.6 met by 84% of the signals and revealed that fE/I was highest in frontal, parietal and occipital regions (Fig. 3a). Interestingly, averaging fE/I across all electrodes to get a “whole-brain estimate” of functional E/I ratio revealed that the operating point of the activity varied across subjects between sub- and super-critical regimes with a mean fE/I close to one (0.99 ± 0.17, mean ± SD). Together, this indicates that a balanced E/I ratio is indeed typical for whole-brain dynamics at rest in non-clinical populations.
+Next, we hypothesized that not only structural connectivity would influence fE/I (Fig. 2g-i), but also changes to synaptic functioning9. To investigate this, we extended the model so that the decay constants of excitatory and inhibitory inputs could be changed independently. Simulations were run for the same networks used in the simulations for Fig. 1, but now using three different inhibitory input decay constants (10, 11, and 12 ms) and compared
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+5
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+a
+n = 176
+
+Adults
+
+fE/I 0.9 0.95 1 1.05
+d
+x10-4
+2
+
+b
+1.8 1.6
+
+c 1.5
+1.4
+
+Placebo (n = 14)
+
+1.4
+fE/I 1.2 1
+
+1.3 1.2 fE/I 1.1
+1
+
+0.8
+
+0.9
+
+Zolpidem
+
+0.6
+
+0.8
+
+**
+
+(n = 18)
+
+0.4
+
+0.7
+
+1.1
+
+9 10 11 12 Inhibitory input decay (ms)
+
+0:0.5 0.5:2 2:4 4:6
+
+Time after administration
+
+(hours)
+
+Time = 0 m
+
+350 fE/I=1.36
+
+nF(t)
+
+0
+
+175
+
+-2
+x10-4
+2
+
+Time = 1 h 42 m
+
+0 350 fE/I=0.81
+
+nF(t)
+
+0
+
+175
+
+Amplitude
+
+-2
+x10-4
+2
+
+Time = 2 h 49 m
+
+0 500 fE/I=0.90
+
+nF(t)
+
+0
+
+250
+
+-2
+
+0
+
+x10-4
+2
+
+Time = 4 h 24 m
+
+350 fE/I=1.30
+
+nF(t)
+
+0
+
+175
+
+-2
+
+0
+
+20
+
+40
+
+60
+
+Time (seconds)
+
+0
+
+2
+
+6
+
+10x10-5
+
+Amp.
+
+Figure 3.  fE/I is balanced in healthy populations and can detect pharmacologically induced shifts in excitation/ inhibition ratio. (a) Grand average fE/I topography during eyes-closed rest (n = 176). (b) Increasing inhibitory
+decay rate in the model is associated with decreasing fE/I. (c) Eighteen subjects taking zolpidem, which
+increases inhibitory input decay constant, show a significant decrease in fE/I and a return to baseline values
+after 4–6 hours both relative to baseline (blue asterisks) and relative to the placebo control (black asterisks).
+The bipolar Oz-Pz electrode position measured is indicated on the inset. Bonferroni-corrected P-values are indicated as * <0.05. (d) Filtered signal (left column) and fE/I (right column) shown for a single subject (zolpidem condition) at four time points.
+
+to that of the baseline networks with 9 ms decay constant (see Methods) to show how an increase in inhibitory input decay alters network dynamics. The fE/I showed a significant decrease compared to baseline (Fig. 3b) for all decay-time constants (9 ms: 1.35 ± 0.04, mean ± SEM of fE/I for 42 combinations of excitatory-inhibitory connectivity; 10 ms: 1.05 ± 0.06, p < 10−6; 11 ms 0.76 ± 0.05, p < 10−7; 12 ms: 0.61 ± 0.03, p < 10−7; Wilcoxon signed-rank test, Bonferroni corrected for 3 comparisons). Thus, our measure of fE/I is sensitive not only to structural but also to synaptic influences on excitation-inhibition balance in the model.
+To confirm that our method can detect changes in E/I ratio through pharmacological manipulation, we conducted a challenge in healthy adults comparing placebo (n = 14) to zolpidem (n = 18, 10 mg orally)—an E/I-modulating agent that enhances GABAergic synaptic inhibition by increasing the decay-time constant of GABAA receptor-mediated postsynaptic currents35. In accordance with zolpidem’s pharmaco-kinetic properties36, and corroborating the model simulations (Fig. 3b), we observed a significant reduction of fE/I in zolpidem
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+6
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+n
+Males/female
+Age (mean ± SEM)
+ADOS (mean ± SEM)
+TIQ (mean ± SEM)
+SRS-T (mean ± SEM)
+
+TDC 29 14/15
+
+ASD 100 73/27
+
+t (df)/W, z — —
+
+10.3 ± 0.28 10.5 ± 0.23 −0.64 (67)
+
+N/A
+
+9.35 ± 0.38 —
+
+120.6 ± 2.63 101.4 ± 2.08 5.705 (64)
+
+43 ± 0.73 75.26 ± 1.02 406, −8.06
+
+p-value — — 0.524
+—
+<0.001
+<0.001
+
+Table 1.  Clinical characteristics of children with ASD and typically developing children. Mean values and comparison’s statistics (t-test for parametric data (t, df) and Wilcoxon rank-sum test for non-parametric data (W, z). Demographics and EEG mean biomarker values per subject included in our study can be found on Supplementary Table S1. ADOS (Autism Diagnostic Observation Scale); TIQ (Total Intelligence Quotient); SRS-T (Social Responsiveness Scale, (T-scores). N/A (not applicable).
+
+compared to placebo, between 30 min and 2 h after the administration (bipolar Oz-Pz electrode, Wilcoxon rank-sum test, Bonferroni corrected for 4 comparisons, zolpidem vs Placebo, 0–0.5 h: p = 0.8; 0.5–2 h: p = 0.004; 2–4 h: p = 0.02; 4–6 h: p = 0.25) (Fig. 3c). The zolpidem group also showed significant decreases compared to the baseline block (0–30 min), between 30 min and 4 h after the administration (Wilcoxon signed-rank test, mean ± SEM, Bonferroni corrected for 3 comparisons, 0–0.5 hours: 1.16 ± 0.06; 0.5–2 hours: 0.92 ± 0.05, p = 0.007; 2–4 hours: 0.89 ± 0.05, p = 0.003; 4–6 hours: 1.10 ± 0.08, p = 0.62). Note that the high baseline fE/I values relate to the Oz-Pz bipolar electrode measured during the pharmacological intervention and this is the scalp region with the highest fE/I values (cf., Fig. 3a). Looking at a single subject (Fig. 3d), we can see how observable reductions in amplitude and changes in amplitude dynamics after administration of zolpidem are mirrored by changes in the relationship between windowed amplitude and nF(t). Together, these findings suggest applicability of the fE/I method for clinical purposes and treatment-effect monitoring.
+Shifts in E/I ratio may also occur between brain states under the action of neuromodulatory systems 37,38, in a manner analogous to the zolpidem pharmacological manipulation. While the eyes-closed resting state has been associated with critical balance, neuronal dynamics shift to a subcritical state during eyes-open rest 39,40, which is associated with a lower E/I ratio25. We compared the whole-brain average fE/I values in the alpha band for the 176 EEG eyes-closed rest recordings with a group of 73 healthy adults that underwent eyes-open rest EEG recordings. We found fE/I to be decreased during eyes-open rest compared to eyes-closed rest (Wilcoxon rank-sum test, mean ± SEM, eyes-closed rest: 0.99 ± 0.01, eyes-open rest: 0.81 ± 0.02, p < 10−14, Supplementary Fig. S2). Thus, fE/I can also track changes in E/I ratio between cortical states.
+ASD is characterized by alterations in critical brain dynamics.  To test the hypothesis that E/I imbalances characterize ASD 4,41, we applied the algorithm to eyes-closed rest EEG recordings in non-medicated children with ASD (ASDall; n = 100, 7–15 years) and age-matched typically developing children (TDC; n = 29) (Table 1 and Supplementary Table S1). The children with ASD had lower total IQ (p < 0.001) than TDC (Table 1). As with the CROS-model activity, we analyzed relative power (RP), LRTC, and fE/I in the alpha band of the EEGs. The topography of RP showed the characteristic occipito-parietal distribution of eyes-closed rest recordings both in TDC and ASD without between-group differences in mean or variance of whole-brain averages (Fig. 4a; Wilcoxon rank-sum test, mean ± SEM; RPASDall = 26.8 ± 1.1% and RPTDC = 27.2 ± 2.1% p = 0.84; Levene’s test of variance: p = 0.82). The scalp distribution of LRTC quantified by DFA was also similar between TDC and ASD, but whole-brain average and variability were both larger in ASD (Fig. 4b; βASDall = 0.70 ± .01, and βTDC = 0.65 ± 0.01 p = 0.01; Levene’s test: p = 0.001). The scalp topography of fE/I of alpha oscillations showed similar distributions in ASDall and TDC. A pronounced variability of fE/I was evident in ASDall (Fig. 4c; Levene’s test: p = 0.04), characterized by more extreme values of fE/I in both directions away from the balance point although between-group differences of whole-brain average fE/I were not significant (Fig. 4c; fE/IASDall = 1.03 ± 0.02 and fE/ITDC = 1.01 ± 0.02, p = 0.65).
+Albeit IQ may be considered part of the disorder rather than a confounding factor42, we performed an ANCOVA test to investigate whether the above findings could be explained by the differences in IQ. This analysis did not change the outcomes on whole-brain averaged RP (F(1,124) = 0.28, p = 0.59, partial η2 =0.002), nor for fE/I (F(1,124) = 0.19, p = 0.66, partial η2 = 0.002); however, the difference in means for LRTC is merely a trend after adjusting for TIQ scores (F(1,124) = 3.2, p = 0.07, partial η2 = 0.026). Together, our findings suggest that larger variability of LRTC and fE/I contribute to the physiological heterogeneity of ASD.
+ASD without visual EEG abnormalities show elevated fE/I.  Visual EEG abnormalities are common in ASD and have been proposed to indicate aberrant neuronal excitability and influence network-level E/I5,6,43. To test this hypothesis, we performed qualitative EEG inspection for abnormalities and investigated their association to relative power, LRTC, and fE/I. For a comprehensive analysis of visual EEG patterns, we used the EEG classification of Luders & Noachtar44. Consistent with previous studies45,46, we identified EEG abnormalities in 46% of ASD cases (ASDabn, n = 46) ranging from slowing of activity (n = 38) to epileptiform abnormalities (n = 8). Of note, none of the subjects with ASD had suffered from seizures nor had received a diagnosis of epilepsy. No visual abnormalities were found in any of the TDC subjects.
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+7
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+Figure 4.  Alpha oscillations in ASD are characterized by strong LRTC and large variability in fE/I. Grandaverage topographies for the EEG biomarkers are shown for TDC (first column), ASD (second column), and for ASD-minus-TDC (third column). (a) Relative power (RP) showed the characteristic occipito-parietal distribution both in TDC and ASD. (b) Whole-brain average and variability of LRTC quantified by the DFA exponent were both larger in ASD compared to TDC. (c) A pronounced variability of whole-brain fE/I was evident in ASD. White circles on the topographies represent significant channels (i.e., p-value < 0.05, using Wilcoxon rank-sum test and FDR correction). The fourth column shows individual-subject values, boxplots, and mean and SEM for TDC (blue circles) and ASD (red squares). Comparisons represented in boxplots were based on the average value of the EEG biomarkers across all 64 electrodes, each data point represents one subject (whole-head average; p-values are from Wilcoxon rank-sum test (mean)/Levene’s test (variability).
+The ASD subsample with an abnormal EEG had markedly different quantitative EEG compared to the ASD with a normal EEG (ASDnl; n = 54) across the scalp as reflected in lower relative power (Fig. 5a; whole-brain average RPASDabn = 19.8 ± 1.2% vs. RPASDnl = 32.8 ± 1.4%, p < 0.00001), weaker LRTC (Fig. 5b; whole-brain average βASDabn = 0.68 ± 0.01 vs. βASDnl = 0.73 ± 0.01, p = 0.006), and lower fE/I (Fig. 5c; whole-brain average fE/IASDabn = 0.97 ± 0.01 vs. fE/IASDnl = 1.08 ± 0.02 and, p = 0.0003). ASD with abnormalities also differed from TDC in terms of lower relative power (Fig. 5d; RPTDC = 27.2 ± 2.1%, p = 0.01); however, neither LRTC or fE/I reached statistical significance (Fig. 5e; βTDC = 0.66 ± 0.01, p = 0.39; Fig. 5f; fE/ITDC = 1.01 ± 0.02, p = 0.11). Interestingly, in spite of having no visual EEG abnormalities, we found pronounced differences for ASDnl compared to TDC both in terms of higher relative power (Fig. 5g; RPASDnl = 32.8 ± 1.4% vs. RPTDC = 27.2 ± 2.1%, p = 0.009), stronger LRTC (Fig. 5h; βASDnl = 0.73 ± 0.01 vs. βTDC = 0.66 ± 0.01, p = 0.00035) and higher fE/I (Fig. 5i; fE/IASDnl = 1.08 ± 0.02 vs. fE/ITDC = 1.01 ± 0.02, p = 0.03). Taken together, our data show that dissecting the ASD cohort into the presence or absence of EEG abnormalities is essential for revealing strong effects both in the classical relative power and in biomarkers rooted in criticality theory (Figs. 4 and 5).
+Subjects with higher SRS scores tend to have higher fE/I.  To determine if the level of core clinical symptoms in ASD had an effect on the fE/I estimates, we divided the ASDall group into high and low Social Responsiveness Scale (SRS-t) t-scores using a median split and compared the groups. We found that the ASD group with high SRS scores had a trend towards higher fE/I than the ones with low SRS (Supplementary Fig. S3, Wilcoxon rank-sum test, mean ± SEM; fE/I ASDSRS_low = 1.0 ± 0.018, fE/I ASDSRS_high = 1.06 ± 0.022, p = 0.08).
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+8
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+11.3 7.6 3.8 0 – 3.8 – 7.6 –11.3
+12.3 8.2 4.1 0 – 4.1 – 8.2 –12.3
+19.1 12.7 6.4 0 – 6.4 –12.7 –19.1
+
+a ASDabn - ASDnl
+(n = 46) (n = 54)
+
+d ASDabn - TDC
+(n = 46) (n = 29)
+
+80 < 0.00001
+60
+
+80 0.01
+60
+
+g ASDnl - TDC
+( n = 54) (n = 29)
+
+Rel. power (%)
+
+40
+
+40
+
+20
+
+%
+
+%
+
+0
+
+ASDnl ASDabn
+
+20
+% 0 TDC ASDabn
+
+b
+
+e
+
+1.1 0.0064
+
+h
+
+1.1
+
+0.39
+
+0.9
+
+0.9
+
+80 0.0092
+60 40 20 0
+TDC ASDnl
+1.1 0.00035 0.9
+
+DFA exponent (β)
+
+0.7 0.5
+ASDnl ASDabn
+
+0.7 0.5 TDC ASDabn
+
+0.7
+0.5 TDC ASDnl
+
+0.10 0.07 0.03
+0 –0.03 –0.07 –0.10
+0.06 0.04 0.02
+0 –0.02 –0.04 –0.06
+0.06 0.04 0.02
+0 –0.02 –0.04 –0.06
+
+fE/I
+
+c
+fE/I
+
+1.6
+
+0.0003
+
+f
+
+1.4
+
+1.2 1.0
+
+0.8
+
+0.6
+
+fE/I
+
+ASDnl ASDabn
+
+1.6
+
+i
+
+1.4
+
+0.11
+
+1.2
+
+1
+
+0.8
+
+0.6
+
+fE/I
+
+TDC ASDabn
+
+1.6
+
+0.03
+
+1.4
+
+1.2
+
+1
+
+0.8
+
+0.6 TDC ASDnl
+
+0.17 0.12 0.06 0 −0.06 −0.12 −0.17
+0.1 0.07 0.03 0 −0.03 −0.07 −0.1
+0.17 0.11 0.06 0 −0.06 −0.11 −0.17
+
+Figure 5.  ASD without visual EEG abnormalities show strong LRTC and elevated fE/I. Compared to the
+children with ASD and a normal EEG (ASDnl), subjects with EEG abnormalities (ASDabn) had lower relative power in the alpha band (a), weaker LRTC (b) and lower fE/I (c). Compared to TDC, ASDabn had lower RP (d), but no significant difference in LRTC (e) or fE/I (f). In contrast, ASD subjects without any visible EEG
+abnormalities (ASDnl) showed higher RP than TDC (g), stronger LRTC (h) and higher fE/I (i). Grand-average topographies are shown for the cohort difference of the indicated comparisons (labels on top). The reported
+p-values are based on the Wilcoxon rank-sum test. White circles on the topographies represent significant
+channels as in Fig. 4. Comparisons at the left of the topographies were based on the average value of the EEG
+biomarkers across all 64 electrodes, each data point represents one subject (whole-head average, Wilcoxon
+rank-sum test).
+
+Discussion
+We have introduced a measure of functional E/I ratio (fE/I) from network activity that is sensitive to both changes in synaptic functioning and network connectivity and which is applicable to non-invasive human EEG recordings3,8. We validated the method in silico, and applied it to human EEG to find that a near-critical and E/I-balanced regime is typical for human eyes-closed resting-state brain activity in the alpha band19,27,33. In addition, we showed that pharmacological enhancement of GABAA receptor-mediated inhibition lowered fE/I as predicted. Finally, we found evidence to support the notion of E/I imbalances in ASD in that the variance in LRTC and fE/I is higher compared to TDC. Importantly, whereas children with visual abnormalities in the EEG merely had lower relative power compared to the TDC, the children without epileptiform or other visual changes showed elevated values of relative power, LRTC and fE/I.
+In spite of the comprehensive literature on E/I balance3–6,11–16, there is no consensus on how to define or measure E/I ratio, neither functionally or structurally. The design of our measure of fE/I was guided by the theory of critical brain dynamics, which is rooted in the physics concept of critical phase transitions23,47,48. This choice was motivated by the extensive evidence that brain activity at many levels of neuronal organization exhibits near-critical dynamics and that this requires balance between excitatory and inhibitory forces14,23,49,50. These forces can be structural in terms of neuronal connectivity or functional in terms of the kinetics of synaptic currents51, and the fE/I was indeed able to track changes in either of these parameters. Interestingly, albeit fE/I correlated strongly with any of our definitions of structural E/I ratio (r > 0.8), the correlation with the Kappa measure of neuronal avalanches was even stronger (r > 0.94). Thus, fE/I is better seen as an index of the emergent balance of excitatory and inhibitory activity that is a consequence of the network structure, rather than a direct measure
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+9
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+of the E/I ratio of the network structure itself. This suggests that fE/I could be used to infer the functional E/I ratio from the network dynamics regardless of the mechanisms affecting these dynamics.
+Neuronal avalanches offer another method for estimating the E/I based on criticality theory23. One advantage our fE/I measure has over neuronal avalanches is that it allows an estimate at the single-electrode level, whereas neuronal avalanches assign one E/I level to all or to a pre-defined cluster of sensors or regions of interest when applied to multi-channel data24,34. Moreover, because the brain is not in one “state” as a homogeneous system but is composed of interacting networks that may each have their own level of criticality at any given time52 the applicability of avalanche-based E/I estimation is questionable when dependent on sensors that span multiple brain regions. This is supported by the clear topographical distributions of fE/I seen both in the adult and the children cohorts (Figs. 3a, 4c). The scaling exponent of broadband 1/f signals has also been proposed to estimate changes in E/I balance16. Through computational and electrophysiological evidence they show that increasing inhibition induces steeper power spectra. One drawback of this method is that similar to measures of excitability such as alpha power (Fig. 2a), it does not provide an absolute value that corresponds to balanced E/I, or the critical point, and comparing 1/f slopes of the same area recorded with different modalities (EEG & MEG) suggests that this would be difficult to achieve53. This may reduce its usefulness as it does not allow hypotheses of function related to the critical point to be tested (e.g., increased dynamic range, information transmission, information capacity)32.
+Non-invasive estimates of E/I have also been proposed using magnetic resonance spectroscopy (MRS) and stimulation methods such as paired-pulse transcranial magnetic stimulation (TMS). MRS can measure the levels of excitatory (glutamate) and inhibitory (GABA) neurotransmitters in a region54,55; however, it is not known how these concentrations relate to the power or dynamics of oscillations as investigated in our CROS model and in the human EEG data. Previous attempts to relate GABA levels with features of M/EEG have shown inconsistent results56,57, and so future studies will be necessary to investigate the relationship of MRS to fE/I. Paired-pulse TMS has also been used to look at intracortical facilitation and inhibition, i.e., measuring the excitability of an area. Previous studies have shown a relationship between variability of motor-evoked potential response and the variability or amplitude of alpha oscillation amplitude58,59, suggesting that there could be a relationship between fE/I and paired-pulse TMS, which should be investigated.
+We restricted the current analysis to alpha-band oscillations but show that fE/I values in the CROS model were similar across frequency bands, which we explain by the oscillations at all frequencies being generated in the same in silico network. In the human brain, however, different circuits and network mechanisms may underlie oscillations at different frequencies and, consequently, the fE/I could probe E/I balance specific to the microcircuits producing different oscillations. Alpha oscillations are known to become strongly suppressed by eye opening27. Indeed, we found lower fE/I during eyes-open rest compared to eyes-closed rest. This is consistent with previous studies, showing a shift towards subcritical neuronal dynamics in the eyes-open rest condition39. In fact, subcritical dynamics as observed during eyes-open rest may be beneficial during tasks60, especially for tasks that require focused attention49,61,62. Future studies may use fE/I to further investigate how performance in cognitive tasks relate to critical brain dynamics and E/I regulation34,63.
+LRTC in critical brain dynamics are expected to reflect network stability and, therefore, LRTC in addition to fE/I may constitute a physiological biomarker of network dysfunction in ASD1,48. The development of the fE/I measure was needed as quantification of LRTC alone is insufficient to estimate how network E/I balance is altered (Fig. 2a). Using the novel algorithm, we found that both LRTC and fE/I variability was larger in ASD than in TDC. This seems to confirm experimental studies implicating both decreased, normal, or increased E/I ratios in ASD3,4,6,8. The original hypothesis of ASD as a disorder of elevated E/I was predominantly based upon the frequent concurrence of epilepsy and epileptiform changes45,64. We found that the ASD cohort without any visible EEG abnormalities displayed elevated LRTC and fE/I over multiple scalp regions versus the control sample. This finding was further supported by the within ASD sample comparison (ASDnl vs. ASDabn) where the group with EEG abnormalities showed lower power, LRTC and fE/I.
+We can thus far only speculate why seemingly inhibition-dominated networks may be associated with different types of EEG abnormalities. For instance, background slowing of activity is considered a sign of neurodevelopmental delay or perinatal insults44,65,66. Intermittent slowing can indicate epileptiform changes in specific circumstances (e.g., cortical malformations or temporal lobe epilepsy)44,66–69 or an expression of protective mechanisms against epileptogenicity70. Whether EEG abnormalities interfere with information processing and whether they merit (anti-epileptic) treatment is debated46,71–73. So far, ASD trials have predominantly focused on agents that enforce inhibition or reduce excitation6. Indeed, some of these agents have been suggested to be effective in subsets of patients6,17 and our proposed method may be tested as stratification biomarkers to increase applicability. A final aspect for future studies is whether the level of clinical impairment is also reflected in the characteristics of these biomarkers. Our findings may point to a relation between more core symptom severity and elevated fE/I but investigation in larger samples is first needed.
+In conclusion, we propose that parallel quantification of the critical brain dynamics indices of power, LRTC and fE/I may provide a novel theory-based framework to advance understanding of physiological heterogeneity of ASD and related disorders.
+Methods Computational model to estimate the excitation-inhibition ratio.  CRitical OScillations (CROS)
+model.  The CROS model is an in silico model that was created by Poil et al. (2012) with the aim of having a spiking neuronal network that produced oscillatory activity with long-range temporal correlations in the oscillation amplitude. In this paper, we use an extended version of this model with optimized parameters to investigate the dependence of neuronal network activation patterns on structural connectivity and synaptic parameters. CROS models a network of 75% excitatory and 25% inhibitory integrate-and-fire neurons arranged in a 50 × 50 open grid25. Networks differ in their two connectivity parameters,CE andCI, which are the percentage of other neurons
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+10
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+within a local range (a square with width = 7 neurons centered on the presynaptic neuron) that each excitatory and each inhibitory neuron connects to, respectively. Connectivity parameters were set between 25–100% at 5% intervals, and 20 different networks were created for each combination of excitatory and inhibitory connectivity – CE and CI. For a full description of the model see Supplementary Methods.
+Detrended fluctuation analysis of long-range temporal correlations.  The detrended fluctuation analysis (DFA) was used to analyze the scale-free decay of temporal (auto)correlations in the amplitude modulation of neuronal oscillations, also known as long-range temporal correlations (LRTC)30. The DFA exponent, β, is the slope of the fluctuation function shown, e.g., in Fig. 1f. DFA exponents in the interval of 0.5 to 1.0 indicate scale-free temporal correlations, whereas an exponent of 0.5 characterizes an uncorrelated signal. The analytical steps to quantify LRTC using DFA have been explained in detail previously 21,27 and are briefly explained in Supplementary Methods.
+
+Estimation of excitation/inhibition ratio (fE/I).  For a full explanation of the rationale behind the algorithm to estimate excitation/inhibition ratio, we refer to the Results section because it is a new method. Here, we merely detail the sequence of analytical steps. To test the relationship between the amplitude and LRTC of the amplitude envelope of an oscillatory signal, it is necessary to have a measure of LRTC on short time-scales that is unbiased by the amplitude of the signal. To this end, we introduce an amplitude-normalized fluctuation function, nF(t), for a signal that is calculated as follows (Fig. 2d): The signal is band-pass filtered (i), the amplitude envelope A extracted (ii), the signal profile, S can then be calculated as the cumulative sum of the demeaned amplitude envelope (iii):
+
+t
+
+S(t) = ∑(A(k) − A )
+
+k=1
+
+(1)
+
+and split into windows of a certain size (e.g., 5 seconds) in exactly the same way as during the DFA calculation21,30. Importantly, as an additional step (iv), each of these signal-profile windows is divided by the mean of the amplitude envelope for that window calculated during step (ii). These amplitude-normalized windows are then detrended (v) and, subsequently, we calculate the normalized fluctuation function for each window as the standard deviation of the amplitude-normalized signal profile (vi). To calculate the functional excitation/inhibition ratio, fE/I, perform a Pearson correlation between the amplitude and the normalized fluctuation function for the set of windows W (vii). fE/I is then defined as:
+
+fE/I = 1 − rWamp,WnF(t)
+
+(2)
+
+All of the signal-processing steps (i)-(vii), and an illustration of how they affect the signal, are shown in Fig. 2e. Sub-critical networks will have an fE/I < 1, super-critical networks fE/I > 1, and critical networks will have fE/I = 1. We used a DFA > 0.6 inclusion criterion for networks or channels before computing the fE/I because networks
+without LRTC will not show a co-variation of amplitude and the fluctuation function (Fig. 2a). For our analyses,
+fE/I was calculated for windows of 5 seconds with 80% overlap.
+
+Validation and clinical application of fE/I method.  Participants and EEG recordings.  Ethical approval was obtained from the corresponding medical ethical committees (VU Medical Center, Utrecht Medical Center, or Leiden University Medical Center). The studies were conducted in accordance with the guidelines and regulations approved by the respective ethical committee and in compliance with the provisions of the declaration of Helsinki and Good Clinical Practice. Written informed consent was received from the participants or their legal guardians prior to inclusion in the study.
+
+Adult validation sample.  249 healthy adults were included, in a study at VU Amsterdam. Exclusion criteria were a history of neurological pathology or current use of medication. 176 subjects (age 19–56 years, M = 24.4 years, SD = 7 years, 107 females) underwent resting-state EEG recordings with eyes closed, while 73 subjects (age 19–47, M = 24 years, SD = 7.8 years, 49 females) had their eyes open. Resting-state EEGs were recorded for
+3–5 minutes using the NetAmps300 amplifier (Electrical Geodesics) and 129-channel HydroCel Geodesic sensor
+nets. The sampling rate was 1000 Hz and the reference electrode was Cz.
+
+Adult zolpidem sample.  EEGs recorded from forty medically-screened healthy subjects (age 18–65 years, 3 females) were made available from the Centre for Human Drug Research, the Netherlands. Subjects had taken part in a double-blind randomized study, receiving a capsule orally containing 10 mg zolpidem (20 subjects) or placebo (20 subjects). Subsequently, subjects underwent multiple EEG sessions using a bipolar recording at PZ-OZ along with a separate channel for recording eye artifacts. Each EEG session included 64 seconds of eyes-closed rest. 28 subjects (14 zolpidem) were recorded at 0, 0.33, 1, 1.33, 2, 3, 4, 6, 8, 10 and 12 hours after administration of the capsule. 12 subjects (6 zolpidem) were recorded at 0, 0.5, 1, 1.5, 2, 3, 4, 6, 8, 12 hours after administration. Exclusion criteria for this study were: history or clinical evidence of alcoholism or drug abuse within the 3-year period prior to the screening examination, smoking, concomitant treatment with any medication, or any contraindication or known hypersensitivity to zolpidem.
+
+Children with ASD and typically developing children (TDC) samples.  EEGs and symptom-scale baseline measurements were collected from two ongoing studies at the developmental disorder unit in the UMC Utrecht (for details see Supplementary Methods). Inclusion criteria for ASD and TDC samples were an age between 7–16 years, IQ > 55, and ability to comply with study procedures. ASD diagnosis required an expert diagnosis
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+11
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+according to the Diagnostic and structural manual of mental disorders (DSM) IV-TR74 or 575 supported by a clinical score on the Autism Diagnostic Observation Schedule 2 (ADOS-2 module 3 or 4, score ≥ 7) or a subclinical score on the Social Responsivity Scale (SRS-t-score ≥ 60)76. An abbreviated form of the Wechsler intelligence scale for children (WISC)-III was used for IQ estimation. Details regarding the clinical scales are provided in Supplementary Methods. Exclusion criteria for the ASD sample were use of psychoactive medication and presence of other major neurological disease such as previous or current epilepsy diagnoses. The TDC sample was recruited from local residents attending non-special education, where a history of behavioral or learning problems, a diagnosis of any neurodevelopmental condition or any other major health issue was an exclusion criterion.
+We recruited a total of 126 subjects that met the inclusion criteria for ASD and 37 TDC. From these, 26 children with ASD and 8 TDC were excluded because less than 50% of their recordings were free of transient artifacts or no eyes-closed rest EEG had been recorded. Thus, the final included sample consisted of 129 subjects (42 females): 100 with ASD (7–16 years, M = 10.5 years, SD = 2.3 years, 27 females) and 29 age-matched typically developing children (TDC) (7.4–14.4 years, M = 10.3, SD = 1.5 years, 15 females). EEGs were recorded during 3–5 minutes of eyes-closed rest at the UMC Utrecht using A 64-channel BioSemi EEG system at a sampling rate of 2048 Hz and common mode sense (CMS) reference electrode.
+Pre-processing and analysis of EEG data.  EEG analyses were done using the Neurophysiological Biomarker Toolbox (NBT) (http://www.nbtwiki.net/). All recordings were manually cleaned for artifacts, i.e., noisy channels were discarded and noisy intervals removed. Final recordings’ length is provided in Supplementary Methods. Subsequently, the data were re-referenced to the average reference.
+For all samples, spectral power was computed using the Welch method with an 8192-point Blackman window and a frequency resolution of 0.12 Hz. Relative power was calculated by dividing the absolute power in the alpha band with the integrated power in the range 1–45 Hz. The alpha band (8–13 Hz) amplitude envelope was extracted for all analyses. The DFA exponent was fit between 2 and 30 seconds for all datasets except for the zolpidem sample (see below). Finally, the fE/I was calculated as described above (see ‘estimation for excitation/ inhibition ratio) for windows of 5 seconds with 80% overlap.
+Specifically, for the adult zolpidem dataset, recordings were down-sampled from 64768 Hz to 1024 Hz and filtered 0.5–70 Hz (4th-order Butterworth filter). The DFA exponent was fit between 2 and 10 seconds due to the short length of the signals. The fE/I was averaged for all recordings with a DFA exponent >0.6 (87% of all recordings) into four time blocks (0–0.5, 0.5–2, 2–4, 4–6 hours). Only subjects who had at least one recording with DFA exponent >0.6 in each of the four time blocks were kept for the analysis, which resulted in the inclusion of 18 of the 20 subjects measured in the zolpidem condition, and 14 of the 20 subjects measured in the placebo condition.
+Classification of EEG abnormalities.  Additionally, the recordings of the children with ASD and TDC were visually inspected in windows of 10 seconds by a neurologist with training in clinical EEG (neurophysiology and epilepsy) (EJM) and scored according to Luders & Noachtar’s classification of EEG abnormalities44. When no abnormalities were detected, the EEG was classified as normal.
+Statistical analysis.  Results are expressed as mean ± SEM. Wilcoxon signed-rank test was used to compare the adult zolpidem data at different time points (repeated measures) based on the fE/I value of the Pz-Oz electrode (Fig. 3c). For the children samples (ASD and TDC), clinical and demographic comparisons were calculated using a t-test (if normality assumptions were met) or Wilcoxon rank-sum test. Wilcoxon rank-sum test was also used to compare EEG biomarker values between children with ASD and TDC and within the different ASD EEG subgroups (independent measures). Additionally, an ANCOVA test was performed to control for IQ as a covariate. In order to show significance also at the electrode level (64 channels) (white circles on topographic plots in Figs. 4 and 5), we used False Discovery Rate (FDR) to correct for multiple testing. For the number of channels in our EEG recordings and to show the widespread scalp distribution of the effects in our data, we set q = 0.15 in the FDR corrections (for details regarding the determination of q see Supplementary Methods). Importantly, because of the broad scalp-distribution of the effects, we also report comparisons based on the average value of the EEG biomarkers across all 64 electrodes (whole-brain average) and show the individual-subject values in Figs. 4 and 5. For these tests, we averaged the value of EEG biomarkers across all electrodes (thus, there is no multiple-comparison issue). The significance level was set at p < 0.05. Finally, to determine if the level of core clinical symptoms in ASD had an effect on the fE/I estimates, we used a median split to divide the ASDall group into high and low Social Responsiveness Scale (SRS-t) t-scores and compared the groups performing the Wilcoxon rank-sum test. The significance level was set at p < 0.05.
+Data availability
+Due to privacy regulations of human subjects, we cannot provide the EEG files of the subjects included in our study. However, we provide the individual demographics and EEG mean biomarker values in Supplementary Table S1. Analysis scripts to reproduce the figures and statistics are available at https://figshare.com/projects/Measurement_ of_excitation-inhibition_ratio_in_autism_spectrum_disorder_using_critical_brain_dynamics/80408.
+Code availability
+The code for running the simulations of the CROS model is available at https://figshare.com/projects/ Measurement_of_excitation-inhibition_ratio_in_autism_spectrum_disorder_using_critical_brain_ dynamics/80408. The code for the fE/I algorithm will be publicly available at the time of publication at https:// github.com/rhardstone/fEI.
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+12
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+Received: 21 December 2019; Accepted: 4 May 2020;
+Published: xx xx xxxx
+References
+1. Kinouchi, O. & Copelli, M. Optimal dynamical range of excitable networks at criticality. Nature Physics, 348–351, https://doi. org/10.1038/nphys289 (2006).
+2. Turrigiano, G. G. & Nelson, S. B. Homeostatic plasticity in the developing nervous system. Nature reviews. Neuroscience 5, 97–107, https://doi.org/10.1038/nrn1327 (2004).
+3. Dickinson, A., Jones, M. & Milne, E. Measuring neural excitation and inhibition in autism: Different approaches, different findings and different interpretations. Brain Res 1648, 277–289, https://doi.org/10.1016/j.brainres.2016.07.011 (2016).
+4. Nelson, S. B. & Valakh, V. Excitatory/Inhibitory Balance and Circuit Homeostasis in Autism Spectrum Disorders. Neuron 87, 684–698, https://doi.org/10.1016/j.neuron.2015.07.033 (2015).
+5. Rubenstein, J. L. & Merzenich, M. M. Model of autism: increased ratio of excitation/inhibition in key neural systems. Genes Brain Behav 2, 255–267, https://doi.org/10.1034/j.1601-183X.2003.00037.x (2003).
+6. Uzunova, G., Pallanti, S. & Hollander, E. Excitatory/inhibitory imbalance in autism spectrum disorders: Implications for interventions and therapeutics. World J Biol Psychiatry 17, 174–186, https://doi.org/10.3109/15622975.2015.1085597 (2016).
+7. Ajram, L. A. et al. Shifting brain inhibitory balance and connectivity of the prefrontal cortex of adults with autism spectrum disorder. Transl Psychiatry 7, e1137, https://doi.org/10.1038/tp.2017.104 (2017).
+8. Heeger, D. J., Behrmann, M. & Dinstein, I. Vision as a Beachhead. Biological psychiatry 81, 832–837, https://doi.org/10.1016/j. biopsych.2016.09.019 (2017).
+9. Carcea, I. & Froemke, R. C. Cortical plasticity, excitatory-inhibitory balance, and sensory perception. Prog Brain Res 207, 65–90, https://doi.org/10.1016/B978-0-444-63327-9.00003-5 (2013).
+10. Eichler, S. A. & Meier, J. C. E-I balance and human diseases - from molecules to networking. Frontiers in molecular neuroscience 1, 2, https://doi.org/10.3389/neuro.02.002.2008 (2008).
+11. Shu, Y., Hasenstaub, A. & McCormick, D. A. Turning on and off recurrent balanced cortical activity. Nature 423, 288–293, https:// doi.org/10.1038/nature01616 (2003).
+12. Yizhar, O. et al. Neocortical excitation/inhibition balance in information processing and social dysfunction. Nature 477, 171–178, https://doi.org/10.1038/nature10360 (2011).
+13. van Vreeswijk, C. & Sompolinsky, H. Chaos in neuronal networks with balanced excitatory and inhibitory activity. Science 274, 1724–1726, 74, Issue 5293, pp. 1724-1726, https://doi.org/10.1126/science.274.5293.1724 (1996).
+14. Lombardi, F., Herrmann, H. J. & de Arcangelis, L. Balance of excitation and inhibition determines 1/f power spectrum in neuronal networks. Chaos 27, 047402, https://doi.org/10.1063/1.4979043 (2017).
+15. Brunel, N. Dynamics of sparsely connected networks of excitatory and inhibitory spiking neurons. J Comput Neurosci 8, 183–208, https://doi.org/10.1023/A:1008925309027 (2000).
+16. Gao, R., Peterson, E. J. & Voytek, B. Inferring synaptic excitation/inhibition balance from field potentials. NeuroImage 158, 70–78, https://doi.org/10.1016/j.neuroimage.2017.06.078 (2017).
+17. Veenstra-VanderWeele, J. et al. Arbaclofen in Children and Adolescents with Autism Spectrum Disorder: A Randomized, Controlled, Phase 2 Trial. Neuropsychopharmacology: official publication of the American College of Neuropsychopharmacology 42, 1390–1398, https://doi.org/10.1038/npp.2016.237 (2017).
+18. Chialvo, R. D. Emergent complex neural dynamics. Nature Physics, 740-750, https://doi.org/10.1038/nphys1803 (2010). 19. Rubinov, M., Sporns, O., Thivierge, J. P. & Breakspear, M. Neurobiologically realistic determinants of self-organized criticality in
+networks of spiking neurons. PLoS Comput Biol 7, e1002038, https://doi.org/10.1371/journal.pcbi.1002038 (2011). 20. Beggs, J. M. & Timme, N. Being critical of criticality in the brain. Front Physiol 3, 163, https://doi.org/10.3389/fphys.2012.00163
+(2012). 21. Hardstone, R. et al. Detrended fluctuation analysis: a scale-free view on neuronal oscillations. Front Physiol 3, 450, https://doi.
+org/10.3389/fphys.2012.00450 (2012). 22. Deco, G., Jirsa, V. K. & McIntosh, A. R. Resting brains never rest: computational insights into potential cognitive architectures.
+Trends Neurosci 36, 268–274, https://doi.org/10.1016/j.tins.2013.03.001 (2013). 23. Beggs, J. M. & Plenz, D. Neuronal avalanches in neocortical circuits. J Neurosci 23, 11167–11177, https://doi.org/10.1523/
+JNEUROSCI.23-35-11167 (2003). 24. Shriki, O. et al. Neuronal avalanches in the resting MEG of the human brain. J Neurosci 33, 7079–7090, https://doi.org/10.1523/
+JNEUROSCI.4286-12.2013 (2013). 25. Poil, S. S., Hardstone, R., Mansvelder, H. D. & Linkenkaer-Hansen, K. Critical-state dynamics of avalanches and oscillations jointly
+emerge from balanced excitation/inhibition in neuronal networks. J Neurosci 32, 9817–9823, https://doi.org/10.1523/ jneurosci.5990-11.2012 (2012). 26. Tognoli, E. & Kelso, J. A. The metastable brain. Neuron 81, 35–48, https://doi.org/10.1016/j.neuron.2013.12.022 (2014). 27. Linkenkaer-Hansen, K., Nikouline, V. V., Palva, J. M. & Ilmoniemi, R. J. Long-range temporal correlations and scaling behavior in human brain oscillations. J Neurosci 21, 1370–1377, https://doi.org/10.1523/JNEUROSCI.21-04-01370 (2001). 28. Dalla Porta, L. & Copelli, M. Modeling neuronal avalanches and long-range temporal correlations at the emergence of collective oscillations: Continuously varying exponents mimic M/EEG results. PLoS Comput Biol 15, e1006924, https://doi.org/10.1371/ journal.pcbi.1006924 (2019). 29. Honey, C. J. et al. Predicting human resting-state functional connectivity from structural connectivity. Proc Natl Acad Sci USA 106, 2035–2040, https://doi.org/10.1073/pnas.0811168106 (2009). 30. Peng, C. K., Havlin, S., Stanley, H. E. & Goldberger, A. L. Quantification of scaling exponents and crossover phenomena in nonstationary heartbeat time series. Chaos 5, 82–87, https://doi.org/10.1063/1.166141 (1995). 31. Linkenkaer-Hansen, K. et al. Genetic contributions to long-range temporal correlations in ongoing oscillations. J Neurosci 27, 13882–13889, https://doi.org/10.1523/JNEUROSCI.3083-07.2007 (2007). 32. Shew, W. L., Yang, H., Petermann, T., Roy, R. & Plenz, D. Neuronal avalanches imply maximum dynamic range in cortical networks at criticality. J Neurosci 29, 15595–15600, https://doi.org/10.1523/JNEUROSCI.3864-09.2009 (2009). 33. Deco, G. et al. How local excitation-inhibition ratio impacts the whole brain dynamics. J Neurosci 34, 7886–7898, https://doi. org/10.1523/JNEUROSCI.5068-13.2014 (2014). 34. Palva, J. M. et al. Neuronal long-range temporal correlations and avalanche dynamics are correlated with behavioral scaling laws. Proc Natl Acad Sci USA 110, 3585–3590, https://doi.org/10.1073/pnas.1216855110 (2013). 35. Perrais, D. & Ropert, N. Effect of zolpidem on miniature IPSCs and occupancy of postsynaptic GABAA receptors in central synapses. J Neurosci 19, 578–588, https://doi.org/10.1523/JNEUROSCI.19-02-00578 (1999). 36. de Haas, S. L. et al. Pharmacokinetics, pharmacodynamics and the pharmacokinetic/ pharmacodynamic relationship of zolpidem in healthy subjects. Journal of psychopharmacology 24, 1619–1629, https://doi.org/10.1177/0269881109106898 (2010). 37. Lee, S. H. & Dan, Y. Neuromodulation of brain states. Neuron 76, 209–222, https://doi.org/10.1016/j.neuron.2012.09.012 (2012). 38. Harris, K. D. & Thiele, A. Cortical state and attention. Nat Rev Neurosci 12, 509–523, https://doi.org/10.1038/nrn3084 (2011).
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+13
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+39. Ros, T. et al. Neurofeedback Tunes Scale-Free Dynamics in Spontaneous Brain Activity. Cereb Cortex 27, 4911–4922, https://doi. org/10.1093/cercor/bhw285 (2017).
+40. Hahn, G. et al. Spontaneous cortical activity is transiently poised close to criticality. PLoS Comput Biol 13, e1005543, https://doi. org/10.1371/journal.pcbi.1005543 (2017).
+41. Rubenstein, J. L. Three hypotheses for developmental defects that may underlie some forms of autism spectrum disorder. Curr Opin Neurol 23, 118–123, https://doi.org/10.1097/WCO.0b013e328336eb13 (2010).
+42. Dennis, M. et al. Why IQ is not a covariate in cognitive studies of neurodevelopmental disorders. J Int Neuropsychol Soc 15, 331–343, https://doi.org/10.1017/s1355617709090481 (2009).
+43. Takarae, Y. & Sweeney, J. Neural Hyperexcitability in Autism Spectrum Disorders. Brain Sci 7, https://doi.org/10.3390/ brainsci7100129 (2017).
+44. Luders, H. & Noachtar, S. Atlas and Classification of Electroencephalography.. (WB Saunders, 2000). 45. Boutros, N. N., Lajiness-O’Neill, R., Zillgitt, A., Richard, A. E. & Bowyer, S. M. EEG changes associated with autistic spectrum
+disorders. Neuropsychiatric Electrophysiology 1, https://doi.org/10.1186/s40810-014-0001-5 (2015). 46. Mulligan, C. K. & Trauner, D. A. Incidence and behavioral correlates of epileptiform abnormalities in autism spectrum disorders.
+Journal of autism and developmental disorders 44, 452–458, https://doi.org/10.1007/s10803-013-1888-6 (2014). 47. Bak, P., Tang, C. & Wiesenfeld, K. Self-organized criticality: An explanation of the 1/f noise. Phys Rev Lett 59, 381–384, https://doi.
+org/10.1103/PhysRevLett.59.381 (1987). 48. Poil, S. S., van Ooyen, A. & Linkenkaer-Hansen, K. Avalanche dynamics of human brain oscillations: relation to critical branching
+processes and temporal correlations. Hum Brain Mapp 29, 770–777, https://doi.org/10.1002/hbm.20590 (2008). 49. Tomen, N., Rotermund, D. & Ernst, U. Marginally subcritical dynamics explain enhanced stimulus discriminability under attention.
+Front Syst Neurosci 8, 151, https://doi.org/10.3389/fnsys.2014.00151 (2014). 50. Ma, Z., Turrigiano, G. G., Wessel, R. & Hengen, K. B. Cortical Circuit Dynamics Are Homeostatically Tuned to Criticality In Vivo.
+Neuron 104(655-664), e654, https://doi.org/10.1016/j.neuron.2019.08.031 (2019). 51. Pfeffer, T. et al. Catecholamines alter the intrinsic variability of cortical population activity and perception. PLoS Biol 16, e2003453,
+https://doi.org/10.1371/journal.pbio.2003453 (2018). 52. Zhigalov, A., Arnulfo, G., Nobili, L., Palva, S. & Palva, J. M. Modular co-organization of functional connectivity and scale-free
+dynamics in the human brain. Netw Neurosci 1, 143–165, https://doi.org/10.1162/NETN_a_00008 (2017). 53. Dehghani, N., Bedard, C., Cash, S. S., Halgren, E. & Destexhe, A. Comparative power spectral analysis of simultaneous
+elecroencephalographic and magnetoencephalographic recordings in humans suggests non-resistive extracellular media. J Comput Neurosci 29, 405–421, https://doi.org/10.1007/s10827-010-0263-2 (2010). 54. Kurcyus, K. et al. Opposite Dynamics of GABA and Glutamate Levels in the Occipital Cortex during Visual Processing. J Neurosci 38, 9967–9976, https://doi.org/10.1523/jneurosci.1214-18.2018 (2018). 55. Rideaux, R. Temporal dynamics of GABA and Glx in the visual cortex. bioRxiv, 2020.2001.2015.907659, https://doi. org/10.1101/2020.01.15.907659 (2020). 56. Muthukumaraswamy, S. D., Edden, R. A., Jones, D. K., Swettenham, J. B. & Singh, K. D. Resting GABA concentration predicts peak gamma frequency and fMRI amplitude in response to visual stimulation in humans. Proc Natl Acad Sci USA 106, 8356–8361, https:// doi.org/10.1073/pnas.0900728106 (2009). 57. Cousijn, H. et al. Resting GABA and glutamate concentrations do not predict visual gamma frequency or amplitude. Proc Natl Acad Sci USA 111, 9301–9306, https://doi.org/10.1073/pnas.1321072111 (2014). 58. Iscan, Z., Nazarova, M., Fedele, T., Blagovechtchenski, E. & Nikulin, V. V. Pre-stimulus Alpha Oscillations and Inter-subject Variability of Motor Evoked Potentials in Single- and Paired-Pulse TMS Paradigms. Front Hum Neurosci 10, 504, https://doi. org/10.3389/fnhum.2016.00504 (2016). 59. Ogata, K., Nakazono, H., Uehara, T. & Tobimatsu, S. Prestimulus cortical EEG oscillations can predict the excitability of the primary motor cortex. Brain Stimul 12, 1508–1516, https://doi.org/10.1016/j.brs.2019.06.013 (2019). 60. Wilting, J. & Priesemann, V. 25 years of criticality in neuroscience - established results, open controversies, novel concepts. Curr Opin Neurobiol 58, 105–111, https://doi.org/10.1016/j.conb.2019.08.002 (2019). 61. Fagerholm, E. D. et al. Cascades and cognitive state: focused attention incurs subcritical dynamics. J Neurosci 35, 4626–4634, https:// doi.org/10.1523/jneurosci.3694-14.2015 (2015). 62. Irrmischer, M., Poil, S. S., Mansvelder, H. D., Intra, F. S. & Linkenkaer-Hansen, K. Strong long-range temporal correlations of beta/ gamma oscillations are associated with poor sustained visual attention performance. Eur J Neurosci 48, 2674–2683, https://doi. org/10.1111/ejn.13672 (2018). 63. Smit, D. J., Linkenkaer-Hansen, K. & de Geus, E. J. Long-range temporal correlations in resting-state alpha oscillations predict human timing-error dynamics. J Neurosci 33, 11212–11220, https://doi.org/10.1523/jneurosci.2816-12.2013 (2013). 64. Trauner, D. A. Behavioral correlates of epileptiform abnormalities in autism. Epilepsy & behavior: E&B 47, 163–166, https://doi. org/10.1016/j.yebeh.2014.10.020 (2015). 65. Britton, J. W. et al. in Electroencephalography (EEG): An Introductory Text and Atlas of Normal and Abnormal Findings in Adults, Children, and Infants (eds E. K. St. Louis & L. C. Frey) (2016). 66. Krsek, P. et al. Low-grade focal cortical dysplasia is associated with prenatal and perinatal brain injury. Epilepsia 51, 2440–2448, https://doi.org/10.1111/j.1528-1167.2010.02730.x (2010). 67. Sachdev, R. N. et al. Delta rhythm in wakefulness: evidence from intracranial recordings in human beings. Journal of neurophysiology 114, 1248–1254, https://doi.org/10.1152/jn.00249.2015 (2015). 68. Tao, J. X. et al. Interictal regional delta slowing is an EEG marker of epileptic network in temporal lobe epilepsy. Epilepsia 52, 467–476, https://doi.org/10.1111/j.1528-1167.2010.02918.x (2011). 69. Stoner, R. et al. Patches of disorganization in the neocortex of children with autism. N Engl J Med 370, 1209–1219, https://doi. org/10.1056/NEJMoa1307491 (2014). 70. Terney, D., Alving, J., Skaarup, C. N., Wolf, P. & Beniczky, S. The slow-wave component of the interictal epileptiform EEG discharges. Epilepsy research 90, 228–233, https://doi.org/10.1016/j.eplepsyres.2010.05.005 (2010). 71. Boutros, N. N., Bowyer, S., Wang, J., Urfy, M. Z. & Loeb, J. A. Epilepsy spectrum disorders: A concept in need of validation or refutation. Med Hypotheses 85, 656–663, https://doi.org/10.1016/j.mehy.2015.08.004 (2015). 72. Hartley-McAndrew, M. & Weinstock, A. Autism Spectrum Disorder: Correlation between aberrant behaviors, EEG abnormalities and seizures. Neurology international 2, e10, https://doi.org/10.4081/ni.2010.e10 (2010). 73. Yasuhara, A. Correlation between EEG abnormalities and symptoms of autism spectrum disorder (ASD). Brain & development 32, 791–798, https://doi.org/10.1016/j.braindev.2010.08.010 (2010). 74. APA. Diagnostic and statistical manual of mental disorders, Text Revision (DSM-IV-TR). (2000). 75. APA. Ch. Autistic Spectrum Disorders 299.00 (2013). 76. Constantino, J. N. et al. Validation of a brief quantitative measure of autistic traits: comparison of the social responsiveness scale with the autism diagnostic interview-revised. Journal of autism and developmental disorders 33, 427–433, https://doi.org/10.1023/a:1025014929212 (2003).
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+14
+
+www.nature.com/scientificreports/
+
+www.nature.com/scientificreports
+
+Acknowledgements
+This work was funded by Netherlands Organization for Scientific Research (NWO) Physical Sciences Grant 612.001.123 (to K.L.-H.) and Social Sciences 406–15–256 (to A.-E.A. and K.L.-H.). H.B. and J.S. were funded by ZonMW Rational Pharmacotherapy Program (GGG project 836041015). S.S. was funded by EU MSCAITN CognitionNet (FP7-PEOPLE-2013-ITN 607508). H.D.M. received funding from EU H2020 ‘Human Brain Project’ grant agreement no. 604102. We thank Jan Bim and William Muñoz for discussions, and Joop van Gerven and Geert Jan Groeneveld from Centre for Human Drug Research for sharing the EEG data with the zolpidem intervention. We thank Mia Athina Thomaidou for reviewing EEG signals for artifacts on the adult validation sample.
+Author contributions
+H.B.: conceptualization; resources; supervision; funding acquisition; investigation; methodology; writing— original draft; project administration; writing—review and editing. R.H.: conceptualization; resources; data curation; software; formal analysis; validation; investigation; visualization; methodology; writing—original draft; writing—review and editing. E.L.J.-M.: conceptualization; formal analysis; investigation; visualization; methodology; writing—original draft; writing—review and editing. J.S.: conceptualization; resources; investigation; methodology; writing—original draft; writing—review and editing. A.-E.A.: data curation; software; formal analysis; validation; investigation; visualization; methodology; writing—review and editing. S.S.: data curation; software; investigation; methodology; writing—review and editing. S.H.: data curation; software; visualization; writing—review and editing. S.-S.P.: resources; data curation; software; investigation; methodology; writing—review and editing. E.D.: investigation. S.P.: resources; writing—review and editing. B. O.: resources; investigation; methodology; writing—review and editing. J.M.P.: resources; writing—review and editing. H.M.: conceptualization; funding acquisition; investigation; writing—review and editing. K.L.-H.: conceptualization; software; supervision; funding acquisition; validation; investigation; methodology; writing—original draft; project administration; writing—review and editing.
+Competing interests
+K.L.-H., S.-S.P. are shareholders of NBT Analytics BV, which provides EEG-analysis services for clinical trials. H.B., K.L.-H., and S.-S.P. are shareholders of Aspect Neuroprofiles BV, which develops physiology-informed prognostic measures for neurodevelopmental disorders. R.H., K.L.-H. have filed the patent claim (PCT/ NL2019/050167) “Method of determining brain activity”; with priority date 16 March 2018. The rest of the authors have no competing interests to declare.
+Additional information
+Supplementary information is available for this paper at https://doi.org/10.1038/s41598-020-65500-4.
+Correspondence and requests for materials should be addressed to K.L.-H.
+Reprints and permissions information is available at www.nature.com/reprints.
+Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.
+Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
+© The Author(s) 2020
+
+Scientific Reports | (2020) 10:9195 | https://doi.org/10.1038/s41598-020-65500-4
+
+15
+

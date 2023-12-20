@@ -1,0 +1,754 @@
+PHYSICAL REVIEW E 79, 061922 ͑2009͒
+
+Ising-like dynamics in large-scale functional brain networks
+
+Daniel Fraiman,1 Pablo Balenzuela,2 Jennifer Foss,3 and Dante R. Chialvo3 1Departamento de Matemática y Ciencias, Universidad de San Andrés and CONICET, Buenos Aires 1644, Argentina
+2Departmento de Física, Facultad de Ciencias Exactas y Naturales, Universidad de Buenos Aires and CONICET,
+Buenos Aires 1428, Argentina 3Department of Physiology, Northwestern University, Chicago, Illinois 60611, USA ͑Received 10 December 2008; revised manuscript received 10 April 2009; published 23 June 2009͒
+
+Brain “rest” is deﬁned—more or less unsuccessfully—as the state in which there is no explicit brain input or output. This work focuses on the question of whether such state can be comparable to any known dynamical state. For that purpose, correlation networks from human brain functional magnetic resonance imaging are contrasted with correlation networks extracted from numerical simulations of the Ising model in two dimensions at different temperatures. For the critical temperature Tc, striking similarities appear in the most relevant statistical properties, making the two networks indistinguishable from each other. These results are interpreted here as lending support to the conjecture that the dynamics of the functioning brain is near a critical point.
+
+DOI: 10.1103/PhysRevE.79.061922
+
+PACS number͑s͒: 87.19.LϪ, 89.75.Da, 89.75.Kd
+
+I. INTRODUCTION
+The human cerebral cortex is organized as a very complex network comprising approximately 1010 interconnected neurons. Thanks to the impressive progress in brain imaging techniques given by the development of positron emission tomography and functional magnetic resonance imaging ͑FMRI͒ an increasing amount of spatiotemporal brain data is now available. The analysis of this large and complex information is of such unprecedented magnitude that conceptual approaches grounded in statistical physics are needed ͓1͔.
+Recently, and departing from the tradition of using stimulus-response techniques, the study of brain imaging dynamics “at rest” has received ample attention ͓2–5͔. Brain “rest” is deﬁned—more or less unsuccessfully—as the state in which there is no explicit brain input or output. The analysis of experiments under such quasistationary state revealed an active network of brain areas engaged during the resting state. Typically, these areas are active during rest, and they deactivate immediately when the subject engages in any minimal cognitive task, for example, when asked to visually track a moving object on a screen. This evidence, now expanded by other studies, indicates the existence of a socalled brain “resting state network” or “default mode network” in which several cortical regions are activated on a complex dynamical interaction ͓2͔. Results from brain imaging experiments as well as graph theory analysis already agree on some fundamental common features, which can be summarized as follow:
+͑1͒ There are dense local correlations with only few longrange links, resembling a small world network ͓6–10͔.
+͑2͒ The distribution of the number of links is scale-free ͓7,10͔ when measured with the appropriate resolution.
+͑3͒ Brain networks are assortative, indicating a tendency for nodes with similar number of links to be directly connected ͓10–12͔.
+͑4͒ Large positively correlated domains coexist with equally large anticorrelated nonlocal structures ͓14͔.
+͑5͒ Large-scale correlated patterns ͑or their graph counterpart͒ have been observed during subject execution of a task,
+
+as well as under “brain rest” conditions ͑absence of an overt stimulus͒ ͓10,14,15͔ and even under general anesthesia ͓19͔.
+͑6͒ A portion of these observations cannot be explained by the brain’s underlying “anatomical” connectivity ͓11͔.
+Although there is at least one colloquial explanation for each of the points listed above, a single mechanistic explanation that satisﬁes all these observations at once is still lacking. This is already in itself an important theoretical deﬁcit, but it is additionally highlighted by the fact that in certain brain dysfunctions some of these global properties are known to be affected ͓15,20,21͔.
+As a starting point we ask here whether the brain resting state could be comparable to any known dynamical state. We have proposed that the brain stays near the critical point of a second-order phase transition, where neuronal groups generate a diversity of ﬂexible collective behaviors, due to the known abundance of metastable states at the transition. It is from this viewpoint that the dynamics of brain resting might correspond to a critical state. This conjecture is tested here comparing FMRI brain resting state data from healthy subjects with a paradigmatic critical system, the Ising model ͓22͔. This model has been the “fruitﬂy” for the development of concepts and techniques in statistical thermodynamics. It is chosen based on the qualitative similarities between some of its dynamics and the brain’s FMRI spatiotemporal patterns that contain long-range correlations ͓10,15–18͔ and a mixture of ordered and disordered structures. It must be noted from the outset that we are not suggesting that the brain’s equations are isomorphic with those of the Ising model. Nevertheless, the results in this paper do suggest that important lessons can be learned from the striking similarities between the brain data and the dynamics emerging from the Ising model at critical temperature. The important point is that the numerical experiments here are not simulations prepared to replicate and further study a given experimental ﬁnding. To the contrary, the phenomenology to be discussed is not written in any way in the model equations; nevertheless all the features listed above for the brain appear spontaneously in the Ising model near the critical temperature.
+The paper is organized as follows. Section II is dedicated to describe the data from the brain and from the numerical
+
+1539-3755/2009/79͑6͒/061922͑10͒
+
+061922-1
+
+©2009 The American Physical Society
+
+FRAIMAN et al.
+
+PHYSICAL REVIEW E 79, 061922 ͑2009͒
+
+simulations of the Ising model. Also it contains the steps used to extract the networks from both brain and model time series. Section III contains the main ﬁnding organized as a side-by-side comparison of the statistical properties of the brain and Ising model networks. It is shown that key statistical and topological properties of the brain networks are intriguingly similar to those of the networks extracted from the Ising ͑only͒ at the critical temperature. Finally Sec. IV summarizes and discusses the relevance of these similarities and their biological signiﬁcance in terms of brain functioning.
+II. EXPERIMENTAL AND NUMERICAL METHODS
+In this work, two types of complex networks are analyzed in detail. The ﬁrst network is derived from time series of brain FMRI images collected from healthy human volunteers. The second network is extracted from numerical simulations of the Ising model ͓22͔ in two dimensions. In both systems networks are deﬁned in the same manner by linking sites with strongest correlations, often called “correlation networks,” as it will be explained in detail below.
+A. Brain FMRI data
+Functional magnetic resonance data were acquired using a 3T Siemens Trio whole-body scanner with echo-planar imaging capability using the standard radio-frequency head coil ͑scanning parameters were similar as those in ͓15͔͒. Data used here correspond to a subset of the control group published in ͓15͔ and composed of ﬁve healthy females with ages ranging between 28 and 48 years old. They were all right handed and all gave informed consent to procedures approved by Northwestern University IRB committee. Participants were scanned following a typical brain resting state protocol ͓2͔, in which the subject is lying in the scanner and asked to keep their mind blank, eyes closed, and avoid falling asleep. A total of 300 images are obtained spaced by 2.5 s, in which the brain oxygen level dependent ͑BOLD͒ signal is recorded for each one of the 64ϫ 64ϫ 49 sites ͑so-called voxels of dimension 3.4375ϫ 3.4375ϫ 3 mm3͒. Typically, only 10% of those voxels correspond to brain activity, the type of time series used here. Preprocessing of BOLD signal was performed using the functional magnetic resonance imaging of the brain ͑FMRIB͒ expert analysis tool ͑FEAT ͓23,46͔͒, involving motion correction using motion corrections using FMRIB’s linear image registration tool ͑MCFLIRT͒, slice-timing correction was performed using Fourierspace time-series phase shifting, non-brain removal was performed using brain extraction tool ͑BET͒, and spatial smoothing was performed using a Gaussian kernel of full width half maximum of 5 mm.
+B. Ising model
+The Ising model considers a lattice containing N sites and assumes that each lattice site i has an associated variable si, where si = +1 stands for an “up” spin and si = −1 for a “down” spin. A particular conﬁguration of the lattice is speciﬁed by the set of variables s1 , s2 , . . . , sN for all lattice sites. The en-
+
+ergy in absence of external magnetic ﬁeld is given by
+
+N
+
+͚ E = − J
+
+sis j ,
+
+͑1͒
+
+i,j=nn͑i͒
+
+where N = L ϫ L, L is the size of the lattice, J is the coupling constant, and the sum over j runs over the nearest neighbors of a given site i ͓nn͑i͔͒. As in almost all statistical mechanics models there exists a competition between thermal ﬂuctuations ͑given by the interaction with the environment͒ that give the system a tendency to be disordered and the interaction between particles ͑sites of the lattice͒ that tends to organize the system in some particular way that depends on the interaction or coupling between particles.
+We implement the Metropolis Monte Carlo algorithm ͓24,25͔ for the evolution of the Ising model in two dimensions with periodic boundary conditions. This algorithm takes into account that the system is in contact with a heat bath at temperature T. In this work, instead of working with asymptotic conﬁgurations and equilibrium averages, we deal with temporal series of single spin dynamics observed at a certain time scale. All simulations are implemented on a lattice of L = 200 and every time step corresponds to ⌬t = L ϫ L Monte Carlo steps ͑which corresponds, on average, to running once over the entire lattice, giving each spin the possibility to ﬂip͒. We take the Boltzmann constant equal 1, J = 1, and after thermalization, we take 2000 lattice conﬁgurations ͑each separated by ⌬t͒, obtaining the dynamics of each spin ͓͕s1͑t͒ , s2͑t͒ , . . . , sN͑t͖͒ time series͔.
+As mentioned in Sec. I some of the key properties exhibited by the brain resemble the dynamics of the Ising model at the critical temperature Tc, where a transition between the ordered and disordered states takes place. At lower temperatures almost all the spins are aligned, while at temperatures above critical, spins are randomly distributed and the total magnetization is approximately zero. At the critical temperature Tc, however, the system displays a fractal structure, with clusters of aligned spins of different sizes as well as longrange temporal correlations. For the simulations discussed in Sec. III a critical temperature Tc = 2.3 was used, a subcritical one of T = 2.0 and a supercritical temperature of T = 3. A ﬁnal note concerns the choice of a lattice with nearest-neighbor ferromagnetic interactions, considering that the brain is not a lattice and includes inhibitory ͑i.e., antiferromagnetic͒ interactions. This is chosen deliberately as the worst case scenario in order to demonstrate the higher signiﬁcance of the critical dynamics over the structural connectivity of the model. We restricted ourselves to the discussion of the present Ising conﬁguration since the main results are connected with the critical state itself however they are expected to be observed after changes in the connectivity and type of interactions, provided that the system is tuned near the critical state ͓26,27͔.
+
+C. Correlation networks
+In general terms, networks are collections of nodes joined by links. For certain systems, the nodes as well as the links are self-evident and easily identiﬁable. This is not the case at hand because in the brain both are part of the problem, where
+
+061922-2
+
+ISING-LIKE DYNAMICS IN LARGE-SCALE FUNCTIONAL…
+
+PHYSICAL REVIEW E 79, 061922 ͑2009͒
+
+both the nodes and their interactions need to be uncovered from the data. Although there are “anatomical” templates that can be used to identify nodes, we choose here to approach the problem from the limit of maximum ignorance and use instead a data-driven strategy. The assumption is that the brain time series contain enough information to deﬁne the networks in a self-consistent manner. Since the correlations are computed from the time series collected from FMRI voxels, this approach is often called voxel-based brain functional networks. The current approach is in contrast with most recent related work ͓8,9,13,28͔, where the network’s nodes are predeﬁned based on a priori knowledge, and only the possible links between these predeﬁned nodes are determined. It will be seen that these differences per se can be responsible for conﬂicting results.
+Here networks are deﬁned by the correlations among the activity at each location ͑i.e., either a voxel in the case of the brain or a lattice site in the Ising model͒. Thus the correlation coefﬁcient, r, is used to measure the degree of linear dependence between all pairs of sites, as was done in ͓10͔. The correlation coefﬁcient between sites i and j is
+
+r͑i,
+
+j͒
+
+=
+
+͗xi͑t͒xj͑t͒͘ − ͗xi͑t͒͗͘xj͑t͒͘ ␴͓xi͑t͔͒␴͓xj͑t͔͒
+
+,
+
+͑2͒
+
+where ␴2͓xl͑t͔͒ = ͗xl2͑t͒͘ − ͗xl͑t͒͘2, where xl͑t͒ is the BOLD signal of voxel l if we are studying the brain data or the spin
+time series ͑of site l͒ from the Ising model. ͗ · ͘ represent averages taken over the length of the time series ͑300 and
+
+(a) 1×107
+
+5×106
+
+-1 -0.5 0 0.5 1
+
+Frequency
+
+0-1 -0.5
+
+0
+
+r
+
+6×107
+
+0.5 1 (b)
+
+3×107 -1 -0.5 0 0.5 1
+
+2000 points for the brain and the Ising model, respectively͒. Links between sites i and j are deﬁned here whenever the
+correlation r͑i , j͒ is greater or equal to a given threshold, ␳. The network’s nodes are those sites with a nonzero number
+of links. That completes the deﬁnition of a network. Depending on the sign of ␳, two types of networks can be extracted. Those using a positive threshold ␳+ will be called positively correlated networks and those using a negative threshold ␳− negatively correlated networks. It is relevant to make this
+differentiation because anticorrelated dynamics are ubiqui-
+tous in the brain, as will be discussed latter.
+Section III contains a side-by-side analysis of the posi-
+tively and negatively correlated networks extracted from the
+brain and the Ising model.
+
+III. RESULTS
+Networks are extracted from the data using the site-to-site temporal correlations. Figure 1 shows the density distribution for the N͑N − 1͒ / 2 correlations ͓i.e., Eq. ͑2͔͒ computed between all pairs of time series of the brain ͑in panel a͒ and the Ising model ͑in panel b͒. In the case of the brain, the results from the ﬁve participants are plotted and for the Ising model, the densities correspond to correlations computed at three different temperatures: subcritical, critical, and supercritical.
+A visual inspection shows that besides the differences in variance, which cannot be expected to be equal, the densities for both brain and Ising model are distributed approximately equally. Both have a small skewness toward positive values, which it is more clearly seen in the insets using logarithmic scale. An important point to appreciate panel B of Fig. 1 is
+
+<k>
+
+103
+(a)
+
+102
+
+T=3
+
+T=2.3
+
+101
+
+T=2
+
+Brain
+
+103 (c)
+
+ρ 10-1 +
+
+102
+
+106 (b)
+
+104
+
+σ2
+
+102
+
+100
+
+100
+
+100
+
+101 <k> 102
+
+103
+
+106 (d)
+
+104
+
+σ2
+
+<k>
+
+101
+
+102
+
+Frequency
+
+-00.5 -0.25 0 0.25 0.5 r
+FIG. 1. ͑Color online͒ Panel ͑a͒: brain’s FMRI correlation density distribution for each of the ﬁve control subjects recorded under resting conditions. Panel ͑b͒: Ising model correlation density distribution for T = 2 ͑green, dashed line͒, T = 2.3 ͑red, continuous line͒, and T = 3 ͑black, dot dashed line͒. Insets in both panels show the logarithmic-linear plot of the same density distributions.
+
+100
+
+ρ 10-1 −
+
+100
+
+1010 00
+
+101 <k> 102
+
+103
+
+FIG. 2. ͑Color online͒ Average degree, ͗k͘, as a function of threshold ␳ for ͑a͒ positive and ͑c͒ negative correlation networks. Variance of degree, ␴k2, as a function of ͗K͘ for ͑b͒ positively and ͑d͒ negatively correlated networks. The dashed black line ͓in panels ͑b͒ and ͑d͔͒ corresponds to the expected behavior of a Poisson
+distribution. In all graphs the Ising model data at three tempera-
+tures, T = 2, T = 2.3, and T = 3, are presented, as well as the data from
+the ﬁve subject’s FMRI brain networks.
+
+061922-3
+
+FRAIMAN et al.
+
+PHYSICAL REVIEW E 79, 061922 ͑2009͒
+
+TABLE I. Average statistical properties of the positively correlated brain and Ising networks.
+
+T
+
+␳+
+
+2.0 0.1 2.3 0.3 3.0 0.09
+
+N
+
+͗k͘
+
+C
+
+L
+
+D
+
+Cran
+
+Lran
+
+Dran
+
+Ising network
+
+40000 133 0.065
+
+2.72
+
+4
+
+0.0054 2.61
+
+4
+
+40000 127 0.516
+
+6.83 31 0.048
+
+2.71
+
+5
+
+40000 128 0.064
+
+2.73
+
+4
+
+0.0034 2.65
+
+4
+
+Brain network
+
+0.623 26985 128 0.4536 4.4
+
+13 0.061
+
+2.62
+
+5
+
+the well known increase in the variance of the correlations at the critical temperature. It is only near Tc that equally oriented spins coalesce in large domains, thus generating the two sides of the distribution we observe here. In the brain, at any moment in time, in order to produce a given motor or cognitive behavior, of even during rest, similar dynamics occur: large regions of the brain activate in bulk at the same time that other regions deactivate. A remark here is that it is inconceivable to think about the brain’s ongoing dynamics in any other way. Given the brain extensive connectivity, this balance in which a region is shutting down while another is excited is clearly the only possibility to avoid both total quiescence, in which the brain is shutdown, and massive excitation, in which the entire cortex is ﬁred up. Thus, while the reason for the distribution shown in Fig. 1͑a͒ is trivial, it is not trivial how the brain does it or, in other words, which is the mechanism in place to maintain such balanced correlations ͓29͔.
+A. Networks average statistical properties
+Given the differences in correlation variance discussed above, a criterion needs to be established to compare brain and Ising networks. One proven to be useful is to scan a range of ␳ thresholds while computing the average degree of the resulting networks. After that, a comparison can be made between networks of similar average degree. This is plotted in Fig. 2 as a function of ␳ for positively correlated networks in panel ͑a͒ and for negatively correlated networks in panel ͑c͒. This is done for the brain data of the ﬁve subjects and for the Ising data at three temperatures. Given the distributions in Fig. 1, it is clear that, as ␳ grows, there are fewer connections and consequently a smaller average degree, ͗k͘. Despite
+
+the expected difference in the value of ␳ it can be seen that the parametric dependence of ␳ and ͗k͘ in both brain and Ising networks allows us to conﬁdently study and compare networks of a given ͗k͘.
+Next we looked at the degree variance, ␴k2 = ͗k2͘ − ͗k͘2, plot as a function of the average degree in Figs. 2͑b͒ and 2͑d͒. Note that the brain and the Ising data at the critical temperature share a similar ␴k2-͗k͘ functional dependence, a fact that suggests potential similarities between the degree
+distributions of the brain and Ising model at Tc, an aspect that will be explored in Sec. III B. The dashed line corresponds to a Poisson distribution ͑␴k2 = ͗k͒͘, indicating that none of the networks seems to obey a Poisson degree distri-
+bution.
+Next we computed and compared some of the network’s
+most basic properties. These include the network’s clustering
+coefﬁcient C, estimating the number of mutual connections,
+and the average path length L, deﬁning the average number
+of steps along the shortest paths for all possible pairs of
+network nodes. Another property is the diameter D, which is
+deﬁned as the maximal distance between any two nodes in
+the network. Also similar properties Cran, Lran, Dran are computed for an equivalent random network rewired as described in ͓31͔. Table I contains the results of these calculations for networks deﬁned with a positive ␳ and Table II contains the results for negatively correlated networks. The Ising data
+correspond to the already described generated networks at
+different temperatures, and the brain network corresponds to
+the subject whose correlation is plotted with dashed line in Fig. 1 ͑Internal Code Subject01͒. In all cases, we impose similar ͗k͘ by choosing the appropriate ␳ value given by the results in Figs. 2͑a͒ and 2͑c͒.
+The most remarkable result in Table I is the fact that the
+Ising model network becomes small world only at Tc. As
+
+TABLE II. Average statistical properties of the negatively correlated brain and Ising networks.
+
+T
+
+␳−
+
+N
+
+͗k͘
+
+C
+
+L
+
+D
+
+Cran
+
+Lran
+
+Dran
+
+Ising network
+
+2.0 −0.0575 29370 26 0.0105
+
+3.24
+
+5
+
+0.013
+
+3.38
+
+8
+
+2.3 −0.38
+
+4784
+
+26
+
+0
+
+4.17 13 0.095
+
+2.95
+
+7
+
+3.0 −0.105
+
+40000 23
+
+0.00003 3.72
+
+6
+
+0.0007 3.7
+
+6
+
+−0.71
+
+Brain network
+
+1684
+
+27
+
+0
+
+3.54 11 0.14
+
+2.69
+
+5
+
+061922-4
+
+ISING-LIKE DYNAMICS IN LARGE-SCALE FUNCTIONAL…
+
+PHYSICAL REVIEW E 79, 061922 ͑2009͒
+
+γ (C/Crand)
+
+(a)
+100
+10
+10 (b)
+
+Ising ρ + Brain ρ + Ising ρ − Brain ρ −
+
+λ (L / Lrand)
+
+1
+
+10
+
+100
+
+Average degree <k>
+
+FIG. 3. ͑Color online͒ Normalized network clustering ͓panel ͑a͔͒ and path length ͓panel ͑b͔͒ as a function of average degree. Solid lines denote results for the Ising model at Tc and dashed lines denote the results for the brain.
+expected by the divergence of correlations at criticality, the diameter of the network is seen here to grow from a few nodes to a length toward the lattice maximum ͓i.e.,
+ϳͱ͑L / 2͒2 + ͑L / 2͒2͔. At the same time, the average minimum
+path L only doubles. Also, it is only at criticality that the clustering coefﬁcient, which is descriptive of the “local” connectivity, grows several orders of magnitude compared with either subcritical or supercritical networks. It is interesting to realize that the network became small world at Tc, not by adding short cuts to a previously ordered lattice, as in the Watts-Strogatz ͓32͔ scenario. Instead, here it seems as if the disordered small blobs coalesce ͑or group͒ at Tc, producing an increase in C while increasing the D and maintaining the same L. The other important point to remark on here is the fact that a purely dynamical property ͑i.e., criticality͒ is able to dramatically change the network properties. This has deep relevance to brain function since these emergent properties are directly related to the efﬁciency of information transport in the network ͓33,34͔. Turning to the brain data in Table I, it can be seen that it compares well with the Ising data at Tc and also that it is a small world network, something reported earlier for subjects performing minimal tasks ͓10͔. The data also agree extremely well with a very recent report for resting state networks ͓7͔. Compare, for instance, Figs. 3͑c͒ and 3͑d͒ in ͓7͔ with Fig. 3 here.
+The properties of negatively correlated networks necessarily mirror the networks already discussed, with one important exception. Considering the Ising model for description sake, in the negatively correlated network edges connect spins of opposite signs. Thus the clustering coefﬁcient C is by deﬁnition zero since two spins mutually opposite are necessarily similar. For the case of the brain, of course, although the details are different the mechanics are the same.
+Of course the above mentioned results depend on the values of chosen ͗k͘. Nevertheless, we have veriﬁed that at least
+
+in the range of ͗k͘ Ͻ 130 the correspondence between the Ising model at Tc and the brain data continues. As the mean degree ͗k͘ increases the clustering increases and the average path length diminishes, mainly because we are adding connections to the network. A similar dependence of these average statistical quantities on ͗k͘ was recently reported in ͓7͔ for positively correlated brain FMRI networks. To summarize the dependence of these quantities on ͗k͘, Fig. 3 shows the normalized clustering, ␥ = C / Cran ͓panel ͑a͔͒, and average path length, ␭ = L / Lran ͓panel ͑b͔͒, as a function of mean degree ͑͗k͒͘. For the positively correlated networks, the relative large values of ␥ together with relatively small ␭ indicate that both networks display small world properties. For the negatively correlated network, the clustering is zero ͑␥ = 0͒ and ␭ is near one and notoriously almost insensitive to ͗k͘.
+The results described so far show that the dynamics of the Ising model at Tc as captured by the correlation networks exhibit average statistical properties resembling those observed in the brain networks at resting conditions. In Sec. III B, the extent of these similarities is further expanded to other network topological features.
+B. Degree distribution and degree correlations
+In this section we analyze the distribution of the network edges and their mutual correlation. First we analyze and compare the degree distribution P͑k͒, shown in Fig. 4. The plots in the top three graphs correspond to the degree distribution for the Ising model at the three temperatures. Each of the three curves in each graph corresponds to networks with average degrees of ͗k͘ Ϸ 26, 127, and 713, imposed by choosing appropriate values of ␳+ as was done before. The bottom graph in Fig. 4 shows the degree distribution for the brain network. As anticipated, the networks extracted from the Ising model show a dramatic change at Tc. At criticality the degree distribution exhibits a long tail that persists for all ͗k͘ explored. The power law exponent of the degree distribution and the ͗k͘ are connected, which is not surprising. The bottom panel shows the same analysis for the brain network, which exhibits all the relevant features seen for the Ising model at Tc. Besides the agreement on the gross features of the distribution, it is even possible to identify a noticeable maximum at k = 4 ͑or k = 6 in the brain͒, which is trivially related to the number of the nearest neighbors ͑this is especially notorious at relatively large ␳+; see, for instance, Fig. 2 in ͓10͔͒. The power law behavior in the tail of the degree distribution for positive correlation networks was already reported in brain FMRI of human subjects performing minimal attention task ͓10͔ and recently in an extensive study in subjects during resting state ͓7͔.
+Turning the attention to the negatively correlated networks, in Fig. 5 the degree distribution is shown for three temperatures and three values of ͗k͘ Ϸ 49, 127, and 277. As seen before with other network features, there is also a qualitative change at Tc in the tail of the degree distribution, which follows a power law. The bottom panel of Fig. 5 shows the degree distribution for the brain negative correlation network that presents similar features as those seen in
+
+061922-5
+
+FRAIMAN et al.
+
+PHYSICAL REVIEW E 79, 061922 ͑2009͒
+
+Frequency Frequency
+Frequency Frequency
+
+103
+
+T=2
+
+102
+
+101
+
+101
+
+102
+
+103
+
+Degree (k)
+
+T = 2.3
+
+101
+
+102
+
+103
+
+Degree (k)
+
+T=3
+
+101
+
+102
+
+103
+
+Degree (k)
+
+103
+
+Brain
+
+102
+
+< k > ~ 713
+
+< k > ~ 127
+
+101
+
+< k > ~ 26
+
+101
+
+102
+
+103
+
+Degree (k)
+
+FIG. 4. ͑Color͒ Degree distribution for positively correlated networks. Top three panels depict the degree distribution for the Ising networks at T = 2, T = 2.3, and T = 3 for three representative values of ͗k͘ Ϸ 26, 127, and 713. Bottom panel: degree distribution for positively correlated brain network for the same three values of ͗k͘.
+
+the Ising at Tc. The average for ﬁve subjects is shown in Fig. 6.
+In some complex networks, a node’s degree and its neighbors’ degree can be related. The correlation between node degree and neighbor degrees, as well as the dependence of other measures on a node’s degree, is investigated in Fig. 7. The bottom panels of Fig. 7 illustrate the relation between the clustering, C͑k͒, and the degree for positively correlated networks. In can be seen that for the most part C͑k͒ is independent of k in both the brain and the Ising model networks at Tc.
+The top four panels of Fig. 7 compare the nearestneighbor degree, ͗k1͘, as a function of own degree k for the two types of networks extracted from the brain and from the Ising model at Tc. In both positively correlated networks one can see the so-called assortative property, by which highly connected nodes tend to be connected with highly connected neighbors. The presence of this feature, ﬁrst described in ͓10͔, can now be understood considering that it is linked with the dense domains of equally oriented spins ͑or voxels͒. Sites located deep into the bulk of the domain then will have a larger degree, and by the same reasoning sites located in the domain’s periphery will result in nodes with smaller degree. Then the assortative property is, in this context, trivially related to the geographical location of each node. This is not the case in the negatively correlated networks since nodes are located distant from each other ͑see Fig. 8͒, resulting in the degree independence shown in Fig. 7.
+The same reasoning can reconcile apparently conﬂicting results ͑reviewed in ͓35͔͒ in which brain network degree distributions were found not to be scale-free. In this work the FMRI time series inside relatively large predeﬁned cortical areas were ﬁrst averaged. Then the correlation values between these averages ͑a few dozen for the entire brain͒ were used to deﬁne the networks. From the discussion above it is clear that the averages remove the main source of the long tails we observe here. The local averaging precludes the pos-
+
+104 T=2
+103
+
+T = 2.3
+
+102
+
+101
+
+100
+
+101
+
+102
+
+103
+
+101
+
+102
+
+103
+
+Degree (k)
+
+Degree (k)
+
+104
+
+103
+
+Brain
+
+102
+
+101
+
+100
+
+101
+
+102
+
+103
+
+Degree (k)
+
+T=3
+
+101
+
+102
+
+103
+
+Degree (k)
+
+< k > ~ 277 < k > ~ 127 < k > ~ 49
+
+FIG. 5. ͑Color͒ Degree distribution for negatively correlated networks. Top three panels depict the degree distribution for the Ising networks at T = 2, T = 2.3, and T = 3, respectively, for three representative values of ͗k͘ Ϸ 49, 127, and 277. Bottom panel: degree distribution for negatively correlated brain network for the same three values of ͗k͘.
+
+sibility of observing these details. A gross comparison would be the effect of recalculating the degree distribution of the United States’ airline trafﬁc, which is known to be scale-free, by no longer considering airports as its nodes, but rather averaging trafﬁc between entire states. Of course, this averaging obscures the hubs and prevents the observation of such scales.
+In passing it should be mentioned that a discussion of the relevance of this spatial aspect over spurious clustering coefﬁcients was reported recently ͓36͔ for networks constructed from pressure levels, representative of the general circulation ͑wind ﬂow͒ of the atmosphere.
+C. Back to plain correlations
+Previous sections demonstrate striking similarities between the correlation properties of the brain and the Ising model at Tc. This was done comparing the correlation networks, a technique that as commented in Sec. I allows for a compact description. However, to be consistent those similarities should be evident by looking at plain correlations as discussed next.
+
+Normalized Frequency
+
+100
+
+10-1
+
+10-2
+
+10-3 100
+
+Pos. Correlated (Average) Neg. Correlated (Average)
+
+101
+
+102
+
+103
+
+Degree (k)
+
+FIG. 6. ͑Color online͒ Brain network’s average degree distribution computed from ﬁve volunteers for ͗k͘ Ϸ 127.
+
+061922-6
+
+ISING-LIKE DYNAMICS IN LARGE-SCALE FUNCTIONAL…
+
+PHYSICAL REVIEW E 79, 061922 ͑2009͒
+
+FIG. 7. ͑Color online͒ Top four panels: neighbor degrees correlation. Plot of the nearest-neighbor degree, ͗k1͘, as a function of own degree k for the two type of networks extracted from the brain ͑left͒ and from the Ising model at Tc ͑right͒. Bottom panels: clustering, C, as a function of the degree k for positively correlated networks extracted from the brain ͑left͒ and from the Ising model at Tc: in all plots dots represent individual nodes and empty circles joined by lines represent averages. Positively correlated networks correspond to ͗k͘ Ϸ 26 and negatively correlated networks correspond to ͗k͘ Ϸ 49.
+In previous work we reported already that on the average correlations in the brain decay very slowly with distance ͓10͔. We revisit this aspect here both for the brain and the Ising model. This is shown in Fig. 8. The ﬁrst observation is
+
+that signiﬁcant correlations extend to the length of the system. Near the origin, there is a notorious bias toward positive correlations, followed by a somewhat rough landscape of both positive and negative correlations. In the case of the brain, the peaks of this landscape reveal areas with common anatomical and ͑probably͒ functional properties.
+It is important to recognize that the valleys of negative correlation may or may not be related to negative interactions. Since there are no negative interactions in Eq. ͑1͒, it is clear that in the Ising model the emergence of signiﬁcant negative correlations is a collective effect arising only at the critical point. In the brain the situation is not that clear. Nevertheless there is a pervasive preference to link anticorrelated dynamics with negative interactions. For instance, it is commonly heard that “in the human brain, neural activation patterns are shaped by the underlying structural connections that form a dense network of ﬁber pathways linking all regions of the cerebral cortex” ͓11͔. This mind set, which equates dynamics with structure, is so entrenched in brain science that it always seems reasonable to search for the connections responsible for any given dynamical pattern. The results discussed here suggest that as a change in the temperature can lead to the emergence of correlations in a substrate that lacks such ability, the brain cortex can be operating in the same way. In fact, the puzzle of how the brain can be highly coherent over long lengths has prompted some authors to postulate even nonclassical explanations, while the results here seems to suggest that if the brain is at criticality such coherence can be achieved naturally.
+The second observation is that the fraction of sites that have positive correlations is about the same as the fraction of sites with negative correlations. Again, this feature can be easily understood for the Ising model at criticality, but it is hard to reconcile for the brain unless a critical scenario is invoked. This ﬁnding might have deep implications. For instance, we have recently reported ͓15͔ that although such a balance is maintained in healthy individuals, it is disrupted in some pathologies. Speciﬁcally, the disruption found is a reduction in the number of anticorrelated sites, compared with normal conditions, somewhat analogous to subcritical temperatures in the Ising model, a situation dominated by equally oriented domains.
+
+FIG. 8. ͑Color online͒ Typical brain ͑top͒ and Ising ͑bottom͒ correlation proﬁles. Correlations ͓i.e., Eq. ͑2͔͒ are computed between the site with the largest degree and the rest of the time series and plotted at its respective normalized distance.
+
+D. Brain functional connectivity vs collectivity
+Probably it is worth placing the present results in the context of current brain imaging approaches. The literature specialized on the analysis of brain neuroimaging time series includes a very productive chapter of functional connectivity, dedicated to formalize ﬁndings on a cohesive picture. Three basic concepts in this area are brain functional connectivity, effective connectivity, and structural connectivity ͓37–39͔. The ﬁrst one “is deﬁned as the correlations between spatially remote neurophysiological events” ͓37͔. Per se, the deﬁnition is a statistical one and “is simply a statement about the observed correlations; it does not comment on how these correlations are mediated” ͓37͔. The second concept, effective connectivity, is closer to the notion of a neuronal connection and “is deﬁned as the inﬂuence one neuronal system
+
+061922-7
+
+FRAIMAN et al.
+
+PHYSICAL REVIEW E 79, 061922 ͑2009͒
+
+exerts over another.” Finally, the concept of structural or anatomical connectivity refers to the identiﬁable physical or structural ͑synaptic͒ connections linking neuronal elements.
+These three concepts, intentionally or not, emphasize the connection between brain elements. And it is despite of cautionary comments emphasizing explicitly that “depending on sensory input, global brain state, or learning, the same structural network can support a wide range of dynamic and cognitive states” ͓39͔. In this regard, the present results are speciﬁc examples of the emergence of nontrivial collective states over an otherwise trivial regular lattice ͑i.e., the Ising’s structural connectivity͒. It is clear that if the Ising’s collective states have a counterpart in the brain they cannot be adequately described in the framework of connectivity, rather it would be more appropriate to deﬁne another framework in terms of brain functional collectivity, already discussed in related terms elsewhere ͓40–42͔. A pedestrian starting point would be to review instances in which the data from the brain structural connectivity and the functional correlations disagree, as indications of collective phenomena.
+IV. SUMMARY AND DISCUSSION
+In this work statistical properties of brain correlation networks have been compared with those of networks derived from the two-dimensional Ising model. The main ﬁnding here is that at the proper temperature Ising networks and brain networks are undistinguishable from each other. Their main topological properties and even more reﬁned features of network structure including degree distribution, neighbor degree, and clustering correlations with own degree all behave in the same manner.
+The biologically most relevant lesson is related to the well-known central result in critical phenomena. Namely, that the dynamics of a system near a critical point include spatiotemporal patterns correlated and anticorrelated over long distances, despite having only nearest-neighbor positive interactions. The similarities exposed by the comparison made in this paper suggest that collective dynamics with similar mechanics are present in the brain.
+Nevertheless, the main point is not that a simple model completely orphan of neural details is able to replicate the experimental observations. The main point is that the model gets the correct phenomenology without explicitly plugging components for such phenomenology into its equations. Whatever ends up replicating the observations, it is a collective effect that only happens at a certain temperature. Naturally, this runs against common sense in brain science because, as discussed in previous sections, the prevailing mind set implies that if two brain regions act in some coherent way, there must be a direct connection between them. Thus, this commonly held view seems to see the brain as a low temperature Ising system and as such often explains long distance correlations with an underlying physical connection or deactivation by inhibitory connections. This is in analogy with the correlations among spins at low T, which are ruled only by the underlying Ising connectivity; meanwhile at the critical temperature, the system displays long distance correlations and anticorrelations ͑i.e., “functional connections”͒
+
+even when the connectivity is only ferromagnetic and to nearest neighbors.
+The above discussion suggests that it might be worth studying the consequences of relatively broad and completely unspeciﬁc factors over brain dynamics. The suggestion is that some types of global changes ͑e.g., mood, arousal, attention, etc.͒ might be brought about in the same way that ﬂuctuations in the coherent domains arise at the critical temperature in critical systems. Despite the relative abundance of approaches, including sophisticated ones, as far as we know, no neural model relies solely on this kind of dynamical transition as a mechanism to produce different behaviors. While there are several neural models that exhibit criticality, yet there is no model whose “output” can be related with something even remotely connected with animal mood, actions, or behavior. Thus, despite its attractiveness, it needs to be recognized that criticality has not yet been shown to increase the animal behavioral repertoire by virtue of its abundance of metastable states.
+In summary we have compared networks derived from the FMRI signal of human brains with similar networks extracted from the Ising model. We found that near the critical temperature the two networks are indistinguishable from each other for most relevant statistical properties. These results are interpreted here as lending support to the conjecture that the dynamics of the functioning brain is near a critical point.
+Note added in proof: We recently became aware of work suggesting that criticality in the brain could be deduced from the scale-invariance exhibited by the statistics of some pairwise phase synchronization measures ͓43͔. While in principle, these results agree with the ones contained in this manuscript, the frequency independence ͑i.e., the “broadband” character͒ is quite intriguing.
+
+ACKNOWLEDGMENT
+This work was supported by NIH NINDS Grant No. NS58661 and human’s data collection was supported by Grant No. NS35115.
+
+APPENDIX
+
+1. Ising model
+
+In the Ising model we consider a lattice containing N sites
+and assume that each lattice site i has associated with a num-
+ber si, where si = +1 for an up spin and si = −1 for a down spin. A particular conﬁguration of the lattice is speciﬁed by
+the set of variables s1 , s2 , . . . , sN for all lattice sites. The energy in the absence of external magnetic ﬁeld is given by
+
+N
+
+͚ E = − J
+
+sis j ,
+
+i,j=nn͑i͒
+
+͑A1͒
+
+where N = L ϫ L is the size of the lattice, J is the coupling constant, and the sum over j runs over the nearest neighbors of a given site i ͓nn͑i͔͒. Here we implemented the Metropolis Monte Carlo algorithm ͓24,25͔ to solve the Ising model, which takes into account that the system is in contact with a
+
+061922-8
+
+ISING-LIKE DYNAMICS IN LARGE-SCALE FUNCTIONAL…
+
+PHYSICAL REVIEW E 79, 061922 ͑2009͒
+
+heat bath at temperature T. The algorithm can be summa-
+rized as follow: ͑1͒ Establish an initial conﬁguration ͑i.e., all spins ran-
+dom͒. ͑2͒ Choose a spin at random and ﬂip it. ͑3͒ Compute the change in energy ⌬E = Etrial − Eold due to
+the ﬂip. ͑4͒ If ⌬E Յ 0 accept the change and keep the new con-
+ﬁguration of the lattice. ͑5͒ If ⌬E Ͼ 0 compute the transition probability w
+= e−⌬E/kT. ͑6͒ Generate a random number r in the unit interval. ͑7͒ If r Յ w accept the change and keep the new conﬁgu-
+ration of the lattice. Otherwise, keep the previous conﬁgura-
+tion. ͑8͒ Go to 1.
+With this method we generate asymptotically conﬁgura-
+tions with the desired Boltzmann probability. In the present simulations, a lattice of L = 200 ͑N = 200ϫ 200 nodes͒ was
+used and every time step corresponds to a single ﬂip spins. We take k = 1 ͑Boltzmann constant͒ and J = 1. We termalized the system ͑letting the system go to conﬁgurations according to the temperature T͒ over Nequil = 108 time steps. After that, we chose Ntime = 2000 conﬁgurations every Nsample = L ϫ L = 104 steps ͑which corresponds, on average, to run over the
+entire lattice given the possibility to each spin either ﬂip or not͒. The observables used to analyze the system are the temporal series of each one of the spins of the lattice ͑si = Ϯ1͒.
+
+2. Networks deﬁnitions
+As was speciﬁed in Sec. II C, i.e., networks are constructed as previously ͓10͔ by computing linear correlations between temporal series of all pairs of voxels ͑sites͒ and connecting them with a link if correlations were greater of a given threshold ␳+ ͑positive correlation networks͒ or lower than a given negative threshold ͑␳−͒. Following this procedure, a list of connected pairs is obtained in both cases,
+which deﬁne the functional complex networks that will be analyzed further. An undirected graph ͓34͔ ͑as is the case we use in this work͒, G͑N , L͒ consist of two sets N and L such that N and L is a set of unordered pairs of elements of N. The elements of N = n1 , n2 , . . . , nN are the nodes ͑vertices or points͒ of the graph G, while the elements of L = ͑l1 , l2 , . . . , lK͒ are its links ͑edges or lines͒. It is often useful to consider a matricial representation of a graph. A graph G = ͑N , L͒ can be completely described by giving the adjacency ͑or connectivity͒ matrix A, a N ϫ N square matrix whose entry aij = ͑i , j = 1 , . . . , N͒ is equal to 1 when the link lij exists and zero otherwise.
+What follows are the usual deﬁnitions for the network
+properties: ͑i͒ Degree. The degree ki of a node i is the numbers of
+direct connections or links that emerge of a given node, and
+it is can be deﬁned in terms of the adjacency matrix as
+
+͚ ki = aij. j
+
+͑A2͒
+
+A basic representation of a graph G can be obtained in terms of the degree distribution P͑k͒, which is deﬁned as the prob-
+
+ability of a node chosen uniformly at random to have degree k or as the fraction of nodes of the network having degree k. The n moment of the distribution is deﬁned as
+
+͚ ͗kn͘ = knP͑k͒. k
+
+͑A3͒
+
+The ﬁrst moment of the distribution is the mean degree of the network. The second moment measures the ﬂuctuations in the network connectivity.
+͑ii͒ Average path length and diameter. The ability of a network to propagate information will depend on separation among nodes. If the shortest path between nodes i and j is represented by the quantity dij, a measure of the typical separation between two nodes in the graph is given by the average shortest path length, also known as characteristic path length, deﬁned as the mean of geodesic lengths over all couples of nodes ͓32͔,
+
+͚ 1
+
+L= N͑N − 1͒ i,j,i
+
+di j .
+j
+
+͑A4͒
+
+The maximum value of dij is called the diameter of the network. In this work, we use the breadth-ﬁrth method ͓44͔ to
+numerically estimate dij. ͑iii͒ Clustering coefﬁcient. The clustering coefﬁcient is a
+measure of how well connected are the neighbors of a given
+node and is an indication of local connectivity of the network. It can be deﬁned as in ͓32͔, denoting the clustering
+coefﬁcient of node i, ci as the number of connections between all neighbors of node i, ei divided as the total number of possible links, ki͑ki − 1͒ / 2,
+
+͚ aijajmami
+
+ci =
+
+2ei ki͑ki − 1͒
+
+=
+
+j,m
+ki͑ki − 1͒
+
+.
+
+͑A5͒
+
+Then, the clustering coefﬁcient C is the average of ci,
+
+͚ 1
+C = ͗ci͘ = N i ci.
+
+͑A6͒
+
+͑iv͒ Nearest-neighbor degree. The degree distribution completely determines the statistical properties of uncorre-
+lated networks. However, a large number of real networks
+are correlated in the sense that the probability that a node of
+degree k is connected to another node of degree, say k1 depends on k. In these cases, it is necessary to introduce the conditional probability P͑k / k1͒, being deﬁned as the probability that a link from node of degree k points to a node of
+degree k1. Although the degree correlations are formally characterized by P͑k / k1͒, the direct evaluation of the conditional probability gives extremely noisy results for most of real networks because of their ﬁnite size N ͓34͔. This problem can be overcome by deﬁning the average nearest-
+neighbor degree of a node i as
+
+N
+
+͚ ͚ 1
+
+1
+
+knn,i = ki j kj = ki j=1 aijkj,
+
+͑A7͒
+
+061922-9
+
+FRAIMAN et al.
+
+PHYSICAL REVIEW E 79, 061922 ͑2009͒
+
+where the sum runs on the set of ﬁrst neighbors of i. Correlated networks are classiﬁed as assortative if knn͑k͒
+is an increasing function of k, whereas they are referred to as disassortative when knn͑k͒ is a decreasing function of k ͓45͔. In other words, in assortative networks the nodes with simi-
+lar degree tend to connect each other, while in disassortative
+
+networks nodes with low degree are more likely connected with highly connected ones.
+͑v͒ Randomization. The randomization consisted in performing a random sort of all links, keeping ﬁx the number of nodes, N, the number of links, l, and the degree of each node, k.
+
+͓1͔ G. Werner, J. Physiol. ͑Paris͒ 101, 273 ͑2007͒. ͓2͔ M. D. Fox and M. E. Raichle, Nat. Rev. Neurosci. 8, 700
+͑2007͒. ͓3͔ M. E. Raichle, A. M. MacLeod, A. Z. Snyder, W. J. Powers, D.
+A. Gusnard, and G. L. Shulman, Proc. Natl. Acad. Sci. U.S.A. 98, 676 ͑2001͒. ͓4͔ M. E. Raichle, Science 314, 1249 ͑2006͒. ͓5͔ M. D. Greicius, B. Krasnow, A. L. Reiss, and V. Menon, Proc. Natl. Acad. Sci. U.S.A. 100, 253 ͑2003͒. ͓6͔ C. J. Stam, Neurosci. Lett. 355, 25 ͑2004͒. ͓7͔ M. P. van den Heuvel, C. J. Stam, M. Boersma, and H. E. Hulsshoff Pol, Neuroimage 43, 528 ͑2008͒. ͓8͔ R. Salvador, J. Suckling, M. R. Coleman, J. D. Pickard, D. Menon, and E. T. Bullmore, Cereb. Cortex 15, 1332 ͑2005͒. ͓9͔ S. Achard and E. T. Bullmore, PLOS Comput. Biol. 3, e17 ͑2007͒. ͓10͔ V. M. Eguiluz, D. R. Chialvo, G. A. Cecchi, M. Baliki, and A. V. Apkarian, Phys. Rev. Lett. 94, 018102 ͑2005͒. ͓11͔ P. Hagmann, L. Cammoun, X. Gigandet, R. Meuli, C. J.
+Honey, V. J. Wedeen, and O. Sporns, PLoS Biol. 6, e159 ͑2008͒ ͓12͔ C.-H. Park, S. Y. Kima, Y.-H. Kimb, and K. Kimc, Physica A 387, 5958 ͑2008͒. ͓13͔ S. Achard, R. Salvador, B. Whitcher, J. Suckling, and E. T. Bullmore, J. Neurosci. 26, 63 ͑2006͒. ͓14͔ M. D. Fox, A. Z. Snyder, J. L. Vincent, M. Corbetta, D. C. van
+Essen, and M. E. Raichle, Proc. Natl. Acad. Sci. U.S.A. 102, 9673 ͑2005͒. ͓15͔ M. N. Baliki, P. Y. Geha, A. V. Apkarian, and D. R. Chialvo, J. Neurosci. 28, 1398 ͑2008͒. ͓16͔ D. R. Chialvo, Physica A 340, 756 ͑2004͒. ͓17͔ D. R. Chialvo, Cooperative Behavior in Neutral Systems: Ninth Granda Lectures, AIP Conf. Proc. No. 887 ͑AIP, New York, 2007͒, p. 1. ͓18͔ D. R. Chialvo, P. Balenzuela, and D. Fraiman, Collective Dy-
+namics: Topics on Competition and Cooperation in the Biosciences, AIP Conf. Proc. 1028 ͑AIP, New York, 2008͒, p. 28. ͓19͔ J. L. Vincent, G. H. Patel, M. D. Fox, A. Z. Snyder, D. C. Van Essen, M. Corbetta, and M. E. Raichle, Nature ͑London͒ 447, 83 ͑2007͒. ͓20͔ C. J. Stam and J. C. Reijneveld, Nonlinear Biomed. Phys. 1, 3 ͑2007͒. ͓21͔ J. C. Reijneveld, S. C. Ponten, H. W. Berendse, and C. J. Stam, Clin. Neurophysiol. 118, 2317 ͑2007͒. ͓22͔ E. Ising, Z. Phys. 31, 253 ͑1925͒. ͓23͔ P. Jezzard, P. Mathews, and S. M. Smith, Functional MRI: An Introduction to Methods ͑Oxford University Press, New York, 2001͒. ͓24͔ N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H.
+
+Teller, and E. Teller, J. Chem. Phys. 21, 1087 ͑1953͒. ͓25͔ H. Gould and J. Tobochnik, An Introduction to Computer
+Simulations Methods ͑Addison-Wesley, Reading, MA, 1996͒. ͓26͔ A. Aleksiejuk, J. A. Hołyst, and D. Stauffer, Physica A 310,
+260 ͑2002͒. ͓27͔ S. N. Dorogovtsev, A. V. Goltsev, and J. F. F. Mendes, Rev.
+Mod. Phys. 80, 1275 ͑2008͒. ͓28͔ D. S. Bassett, A. Meyer-Lindenberg, S. Achard, T. Duke, and
+E. T. Bullmore, Proc. Natl. Acad. Sci. U.S.A. 103, 19518 ͑2006͒. ͓29͔ This is a fundamental brain puzzle, a stability problem that still remains unsolved. Solutions that will work in relatively small, linear, and delayless systems eventually breakdown when realistic delays are added, sizes are scale up, and nonlinear aspects are considered. A quantitative discussion of these issues can be found in page 104 in ͓30͔. ͓30͔ M. Abeles, Corticonics: Neural Circuits of the Cerebral Cortex ͑Cambridge University Press, Cambridge, 1991͒. ͓31͔ S. Maslov, K. Sneppen, and U. Alom, in Handbook of Graphs
+and Networks, edited by S. Bornholdt and H. G. Schuster ͑Wiley-VCH, Weinheim, 2003͒. ͓32͔ D. J. Watts and S. H. Strogatz, Nature ͑London͒ 393, 440 ͑1998͒. ͓33͔ V. Latora and M. Marchiori, Phys. Rev. Lett. 87, 198701 ͑2001͒. ͓34͔ S. Boccaletti, V. Latora, Y. Moreno, M. Chavez, and D.-U. Hwang, Phys. Rep. 424, 175 ͑2006͒. ͓35͔ D. S. Bassett and E. T. Bullmore, Neuroscientist 12, 512 ͑2006͒. ͓36͔ A. A. Tsonis, K. L. Swanson, and G. Wang, Physica A 387, 5287 ͑2008͒. ͓37͔ K. J. Friston, Hum. Brain Mapp 2, 56 ͑1994͒. ͓38͔ B. Horwitz, Neuroimage 19, 466 ͑2003͒. ͓39͔ O. Sporns, G. Tononi, and R. Kotter, PLOS Comput. Biol. 1, e42 ͑2005͒. ͓40͔ H. Haken, Synergetics: An Introduction, Springer Series in Synergetics ͑Springer, Berlin, 1983͒; J. A. S. Kelso, Patterns: The Self-Organization of Brain and Behavior ͑MIT, Cambridge, MA, 1995͒. ͓41͔ J. A. S. Kelso and E. Tognoli, in Neurodynamics of Cognition
+and Consciousness, edited by R. Kozma and L. Perlovsky ͑Springer-Verlag, Berlin, 2007͒. ͓42͔ C. J. Honey, R. Kotter, M. Breakspear, and O. Sporns, Proc. Natl. Acad. Sci. U.S.A. 104, 10240 ͑2007͒. ͓43͔ M. G. Kitzbichler, M. L. Smith, S. R. Christensen, E. Bullmore, PLOS Comput. Biol. 5 ͑͒, e1000314 ͑2009͒. ͓44͔ M. E. J. Newman, Phys. Rev. E 64, 016132 ͑2001͒. ͓45͔ M. E. J. Newman, Phys. Rev. Lett. 89, 208701 ͑2002͒. ͓46͔ http://www.fmrib.ox.ac.uk/fsl.
+
+061922-10
+

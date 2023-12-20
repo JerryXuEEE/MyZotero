@@ -1,0 +1,564 @@
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 21, 2023 from IP address 202.155.223.2.
+
+Understanding the computation of time using neural network models
+
+Zedong Bia,b,c,d,e and Changsong Zhoub,c,d,e,f,g,1
+
+aInstitute for Future, Qingdao University, Shandong 266071, China; bDepartment of Physics, Hong Kong Baptist University, Kowloon Tong, Hong Kong, China; cCentre for Nonlinear Studies, Hong Kong Baptist University, Kowloon Tong, Hong Kong, China; dInstitute of Computational and Theoretical Studies, Hong Kong Baptist University, Kowloon Tong, Hong Kong, China; eResearch Centre, Hong Kong Baptist University Institute of Research and Continuing Education, Shenzhen 51800, China; fBeijing Computational Science Research Center, Beijing 100193, China; and gDepartment of Physics,
+Zhejiang University, Hangzhou 310027, China
+
+Edited by Ranulfo Romo, National Autonomous University of Mexico, Mexico City, Mexico, and approved March 20, 2020 (received for review December 10, 2019)
+
+To maximize future rewards in this ever-changing world, animals must be able to discover the temporal structure of stimuli and then anticipate or act correctly at the right time. How do animals perceive, maintain, and use time intervals ranging from hundreds of milliseconds to multiseconds in working memory? How is temporal information processed concurrently with spatial information and decision making? Why are there strong neuronal temporal signals in tasks in which temporal information is not required? A systematic understanding of the underlying neural mechanisms is still lacking. Here, we addressed these problems using supervised training of recurrent neural network models. We revealed that neural networks perceive elapsed time through state evolution along stereotypical trajectory, maintain time intervals in working memory in the monotonic increase or decrease of the ﬁring rates of interval-tuned neurons, and compare or produce time intervals by scaling state evolution speed. Temporal and nontemporal information is coded in subspaces orthogonal with each other, and the state trajectories with time at different nontemporal information are quasiparallel and isomorphic. Such coding geometry facilitates the decoding generalizability of temporal and nontemporal information across each other. The network structure exhibits multiple feedforward sequences that mutually excite or inhibit depending on whether their preferences of nontemporal information are similar or not. We identiﬁed four factors that facilitate strong temporal signals in nontiming tasks, including the anticipation of coming events. Our work discloses fundamental computational principles of temporal processing, and it is supported by and gives predictions to a number of experimental phenomena.
+interval timing | population coding | neural network model
+M uch information that the brain processes and stores is temporal in nature. Therefore, understanding the processing of time in the brain is of fundamental importance in neuroscience (1–4). To predict and maximize future rewards in this ever-changing world, animals must be able to discover the temporal structure of stimuli and then ﬂexibly anticipate or act correctly at the right time. To this end, animals must be able to perceive, maintain, and then use time intervals in working memory, appropriately combining the processing of time with spatial information and decision making (DM). Based on behavioral data and the diversity of neuronal response proﬁles, it has been proposed (5, 6) that time intervals in the range of hundreds of milliseconds to multiseconds can be decoded through neuronal population states evolving along transient trajectories. The neural mechanisms may be accumulating ﬁring (7, 8), synﬁre chains (9, 10), the beating of a range of oscillation frequencies (11), etc. However, these mechanisms are challenged by recent ﬁnding that animals can ﬂexibly adjust the evolution speed of population activity along an invariant trajectory to produce different intervals (12). Through behavioral experiments, it was found that humans can store time intervals as distinct items in working memory in a resource allocation strategy (13), but
+
+an electrophysiological study on the neuronal coding of time intervals maintained in working memory is still lacking. Moreover, increasing evidence indicates that timing does not rely on dedicated circuits in the brain but instead, is an intrinsic computation that emerges from the inherent dynamics of neural circuits (3, 14). Spatial working memory and DM are believed to rely mostly on a prefrontoparietal circuit (15, 16). The dynamics and the network structure that enable this circuit to combine spatial working memory and DM with ﬂexible timing remain unclear. Overall, our understanding of the processing of time intervals in the brain is fragmentary and incomplete. It is, therefore, essential to develop a systematic understanding of the fundamental principle of temporal processing and its combination with spatial information processing and DM.
+The formation of temporal signals in the brain is another unexplored question. Strong temporal signals were found in the brain even when monkeys performed working memory tasks where temporal information was not needed (17–21). In a vibrotactile working memory task (17), monkeys were trained to report which of the two vibrotactile stimuli separated by a ﬁxed delay period had higher frequency (Fig. 1D). Surprisingly, although the duration of the delay period was
+Signiﬁcance
+Perceiving, maintaining, and using time intervals in working memory are crucial for animals to anticipate or act correctly at the right time in the ever-changing world. Here, we systematically study the underlying neural mechanisms by training recurrent neural networks to perform temporal tasks or complex tasks in combination with spatial information processing and decision making. We found that neural networks perceive time through state evolution along stereotypical trajectories and produce time intervals by scaling evolution speed. Temporal and nontemporal information is jointly coded in a way that facilitates decoding generalizability. We also provided potential sources for the temporal signals observed in nontiming tasks. Our study revealed the computational principles of a number of experimental phenomena and provided several predictions.
+Author contributions: Z.B. and C.Z. designed research; Z.B. performed research; Z.B. analyzed data; and Z.B. and C.Z. wrote the paper.y
+The authors declare no competing interest.y
+This article is a PNAS Direct Submission.y
+This open access article is distributed under Creative Commons Attribution-NonCommercialNoDerivatives License 4.0 (CC BY-NC-ND).y
+Data deposition: The computer code is available from GitHub (https://github.com/ zedongbi/IntervalTiming).y
+1 To whom correspondence may be addressed. Email: cszhou@hkbu.edu.hk.y
+This article contains supporting information online at https://www.pnas.org/lookup/suppl/ doi:10.1073/pnas.1921609117/-/DCSupplemental.y
+First published April 27, 2020.
+
+10530–10540 | PNAS | May 12, 2020 | vol. 117 | no. 19
+
+www.pnas.org/cgi/doi/10.1073/pnas.1921609117
+
+A
+
+all-to-all
+
+recurrent
+
+network
+
+NEUROSCIENCE
+
+BIOPHYSICS AND COMPUTATIONAL BIOLOGY
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 21, 2023 from IP address 202.155.223.2.
+
+B
+Interval production(IP):
+Interval comparison(IC):
+
+Perception epoch
+T
+Pulse 1
+
+Delay epoch
+Variable duration
+Pulse 2
+
+Production epoch
+T
+Go Movement
+
+T Stimulus1
+
+Variable delay epoch
+
+T Stimulus2
+
+Go epoch
+Which duration longer?
+
+C
+Timed spatial x reproduction(t-SR):
+Timed decision making(t-DM):
+D
+Frequency comparison:
+
+T
+
+Variable
+
+duration
+
+Signal 1
+
+Signal 2
+
+f1
+
+f2
+
+Fixed delay
+
+T x
+Which stimulus stronger?
+f1>f2/f1<f2?
+
+Time
+Fig. 1. Model setup. (A) All-to-all connected recurrent networks with soft plus units are trained. (B) Basic timing tasks. IP: The duration T of the perception epoch determines the movement time after the go cue. IC: The duration T of the stimulus 1 epoch is compared with the duration T of the stimulus 2 epoch. Stimuli with different colors (red, yellow, or blue) indicate that they are input to the network through different synaptic weights. (C) Combined timing tasks. T determines the movement time after the go cue. Spatial location (t-SR) or decision choice (t-DM) determines the movement behavior. (D) A nontiming task in the experimental study (18). Although the duration of the delay period is not needed to perform the task, there exists strong temporal signals in the delay period.
+
+not needed to perform this task, temporal information was still coded in the neuronal population state during the delay period, with the time-dependent variance explaining more than 75% of the total variance (18, 19). A similar scenario was also found in other nontiming working memory tasks (19–21). It is unclear why such strong temporal signals arose in nontiming tasks.
+Previous works showed that, after being trained to perform tasks such as categorization, working memory, DM, and motion generation, artiﬁcial neural networks (ANNs) exhibited coding or dynamic properties surprisingly similar to experimental observations (22–25). Compared with animal experiments, ANN can cheaply and easily implement a series of tasks, greatly facilitating the test of various hypotheses and the capture of common underlying computational principles (26, 27). In this paper, we trained recurrent neural networks (RNNs)
+
+(Fig. 1A) to study the processing of temporal information. First, by training networks on basic timing tasks, which require only temporal information to perform (Fig. 1B), we studied how time intervals are perceived, maintained, and used in working memory. Second, by training networks on combined timing tasks, which require both temporal and nontemporal information to perform (Fig. 1C), we studied how the processing of time is combined with spatial information processing and DM, the inﬂuence of this combination on decoding generalizability, and the network structure that this combination is based on. Third, by training networks on nontiming tasks (Fig. 1D), we studied why such a large time-dependent variance arises in nontiming tasks, thereby understanding the factors that facilitate the formation of temporal signals in the brain. Our work presents a thorough understanding of the neural computation of time.
+
+Bi and Zhou
+
+PNAS | May 12, 2020 | vol. 117 | no. 19 | 10531
+
+Results
+We trained an RNN of 256 soft plus units supervisedly using back propagation through time (28). Self-connections of the RNN were initialized to one, and off-diagonal connections were initialized as independent Gaussian variables with mean of zero (27), with different training conﬁgurations initialized using different random seeds. The strong self-connections supported selfsustained activity after training (SI Appendix, Fig. S1B), and the nonzero initialization of the off-diagonal connections induced sequential activity comparable with experimental observations (27). We stopped training as soon as the performance of the network reached criterion (23, 25) (performance examples are in SI Appendix, Fig. S1).
+
+Basic Timing Tasks: Interval Production and Interval Comparison
+Tasks. Interval production task. In the interval production (IP) task (the ﬁrst task of Fig. 1B), the network was to perceive the interval T between the ﬁrst two pulses, maintain the interval during the delay epoch with variable duration, and then produce an action at time T after the go cue. Neuronal activities after training exhibited strong ﬂuctuations (Fig. 2A). In the following, we report on the dynamics of the network in the perception, delay, and production epochs of IP (Fig. 1 has an illustration of these epochs).
+The ﬁrst epoch is the perception epoch. In response to the ﬁrst stimulus pulse, the network started to evolve from almost the
+
+A
+
+B
+
+C
+
+D
+
+E
+
+600ms
+
+1200ms
+
+1200ms
+
+activity (a.u.)
+
+600ms
+
+500ms
+
+(l)
+
+F
+
+G
+
+H
+
+I
+
+J
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 21, 2023 from IP address 202.155.223.2.
+
+K
+
+L
+
+M
+
+N
+
+O
+
+activity (a.u.)
+
+600ms
+
+500ms
+
+1200ms
+
+Fig. 2. IP task. (A) The activities of example neurons (indicated by lines of different colors) when the time interval T between the ﬁrst two pulses is 900 ms. Vertical blue shadings indicate the pulse input to the network. (B) Population activity in the perception epoch in the subspace of the ﬁrst three PCs. Colors indicate the time interval T. Stars and circles indicate the starting and ending points of the perception epoch, respectively. The trajectories for T = 600 and 1,200 ms are labeled. (C) Firing proﬁles of two example neurons in the perception epoch. Line colors have the same meaning as in B. (D) Coefﬁcient of determination (R2) of how much the neuronal ﬁring proﬁle with the largest T can explain the variance of the ﬁring proﬁles with smaller T in the perception epoch. Error bar indicates SD over different neurons and T values. (E) Population activity in the subspace of the ﬁrst three PCs in the delay epoch. Colors indicate trajectory speed. The increasing blackness of stars and circles indicates trajectories with T = 600, 700· · · 1,200 ms. The dashed curve connecting the end points of the delay epoch marks manifold M. (F) Trajectory speed as a function of time in the delay epoch when T = 600 ms (blue) and 1,200 ms (red). Shaded belts indicate SEM over training conﬁgurations. (G) Ratio of explained variance of the ﬁrst ﬁve PCs of manifold M. Error bars that indicate SEM are smaller than plot markers. (H) The position of the state at the end of the delay epoch projected in the ﬁrst PC of manifold M as a function of T. The position when T = 600 ms (or 1,200 ms) is normalized to be 0 (or 1). Gray curves: 16 training conﬁgurations. Blue curve: mean value. (I) The distance between two adjacent curves in the delay epoch as a function of time, with the distance at the beginning of the delay epoch normalized to be one. Shaded belts indicate SD. (J) Firing rates of example neurons of MoD, MoI, and non-M types as functions of T in manifold M. (K) The portions of the three types of neurons. (L) Population activity in the production epoch in the subspace of the ﬁrst three PCs. Colors indicate the time intervals to be produced as shown in the color bar of B. Stars and circles indicate the starting and ending points of the production epoch, respectively. (M, Upper) Firing proﬁles of two example neurons in the production epoch. (M, Lower) Firing proﬁles of the two neurons after being temporally scaled according to produced intervals. (N) A point at horizontal coordinate x means the SI (blue) or the ratio of explained variance (orange) of the subspace spanned by the ﬁrst x SCs. Dashed lines indicate that a subspace with SI 0.98 explains, on average, 43% of the total variance. (O) Trajectory speed in the subspace of the ﬁrst three SCs as the function of the time interval to be produced. In K, N, and O, error bars indicate SEM over training conﬁgurations. During training, we added recurrent and input noises (Materials and Methods). Here and in the following, when analyzing the network properties after training, we turned off noises by default. We kept noises for the perception epoch in B–D. Without noise, the trajectories in the perception epoch would fully overlap under different T values.
+
+10532 | www.pnas.org/cgi/doi/10.1073/pnas.1921609117
+
+Bi and Zhou
+
+NEUROSCIENCE
+
+BIOPHYSICS AND COMPUTATIONAL BIOLOGY
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 21, 2023 from IP address 202.155.223.2.
+
+same state along an almost identical trajectory in different simulation trials with different T values until another pulse came (Fig. 2B); the activities of individual neurons before the second pulse in different trials highly overlapped (Fig. 2 C and D). Therefore, the network state evolved along a stereotypical trajectory starting from the ﬁrst pulse, and the time interval T between the ﬁrst two pulses can be read out using the position in this trajectory when the second pulse came. Behaviorally, a human’s perception of the time interval between two acoustic pulses is impaired if a distractor pulse appears shortly before the ﬁrst pulse (29). A modeling work (29) explained that this is because successful perception requires the network state to start to evolve from near a state s0 in response to the ﬁrst pulse, whereas the distractor pulse kicks the network state far away from s0. This explanation is consistent with our results that interval perception requires a stereotypical trajectory.
+We then studied how the information of timing interval T between the ﬁrst two pulses was maintained during the delay epoch. We have the following ﬁndings. 1) The speeds of the trajectories decreased with time in the delay epoch (Fig. 2 E and F). 2) The states sEndDelay at the end of the delay epoch at different T values were aligned in a manifold M in which the ﬁrst principal component (PC) explained 90% of its variance (Fig. 2G). 3) For a speciﬁc simulation trial, the position of sEndDelay in manifold M linearly encoded the T value of the trial (Fig. 2H). 4) The distance between two adjacent trajectories kept almost unchanged with time during the delay neither decayed to zero nor exploded (Fig. 2I): this stable dynamics supported the information of T encoded by the position in the stereotypical trajectory at the end of the perception epoch in being maintained during the delay. Collectively, M approximated a line attractor (24, 30) with slow dynamics, and T was encoded as the position in M. To better understand the scheme of coding T in M, we classiﬁed neuronal activity f (T ) in manifold M as a function of T into three types (Fig. 2 J and K): monotonically decreasing (MoD), monotonically increasing (MoI), and nonmonotonic (non-M) (Materials and Methods). We found that most neurons were MoD or MoI, whereas only a small portion were non-M neurons (Fig. 2K). This implies that the network mainly used a complementary (i.e., concurrently increasing and decreasing) monotonic scheme to code time intervals in the delay epoch, similar to the scheme revealed in refs. 17 and 31. This dominance of monotonic neurons may be the reason why the ﬁrst PC of M explained so much variance (Fig. 2G); SI Appendix, section S2 and Fig. S2 G and H has a simple explanation.
+In the production epoch, the trajectories of the different T values tended to be isomorphic (Fig. 2L). The neuronal activity proﬁles were self-similar when stretched or compressed in accordance with the produced interval (Fig. 2M), suggesting temporal scaling with T (12). To quantify this temporal scaling, we deﬁned the scaling index (SI) of a subspace S as the portion of variance of the projections of trajectories into S that can be explained by temporal scaling (12). We found that the distribution of SI of individual neurons aggregated toward one (SI Appendix, Fig. S2B), and the ﬁrst two PCs that explained most variance have the highest SI (SI Appendix, Fig. S2C). We then used a dimensionality reduction technique that furnished a set of orthogonal directions (called scaling components [SCs]) in the network state space that were ordered according to their SI (Materials and Methods). We found that a subspace (spanned by the ﬁrst three SCs) that had high SI (=0.98) occupied about 40% of the total variance of trajectories (Fig. 2N), in contrast with the low SI of the perception epoch (SI Appendix, Fig. S2F). The average speed of the trajectory in the subspace of the ﬁrst three SCs was inversely proportional to T (Fig. 2O). Collectively, the network adjusted its dynamic speed to produce different time intervals in the production epoch, similar to observations of the medial frontal cortex of monkeys (12, 32). Additionally,
+
+we found a nonscaling subspace in which mean activity during the production epoch changed linearly with T (SI Appendix, Fig. S2 D and E), also similar to the experimental observations in refs. 12 and 32. Interval comparison task. In the interval comparison (IC) task (the second task of Fig. 1B), the network was successively presented two intervals; it was then required to judge which interval was longer. IC required the network to perceive the time interval T of the stimulus 1 epoch, to maintain the interval in the delay epoch, and to use it in the stimulus 2 epoch in which duration is T . Similar to IP, the network perceived time interval with a stereotypical trajectory in the stimulus 1 epoch (SI Appendix, Fig. S3 A–C) and maintained time interval using attractor dynamics with a complementary monotonic coding scheme in the delay epoch (SI Appendix, Fig. S3 D–H). The trajectory in the stimulus 2 epoch had a critical point scrit at time T after the start of stimulus 2. The network was to give different comparison (COMP) outputs at the go epoch depending on whether or not the trajectory had passed scrit at the end of stimulus 2. To make a correct COMP choice, only the period from the start of stimulus 2 to scrit (or to the end of stimulus 2 if T > T ) needs to be timed: as long as the trajectory had passed scrit, the network could readily make the decision that T < T , with no more timing required. After training, we studied the trajectories from the start of stimulus 2 to scrit in the cases that T < T and found temporal scaling (SI Appendix, Fig. S3 J–N) similar to the production epoch of IP consistently with animal experiments (33, 34). These similarities between IP and IC on how to perceive, maintain, and use time intervals imply universal computational schemes for neural networks to process temporal information.
+The average speed of the trajectory after scrit increased with T (SI Appendix, Fig. S3O), whereas the speed before scrit decreased with T : this implies that the dynamics after scrit was indeed different from that before.
+Combined Timing Tasks: Timed Spatial Reproduction and Timed DM Tasks. It is a ubiquitous phenomenon that neural networks encode more than one quantity simultaneously (35–37). In this subsection, we will discuss how neural networks encode temporal and spatial information (or decision choice) simultaneously, which enables the brain to take the right action at the right time. Timed spatial reproduction task. In the timed spatial reproduction (t-SR) task (the ﬁrst task in Fig. 1C), the network was to not only take action at the desired time but also, act at the spatial location indicated by the ﬁrst pulse. Similar to IP and IC, the network used stereotypical trajectories, attractors, and speed scaling to perceive, maintain, and produce time intervals (SI Appendix, Fig. S4). In the following, we will focus on the coding combination of temporal and spatial information.
+In the perception epoch, under the two cases when the ﬁrst pulse was at two locations x and y separately, the activities ri,perc(t , x ) and ri,perc(t , y) of the i th neuron exhibited similar proﬁles with time t (Fig. 3B), especially when x and y had close values. In our simulation, the location of the ﬁrst pulse was represented by a Gaussian bump with standard deviation (SD) of 2., which is much smaller than the smallest spatial distance 6 between two different colors in Fig. 3 A and B; thus, the similarity of the temporal proﬁles in Fig. 3B should not result from the overlap of the sensory inputs from the ﬁrst pulse but rather, should emerge during training.
+To quantitatively investigated the coding combination of temporal and spatial information, we studied the ﬁrst temporal ﬂow PC (F-PC1) of the neuronal population, namely the ﬁrst PC of { ri,perc(t, x ) x }i , and the ﬁrst spatial PC (S-PC1), namely the ﬁrst PC of { ri,perc(t , x ) t }i , with · a indicating averaging over parameter a. By temporal ﬂow, we mean the time elapsed from the beginning of a speciﬁc epoch. We found
+
+Bi and Zhou
+
+PNAS | May 12, 2020 | vol. 117 | no. 19 | 10533
+
+A
+
+B
+
+x
+
+18 12
+6 0
+
+SD=2
+
+500ms
+
+G
+
+H
+
+S-PC1
+
+I-PC1
+
+activity (a.u.) PC2
+
+C
+
+F-PC1
+
+D
+
+S-PC1
+
+E
+
+F-PC1
+
+S-PC1
+
+PC1
+I S-PC1 F-PC1
+
+S-PC1 I-PC1
+
+J
+I-PC1 F-PC1
+
+F
+
+Iso-temporal-flow line Iso-temporal-flow line
+
+Trans. Move
+
+S-PC1 Iso-space line
+
+F-PC1 Zero mixed variance
+Non-orthogonal
+
+F-PC1
+Non-zero mixed variance Or thogo nal
+
+Iso-temporal-flow line
+
+Trans. Move
+
+S-PC1 Iso-space line
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 21, 2023 from IP address 202.155.223.2.
+
+F-PC1 Zero mixed variance
+Or thogo nal
+Fig. 3. The t-SR task. (A) Color scheme that represents the spatial location of the ﬁrst pulse used in B and C. Location is represented by Gaussian bump with SD of 2. (B) Firing proﬁles of four example neurons in the perception epoch. (C) Trajectory of the perception epoch in the subspace of the ﬁrst two PCs. Stars indicate the points after 400 ms of the transient period from the beginning of the perception epoch, and circles indicate the ending points of the perception epoch. Dashed lines represent the projections of F-PC1 and S-PC1 in this subspace. (D) Probability distribution function (P.D.F.) of the angle between F-PC1 and S-PC1 in the perception epoch over 32 training conﬁgurations. *Signiﬁcant (P < 0.05) larger than 45◦ (t test). (E) Portion of variance explained by spatial information (S), temporal ﬂow (F), and their mixture (S + F) in the perception epoch, averaging over 32 training conﬁgurations. (F) Schematic for the meanings of angle and mixed variance. Zero mixed variance implies that different isospace (blue) or isotemporal ﬂow (green) lines are related by translational movement, forming parallelogram-like grids (F, Upper Left); orthogonality (F, Upper Right) implies rectangle-like grids (F, Lower). (G) The distribution of the angle between I-PC1 and S-PC1 in manifold M (Fig. 2E) at the end of the delay epoch. (H) The portion of variance explained by S, time interval (I), and their mixture (S + I) in manifold M at the end of the delay epoch. (I) The distributions of the angles between F-PC1, I-PC1, and S-PC1 in the production epoch. (J) The portion of variance explained by S, F, I, and their mixtures in the production epoch. In A–E, T = 1,200 ms for the perception epoch; in G–J, T = 600, 700· · · 1,200 ms for the delay and production epochs.
+
+that the angle between F-PC1 and S-PC1 distributed around 90◦, signiﬁcantly larger than 45◦ (Fig. 3D). This indicates that temporal ﬂow and spatial information were coded in almost orthogonal subspaces (Fig. 3C). We then studied the mixed variance (19). Speciﬁcally, the variance explained by temporal (or spatial) information is vt = Vari,t ( ri,perc(t , x ) x ) [or vx = Vari,x ( ri,perc(t , x ) t )], and the mixed variance is vt+x = vtot − vt − vx , where vtot = Vari,t,x (ri,perc(t , x )) is the total variance. We found that the mixed variance took a small portion of the total variance, smaller than the variance of either temporal or spatial information (Fig. 3E). To understand the implication of this result, we noted that a sufﬁcient condition for vt+x = 0 is that different isospace (or isotemporal ﬂow) lines are related to each other through translational movement (Fig. 3 F, Upper Left), where an isospace (or isotemporal ﬂow) line is a manifold in the state space with different temporal ﬂow (or space) values but a ﬁxed space (or temporal ﬂow) value. The opposite extreme case vt+x = vtot implies that different isospace (or isotemporal ﬂow) lines are strongly intertwined; SI Appendix, section S3 has details. Together, orthogonality and small mixed variance suggest that isospace and isotime lines interweave into rectangle-like grids (Fig. 3 F, Lower); SI Appendix, Fig. S6 has illustrations of the simulation results.
+In the delay epoch, the population states were attracted toward a manifold M of slow dynamics at the end of the delay epoch (Fig. 2 E–I and SI Appendix, Fig. S4 B–D), maintaining both the duration T of the perception epoch and the spatial information x . We studied the coding combination of T and x in M in a similar way to above. We found that the ﬁrst time interval PC (I-PC1), namely the ﬁrst PC to code T , was largely orthogonal with S-PC1 (Fig. 3G), and the mixed variance between T and x was small (Fig. 3H).
+
+In the production epoch, the network needed to maintain three pieces of information: temporal ﬂow t, time interval T , and spatial location x . We studied the angle between the ﬁrst PCs of any two of them (i.e., F-PC1, I-PC1, and S-PC1). We found that S-PC1 was orthogonal with F-PC1 and I-PC1 but that F-PC1 and I-PC1 was not orthogonal (Fig. 3I). For any two parameters, their mixed variance was smaller than the variance of their own (Fig. 3J); Materials and Methods has details.
+Collectively, in all of the three epochs, the coding subspaces of temporal and spatial information were largely orthogonal with small mixed variance, suggesting rectangle-like grids of isospace and isotime lines; SI Appendix, Fig. S6 has illustrations. Timed DM task. In the timed decision-making (t-DM) task (the second task in Fig. 1C), the network was to make a decision choice at the desired time to indicate which of the two presented stimuli was stronger. Similar to IP, IC, and t-SR, the network used stereotypical trajectories, attractors, and speed scaling to separately perceive, maintain, and produce time intervals (SI Appendix, Fig. S5 A–M). In all of the three epochs of t-DM, the ﬁrst PC to code decision choice was orthogonal with F-PC1 or I-PC1, and the mixed variance between any two parameters was small (SI Appendix, Fig. S5 N–S); however, FPC1 and I-PC1 in the production epoch were not orthogonal (SI Appendix, Fig. S5R). These results are all similar to those of the t-SR task.
+Decoding Generalizability. We then studied how the above geometry of coding space inﬂuences decoding generalizability: suppose that the population state space is parameterized by a and b; we want to know the error of decoding a from a state f0 in an isob line f(a; btest) after training the decoder using another iso-b line f(a; btrain) (Fig. 4A). We considered two types of nearest-centroid decoders (20). Decoder 1 projects both f0 and f(a; btrain) into the
+
+10534 | www.pnas.org/cgi/doi/10.1073/pnas.1921609117
+
+Bi and Zhou
+
+A
+
+f(a;btest) O f0
+
+Trans. move T(O) T(f0)
+
+PC1
+
+f(a;btrain) Otrainf2 f1
+
+C
+
+B
+
+O
+
+PC1
+
+Otrain
+
+Atrain Atest
+E
+
+O Btrain
+Btest PC1
+Otrain
+
+NEUROSCIENCE
+
+BIOPHYSICS AND COMPUTATIONAL BIOLOGY
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 21, 2023 from IP address 202.155.223.2.
+
+D
+
+F
+
+G
+
+G
+
+G
+
+Fig. 4. Decoding generalizability. (A) A schematic that explains Decoder 1 and Decoder 2. The decoders read the value of a through state f0 in iso-b line f(a; btest) (green) after being trained by another iso-b line f(a; btrain) (orange). Decoder 1 reads a to be the same as that of f1 because f0 and f1 project to the same point on PC1 (black horizontal line) of f(a; btrain). Decoder 2 ﬁrst translationally moves f(a; btest) so that its mass center T (O) after translational movement T projects to the same point as the mass center Otrain of f(a; btrain) on PC1 and then reads a according to T (f0), which is the a value of f2. (B) Two error sources of Decoder 1. (B, Upper) The mass centers O and Otrain do not project to the same point on PC1. (B, Lower) The projections of f(a; btrain) and f(a; btest ) on PC1 (lines AtrainBtrain and Atest Btest ) do not have the same length. (C) The error of Decoder 1 (indicated by dot color) to read temporal ﬂow across different spatial locations as a function of the angle (AG) and mixed variance (MV) between the temporal ﬂow and
+spatial subspaces in the production epoch of t-SR task. (D) Correlations between decoding error (DE) and AG and between DE and MV. (E and F) The
+same as C and D except for Decoder 2. (G) DE as a function of |xtrain − xtest| after Decoder 1 (solid line) or Decoder 2 (dashed line) is trained to read the temporal ﬂow using the isospace line at spatial location xtrain and then tested at spatial location xtest. The horizontal dashed line indicates chance level, supposing that the decoder works by random guess. Error bars represent mean ± SEM across simulation trials. C–F analyze the data averaging over
+|xtrain − xtest| in individual training conﬁgurations. T = 1,200 ms. Decoding generalizability in other epochs of the t-SR task and the t-DM task is shown in SI Appendix, Figs. S7 and S8.
+
+ﬁrst PC of f(a; btrain) and reads the value of a to be the value that minimized the distance between Pdec[f(a; btrain)] and Pdec[f0], where Pdec[·] indicates the projection operation. Decoder 2 ﬁrst translationally moves the whole iso-b line f(a; btest) so that the mass center of Pdec[T [f(a; btest)]] coincides with that of Pdec[f(a; btrain)], where T indicates the translation operation, and then reads a according to Pdec[T [f0]] (Fig. 4A). Apparently, zero error of Decoder 1 requires Pdec[f(a; btest)] and Pdec[f(a; btrain)] to perfectly overlap. If the grids woven by iso-a and iso-b lines are tilted (Fig. 3 F, Upper Left) or nonparallelogram like (Fig. 3 F, Upper Right), which can be quantiﬁed by the orthogonality
+
+or mixed variance ratio, respectively, introduced in the above section, the projections Pdec[f(a; btest)] and Pdec[f(a; btrain)] may have nonoverlapping mass centers (Fig. 4 B, Upper) or different lengths (Fig. 4 B, Lower), causing decoding error. Decoder 2 translationally moves the mass center of Pdec[f(a; btest)] to the position of that of Pdec[f(a; btrain)], and therefore, its decoding error only depends on the nonparallelogram likeness of grids. Biologically, the projection onto the ﬁrst PC of f(a; btrain) can be realized by Hebbian learning of decoding weights (38), the nearest-centroid scheme can be realized by winner-take-all DM (20), and the overlap of the mass centers in Decoder 2 can be
+
+Bi and Zhou
+
+PNAS | May 12, 2020 | vol. 117 | no. 19 | 10535
+
+realized by homeostatic mechanisms (39) to keep the mean neuronal activity over different iso-b lines unchanged (SI Appendix, Eq. S19).
+Consistent with the decoding scenario above, when decoding temporal ﬂow generalizing across spatial information in the production epoch of t-SR, the error of Decoder 1 negatively correlated with the angle θ between F-PC1 and S-PC1 and positively correlated with the portion ρmix of mixed variance (Fig. 4 C and D); the error of Decoder 2 depended weakly on θ and positively correlated with ρmix (Fig. 4 E and F). Materials and Methods has details. Thanks to the angle orthogonality and small mixed variance (Fig. 3), both decoders have above-chance performance (Fig. 4G). Additionally for both t-SR and t-DM tasks, we studied the decoding generalization of temporal (nontemporal) information across nontemporal (temporal) information in all of the perception, delay, and production epochs. In all cases, we found how the decoding error depended on the angle between the ﬁrst PCs of the decoded and generalized variables, and the mixed variance followed a similar scenario to that above (SI Appendix, Figs. S7 and S8).
+Sequential Activity and Network Structure. A common feature of the network dynamics in all of the epochs of the four timing tasks above was neuronal sequential ﬁring (Fig. 5A and SI Appendix, Fig. S9 A–C). We ordered the peak ﬁring time of the neurons and then measured the recurrent weight as a function of the order difference between two neurons. We found, on average, stronger connections from earlier- to later-peaking neurons than from later- to earlier-peaking neurons (Fig. 5B and
+
+SI Appendix, Fig. S9 D–F) (27, 40, 41). To study the network structure that supported the coding orthogonality of temporal ﬂow and nontemporal information in the perception and production epochs of t-SR (or t-DM), we classiﬁed the neurons into groups according to their preferred spatial location (or decision choice). Given a neuron i and a group G of neurons (i may or may not belong to G), we ordered their peak times and investigated the recurrent weight from i to each neuron of G (except i itself if i ∈ G); Materials and Methods has details. In this way, we studied the recurrent weight w (opost − opre, |xpost − xpre|) as a function of the difference opost − opre between the peak orders of post- and presynaptic neurons and the difference |xpost − xpre| of their preferred nontemporal information (Fig. 5 C and D). In t-SR, ﬁrst, w (opost − opre, 0) exhibited similar asymmetry as that in IP (Fig. 5B) (positive if opost − opre > 0 and negative if opost − opre < 0), which drove sequential activity. Second, w (1, |xpost − xpre|) decreased with |xpost − xpre| and became negative when |xpost − xpre| was large enough (Fig. 5C). Together, the network of t-SR can be regarded as of several feedforward sequences, with two sequences exciting or inhibiting each other depending on whether their spatial preferences are similar or far different. The sequential activity coded the ﬂow of time, and the short-range excitation and long-range inhibition maintained the spatial information (42). A similar scenario also existed in the network of t-DM (Fig. 5D), where the sequential activity coded the ﬂow of time, and the inhibition between the sequences of different decision preferences provided the mutual inhibition necessary for making decisions (43).
+
+A
+
+B
+
+C
+
+D
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 21, 2023 from IP address 202.155.223.2.
+
+Fig. 5. Sequential activity and network structure. (A) An example of neuronal activity (with maximum normalized to one) in the perception epoch of IP task sorted according to peak time. (B) Mean (solid line) and SD (shaded belt) of the recurrent weights as a function of the peak order difference between post- and presynaptic neurons in the perception epoch of IP. (C) Recurrent weight as a function of the difference |x1 − x2| between the preferred spatial locations of post- and presynaptic neurons and their peak order difference in the perception epoch of t-SR. (D) Recurrent weight as a function of peak order difference in the sequence of neurons with the same (blue) or different (orange) preferred decision choices in the perception epoch of t-DM. The shaded belt indicates SEM. The sequential activity and network structure in other epochs of the four timing tasks of Fig. 1 B and C are shown in SI Appendix, Fig. S9.
+
+10536 | www.pnas.org/cgi/doi/10.1073/pnas.1921609117
+
+Bi and Zhou
+
+NEUROSCIENCE
+
+The scenario that feedforward structure hidden in recurrent connections drives sequential ﬁring has been observed in a number of modeling works (27, 40, 41). Our work extends this scenario to the interaction of multiple feedforward sequences, which can code temporal ﬂow and nontemporal information simultaneously.
+Understanding the Strong Temporal Signals in Nontiming Tasks. We have shown that in the perception and production epochs of t-SR and t-DM, when the network is required to record the temporal ﬂow and maintain the nontemporal information simultaneously, neuronal temporal proﬁles exhibit similarity across nontemporal information (Fig. 3B and SI Appendix, Fig. S5A) and that the subspaces coding temporal ﬂow and nontemporal information are orthogonal with small mixed variance (Fig. 3 D, E, I,
+
+and J). Interestingly, in tasks that do not require temporal information to perform, such proﬁle similarity, orthogonality, and small mixed variance were also experimentally observed (18, 19). Moreover, the time-dependent variance explained more than 75% of the total variance in some nontiming tasks (18, 19). It would be interesting to ask why nontiming tasks developed such strong temporal signals, thereby understanding the factors that facilitate the formation of time sense of animals.
+Before we studied the reasons for the strong temporal signals observed in nontiming tasks, we studied how the requirement of temporal processing inﬂuences the temporal signal strength. To this end, we studied the spatial reproduction (SR) task, where the network was to reproduce the spatial location immediately after a ﬁxed delay (Fig. 6 A, Left, ﬁrst row), and the DM task, where the network was to decide which stimulus
+
+A
+
+Spatial
+
+x
+
+reproduction (SR):
+
+Comparison x (COMP):
+Change detection x (CD):
+C
+
+Fixed delay duration Go cue
+x
+
+x>y
+
+y
+
+OR
+
+x<y?
+
+y
+
+x==y?
+
+Fixed presentation
+
+B
+
+duration
+
+Decision making (DM):
+
+Signal 1 Signal 2
+
+Which stimulus stronger?
+
+Cue-dependent decision
+making (cue-DM):
+
+D
+
+x
+
+Control x
+
+If Cue 1: report which stimulus stronger
+If Cue 2: report which stimulus weaker
+
+Cue 1 OR
+Cue 2
+Broad tuning curve
+
+L2 regularization of
+
+feedback current
+G
+
+all-to-all
+
+recurrent
+
+sensory
+
+network
+
+neuron
+
+H
+
+Firing threshold
+
+0 Feedback current
+
+E
+
+F
+
+I
+
+BIOPHYSICS AND COMPUTATIONAL BIOLOGY
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 21, 2023 from IP address 202.155.223.2.
+
+Fig. 6. Understanding the strong temporal signals in nontiming tasks. (A) Schematic of the nontiming tasks that we studied. (B) Bar charts show how the total signal variance is split among temporal information, nontemporal information, and the residual variance unexplained by temporal and nontemporal information in SR, t-SR, DM, and t-DM. (C) The portion of total variance explained by temporal signals in nontiming tasks. Error bars represent mean ± SEM across training conﬁgurations. Each dot corresponds to the value in a training conﬁguration. *Signiﬁcant difference at P < 0.05 (two-sided Welch’s t test), the same as in D–F and H. (D) The portion of time-dependent variance before (blue) and after (green) broadening the tuning curves of the sensory neurons. (E) The portion of time-dependent variance in SR or DM when the network is trained on SR or DM only (blue) or trained on t-SR or t-DM concurrently (green). (F) The portion of time-dependent variance in ﬁxed delay (blue) or variable delay (green) tasks. (G, Left) Schematic of the feedback connections (dashed arrows) to the sensory neurons (blue dot) to study anticipatory attention. Solid arrows represent feedforward connections. (G, Right) Firing threshold of sensory neuron decreases with feedback current until zero. (H) The portion of time-dependent variance before (blue) and after (green) adding feedback to sensory neurons. (I) Feedback current as a function of time in the delay epoch of SR. Blue line: mean value. Gray lines: individual training conﬁgurations.
+
+Bi and Zhou
+
+PNAS | May 12, 2020 | vol. 117 | no. 19 | 10537
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 21, 2023 from IP address 202.155.223.2.
+
+was stronger immediately after the presentation of two stimuli (Fig. 6 A, Right, ﬁrst row). Unlike t-SR (or t-DM) (Fig. 1C), SR (or DM) did not require the network to record time between the two pulses (or during the presentation of the two stimuli). We used Pt = Vari,t ( ri (t , x ) x )/Vari,t,x (ri (t , x )) to be the portion of time-dependent variance in the total variance Vari,t,x (ri (t, x )), with ri (t, x ) being the ﬁring rate of the i th neuron at time t and nontemporal information x . We compared the portions Pt (t-SR) and Pt (t-DM) in the perception epochs of t-SR and t-DM with the portion Pt (SR) in the delay epoch of SR and the Pt (DM) during the presentation of stimuli in DM. We found that Pt (SR) < Pt (t-SR) and Pt (DM) < Pt (t-DM) (Fig. 6B). Therefore, temporal signals are stronger in timing tasks. However, even in the two timing tasks t-SR and t-DM that we studied, the portion of time-dependent variance was smaller than the portion (75%) experimentally observed in nontiming tasks (18, 19) (Fig. 6B). Therefore, there should exist other factors than the timing requirement that are important to the formation of temporal signals.
+Speciﬁcally, we studied the following four factors: 1) temporal complexity of task, 2) overlap of sensory input, 3) multitasking, and 4) timing anticipation. Temporal complexity of task. Temporal complexity measures the complexity of spatiotemporal patterns that the network receives or outputs in a task (27). To test the inﬂuence of temporal complexity on the strength of temporal signals, we designed COMP and change detection (CD) tasks that enhanced the temporal complexity of SR and a cue-dependent decision-making (cue-DM) task that enhanced the temporal complexity of DM (Fig. 6A). In COMP, the network was to report whether the spatial coordinate of the stimulus presented before the delay was smaller or larger than that of the stimulus presented after the delay, consistent with its vibrotactile version (18) (Fig. 1D). In CD, the network was to report whether the two stimuli presented before and after the delay were the same (21). In cue-DM, the network was to report the index of the stronger or weaker stimulus depending on the cue ﬂashed at the end of the presented stimuli. COMP and CD have higher temporal complexity than SR because the output not only depends on the stimulus before the delay but also, the stimulus after the delay. Similarly, cue-DM has higher temporal complexity than DM because the output also depends on the cue. We found that Pt (SR) < Pt (CD), Pt (SR) < Pt (COMP), and Pt (DM) < Pt (cue-DM), suggesting that temporal complexity increases the portion of time-dependent variance (Fig. 6C). It has been empirically found that the task temporal complexity increases the temporal ﬂuctuations in neuronal sequential ﬁring (27). Here, we showed that the temporal ﬂuctuation of the average neuronal activity { ri (t, x ) x }i over nontiming information also increases with the temporal complexity of the task. The result Pt (SR) < Pt (COMP) is consistent with the experimental observation that the population state varied more with time in COMP than in SR (20). Overlap of sensory input. Suppose that the population states of the sensory neurons in response to two stimuli x1 and x2 are s1 and s2, respectively. If s1 and s2 have high overlap, then the evolution trajectories of the recurrent network in response to x1 and x2 should be close to each other. In this case, the variance of the trajectories induced by the stimulus difference is small, and the time-dependent variance explains a large portion of the total variance. To test this idea, we broadened the Gaussian tuning curves of the sensory neurons in t-SR, SR, COMP, and CD tasks and found an increased portion of time-dependent variance (Fig. 6D). Multitasking. The brain has been well trained on various timing tasks in everyday life, and therefore, the animal may also have a sense of time when performing nontiming tasks, which increases the time-dependent variance. To test this hypothesis, we trained
+
+networks on t-SR and SR concurrently so that the network could perform either t-SR or SR indicated by an input signal (26). We also trained t-DM and DM concurrently. We only considered these two task pairs because the two tasks in each pair share the same number and type of inputs and outputs (except for a scalar go cue input in t-SR and t-DM); hence, they do not require any changes in the network architecture. We found that both Pt (SR) and Pt (DM) were larger in networks that were also trained on timing tasks than in networks trained solely on nontiming tasks (Fig. 6E). Timing anticipation. In the working memory experiments that observed strong time-dependent variance (18, 19), the delay period had ﬁxed duration. This enabled the animals to learn this duration after long-term training and predict the end of the delay, thereby getting ready to take actions or receive new stimuli toward the end of the delay. If the delay period is variable, then the end of the delay will no longer be predictable. We found that the temporal signals in ﬁxed delay tasks were stronger than those in variable delay tasks (Fig. 6F), which suggests that timing anticipation is a reason for strong temporal signals. A possible functional role of timing anticipation is anticipatory attention: a monkey might pay more attention to its ﬁnger or a visual location when a vibrotactile or visual cue was about to come toward the end of the delay to increase its sensitivity to the stimulus. To study the inﬂuence of this anticipatory attention to the formation of temporal signals, we supposed feedback connections from the recurrent network to the sensory neurons in our model (Fig. 6G). Feedback currents could reduce the ﬁring thresholds of sensory neurons through disinhibition mechanism (44). We also added L2 regularization on the feedback current (Fig. 6G) to reduce the energy cost of the brain (Materials and Methods). After training, the feedback current stayed at a low level to reduce the energy cost but became high when the cue was about to come to increase the sensitivity of the network (Fig. 6I). We found that adding this feedback mechanism increased the portion of time-dependent variance (Fig. 6H) because the feedback current, which increased with time toward the end of the delay (Fig. 6I), provided a time-dependent component of the population activity.
+Collectively, other than the timing requirement in timing tasks, we identiﬁed four possible factors that facilitate the formation of strong temporal signals: 1) high temporal complexity of tasks, 2) large sensory overlap under different stimuli, 3) transfer of timing sense due to multitasking, and 4) timing anticipation.
+Discussion
+In summary, neural networks perceive time intervals through stereotypical dynamic trajectories, maintain time intervals by attractor dynamics in a complementary monotonic coding scheme, and perform IP or IC by scaling evolution speed. Temporal and nontemporal information is coded in orthogonal subspaces with small mixed variance, which facilitates decoding generalization. The network structure after training exhibits multiple feedforward sequences that mutually excite or inhibit depending on whether their preferences of nontemporal information are similar or not. We identiﬁed four possible factors that facilitate the formation of strong temporal signals in nontiming tasks: temporal complexity of task, overlap of sensory input, multitasking, and timing anticipation.
+Perception and Production of Time Intervals. In the perception epoch, the network evolved along a stereotypical trajectory after the ﬁrst pulse (Fig. 2 B and C). Consistently, some neurons in the prefrontal cortex and striatum prefer to peak their activities around speciﬁc time points after an event (45). In the brain, such a stereotypical trajectory may be formed by not only neuronal activity state but also, synaptic state, such as slow synaptic current or short-term plasticity. The temporal information coded
+
+10538 | www.pnas.org/cgi/doi/10.1073/pnas.1921609117
+
+Bi and Zhou
+
+NEUROSCIENCE
+
+BIOPHYSICS AND COMPUTATIONAL BIOLOGY
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 21, 2023 from IP address 202.155.223.2.
+
+by the evolution of synaptic state can be read out by the network activity in response to a stimulus (29, 46, 47).
+We also studied the trajectory speed with time during the perception epoch. We found that, after a transient period, the speed in the IP task stayed around a constant value (SI Appendix, Fig. S2A), the speed in the IC and t-DM tasks increased with time (SI Appendix, Figs. S3C and S5C), and the speed in the t-SR task decreased with time (SI Appendix, Fig. S4B). Therefore, we did not make any general conclusion on the trajectory speed when the network was perceiving time intervals.
+The temporal scaling when producing or comparing intervals has been observed in animal experiments (12, 32, 34). A possible reason why temporal scaling exhibits in both the production epoch of IP and the stimulus 2 epoch of IC (Fig. 2 L–O and SI Appendix, Fig. S3 I–N) is that both epochs require the network to compare the currently elapsed time with the time interval maintained in working memory. In IC, the decision choice is switched as soon as the trajectory has passed the critical point at which the elapsed time t equals the maintained interval T ; in IP, the network is required to output a movement as soon as t = T : both tasks share a DM process around the t = T time point. This temporal scaling enables generalizable decoding of the portion t/T of the elapsed time (SI Appendix, Figs. S7G and S8G), which enables people to identify the same speech or music played at different speeds (48, 49).
+When the to be produced interval T gets changed, the trajectory in the perception epoch is truncated or lengthened (Fig. 2 B–D), whereas the trajectory in the production epoch is temporally scaled (Fig. 2 L–O). This difference helps us to infer the psychological activity of the animal. For example, in the ﬁxed delay working memory task when the delay period was changed, the neuronal activity during the delay was temporally scaled (18). This implies that the animals had already learned the duration of the delay and were actively using this knowledge to anticipate the coming stimulus instead of passively perceiving time. However, this anticipation was not feasible before the animal had learned the delay duration. Therefore, we predict that, at the beginning of training, the animal perceived time using stereotypical trajectory, and the scaling phenomenon gradually emerged during training.
+Combination of Temporal and Nontemporal Information. Temporal and nontemporal information is coded orthogonally with small mixed variance (Fig. 3). Physically, time is consistently ﬂowing regardless of the nontemporal information, and much information is also invariant with time. The decoding generalizability that resulted from this coding geometry (Fig. 4) helps the brain to develop a shared representation of time across nontemporal information or a shared representation of nontemporal information across time using a ﬁxed set of readout weights. Decoding generalizability of nontemporal information across time has been studied in working memory tasks (20, 50) and has been considered as an advantage of working memory models in which information is maintained in stable or a stable subspace of neuronal activity (20, 51). Here, we showed that, with this geometry, such advantage also exists for reading out temporal information.
+Interestingly, the orthogonality and small mixed variance have been experimentally observed in nontiming tasks (18, 19), and therefore, their formation does not seem to depend on the timing task requirement. Consistently, in the delay epoch of t-SR and tDM, although the network needed not to record the temporal ﬂow to perform the tasks, temporal ﬂow and nontemporal information were still coded orthogonally with small mixed variance (SI Appendix, Fig. S10 A–D). By comparing the orthogonality and mixed variance in the perception epoch of t-SR and t-DM with those in the nontiming tasks (Fig. 6A), we found that timing task requirement did not inﬂuence the orthogonality but generally
+
+reduced the mixed variance (SI Appendix, Fig. S10 E and F). The network structure in nontiming tasks also exhibited interacting feedforward sequences (SI Appendix, Fig. S10 G–K).
+Strong Temporal Signals in Nontiming Tasks. Our results concerning the various factors that affect the strength of temporal signals in nontiming tasks lead to testable experimental predictions. The result of sensory overlap (Fig. 6D) implies that sensory neurons with large receptive ﬁelds are essential to the strong temporal signals. The result of multitasking (Fig. 6E) implies that animals better trained on timing or music have stronger temporal signals when performing nontiming tasks. The result of temporal complexity (Fig. 6C) implies that animals have stronger temporal signals when performing tasks with higher temporal complexity, which is consistent with some experimental clues (20). The result of timing anticipation (Fig. 6F), consistent with ref. 27, implies that, if the appearance of an event is unpredictable, then the temporal signals should be weakened. Other than anticipatory attention (Fig. 6G), anticipation may inﬂuence the temporal signals through other mechanisms. In the ﬁxed delay COMP task (Fig. 1D), suppose that a stimulus a appeared before the delay; then, both the population ﬁring rate and the information about a in the population state increase toward the end of the delay period (52). It is believed that this is because the information about a was stored in short-term potentiated synapses in the middle of the delay to save the energetic cost of neuronal activity, while they got retrieved into the population state near the end of the delay period to facilitate information manipulation (53). This storing and retrieving process may also be a source of temporal signals.
+Interval and Beat-Based Timing. We have discussed the processing of single time intervals using our model. However, recent evidence implies that the brain may use different neural substrates and mechanisms to process regular beats from single time intervals (54, 55). Dynamically, in the medial premotor cortices, different regular tapping tempos are coded by different radii of circular trajectories that travel at a constant speed (55), which is different from the stereotypical trajectory or speed scaling scenario revealed in our model (Fig. 2 B–D and L–O). The distribution of the preferred intervals of the tapping interval-tuned neurons is wide, peaking around 850 ms (56, 57), which is also different from the complementary monotonic tuning scenario in our model (Fig. 2 J and K). Additionally, humans tend to use a counting scheme to estimate single time intervals when the interval duration is longer than 1,200 ms (58), which implies that the beat-based scheme is mentally used to reduce the estimation error of single long intervals even without external regular beats. However, after we trained our network model to produce intervals up to 2,400 ms, it processed intervals between 1,200 and 2,400 ms in similar schemes (SI Appendix, Fig. S11) to that illustrated in Fig. 2 for intervals below 1,200 ms. All of these results suggest the limitation of our model to explain beat-based timing. Modeling work on beat-based timing is the task of future research.
+Materials and Methods
+Methods are provided in SI Appendix as well as SI Appendix, Figs. S1–S11. In SI Appendix, section S1, we present the details of our computational model, including the network structure, the tasks to be performed, and the methods that we used to train the network model. We also present the details to analyze the interval coding scheme in the delay and production epochs (Fig. 2), the coding combination of temporal and nontemporal information (Figs. 3 and 6B), and decoding generalization (Fig. 4) as well as the ﬁring and structural sequences (Fig. 5). We also explain the relationship between the monotonic coding at the end of the delay epoch and the low dimensionality of the attractor (Fig. 2 G and K) as well as the geometric meaning of mixed variance (Fig. 3) in SI Appendix. Computer code is available from https://github.com/zedongbi/IntervalTiming.
+
+Bi and Zhou
+
+PNAS | May 12, 2020 | vol. 117 | no. 19 | 10539
+
+ACKNOWLEDGMENTS. This work was supported by the Hong Kong Baptist University (HKBU) Strategic Development Fund and HKBU Research Committee and Interdisciplinary Research Clusters Matching Scheme 2018/19 (RC-IRCMs/18-19/SCI01). This research was conducted using the resources of
+
+the High-Performance Computing Cluster Center at HKBU, which receives funding from the Hong Kong Research Grant Council and HKBU. Z.B. is supported by the start-up fund of the Institute for Future, Qingdao University.
+
+1. H. Merchant, D. L. Harrington, W. H. Meck, Neural basis of the perception and estimation of time. Annu. Rev. Neurosci. 36, 313–336 (2013).
+2. M. J. Allman, S. Teki, T. D. Grifﬁths, W. H. Meck, Properties of the internal clock: First- and second-order principles of subjective time. Annu. Rev. Psychol. 65, 743–771 (2014).
+3. J. J. Paton, D. V. Buonomano, The neural basis of timing: Distributed mechanisms for diverse functions. Neuron 98, 687–705 (2018).
+4. E. A. Petter, S. J. Gershman, W. H. Meck, Integrating models of interval timing and reinforcement learning. Trends Cogn. Sci. 22, 911–922 (2018).
+5. M. D. Mauk, D. V. Buonomano, The neural basis of temporal processing. Annu. Rev. Neurosci. 27, 307–340 (2004).
+6. C. V. Buhusi, W. H. Meck, What makes us tick? Functional and neural mechanisms of interval timing. Nat. Rev. Neurosci. 6, 755–765 (2005).
+7. M. Treisman, Temporal discrimination and the indifference interval. Implications for a model of the “internal clock.”Psychol. Monogr. 77, 1–31 (1963).
+8. P. R. Killeen, J. G. Fetterman, A behavioral theory of timing. Psychol. Rev. 95, 274–295 (1988).
+9. R. H. R. Hahnloser, A. A. Kozhevnikov, M. S. Fee, An ultra-sparse code underlies the generation of neural sequence in a songbird. Nature 419, 65–70 (2002).
+10. G. F. Lynch, T. S. Okubo, A. Hanuschkin, R. H. R. Hahnloser, M. S. Fee, Rhythmic continuous-time coding in the songbird analog of vocal motor cortex. Neuron 90, 877–892 (2016).
+11. M. S. Matell, W. H. Meck, Cortico-striatal circuits and interval timing: Coincidence detection of oscillatory processes. Brain Res. Cogn. Brain Res. 21, 139–170 (2004).
+12. J. Wang, D. Narain, E. A. Hosseini, M. Jazayeri, Flexible timing by temporal scaling of cortical responses. Nat. Neurosci. 21, 102–110 (2018).
+13. S. Teki, T. D. Grifﬁths, Working memory for time intervals in auditory rhythmic sequences. Front. Psychol. 5, 1329 (2014).
+14. R. B. Ivry, J. E. Schlerf, Dedicated and intrinsic models of time perception. Trends Cogn. Sci. 12, 273–280 (2008).
+15. A. H. Lara, J. D. Wallis, The role of prefrontal cortex in working memory: A mini review. Front. Syst. Neurosci. 9, 173 (2015).
+16. J. I. Gold, M. N. Shadlen, The neural basis of decision making. Annu. Rev. Neurosci. 30, 535–574 (2007).
+17. R. Romo, C. D. Brody, A. Hernandez, L. Lemus, Neuronal correlates of parametric working memory in the prefrontal cortex. Nature 399, 470–473 (1999).
+18. C. K. Machens, R. Romo, C. D. Brody, Functional, but not anatomical, separation of “what” and “when” in prefrontal cortex. J. Neurosci. 30, 350–360 (2010).
+19. D. Kobak et al., Demixed principal component analysis of neural population data. eLife 5, e10989 (2016).
+20. J. D. Murray et al., Stable population coding for working memory coexists with heterogeneous neural dynamics in prefrontal cortex. Proc. Natl. Acad. Sci. U.S.A. 114, 394–399 (2017).
+21. R. Rossi-Poola et al., Temporal signals underlying a cognitive process in the dorsal premotor cortex. Proc. Natl. Acad. Sci. U.S.A. 116, 7523–7532 (2019).
+22. H. Hong, D. L. K. Yamins, N. J. Majaj, J. J. DiCarlo, Explicit information for categoryorthogonal object properties increases along the ventral stream. Nat. Neurosci. 19, 613–622 (2016).
+23. H. F. Song, G. R. Yang, X.-J. Wang, Training excitatory-inhibitory recurrent neural networks for cognitive tasks: A simple and ﬂexible framework. PLoS Comp. Bio. 12, e1004792 (2016).
+24. V. Mante, D. Sussillo, K. V. Shenoy, W. T. Newsome, Context-dependent computation by recurrent dynamics in prefrontal cortex. Nature 503, 78–84 (2013).
+25. D. Sussillo, M. M. Churchland, M. T. Kaufman, K. V. Shenoy, A neural network that ﬁnds a naturalistic solution for the production of muscle activity. Nat. Neurosci. 18, 1025–1033 (2015).
+26. G. R. Yang, M. R. Joglekar, H. F. Song, W. T. Newsome, X.-J. Wang, Task representations in neural networks trained to perform many cognitive tasks. Nat. Neurosci. 22, 297–306 (2019).
+27. A. E. Orhan, W. J. Ma, A diverse range of factors affect the nature of neural representations underlying short-term memory. Nat. Neurosci. 22, 275–283 (2019).
+28. Z. Bi, C. Zhou, Data from “IntervalTiming.” GitHub. https://github.com/zedongbi/ IntervalTiming. Deposited 7 April 2020.
+29. U. R. Karmarkar, D. V. Buonomano, Timing in the absence of clocks: Encoding time in neural network states. Neuron 53, 427–438 (2007).
+
+30. H. S. Seung, How the brain keeps the eyes still. Proc. Natl. Acad. Sci. U.S.A. 93, 13339– 13344 (1996).
+31. A. Mita, H. Mushiake, K. Shima, Y. Matsuzaka, J. Tanji., Interval time coding by neurons in the presupplementary and supplementary motor areas. Nat. Neurosci. 12, 502–507 (2009).
+32. E. D. Remington, D. Narain, E. A. Hosseini, M. Jazayeri, Flexible sensorimotor computations through rapid reconﬁguration of cortical dynamics. Neuron 98, 1005–1019 (2018).
+33. M. I. Leon, M. N. Shadlen, Representation of time by neurons in the posterior parietal cortex of the macaque. Neuron 38, 317–327 (2003).
+34. G. Mendoza, J. C. Me´ ndez, O. Pe´ rez, L. Prado, H. Merchant, Neural basis for categorical boundaries in the primate pre-SMA during relative categorization of time intervals. Nat. Commun. 9, 1098 (2018).
+35. J. Ashe, A. P. Georgopoulos, Movement parameters and neural activity in motor cortex and area 5. Cereb. Cortex 4, 590–600 (1994).
+36. M. M. Churchland et al., Neural population dynamics during reaching. Nature 487, 51–56 (2012).
+37. M. Lankarany, D. Al-Basha, S. Ratte´ , S. A. Prescott, Differentially synchronized spiking enables multiplexed neural coding. Proc. Natl. Acad. Sci. U.S.A. 116, 10097–10102 (2019).
+38. P. Dayan, L. F. Abbott, Theoretical Neuroscience: Computational and Mathematical Modeling of Neural Systems (MIT Press, Cambridge, MA, 2001).
+39. G. Turrigiano, Too many cooks? Intrinsic and synaptic homeostatic mechanisms in cortical circuit reﬁnement. Annu. Rev. Neurosci. 34, 89–103 (2011).
+40. K. Rajan, C. D. Harvey, D. W. Tank, Recurrent network models of sequence generation and memory. Neuron 90, 128–142 (2016).
+41. N. F. Hardy, D. V. Buonomano, Encoding time in feedforward trajectories of a recurrent neural network model. Neural Comput. 30, 378–396 (2018).
+42. S. Lim, M. S. Goldman, Balanced cortical microcircuitry for spatial working memory based on corrective feedback control. J. Neurosci. 34, 6790–6806 (2014).
+43. X.-J. Wang, Probabilistic decision making by slow reverberation in cortical circuits. Neuron 36, 955–968 (2002).
+44. R. Hattori, K. V. Kuchibhotla, R. C. Froemke, T. Komiyama, Functions and dysfunctions of neocortical inhibitory neuron subtypes. Nat. Neurosci. 20, 1199–1208 (2017).
+45. D. Z. Jin, N. Fujii, A. M. Graybiel, Neural representation of time in cortico-basal ganglia circuits. Proc. Natl. Acad. Sci. U.S.A. 106, 19156–19161 (2009).
+46. D. V. Buonomano, Decoding temporal information: A model based on short-term synaptic plasticity. J. Neurosci. 106, 1129–1141 (2000).
+47. O. Pe´ rez, H. Merchant, The synaptic properties of cells deﬁne the hallmarks of interval timing in a recurrent neural network. J. Neurosci. 38, 4186–4199 (2018).
+48. R. Gu¨ tig, H. Sompolinsky, Time-warp-invariant neuronal processing. PLoS Biol. 7, e1000141 (2009).
+49. V. Goudar, D. V. Buonomano, Encoding sensory and motor patterns as time-invariant trajectories in recurrent neural networks. eLife 7, e31134 (2018).
+50. M. G. Stokes et al., Dynamic coding for cognitive control in prefrontal cortex. Neuron 78, 364–375 (2013).
+51. S. Druckmann, D. B. Chklovskii, Neuronal circuits underlying persistent representations despite time varying activity. Curr. Biol. 22, 2095–2103 (2012).
+52. O. Barak, M. Tsodyks, R. Romo, Neuronal population coding of parametric working memory. J. Neurosci. 30, 9424–9430 (2010).
+53. N. Y. Masse, G. R. Yang, H. F. Song, X.-J. Wang, D. J. Freedman, Circuit mechanisms for the maintenance and manipulation of information in working memory. Nat. Neurosci. 22, 1159–1167 (2019).
+54. S. Teki, M. Grube, S. Kumar, T. D. Grifﬁths, Distinct neural substrates of durationbased and beat-based auditory timing. J. Neurosci. 31, 3805–3812 (2011).
+55. J. Ga´ mez, G. Mendoza, L. Prado, A. Betancourt, H. Merchant, The amplitude in periodic neural state trajectories underlies the tempo of rhythmic tapping. PLoS Biol. 17, e3000054 (2019).
+56. H. Merchant, O. Pe´ rez, W. Zarco, J. Ga´ mez, Interval tuning in the primate medial premotor cortex as a general timing mechanism. J. Neurosci. 33, 9082–9096 (2013).
+57. R. Bartolo, L. Prado, H. Merchant, Information processing in the primate basal ganglia during sensory-guided and internally driven rhythmic tapping. J. Neurosci. 34, 3910– 3923 (2014).
+58. S. Grondin, G. Meilleur-Wells, R. Lachance, When to start explicit counting in a timeintervals discrimination task: A critical point in the timing process of humans. J. Exp. Psychol. Hum. Percept. Perform. 25, 993–1004 (1999).
+
+Downloaded from https://www.pnas.org by 202.155.223.2 on August 21, 2023 from IP address 202.155.223.2.
+
+10540 | www.pnas.org/cgi/doi/10.1073/pnas.1921609117
+
+Bi and Zhou
+

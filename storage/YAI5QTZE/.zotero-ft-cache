@@ -1,0 +1,82 @@
+
+Skip to main content
+Cornell University
+We gratefully acknowledge support from the Simons Foundation, member institutions , and all contributors. Donate
+arxiv logo > cs > arXiv:2210.03310
+
+Help | Advanced Search
+Search
+Computer Science > Machine Learning
+(cs)
+[Submitted on 7 Oct 2022 ( v1 ), last revised 2 Mar 2023 (this version, v3)]
+Title: Scaling Forward Gradient With Local Losses
+Authors: Mengye Ren , Simon Kornblith , Renjie Liao , Geoffrey Hinton
+Download a PDF of the paper titled Scaling Forward Gradient With Local Losses, by Mengye Ren and 3 other authors
+Download PDF
+
+    Abstract: Forward gradient learning computes a noisy directional gradient and is a biologically plausible alternative to backprop for learning deep neural networks. However, the standard forward gradient algorithm, when applied naively, suffers from high variance when the number of parameters to be learned is large. In this paper, we propose a series of architectural and algorithmic modifications that together make forward gradient learning practical for standard deep learning benchmark tasks. We show that it is possible to substantially reduce the variance of the forward gradient estimator by applying perturbations to activations rather than weights. We further improve the scalability of forward gradient by introducing a large number of local greedy loss functions, each of which involves only a small number of learnable parameters, and a new MLPMixer-inspired architecture, LocalMixer, that is more suitable for local learning. Our approach matches backprop on MNIST and CIFAR-10 and significantly outperforms previously proposed backprop-free algorithms on ImageNet. 
+
+Comments: 	31 pages, ICLR 2023
+Subjects: 	Machine Learning (cs.LG) ; Computer Vision and Pattern Recognition (cs.CV); Neural and Evolutionary Computing (cs.NE)
+Cite as: 	arXiv:2210.03310 [cs.LG]
+  	(or arXiv:2210.03310v3 [cs.LG] for this version)
+  	https://doi.org/10.48550/arXiv.2210.03310
+Focus to learn more
+arXiv-issued DOI via DataCite
+Submission history
+From: Mengye Ren [ view email ]
+[v1] Fri, 7 Oct 2022 03:52:27 UTC (1,894 KB)
+[v2] Fri, 17 Feb 2023 02:15:53 UTC (1,888 KB)
+[v3] Thu, 2 Mar 2023 03:08:10 UTC (1,896 KB)
+Full-text links:
+Download:
+
+    Download a PDF of the paper titled Scaling Forward Gradient With Local Losses, by Mengye Ren and 3 other authors
+    PDF
+    Other formats 
+
+Current browse context:
+cs.LG
+< prev   |   next >
+new | recent | 2210
+Change to browse by:
+cs
+cs.CV
+cs.NE
+References & Citations
+
+    NASA ADS
+    Google Scholar
+    Semantic Scholar
+
+a export BibTeX citation Loading...
+Bookmark
+BibSonomy logo Reddit logo
+Bibliographic Tools
+Bibliographic and Citation Tools
+Bibliographic Explorer Toggle
+Bibliographic Explorer ( What is the Explorer? )
+Litmaps Toggle
+Litmaps ( What is Litmaps? )
+scite.ai Toggle
+scite Smart Citations ( What are Smart Citations? )
+Code, Data, Media
+Demos
+Related Papers
+About arXivLabs
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? )
+
+    About
+    Help
+
+    contact arXiv Click here to contact arXiv Contact
+    subscribe to arXiv mailings Click here to subscribe Subscribe
+
+    Copyright
+    Privacy Policy
+
+    Web Accessibility Assistance
+
+    arXiv Operational Status
+    Get status notifications via email or slack
+

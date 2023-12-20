@@ -1,0 +1,678 @@
+A Low-rank RNN dynamics
+Here, we detail the theoretical link between connectivity and low-dimensional dynamics in lowrank RNNs, and outline its consequences for the main results. This section mostly summarizes the mathematical results of the papers [30], [3] and [9]. Sections A.3 and A.4 can be read without the preceding ones.
+
+A.1 Low-dimensional dynamics
+
+Let us ﬁrst recall the formalism. We consider a network of N units, each characterized by an activation that follows the dynamics given in eq. (1) of the main text:
+
+⌧ dxi = dt
+
+X N xi + Jij
+
+(xj ) + X Nin Ii(s)us(t) + ⌘i(t).
+
+(7)
+
+j=1
+
+s=1
+
+with a connectivity matrix of rank R ⌧ N , written as:
+
+Jij
+
+=
+
+1 N
+
+X R m(ir)n(jr).
+
+(8)
+
+r=1
+
+where, to remove all degeneracy, we deﬁne vectors m(r) as the left singular vectors of the connectivity matrix, and vectors n(r) as the right singular vectors multiplied by the corresponding singular value (determined up to a change in sign). A consequence of this deﬁnition is that the m(r) vectors are all orthogonal to each other, and the n(r) vectors as well. As a further simplifying assumption we will also assume that the I(s) vectors are also orthogonal to each other, and to each of the m(r) vectors.
+
+Injecting equation (8) into the differential equation (7) gives the vector dynamics:
+
+⌧ dx = dt
+
+x(t) + X R m(r)n(r)>
+
+X Nin (x(t)) + I(s)us(t) + ⌘(t),
+
+(9)
+
+r=1
+
+s=1
+
+where is applied in an elementwise manner. A direct consequence of (9) is is that the vector of
+
+neural activations x(t) is constrained to evolve in a subspace spanned by the vectors m(r) and I(s),
+
+of dimension R + Nin. Since these vectors form a basis of this subspace, one can decompose x(t)
+
+as:
+
+X R
+
+X Nin
+
+x(t) = r(t)m(r) + vs(t)I(s),
+
+(10)
+
+r=1
+
+s=1
+
+where the r(t) are a set of recurrently generated latent variables, deﬁned as the projection of x(t)
+
+on m(r):
+
+r (t)
+
+:=
+
+1 km(r)k2
+
+X N m(jr)xj (t),
+
+(11)
+
+j=1
+
+and the vs(t) are low-pass ﬁltered versions of the input signals us(t), following:
+
+⌧ dvs = dt
+
+vs(t) + us(t).
+
+(12)
+
+The dynamics of the internal variables r(t) can also be described by a set of self-consistent differential equations, obtained by projecting equation (9) on each m(r):
+
+⌧ dr = dt
+
+r(t) +
+
+1 N
+
+X N n(jr)
+
+(xj (t)),
+
+(13)
+
+| j=1 {z
+
+}
+
+:=rrec (t)
+
+(where we have taken into account the orthogonality of each input vector I(s) with the vectors m(r) as a simplifying assumption). The second term of the r.h.s. of this equation, rrec(t), which represents
+
+16
+
+the recurrent contribution to the input of r-th latent variable, can be expanded as:
+
+rrec(t)
+
+=
+
+1 N
+
+X N n(jr)
+
+j=1
+
+! X R 0r(t)m(jr0) + X Nin Ijsvs(t) ,
+
+r0 =1
+
+s=1
+
+(14)
+
+which only depends on the set of r(t) and vs(t) functions, closing the system of equations.
+
+Equations (13)-(14) show that a rank-R RNN is an R-dimensional dynamical system, which can be
+
+written as:
+
+d (t) = F ((t), u(t))
+
+(15)
+
+dt
+
+with (t) an R-dimensional state-space vector, and u(t) the Nin-dimensional vector of input signals. Here, F represents a non-linear map from RNin+R to RR that depends exclusively on the parameters deﬁning the network connectivity, that is the {Ii(s), m(ir), n(ir)}s,r,i. It can be shown that these parameters can be chosen in order to approximate any non-linear map F , so that the class of rank-R RNN are universal approximators for R-dimensional dynamical systems [3].
+
+A.2 Mean-ﬁeld approximation
+Moreover, the map F can be more explicitly deﬁned in the large network limit N ! 1, if the connectivity parameters follow a particular distribution, namely a joint mixture-of-Gaussians distribution [3, 9]. Notably, in this framework, each neuron is characterized by its weights on the Nin input vectors and on the 2R recurrent connectivity vectors. Hence every neuron i can be seen as a point in a (Nin + 2R)-dimensional connectivity space of coordinates (Ii(1), . . . , Ii(Nin), n(i1), . . . , n(iR), m(i1), . . . , m(iR)) := (I, n, m).
+We can then assume that these points are sampled from a probability distribution :
+
+P (I(1), . . . , I(Nin), n(1), . . . , n(R), m(1), . . . , m(R)) := P (I, n, m).
+
+(16)
+
+We will take the assumption that the distribution P (·) is a mixture-of-Gaussians as in [3, 9]. It can then be written as:
+
+X P
+
+P (n, m, I, w) := ↵pN (µp, ⌃p) ,
+
+(17)
+
+p=1
+
+with p components to the mixture, each associated to the probability ↵p, the mean µp and the covariance matrix ⌃p. We will add the simplifying assumption that all components are zerocentered, and vary just in terms of their covariances, so that µp = 0. Then, following a mean-ﬁeld approximation, the dynamics in equation (13) can be simpliﬁed for each r to:
+
+dr = dt
+
+X R
+
+X Nin
+
+r(t) +
+
+˜n(r)m(r0) r0 (t) +
+
+˜n(r)I(s) vs(t).
+
+r0 =1
+
+s=1
+
+(18)
+
+where for any connectivity parameters a, b in {m(r), n(r), I(s)}, ˜ab represents an effective coupling, given by a weighted average over populations of the associated covariances:
+
+X P
+
+˜ab =
+
+↵p a(pb)h 0ip,
+
+p=1
+
+(19)
+
+where e.g.
+
+(p) ab
+
+represent
+
+= (p)
+
+1
+
+n(1) m(2)
+
+N
+
+the covariance between
+
+P
+i2p
+
+n(i1)m(i2)),
+
+and
+
+h
+
+parameters a 0ip represents
+
+and b in the p-th an average gain
+
+component (so over neurons of
+
+that the
+
+p-th component, deﬁned as the average over these neurons of the derivative of the neural transfer
+
+17
+
+function 0(xi). Since these gains are distributed normally on each population, this average depends
+
+non-linearly on the r and vs values following equation:
+
+h
+
+0ip = h
+
+0i 0@v u u t X R (
+
+X Nin
+
+(p) m(r0
+
+)
+
+)2
+
+2r0
+
++
+
+(
+
+1
+
+(p) I (s)
+
+)2
+
+vs2
+
+A
+
+,
+
+(20)
+
+r0 =1
+
+s=1
+
+where h 0i ( ) is the Gaussian integral:
+
+h 0i(
+
+) = p1
+
+Z +1 dz e z2/2 0(
+
+z).
+
+(21)
+
+2⇡ 1
+
+These equations ﬁnish to make the system given by equations (18) a closed system of non-linear coupled differential equations where the unknowns are the variables r(t).
+
+A.3 Intuitive interpretation of the mean-ﬁeld results
+A more intuitive interpretation of those derivations is that equation (18) locally approximates the recurrent dynamics as a linear dynamical system (LDS), driven by the effective couplings between latent variables ˜ab (which can vary depending on the state of the network (t) and on the inputs u(t)). More speciﬁcally, the effective coupling from latent variable r to latent variable r0 (where possibly r0 = r) is given by n(r0)mr) , and the effective coupling from input s to latent variable r by
+. n(r) I (s)
+These effective couplings can be modulated through equation (20) by inputs as well as the latent state of the network, leading to different dynamics in different parts of the neural state-space. In particular, inputs can have a purely modulating effect by modifying only the gain of speciﬁc population, hence modifying the effective couplings and the resulting network dynamics.
+
+A.4 Notion of effective connectivity
+
+A consequence of equation (18) is notably is that the low-dimensional dynamics depend on the exact entries on the m(r) and I(s) vectors, but not on the individual entries on the n(r) vectors. Instead, n(r) vectors inﬂuence the dynamics only through their covariances with the m(r) and I(s) vectors. Thus, all components of n(r) orthogonal to the subspace spanned by m(r) and I(s) are irrelevant for the dynamics, and removing them leads to an effective connectivity matrix J eff which captures the minimal features required for obtaining particular dynamics.
+Thus, for a rank-R RNN, J eff is computed as:
+
+J eff = 1 N
+
+! X R m(r)n(kr)> ,
+r=1
+
+(22)
+
+where each n(kr) is deﬁned as the orthogonal projection of n(r) on the subspace spanned by the m(r) and I(s).
+
+B Cognitive tasks
+Here we describe the input and output structure for the four cognitive tasks used in this study. In all tasks we use the notations from section 2, considering Nin input signals us(t) and one target output z⇤(t), that can be deﬁned only at speciﬁc timepoints of a trial. Durations are given in an abstract time mapping, but tasks are implemented in a discretized time with timestep dt = 20ms
+Decision-making task (DM). The network receives one input signal us(t), equal to Gaussian white noise with standard deviation 0.1 (as for subsequent tasks), added to a mean coherence u drawn uniformly from ±0.1 ⇥ {1, 2, 4}. The target output z⇤ is deﬁned only at the ﬁnal timestep of the trial, and is equal to the sign of the trial coherence. Each trial starts with a 100ms ﬁxation period with no input, followed by an 800ms stimulus epoch, a 300ms delay epoch and a decision timestep.
+
+18
+
+Working memory task (WM). This task is inspired on the traditional parametric working memory and comparison experimental paradigm. The network receives one input signal, equal to:
+u(t) = f1 1(t) + f2 2(t) + ⇠(t)
+where f1 is randomly sampled in [10, .., 34], f2 f1 is randomly sampled in { 24, 16, 8, 8, 16, 24} with the constraint that 10  f2  34 and ⇠(t) is white Gaussian noise. The target output z⇤(t) is deﬁned only at the ﬁnal timestep and equal to the exact value f2 f1. Each trial starts with a 100ms ﬁxation period with no input, followed by a 100ms stimulus 1 epoch (where 1(t) = 1), followed by a 500ms delay epoch, followed by a 100ms stimulus 2 epoch (where 2(t) = 1) and a decision timestep.
+Context-dependent decision-making (CDM). This task aims at modelling the experimental work of (Mante, Sussillo et al., 2013) [29]. The network receives four inputs, two noisy input signals uA(t) and uB(t) deﬁned as for the DM task with independently drawn coherences and noise, and two contextual inputs uctxA(t) and uctxB(t) deﬁned as a one-hot encoding of the trial context. The target output during the ﬁnal task epoch is set to the sign of the coherence of the input indicated by the active contextual cue.
+For the application of LINT to a full-rank network, the task was deﬁned in ﬁve epochs: a 100ms ﬁxation epoch with no inputs, a 350ms epoch with only contextual inputs, an 800ms stimulus epoch, with both noisy stimuli and contextual inputs, a 100 ms delay epoch and a 20ms decision epoch which is the only one where the target output z⇤(t) was deﬁned.
+For the application of LINT to electrophysiological recordings, four epochs were used: a 350ms epoch where only contextual inputs were active, a 650ms stimulation epoch, an 80ms delay epoch and a 20ms decision epoch (used for computing task accuracy on the ﬁtted networks). The trained networks were constrained to reproduce neural activity only during the last three epochs. The coherences used in this part of the work were sampled from ±{0.047, 0.15, 0.5} for monkey A, ±{0.07, 0.19, 0.54} for monkey F.
+Delay Match-to-Sample (DMS). This task reproduces a paradigm where two consecutive stimuli each either of type A or B are presented, and the subject distinguishes between matches (both stimuli of the same type) and non-matches (stimuli of different types). In our models, the stimuli are given through two input signals uA(t) and uB(t), with Gaussian white noise centered around 0 or 1 while the corresponding stimulus is active. The task comprises ﬁve epochs, a ﬁxation epoch of duration 100ms, a ﬁrst stimulation epoch of 500ms, a delay epoch of variable duration between 500 and 3000ms, a second stimulation epoch of 500ms and a decision epoch of 1000ms. During each stimulation epoch a single type between A and B is sampled and the corresponding input signal is set to a mean of 1. The target output z⇤(t) during the decision epoch is equal to 1 for a match, -1 for a non-match.
+
+C Training details and hyperparameters.
+
+Task-optimized lrRNNs. The full-rank RNNs were deﬁned following a discretized version of equation (1):
+
+!
+
+t xt+1 = xt + ⌧
+
+X Nin xt + J (xt) + I(s)us,t + ⌘t ,
+
+(23)
+
+s=1
+
+with ⌘t a random normal vector with independent entries and standard deviation 0.05 on each entry, and t = 20ms, ⌧ = 100ms. All networks were deﬁned in pytorch [34] and trained using the ADAM optimizer. We trained networks on 800 random trials, for a certain number of epochs being divided in 25 batches of 32 trials. We considered networks with N = 512 units for this part of the work.
+
+For the low-rank RNNs (section 3.1), we trained the m(r) and n(r) vectors. For each task, we found the minimal rank by training networks of increasing rank until they performed the task with more than 95% accuracy. For the DM and CDM tasks, the weights were all initialized following a random Gaussian distribution of standard deviation 1, and 4 for the readout weights wi. For the WM task,
+
+19
+
+the rank-2 networks were initialized from the SVD of the connectivity matrix of a full-rank RNN previously trained on the task. For the DMS task, this initialization trick was also used, as well as the following shaping procedure: rank-2 networks were ﬁrst trained on trials with a maximal delay of 700ms, then 1000ms, and ﬁnally 4000ms. The learning rates used were of 0.01 for all low-rank networks, and on the order of 10 4 for full-rank networks.
+For the full-rank RNNs (section 3.2), we trained the connectivity matrix J . The initial weights were sampled from cpentered Gaussian distributions with a standard deviation of 1 for input and readout weights, and ⇢/ N for connectivity coefﬁcients Jij. The values of ⇢ used in the main text were 0.1 for the CDM task, and 0.8 for the DMS task, with results for other values displayed in sup. ﬁg. 1.
+LINT on data from task-optimized lrRNNs. For the application of LINT to synthetic data generated from the task-optimized lrRNNs, we generated 800 trials for each task, simulated the trajectories displayed by the task-optimized networks on these trials, and trained identical RNNs, all initialized with random weights, to reproduce these trajectories. The networks were then tested on 800 newly sampled trajectories to obtain the reported values of R2. Given trials k 2 {1, . . . , K}, timesteps t 2 {1, . . . , T } and neurons i 2 {1, . . . , N }, the global R2 is computed as:
+
+R2 = 1
+
+P
+k
+
+P
+t
+
+P
+i
+
+⇣ x(ik)(t)
+
+x˜(ik)
+
+⌘2 (t)
+
+P
+k
+
+P
+t
+
+P
+i
+
+⇣ x˜(ik)(t)
+
+hx˜(ik)(t)ik,t,i⌘2
+
+(24)
+
+following the notations of section 2.
+
+LINT on data from task-optimized vanilla RNNs. For this application of LINT, synthetic data was generated from task-optimized full-rank RNNs by simulating their responses to 800 trials for each of
+the two tasks. Inferred low-rank networks were trained for 500 epochs on those trials, and then tested on 800 newly generated trials. Reported R2 values were computed with equation (24).
+
+LINT on electrophysiological data. Low-rank networks trained to reproduce trajectories were trained on a set of 64 random conditions out of 72, and tested on the remaining 8 conditions to compute reported R2. To compute the task accuracy, a linear decoder w was trained on the decision epoch of the task to report the correct choice on all 72 conditions, and the obtained accuracy was reported.
+
+D Context-dependent decision-making mechanism
+Here we complete the explanations of the main text detailing the mechanisms by which the full-rank network performs the CDM task.
+From a dynamical point of view, low-dimensional visualizations have shown that the neural activity ﬁrst moves along input-driven directions, before being slowly integrated along a choice axis (ﬁg. 3 and sup. ﬁg. 2). The rank-1 inferred network illuminates this behavior in terms of input and recurrent connectivity: the input-driven direction (TDR stimulus A, stimulus B and context axes) correspond to input vectors of the network, directly inserting the stimulus signals into the network. Choice, however, is generated through the recurrent connections, more speciﬁcally through a rank-1 feature of these connections: features that have to be integrated are selected by the n vector (which we call the input-selection vector [9]), and are projected onto the m vector, which then encodes choice. Hence, overlaps between the signal input vectors IA and IB and the input-selection vector drive the integration of input signal into this recurrent loop.
+However, the network selects in a context-dependent manner which of the signals is integrated into the loop. We demonstrate in the main-text how this context-dependent selection relies on two separate populations of neurons. More speciﬁcally, these two groups of neurons have different weights on the contextual input vectors (IctxA and IctxB) which drive them towards different gain regimes: for example, the neurons with the strongest weights on the IctxA vector are driven towards the saturating parts of their non-linear transfer function in context A (ﬁg. 4b). It happens that these neurons exhibit a positive correlation between their entries on IB and n, necessary for integrating the input B signal into the recurrent dynamics. While these neurons see their gain decreased, the effective overlap between vectors IA and n as described in equation (19) is decreased, and hence input B cannot be integrated anymore. Through this gain-modulation mechanism, the network is able
+
+20
+
+to ignore the irrelevant signal during context A. The opposite mechanism naturally happens with another population during context B.
+This mechanism has a very consequence for ablation experiments: we have shown in ﬁg. 4c how inactivating speciﬁcally the green and purple population decrease performance only in one context at every time. A more detailed picture appears when we look at the speciﬁc psychometric matrices of the perturbed networks (sup. ﬁg. 2e). For example, when inactivating population B (green), the network actually keeps integrating input A even in context B: it is able to perform only the context A task. The opposite error pattern appears when population A (purple) is inactivated. These error patterns are exactly retrieved in the full-rank networks, showing that the same neurons have an exactly similar role, even though it can be directly retrieved from looking at the full-rank connectivity.
+E Delay Match-to-Sample full-rank network reverse-engineering
+To display another example of how LINT can be exploited to reverse-engineer mechanisms used by a "black-box" full-rank RNN, we apply it to the networks trained on another task. Here we consider the DMS task, where the network receives two consecutive stimuli chosen among two possible classes A and B, separated by a delay period, and has to output during its response period a positive value if the stimuli were of the same class ("match"), a negative value otherwise ("non-match", see full details in appendix B).
+When training full-rank RNNs on this task, it appeared that they could be well approximated by lrRNNs of a rank usually equal to two (ﬁg. 2), irrespective of their training hyperparameters (ﬁg. 1). Here, wpe focus on a full-rank RNN trained with an initial connectivity of standard deviation equal to 0.8/ N and N = 512 units, which was well approximated by a rank-2 lrRNN (R2 ﬁt qualities for individual neurons shown in sup. ﬁg. 3a). Indeed, this network, although trained without any constraint on its connectivity, exhibited low-dimensional trajectories as can be seen by performing a PCA (sup. ﬁg. 3b). An idea of how neural geometry enables the networks to perform the task can be obtained by observing projections of the trajectories on spaces spanned by the ﬁrst principal components. Typically, observing projections on the top 3 components (sup. ﬁg. 3c), it becomes apparent that the network relies on four ﬁxed points, one for remembering that the ﬁrst stimulus is A during the delay period (middle right), one for remembering that the ﬁrst stimulus is B (at the left), also used to indicate a match, one to indicate a non-match (at the right) and ﬁnally one to indicate only a match A-A (at the right). Stimulus inputs seem to drive activity through transient tunnels from one ﬁxed point to another. This picture provides a certain grasp of phenomena happening in the network, but does not illuminate how dynamics enable activity to correctly jump between ﬁxed points, nor how connectivity enables this dynamical picture to emerge.
+The rank-2 network inferred by LINT has its activity constrained by design to a four-dimensional subspace of the neural state-space, spanned by the two input vectors of the network IA and IB as well as the two output vectors of the recurrent connectivity m(1) and m(2). These four vectors indeed have a signiﬁcant overlap with the top four principal components (sup. ﬁg. 3d), with the difference that they disentangle input from recurrent contributions to neural activity. The rank-2 connectivity is also characterized by two input-selection vectors of the recurrent connectivity n(1) and n(2), which will be a key driver of the network dynamics, as well as a task readout w.
+Projecting the neural trajectories on the subspace spanned by the two output recurrent vectors shows indeed that the activity of the rank-2 network reproduces well that of the original network, and that both networks rely on four ﬁxed points to perform the task in the manner outlined above (sup. ﬁg. 3e). In the absence of inputs, the neural dynamics of the rank-2 network stay conﬁned to the two-dimensional m(1)-m(2) space, so that the full autonomous dynamics can be visualized as a vector ﬁeld, illuminating the dynamical inner workings of such networks (sup. ﬁg. 3f). This reveals the existence of the four stable ﬁxed points in the dynamical landscape, as well as an unstable ﬁxed point at the origin and four saddle points. Moreover, while tonic inputs are received, which is the case during each stimulation period, the dynamics shift to a two-dimensional afﬁne subspace of the neural state space, parallel to the m(1)-m(2) plane but shifted along the received input vector. The dynamics while a tonic input is received can thus also be visualized as a two-dimensional vector ﬁeld (sup. ﬁg. 3g), explaining how inputs drive transitions from one ﬁxed point to another. More speciﬁcally, only the two stable ﬁxed point on the lower part of the plane are kept during a stimulation by input A, while dynamics have a slight clockwise rotational component. Hence, if input A is
+21
+
+received during a short stimulation period, they are driven towards the lower right part of the plane, where they can stay in a ﬁxed point during the delay period (red and orange trajectories), and if a second input A is received, they will be driven towards the lower left ﬁxed point. Conversely, under input B stimulation, only the two ﬁxed points on the top of the plane are kept, with a very slight counterclockwise rotational component on this plane (at least under the vicinity of the origin, although not very visible in the plotted ﬁeld). Hence, if stimulus B is received ﬁrst, the network will be driven to the top left ﬁxed point. If a second stimulus B is received, the network will stay in that state, whereas if a second input A is received it will be driven towards the top right ﬁxed point (non-match).
+These full dynamical landscapes provide us with a step-by-step decomposition of the task trials, and can also lead to predictions for trials taht do not appear in the task (for example we could predict the network behavior if three stimulations are received, or with longer or shorter stimulations). Moreover, the rank-2 connectivity can illuminate how this dynamical behavior emerges from the learned synaptic weights [3, 9]. A detailed account would go beyond the scope of this text, but some insights can be extracted easily: ﬁrst, looking at the distribution of the weights of all neurons on vectors m(1) and m(2) (sup. ﬁg. 3h), it appears that they separate in four clusters, each scattered around a different mean forming a quadrilateral on this plane. This type of population structure has been shown to enable the apparition of polygons of stable ﬁxed points in the neural state space (see notably [3]). The way in which inputs modify dynamics can also be explained by connectivity features: more speciﬁcally, inputs A and B seem to modify the gains of different groups of neurons, as was the case for the contextual cues in the CDM task. Importantly, the neurons that are driven to a low-gain regime by input A (deﬁned as the set of neurons i such that |IiA| > 1) are characterized by a negative correlation between vectors n(1) and m(2), and neurons driven to a high-gain regime by the same input exhibit a different correlation between these two vectors. Due to this differential distribution, while input A is received the effective coupling between the two latent variables 1 and 2 is modiﬁed. A converse situation happens with input B, explaining how input A generates this slight clockwise rotational component in the dynamics, and input B generates an opposite rotation. These local rotations, coupled with correlations between inputs and the recurrent vectors lead to the apparition of the plotted dynamical landscapes. These analyses could be veriﬁed by examining gains of neurons and performing ablation studies in the full-rank network, as has been done for the CDM task.
+F Experiments on K-back tasks
+To probe the capabilities of the LINT method on tasks that by design require higher-dimensional dynamics, we implemented it on the K-back task, inspired from classical paradigms of sequential working memory tasks [62]. In this task, for a certain ﬁxed K, networks received a random number P K of stimulations in { 1, +1} and had to output the K-th last stimulation received. In particular, for K = 1, this task corresponds to the classic running-memory ﬂip-ﬂop task [55]. Stimulations were received through a single input signal u(t) transmitted by an input vector I and outputs were obtained through a linear readout following eqs. (1) and (6). Each stimulation lasted for 50 ms, and was separated from the next one, or the response period, by a 50 ms delay. We implemented the task following the methods outlined in appendix C, with 512-neuron networks. P was capped at 12.
+This task requires the networks to implement an internal memory with a capacity of at least K bits, it is thus reasonable to believe that a rank at least K is necessary to perform it. We ﬁrst directly sought to validate these intuitions by training networks of increasing ranks to behaviorally perform the task, for K between 2 and 6. We observed that indeed the rank increased as K did, and that a rank equal to K seemed to be sufﬁcient to implement the K-back task (sup. ﬁg. 9a).
+We next probed whether LINT could be applied to full-rank networks trained on the K-back task, despite the higher dimensionality. We thus trained fulpl-rank networks on the task, for K from 2 to 6 (and an initial connectivity of standard deviation ⇢/ N for ⇢ = 0.8), and ﬁtted their trajectories with low-rank networks of increasing ranks. Again, we found that full-rank networks trained on the K-back task appeared to be imitated well by low-rank networks with a rank as low as possible, i.e. K, both in terms of trajectories and behavior (sup. ﬁg. 9).
+22
+
+G Supplementary ﬁgures ⇢ = 0.1
+
+⇢ = 0.5
+
+⇢=1
+
+CDM task
+
+⇢ = 0.5
+
+⇢ = 0.8
+
+⇢ = 1.2
+
+DMS task
+
+Supplementarpy Figure 1: For different values of ⇢, where the standard deviation of initial recurrent weights is ⇢/ N , we train 10 unconstrained networks, and either ﬁt low-rank networks to their trajectories with increasing ranks or truncate their connectivity matrices to the same rank. The obtained R2 similarity between original and ﬁtted trajectories and task accuracy when plugging low-rank networks to the original readout are illustrated with a different line for each original unconstrained network. Top 2 rows: experiments on Context-dependent decision making task. Bottow 2 rows: experiments on the Delay Match-to-Sample task. Note that with higher initial random recurrent weights, unconstrained networks tend to go to what has been termed as the "lazy" training regime, with potentially higher dimensional trajectories with respect to the the "rich" training regimes for smaller initial weights [15]. This is visible through the poor performance of truncated connectivity matrices, but does not harm the effectiveness of our method.
+23
+
+a.
+
+Context A
+
+b.
+
+Context B
+
+c.
+
++
+
+stim. A coh.
+
+stim. B coh.
+
++
+d.
+-
+
+IiA ni
+IiB ni
+
+correlation
+
+e.
+
+Rank-one (inferred)
+
+All cells No pop. B No pop. A
+
+Full-rank (result)
+All cells No pop. B No pop. A
+
+Ctx B Ctx A
+inp. B inp. B inp. B inp. B
+
+proportion positive choices
+
+inp. A inp. A inp. A
+
+inp. A inp. A inp. A
+
+Supplementary Figure 2: Additional ﬁgures on LINT applied to a full-rank network performing the CDM task (exhibited in ﬁgs. 3 and 4). a. Low-dimensional projections of trial-averaged population trajectories for several combinations of context, stimuli A and B and choice, as in ﬁg. 3 in the original full-rank network (full lines) and the inferred rank-1 network (dashed lines), projected on axes found by targeted dimensionality reduction (TDR) [29] applied to the full-rank network. b. Correlation between the four axes found by TDR on the full-rank network and the connectivity axes inferred by LINT. c. Number of units assigned to each of the three populations used for the reverse-engineering. Here, we manually deﬁned population A as the 100 units with the strongest absolute context A input weight in the rank-1 network (see ﬁg. 3a top), and population B as the 100 units with the strongest context B input weight not in population A. Applying Bayesian GMM clustering with 3 components and a strong mean precision prior gives very similar results. d. For the inferred rank-1 network, joint distributions of connectivity weights on the input vector IA and n, as well as on IB and n. For each population, linear regression lines are plotted. e. Psychometric response matrices in each context for all combination of stimulus coherences, for the inferred and original network when they are left unperturbed or after lesioning populations A and B. Unperturbed matrices indicate expected behavior. One can observe that inactivation of population B leads the networks to always behave as if in context A (losing its capacity to perform in context B), whereas the opposite phenomenon happens when population A is inactivated.
+
+24
+
+correlation PC 3
+
+cum. exp. var. ratio
+
+a.
+R2 b.
+
+c.
+
+d.
+
+PC 1
+
+PC 2
+
+PC axes
+
+principal component
+
+LINT axes
+
+e.
+
+f.
+
+rec. vector m(2)
+
+rec. vector m(2)
+
+rec. vector m(1)
+
+g.
+
+no input
+
+input A
+
+rec. vector m(1) input B
+
+m(2) m(2)
+
+m(2)
+
+m(1)
+
+h.
+
+m(i2)
+
+m(1)
+
+i.
+
+n(i1)
+
+m(1)
+
+j.
+
+n(i1)
+
+m(i1)
+
+m(i2)
+
+m(i2)
+
+Supplementary Figure 3: LINT applied to a full-rank RNN trained on the DMS task. A rank-2 network
+was inferred and is analyzed in this ﬁgure (see Appendix E for details). a. Boxplot representing the distribution of R2 ﬁtting values for individual neurons. b. Cumulative explained variance ratio for top 10 principal components of a PCA applied to trajectories of the full-rank network. c. Trajectories in the four possible task conditions in the original full-rank network, projected on the top 3 principal
+components (squares: delay period, stars: end of trial). d. Correlation between axes inferred by a PCA on the full-rank trajectories and connectivity axes of the inferred rank-2 network. e. Trajectories of the full-rank network (full lines) and the rank-2 model (dashed lines) in the four task conditions, projected on the two recurrent connectivity output vectors m(1) and m(2) (same colors as in c). f. Same trajectories, superposed on the vector ﬁeld representing autonomous dynamics in the rank-2
+RNN. Colors indicate speed of the dynamics (blue: slow, yellow:fast). g. Vector ﬁelds representing the dynamics on the m(1)-m(2) plane. h-j. Connectivity parameter distributions on the rank-2 models... h. on the two recurrent output vectors m(1) and m(2) - four populations can be identiﬁed by GMM clustering. i. on the connectivity vectors m(2) and n(1) - low-gain neurons while input A is received in red, others in green with overlaid linear regressions for both groups. j. on the same vectors, with low-gain neurons while input B is received in red, others in green.
+25
+
+correlation
+
+a. Context A
+c.
+
+Context B
+
+b. +
+
+motion coh.
+
++
+
+color coh.
+
+-
+
+negative motion, positive color, motion context positive motion, negative color, motion context
+
+positive motion, negative color, color context negative motion, positive color, color context
+
+Supplementary Figure 4: Additional illustrations of LINT applied to electrophysiological recordings in monkey A. a. Two-dimensional projections of trial-averaged population trajectories for several combinations of context, choice, and motion or color coherence (indicated by the color code), as in ﬁg. 5c, in the recorded data (full lines) and the rank-1 model (dashed lines), projected on axes inferred by TDR. b. Correlation coefﬁcients between axes identiﬁed by TDR and LINT connectivity axes. c. Pre-processed data responses and rank-1 model responses for individual neurons to 4 different task conditions (uniquely identiﬁed by a context, a color coherence, and a motion coherence. Strongest coherences displayed here). Top row: four best ﬁtted neurons. Middle row: four worse ﬁtted neurons. Bottom row: four randomly selected neurons.
+
+26
+
+motion coh.
+
+a.
+
+c.
+
+Context A
+
+Context B
+
++
+
+-
+b. +
+
+d.
+
+color coh.
+
+Supplementary Figure 5: LINT applied to electrophysiological recordings of a second monkey (monkey F) performing the same task. a-c. Same as ﬁg. 5 for monkey F data. For panel b, 13 neurons for which R2 < 1 do not appear, all having a mean ﬁring rate of less than 3.8 Hz. d. Same as sup. ﬁg. 4 for monkey F, with the 4 best ﬁtted neurons, the 4 worse ﬁtted neurons, and 4 randomly selected neurons.
+27
+
+a.
+
+b.
+
+IiA
+
+IiB IictxA
+
+IictxB mi
+
+ni
+
+IiA
+
+IiB
+
+IictxA
+
+IictxB
+
+mi
+
+ni
+
+Supplementary Figure 6: Distribution of learned connectivity parameters for monkey A. a. Full six-dimensional distribution of the inferred weights on the input and recurrent connectivity vectors of the rank-1 model, plotted through two-dimensional and one-dimensional marginals. GMM clustering can identify two groups of neurons: large-weight neurons (orange) and small-weight neurons (blue). Inactivating the blue population does not affect task performance of the network. b. Same clusters visualized in the mean ﬁring-rate - R2 point cloud (ﬁg. 5a).
+
+28
+
+a.
+
+b.
+
+IiA
+
+IiB IictxA
+
+IictxB mi
+
+ni
+
+IiA
+
+IiB
+
+IictxA
+
+IictxB
+
+mi
+
+ni
+
+Supplementary Figure 7: Same as sup. ﬁg. 6
+
+29
+
+a.
+
+b.
+
+c.
+
+Supplementary Figure 8: Additional results on subsampling experiments. a. Task accuracy for the same ﬁtted networks visualized in ﬁg. 2f. b-c. Similar experiment as that described in ﬁg. 2f, this time where trajectories were generated from a full-rank network trained to perform the DMS task,
+and respectively full-rank and rank-2 networks were ﬁtted to random subsamples of neurons of the original network. Error bars: mean ± std over 10 random subsamples for each ratio value.
+
+a.
+
+b.
+
+c.
+
+Supplementary Figure 9: Networks trained on the K-back task (see appendix F). a. Final accuracy of low-rank networks of increasing rank trained to perform the task, for K between 2 and 6. Notice that a rank K seems necessary and sufﬁcient for the K-back task. b. R2 values for the trajectories of full-rank networks trained on the K-back task, and networks of increasing rank trained to reproduce
+their trajectories, for K between 2 and 6. c. Final task accuracy for the same low-rank networks.
+
+30
+

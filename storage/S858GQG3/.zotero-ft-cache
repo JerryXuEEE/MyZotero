@@ -1,0 +1,1026 @@
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+Further ANNUAL
+REVIEWS Click here to view this article's online features: • Download ﬁgures as PPT slides • Navigate linked references • Download citations • Explore related articles • Search keywords
+Annu. Rev. Stat. Appl. 2018. 5:183–214
+First published as a Review in Advance on December 8, 2017
+The Annual Review of Statistics and Its Application is online at statistics.annualreviews.org
+https://doi.org/10.1146/annurev- statistics041715- 033733
+Copyright c 2018 by Annual Reviews. All rights reserved
+
+Annual Review of Statistics and Its Application
+Computational Neuroscience:
+Mathematical and Statistical
+Perspectives
+Robert E. Kass,1 Shun-Ichi Amari,2 Kensuke Arai,3 Emery N. Brown,4,5 Casey O. Diekman,6 Markus Diesmann,7,8 Brent Doiron,9 Uri T. Eden,3 Adrienne L. Fairhall,10 Grant M. Fiddyment,3 Tomoki Fukai,2 Sonja Gru¨ n,7,8 Matthew T. Harrison,11 Moritz Helias,7,8 Hiroyuki Nakahara,2 Jun-nosuke Teramae,12 Peter J. Thomas,13 Mark Reimers,14 Jordan Rodu,15 Horacio G. Rotstein,16,17 Eric Shea-Brown,10 Hideaki Shimazaki,18,19 Shigeru Shinomoto,19 Byron M. Yu,20 and Mark A. Kramer3
+1Department of Statistics, Machine Learning Department, and Center for the Neural Basis of Cognition, Carnegie Mellon University, Pittsburgh, Pennsylvania 15213, USA; email: kass@stat.cmu.edu 2Mathematical Neuroscience Laboratory, RIKEN Brain Science Institute, Wako, Saitama Prefecture 351-0198, Japan 3Department of Mathematics and Statistics, Boston University, Boston, Massachusetts 02215, USA 4Department of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, Massachusetts 02139, USA 5Department of Anesthesia, Harvard Medical School, Boston, Massachusetts 02115, USA 6Department of Mathematical Sciences, New Jersey Institute of Technology, Newark, New Jersey 07102, USA 7Institute of Neuroscience and Medicine, Ju¨ lich Research Centre, 52428 Ju¨ lich, Germany 8Department of Theoretical Systems Neurobiology, Institute of Biology, RWTH Aachen University, 52062 Aachen, Germany 9Department of Mathematics, University of Pittsburgh, Pittsburgh, Pennsylvania 15260, USA 10Department of Physiology and Biophysics, University of Washington, Seattle, Washington 98105, USA 11Division of Applied Mathematics, Brown University, Providence, Rhode Island 02912, USA 12Department of Integrated Theoretical Neuroscience, Osaka University, Suita, Osaka Prefecture 565-0871, Japan
+183
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+13Department of Mathematics, Applied Mathematics, and Statistics, Case Western Reserve University, Cleveland, Ohio 44106, USA 14Department of Neuroscience, Michigan State University, East Lansing, Michigan 48824, USA 15Department of Statistics, University of Virginia, Charlottesville, Virginia 22904, USA 16Federated Department of Biological Sciences, Rutgers University/New Jersey Institute of Technology, Newark, New Jersey 07102, USA 17Institute for Brain and Neuroscience Research, New Jersey Institute of Technology, Newark, New Jersey 07102, USA 18Honda Research Institute Japan, Wako, Saitama Prefecture 351-0188, Japan 19Department of Physics, Kyoto University, Kyoto, Kyoto Prefecture 606-8502, Japan 20Department of Electrical and Computer Engineering and Department of Biomedical Engineering, Carnegie Mellon University, Pittsburgh, Pennsylvania 15213, USA
+Keywords neural data analysis, neural modeling, neural networks, theoretical neuroscience
+Abstract Mathematical and statistical models have played important roles in neuroscience, especially by describing the electrical activity of neurons recorded individually, or collectively across large networks. As the ﬁeld moves forward rapidly, new challenges are emerging. For maximal effectiveness, those working to advance computational neuroscience will need to appreciate and exploit the complementary strengths of mechanistic theory and the statistical paradigm.
+1. INTRODUCTION Brain science seeks to understand the myriad functions of the brain in terms of principles that lead from molecular interactions to behavior. Although the complexity of the brain is daunting and the ﬁeld seems brazenly ambitious, painstaking experimental efforts have made impressive progress. While investigations, being dependent on methods of measurement, have frequently been driven by clever use of the newest technologies, many diverse phenomena have been rendered comprehensible through interpretive analysis, which has often leaned heavily on mathematical and statistical ideas. These ideas are varied, but a central framing of the problem has been to “elucidate the representation and transmission of information in the nervous system” (Perkel & Bullock 1968, p. 232). In addition, new and improved measurement and storage devices have enabled increasingly detailed recordings, as well as methods of perturbing neural circuits, with many scientists feeling at once excited and overwhelmed by opportunities of learning from the ever-larger and more complex data sets they are collecting. Thus, computational neuroscience has come to encompass not only a program of modeling neural activity and brain function at all levels of detail and abstraction, from subcellular biophysics to human behavior, but also advanced methods for analysis of neural data.
+In this article, we focus on a fundamental component of computational neuroscience, the modeling of neural activity recorded in the form of action potentials (APs), known as spikes, and sequences of them known as spike trains (see Figure 1). In a living organism, each neuron is connected to many others through synapses, with the totality forming a large network. We discuss both mechanistic models formulated with differential equations and statistical models for data analysis, which use probability to describe variation. Mechanistic and statistical approaches are
+184 Kass et al.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+Voltage (mV)
+
+a
+40 20
+0 –20
+
+0
+
+100
+
+Time (ms)
+
+TRIAL b
+1
+
+TRIAL 2
+
+TRIAL 3
+0
+
+200 400 600 800 1,000 1,200 1,400 1,600 1,800 Time (ms)
+
+Neuron 1 Neuron 2 Neuron 3 Neuron 4
+Neuron 1 Neuron 2 Neuron 3 Neuron 4
+Neuron 1 Neuron 2 Neuron 3 Neuron 4
+
+Figure 1
+Action potential and spike trains. (a) The voltage drop recorded across a neuron’s cell membrane. The voltage ﬂuctuates stochastically but tends to drift upward, and when it rises to a threshold level (dashed gray line) the neuron ﬁres an action potential, after which it returns to a resting state; the neuron then responds to inputs that will again make its voltage drift upward toward the threshold. This is often modeled as drifting Brownian motion that results from excitatory and inhibitory Poisson process inputs (Gerstein & Mandelbrot 1964, Tuckwell 1988). (b) Spike trains recorded from four neurons repeatedly across three experimental replications, known as trials. The spike times are irregular within trials, and there is substantial variation across trials and across neurons.
+
+complementary, but their starting points are different, and their models have tended to incorporate different details. Mechanistic models aim to explain the dynamic evolution of neural activity based on hypotheses about the properties governing the dynamics. Statistical models aim to assess major drivers of neural activity by taking account of indeterminate sources of variability labeled as noise. These approaches have evolved separately, but they are now being drawn together. For example, neurons can be either excitatory, causing depolarizing responses at downstream (postsynaptic) neurons (i.e., responses that push the voltage toward the ﬁring threshold, as illustrated in Figure 1), or inhibitory, causing hyperpolarizing postsynaptic responses (that push the voltage away from threshold). This detail has been crucial for mechanistic models but, until relatively recently, has been largely ignored in statistical models. Similarly, during experiments, neural activity changes while an animal reacts to a stimulus or produces a behavior. This kind of nonstationarity has been seen as a fundamental challenge in the statistical work we review here, whereas mechanistic approaches have tended to emphasize emergent behavior of the system. In current research, as the two perspectives are being combined increasingly often, the distinction has become blurred. Our purpose in this review is to provide a succinct summary of key ideas in both approaches, together with pointers to the literature, while emphasizing their scientiﬁc interactions. We introduce the subject with some historical background, and in subsequent sections we describe mechanistic and statistical models of the activity of individual neurons and networks of neurons. We also highlight several domains where the two approaches have had fruitful interaction.
+
+1.1. The Brain-as-Computer Metaphor
+The modern notion of computation may be traced to a series of investigations in mathematical logic in the 1930s, including the Turing machine (Turing 1937). Although we now understand logic as a mathematical subject existing separately from human cognitive processes, it was natural to conceptualize the rational aspects of thought in terms of logic [as in Boole’s Investigation of the Laws of Thought, which “aimed to investigate those operations of the mind by which reasoning is performed” (Boole 1854, p. 1)], and this led to the 1943 proposal by Craik that the nervous system could be viewed “as a calculating machine capable of modeling or paralleling external events”
+www.annualreviews.org • Computational Neuroscience 185
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+a
+AND
+x1 > 1
+1
+
+Σ
+
+y
+
+1 x2
+
+b
+Perceptron
+
+1 w0
+x1 w1 Σ
+x2 w2
+w3 x3
+
+> c y
+
+Figure 2
+(a) McCulloch–Pitts neurons x1 and x2 each send binary activity to neuron y using the rule y = 1 if x1 + x2 > 1 and y = 0 otherwise; this corresponds to the logical AND operator. Other logical operators NOT, OR, and NOR may be similarly implemented by thresholding. (b) In a perceptron, the general form of output is based on thresholding linear combinations, for example, y = 1 when wi xi > c and y = 0 otherwise. The values wi are called synaptic weights. However, because networks of perceptrons (and their more modern artiﬁcial neural network descendants) are far simpler than networks in the brain, each artiﬁcial neuron corresponds conceptually not to an individual neuron in the brain, but instead to large collections of neurons in the brain.
+
+(Craik 1943, p. 120), while McCulloch and Pitts provided what they called “a logical calculus of the ideas immanent in nervous activity” (McCulloch & Pitts 1943). In fact, although it was an outgrowth of preliminary investigations by many early theorists (Piccinini 2004), the McCulloch & Pitts paper stands as a historical landmark for the origins of artiﬁcial intelligence, along with the notion that mind can be explained by neural activity through a formalism that aims to deﬁne the brain as a computational device (see Figure 2). In the same year, another noteworthy essay by Wiener and colleagues argued that in studying any behavior, its purpose must be considered, and this requires recognition of the role of error correction in the form of feedback (Rosenblueth et al. 1943). Soon after, Wiener consolidated these ideas in the term cybernetics (Wiener 1948). Also in 1948, Shannon published his hugely inﬂuential work on information theory that, beyond its technical contributions, solidiﬁed information (the reduction of uncertainty) as an abstract quantiﬁcation of the content being transmitted across communication channels, including those in brains and computers (reprinted in Shannon & Weaver 1949).
+The ﬁrst computer program that could do something previously considered exclusively the product of human minds was the Logic Theorist (Newell & Simon 1956), which succeeded in proving 38 of the 52 theorems concerning the logical foundations of arithmetic in chapter 2 of Principia Mathematica (Whitehead & Russell 1935). The program was written in a list-processing language they created (a precursor to LISP) and provided a hierarchical symbol manipulation framework together with various heuristics, which were formulated by analogy with human problem solving (Gugerty 2006). It was also based on serial processing, as envisioned by Turing and others.
+A different kind of computational architecture, developed by Rosenblatt (1958), combined the McCulloch–Pitts conception with a learning rule based on ideas articulated by Hebb (Hebb 1949), now known as Hebbian learning. Hebb’s rule was, “when an axon of cell A is near enough to excite a cell B and repeatedly or persistently takes part in ﬁring it, some growth process or metabolic change takes place in one or both cells such that A’s efﬁciency, as one of the cells ﬁring B, is increased” (Hebb 1949, p. 62), that is, the strengths of the synapses connecting the two neurons increase, which is sometimes stated colloquially as “neurons that ﬁre together, wire together.” Rosenblatt called his primitive neurons perceptrons, and he created a rudimentary classiﬁer, aimed
+
+186 Kass et al.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+at imitating biological decision making, from a network of perceptrons (see Figure 2). This was the ﬁrst artiﬁcial neural network that could carry out a nontrivial task.
+As the foregoing historical outline indicates, the brain-as-computer metaphor was solidly in place by the end of the 1950s. It rested on a variety of technical speciﬁcations of the notions that (a) logical thinking is a form of information processing, (b) information processing is the purpose of computer programs, and (c) information processing may be implemented by neural systems (explicitly in the case of McCulloch–Pitts model and its descendants, but implicitly otherwise). A crucial recapitulation of the information processing framework, given later by Marr (1982, p. 72), distinguished three levels of analysis: computation (“What is the goal of the computation, why is it appropriate, and what is the logic of the strategy by which it can be carried out?”), algorithm (“What is the representation for the input and output, and what is the algorithm for the transformation?”), and implementation (“How can the representation and algorithm be realized physically?”). This remains a very useful way to categorize descriptions of brain computation.
+
+Rate coding: stimulus or behavior changes ﬁring rate
+Temporal coding: stimulus or behavior changes precise timing of spikes
+
+1.2. Neurons as Electrical Circuits
+A rather different line of mathematical work, more closely related to neurobiology, had to do with the electrical properties of neurons. So-called animal electricity had been observed by Galvani in 1791 (Galvani & Aldini 1792). The idea that the nervous system was made up of individual neurons was put forth by Cajal in 1886, the synaptic basis of communication across neurons was established by Sherrington (with the term “synapse” ﬁrst appearing in Foster & Sherrington 1897), and the notion that neurons were electrically excitable in a manner similar to a circuit involving capacitors and resistors in parallel was proposed by Hermann in 1905 (Piccolino 1998). In 1907, Lapique gave an explicit solution to the resulting differential equation, in which the key constants could be determined from data, and he compared what is now known as the leaky integrateand-ﬁre (LIF) model with his own experimental results (Lapique 1907, Abbott 1999, Brunel & Van Rossum 2007). This model, and variants of it, remain in use today (Gerstner et al. 2014), and we return to it in Section 2 (see Figure 3). Then, a series of investigations by Adrian and colleagues established the “all or nothing” nature of the AP—that increasing a stimulus intensity does not change the voltage proﬁle of an AP but, instead, increases the neural ﬁring rate (Adrian & Zotterman 1926). The conception that stimulus or behavior is related to ﬁring rate has become ubiquitous in neurophysiology. It is often called rate coding, in contrast to temporal coding, which involves the information carried in the precise timing of spikes (Abeles 1982, Shadlen & Movshon 1999, Singer 1999).
+Following these fundamental descriptions, remaining puzzles about the details of AP generation led to investigations by several neurophysiologists and, ultimately, to one of the great scientiﬁc triumphs, the Hodgkin–Huxley model (Hodgkin & Huxley 1952). The model consisted of a differential equation for the neural membrane potential (in the squid giant axon) together with three subsidiary differential equations for the dynamic properties of the sodium and potassium ion channels (see Figure 4). This work produced accurate predictions of the time courses of membrane conductances, the form of the AP, the change in AP form with varying concentrations of sodium, the number of sodium ions involved in inward ﬂux across the membrane, the speed of AP propagation, and the voltage curves for sodium and potassium ions (Hodgkin & Huxley 1952, Hille 2001). Thus, by the time the brain-as-computer metaphor had been established, the power of biophysical modeling had also been demonstrated. Over the past 60 years, the Hodgkin–Huxley equations have been reﬁned, but the model’s fundamental formulation has endured and serves as the basis for many present-day models of single neuron activity (see Section 2.2).
+www.annualreviews.org • Computational Neuroscience 187
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+a Leaky integrate-and-fire model
+
+Input current: I
+
+Vin
+
+Capacitor
+
+Resistor Battery
+
+c
+
+Vout = 0 mV
+
+b
+If V < Vthreshold then
+
+dV dt
+
+=–
+
+V – (Vrest + I R) τ
+
+If V ≥ Vthreshold then
+
+V = Vreset
+
+Vthreshold
+
+AP
+
+AP
+
+AP
+
+AP
+
+AP
+
+AP
+
+AP
+
+AP
+
+V(t)
+
+Vrest Vreset
+0
+
+40
+
+80
+
+Time (ms)
+
+Figure 3
+(a) The leaky integrate-and-ﬁre (LIF) model is motivated by an equivalent circuit. The capacitor represents the cell membrane through which ions cannot pass. The resistor represents channels in the membrane (through which ions can pass) and the battery represents a difference in ion concentration across the membrane. (b) The equivalent circuit motivates the differential equation that describes voltage dynamics ( gray box). When the voltage reaches a threshold value (V threshold), it is reset to a smaller value (Vreset). In this model, the occurrence of a reset indicates an action potential; the rapid voltage dynamics of action potentials are not included in the model. (c) An example trace of the LIF model voltage (blue). When the input current (I ) is large enough, the voltage increases until reaching the voltage threshold (red horizontal line), at which time the voltage is set to the reset voltage (dark yellow horizontal line). The times of reset are labeled AP (action potential). In the absence of an applied current (I = 0), the voltage approaches a stable equilibrium value (Vrest).
+
+Tuning curve: the trial-averaged ﬁring rate of a neuron considered as a function of one or more variables
+
+1.3. Receptive Fields and Tuning Curves
+In early recordings from the optic nerve of the Limulus (horseshoe crab), Hartline found that shining a light on the eye could drive individual neurons to ﬁre, and that a neuron’s ﬁring rate increased with the intensity of the light (Hartline & Graham 1932). He called the location of the light that drove the neuron to ﬁre the neuron’s receptive ﬁeld. In primary visual cortex (known as area V1), the ﬁrst part of cortex to get input from the retina, Hubel & Wiesel (1959) showed that bars of light moving across a particular part of the visual ﬁeld, again labeled the receptive ﬁeld, could drive a particular neuron to ﬁre, and furthermore, that the orientation of the bar of light was important: Many neurons were driven to ﬁre most rapidly when the bar of light moved in one direction, and they ﬁred much more slowly when the orientation was rotated 90 degrees away. When ﬁring rate is considered as a function of orientation, this function has come to be known as a tuning curve (Dayan & Abbott 2001). More recently, the terms “receptive ﬁeld” and “tuning curve” have been generalized to refer to nonspatial features that drive neurons to ﬁre. The notion of tuning curves, which could involve many dimensions of tuning simultaneously, is widely applied in computational neuroscience.
+1.4. Networks
+Neuron-like artiﬁcial neural networks, advancing beyond perceptron networks, were developed during the 1960s and 1970s, especially in work on associative memory (Amari 1977b), where a memory is stored as a pattern of activity that can be recreated by a stimulus when it provides even
+
+188 Kass et al.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+a Hodgkin-Huxley model
+(Na+) (K+)
+
+b
+
+C
+
+dV dt
+
+K+ current Na+ current Leak current = I(t) – g–Kn4 (V – VK) – g–Nam3h (V – VNa) – g–L (V – VL)
+
+dn = – n – n∞ (V ) , dm = – m – m∞ (V ) , dh = – h – h∞ (V )
+
+dt
+
+τn (V )
+
+dt
+
+τm (V ) dt
+
+τh (V )
+
+c
+Steady state function
+
+1.0
+
+m∞(V )
+
+10
+
+h∞(V )
+
+n∞(V )
+
+Time constant
+τh(V )
+
+Time (ms)
+
+0.5
+0 –100
+d
+
+τn(V )
+
+τm(V ) 0
+
+0 mV
+
++40
+
+–100
+
+0
+
++40
+
+mV
+
+Membrane voltage (mV)
+
+Gating variable
+
+V(t) 1
+0 h(t)
+
+n(t)
+
+–60 m(t) 0
+
+0
+
+10
+
+Time (ms)
+
+Figure 4
+The Hodgkin–Huxley model provides a mathematical description of a neuron’s voltage dynamics in terms of changes in sodium (Na+) and potassium (K+) ion concentrations. The cartoon in (a) illustrates a cell body with membrane channels through which sodium and potassium ions may pass. (b) The model consists of four coupled nonlinear differential equations that describe the voltage dynamics (V ), which vary according to an input current (I ), a potassium current, a sodium current, and a leak current. The conductances of the potassium (n) and sodium currents (m, h) vary in time, which controls the ﬂow of sodium and potassium ions through the neural membrane. (c) Each channel’s dynamics depends on a steady state function and a time constant. The steady state functions range from 0 to 1, where 0 indicates that the channel is closed (ions cannot pass), and 1 indicates that the channel is open (ions can pass). One might visualize these channels as gates that swing open and closed, allowing ions to pass or impeding their ﬂow; these gates are indicated in green and red in the diagram in panel a. The steady state functions depend on the voltage; the vertical dashed gray line indicates the typical resting voltage value of a neuron. The time constants are less than 10 ms and are smallest for one component of the sodium channel (the sodium activation gate m). (d ) During an action potential, the voltage undergoes a rapid depolarization (V increases) and then less rapid hyperpolarization (V decreases), supported by the opening and closing of the membrane channels.
+
+www.annualreviews.org • Computational Neuroscience 189
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+a partial match to the pattern. To describe a given activation pattern, Hopﬁeld (1982) applied statistical physics tools to introduce an energy function and showed that a simple update rule would decrease the energy so that the network would settle to a pattern-matching attractor state. Hopﬁeld’s network model is an example of what statisticians call a two-way interaction model for N binary variables, where the energy function becomes the negative log-likelihood function. Hinton & Sejnowski (1983) provided a stochastic mechanism for optimization and the interpretation that a posterior distribution was being maximized, calling their method a Boltzmann machine because the probabilities they used were those of the Boltzmann distribution in statistical mechanics. Geman & Geman (1984) then provided a rigorous analysis together with their reformulation in terms of the Gibbs sampler. Additional tools from statistical mechanics were used to calculate memory capacity and other properties of memory retrieval (Amit et al. 1987), which created further interest in these models among physicists.
+Artiﬁcial neural networks gained traction as models of human cognition through a series of developments in the 1980s (Medler 1998), producing the paradigm of parallel distributed processing (PDP). PDP models are multilayered networks of nodes resembling those of their perceptron precursor, but they are interactive, or recurrent, in the sense that they are not necessarily feedforward: Connections between nodes can go in both directions, and they may have structured inhibition and excitation (Rumelhart et al. 1986). In addition, training (i.e., estimating parameters by minimizing an optimization criterion such as the sum of squared errors across many training examples) is done by a form of gradient descent known as back propagation (because iterations involve steps backward from output errors toward input weights). Although the nodes within these networks do not correspond to individual neurons, features of the networks, including back propagation, are usually considered to be biologically plausible. For example, synaptic connections between biological neurons change their strength (they are plastic) following rules consistent with theoretical models (e.g., Hebb’s rule). Furthermore, PDP models can reproduce many behavioral phenomena, famously including generation of past tense for English verbs and making childlike errors before settling on correct forms (McClelland & Rumelhart 1981). Currently, there is increased interest in neural network models through deep learning, which we discuss in Section 3.4.5.
+Analysis of the overall structure of network connectivity, exempliﬁed in research on social networks (see Fienberg 2012 for historical overview), has received much attention following the 1998 observation that several very different kinds of networks, including the neural connectivity in the worm Caenorhabditis elegans, exhibit “small world” properties of short average path length between nodes, together with substantial clustering of nodes, and that these properties may be described by a relatively simple stochastic model (Watts & Strogatz 1998). This style of network description has since been applied in many contexts involving brain measurement, mainly using structural and functional magnetic resonance imaging (fMRI) (Bullmore & Sporns 2009, Bassett & Bullmore 2016), though cautions have been issued regarding the difﬁculty of interpreting results physiologically (Papo et al. 2016).
+1.5. Statistical Models
+Stochastic considerations have been part of neuroscience since the ﬁrst descriptions of neural activity, outlined brieﬂy above, owing to the statistical mechanics underlying the ﬂow of ions across channels and synapses (Destexhe et al. 1994, Colquhoun & Sakmann 1998). Spontaneous ﬂuctuations in a neuron’s membrane potential are believed to arise from the random opening and closing of ion channels, and this spontaneous variability has been analyzed using a variety of statistical methods (Sigworth 1980). Such analysis provides information about the numbers
+190 Kass et al.
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+and properties of the ion channel populations responsible for excitability. Probability has also been used extensively in psychological theories of human behavior for more than 100 years (e.g., Stigler 1986, chapter 7). Especially popular theories used to account for behavior include Bayesian inference and reinforcement learning, which we touch on in Sections 3.4.3 and 3.4.4. A more recent interest is determining signatures of statistical algorithms in neural function. For example, drifting diffusion to a threshold, which is used with LIF models (Tuckwell 1988), has also been used to describe models of decision making based on neural recordings (Gold & Shadlen 2007). However, these are all examples of ways that statistical models have been used to describe neural activity, which is very different from the role of statistics in data analysis. Before previewing our treatment of data analytic methods, we describe the types of data that are relevant to this article.
+1.6. Recording Modalities
+Efforts to understand the nervous system must consider both anatomy (its constituents and their connectivity) and function (neural activity and its relationship to the apparent goals of an organism). Anatomy does not determine function but does strongly constrain it. Anatomical methods range from a variety of microscopic methods to static, whole-brain MRI (magnetic resonance imaging) (Fischl et al. 2002). Functional investigations range across spatial and temporal scales, from recordings from ion channels, to APs, to local ﬁeld potentials (usually called LFPs) due to the activity of many thousands of neural synapses. Functional measurements outside the brain (still reﬂecting electrical activity within it) come from electroencephalography (EEG) (Nunez & Srinivasan 2006) and magnetoencephalography (Ha¨ma¨la¨inen et al. 1993), as well as indirect methods that measure a physiological or metabolic parameter closely associated with neural activity, including positron emission tomography (Bailey et al. 2005), fMRI (Lazar 2008), and near-infrared resonance spectroscopy (Villringer et al. 1993). These functional methods have timescales spanning milliseconds to minutes, and spatial scales ranging from a few cubic millimeters to many cubic centimeters.
+Interesting mathematical and statistical problems arise in nearly every kind of neuroscience data, but we focus here on neural spiking activity. Spike trains are sometimes recorded from individual neurons in tissue that has been extracted from an animal and maintained over hours in a functioning condition (in vitro). In this setting, the voltage drop across the membrane is nearly deterministic; then, when the neuron is driven with the same current input on each of many repeated trials, the timing of spikes is often replicated precisely across the trials (Mainen & Sejnowski 1995), as seen in portions of the spike trains in Figure 5b. Recordings from brains of living animals (in vivo) show substantial irregularity in spike timing, as in Figure 1. These recordings often come from electrodes that have been inserted into brain tissue near, but not on or in, the neuron generating a resulting spike train; that is, they are extracellular recordings. The data could come from one up to dozens, hundreds, or even thousands of electrodes. Because the voltage on each electrode is due to activity of many nearby neurons, with each neuron contributing its own voltage signature repeatedly, there is an interesting statistical clustering problem known as spike sorting (Carlson et al. 2014, Rey et al. 2015), but we ignore that here. Another important source of information about activity, recorded from many individual neurons simultaneously, is calcium imaging, in which light is emitted by ﬂuorescent indicators in response to the ﬂow of calcium ions into neurons when they ﬁre (Grienberger & Konnerth 2012). Calcium dynamics, and the nature of the indicator, limit temporal resolution to between tens and several hundreds of milliseconds. Signals can be collected using one-photon microscopy even from deep in the brain of a behaving animal; two-photon microscopy provides signiﬁcantly higher spatial resolution but at the cost of limiting recordings to the brain surface. Because of the temporal smoothing, extraction
+www.annualreviews.org • Computational Neuroscience 191
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only. Stimulus filter, g0(s) (AU)
+
+a
+Stimulus
+
+b
+1.0 0.8
+
+0.6
+
+0.4
+
+0.2
+
+Mitral
+
+cell
+
+0
+
+1,750
+
+Time (ms)
+
+–0.2
+
+1,950
+
+–50
+
+–40
+
+–30
+
+–20
+
+–10
+
+0
+
+Time (ms)
+
+Figure 5
+(a) Current (stimulus, red line) injected into a mitral cell from the olfactory system of a mouse, together with the neural spiking response (blue circles) across many trials (each row displays the spike train for a particular trial). The response is highly regular across trials, but at some points in time it is somewhat variable. (b) A stimulus ﬁlter ﬁtted to the complete set of data using the model in Equation 3, where the stimulus ﬁlter, that is, the function g0(s ), represents the contribution to the ﬁring rate due to the current I (t − s ) at s milliseconds prior to time t. Figure modiﬁed from Wang et al. (2015).
+
+of spiking data from calcium imaging poses its own set of statistical challenges (Pnevmatikakis et al. 2016).
+Neural ﬁring rates vary widely, depending on recording site and physiological circumstances, from quiescent (essentially 0 spikes per second) to as many as 200 spikes per second. The output of spike sorting is a sequence of spike times, typically at time resolution of 1 ms (the approximate width of an AP). Many analyses are based on spike counts across relatively long time intervals (numbers of spikes that occur in time bins of tens or hundreds of milliseconds), but some are based on the more complete precise timing information provided by the spike trains.
+In some special cases, mainly in networks recorded in vitro, neurons are densely sampled and it is possible to study the way activity of one neuron directly inﬂuences the activity of other neurons (Pillow et al. 2008). However, in most experimental settings to date, a very small proportion of the neurons in the circuit are sampled.
+
+1.7. Data Analysis
+In experiments involving behaving animals, each experimental condition is typically repeated across many trials. On any two trials, there will be at least slight differences in behavior, neural activity throughout the brain, and contributions from molecular noise, all of which results in considerable variability of spike timing. Thus, a spike train may be regarded as a point process, that is, a stochastic sequence of event times, with the events being spikes. We discuss point process modeling below, but note here that the data are typically recorded as sparse binary time series in 1-ms time bins (1 if spike, 0 if no spike). When spike counts within broader time bins are considered, they may be assumed to form continuous-valued time series, and this is the framework for some of the methods referenced below. It is also possible to apply time series methods directly to the binary data, or smoothed versions of them, but see the caution in Kass et al. (2014, section 19.3.7). A common aim is to relate an observed pattern of activity to features of the experimental stimulus
+
+192 Kass et al.
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+or behavior. However, in some settings predictive approaches are used, often under the rubric of decoding, in the sense that neural activity is decoded to predict the stimulus or behavior. In this case, tools associated with the ﬁeld of statistical machine learning may be especially useful (Ventura & Todorova 2015). We omit many interesting questions that arise in the course of analyzing biological neural networks, such as the distribution of the postsynaptic potentials that represent synaptic weights (Teramae et al. 2012, Buzsa´ki & Mizuseki 2014).
+Data analysis is performed by scientists with diverse backgrounds. Statistical approaches use frameworks built on probabilistic descriptions of variability, both for inductive reasoning and for analysis of procedures. The resulting foundation for data analysis has been called the statistical paradigm (Kass et al. 2014, section 1.2).
+1.8. Components of the Nervous System When we speak of neurons, or brains, we are indulging in sweeping generalities: properties may depend not only on what is happening to the organism during a study, but also on the component of the nervous system studied and the type of animal being used. Popular organisms in neuroscience include worms, mollusks, insects, ﬁsh, birds, rodents, nonhuman primates, and, of course, humans. The nervous system of vertebrates comprises the brain, spinal cord, and peripheral system. The brain itself includes both the cerebral cortex and subcortical areas. Neuroscience textbooks use varying organizational rubrics, but major topics include the molecular physiology of neurons, sensory systems, the motor system, and systems that support higher-order functions associated with complex and ﬂexible behavior (Swanson 2012, Kandel et al. 2013). Attempts at understanding computational properties of the nervous system have often focused on sensory systems: They are more easily accessed experimentally, controlled inputs to them can be based on naturally occurring inputs, and their response properties are comparatively simple. In addition, much attention has been given to the cerebral cortex, which is involved in higher-order functioning.
+2. SINGLE NEURONS Mathematical models typically aim to describe the way a given phenomenon arises from some architectural constraints. Statistical models typically are used to describe what a particular data set can say concerning the phenomenon, including the strength of evidence. We very brieﬂy outline these approaches in the case of single neurons and then review attempts to bring them together.
+2.1. Leaky Integrate-and-Fire Models and Their Extensions Originally proposed more than a century ago, the LIF model (Figure 3) continues to serve an important role in neuroscience research (Abbott 1999). Although LIF neurons are deterministic, they often mimic the variation in spike trains of real neurons recorded in vitro, such as those in Figure 5. In Figure 5a, the same ﬂuctuating current is applied repeatedly as input to the neuron, and this creates many instances of spike times that are highly precise in the sense of being replicated across trials; some other spike times are less precise. Precise spike times occur when a large slope in the input current leads to wide recruitment of ion channels (Mainen & Sejnowski 1995). Temporal locking of spikes to high frequency inputs also can be seen in LIF models (Goedeke & Diesmann 2008). Many extensions of the original LIF model have been developed to capture other features of observed neuronal activity (Gerstner et al. 2014), including more realistic spike initiation through inclusion of a quadratic term, and incorporation of a second dynamical variable to simulate adaptation and to capture more diverse patterns of neuronal spiking
+www.annualreviews.org • Computational Neuroscience 193
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+and bursting. Even though these models ignore the biophysics of AP generation (which involve the conductances generated by ion channels, as in the Hodgkin–Huxley model), they are able to capture the nonlinearities present in several biophysical neuronal models (Rotstein 2015). The impact of stochastic effects due to the large number of synaptic inputs delivered to an LIF neuron has also been extensively studied using diffusion processes (Lansky & Ditlevsen 2008).
+
+2.2. Biophysical Models
+There are many extensions of the Hodgkin–Huxley framework outlined in Figure 4. These include models that capture additional biological features, such as additional ionic currents (Somjen 2004) and aspects of the neuron’s extracellular environment (Wei et al. 2014), both of which introduce new fast and slow timescales to the dynamics. Contributions due to the extensive dendrites (which receive inputs to the neuron) have been simulated in detailed biophysical models (Rall 1962). Although increased biological realism necessitates additional mathematical complexity, especially when large populations of neurons are considered, the Hodgkin–Huxley model and its extensions remain fundamental to computational neuroscience research (Traub et al. 2005, Markram et al. 2015).
+Simpliﬁed mathematical models of single neuron activity have facilitated a dynamical understanding of neural behavior. The Fitzhugh–Nagumo model is a purely phenomenological model, based on geometric and dynamic principles, and not directly on the neuron’s biophysics (Fitzhugh 1960, Nagumo et al. 1962). Because of its low dimensionality, it is amenable to phase-plane analysis using dynamical systems tools (e.g., examining the nullclines, equilibria, and trajectories).
+An alternative approach is to simplify the equations of a detailed neuronal model in ways that retain a biophysical interpretation (Ermentrout & Terman 2010). For example, by making a steadystate approximation for the fast ionic sodium current activation in the Hodgkin–Huxley model (m in Figure 4) and recasting two of the gating variables (n and h), it is possible to simplify the original Hodgkin–Huxley model to a two-dimensional model, which can be investigated more easily in the phase plane (Gerstner et al. 2014). The development of simpliﬁed models is closely interwoven with bifurcation theory and the theory of normal forms within dynamical systems (Izhikevich 2007). One well-studied reduction of the Hodgkin–Huxley equations to a 2D conductance-based model was developed by Rinzel (1985). In this case, the geometries of the phenomenological Fitzhugh–Nagumo model and the simpliﬁed Rinzel model are qualitatively similar. Yet another approach to dimensionality reduction consists of neglecting the spiking currents (fast sodium and delayed-rectifying potassium) and considering only the currents that are active in the subthreshold regime (Rotstein et al. 2006). This cannot be done in the original Hodgkin–Huxley model, because the only ionic currents are those that lead to spikes, but it is useful in models that include additional ionic currents in the subthreshold regime.
+
+Absolute refractory period: after a neuron ﬁres, the sodium channels are unable to open for approximately 1 ms
+
+2.3. Point Process Regression Models of Single Neuron Activity
+Mathematically, the simplest model for an irregular spike train is a homogeneous Poisson process, for which the probability of spiking within a time interval (t, t + t], for small t, may be written
+P(spike in (t, t + t]) ≈ λ t,
+where λ represents the ﬁring rate of the neuron and where disjoint intervals have independent spiking. This model, however, is often inadequate for many reasons. For one thing, neurons have noticeable refractory periods following a spike, during which the probability of spiking goes to zero (the absolute refractory period) and then gradually increases, often over tens of milliseconds (the
+
+194 Kass et al.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+relative refractory period). In this sense neurons exhibit memory effects, often called spike history effects. To capture those, and many other physiological effects, more general point processes must be used. We now outline the key ideas underlying point process modeling of spike trains.
+As we indicated in Section 1.2, a fundamental result in neurophysiology is that neurons respond to a stimulus or contribute to an action by increasing their ﬁring rates. The measured ﬁring rate of a neuron within a time interval would be the number of spikes in the interval divided by the length of the interval (usually in units of seconds, so that the ratio is in spikes per second, or Hz). The point process framework centers on the theoretical instantaneous ﬁring rate, which takes the expected value of this ratio and passes to the limit as the length of the time interval goes to zero, giving an intensity function for the process. To accurately model a neuron’s spiking behavior, however, the intensity function typically must itself evolve over time, depending on factors such as changing inputs and experimental conditions, the recent past spiking behavior of the neuron, the behavior of other neurons, and the behavior of local ﬁeld potentials. It is therefore called a conditional intensity function and may be written in the following form:
+
+λ(t|xt) =
+
+lim E(N (t,t+
+t→0
+
+t]|Xt t
+
+= xt) ,
+
+where N (t,t+ t] is the number of spikes in the interval (t, t + t] and where the vector Xt includes both the past spiking history Ht prior to time t and also any other quantities that affect the neuron’s current spiking behavior. In some special cases, the conditional intensity will be deterministic, but in general, because Xt is random, the conditional intensity is also random. If Xt includes unobserved random variables, the process is often called doubly stochastic. When the conditional intensity depends on the history Ht, the process is often called self-exciting (though the effects may produce an inhibition of ﬁring rate rather than an excitation). The vector Xt may be high dimensional. A mathematically tractable special case, where contributions to the intensity due to previous spikes enter additively in terms of a ﬁxed kernel function, is the Hawkes process.
+As a matter of interpretation, in sufﬁciently small time intervals the spike count is either zero or one, so we may replace the expectation with the probability of spiking and get
+
+P(spike in (t, t + t]|Xt = xt) ≈ λ(t|xt) t.
+
+A statistical model for a spike train involves two things: (a) a simple, universal formula for the probability density of the spike train in terms of the conditional intensity function (which we omit here) and (b) a speciﬁcation of the way the conditional intensity function depends on variables xt. An analogous statement is also true for multiple spike trains, possibly involving multiple neurons. Thus, when the data are resolved down to individual spikes, statistical analysis is primarily concerned with modeling the conditional intensity function in a form that can be implemented efﬁciently and that ﬁts the data adequately well. That is, writing
+
+λ(t|xt) = f (xt),
+
+1.
+
+the challenge is to identify within the variable xt all relevant effects—or features, in the terminology of machine learning—and then to ﬁnd a suitable form for the function f , keeping in mind that, in practice, the dimension of xt may range from one to many millions. This identiﬁcation of the components of xt that modulate the neuron’s ﬁring rate is a key step in interpreting the function of a neural system. Details may be found in Kass et al. (2014, chapter 19), but see Amarasingham et al. (2015) for an important caution about the interpretation of neural ﬁring rate through its representation as a point process intensity function.
+A statistically tractable non-Poisson form involves log-additive models, the simplest case being
+
+log λ(t|xt) = log λ(t|Ht) = log g0(t) + log g1(t − s∗(t)),
+
+2.
+
+Relative refractory period: after the hard refractory period, a neuron’s probability of ﬁring gradually increases from zero
+
+www.annualreviews.org • Computational Neuroscience 195
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+where s∗(t) is the time of the immediately preceding spike, and g0 and g1 are functions that may be written in terms of some basis (Kass & Ventura 2001). To include contributions from spikes that are earlier than the immediately preceding one, the term log g1(t − s∗(t)) is replaced by a sum of terms of the form log g1 j (t − s j (t)), where s j (t) is the j th spike back in time preceding t, and a common simpliﬁcation is to assume the functions g1 j are all equal to a single function g1 (Pillow et al. 2008). The resulting probability density function for the set of spike times (which deﬁnes the likelihood function) is very similar to that of a Poisson generalized linear model (GLM), and in fact, GLM software may be used to ﬁt many point process models (Kass et al. 2014, chapter 19). The use of the word “linear” may be misleading here because highly nonlinear functions may be involved—for example, in Equation 2, g0 and g1 are typically nonlinear. An alternative is to call these point process regression models. Nonetheless, the model in Equation 2 is often said to specify a GLM neuron, as are other point process regression models.
+
+2.4. Point Process Regression and Leaky Integrate-and-Fire Models
+
+Assuming excitatory and inhibitory Poisson process inputs to an LIF neuron, the distribution of
+
+waiting times for a threshold crossing, which corresponds to the interspike interval (ISI), is found to
+
+be inverse Gaussian (Tuckwell 1988) and this distribution often provides a good ﬁt to experimental
+
+data when neurons are in steady state, as when they are isolated in vitro and spontaneous activity is
+
+examined (Gerstein & Mandelbrot 1964). The inverse Gaussian distribution, within a biologically
+
+reasonable range of coefﬁcient of variations (CVs), turns out to be qualitatively very similar to ISI
+
+distributions generated by processes given by Equation 2. Furthermore, spike trains generated
+
+from LIF models can be ﬁtted well by these GLM-type models (Kass et al. 2014, section 19.3.4,
+
+and references therein).
+
+An additional connection between LIF and GLM neurons comes from considering the re-
+
+sponse of neurons to injected currents, as illustrated in Figure 5. In this context, the ﬁrst term in
+
+Equation 2 may be rewritten as a convolution with the current I (t) at time t, so that Equation 2
+
+becomes
+
+∞
+
+log λ(t|xt) = log λ(t|Ht, It) = g0(s )I (t − s )ds + log g1(t − s∗(t)).
+
+3.
+
+0
+
+In addition, Figure 5 shows the estimate of g0 that results from ﬁtting this model to data illustrated in that ﬁgure. Here, the function g0 is often called a stimulus ﬁlter. Following Gerstner et al. (2014, chapter 6), we may write a generalized version of the LIF model in integral form as follows:
+
+∞
+
+V (t) = Vrest + g0(s )I (t − s )ds + log g1(t − s∗(t)),
+
+4.
+
+0
+
+which those authors call a spike response model (SRM). By equating the log conditional intensity to voltage in Equation 4,
+
+log λ(t|Ht, It) = V (t) − Vrest,
+
+we thereby get a modiﬁed LIF neuron that is also a GLM neuron (Paninski et al. 2009). Thus, both theory and empirical study indicate that GLM and LIF neurons are very similar, and both describe a variety of neural spiking patterns (Weber & Pillow 2016).
+It is interesting that these empirically oriented SRMs, and variants that included an adaptive threshold (Kobayashi et al. 2009), performed better than much more complicated biophysical models in a series of international competitions for reproducing and predicting recorded spike times of biological neurons under varying circumstances (Gerstner & Naud 2009).
+
+196 Kass et al.
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+2.5. Multidimensional Models The one-dimensional LIF dynamic model in Figure 3b is inadequate when interactions of subthreshold ion channel dynamics cause a neuron’s behavior to be more complicated than integration of inputs. Neurons can even behave as differentiators and respond only to ﬂuctuations in input. Furthermore, as noted in Sections 1.3 and 2.3, features that drive neural ﬁring can be multidimensional. Multivariate dynamical systems are able to describe the ways that interacting, multivariate effects can bring the system to its ﬁring threshold, as in the Hodgkin–Huxley model (Hong et al. 2007). Many model variants that aim to account for such multidimensional effects have been compared in predicting experimental data from sensory areas (Aljadeff et al. 2016).
+2.6. Statistical Challenges in Biophysical Modeling Conductance-based biophysical models pose problems of model identiﬁability and parameter estimation. The original Hodgkin–Huxley equations (Hodgkin & Huxley 1952) contain on the order of two dozen numerical parameters describing the membrane capacitance, maximal conductances for the sodium and potassium ions, kinetics of ion channel activation and inactivation, and ionic equilibrium potentials (at which the ﬂow of ions due to imbalances of concentration across the cell membrane offsets that due to imbalances of electrical charge). Hodgkin & Huxley arrived at estimates of these parameters through a combination of extensive experimentation, biophysical reasoning, and regression techniques. Others have investigated the experimental information necessary to identify the model (Walch & Eisenberg 2016). In early work, statistical analysis of nonstationary ensemble ﬂuctuations was used to estimate the conductances of individual ion channels (Sigworth 1977). Following the introduction of single-channel recording techniques (Sakmann & Neher 1984), which typically report a binary projection of a multistate underlying Markovian ion channel process, many researchers expanded the theory of aggregated Markov processes to handle inference problems related to identifying the structure of the underlying Markov process and estimating transition rate parameters (Qin et al. 1997).
+More recently, parameter estimation challenges in biophysical models have been tackled using a variety of techniques under the rubric of data assimilation, where data results are combined with models algorithmically. Data assimilation methods illustrate the interplay of mathematical and statistical approaches in neuroscience. For example, Meng et al. (2014) described a state space modeling framework and a sequential Monte Carlo (particle ﬁlter) algorithm to estimate the parameters of a membrane current in the Hodgkin–Huxley model neuron. They applied this framework to spiking data recorded from rat layer ﬁve cortical neurons and correctly identiﬁed the dynamics of a slow membrane current. Variations on this theme include the use of synchronization manifolds for parameter estimation in experimental neural systems driven by dynamically rich inputs (Meliza et al. 2014), combined statistical and geometric methods (Tien & Guckenheimer 2008), and other state space models (Vavoulis et al. 2012).
+3. NETWORKS
+3.1. Mechanistic Approaches for Modeling Small Networks
+Although biological neural networks typically involve anywhere from dozens to many millions of neurons, studies of small neural networks involving handfuls of cells have led to remarkably rich insights. We describe three such cases and the types of mechanistic models that drive them.
+First, neural networks can produce rhythmic patterns of activity. Such rhythms, or oscillations, play clear roles in central pattern generators (CPGs) in which cell groups produce coordinated
+www.annualreviews.org • Computational Neuroscience 197
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+ﬁring, as in locomotion or breathing (Grillner & Jessell 2009, Marder & Bucher 2001). Small network models have been remarkably successful in describing how such rhythms occur. For example, models involving pairs of cells have revealed how delays in connections among inhibitory cells, or reciprocal interactions between excitatory and inhibitory neurons, can lead to rhythms in the gamma range (30–80 Hz) associated with some aspects of cognitive processing. A general theory, beginning with two-cell models of this type, describes how synaptic and intrinsic cellular dynamics interact to determine when the underlying synchrony will and will not occur (Kopell & Ermentrout 2002). Larger models involving three or more interacting cell types describe the origin of more complex rhythms, such as the triphasic rhythm in the stomatogastric ganglion (for digestion in certain invertebrates). This system in particular has revealed a rich interplay between the intrinsic dynamics in multiple cells and the synapses that connect them (Marder & Bucher 2001). There turn out to be many highly distinct parameter combinations, lying in subsets of parameter space, that all produce the key target rhythm but do so in very different ways (Prinz et al. 2004). Understanding the origin of this ﬂexibility, and how biological systems take advantage of it to produce robust function, is a topic of ongoing research.
+The underlying mechanistic models for rhythmic phenomena are of Hodgkin–Huxley type, involving sodium and potassium channels (Figure 4). For some phenomena, including respiratory and stomatogastric rhythms, additional ion channels that drive bursting in single cells play a key role. Dynamical systems tools for assessing the stability of periodic orbits may then be used to determine what patterns of rhythmic activity will be stably produced by a given network. Specifically, coupled systems of biophysical differential equations can often be reduced to interacting circular variables representing the phase of each neuron (Ermentrout & Terman 2010). Such phase models yield to very elegant stability analyses that can often predict the dynamics of the original biophysical equations.
+A second example concerns the origin of collective activity in irregularly spiking neural circuits. To understand the development of correlated spiking in such systems, stochastic differential equation models, or models driven by point process inputs, are typically used. This yields Fokker–Planck or population density equations (Tuckwell 1988, Tranchina 2010), and these can be iterated across multiple layers or neural populations (Doiron et al. 2006, Tranchina 2010). In many cases, such models can be approximated using linear response approaches, yielding analytical solutions and considerable mechanistic insight (De La Rocha et al. 2007, Ostojic & Brunel 2011). A prominent example comes from the mechanisms of correlated ﬁring in feed-forward networks (Shadlen & Newsome 1998, De La Rocha et al. 2007). Here, stochastically ﬁring cells send diverging inputs to multiple neurons downstream. The downstream neurons thereby share some of their input ﬂuctuations, and this, in turn, creates correlated activity that can have rich implications for information transmission (De La Rocha et al. 2007, Doiron et al. 2016, Zylberberg et al. 2016).
+A third case of highly inﬂuential small circuit modeling concerns neurons in the early visual cortex (early in the sense of being only a few synapses from the retina), which are responsive to visual stimuli (moving bars of light) with speciﬁc orientations that fall within their receptive ﬁeld (see Section 1.3). Neurons having neighboring regions within their receptive ﬁeld in which a stimulus excites or inhibits activity were called simple cells, and those without this kind of subdivision were complex cells. Hubel & Wiesel (1959) famously showed how simple circuit models can account for both the simple and complex cell responses. Later work described this through one or several iterated algebraic equations that map input ﬁring rates xi into outputs y = f ( i wi xi ), where (w1, . . . , wN ) is a synaptic weight vector.
+198 Kass et al.
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+3.2. Statistical Methods for Small Networks Point process models for small networks begin with conditional intensity speciﬁcations similar to that in Equation 2 and include coupling terms (Kass et al. 2014, section 19.3.4, and references therein). They have been applied to CPGs described in Section 3.1 to reconstruct known circuitry from spiking data (Gerhard et al. 2013). In addition, many of the methods we discuss in Section 3.4 that are used on large networks have also been used with small networks.
+3.3. Mechanistic Models of Large Networks Across Scales and Levels of Complexity There is a tremendous variety of mechanistic models of large neural networks. We here describe some of these in rough order of their complexity and scale.
+3.3.1. Binary and ﬁring rate models. At the simplest level, binary models abstract the activity of each neuron as either active (taking the value 1) or silent (0) in a given time step. As mentioned in the Introduction, despite their simplicity, these models capture fundamental properties of network activity (Renart et al. 2010, Van Vreeswijk & Sompolinsky 1996) and explain network functions such as associative memory. The proportion of active neurons at a given time is governed by effective rate equations (Ginzburg & Sompolinsky 1994, Wilson & Cowan 1972). Such ﬁring rate models feature a continuous range of activity states and often take the form of nonlinear ordinary or stochastic differential equations. Like binary models, these also implement associative memory, but they are widely used to describe broader dynamical phenomena in networks, including predictions of oscillations in excitatory-inhibitory networks (Wilson & Cowan 1972), transitions from ﬁxed point to oscillatory to chaotic dynamics in randomly connected neural networks (Bos et al. 2016), ampliﬁed selectivity to stimuli, and the formation of line attractors (a set of stable solutions on a line in state space) that gradually store and accumulate input signals (Cain & Shea-Brown 2012).
+Firing rate models have been a cornerstone of theoretical neuroscience. Their second-order statistics can analytically be matched to more realistic spiking and binary models (Grytskyy et al. 2013, Ostojic & Brunel 2011). We next describe how trial-varying dynamical ﬂuctuations can emerge in networks of spiking neuron models.
+3.3.2. Stochastic spiking activity in networks. A body of work summarizes the network state in a population-density approach that describes the evolution of the probability density of states rather than individual neurons (Amit & Brunel 1997). The theory is able to capture refractoriness (Meyer & van Vreeswijk 2002) and adaptation (Deger et al. 2014). Furthermore, although it loses the identity of individual neurons, it can faithfully capture collective activity states, such as oscillations (Brunel 2000). Small synaptic amplitudes and weak correlations further reduce the time-evolution to a Fokker–Planck equation (Brunel 2000, Ostojic et al. 2009). Network states beyond such diffusion approximations include neuronal avalanches, the collective and nearly synchronous ﬁring of a large fraction of cells, often following power-law distributions (Beggs & Plenz 2003). Early work focused on the ﬁring rates of populations, and later work clariﬁed how more subtle patterns of correlated spiking develop. In particular, linear ﬂuctuations about a stationary state determine population-averaged measures of correlations (Ostojic et al. 2009, Helias et al. 2013, Tetzlaff et al. 2012, Trousdale et al. 2012).
+At an even larger scale, a continuum of coupled population equations at each point in space leads to neuronal ﬁeld equations (Bressloff 2012). They predict stable “bumps” of activity, as well as traveling waves and spirals (Amari 1977a, Roxin et al. 2006). Intriguingly, when applied as a
+www.annualreviews.org • Computational Neuroscience 199
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+model of visual cortex and rearranged to reﬂect the spatial layout of the retina, patterns induced
+in these continuum equations can resemble visual hallucinations (Bressloff et al. 2001).
+Analysis has provided insight into the ways that spiking networks can produce irregular spike
+times like those found in cortical recordings from behaving animals (Shadlen & Newsome 1998), as in Figure 1b. Suppose we have a network of N E excitatory and N I inhibitory LIF neurons with
+connections occurring at random according to independent binary (Bernoulli) random variables
+(i.e., a connection exists when the binary random variable takes the value 1 and does not exist when it is 0). We denote the binary connectivity random variables by κiαjβ , where α and β take the values E or I , with κiαjβ = 1 when the output of neuron j in population β injects current into neuron i in population α. We let Jαβ be the coupling strength (representing synaptic current) from a neuron in population β to a neuron in population α. Thus, the contribution to the current input of a neuron in population α generated at time t by a spike from a neuron in population β at time s will be Jαβ κiαjβ δ(t − s ), where δ(t − s ) is the Dirac delta function. The behavior of the network can be analyzed by letting N E → ∞ and N I → ∞. Based on reasonable simplifying assumptions, the mean Mα and variance V α of the total current for population α have been derived (Amit & Brunel
+1997, Van Vreeswijk & Sompolinsky 1998), and these determine the regularity or irregularity in
+spiking activity.
+We step through three possibilities, under three different conditions on the network, using a
+modiﬁcation of the LIF equation found in Figure 3. The set of equations, for all the neurons in
+the network, includes terms deﬁned by network connectivity and also terms deﬁned by external
+input ﬂuctuations. Because the connectivity matrix may contain cycles (there may be a path from
+any neuron back to itself), network connectivity is called recurrent. Let us take the membrane potential of neuron i from population α, denoted by Viα (not to be confused with the variance V α), to follow the equation
+
+τ α dViα dt
+
+=
+
+−Viα
+
++
+
+μα0
+
++
+
+√ τ
+
+α σ0α ξiα (t )
+
++
+
+τ αJαE
+
+NE
+
+κiαj E
+
+δ(t
+
+−
+
+t
+
+E jk
+
+)
+
+−
+
+τ
+
+α
+
+Jα I
+
+NI
+
+κiαj I
+
+δ(t
+
+−
+
+t
+
+I jk
+
+)
+
+5.
+
+j =1
+
+j =1
+
+external inputs
+
+recurrent excitation recurrent inhibition
+
+where tiαk is the kth spike time from neuron i of population α, τ α is the membrane dynamics time constant, and the external inputs include both a constant μ0 and a ﬂuctuating source σ0ξ (t), where
+ξ (t) is white noise (independent across neurons). This set of equations is supplemented with the spike reset rule that when Viα(t) = VT , the voltage resets to VR < VT .
+The ﬁring rate of the average neuron in population α is λα = j k δ(t − tαjk)/N α. For the network to remain stable, we take these ﬁring rates to be bounded, that is, λα ∼ O(1). Similarly,
+to assure that the current input to each neuron remains bounded, some assumption must be made about the way coupling strengths Jαβ scale as the number of inputs K increases. Let us take the scaling to be Jαβ = j αβ /K γ , with j αβ ∼ O(1), as K → ∞, where γ is a scaling exponent. We
+describe the resulting spiking behavior under scaling conditions γ = 1 and γ = 1/2. If we set γ = 1 then w√e have J ∼ 1/K , so that JK = j ∼ O(1). In this case we get Mα ∼ O(1)
+and V α = [σ0α]2 + O(1/ K ). If we further set σ0α = 0, so that all ﬂuctuations must be internal, then V α vanishes for large K . In such networks, after an initial transient, the neurons synchronize,
+and each ﬁres with perfect rhythmicity (Figure 6a, i ). This is very different than the irregularity
+seen in cortical recordings (Figure 3). Therefore, some modiﬁcation must be made. The ﬁrst route to appropriate spike train irregularity keeps γ = 1 while setting [σ0α]2 ∼ O(1),
+so that V α no longer vanishes in the large K limit. Simulations of this network (Figure 6a, ii )
+maintain realistic rates (Figure 6b, red curve), but also show realistic irregularity (Faisal et al.
+
+200 Kass et al.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only. Neuron index
+
+a
+
+i
+
+Inhibition Excitation
+
+ii
+External noise
+
+iii
+Strong coupling
+
+1,000
+
+Density
+
+b
+10–1
+10–2
+
+Weak coupling stochastic
+Strong coupling deterministic
+
+10–3 0
+
+20
+
+40
+
+60
+
+Firing rate (Hz)
+
+12
+c
+6
+
+Density
+
+1
+
+0
+
+150
+
+300 0
+
+150
+
+300 0
+
+150
+
+300
+
+Time (ms)
+
+Time (ms)
+
+Time (ms)
+
+0
+
+0.4
+
+0.8
+
+1.2
+
+1.6
+
+ISI coefficient of variation
+
+Figure 6
+
+(a) Plots of spike trains from 1,000 excitatory neurons in a network having 1,000 excitatory and 1,000 inhibitory LIF neurons with
+
+connections determined from independent Bernoulli random variables having success probability of 0.2; on average, K = 200 inputs
+
+per neuron with no synaptic dynamics. Each neuron receives a static depolarizing input; in the absence of coupling each neuron ﬁres
+repetitively. (i ) Spike trains under weak coupling, current J ∝ K −1. (ii ) Spike trains under weak coupling, with additional uncorrelated
+
+noise
+
+applied
+
+to
+
+each
+
+cell.
+
+(iii
+
+)
+
+Spike
+
+trains
+
+under
+
+strong
+
+coupling,
+
+J
+
+∝
+
+K−
+
+1 2
+
+.
+
+(b)
+
+The
+
+distribution
+
+of
+
+ﬁring
+
+rates
+
+across
+
+cells,
+
+and
+
+(c)
+
+the
+
+distribution of interspike interval (ISI) coefﬁcient of variation across cells.
+
+2008), as quantiﬁed in Figure 6c by the CV of the ISIs. Treating irregular spiking activity as the
+
+consequence of stochastic inputs has a long history (Tuckwell 1988).
+
+The second route does not rely on external input stochasticity but instead increases the synaptic
+
+connection strengths by setting γ = 1/2. As a consequence we get V α ∼ O(1) even if σ0α = 0, so that variability is internally generated through recurrent interactions (Monteforte & Wolf 2012,
+
+Van Vreeswijk & Sompolinsky 1998), but to get Mα ∼ O(1), an additional condition is needed.
+
+If the recurrent connectivity is dominated by inhibition, so that the network recurrence results in
+
+negative current, the activity dynamically settles into a state in which
+
+√
+
+Mα = K μα + j αE τ αλE − j αI τ αλI ∼ O(1),
+
+6.
+
+√ O(1/ K ):
+
+balance
+
+condition
+
+√ where μα0 has b√een replaced by the constant μα using μα0 = K μα, so that the mean external input is of order O( K ). The scaling γ = 1/2 now√makes the total excitatory and the total inhibitory synaptic inputs individually large, that is, O( K ), so that the V α is also large. However, given
+
+the balance condition in Equation 6, excitation and inhibition mutually cancel and V α remains
+
+moderate. Simulations of the network with γ = 1/2 and σ0α = 0 show an asynchronous network dynamic (Figure 6a, iii ). Furthermore, the ﬁring rates stabilize at low mean levels (Figure 6b,
+
+blue curve), while the ISI CV is large (Figure 6c, blue curve).
+
+These two mechanistic routes to high levels of neural variability differ strikingly in the degree of
+
+heterogeneity of the spiking statistics. For the weak coupling with γ = 1, the resulting distribution
+
+of ﬁring rates and ISI CVs are narrow (Figure 6b,c, red curves). At strong coupling with γ =
+
+1/2, however, the spread of ﬁring rates is large: More than half of the neurons ﬁre at rates
+
+below 1 Hz (Figure 6b, blue curve), in line with observed cortical activity (Roxin et al. 2011).
+
+www.annualreviews.org • Computational Neuroscience 201
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+The approximate dynamic balance between excitatory and inhibitory synaptic currents has been conﬁrmed experimentally (Okun & Lampl 2008) and is usually called balanced excitation and inhibition.
+3.3.3. Asynchronous dynamics in recurrent networks. The analysis above focused only on Mα and V α, ignoring any correlated activity between the current inputs to neurons in the network. The original justiﬁcation for such asynchronous dynamics in Van Vreeswijk & Sompolinsky (1998) and Amit & Brunel (1997) relied on a sparse wiring assumption, that is, K /N α → 0 as N α → ∞ for α ∈ (E, I ). However, more recently it has been shown that the balanced mechanism required to keep ﬁring rates moderate also ensures that network correlations vanish. Balance arises from the dominance of negative feedback, which suppresses ﬂuctuations in the population-averaged activity and hence causes small pairwise correlations (Tetzlaff et al. 2012). As a consequence, ﬂuctuations of excitatory and inhibitory synaptic currents are tightly locked so that Equation 6 is satisﬁed. The excitatory and inhibitory cancellation mechanism therefore extends to pairs of cells and operates even in networks with dense wiring, that is, with K /N α ∼ O(1) (Hertz 2010, Renart et al. 2010), so that input correlations are much weaker than expected from the number of shared inputs (Shadlen & Newsome 1998, Shea-Brown et al. 2008). This suppression and cancellation of correlations holds in the same way for intrinsically generated ﬂuctuations that often even dominate the correlation structure (Helias et al. 2014). Recent work has shown that the asynchronous state is more robustly realized in nonrandom networks than in normally distributed random networks (Litwin-Kumar & Doiron 2012, Teramae et al. 2012).
+There is a large literature on how network connectivity, at the level of mechanistic models, leads to different covariance structures in network activity (Ginzburg & Sompolinsky 1994). Highly local connectivity features scale up to determine global levels of covariance (Trousdale et al. 2012, Helias et al. 2013, Doiron et al. 2016). Moreover, features of that connectivity that point speciﬁcally to low-dimensional structures of neural covariability can be isolated (Doiron et al. 2016). An outstanding problem is to create model networks that mimic the low-dimensional covariance structure reported in experiments (see Section 3.4.1).
+3.4. Statistical Methods for Large Networks
+New recording technologies should make it possible to track the ﬂow of information across very large networks of neurons, but the details of how to do so have not yet been established. One tractable component of the problem (Cohen & Kohn 2011) involves covariation in spiking activity among many neurons (typically dozens to hundreds), which leads naturally to dimensionality reduction and to graphical representations (where neurons are nodes, and some deﬁnition of correlated activity determines edges). However, two fundamental complications affect most experiments. First, covariation can occur at multiple timescales. A simpliﬁcation is to consider either spike counts in coarse time bins (20 ms or longer) or spike times with precision in the range of 1–5 ms. We discuss methods based on spike counts and precise spike timing separately in the next two subsections. Second, experiments almost always involve some stimuli or behaviors that create evolving conditions within the network. Thus, methods that assume stationarity must be used with care, and analyses that allow for dynamic evolution will likely be useful. Fortunately, many experiments are conducted using multiple exposures to the same stimuli or behavioral cues, which creates a series of putatively independent replications (trials). Although the responses across trials are variable, sometimes in systematic ways, the setting of multiple trials often makes tractable the analysis of nonstationary processes.
+After reviewing techniques for analyzing covariation of spike counts and precisely timed spiking, we will also brieﬂy mention three general approaches to understanding network behavior:
+202 Kass et al.
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+reinforcement learning (RL), Bayesian inference, and deep learning. RL and Bayesian inference use a decision-theoretic foundation to deﬁne optimal actions of the neural system in achieving its goals, which is appealing insofar as evolution may drive organism design toward optimality.
+3.4.1. Correlation and dimensionality reduction in spike counts. Dimensionality reduction methods have been fruitfully applied to study decision making, learning, motor control, olfaction, working memory, visual attention, audition, rule learning, speech, and other phenomena (Cunningham & Yu 2014). Dimensionality reduction methods that have been used to study neural population activity include principal component analysis, factor analysis, latent dynamical systems, and nonlinear methods such as Isomap and locally-linear embedding. Such methods can provide two types of insights. First, the time course of the neural response can vary substantially from one experimental trial to the next, even though the presented stimulus, or the behavior, is identical on each trial. In such settings, it is of interest to examine population activity on individual trials (Churchland et al. 2007). Dimensionality reduction provides a way to summarize the population activity time course on individual experimental trials by leveraging the statistical power across neurons (Yu et al. 2009). One can then study how the latent variables extracted by dimensionality reduction change across time or across experimental conditions. Second, the multivariate statistical structure in the population activity identiﬁed by dimensionality reduction may be indicative of the neural mechanisms underlying various brain functions. For example, one study suggested that a subject can imagine moving their arms, while not actually moving them, when neural activity related to motor preparation lies in a space orthogonal to that related to motor execution (Kaufman et al. 2014). Furthermore, the multivariate structure of population activity can help explain why some tasks are easier to learn than others (Sadtler et al. 2014) and how subjects respond differently to the same stimulus in different contexts (Mante et al. 2013).
+3.4.2. Correlated spiking activity at precise timescales. In principle, very large quantities of information could be conveyed through the precise timing of spikes across groups of neurons. The idea that the nervous system might be able to recognize such patterns of precise timing is therefore an intriguing possibility (Abeles 1982, Singer & Gray 1995, Geman 2006). However, it is very difﬁcult to obtain strong experimental evidence in favor of a widespread computational role for precise timing (e.g., an accuracy within 1–5 ms), beyond the inﬂuence of the high arrival rate of synaptic impulses when multiple input neurons ﬁre nearly synchronously. Part of the issue is experimental, because precise timing may play an important role only in specialized circumstances, but part is statistical: Under plausible point process models, patterns such as nearly synchronous ﬁring will occur by chance, and it may be challenging to deﬁne a null model that captures the null concept without producing false positives. For example, when the ﬁring rates of two neurons increase, the number of nearly synchronous spikes will increase even when the spike trains are otherwise independent; thus, a null model with constant ﬁring rates could produce false positives for the null hypothesis of independence. This makes the detection of behaviorally relevant spike patterns a subtle statistical problem (Gru¨ n 2009, Harrison et al. 2013).
+A strong indication that precise timing of spikes may be relevant to behavior came from an experiment involving hand movement, during which pairs of neurons in motor cortex ﬁred synchronously (within 5 ms of each other) more often than predicted by an independent Poisson process model and, furthermore, these events, called unitary events, clustered around times that were important to task performance (Riehle et al. 1997). Although this illustrated the potential role of precisely timed spikes, it also raised the issue of whether other plausible point process null models might lead to different results. Much work has been done to reﬁne this methodology (Gru¨ n 2009, Albert et al. 2016, Torre et al. 2016). Related approaches replace the null assumption
+www.annualreviews.org • Computational Neuroscience 203
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+of independence with some order of correlation, using marked Poisson processes (Staude et al. 2010).
+There is a growing literature on dependent point processes. Some models do not include a speciﬁc mechanism for generating precise spike timing but can still be used as null models for hypothesis tests of precise spike timing. On a coarse timescale, point process regression models as in Equation 1 can incorporate effects of one neuron’s spiking behavior on another (Pillow et al. 2008, Truccolo 2010). On a ﬁne timescale, one may instead consider multivariate binary processes (multiple sequences of 0s and 1s, where 1s represent spikes). In the stationary case, a standard statistical tool for analyzing binary data involves loglinear models (Agresti 1996), where the log of the joint probability of any particular pattern is represented as a sum of terms that involve successively higher-order interactions, that is, terms that determine the probability of spiking within a given time bin for individual neurons, pairs of neurons, triples, etc. Two-way interaction models, also called maximum entropy models, which exclude higher than pairwise interactions, have been used in several studies, and in some cases higher-order interactions have been examined (Ohiorhenuan et al. 2010, Santos et al. 2010, Shimazaki et al. 2015), sometimes using information geometry (Nakahara et al. 2006), though large amounts of data may be required to ﬁnd small but plausibly interesting effects (Kelly & Kass 2012). Extensions to nonstationary processes have also been developed (Shimazaki et al. 2012, Zhou et al. 2015). Dichotomized Gaussian models, which instead produce binary outputs from threshold crossings of a latent multivariate Gaussian random variable, have also been used (Amari et al. 2003, Shimazaki et al. 2015), as have Hawkes processes ( Jovanovic´ et al. 2015). A variety of correlation structures may be accommodated by analyzing cumulants (Staude et al. 2010).
+To test hypotheses about precise timing, several authors have suggested procedures akin to permutation tests or nonparametric bootstrap. The idea is to generate resampled data, also called pseudodata or surrogate data, that preserves as many of the features of the original data as possible but that lacks the feature of interest, such as precise spike timing. A simple case, called dithering or jittering, modiﬁes the precise time of each spike by some random amount within a small interval, thereby preserving all coarse temporal structure and removing all ﬁne temporal structure. Many variations on this theme have been explored (Gru¨ n 2009, Harrison et al. 2013, Platkiewicz et al. 2017), and connections have been made with the well-established statistical notion of conditional inference (Harrison et al. 2015).
+3.4.3. Reinforcement learning. RL grew from attempts to describe mathematically the way organisms learn in order to achieve repeatedly-presented goals. The motivating idea was spelled out by Thorndike (1911, p. 244): When a behavioral response in some situation leads to reward (or discomfort), it becomes associated with that reward (or discomfort), so that the behavior becomes a learned response to the situation. Although there were important precursors (Bush & Mosteller 1955, Rescorla & Wagner 1972), the basic theory reached maturity with the 1998 publication of the book by Sutton and Barto (Sutton & Barto 1998). Within neuroscience, a key discovery involved the behavior of dopamine neurons in certain tasks: They initially ﬁre in response to a reward, but after learning, they ﬁre in response to a stimulus that predicts reward; this was consistent with predictions of RL (Schultz et al. 1997). (Dopamine is a neuromodulator, meaning a substance that, when emitted from the synapses of neurons, modulates the synaptic effects of other neurons; a dopamine neuron is a neuron that emits dopamine.)
+In brief, the mathematical framework is that of a Markov decision process, which is an actiondependent Markov chain (i.e., a stochastic process on a set of states where the probability of transitioning from one state to the next is action-dependent) together with rewards that depend on both state transition and action. When an agent (an abstract entity representing an organism,
+204 Kass et al.
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+or some component of its nervous system) reaches stationarity after learning, the current value Vt of an action (not to be confused with previous uses of the notation V ) may be represented in terms of its future-discounted expected reward:
+Vt = E(Rt + γ Rt+1 + γ 2 Rt+2 + γ 3 Rt+3 + · · ·) = E(Rt + γ Vt+1),
+where Rt is the reward at time t. Thus, to drive the agent toward this stationarity condition, the current estimate of value Vˆ t should be updated in such a way as to decrease the estimated magnitude of E(Rt + γ Vt+1) − Vt, which is known as the reward prediction error (RPE),
+δt = Eˆ (Rt + γ Vt+1) − Vˆ t = rt + γ Vˆ t+1 − Vˆ t .
+This is also called the temporal difference learning error. RL algorithms accomplish learning by sequentially reducing the magnitude of the RPE. The essential interpretation of Schultz et al. (1997), which remains widely inﬂuential, was that dopamine neurons signal RPE.
+The RL-based description of the activity of dopamine neurons has been considered one of the great success stories in computational neuroscience, operating at the levels of computation and algorithm in Marr’s framework (see Section 1.1). A wide range of further studies have elaborated the basic framework and taken on topics such as the behavior of other neuromodulators; neuroeconomics; the distinction between model-based learning, where transition probabilities are learned explicitly, and model-free learning; social behavior and decision making; and the role of time and internal models in learning (Schultz 2015, Dayan & Nakahara 2017).
+3.4.4. Bayesian inference. Although statistical methods based on Bayes’ theorem now play a major role in statistics, they were, until relatively recently, controversial (McGrayne 2011). In neuroscience, Bayes’ theorem has been used in many theoretical constructions in part because the brain must combine prior knowledge with current data somehow, and also because evolution may have led to neural network behavior that is, like Bayesian inference (under well-speciﬁed conditions), optimal, or nearly so. Bayesian inference has played a prominent role in theories of human problem solving (Anderson 2009), visual perception (Geisler 2011), sensory and motor integration (Ko¨ rding 2007, Wolpert et al. 2011), and general cortical processing (Grifﬁths et al. 2012).
+3.4.5. Deep learning. Deep learning (le Cun et al. 2015) is an outgrowth of PDP modeling (see Section 1.4). Two major architectures came out of the 1980s and 1990s, convolutional neural networks (CNNs) and long short term memory (LSTM). LSTM (Hochreiter & Schmidhuber 1997) enables neural networks to take as input sequential data of arbitrary length and learn long-term dependencies by incorporating a memory module where information can be added or forgotten according to functions of the current input and state of the system. CNNs, which achieve state-of-the-art results in many image classiﬁcation tasks, take inspiration from the visual system by incorporating receptive ﬁelds and enforcing shift invariance (physiological visual object recognition being invariant to shifts in location). In deep learning architectures, receptive ﬁelds (le Cun et al. 2015) identify a very speciﬁc input pattern, or stimulus, in a small spatial region, using convolution to combine inputs. Receptive ﬁelds induce sparsity and lead to signiﬁcant computational savings, which prompted early success with CNNs (le Cun 1989). Shift invariance is achieved through a spatial smoothing operator known as pooling (a weighted average, or often the maximum value, over a local neighborhood of nodes). Because it introduces redundancies, pooling is often combined with downsampling. Many layers, each using convolution and pooling, are stacked to create a deep network, in rough analogy to multiple anatomical layers in the visual system of primates. Although artiﬁcial neural networks had largely fallen out of widespread use
+www.annualreviews.org • Computational Neuroscience 205
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+by the end of the 1990s, faster computers combined with availability of very large repositories of training data, and the innovation of greedy layer-wise training (Bengio et al. 2007) brought large gains in performance and renewed attention, especially when AlexNet (Krizhevsky et al. 2012) was applied to the ImageNet database (Deng et al. 2009). Rapid innovation has enabled the application of deep learning to a wide variety of problems of increasing size and complexity.
+The success of deep learning in reaching near human-level performance on certain highly constrained prediction and classiﬁcation tasks, particularly in the area of computer vision, has inspired interest in exploring the connections between deep neural networks and the brain. Studies have shown similarities between the internal representations of CNNs and representations in the primate visual system (Kriegeskorte 2015, Yamins & DiCarlo 2016). Furthermore, the biological phenomenon of hippocampal replay during memory consolidation prompted innovation in artiﬁcial intelligence, in part through the incorporation of RL (see Section 3.4.3) into deep learning architectures (Mnih et al. 2015). However, some studies have shown cases in which biological vision and deep networks diverge in performance (Nguyen et al. 2015, Ullman et al. 2016). Even though they are not biologically realistic, deep learning architectures may suggest new scientiﬁc hypotheses (Pelillo et al. 2015).
+3.5. Connecting Mathematical and Statistical Approaches in Large Networks
+3.5.1. Bridging from dynamical to statistical models of neural spiking. In Section 2.4, we made an explicit connection between an integrated form of LIF models and GLMs. An alternative is to derive from a mechanistic model, ﬁrst, an instantaneous intensity by determining mean activity and, second, the variation around the mean. In binary models, the ﬁrst step leads to a Gaussian integral (Van Vreeswijk & Sompolinsky 1998) and the second to its derivative (Renart et al. 2010, Helias et al. 2014). For spiking models, these steps are conceptually identical, but mathematically more involved. The ﬁring rate follows from the mean ﬁrst passage time for the membrane voltage to exceed the threshold (Amit & Brunel 1997, Tuckwell 1988). Computing deviations of responses from the mean requires either perturbation theory applied to the Fokker– Planck equation (Richardson 2008) or separation of timescales for slow currents (Moreno-Bote & Parga 2010). These approaches may be united to produce an equivalent GLM model (Ostojic & Brunel 2011). Approximating the ﬂuctuations in spiking and binary networks up to linear order, correlations are equivalent to those of linear stochastic differential equations driven by Gaussian noise (Grytskyy et al. 2013). Extensions treat the mechanistic origins of stimulus adaptation in statistical models of neural responses (Famulare & Fairhall 2010).
+3.5.2. Multivariate relationships via latent variable models. An important question is whether mechanistic models can reproduce features of recorded neural activity that go beyond population means and variances. This is especially challenging when, as is usually the case, recorded neurons represent only a very small sample from a vast network. Simple summary statistics, such as the variability of the activity of individual neurons or the correlation between pairs of neurons, can be a helpful ﬁrst step (Litwin-Kumar & Doiron 2012). A natural next step is to examine summaries based on dimensionality reduction, as in Section 3.4.1, where the same multivariate statistical methods are applied to both the activity produced by the model and to the data. For example, spontaneous activity recorded in the primary visual cortex has been found to be more like activity produced by a spiking network model having clustered connections than that produced by a network with uniform random connectivity (Williamson et al. 2016).
+Mechanistic models can also help in characterizing the statistical tools used to study neural population activity by providing ground truth with which to judge performance of statistical
+206 Kass et al.
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+methods (Williamson et al. 2016). This includes determination of the amount of data needed in order to identify particular effects. From results outlined in Section 2.4, when LIF models are used, these ground truth data sets should be very similar to others generated using GLM neurons (Zaytsev et al. 2015), and it is a topic for future research to take advantage of this relationship.
+4. OUTLOOK In addition to providing readers with an entry into the mathematical and statistical literature in computational neuroscience, we have also tried to highlight places where the two approaches go hand in hand, especially in Sections 2.4–2.6 and 3.5. Another concrete example of this interplay comes from anesthesia, where highly structured oscillations, readily visible in the EEG, change in a systematic way, depending on the dose of a given anesthetic and the molecular targets and neural circuits where the anesthetic acts (Brown et al. 2011). One of the most widely used anesthetics, propofol, acts at multiple sites in the brain to enhance the activity of inhibitory neurons, resulting initially in beta oscillations (13–25 Hz), followed within seconds by slow-delta oscillations (0.1–4 Hz) and then a combination of slow-delta oscillations with alpha oscillations (8–12 Hz) when the patient is unconscious. Multitaper spectral time series analysis showed that the alpha oscillations are highly coherent across the front of the scalp, and this was explained by a circuit model using Hodgkin–Huxley neurons (Ching et al. 2010, Cimenser et al. 2011). Because all anesthetics create similar oscillations, the combination of careful statistical analysis and mechanistic modeling may be used to investigate the way other anesthetics create altered brain states.
+As this example illustrates, computational neuroscience, like experimental neuroscience, aims to improve knowledge about the functioning of the nervous system. On the one hand, the statistical approach helps by introducing methods to summarize nervous system data. On the other hand, mathematical theory helps by introducing frameworks for describing nervous system behavior. Because both sides of computational neuroscience aim to build understanding from data, they complement each other: Mechanistic models reﬁne scientiﬁc questions and can thereby guide development of statistical methods; statistical methods can ﬁnd important features of data and can suggest directions for modeling efforts. As the ﬁeld tackles additional complexity in modeling and data analysis, it will become increasingly important for researchers in computational neuroscience to be cognizant of the essential ideas, tools, and approaches of both domains.
+DISCLOSURE STATEMENT The authors are not aware of any afﬁliations, memberships, funding, or ﬁnancial holdings that might be perceived as affecting the objectivity of this review.
+ACKNOWLEDGMENTS This article was initiated during a workshop in October 2015 with support from the National Science Foundation under Grant DMS-1127914 to the Statistical and Applied Mathematical Sciences Institute. Additional conceptualization resulted from a second workshop in June, 2016, with support from the US–Japan Brain Research Cooperative Program via NIMH grant MH064537, NSF grant DMS 1612914, and the Japan Society for the Promotion Science. Any opinions, ﬁndings, and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reﬂect the views of these funding agencies. Additional work of individual authors was supported by individual research grants.
+www.annualreviews.org • Computational Neuroscience 207
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+LITERATURE CITED
+Abbott LF. 1999. Lapicque’s introduction of the integrate-and-ﬁre model neuron (1907). Brain Res. Bull. 50:303–4
+Abeles M. 1982. Role of the cortical neuron: integrator or coincidence detector? Israel J. Med. Sci. 18:83–92 Adrian ED, Zotterman Y. 1926. The impulses produced by sensory nerve endings. J. Physiol. 61:465–83 Agresti A. 1996. Categorical Data Analysis. New York: Wiley Albert M, Bouret Y, Fromont M, Reynaud-Bouret P. 2016. Surrogate data methods based on a shufﬂing of
+the trials for synchrony detection: the centering issue. Neural Comput. 28:2352–92 Aljadeff J, Lansdell BJ, Fairhall AL, Kleinfeld D. 2016. Analysis of neuronal spike trains, deconstructed. Neuron
+91:221–59 Amarasingham A, Geman S, Harrison MT. 2015. Ambiguity and nonidentiﬁability in the statistical analysis
+of neural codes. PNAS 112:6455–60 Amari SI. 1977a. Dynamics of pattern formation in lateral-inhibition type neural ﬁelds. Biol. Cybern. 27:77–87 Amari SI. 1977b. Neural theory of association and concept-formation. Biol. Cybern. 26:175–85 Amari SI, Nakahara H, Wu S, Sakai Y. 2003. Synchronous ﬁring and higher-order interactions in neuron
+pool. Neural Comput. 15:127–42 Amit DJ, Brunel N. 1997. Model of global spontaneous activity and local structured activity during delay
+periods in the cerebral cortex. Cereb. Cortex 7:237–52 Amit DJ, Gutfreund H, Sompolinsky H. 1987. Information storage in neural networks with low levels of
+activity. Phys. Rev. A Gen. Phys. 35:2293–303 Anderson JR. 2009. How Can the Human Mind Occur in the Physical Universe? Oxford, UK: Oxford Univ. Press Bailey DL, Townsend DW, Valk PE, Maisey MN. 2005. Positron Emission Tomography. New York: Springer Bassett DS, Bullmore ET. 2016. Small-world brain networks revisited. Neuroscientist 23:499–516 Beggs JM, Plenz D. 2003. Neuronal avalanches in neocortical circuits. J. Neurosci. 23:11167–77 Bengio Y, Lamblin P, Popovici D, Larochelle H. 2007. Greedy layer-wise training of deep networks. In
+Advances in Neural Information Processing Systems 19, ed. PB Scho¨ lkopf, JC Platt, T Hoffman, pp. 153–60. Cambridge, MA: MIT Press Boole G. 1854. An Investigation of the Laws of Thought on Which are Founded the Mathematical Theories of Logic and Probabilities. London: Walton and Maberly Bos H, Diesmann M, Helias M. 2016. Identifying anatomical origins of coexisting oscillations in the cortical microcircuit. PLOS Comput. Biol. 12:1–34 Bressloff PC. 2012. Spatiotemporal dynamics of continuum neural ﬁelds. J. Phys. A Math. Theor. 45:3 Bressloff PC, Cowan JD, Golubitsky M, Thomas PJ, Wiener MC. 2001. Geometric visual hallucinations, Euclidean symmetry and the functional architecture of striate cortex. Philos. Trans. R. Soc. B 356:299–330 Brown EN, Purdon PL, Van Dort CJ. 2011. General anesthesia and altered states of arousal: a systems neuroscience analysis. Annu. Rev. Neurosci. 34:601–28 Brunel N. 2000. Dynamics of sparsely connected networks of excitatory and inhibitory spiking neurons. J. Comput. Neurosci. 8:183–208 Brunel N, Van Rossum MC. 2007. Lapicque’s 1907 paper: from frogs to integrate-and-ﬁre. Biol. Cybern. 97:337–39 Bullmore E, Sporns O. 2009. Complex brain networks: graph theoretical analysis of structural and functional systems. Nat. Rev. Neurosci. 10:186–98 Bush RR, Mosteller F. 1955. Stochastic Models for Learning. New York: Wiley Buzsa´ki G, Mizuseki K. 2014. The log-dynamic brain: how skewed distributions affect network operations. Nat. Rev. Neurosci. 15:264–78 Cain N, Shea-Brown E. 2012. Computational models of decision making: integration, stability, and noise. Curr. Opin. Neurobiol. 22:1047–53 Carlson DE, Vogelstein JT, Wu Q, Lian W, Zhou M, et al. 2014. Multichannel electrophysiological spike sorting via joint dictionary learning and mixture modeling. IEEE Trans. Biomed. Eng. 61:41–54 Ching S, Cimenser A, Purdon PL, Brown EN, Kopell NJ. 2010. Thalamocortical model for a propofol-induced -rhythm associated with loss of consciousness. PNAS. 107:22665–70
+208 Kass et al.
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+Churchland MM, Yu BM, Sahani M, Shenoy KV. 2007. Techniques for extracting single-trial activity patterns from large-scale neural recordings. Curr. Opin. Neurobiol. 17:609–18
+Cimenser A, Purdon PL, Pierce ET, Walsh JL, Salazar-Gomez AF, et al. 2011. Tracking brain states under general anesthesia by using global coherence analysis. PNAS 108:8832–37
+Cohen MR, Kohn A. 2011. Measuring and interpreting neuronal correlations. Nat. Neurosci. 14:811–19 Colquhoun D, Sakmann B. 1998. From muscle endplate to brain synapses: a short history of synapses and
+agonist-activated ion channels. Neuron 20:381–87 Craik K. 1943. The Nature of Explanation. Cambridge, UK: Cambridge Univ. Press Cunningham JP, Yu BM. 2014. Dimensionality reduction for large-scale neural recordings. Nat. Neurosci.
+17:1500–9 Dayan P, Abbott LF. 2001. Theoretical Neuroscience. Cambridge, MA: MIT Press Dayan P, Nakahara H. 2017. Reconstruction of recurrent synaptic connectivity of thousands of neurons from
+simulated spiking activity. In press De La Rocha J, Doiron B, Shea-Brown E, Josic´ K, Reyes A. 2007. Correlation between neural spike trains
+increases with ﬁring rate. Nature 448:802–6 Deger M, Schwalger T, Naud R, Gerstner W. 2014. Fluctuations and information ﬁltering in coupled popu-
+lations of spiking neurons with adaptation. Phys. Rev. E 90:062704 Deng J, Dong W, Socher R, Li LJ, Li K, Fei-Fei L. 2009. ImageNet: A large-scale hierarchical image database.
+Proc. 2009 IEEE Conf. Comput. Vis. Pattern Recognit., pp. 248–55. New York: IEEE Destexhe A, Mainen ZF, Sejnowski TJ. 1994. Synthesis of models for excitable membranes, synaptic trans-
+mission and neuromodulation using a common kinetic formalism. J. Comput. Neurosci. 1:195–230 Doiron B, Litwin-Kumar A, Rosenbaum R, Ocker GK, Josic´ K. 2016. The mechanics of state-dependent
+neural correlations. Nat. Neurosci. 19:383–93 Doiron B, Rinzel J, Reyes A. 2006. Stochastic synchronization in ﬁnite size spiking networks. Phys. Rev. E
+74:030903 Ermentrout GB, Terman DH. 2010. Foundations of Mathematical Neuroscience. New York: Springer Faisal AA, Selen LP, Wolpert DM. 2008. Noise in the nervous system. Nat. Rev. Neurosci. 9:292–303 Famulare M, Fairhall A. 2010. Feature selection in simple neurons: how coding depends on spiking dynamics.
+Neural Comput. 22:581–98 Fienberg SE. 2012. A brief history of statistical models for network analysis and open challenges. J. Comput.
+Graph. Stat. 21:825–39 Fischl B, Salat DH, Busa E, Albert M, Dieterich M, et al. 2002. Whole brain segmentation: automated labeling
+of neuroanatomical structures in the human brain. Neuron 33:341–55 Fitzhugh R. 1960. Thresholds and plateaus in the Hodgkin-Huxley nerve equations. J. Gen. Physiol. 43:867–96 Foster M, Sherrington CS. 1897. A Text Book of Physiology. Part III. The Central Nervous System. New York:
+Macmillan Galvani L, Aldini G. 1792. De Viribus Electricitatis In Motu Musculari Commentarius Cum Joannis Aldini Dis-
+sertatione Et Notis. Accesserunt Epistolae ad animalis electricitatis theoriam pertinentes. Florence, Italy: Apud Societatem Typographicam Geisler WS. 2011. Contributions of ideal observer theory to vision research. Vis. Res. 51:771–81 Geman S. 2006. Invariance and selectivity in the ventral visual pathway. J. Physiol. Paris 100:212–24 Geman S, Geman D. 1984. Stochastic relaxation, Gibbs distributions, and the Bayesian restoration of images. IEEE Trans. Pattern Anal. Mach. Intell. 6:721–41 Gerhard F, Kispersky T, Gutierrez GJ, Marder E, Kramer M, Eden U. 2013. Successful reconstruction of a physiological circuit with known connectivity from spiking activity alone. PLOS Comput. Biol. 9:e1003138 Gerstein GL, Mandelbrot B. 1964. Random walk models for the spike activity of a single neuron. Biophys. J. 4:41–68 Gerstner W, Kistler WM, Naud R, Paninski L. 2014. Neuronal Dynamics: From Single Neurons to Networks and Models of Cognition. Cambridge, UK: Cambridge Univ. Press Gerstner W, Naud R. 2009. How good are neuron models? Science 326:379–80 Ginzburg I, Sompolinsky H. 1994. Theory of correlations in stochastic neural networks. Phys. Rev. E 50:3171– 91
+www.annualreviews.org • Computational Neuroscience 209
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+Goedeke S, Diesmann M. 2008. The mechanism of synchronization in feed-forward neuronal networks. New J. Phys. 10:015007
+Gold JI, Shadlen MN. 2007. The neural basis of decision making. Annu. Rev. Neurosci. 30:535–74 Grienberger C, Konnerth A. 2012. Imaging calcium in neurons. Neuron 73:862–85 Grifﬁths TL, Chater N, Norris D, Pouget A. 2012. How the Bayesians got their beliefs (and what those beliefs
+actually are): comment on Bowers and Davis (2012). Grillner S, Jessell TM. 2009. Measured motion: searching for simplicity in spinal locomotor networks. Curr.
+Opin. Neurobiol. 19:572–86 Gru¨ n S. 2009. Data-driven signiﬁcance estimation for precise spike correlation. J. Neurophysiol. 101:1126–40 Grytskyy D, Tetzlaff T, Diesmann M, Helias M. 2013. A uniﬁed view on weakly correlated recurrent networks.
+Front. Comput. Neurosci. 7:131 Gugerty L. 2006. Newell and Simon’s logic theorist: historical background and impact on cognitive modeling.
+Proc. Hum. Fact. Ergon. Soc. Annu. Meet. 50:880–84 Ha¨ma¨la¨inen M, Hari R, Ilmoniemi RJ, Knuutila J, Lounasmaa OV. 1993. Magnetoencephalography—theory,
+instrumentation, and applications to noninvasive studies of the working human brain. Rev. Mod. Phys. 65:413 Harrison MT, Amarasingham A, Kass RE. 2013. Statistical identiﬁcation of synchronous spiking. In Spike Timing: Mechanisms and Function, ed. PM DiLorenzo, JD Victor, pp. 77–120. Boca Raton, FL: CRC Harrison MT, Amarasingham A, Truccolo W. 2015. Spatiotemporal conditional inference and hypothesis tests for neural ensemble spiking precision. Neural Comput. 27:104–50 Hartline HK, Graham CH. 1932. Nerve impulses from single receptors in the eye. J. Cell. Physiol. 1:277–95 Hebb DO. 1949. The Organization of Behavior: A Neuropsychological Approach. New York: Wiley Helias M, Tetzlaff T, Diesmann M. 2013. Echoes in correlated neural systems. New J. Phys. 15:023002 Helias M, Tetzlaff T, Diesmann M. 2014. The correlation structure of local cortical networks intrinsically results from recurrent dynamics. PLOS Comput. Biol. 10:e1003428 Hertz J. 2010. Cross-correlations in high-conductance states of a model cortical network. Neural Comput. 22:427–47 Hille B. 2001. Ionic Channels of Excitable Membranes. Sunderland, MA: Sinauer Hinton GE, Sejnowski TJ. 1983. Optimal perceptual inference. Proc. IEEE Conf. Comput. Vis. Pattern Recognit., pp. 448–53. New York: IEEE Hochreiter S, Schmidhuber J. 1997. Long short-term memory. Neural Comput. 9:1735–80 Hodgkin AL, Huxley AF. 1952. A quantitative description of membrane current and its application to conduction and excitation in nerve. J. Physiol. 117:500–44 Hong S, y Arcas BA, Fairhall AL. 2007. Single neuron computation: from dynamical system to feature detector. Neural Comput. 19:3133–72 Hopﬁeld JJ. 1982. Neural networks and physical systems with emergent collective computational abilities. PNAS 79:2554–58 Hubel DH, Wiesel TN. 1959. Receptive ﬁelds of single neurones in the cat’s striate cortex. J. Physiol. 148:574– 91 Izhikevich EM. 2007. Dynamical Systems in Neuroscience. Cambridge, MA: MIT Press Jovanovic´ S, Hertz J, Rotter S. 2015. Cumulants of Hawkes point processes. Phys. Rev. E Stat. Nonlin. Soft Matter Phys. 91:042802 Kandel ER, Schwartz JH, Jessell TM, Siegelbaum SA, Hudspeth AJ. 2013. Principles of Neural Science. New York: McGraw-Hill. 5th ed. Kass RE, Eden UT, Brown EN. 2014. Analysis of Neural Data. Springer Ser. Stat. New York: Springer Kass RE, Ventura V. 2001. A spike-train probability model. Neural Comput. 13:1713–20 Kaufman MT, Churchland MM, Ryu SI, Shenoy KV. 2014. Cortical activity in the null space: permitting preparation without movement. Nat. Neurosci. 17:440–48 Kelly RC, Kass RE. 2012. A framework for evaluating pairwise and multiway synchrony among stimulus-driven neurons. Neural Comput. 24:2007–32 Kobayashi R, Tsubo Y, Shinomoto S. 2009. Made-to-order spiking neuron model equipped with a multitimescale adaptive threshold. Front. Comput. Neurosci. 3:9
+210 Kass et al.
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+Kopell N, Ermentrout GB. 2002. Mechanisms of phase-locking and frequency control in pairs of coupled neural oscillators. Handbook of Dynamical Systems, Volume 2: Toward Applications, ed. B Fielder, pp. 3–54. Amsterdam: Elsevier
+Ko¨ rding K. 2007. Decision theory: What “should" the nervous system do? Science 318:606–10 Kriegeskorte N. 2015. Deep neural networks: a new framework for modeling biological vision and brain
+information processing. Annu. Rev. Vis. Sci. 1:417–46 Krizhevsky A, Sutskever I, Hinton GE. 2012. ImageNet classiﬁcation with deep convolutional neural networks.
+In Advances in Neural Information Processing Systems 25 (NIPS 2012), ed. F Pereira, CJC Burges, L Bottou, KQ Weinberger, pp. 1097–105. Red Hook, NY: Curran Lansky P, Ditlevsen S. 2008. A review of the methods for signal estimation in stochastic diffusion leaky integrate-and-ﬁre neuronal models. Biol. Cybern. 99:253–62 Lapique L. 1907. Recherches quantitatives sur l’excitation e´lectrique des nerfs traite´e comme une polarisation. J. Physiol. Pathol. Gen. 9:620–35 Lazar N. 2008. The Statistical Analysis of Functional MRI Data. New York: Springer le Cun Y. 1989. Generalization and network design strategies. In Connectionism in Perspective, ed. R Pfeifer, Z Schreter, F Fogelman-Soulie´, L Steels, pp. 143–55. Amsterdam: Elsevier le Cun Y, Bengio Y, Hinton G. 2015. Deep learning. Nature 521:436–44 Litwin-Kumar A, Doiron B. 2012. Slow dynamics and high variability in balanced cortical networks with clustered connections. Nat. Neurosci. 15:1498–505 Mainen ZF, Sejnowski TJ. 1995. Reliability of spike timing in neocortical neurons. Science 268:1503–6 Mante V, Sussillo D, Shenoy KV, Newsome WT. 2013. Context-dependent computation by recurrent dynamics in prefrontal cortex. Nature 503:78–84 Marder E, Bucher D. 2001. Central pattern generators and the control of rhythmic movements. Curr. Biol. 11:R986–96 Markram H, Muller E, Ramaswamy S, Reimann MW, Abdellah M, et al. 2015. Reconstruction and simulation of neocortical microcircuitry. Cell 163:456–92 Marr D. 1982. Vision: A Computational Investigation into the Human Representation and Processing of Visual Information. San Francisco: W.H. Freeman McClelland JL, Rumelhart DE. 1981. An interactive activation model of context effects in letter perception: I. An account of basic ﬁndings. Psychol. Rev. 88:375 McCulloch WS, Pitts W. 1943. A logical calculus of the ideas immanent in nervous activity. Bull. Math. Biophys. 5:115–33 McGrayne SB. 2011. The Theory That Would Not Die: How Bayes’ Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy. New Haven, CT: Yale Univ. Press Medler DA. 1998. A brief history of connectionism. Neural Comput. Surv. 1:18–72 Meliza CD, Kostuk M, Huang H, Nogaret A, Margoliash D, Abarbanel HD. 2014. Estimating parameters and predicting membrane voltages with conductance-based neuron models. Biol. Cybern. 108:495–516 Meng L, Kramer MA, Middleton SJ, Whittington MA, Eden UT. 2014. A uniﬁed approach to linking experimental, statistical and computational analysis of spike train data. PLOS ONE 9:e85269 Meyer C, van Vreeswijk C. 2002. Temporal correlations in stochastic networks of spiking neurons. Neural Comput. 14:369–404 Mnih V, Kavukcuoglu K, Silver D, Rusu AA, Veness J, et al. 2015. Human-level control through deep reinforcement learning. Nature 518:529–33 Monteforte M, Wolf F. 2012. Dynamic ﬂux tubes form reservoirs of stability in neuronal circuits. Phys. Rev. X. 2:041007 Moreno-Bote R, Parga N. 2010. Response of integrate-and-ﬁre neurons to noisy inputs ﬁltered by synapses with arbitrary timescales: ﬁring rate and correlations. Neural Comput. 22:1528–72 Nagumo J, Arimoto S, Yoshizawa S. 1962. An active pulse transmission line simulating nerve axon. Proc. IRE 50:2061–70 Nakahara H, Amari S, Richmond BJ. 2006. A comparison of descriptive models of a single spike train by information-geometric measure. Neural Comput. 18:545–68
+www.annualreviews.org • Computational Neuroscience 211
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+Newell A, Simon H. 1956. The logic theory machine–a complex information processing system. IEEE Trans. Inf. Theory 2:61–79
+Nguyen A, Yosinski J, Clune J. 2015. Deep neural networks are easily fooled: high conﬁdence predictions for unrecognizable images. Proc. IEEE Conf. Comput. Vis. Pattern Recognit., pp. 427–36. New York: IEEE
+Nunez PL, Srinivasan R. 2006. Electric Fields of the Brain: The Neurophysics of EEG. New York: Oxford Univ. Press
+Ohiorhenuan IE, Mechler F, Purpura KP, Schmid AM, Hu Q, Victor JD. 2010. Sparse coding and high-order correlations in ﬁne-scale cortical networks. Nature 466:617–21
+Okun M, Lampl I. 2008. Instantaneous correlation of excitation and inhibition during ongoing and sensoryevoked activities. Nat. Neurosci. 11:535–37
+Ostojic S, Brunel N. 2011. From spiking neuron models to linear-nonlinear models. PLOS Comput. Biol. 7:e1001056
+Ostojic S, Brunel N, Hakim V. 2009. How connectivity, background activity, and synaptic properties shape the cross-correlation between spike trains. J. Neurosci. 29:10234–53
+Paninski L, Brown EN, Iyengar S, Kass RE. 2009. Statistical models of spike trains. Stoch. Methods Neurosci. 278–303
+Papo D, Zanin M, Martnez JH, Buldu´ JM. 2016. Beware of the small-world neuroscientist! Front. Hum. Neurosci. 10:96
+Pelillo M, Scantamburlo T, Schiaffonati V. 2015. Pattern recognition between science and engineering: a red herring? Pattern Recognit. Lett. 64:3–10
+Perkel DH, Bullock TH. 1968. Neural coding. Neurosci. Res. Program Bull. 6:219–349 Piccinini G. 2004. The ﬁrst computational theory of mind and brain: a close look at McCulloch and Pitts’s
+logical calculus of ideas immanent in nervous activity. Synthese 141:175–215 Piccolino M. 1998. Animal electricity and the birth of electrophysiology: the legacy of Luigi Galvani. Brain
+Res. Bull. 46:381–407 Pillow JW, Shlens J, Paninski L, Sher A, Litke AM, et al. 2008. Spatio-temporal correlations and visual
+signalling in a complete neuronal population. Nature 454:995–99 Platkiewicz J, Stark E, Amarasingham A. 2017. Spike-centered jitter can mistake temporal structure. Neural
+Comput. 29:783–803 Pnevmatikakis EA, Soudry D, Gao Y, Machado TA, Merel J, et al. 2016. Simultaneous denoising, deconvo-
+lution, and demixing of calcium imaging data. Neuron 89:285–99 Prinz AA, Bucher D, Marder E. 2004. Similar network activity from disparate circuit parameters. Nat. Neurosci.
+7:1345–52 Qin F, Auerbach A, Sachs F. 1997. Maximum likelihood estimation of aggregated Markov processes. Proc. R.
+Soc. Lond. B 264:375–83 Rall W. 1962. Theory of physiological properties of dendrites. Ann. N.Y. Acad. Sci. 96:1071–92 Renart A, De La Rocha J Bartho P, Hollender L, Parga N, et al. 2010. The asynchronous state in cortical
+circuits. Science 327:587–90 Rescorla RA, Wagner AR. 1972. A theory of Pavlovian conditioning: variations in the effectiveness of reinforce-
+ment and nonreinforcement. In Classical Conditioning II: Current Research and Theory, ed. AH Black, WF Prokasy, pp. 64–99. New-York: Appleton-Century-Crofts Rey HG, Pedreira C, Quiroga RQ. 2015. Past, present and future of spike sorting techniques. Brain Res. Bull. 119:106–17 Richardson MJE. 2008. Spike-train spectra and network response functions for non-linear integrate-and-ﬁre neurons. Biol. Cybern. 99:381–92 Riehle A, Gru¨ n S, Diesmann M, Aertsen A. 1997. Spike synchronization and rate modulation differentially involved in motor cortical function. Science 278:1950–53 Rinzel J. 1985. Excitation dynamics: insights from simpliﬁed membrane models. Fed. Proc. 44:2944–46 Rosenblatt F. 1958. The perceptron: a probabilistic model for information storage and organization in the brain. Psychol. Rev. 65:386–408 Rosenblueth A, Wiener N, Bigelow J. 1943. Behavior, purpose and teleology. Philos. Sci. 10:18–24 Rotstein HG. 2015. Subthreshold amplitude and phase resonance in models of quadratic type: nonlinear effects generated by the interplay of resonant and amplifying currents. J. Comput. Neurosci. 38:325–54
+212 Kass et al.
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+Rotstein HG, Oppermann T, White JA, Kopell N. 2006. A reduced model for medial entorhinal cortex stellate cells: subthreshold oscillations, spiking and synchronization. J. Comput. Neurosci. 21:271–92
+Roxin A, Brunel N, Hansel D. 2006. Rate models with delays and the dynamics of large networks of spiking neurons. Prog. Theor. Phys. Suppl. 161:68–85
+Roxin A, Brunel N, Hansel D, Mongillo G, van Vreeswijk C. 2011. On the distribution of ﬁring rates in networks of cortical neurons. J. Neurosci. 31:16217–26
+Rumelhart DE, McClelland JL, Research Group PDP. 1986. Parallel Distributed Processing: Explorations in the Microstructures of Cognition, Vol. 1: Foundations. Cambridge, MA: MIT Press
+Sadtler PT, Quick KM, Golub MD, Chase SM, Ryu SI, et al. 2014. Neural constraints on learning. Nature 512:423–26
+Sakmann B, Neher E. 1984. Patch clamp techniques for studying ionic channels in excitable membranes. Annu. Rev. Physiol. 46:455–72
+Santos GS, Gireesh ED, Plenz D, Nakahara H. 2010. Hierarchical interaction structure of neural activities in cortical slice cultures. J. Neurosci. 30:8720–33
+Schultz W. 2015. Neuronal reward and decision signals: from theories to data. Physiol. Rev. 95:853–951 Schultz W, Dayan P, Montague PR. 1997. A neural substrate of prediction and reward. Science 275:1593–99 Shadlen MN, Movshon JA. 1999. Synchrony unbound. Neuron 24:67–77 Shadlen MN, Newsome WT. 1998. The variable discharge of cortical neurons: implications for connectivity,
+computation, and information coding. J. Neurosci. 18:3870–96 Shannon CE, Weaver W. 1949. The Mathematical Theory of Communication. Urbana: Univ. Ill. Press Shea-Brown E, Josic K, de la Rocha J, Doiron B. 2008. Correlation and synchrony transfer in integrate-and-ﬁre
+neurons: basic properties and consequences for coding. Phys. Rev. Lett. 100:108102 Shimazaki H, Amari SI, Brown EN, Gru¨ n S. 2012. State-space analysis of time-varying higher-order spike
+correlation for multiple neural spike train data. PLOS Comput. Biol. 8:e1002385 Shimazaki H, Sadeghi K, Ishikawa T, Ikegaya Y, Toyoizumi T. 2015. Simultaneous silence organizes structured
+higher-order interactions in neural populations. Sci. Rep. 5:9821 Sigworth F. 1977. Sodium channels in nerve apparently have two conductance states. Nature 270:265–67 Sigworth F. 1980. The variance of sodium current ﬂuctuations at the node of Ranvier. J. Physiol. 307:97–129 Singer W. 1999. Neuronal synchrony: a versatile code for the deﬁnition of relations? Neuron 24:49–65, 111–25 Singer W, Gray CM. 1995. Visual feature integration and the temporal correlation hypothesis. Annu. Rev.
+Neurosci. 18:555–86 Somjen GG. 2004. Ions in the Brain: Normal Function, Seizures, and Stroke. Oxford, UK: Oxford Univ. Press Staude B, Rotter S, Gru¨ n S. 2010. CuBIC: cumulant based inference of higher-order correlations in massively
+parallel spike trains. J. Comput. Neurosci. 29:327–50 Stigler SM. 1986. The History of Statistics: The Measurement of Uncertainty Before 1900. Cambridge, MA: Harvard
+Univ. Press Sutton RS, Barto AG. 1998. Reinforcement Learning: An Introduction. Cambridge, MA: MIT Press Swanson LW. 2012. Brain Architecture: Understanding the Basic Plan. Oxford, UK: Oxford Univ. Press Teramae JN, Tsubo Y, Fukai T. 2012. Optimal spike-based communication in excitable networks with strong-
+sparse and weak-dense links. Sci. Rep. 2:485 Tetzlaff T, Helias M, Einevoll G, Diesmann M. 2012. Decorrelation of neural-network activity by inhibitory
+feedback. PLOS Comput. Biol. 8:e1002596 Thorndike EL. 1911. Animal Intelligence: Experimental Studies. New York: Macmillan Tien JH, Guckenheimer J. 2008. Parameter estimation for bursting neural models. J. Comput. Neurosci. 24:358–
+73 Torre E, Quaglio P, Denker M, Brochier T, Riehle A, Gru¨ n S. 2016. Synchronous spike patterns in macaque
+motor cortex during an instructed-delay reach-to-grasp task. J. Neurosci. 36:8329–40 Tranchina D. 2010. Population density methods in large-scale neural network modelling. In Stochastic Methods
+in Neuroscience, ed. C Laing, GH Lord, pp. 181–216. Oxford, UK: Oxford Univ. Press Traub RD, Contreras D, Cunningham MO, Murray H, LeBeau FEN, et al. 2005. Single-column tha-
+lamocortical network model exhibiting gamma oscillations, sleep spindles, and epileptogenic bursts. J. Neurophysiol. 93:2194–232
+www.annualreviews.org • Computational Neuroscience 213
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05CH09_Kass ARI 24 January 2018 9:47
+Trousdale J, Hu Y, Shea-Brown E, Josic K. 2012. Impact of network structure and cellular response on spike time correlations. PLOS Comput. Biol. 8:e1002408
+Truccolo W. 2010. Stochastic models for multivariate neural point processes: collective dynamics and neural decoding. In Analysis of Parallel Spike Trains, ed. S Gru¨ n, S Rotter, pp. 321–41. New York: Springer
+Tuckwell HC. 1988. Introduction to Theoretical Neurobiology, Vol. 1. Cambridge, UK: Cambridge Univ. Press Turing AM. 1937. On computable numbers, with an application to the Entscheidungsproblem. Proc. Lond.
+Math. Soc. 2:230–65 Ullman S, Assif L, Fetaya E, Harari D. 2016. Atoms of recognition in human and computer vision. PNAS
+113:2744–49 Van Vreeswijk C, Sompolinsky H. 1996. Chaos in neuronal networks with balanced excitatory and inhibitory
+activity. Science 274:1724–26 Van Vreeswijk C, Sompolinsky H. 1998. Chaotic balanced state in a model of cortical circuits. Neural Comput.
+10:1321–71 Vavoulis DV, Straub VA, Aston JA, Feng J. 2012. A self-organizing state-space-model approach for parameter
+estimation in Hodgkin-Huxley-type models of single neurons. PLOS Comput. Biol. 8:e1002401 Ventura V, Todorova S. 2015. A computationally efﬁcient method for incorporating spike waveform infor-
+mation into decoding algorithms. Neural Comput. 27:1033–50 Villringer A, Planck J, Hock C, Schleinkofer L, Dirnagl U. 1993. Near infrared spectroscopy (NIRS): a new
+tool to study hemodynamic changes during activation of brain function in human adults. Neurosci. Lett. 154:101–4 Walch OJ, Eisenberg MC. 2016. Parameter identiﬁability and identiﬁable combinations in generalized Hodgkin-Huxley models. Neurocomputing 199:137–43 Wang W, Tripathy SJ, Padmanabhan K, Urban NN, Kass RE. 2015. An empirical model for reliable spiking activity. Neural Comput. 27:1609–23 Watts DJ, Strogatz SH. 1998. Collective dynamics of small-world networks. Nature 393:440–42 Weber AI, Pillow JW. 2016. Capturing the dynamical repertoire of single neurons with generalized linear models. arXiv:1602.07389 [q-bio.NC] Wei Y, Ullah G, Schiff SJ. 2014. Uniﬁcation of neuronal spikes, seizures, and spreading depression. J. Neurosci. 34:11733–43 Whitehead AN, Russell B. 1935. Principia Mathematica, Vol. 1. Cambridge, UK: Cambridge Univ. Press. 2nd ed. Wiener N. 1948. Cybernetics: Control and Communication in the Animal and the Machine. New York: Wiley Williamson RC, Cowley BR, Litwin-Kumar A, Doiron B, Kohn A, Smith MA, Yu BM. 2016. Scaling properties of dimensionality reduction for neural populations and network models. PLOS Comput. Biol. 12:e1005141 Wilson HR, Cowan JD. 1972. Excitatory and inhibitory interactions in localized populations of model neurons. Biophys. J. 12:1–24 Wolpert DM, Diedrichsen J, Flanagan JR. 2011. Principles of sensorimotor learning. Nat. Rev. Neurosci. 12:739–51 Yamins DLK, DiCarlo JJ. 2016. Using goal-driven deep learning models to understand sensory cortex. Nat. Neurosci. 19:356–65 Yu BM, Cunningham JP, Santhanam G, Ryu SI, Shenoy KV, Sahani M. 2009. Gaussian-process factor analysis for low-dimensional single-trial analysis of neural population activity. J. Neurophysiol. 102:614–35 Zaytsev YV, Morrison A, Deger M. 2015. Reconstruction of recurrent synaptic connectivity of thousands of neurons from simulated spiking activity. J. Comput. Neurosci. 39:77–103 Zhou P, Burton SD, Snyder AC, Smith MA, Urban NN, Kass RE. 2015. Establishing a statistical link between network oscillations and neural synchrony. PLOS Comput. Biol. 11:e1004549 Zylberberg J, Cafaro J, Turner MH, Shea-Brown E, Rieke F. 2016. Direction-selective circuits shape noise to ensure a precise population code. Neuron 89:369–83
+214 Kass et al.
+
+ST05_TOC ARI 24 January 2018 13:52
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+Contents
+
+Annual Review of Statistics and its Application
+Volume 5, 2018
+
+Election Polls—A Survey, A Critique, and Proposals Ron S. Kenett, Danny Pfeffermann, and David M. Steinberg p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 1
+Web-Based Enrollment and Other Types of Self-Selection in Surveys and Studies: Consequences for Generalizability Niels Keiding and Thomas A. Louis p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p25
+Issues and Challenges in Census Taking Chris Skinner p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p49
+Methods for Inference from Respondent-Driven Sampling Data Krista J. Gile, Isabelle S. Beaudry, Mark S. Handcock, and Miles Q. Ott p p p p p p p p p p p p p p p p p65
+Multiple Systems Estimation (or Capture-Recapture Estimation) to Inform Public Policy Sheila M. Bird and Ruth King p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p95
+Words, Words, Words: How the Digital Humanities Are Integrating Diverse Research Fields to Study People Chad Gafﬁeld p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 119
+Toward Integrative Bayesian Analysis in Molecular Biology Katja Ickstadt, Martin Scha¨fer, and Manuela Zucknick p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 141
+Personalized Cancer Genomics Richard M. Simon p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 169
+Computational Neuroscience: Mathematical and Statistical Perspectives Robert E. Kass, Shun-Ichi Amari, Kensuke Arai, Emery N. Brown, Casey O. Diekman, Markus Diesmann, Brent Doiron, Uri T. Eden, Adrienne L. Fairhall, Grant M. Fiddyment, Tomoki Fukai, Sonja Gru¨ n, Matthew T. Harrison, Moritz Helias, Hiroyuki Nakahara, Jun-nosuke Teramae, Peter J. Thomas, Mark Reimers, Jordan Rodu, Horacio G. Rotstein, Eric Shea-Brown, Hideaki Shimazaki, Shigeru Shinomoto, Byron M. Yu, and Mark A. Kramer p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 183
+
+Annu. Rev. Stat. Appl. 2018.5:183-214. Downloaded from www.annualreviews.org Access provided by 158.182.109.77 on 10/15/23. For personal use only.
+
+ST05_TOC ARI 24 January 2018 13:52
+Review of State-Space Models for Fisheries Science William H. Aeberhard, Joanna Mills Flemming, and Anders Nielsen p p p p p p p p p p p p p p p p p p 215
+Statistical Challenges in Assessing the Engineering Properties of Forest Products James V. Zidek and Conroy Lum p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 237
+Overview and History of Statistics for Equity Markets John Lehoczky and Mark Schervish p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 265
+Statistical Modeling for Health Economic Evaluations Gianluca Baio p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 289
+Cure Models in Survival Analysis Maı¨lis Amico and Ingrid Van Keilegom p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 311
+Social Network Modeling Viviana Amati, Alessandro Lomi, and Antonietta Mira p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 343
+Causal Structure Learning Christina Heinze-Deml, Marloes H. Maathuis, and Nicolai Meinshausen p p p p p p p p p p p p p p 371
+On p-Values and Bayes Factors Leonhard Held and Manuela Ott p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 393
+Particle Filters and Data Assimilation Paul Fearnhead and Hans R. Ku¨ nsch p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 421
+Geometry and Dynamics for Markov Chain Monte Carlo Alessandro Barp, Franc¸ois-Xavier Briol, Anthony D. Kennedy, and Mark Girolami p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 451
+Robust Nonparametric Inference Klaus Nordhausen and Hannu Oja p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 473
+Topological Data Analysis Larry Wasserman p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 501
+Principal Components, Sufﬁcient Dimension Reduction, and Envelopes R. Dennis Cook p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p p 533
+Errata
+An online log of corrections to Annual Review of Statistics and Its Application articles may be found at http://www.annualreviews.org/errata/statistics
+
